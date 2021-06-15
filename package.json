@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/ManethWijetunga/Group_Project-_1/issues"
   },
-  "homepage": "https://github.com/ManethWijetunga/Group_Project-_1#readme"
+  "homepage": "https://github.com/ManethWijetunga/Group_Project-_1#readme",
+  "devDependencies": {
+    "workbox-build": "^6.1.5"
+  }
 }

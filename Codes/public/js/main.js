@@ -6,3 +6,5 @@ window.onload = () => {
              .register('./sw.js');
   }
 }
+
+console.log("HELLO");

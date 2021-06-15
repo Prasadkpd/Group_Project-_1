@@ -5,7 +5,7 @@
   <meta name ="theme-color" content ="white"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Hello World</title>
+  <title>Sportizza</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel ="manifest" href ="/manifest.json">
   
@@ -16,5 +16,20 @@
     <h1 class="title">Sportizza</h1>
   </div>
   <script async src ="js/main.js"></script>
+  //Creating a service worker
+  <script>
+  // Check that service workers are supported
+  if ('serviceWorker' in navigator) {
+
+  // Use the window load event to keep the page load performant
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').then(sWReg=>{
+      console.log("Worker Registered!");
+    }).catch(error =>{
+      console.log("There was an error", error);
+    });
+  });}
+
+  </script>var cacheName = 'hello-pwa';
 </body>
 </html>
