@@ -1,0 +1,20 @@
+{
+  "name": "group_project-_1",
+  "version": "1.0.0",
+  "description": "Include all the files for 2nd year group project",
+  "main": "index.js",
+  "scripts": {
+    "serve": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ManethWijetunga/Group_Project-_1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ManethWijetunga/Group_Project-_1/issues"
+  },
+  "homepage": "https://github.com/ManethWijetunga/Group_Project-_1#readme"
+}
