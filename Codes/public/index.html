@@ -7,15 +7,17 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel ="manifest" href ="/manifest.json">
   <link rel ="preconnect" href="https://fonts.gstatic.com">  
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;500;700&display=swap" 
-    rel="stylesheet" rel="stylesheet">"
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css"> 
 </head>
   
 <body class="fullscreen">
+   
     <section class ="header">
       <nav>
         <a href ="index.html"><img src="images/logos/Sportizza_Logo_Final.png"></a>
-        <div class ="nav-links">
+        <div class ="nav-links" id= "nav-links">
+          <i class="fa fa-times" onclick="hideMenu()"></i>
           <ul>
             <li><a href="">HOME</a></li>
             <li><a href="">LOCATIONS</a></li>
@@ -24,6 +26,7 @@
             <li><a href="">ABOUT US</a></li>
           </ul>
         </div>
+        <i class="fa fa-bars" onclick="showMenu()" aria-hidden="true"></i>
       </nav>
       <div class="textbox">
         <h1>Hope of Building a Healthy Nation</h1>
@@ -31,8 +34,24 @@
         <a href="" class= "book_now_btn"> Book Now </a>
       </div>
     </section>
-  <script async src ="js/main.js"></script>
-  
+
+
+
+
+
+
+
+<!---Javascript for Toggle Menu------>
+  <script>
+  var nav-links = document.getElementById("nav-links");
+  function showMenu(){
+    nav-links.style.left = "0";
+  }
+  function hideMenu(){
+    nav-links.style.left = "-200px";
+  } 
+  </script>
+
   <script>
     //Creating a service worker
   // Check that service workers are supported
@@ -48,6 +67,6 @@
   });}
   var cacheName = 'hello-pwa';
   </script>
-  
+   
 </body>
 </html>
