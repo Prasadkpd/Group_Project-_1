@@ -1,23 +1,105 @@
-body {
-  font-family: sans-serif;
-}
-
-/* Make content area fill the entire browser window */
-html,
-.fullscreen {
-  display: flex;
-  height: 100%;
+*{
   margin: 0;
   padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.header{
+  min-height: 100vh;
   width: 100%;
+  background-image:linear-gradient (rgba(253, 70, 31, 0.8),rgba(253, 70, 31, 0.8) ), 
+  url(images/post1.jpg);
+  background-position: center;
+  background-size: cover;
+  position: relative; 
+}
+nav{
+  display: flex;
+  padding: 2% 6%;
+  justify-content: space-between;
+  align-items: center;
+}
+nav img{
+  width: 40px;
+}
+.nav-links{
+  flex:1;
+  text-align: right;
+}
+.nav-links ul li{
+  list-style: none;
+  display: inline-block;
+  padding:8px 12px;
+  position: relative;
+}
+.nav-links ul li a{
+  color: #fd461f;
+  text-decoration: none;
+  font-size: 13px;
+}
+.nav-links ul li::after{
+  content: '';
+  width: 0%;
+  height:2px;
+  background: #ffbf00;
+  display:block;
+  margin:auto;
+  transition: 0.5s;
+}
+.nav-links ul li:hover::after{
+  width:100%
+}
+.textbox{
+  width: 90%;
+  color: #fd461f;
+  position:absolute;
+  top: 50%;
+  left: 20%;
+  transform: translate(-20%, -80%);
+  text-align: left;
+}
+.textbox h1{
+  font-size: 30px;
+}
+.textbox p{
+  margin: 10 px 0 40 px;
+  font-size: 14px;
+  color:#fd461f;
+}
+.book_now_btn{
+  display: inline-block;
+  text-decoration: none;
+  color:#0c6423;
+  border: 1px solid #1cc94a;
+  padding: 12px 34px;
+  font-size: 13px;
+  background:#1cc94a;
+  position:relative;
+  cursor: pointer;
+}
+.book_now_btn:hover{
+  border: 1px solid #23f15b;
+  background:#23f15b;
+  transition: 1s;
 }
 
-/* Center the content in the browser window */
-.container {
-  margin: auto;
-  text-align: center;
-}
+@media(max-width:700px){
+  .textbox h1{
+    font-size: 20px;
+  }
+  .nav-links ul li{
+    display:block;
+  }
+  nav-links{
+    position: absolute;
+    background: #fd461f;
+    height: 100vh;
+    width: 200px;
+    top:0;
+    left:0;
+    text-align:left;
+    z-index: 2;
+      
 
-.title {
-  font-size: 3rem;
+  }
 }

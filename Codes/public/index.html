@@ -1,23 +1,40 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name ="theme-color" content ="white"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Sportizza</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel ="manifest" href ="/manifest.json">
-  
-
+  <link rel ="preconnect" href="https://fonts.gstatic.com">  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;500;700&display=swap" 
+    rel="stylesheet" rel="stylesheet">"
+</head>
   
 <body class="fullscreen">
-  <div class="container">
-    <h1 class="title">Sportizza</h1>
-  </div>
+    <section class ="header">
+      <nav>
+        <a href ="index.html"><img src="images/logos/Sportizza_Logo_Final.png"></a>
+        <div class ="nav-links">
+          <ul>
+            <li><a href="">HOME</a></li>
+            <li><a href="">LOCATIONS</a></li>
+            <li><a href="">PROFILE</a></li>
+            <li><a href="">FAQ</a></li>
+            <li><a href="">ABOUT US</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="textbox">
+        <h1>Hope of Building a Healthy Nation</h1>
+        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <a href="" class= "book_now_btn"> Book Now </a>
+      </div>
+    </section>
   <script async src ="js/main.js"></script>
-  //Creating a service worker
+  
   <script>
+    //Creating a service worker
   // Check that service workers are supported
   if ('serviceWorker' in navigator) {
 
@@ -29,7 +46,8 @@
       console.log("There was an error", error);
     });
   });}
-
-  </script>var cacheName = 'hello-pwa';
+  var cacheName = 'hello-pwa';
+  </script>
+  
 </body>
 </html>
