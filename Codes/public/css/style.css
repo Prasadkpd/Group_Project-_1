@@ -248,7 +248,7 @@ img{
 
 
 
-@media(max-width:700px){
+/* @media(max-width:700px){
   .textbox h1{
     font-size: 20px;
   }
@@ -276,18 +276,20 @@ img{
   .nav-links ul{
     padding: 30px;
   }
-}   
+}    */
 
 /*Search timeslot section*/
 .search_slots{
-width:100%;
+width:90%;
 text-align:center;
 padding-top:2em;
-background:#fff;
+background:#000;
 }
-h1{
+.search_slots p{
   font-size: 36px;
-  font-weight: 600;
+  font-weight: 700;
+  color:#fd461f;
+  align-items: center;
 }
 
 
@@ -334,6 +336,58 @@ h1{
   }
 }
 
+.dropbtn {
+  text-decoration: none;
+  background: #ed441f;
+  color:#fff;
+  padding: 12px 34px;
+  font-size: 13px;
+  border: none;
+  cursor: pointer;
+  border-radius: 25px 25px 25px 25px;
+}
+
+.dropbtn:hover{
+  border: 3px solid #fd461f;
+  background:#fff;
+  color:#fd461f;
+  transition: 0.5s;
+} 
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #ffbf00;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+
+}
+
+.dropdown-content a:hover {background-color:#575756 }
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #ffbf00;
+}
+
+
 
 
 .arena-col{
@@ -363,6 +417,7 @@ h3{
 }
 .arena-col p{
   padding:0;
+  font-size: 14px;
   color: #fd461f;
 }
 .arena-col h3{
