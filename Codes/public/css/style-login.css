@@ -103,8 +103,27 @@ form.login-form{
       font-weight: 500;
   }
 
+.sp-signup-btn{
+  width:250px;
+  background-color:#F63F17;
+  border:none;
+  outline:none;
+  height:49px;
+  border-radius: 49px;
+  color:#fff;
+  text-transform: uppercase;
+  font-weight:600;
+  margin:10px 0;
+  margin-top: 100px;
+  cursor:pointer;
+  transition:0.5s;
+  font-size: 0.8rem;
+}
 
-
+.sp-signup-btn:hover{
+  background:#ffbf00;
+  color:#141414;
+}
 
 
 
@@ -146,6 +165,7 @@ form.login-form{
       margin:10px 0;
       cursor:pointer;
       transition:0.5s;
+      font-size: 0.8rem;
   }
 
   .btn:hover{

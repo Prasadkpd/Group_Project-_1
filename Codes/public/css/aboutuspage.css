@@ -1,0 +1,38 @@
+*{
+    margin:0;
+    padding:0;
+    font-family: 'Poppins', sans-serif;
+    background:#FF8166;
+}
+
+.about-us-container{
+    text-align:center;
+}
+
+.about-us-subcontainer{
+    max-width:1200px;
+    margin:auto;padding:48px 0;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+.topic{
+    padding-top:60px;
+    color:#444;
+    font-size:20px;
+    margin:auto;
+    line-height:50px;
+}
+.teams{
+    margin:10px;
+    padding: 22px;
+    max-width:30%;
+    cursor:pointer;
+    transition: 0.5;
+    box-sizing:border-box; 
+}
+
+.teams:hover{
+    background:
+}
