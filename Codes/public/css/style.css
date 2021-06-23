@@ -109,11 +109,12 @@ nav img{
   margin-top: 22px;
 }
 
-.profile_btn:hover{
+.profile_btn:hover{ 
   background:#FE6C4C;
   color:#fff;
   transition: 0.5s;
 }
+
 
 img{
   padding:10px,10px,10px,10px;
