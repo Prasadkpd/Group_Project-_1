@@ -491,18 +491,37 @@ h2{
   justify-content:space-between;
 }
 
-.icons .fa{
-  color:#fd461f;
-  margin:0 13px;
-  cursor: pointer;
-  padding: 18px, 0px;
+.icons i{
+  padding: 15px;
+  font-size: 30px;
+  width: 60px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
 }
 
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+.fa-linkedin {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-instagram {
+  background: #125688;
+  color: white;
+}
 /* Solid border */
 hr.solid {
   border-top: 4px solid #fd461f;
 }
-
 @media screen and (max-width: 600px) {
   .column {
     width: 100%;
