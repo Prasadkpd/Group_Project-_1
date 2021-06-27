@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Sportizza - Admin</title>
+  <link rel="stylesheet" href="css/style-admin-home.css">
+  <link rel ="manifest" href ="/manifest.json">
+  <link rel="mainjs" href="js/admin-home.js">
+  <link rel="header-file" href="header.html">
+  <link rel="footer-file" href="footer.html">
+  <link rel ="preconnect" href="https://fonts.gstatic.com">  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;500;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css"> 
+  
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="js/admin-home-area-chart.js"></script>
+	<script type="text/javascript" src="js/admin-home-bar-chart.js"></script>
+</head>
+  
+<body class="fullscreen">
+  <!-- <section class="header">
+    <script language="html" type ="" src="header.html"></script>
+  </section> -->
+<!--NAVIGATION BAR-->
+<section class ="header">
+  <nav id ="navigation">
+    <a href ="index.html"><img src="images/logos/logo_and_name_large.png"></a>
+    <div id= "nav-links">
+      <div class ="nav-links">
+        <ul>
+          <li><a href="">HOME</a></li>
+          <li><a href="">SPORTS ARENA</a></li>
+          <li><a href="">FAQ</a></li>
+          <li><a href="">ABOUT</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="btn-right">
+      <a href="" class= "profile_btn"> ADMIN </a>
+    </div>
+ </nav>
+</section>
+
+<!-- SPLITTING SCREEN INTO TWO -->
+<section class="dashboard">
+
+	<div class="column left">
+		<h4>Dashboard</h4><br>
+		<p>Sports arena requests</p><br>
+		<p>Remove sport arenas</p><br>
+		<p>Remove customers</p><br>
+		<p>Feedback</p><br>
+		<p>Statistics</p><br>
+		<p>Settings</p><br>
+		<p>Calendar</p><br>
+	</div>
+
+	<div class="column right">
+		<pre class="tab1">		Home	.		Dashboard</pre><br>
+		<section>
+			<pre class="tab1">	<img src="images/outline_show_chart_black_24dp.png">	<b>Today's Statistics</b></pre><br>
+			<div class="stat one">
+				<h3>05</h3>
+				<p>Bookings Made</p>
+			</div>
+			<div class="stat two">
+				<h3>Rs. 15000</h3>
+				<p>Total Sales</p>
+			</div>
+			<div class="stat three">
+				<h3>Rs. 750</h3>
+				<p>Income</p>
+			</div>
+		</section><br style="clear:both;"/><br><br>
+		<section>
+			<pre class="tab1">	<img src="images/outline_show_chart_black_24dp.png">	<b>Last Month's Statistics</b></pre><br>
+			<div class="stat one">
+				<h3>150</h3>
+				<p>Bookings Made</p>
+			</div>
+			<div class="stat two">
+				<h3>Rs. 450000</h3>
+				<p>Total Sales</p>
+			</div>
+			<div class="stat three">
+				<h3>Rs. 22500</h3>
+				<p>Income</p>
+			</div>
+		</section><br style="clear:both;"/><br><br><br>
+		<div id="chart_div_1" class="chart-1"></div><br><br><br>
+		<div id="chart_div_2" class="chart-2"></div></div>
+	</div> <br style="clear:both;"/>
+	
+</section>
+
+
+
+
+
+
+<!-- <section class="footer">
+  <script language="html" type ="" src="footer.html"></script>
+</section> -->
+
+<section class="footer">
+  <div class="row">
+    <div class="footer-col">
+      <div class="about_us">
+  <h2>About Us</h2><br>
+  <p> We always believe that all humans deserve a healthy lifesytle. Thus, we made a hassle-free booking system for the customers to book timeslots in sports arenas around the island while simulataneously providing the sports arenas the ability to market their sports facilities & reach their customer.  </p>
+    </div>
+    </div>
+    <div class="footer-col">
+      <div class="about_us">
+  <h2>Contact Details</h4><br>
+  <p> Contact:+94 765282976 <br><br>
+  Address: No. 35, Reid Avenue, Colombo 07 <br><br>
+Email: contact.sportizza@gmail.com <br> <br></p>
+    </div>
+    <div class="icons">
+      <i class ="fa fa-facebook"></i>
+      <i class ="fa fa-instagram"></i>
+      <i class ="fa fa-linkedin"></i>
+    </div>
+    </div>
+    <div class="footer-col">
+      <div class="about_us">
+  <div id= "nav-links">
+    <div class ="nav-links">
+      <ul>
+        <li><a href="">HOME</a></li><br>
+        <li><a href="">SPORTS ARENA</a></li><br>
+        <li><a href="">FAQ</a></li><br>
+        <li><a href="">ABOUT</a></li><br>
+      </ul><br>
+    </div>
+  </div>
+    </div>
+    </div>
+    
+</div>
+<div>
+  <hr class="solid"> 
+      <p> 2021 Sportizza. All rights Reserved. </p>
+      </div>
+</section>
+
+
+
+<!--Javascript for Toggle Menu
+  <script>
+  var nav-links-links = document.getElementById("nav-links");
+  function showMenu(){
+    nav-links.style.left = "0";
+  }
+  function hideMenu(){
+    nav-links.style.left = "-200px";
+  } 
+  </script>
+-->
+  <script>
+    //Creating a service worker
+  // Check that service workers are supported
+  if ('serviceWorker' in navigator) {
+
+  // Use the window load event to keep the page load performant
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').then(sWReg=>{
+      console.log("Worker Registered!");
+    }).catch(error =>{
+      console.log("There was an error", error);
+    });
+  });}
+  var cacheName = 'hello-pwa';
+  </script>
+   
+
+
+
+</body>
+</html>
