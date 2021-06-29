@@ -304,20 +304,23 @@ font-weight: 500;
 
 table{
   table-layout: auto;
-  /* border-width: 0px; */
-}
-td{
+  border-width: 0px;
+  border-color: none;
   background-color: #fd461f;
 }
+/* td{
+  background-color: #fd461f;
+} */
 tr td{
   background-color: #fd461f;
   color:#f0f0f0;
   padding-bottom:20px;
-  border-color: none;
+  /* border-color: none; */
+  border-width: 0px;
   font-size: 15px;
 }
 
-
+/* 
 tr td:first-child{
   padding-right:10px;
-}
+} */
