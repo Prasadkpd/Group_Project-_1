@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
-
 :root {
  
     --orange: #fd461f;
@@ -25,9 +24,7 @@
   }
 
 /* Genral Styles */
-*,
-*::before,
-*::after {
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -54,47 +51,94 @@ img {
     padding: 0 4rem;
     margin: 0 auto;
 }
-/* 
 .stop-scrolling {
     height: 100%;
     overflow: hidden;
-  }
-  
-  .grid-2 {
+} 
+.grid-2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
-    justify-content: center;
-  }
-  
-  .text {
-    font-size: 1.25rem;
-    color: var(--dark-two);
+    justify-content: center; 
+} 
+.text {
+    font-size: 1.5rem;
+    color: var(--dark-ash-2);
     line-height: 1.6;
-  }
-  
-  .column-1 {
+}
+.column-1 {
     margin-right: 1.5rem;
-  }
-  
-  .column-2 {
+} 
+.column-2 {
     margin-left: 1.5rem;
-  }
-  
-  .image {
+}  
+.image {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  
-  .z-index {
+} 
+.z-index {
     position: relative;
     z-index: 2;
+}
+.section {
+    padding: 7rem 0;
+    overflow: hidden;
+} 
+.section-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.book-now-btn{
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    background-color: var(--light-green);
+    color: var(--dark-green);
+    border-radius: 2rem;
+    border-width: 1rem;
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: 0.3s; 
+    cursor: pointer;  
+}
+.book-now-btn:hover{
+    border: 0.1rem solid var(--light-green);
+    background:var(--white);
+    color:var(--light-green-dull);
+    transition: 0.3s;
+}
+
+/* 
+.btn {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    background-color: var(--light-green);
+    color: var(--dark-green);
+    border-radius: 2rem;
+    border-width: 1rem;
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: 0.3s;
+  }
+  
+  .btn:hover {
+    background-color: var(--white);
+    border: 0.1rem solid var(--light-green);
+    border-color: var(--light-green);
+    color:var(--light-green-dull);
+  }
+  
+  .btn.small {
+    padding: 0.7rem 1.8rem;
+    font-size: 1rem;
   } */
 
 
-/* End of Genral Styles */
+/* End of General Styles */
 
 /* Header */
 
@@ -103,8 +147,7 @@ header {
     background-color: var(--white);
     overflow: hidden;
     position: relative;
-  }
-  
+}
 nav {
     width: 100%;
     position: relative;
@@ -150,25 +193,32 @@ nav .container {
     color: var(--dark-orange);
     background-color:var(--light-orange);
 }
-
-
+.slideshow-container .home-slides {
+    display: none;
+}  
+.slideshow-container {
+    max-width: 750px;
+    position: relative;
+    margin: auto;
+    align-content: center;
+}
 .header-content .container.grid-2 {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
     min-height: calc(100vh - 6rem);
     padding-bottom: 2.5rem;
     text-align: left;
 }
 .header-title {
-    font-size: 3.5rem;
+    font-size: 3rem;
     line-height: 0.8;
     color: var(--dark-ash-1);
 }
 .header-content .text {
     margin: 2.15rem 0;
+    color: var(--ash);
 }
-.header-content .image .img-element {
-    max-width: 750px;
-}
+
+
 
 /* End of header section */
 
