@@ -177,7 +177,15 @@ img {
 .points-sq {
     width: 210px;
 }
-
+.social-media a {
+    color: var(--dark-orange);
+    font-size: 1.3rem;
+    margin-right: 0.4rem;
+    transition: 0.3s;
+}
+.social-media a:hover {
+    color: var(--white);
+}
 /* End of General Styles */
 
 /* Header */
@@ -358,6 +366,64 @@ nav.open .links {
 /* End About */
 
 /* Team section */
+.team{
+    overflow: hidden;
+}
+.team .grid-2{
+    padding: 1rem 2rem;
+    margin: 0 auto;
+    align-items: center;
+}
+.team .member-details{
+    background:var(--white);
+    flex-basis:30%;
+    width:600px;
+    border-radius: 1rem;
+    box-sizing:border-box;
+    transition: 0.3s;
+    padding:1.5rem;
+}
+.team .member-details:hover{
+    box-shadow: 0 0 20px 0px #141414;
+}  
+.team .member-image {
+    max-width: 200px;
+    align-items: left;
+}
+.team .column-3{
+    position:relative;
+    float: right;
+}
+.team .column-3:before {
+    top: 20px;
+    left: 0;
+    line-height: 0;
+}
+.team h4{
+    color:var(--dark-orange);
+    font-size: 2rem;
+    font-weight:600;
+}
+.team h5{
+    color:var(--dark-ash-1);
+    font-size: 1.5rem;
+    font-weight:700;
+} 
+.team .text{
+    color:var(--dark-ash-2sh);
+    font-size: 1rem;
+    font-weight:400;
+}
+.team .social-media{
+    padding-top:4rem;
+    transition:0.3s;
+}
+.team .social-media a i{
+    padding:0rem 1.2rem;
+}
+.team .social-media a i:hover{
+    color:var(--light-orange-dull);
+}
 
 
 
@@ -573,15 +639,7 @@ nav.open .links {
     margin: 0 1.2rem;
     display: inline-block;
 }
-.social-media a {
-    color: var(--dark-orange);
-    font-size: 1.3rem;
-    margin-right: 0.4rem;
-    transition: 0.3s;
-}
-.social-media a:hover {
-    color: var(--white);
-}
+
 .back-btn-wrap {
     position: relative;
     margin-left: 2.5rem;
