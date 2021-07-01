@@ -332,6 +332,123 @@ nav.open .links {
   }
 /* End of portfolio   */
 
+/* FAQ section */
+.faq {
+    overflow: hidden;
+}
+.faq .text {
+    margin-top: 1rem;
+}
+.faq .column-1{
+    position: relative;
+    width: 700px;
+}
+.faq .column-2{
+    position:relative;
+}
+.faq .column-2 img{
+    justify-content:center;
+    max-width:500px;
+    float: right;
+}
+.faq h4{
+    text-align: left;
+    color:var(--dark-orange);
+    font-weight:500;
+    font-size: 1.8rem;
+    padding-bottom: 3rem;
+}
+.faq .question{
+    padding-bottom:2rem;
+}
+.faq .accordion{
+    background-color: var(--light-orange);
+    color:var(--white);
+    border-radius: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+.faq .accordion:hover{
+    background-color: var(--orange);
+    color:var(--white);
+}
+.faq .panel{
+    padding: 1.5rem;
+    border-color: var(--dark-orange);
+}
+.faq p{
+    font-size: 1.2rem;
+    color: var(--dark-ash-2);
+    line-height: 1.6;
+}
+
+/* 
+
+
+.faq_customers_left{
+    flex-basis:75%;
+    float:left;
+    width:20;
+    box-sizing:border-box;
+    transition: 0.5s; 
+    border-radius:15px;
+    margin-bottom:100px;
+    padding:30px;
+    padding-right:30px;
+} */
+/* .faq_customers_right img{
+    margin-top:200px;
+    float:right;
+    width:240px;
+    flex-basis:20%;
+} */
+
+
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+  }
+  
+  .active, .accordion:hover {
+    background-color: #ccc; 
+  }
+  
+  .panel {
+    padding: 0 18px;
+    display: none;
+    background-color: white;
+    overflow: hidden;
+  }
+
+.send_button button{
+    background-color: #fd461f;
+    width:100px;
+    border:none;
+    outline:none;
+    color:#fff;
+    height:35px;
+    border-radius: 30px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    }
+    .send_button button:hover{
+      box-shadow: 0 0 20px 0px #141414;
+      background:#f0f0f0;
+      color:#fd461f;
+      transition: 0.5s;
+    }
+
+/* End of FAQ section */
 
 /* About */
 .about {
