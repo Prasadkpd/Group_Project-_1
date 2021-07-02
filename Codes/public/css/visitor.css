@@ -316,7 +316,7 @@ nav.open .links {
 
 /* Portfolio */
 
-.portfolio {
+/* .portfolio {
     position: relative;
     width: 100%;
     background-color: var(--light-two);
@@ -329,8 +329,97 @@ nav.open .links {
     top: 0;
     left: 0;
     background-color: var(--orange);
-  }
+  } */
 /* End of portfolio   */
+
+/* Reviews section */
+.reviews {
+    background-color: var(--white);
+    overflow: hidden;
+}
+.reviews h3{
+    font-size: 2rem;
+}
+.review-content {
+    margin-top: 5rem;
+}
+.reviews .column-1{
+    padding-bottom: 2rem;
+}
+.review {
+    background-color: var(--white);
+    /* border: 0.1rem solid var(--dark-orange); */
+    border-radius: 2rem;
+    transition: 0.3s;
+    cursor: pointer;
+    position: relative;
+    position: relative;
+    padding: 1.5rem;  
+}
+.review:hover{
+    background-color: var(--light-orange);
+} 
+.reviews img{
+    width:100px;
+    float:left;
+}  
+.review-name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--dark-ash-1);
+    padding-left: 10rem;
+    padding-top:0.5rem;
+}
+.review-username {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color:var(--black);
+    padding-left: 10rem;
+}
+.review-text {
+    padding-top:2rem;
+    font-size: 1.35rem;
+    font-weight: 300;
+    color: var(--black);
+    line-height: 1.7;
+}
+.sp-arena-name{
+    font-size: 1.2rem;
+    font-weight: 500;
+    color:var(--black);
+    padding-left: 1rem;
+}
+.rate {
+    display: flex;
+    font-size: 1.4rem;
+    color:var(--dark-orange);
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+}
+.rate i {
+    margin-right: 0.3rem;
+}
+.reviews .btn{
+    width:max-content;
+    float: right;
+    margin-right:3rem;
+}
+/* End of Reviews section */
+
+/* More reviews section */
+.reviews-more {
+    background-color: var(--white);
+    overflow: hidden;    
+    /* display: none; */
+}
+.reviews-more .column-1{
+    padding-bottom: 2rem;
+}
+.reviews-more img{
+    width:100px;
+    float:left;
+}  
+/* End of More reviews section */
 
 /* FAQ section */
 .faq {
@@ -724,7 +813,6 @@ nav.open .links {
     margin: 0 1.2rem;
     display: inline-block;
 }
-
 .back-btn-wrap {
     position: relative;
     margin-left: 2.5rem;
