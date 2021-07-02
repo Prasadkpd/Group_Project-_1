@@ -1,0 +1,170 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+*{
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    overflow-x: hidden;
+}
+.container{
+    
+    
+    display: flex;
+    flex-direction: column;
+    
+    
+}
+.nav_main{
+    margin: 0px;
+    padding: 0px;
+    height: 90px;
+    width: 100vw;
+    
+    
+}
+.middle{
+    width: 100vw;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+
+}
+.middle-first{
+    display: flex;
+    flex-direction: row;
+}
+
+.drawer{
+    
+   position: relative;
+    height: 600px;
+    width: 20%;
+    background-color: #fafafa;
+    transition: 0.5s;
+    overflow: hidden;
+    box-shadow: 5px 1px 6px gray;
+}
+
+.drawer ul {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    
+}
+.drawer ul li{
+    margin-top: 30px;
+    position: relative;
+    width: 100%;
+    list-style: none;
+    height: 40px;
+    text-align: center;
+   
+}
+.drawer ul  :hover{
+    background-color: #cacaca;
+    
+}
+.middle-first-right{
+    width: 80%  ;
+    height:600px; 
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    
+    
+}
+.middle-first-right-top{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+.slide-show{
+    margin-top: 30px;
+    background-color: #fa8164;
+    border: solid;
+    width: 50%;
+    border-radius:50px;
+    border: hidden;
+    box-shadow:5px 5px lightslategray;
+    /* opacity: 50%; */
+    
+    
+  
+}
+#my-bookings{
+    
+    width: 100vw;
+    height: 800px;
+}
+#my-favorite-list{
+   
+    width: 100vw;
+    height: 800px;
+}
+#Help-and-Support{
+    background-color: rgb(241, 19, 223);
+    width: 100vw;
+    height: 800px;
+}
+#search-sports-arena{
+    background-color: rgb(241, 19, 223);
+    width: 100vw;
+    height: 800px;
+}
+#share-bookings{
+    background-color: rgb(241, 19, 223);
+    width: 100vw;
+    height: 800px;
+}
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    width: 80%;
+    margin: auto;
+}
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+.footer-div{
+    
+    width: 100vw;
+    height: 800px;
+    justify-self: flex-end;
+    
+}
