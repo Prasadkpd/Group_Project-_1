@@ -30,3 +30,7 @@ for (i = 0; i < acc.length; i++) {
   });
 }
 
+//Date picking from Calenda
+window.onload = function () {
+  const dateTimePicker = document.querySelector('smart-date-time-picker');
+}

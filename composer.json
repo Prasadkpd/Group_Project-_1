@@ -1,0 +1,14 @@
+{
+    "name": "manethwijetunga/group_project-_1",
+    "authors":[
+        {"name": "Maneth Wijetunga",
+        "email": "2019cs194@stu.ucsc.lk"
+        }
+    ],
+    
+        "autoload": {
+            "psr-4": {"App\\": "src/"}
+        }
+    }
+    "require": {}
+}
