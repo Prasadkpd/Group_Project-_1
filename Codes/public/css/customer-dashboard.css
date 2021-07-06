@@ -11,14 +11,11 @@
 body{
     overflow-x: hidden;
 }
-.container{
-    
-    
+.container{ 
     display: flex;
-    flex-direction: column;
-    
-    
+    flex-direction: column;    
 }
+
 .nav_main{
     margin: 0px;
     padding: 0px;
@@ -43,12 +40,14 @@ body{
     
    position: relative;
     height: 600px;
-    width: 20%;
+    width: 250px;
     background-color: #fafafa;
     transition: 0.5s;
     overflow: hidden;
     box-shadow: 5px 1px 6px gray;
+    
 }
+
 
 .drawer ul {
     position: absolute;
@@ -56,7 +55,10 @@ body{
     top: 0;
     left: 0;
     
+    
 }
+
+
 .drawer ul li{
     margin-top: 30px;
     position: relative;
@@ -64,11 +66,14 @@ body{
     list-style: none;
     height: 40px;
     text-align: center;
+    border: 1px solid black;
+    border-radius: 10px 10px;
+    
    
 }
-.drawer ul  :hover{
-    background-color: #cacaca;
+.drawer ul li  :hover{
     
+    color: #fd451f;    ;
 }
 .middle-first-right{
     width: 80%  ;
@@ -109,17 +114,18 @@ body{
     height: 800px;
 }
 #Help-and-Support{
-    background-color: rgb(241, 19, 223);
+    
     width: 100vw;
     height: 800px;
+    
 }
 #search-sports-arena{
-    background-color: rgb(241, 19, 223);
+    
     width: 100vw;
     height: 800px;
 }
 #share-bookings{
-    background-color: rgb(241, 19, 223);
+    
     width: 100vw;
     height: 800px;
 }
@@ -133,6 +139,8 @@ body{
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     width: 80%;
     margin: auto;
+    border-radius: 25px;
+  border: 2px solid #73AD21;
 }
 .styled-table thead tr {
     background-color: #009879;
@@ -161,10 +169,91 @@ body{
     font-weight: bold;
     color: #009879;
 }
-.footer-div{
+#footer-div{
     
     width: 100vw;
     height: 800px;
     justify-self: flex-end;
     
 }
+
+a{
+    text-decoration: none;
+    color: #000;
+    justify-content: center;
+}
+
+
+
+
+.container-chat {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    ;
+    width: 80%;
+    margin: auto;
+  }
+  
+  .darker {
+    border-color: #ccc;
+    background-color: #ddd;
+  }
+  
+  .container-chat::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  .container-chat img {
+    float: left;
+    max-width: 60px;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+  }
+  
+  .container-chat img.right {
+    float: right;
+    margin-left: 20px;
+    margin-right:0;
+  }
+  
+  .time-right {
+    float: right;
+    color: #aaa;
+  }
+  
+  .time-left {
+    float: left;
+    color: #999;
+  }
+
+
+.up-button {
+      width: 60px;
+      margin-right: 0px;
+      float: right;
+      margin-left: 1400px;
+      
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
