@@ -348,15 +348,15 @@ nav.open .links {
     justify-content: center;
     display: flex;
 }
-.filter-heading{
+.filter-heading h4{
     color:var(--dark-orange);
-    font-weight: 500;
-    font-size: 2rem;
+    font-weight: 600;
+    font-size: 1.5rem;
     transition: 0.3s;
     padding:2rem;
     justify-content: space-evenly;
 }
-.filter-heading:hover{
+.filter-heading h4:hover{
     color:var(--light-orange);
 }
 .filter-btn {
@@ -381,7 +381,47 @@ nav.open .links {
     background-color: var(--light-orange);
     color: var(--white);
 }
+/* SearchBox */
+.search-wrap{
+    width:500px;
+    margin:30px auto;
+}
+.search-wrap .search-box{
+    position:relative;
+    width:500px;
+    height:40px;  
+}
+.search-wrap .search-box .input{
+    position: absolute;
+    top:0;
+    left:0;
+    width:70%;
+    height:100%;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 15px;
+}
+.search-wrap .search-box .search-btn{
+    position:absolute;
+    top:0;
+    right:0;
+    width:6rem;
+    height:100%;
+    background-color: var(--dark-orange);
+    z-index: 1;
+    cursor: pointer;
+    align-content: center;
+    padding:0.5rem 1rem;
+    font-size: 17px;
+    font-weight: 600;
+}
+.search-wrap .search-box .search-btn:hover{
+    background-color: var(--light-orange-dull);
+    color:var(--white);
+    border-color: var(--light-orange-dull);
+}
 
+/* End of Searchbox */
 
 label {
     display: block;
