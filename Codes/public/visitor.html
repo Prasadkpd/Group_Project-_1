@@ -112,7 +112,6 @@
             </section> -->
 <!-- Sports Arena Section -->
 <section class="sports-arena section" id="sp-arena">
-  <div class="background-bg"> </div>
   <div class="container">
     <div class="section-header">
       <h3 class="title" data-title="">Sports Arenas</h3>
@@ -120,26 +119,33 @@
     <div class="sports-arena grid-2">
     <div class= "column-1">
       <div class="sports-arena grid-4">
-
-      <div class="filter">
-        <div class="filter-headings">
-          <div class="filter-heading">
-          <h4> All</h4>
-        </div>
-        <div class="filter-heading">
-          <h4> Date</h4>
-        </div>
-        <div class="filter-heading">
-          <h4> Location</h4>
-        </div>
-        <div class="filter-heading">
-          <h4> Category</h4>
-        </div>
+        <div class="filter">
+        <ul>
+          <li><a href="#"> All</a></li>
+          <li><a href="#"> Date
+            <i class="fas fa-caret-down"></i>
+          </a></li>
+          <li><a href="#"> Location
+            <i class="fas fa-caret-down"></i>
+          </a>
+          <div class="location-dropdown">
+            <ul>
+              <li><a href="#">Colombo 07</a></li>
+              <li><a href="#">Wattala</a></li>
+              <li><a href="#">Galle</a></li>
+              <li><a href="#">Matara</a></li>
+              <li><a href="#">Malabe</a></li>
+              <li><a href="#">Kandy</a></li>
+            </ul>
+          </div>
+        </li>
+          <li><a href="#"> Category
+            <i class="fas fa-caret-down"></i>
+          </a></li>
+        </ul>
         </div>
       </div>
-
-        </div>
-    </div>
+      </div>
 
     <div class= "column-2">
       <div class="search-wrap">
@@ -149,7 +155,82 @@
           </div>
         </div>
       </div>
+      </div>
 
+      <div class="light">
+        <div class="calendar">
+            <div class="calendar-header">
+                <span class="month-picker" id="month-picker">February</span>
+                <div class="year-picker">
+                    <span class="year-change" id="prev-year">
+                        <pre><</pre>
+                    </span>
+                    <span id="year">2021</span>
+                    <span class="year-change" id="next-year">
+                        <pre>></pre>
+                    </span>
+                </div>
+            </div>
+            <div class="calendar-body">
+                <div class="calendar-week-day">
+                    <div>Sun</div>
+                    <div>Mon</div>
+                    <div>Tue</div>
+                    <div>Wed</div>
+                    <div>Thu</div>
+                    <div>Fri</div>
+                    <div>Sat</div>
+                </div>
+                <div class="calendar-days"></div>
+            </div>
+           
+            </div>
+            <div class="month-list"></div>
+        </div>
+    
+        
+    
+    <!-- </div>
+          <div class="filter">
+            <div class="filter-headings">
+              <div class="filter-heading">
+              <h4> All</h4>
+            </div>
+            <div class="filter-heading">
+              <h4> Date</h4>
+              <i class="fas fa-angle-down"></i>
+           
+            </div>
+            <div class="filter-heading">
+              <h4> Location</h4>
+            </div>
+            <div class="filter-heading">
+              <h4> Category</h4>
+            </div>
+            </div>
+          </div> -->
+    <!-- 
+          <ul class="links">
+            <li><a href="#">About</a></li>
+            <li class="dropdown"><a href="#" class="trigger-drop">Work<i class="arrow"></i></a>
+              <ul class="drop">
+                <li><a href="#">Art</a></li>
+                <li><a href="#">Photography</a></li>
+                <li><a href="#">Audio</a></li>
+                <li><a href="#">Films</a></li>
+              </ul>
+            </li> -->
+    
+    
+          
+      
+        
+        
+    
+    
+    
+    
+            </div>
     </div>
 
 
@@ -163,15 +244,7 @@
     </div> --> 
 
 
-    <smart-date-time-picker 
-                              calendar-button
-                              calendar-button-position="right"
-                              enable-mouse-wheel-action
-                              drop-down-position="bottom"></smart-date-time-picker>
-    
-
-                              
-    scripts -->  
+  
     <!-- <script type="module" src="../../source/modules/smart.datetimepicker.js"></script> 
     <script type="module" src="../../source/modules/smart.radiobutton.js"></script> 
     <script type="module" src="app.js"></script>		 -->
@@ -305,24 +378,7 @@
         <a href="#" class="btn">More Folio</a>
       </div> -->
     </div>
-    
-
-      </div>
-      <script>
-        $(document).ready(function(){
-          $(".default_option").click(function(){
-            $(".dropdown ul").addClass("active");
-          });
-    
-          $(".dropdown ul li").click(function(){
-            var text = $(this).text();
-            $(".default_option").text(text);
-            $(".dropdown ul").removeClass("active");
-          });
-        });
-      </script>
-
-
+  </div>
 </section>
 <!-- End of Sports Arena Section -->
 
@@ -926,7 +982,8 @@
         </div>
       </div>
       </div>
- </div>  
+ </div> 
+
 </section>
 <!-- End of team section -->
 
@@ -1108,6 +1165,6 @@
         </div>
       </footer>
 
-      <script src="js/app.js"></script>
+<script src="js/app.js"></script>     
 </body>
 </html>

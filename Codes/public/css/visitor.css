@@ -319,31 +319,80 @@ nav.open .links {
 /* Sports Arena Section */
 
 .sports-arena {
+    background-color: var(--white);
     position: relative;
     width: 100%;
+    overflow: hidden;
 }
-.background-bg {
-    position: absolute;
-    width: 100%;
-    height: 520px;
-    top: 0;
-    left: 0;
-    background-color: var(--white);
-} 
-.sports-arena .title, .sports-arena .title:before {
-    color: var(--black);
+.sports-arena h3{
+    font-size: 2.5rem;
 }
-.sports-arena .title:after {
-    background-color: var(--white);
-}
+
+/* Filter set */
 .filter {
     width: 100%;
+    height:100px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     flex-wrap: wrap;
+    padding:5%;
 }
-.filter-headings{
+.filter ul{
+    list-style:none;
+    display:flex;
+}
+.filter ul li{
+    padding: 0.6rem 2rem;
+    position: relative;
+}
+.filter ul li a{
+    color:var(--dark-orange);
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: 0.3s;
+}
+.filter .fas{
+    float:right;
+    margin-left:10px;
+    padding-top: 3px;
+}
+.location-dropdown{
+    display:none;
+}
+.filter ul li a:hover{
+    color:var(--light-orange-dull);
+}
+.filter ul li:hover .location-dropdown{
+    display:block;
+    position:absolute;
+    left:0;
+    top:100%;
+    background-color: var(--white-2);   
+}
+.location-dropdown ul{
+    display:block;
+    margin:10px;
+}
+.location-dropdown ul li{
+    width:120px;
+    padding:10px;
+}
+.location-dropdown ul li:hover{
+    font-weight:800;
+    color: var(--orange);
+}
+.location-dropdown ul li a{
+    color:var(--dark-ash-1);
+    font-size:0.9rem;
+    font-weight: 400;
+}
+/* .location-dropdown ul li a:hover{
+    font-weight:500;
+    color: var(--orange);
+} */
+/* .filter-headings{
     align-items: center;
     justify-content: center;
     display: flex;
@@ -374,13 +423,13 @@ nav.open .links {
     border-radius: 2rem;
     transition: 0.3s;
 }
-.filter-btn:hover {
-    background-color: var(--light-orange);
-}
-.filter-btn.active {
-    background-color: var(--light-orange);
-    color: var(--white);
-}
+
+} */
+
+
+
+/* End of filter set */
+
 /* SearchBox */
 .search-wrap{
     width:500px;
@@ -420,45 +469,20 @@ nav.open .links {
     color:var(--white);
     border-color: var(--light-orange-dull);
 }
-
-/* End of Searchbox */
-
 label {
     display: block;
-  }
-  input {
-    border: 1px solid #c4c4c4;
+}
+input {
+    border: 1px solid var(--ash);
     border-radius: 5px;
-    background-color: #fff;
+    background-color:var(--pure-white);
     padding: 3px 5px;
     box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
     width: 190px;
-  }
-/* 
-smart-date-time-picker {
-    top: 350px;
-   left: 25%;
-   position: relative;
 }
 
-@media only screen and (max-width: 600px) {
-   html, body {
-       height: initial;
-   }
-   
-   .options {
-       display: none;
-   }
-   smart-date-time-picker  {
-       top: 0px;
-       left: 0px;
-   }
-}
-@media only screen and (max-width: 500px) {  
-   .smart-drop-down.smart-date-time-drop-down {
-       left: 125%;
-   }
-} */
+/* End of Searchbox */
+
 
 /* 
 .wrapper{
@@ -562,11 +586,11 @@ smart-date-time-picker {
   }
   :-ms-input-placeholder { /* IE 10+ */
     /* color: #9fa3b1; */
-  } */ */
+  /* } */ 
   
 
 /* My codes */
-  .grid {
+  /* .grid {
     width: 100%;
     margin: 1.5rem 0;
   }
@@ -664,8 +688,201 @@ smart-date-time-picker {
   .more-folio {
     display: flex;
     justify-content: center;
-  }
-  
+  } */
+
+/* Calendar */
+.calendar {
+    height: max-content;
+    width: max-content;
+    background-color: var(--pure-white);
+    border-radius: 30px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    /* transform: scale(1.25); */
+}
+.light .calendar {
+    box-shadow: var(--shadow);
+}
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 25px;
+    font-weight: 600;
+    color: var(--dark-orange);
+    padding: 10px;
+}
+.calendar-body {
+    padding: 10px;
+}
+.calendar-week-day {
+    height: 50px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    font-weight: 600;
+}
+.calendar-week-day div {
+    display: grid;
+    place-items: center;
+    color: var(--light-orange-dull);
+}
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    color: var(--ash);
+}
+.calendar-days div {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    position: relative;
+    cursor: pointer;
+    animation: to-top 1s forwards;
+    /* border-radius: 50%; */
+}
+.calendar-days div span {
+    position: absolute;
+}
+.calendar-days div:hover span {
+    transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
+}
+.calendar-days div span:nth-child(1),
+.calendar-days div span:nth-child(3) {
+    width: 2px;
+    height: 0;
+    background-color: var(--dark-ash-1);
+}
+.calendar-days div:hover span:nth-child(1),
+.calendar-days div:hover span:nth-child(3) {
+    height: 100%;
+}
+.calendar-days div span:nth-child(1) {
+    bottom: 0;
+    left: 0;
+}
+.calendar-days div span:nth-child(3) {
+    top: 0;
+    right: 0;
+}
+.calendar-days div span:nth-child(2),
+.calendar-days div span:nth-child(4) {
+    width: 0;
+    height: 2px;
+    background-color: var(--dark-ash-1);
+}
+
+.calendar-days div:hover span:nth-child(2),
+.calendar-days div:hover span:nth-child(4) {
+    width: 100%;
+}
+.calendar-days div span:nth-child(2) {
+    top: 0;
+    left: 0;
+}
+.calendar-days div span:nth-child(4) {
+    bottom: 0;
+    right: 0;
+}
+.calendar-days div:hover span:nth-child(2) {
+    transition-delay: 0.2s;
+}
+.calendar-days div:hover span:nth-child(3) {
+    transition-delay: 0.4s;
+}
+.calendar-days div:hover span:nth-child(4) {
+    transition-delay: 0.6s;
+}
+.calendar-days div.curr-date,
+.calendar-days div.curr-date:hover {
+    background-color: var(--orange);
+    color: var(--white);
+    border-radius: 50%;
+}
+.calendar-days div.curr-date span {
+    display: none;
+}
+.month-picker {
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.month-picker:hover {
+    background-color: var(--light-orange);
+}
+.year-picker {
+    display: flex;
+    align-items: center;
+}
+.year-change {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    margin: 0 10px;
+    cursor: pointer;
+}
+.year-change:hover {
+    background-color: var(--light-orange);
+}
+.month-list {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: var(--bg-main);
+    padding: 20px;
+    grid-template-columns: repeat(3, auto);
+    gap: 5px;
+    display: grid;
+    transform: scale(1.5);
+    visibility: hidden;
+    pointer-events: none;
+}
+.month-list.show {
+    transform: scale(1);
+    visibility: visible;
+    pointer-events: visible;
+    transition: all 0.2s ease-in-out;
+}
+.month-list > div {
+    display: grid;
+    place-items: center;
+}
+.month-list > div > div {
+    width: 100%;
+    padding: 5px 20px;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    color: var(--color-txt);
+}
+.month-list > div > div:hover {
+    background-color: var(--color-hover);
+}
+@keyframes to-top {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* End of calendar */
+
+
+
+
+
 
 /* End of Sports Arena Section   */
 
