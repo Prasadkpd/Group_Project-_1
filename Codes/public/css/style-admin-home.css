@@ -191,6 +191,7 @@ img{
   font-weight: 600;
   color: #fd461f;
   margin:10px;
+  position: fixed;
 }
 
 .left h4:hover {
@@ -401,10 +402,77 @@ h3{
 	border-bottom: 1px solid #dddddd;
 }
 
-
-
-
 /*END OF REMOVE CUSTOMERS SECTION*/
+
+
+/*HELP & SUPPORT SECTION*/
+.help-support h1 {
+	text-align: center;
+}
+
+.ITable {
+	width: 67%;
+}
+
+.issue-search {
+	width: 400px;
+	height: 50px;
+	text-align: center;
+	border-radius: 15px;
+	align-content: center;
+}
+
+.issueTable {
+	border-collapse: collapse;
+	font-size: 0.9em;
+	font-family: Poppins;
+	max-width: 1000px;
+	width: 90%;
+	margin: auto;
+	height: 150px;
+	border: 2px solid #dddddd;
+}
+
+.issueTable th {
+	background-color: #fd461f;
+	color: #ffffff;
+	text-align: left;
+}
+
+.issueTable th, td {
+	padding: 12px 25px 12px 15px;
+}
+
+.issueTable td {
+	border-bottom: 1px solid #dddddd;
+}
+
+/*END OF HELP & SUPPORT SECTION*/
+
+
+/*GENERATE REPORT SECTION*/
+.report h1 {
+	text-align: center;
+}
+
+.filter {
+	width: 200px;
+	height: 25px;
+	border-radius: 15px;
+	background-color: #f3f3f3;
+	display: inline-block;
+}
+
+.label {
+	display: inline-block;
+	text-align: right;
+}
+
+
+
+/*END OF GENERATE REPORT SECTION*/
+
+
 
 
 /*Footer section*/
