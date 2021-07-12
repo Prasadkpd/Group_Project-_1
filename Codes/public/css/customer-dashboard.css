@@ -242,7 +242,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: blue;
+    /* background-color: blue; */
 
 }
 
@@ -288,7 +288,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: brown;
+    /* background-color: brown; */
     
 
 }
@@ -356,7 +356,7 @@ body{
     height: 800px;
     justify-self: flex-end;
     /* background-color: var(--white);   */
-    background-color: cornflowerblue;
+    /* background-color: cornflowerblue; */
     
 }
 /* end footer */
