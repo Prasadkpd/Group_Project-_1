@@ -1,0 +1,106 @@
+/* Header */
+header {
+    width: 100%;
+    background-color: var(--white);
+    overflow: hidden;
+    position: relative;
+}
+nav {
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    position: fixed;
+    background-color: var(--white);
+    box-shadow: #acacac 0px 50px 100px -20px, #acacac 0px 30px 60px -30px, #acacac 0px -2px 6px 0px inset;
+    /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+}
+nav .nav-container {
+    display: flex;
+    height: 4rem;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav-container .logo img{
+    width: 120px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    left: 50px;
+}
+.nav-links ul {
+    display: flex;
+}
+.nav-links a {
+    display: inline-block;
+    padding: 0.9rem 1.2rem;
+    color: var(--dark-ash-2);
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    line-height: 1;
+    transition: 0.3s;
+}
+.nav-links a.active {
+    background-color: var(--orange);
+    color: var(--white);
+    border-radius: 2rem;
+    font-size: 1rem;
+    padding: 0.9rem 2.1rem;
+    margin-left: 1rem; 
+    margin-right: 100px; 
+}
+.nav-links a:hover {
+    color: var(--orange);
+    width:fit-content;
+}
+.nav-links a.active:hover {
+    color: var(--dark-orange);
+    background-color:var(--light-orange);
+}
+.nav-container .hamburger-menu {
+    width: 2.7rem;
+    height: 3rem;
+    z-index: 100;
+    position: relative;
+    display: none;
+    align-items: center;
+    justify-content: flex-end;
+} 
+.nav-container .hamburger-menu .bar {
+    position: relative;
+    width: 2.1rem;
+    height: 3px;
+    border-radius: 3px;
+    background-color: var(--light-orange);
+    transition: 0.5s;
+} 
+.nav-container .bar:before, .bar:after {
+    content: "";
+    position: absolute;
+    width: 2.1rem;
+    height: 3px;
+    border-radius: 3px;
+    background-color: var(--light-orange);
+    transition: 0.5s;
+}
+.nav-container .bar:before {
+    transform: translateY(-9px);
+}
+.nav-container .bar:after {
+    transform: translateY(9px);
+}
+nav.open .hamburger-menu .bar {
+    background-color: transparent;
+    transform: rotate(360deg);
+}
+nav.open .hamburger-menu .bar:before {
+    transform: translateY(0) rotate(45deg);
+    background-color: var(--white);
+}
+nav.open .hamburger-menu .bar:after {
+    transform: translateY(0) rotate(-45deg);
+    background-color: var(--white);
+}
+nav.open .links {
+    transform: translateX(0);
+}

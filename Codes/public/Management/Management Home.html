@@ -4,27 +4,227 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/Management CSS/Addmin_Home.css">
     <script src="https://kit.fontawesome.com/c32bb29bee.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="Common Features/css/main.css">
+    <link rel="stylesheet" href="Common Features/css/header.css">
+    <link rel="stylesheet" href="Management CSS/Mana_Home.css">
 
-    <title>Management Home</title>
+    <title>Management Profile</title>
 </head>
 <body>
     <nav>
-        <input type="checkbox" id="check">
-        <label for="check">
-            <i class="fas fa-bars" id="btn"></i>
-            <i class="fas fa-times" id="cancel"></i>
-        </label>
-        <img src="/Management Images/logos/logo_and_name_small.png" alt="logo">
-        <ul>
-            <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
-            <li><a href="#"><i class="far fa-user"></i>Profile</a></li>
-            <li><a href="#"><i class="fas fa-book-open"></i></i>Booking</a></li>
-            <li><a href="#"><i class="fas fa-chart-pie"></i></i>Reports</a></li>
-            <li><a href="/Manage_User/user_manage.html"><i class="fas fa-users"></i>Manage User</a></li>
-            <li><a href="#"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
-        </ul>
+        <div class="nav-container">
+            <div class="logo">
+               <a href ="Management Home.html">
+                <img src="Management Images/logos/logo_and_name_large.png"></a>
+            </div>
+            <div class="nav-links">
+               <ul>
+                   <li><a href="#">HOME</a></li>
+                   <li><a href="#">SPORTS ARENAS</a></li>
+                   <li><a href="#">REVIEWS</a></li>
+                   <li><a href="#">FAQ</a></li>
+                   <li><a href="#">ABOUT</a></li>
+                   <li><a href="#">CONTACT</a></li>
+                   <li><a href="#" class="active">PROFILE</a></li>
+                 </ul>
+            </div>
+            <div class="hamburger-menu">
+            <div class="bar"></div>
+        </div>   
     </nav>
+
+    <div class="side-nav">
+        <ul class="side-nav-container">
+            <li><a href="profile"><i class="far fa-user-circle"></i>Profile</a></li>
+            <li><a href="booking"><i class="far fa-bookmark"></i>Booking</a></li>
+            <li><a href="#"><i class="far fa-chart-bar"></i>Reports</a></li>
+            <li><a href="#"><i class="fas fa-users"></i>Manage User</a></li>
+            <li><a href="#"><i class="fas fa-user-cog"></i>Setting</a></li>
+            <li><a href="#log-out"><i class="fas fa-sign-out-alt"></i>Log Out</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        
+    <div class="profile-container" id="profile">
+        <div class="profile-disc">
+            <div class="profile-disc-header">
+                <div class="profile-picture">
+                    <img src="Management Images/footbal.svg" alt="">
+                </div>
+                <div class="profile-details">
+                    <h3>
+                        Mechantile Football Ground
+                    </h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint reprehenderit nostrum est, impedit fuga blanditiis minus minima consequuntur sit laborum vel, animi commodi exercitationem eum quos obcaecati ad voluptatem praesentium.</p>
+                    <div class="features">
+                        <div class="details-block sport-type">Football</div>
+                        <div class="details-block town">Colombo 07</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="ground-images">
+            <h4>Ground Images</h4>
+            <div class="ground-image-container">
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <div class="goriund-image-slide fade">
+                    <img src="Management Images/footbal.svg" alt="">
+                </div>
+                <div class="goriund-image-slide fade">
+                    <img src="Management Images/footbal.svg" alt="">
+                </div>
+                <div class="goriund-image-slide fade">
+                    <img src="Management Images/footbal.svg" alt="">
+                </div>
+                <!-- Next and previous buttons -->
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+        </div>
+        <hr>
+        <div class="other-facility">
+            <div class="facility">
+                <div class="facility-name">Facility</div>
+                <div class="facilities">
+                    <li>Parking</li>
+                    <li>Canteen</li>
+                    <li>Gressing Rooms</li>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="booking-container">
+        <div class="booking-image-conatiner">
+
+        </div>
+        <div class="booking-table">
+            <table></table>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="profile-container" id="booking">
+        <div class="profile-disc">
+            <div class="profile-disc-header">
+                <div class="profile-picture">
+                    <img src="/Management Images/footbal.svg" alt="">
+                </div>
+                <div class="profile-details">
+                    <h3>
+                        Mechantile Football Ground
+                    </h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint reprehenderit nostrum est, impedit fuga blanditiis minus minima consequuntur sit laborum vel, animi commodi exercitationem eum quos obcaecati ad voluptatem praesentium.</p>
+                </div>
+            </div>
+            <div class="features">
+                <div class="details-sport-type">Football</div>
+                <div class="details-town">Colombo 07</div>
+            </div>
+        </div>
+    </div>
+    <div class="profile-container" id="profile">
+        <div class="profile-disc">
+            <div class="profile-disc-header">
+                <div class="profile-picture">
+                    <img src="/Management Images/footbal.svg" alt="">
+                </div>
+                <div class="profile-details">
+                    <h3>
+                        Mechantile Football Ground
+                    </h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint reprehenderit nostrum est, impedit fuga blanditiis minus minima consequuntur sit laborum vel, animi commodi exercitationem eum quos obcaecati ad voluptatem praesentium.</p>
+                </div>
+            </div>
+            <div class="features">
+                <div class="details-sport-type">Football</div>
+                <div class="details-town">Colombo 07</div>
+            </div>
+        </div>
+    </div>
+    <div class="profile-container" id="profile">
+        <div class="profile-disc">
+            <div class="profile-disc-header">
+                <div class="profile-picture">
+                    <img src="/Management Images/footbal.svg" alt="">
+                </div>
+                <div class="profile-details">
+                    <h3>
+                        Mechantile Football Ground
+                    </h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint reprehenderit nostrum est, impedit fuga blanditiis minus minima consequuntur sit laborum vel, animi commodi exercitationem eum quos obcaecati ad voluptatem praesentium.</p>
+                </div>
+            </div>
+            <div class="features">
+                <div class="details-sport-type">Football</div>
+                <div class="details-town">Colombo 07</div>
+            </div>
+        </div>
+    </div>
+    <div class="profile-container" id="profile">
+        <div class="profile-disc">
+            <div class="profile-disc-header">
+                <div class="profile-picture">
+                    <img src="/Management Images/footbal.svg" alt="">
+                </div>
+                <div class="profile-details">
+                    <h3>
+                        Mechantile Football Ground
+                    </h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint reprehenderit nostrum est, impedit fuga blanditiis minus minima consequuntur sit laborum vel, animi commodi exercitationem eum quos obcaecati ad voluptatem praesentium.</p>
+                </div>
+            </div>
+            <div class="features">
+                <div class="details-sport-type">Football</div>
+                <div class="details-town">Colombo 07</div>
+            </div>
+        </div>
+    </div>
+    <div class="profile-container" id="profile">
+        <div class="profile-disc">
+            <div class="profile-disc-header">
+                <div class="profile-picture">
+                    <img src="/Management Images/footbal.svg" alt="">
+                </div>
+                <div class="profile-details">
+                    <h3>
+                        Mechantile Football Ground
+                    </h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint reprehenderit nostrum est, impedit fuga blanditiis minus minima consequuntur sit laborum vel, animi commodi exercitationem eum quos obcaecati ad voluptatem praesentium.</p>
+                </div>
+            </div>
+            <div class="features">
+                <div class="details-sport-type">Football</div>
+                <div class="details-town">Colombo 07</div>
+            </div>
+        </div>
+    </div>
+    <div class="profile-container" id="log-out">
+        <div class="profile-disc">
+            <div class="profile-disc-header">
+                <div class="profile-picture">
+                    <img src="/Management Images/footbal.svg" alt="">
+                </div>
+                <div class="profile-details">
+                    <h3>
+                        Mechantile Football Ground
+                    </h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint reprehenderit nostrum est, impedit fuga blanditiis minus minima consequuntur sit laborum vel, animi commodi exercitationem eum quos obcaecati ad voluptatem praesentium.</p>
+                </div>
+            </div>
+            <div class="features">
+                <div class="details-sport-type">Football</div>
+                <div class="details-town">Colombo 07</div>
+            </div>
+        </div>
+    </div>
+    </div>
 </body>
 </html>

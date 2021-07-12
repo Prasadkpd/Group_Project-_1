@@ -18,7 +18,7 @@ class Login extends Controller
         Session::unset("login");
     }
 
-    function authenticate()
+    static function authenticate()
     {
         $cust = new Customer();
         $rec = new Receptionist();
@@ -108,7 +108,7 @@ class Login extends Controller
     }
 
     //function to unset variables when logging out
-    function logout()
+    static function logout()
     {
 
         //reset session
@@ -122,7 +122,7 @@ class Login extends Controller
     }
 
     //function to automatically logout if timeout
-    function timeout($curr_time)
+    static  function timeout($curr_time)
     {
 
         //getting times from session

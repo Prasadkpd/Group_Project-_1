@@ -64,6 +64,12 @@ img {
     align-items: center;
     justify-content: center; 
 } 
+.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    justify-content: center; 
+} 
 .text {
     font-size: 1.3rem;
     color: var(--dark-ash-2);
@@ -93,7 +99,6 @@ img {
     text-align: center;
     margin-bottom: 1.5rem;
 }
-
 .book-now-btn{
     display: inline-block;
     padding: 0.85rem 2rem;
@@ -113,8 +118,6 @@ img {
     color:var(--light-green-dull);
     transition: 0.3s;
 }
-
-
 .btn {
     display: inline-block;
     padding: 0.85rem 2rem;
@@ -189,7 +192,6 @@ img {
 /* End of General Styles */
 
 /* Header */
-
 header {
     width: 100%;
     background-color: var(--white);
@@ -314,23 +316,575 @@ nav.open .links {
 } 
 /* End of header section */
 
-/* Portfolio */
+/* Sports Arena Section */
 
-/* .portfolio {
+.sports-arena {
+    background-color: var(--white);
     position: relative;
     width: 100%;
-    background-color: var(--light-two);
+    overflow: hidden;
+}
+.sports-arena h3{
+    font-size: 2.5rem;
+}
+
+/* Filter set */
+.filter {
+    width: 100%;
+    height:100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding:5%;
+}
+.filter ul{
+    list-style:none;
+    display:flex;
+}
+.filter ul li{
+    padding: 0.6rem 2rem;
+    position: relative;
+}
+.filter ul li a{
+    color:var(--dark-orange);
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: 0.3s;
+}
+.filter .fas{
+    float:right;
+    margin-left:10px;
+    padding-top: 3px;
+}
+.location-dropdown{
+    display:none;
+}
+.filter ul li a:hover{
+    color:var(--light-orange-dull);
+}
+.filter ul li:hover .location-dropdown{
+    display:block;
+    position:absolute;
+    left:0;
+    top:100%;
+    background-color: var(--white-2);   
+}
+.location-dropdown ul{
+    display:block;
+    margin:10px;
+}
+.location-dropdown ul li{
+    width:120px;
+    padding:10px;
+}
+.location-dropdown ul li:hover{
+    font-weight:800;
+    color: var(--orange);
+}
+.location-dropdown ul li a{
+    color:var(--dark-ash-1);
+    font-size:0.9rem;
+    font-weight: 400;
+}
+/* .location-dropdown ul li a:hover{
+    font-weight:500;
+    color: var(--orange);
+} */
+/* .filter-headings{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.filter-heading h4{
+    color:var(--dark-orange);
+    font-weight: 600;
+    font-size: 1.5rem;
+    transition: 0.3s;
+    padding:2rem;
+    justify-content: space-evenly;
+}
+.filter-heading h4:hover{
+    color:var(--light-orange);
+}
+.filter-btn {
+    border: none;
+    outline: none;
+    background-color: var(--dark-orange);
+    margin: 0.45rem 0.4rem;
+    padding: 0.85rem 1.8rem;
+    color: var(--white);
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 2rem;
+    transition: 0.3s;
+}
+
+} */
+
+
+
+/* End of filter set */
+
+/* SearchBox */
+.search-wrap{
+    width:500px;
+    margin:30px auto;
+}
+.search-wrap .search-box{
+    position:relative;
+    width:500px;
+    height:40px;  
+}
+.search-wrap .search-box .input{
+    position: absolute;
+    top:0;
+    left:0;
+    width:70%;
+    height:100%;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 15px;
+}
+.search-wrap .search-box .search-btn{
+    position:absolute;
+    top:0;
+    right:0;
+    width:6rem;
+    height:100%;
+    background-color: var(--dark-orange);
+    z-index: 1;
+    cursor: pointer;
+    align-content: center;
+    padding:0.5rem 1rem;
+    font-size: 17px;
+    font-weight: 600;
+}
+.search-wrap .search-box .search-btn:hover{
+    background-color: var(--light-orange-dull);
+    color:var(--white);
+    border-color: var(--light-orange-dull);
+}
+label {
+    display: block;
+}
+input {
+    border: 1px solid var(--ash);
+    border-radius: 5px;
+    background-color:var(--pure-white);
+    padding: 3px 5px;
+    box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
+    width: 190px;
+}
+
+/* End of Searchbox */
+
+
+/* 
+.wrapper{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
   }
   
-  .background-bg {
+  .wrapper .search_box{
+    width: 500px;
+    background: #fff;
+    border-radius: 5px;
+    height: 65px;
+    display: flex;
+    padding: 10px;
+    box-shadow: 0 8px 6px -10px #b3c6ff;
+  }
+  
+  .wrapper .search_box .dropdown{
+    width: 150px;
+    border-right: 2px solid #dde2f1;
+    color: #9fa3b1;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .wrapper .search_box .dropdown .default_option{
+    text-transform: uppercase;
+    padding: 13px 15px;
+    font-size: 14px;
+  }
+  
+  .wrapper .search_box .dropdown ul{
+    position: absolute;
+    top: 70px;
+    left: -10px;
+    background: #fff;
+    width: 150px;
+    border-radius: 5px;
+    padding: 20px;
+    display: none;
+    box-shadow: 8px 8px 6px -10px #b3c6ff;
+  }
+  
+  .wrapper .search_box .dropdown ul.active{
+    display: block;
+  }
+  
+  .wrapper .search_box .dropdown ul li{
+    padding-bottom: 20px;
+  }
+  
+  .wrapper .search_box .dropdown ul li:last-child{
+    padding-bottom: 0;
+  }
+  
+  .wrapper .search_box .dropdown ul li:hover{
+    color: #6f768d;
+  }
+  
+  .wrapper .search_box .dropdown:before{
+    content: "";
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    border: 8px solid;
+    border-color: #5078ef transparent transparent transparent;
+  }
+  
+  .wrapper .search_box .search_field{
+    width: 350px;
+    height: 100%;
+    position: relative;
+  }
+  
+  .wrapper .search_box .search_field .input{
+    width: 100%;
+    height: 100%;
+    border: 0px;
+    font-size: 16px;
+    padding-left: 20px;
+    padding-right: 38px;
+    color: #6f768d;
+  }
+  
+  .wrapper .search_box .search_field .fas{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 22px;
+    color: #5078ef;
+    cursor: pointer;
+  }
+  
+  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    /* color: #9fa3b1;
+  }
+  ::-moz-placeholder { Firefox 19+ */
+   /* color: #9fa3b1;
+  }
+  :-ms-input-placeholder { /* IE 10+ */
+    /* color: #9fa3b1; */
+  /* } */ 
+  
+
+/* My codes */
+  /* .grid {
+    width: 100%;
+    margin: 1.5rem 0;
+  }
+  
+  .grid-item {
+    width: 33.33%;
+    padding: 1rem 1.2rem;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .gallery-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    height: 330px;
+    width: 100%;
+    cursor: pointer;
+  }
+  
+  .gallery-image img {
+    position: absolute;
+    height: 115%;
+    width: initial;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform-origin: center;
+    transition: 0.5s;
+  }
+  
+  .gallery-image .img-overlay {
     position: absolute;
     width: 100%;
-    height: 520px;
+    height: 100%;
     top: 0;
     left: 0;
-    background-color: var(--orange);
+    z-index: 2;
+    color: var(--light-one);
+    background-color: rgba(120, 76, 251, 0.55);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 2rem 3.2rem;
+    opacity: 0;
+    transition: 0.5s;
+  }
+  
+  .img-overlay .plus {
+    position: relative;
+    margin: auto 0;
+  }
+  
+  .plus:before,
+  .plus:after {
+    content: "";
+    position: absolute;
+    width: 4.5rem;
+    height: 3px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--light-one);
+    border-radius: 3px;
+  }
+  
+  .plus:before {
+    transform: translate(-50%, -50%) rotate(-90deg);
+  }
+  
+  .img-description {
+    width: 100%;
+  }
+  
+  .img-overlay h3 {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+  }
+  
+  .img-overlay h5 {
+    font-size: 1.15rem;
+    font-weight: 300;
+  }
+  
+  .gallery-image:hover .img-overlay {
+    opacity: 1;
+  }
+  
+  .gallery-image:hover img {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  
+  .more-folio {
+    display: flex;
+    justify-content: center;
   } */
-/* End of portfolio   */
+
+/* Calendar */
+.calendar {
+    height: max-content;
+    width: max-content;
+    background-color: var(--pure-white);
+    border-radius: 30px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    /* transform: scale(1.25); */
+}
+.light .calendar {
+    box-shadow: var(--shadow);
+}
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 25px;
+    font-weight: 600;
+    color: var(--dark-orange);
+    padding: 10px;
+}
+.calendar-body {
+    padding: 10px;
+}
+.calendar-week-day {
+    height: 50px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    font-weight: 600;
+}
+.calendar-week-day div {
+    display: grid;
+    place-items: center;
+    color: var(--light-orange-dull);
+}
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    color: var(--ash);
+}
+.calendar-days div {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    position: relative;
+    cursor: pointer;
+    animation: to-top 1s forwards;
+    /* border-radius: 50%; */
+}
+.calendar-days div span {
+    position: absolute;
+}
+.calendar-days div:hover span {
+    transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
+}
+.calendar-days div span:nth-child(1),
+.calendar-days div span:nth-child(3) {
+    width: 2px;
+    height: 0;
+    background-color: var(--dark-ash-1);
+}
+.calendar-days div:hover span:nth-child(1),
+.calendar-days div:hover span:nth-child(3) {
+    height: 100%;
+}
+.calendar-days div span:nth-child(1) {
+    bottom: 0;
+    left: 0;
+}
+.calendar-days div span:nth-child(3) {
+    top: 0;
+    right: 0;
+}
+.calendar-days div span:nth-child(2),
+.calendar-days div span:nth-child(4) {
+    width: 0;
+    height: 2px;
+    background-color: var(--dark-ash-1);
+}
+
+.calendar-days div:hover span:nth-child(2),
+.calendar-days div:hover span:nth-child(4) {
+    width: 100%;
+}
+.calendar-days div span:nth-child(2) {
+    top: 0;
+    left: 0;
+}
+.calendar-days div span:nth-child(4) {
+    bottom: 0;
+    right: 0;
+}
+.calendar-days div:hover span:nth-child(2) {
+    transition-delay: 0.2s;
+}
+.calendar-days div:hover span:nth-child(3) {
+    transition-delay: 0.4s;
+}
+.calendar-days div:hover span:nth-child(4) {
+    transition-delay: 0.6s;
+}
+.calendar-days div.curr-date,
+.calendar-days div.curr-date:hover {
+    background-color: var(--orange);
+    color: var(--white);
+    border-radius: 50%;
+}
+.calendar-days div.curr-date span {
+    display: none;
+}
+.month-picker {
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.month-picker:hover {
+    background-color: var(--light-orange);
+}
+.year-picker {
+    display: flex;
+    align-items: center;
+}
+.year-change {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    margin: 0 10px;
+    cursor: pointer;
+}
+.year-change:hover {
+    background-color: var(--light-orange);
+}
+.month-list {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: var(--bg-main);
+    padding: 20px;
+    grid-template-columns: repeat(3, auto);
+    gap: 5px;
+    display: grid;
+    transform: scale(1.5);
+    visibility: hidden;
+    pointer-events: none;
+}
+.month-list.show {
+    transform: scale(1);
+    visibility: visible;
+    pointer-events: visible;
+    transition: all 0.2s ease-in-out;
+}
+.month-list > div {
+    display: grid;
+    place-items: center;
+}
+.month-list > div > div {
+    width: 100%;
+    padding: 5px 20px;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    color: var(--color-txt);
+}
+.month-list > div > div:hover {
+    background-color: var(--color-hover);
+}
+@keyframes to-top {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* End of calendar */
+
+
+
+
+
+
+/* End of Sports Arena Section   */
 
 /* Reviews section */
 .reviews {
@@ -338,7 +892,7 @@ nav.open .links {
     overflow: hidden;
 }
 .reviews h3{
-    font-size: 2rem;
+    font-size: 2.5rem;
 }
 .review-content {
     margin-top: 5rem;

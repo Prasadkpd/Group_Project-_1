@@ -6,7 +6,7 @@ class Database{
 
         $host='localhost';
         $username='root';
-        $password='';
+        $password='root';
         $db='cleancar';
 
         $conn = mysqli_connect($host,$username,$password,$db);
