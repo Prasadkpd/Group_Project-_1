@@ -46,14 +46,14 @@
 <section class="dashboard">
 
     <div class="column left">
-        <h4><img class="iconLeft" src="images/google-forms.png"><a href="#form_submissions"> Form Submissions</a></h4><br>
-        <h4><img class="iconLeft" src="images/location.png"><a href="#complaints"> Complaints</a></h4><br>
-        <h4><img class="iconLeft" src="images/remove-user.png"><a href="#customer"> Remove customers</a></h4><br>
-        <h4><img class="iconLeft" src="images/information.png"><a href="#"> Help & Support</a></h4><br>
-        <h4><img class="iconLeft" src="images/seo-report.png"><a href="#"> Generate Reports</a></h4><br>
-        <h4><img class="iconLeft" src="images/bar-chart.png"><a href="#statistics"> Statistics</a></h4><br>
-        <h4><img class="iconLeft" src="images/settings.png"><a href="#"> Settings</a></h4><br>
-        <h4><img class="iconLeft" src="images/calendar.png"><a href="#"> Calendar</a></h4><br>
+        <h4><img class="iconLeft" src="images/google-forms.png"><a href="#form_submissions"> Form Submissions</a></h4><br><br>
+        <h4><img class="iconLeft" src="images/location.png"><a href="#complaints"> Complaints</a></h4><br><br>
+        <h4><img class="iconLeft" src="images/remove-user.png"><a href="#customer"> Remove customers</a></h4><br><br>
+        <h4><img class="iconLeft" src="images/information.png"><a href="#help-&-support"> Help & Support</a></h4><br><br>
+        <h4><img class="iconLeft" src="images/seo-report.png"><a href="#generate_report"> Generate Reports</a></h4><br><br>
+        <h4><img class="iconLeft" src="images/bar-chart.png"><a href="#statistics"> Statistics</a></h4><br><br>
+        <h4><img class="iconLeft" src="images/settings.png"><a href="#"> Settings</a></h4><br><br>
+        <h4><img class="iconLeft" src="images/calendar.png"><a href="#"> Calendar</a></h4><br><br>
     </div>
 
     <div class="column right">
@@ -91,7 +91,7 @@
             </section><br style="clear:both;" /><br><br><br>
             <div id="chart_div_1" class="chart-1"></div><br><br><br>
             <div id="chart_div_2" class="chart-2"></div>
-        </div><br /><br /><br /><br />
+        </div><br /><br /><hr /><br /><br />
 
 
         <div id="form_submissions" class="request">
@@ -123,7 +123,7 @@
                 </tr>
 
             </table>
-        </div><br /><br /><br /><br />
+        </div><br /><br /><hr /><br /><br />
 
 
         <div id="complaints" class="deleteSA">
@@ -158,14 +158,14 @@
                     <td class="removeAcc">Remove account</td>
                 </tr>
             </table>
-        </div><br /><br /><br /><br />
+        </div><br /><br /><hr /><br /><br />
 
 
         <div id="customer" class="removeCustomer">
             <h1>Remove Customers</h1><br /><br />
-             <div class="column CSearch">
-                <input type="text" class="customer-search" placeholder="Customer name" /><br /><br />
-             </div>
+            <div class="column CSearch">
+                <input type="text" class="customer-search" placeholder="Customer name" />
+            </div>
             <div class="column CTable">
                 <table class="customerTable">
                     <tr>
@@ -194,6 +194,83 @@
                     </tr>
                 </table>
             </div>
+        </div><br style="clear:both;" /><br /><br /><hr /><br /><br />
+
+
+        <div id="help-&-support" class="help-support">
+            <h1>Help & Support</h1><br /><br />
+            <table class="issueTable">
+                <tr>
+                    <th>Date</th>
+                    <th>Question</th>
+                </tr>
+                <tr>
+                    <td>09 June 2021</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, vero?</td>
+                </tr>
+                <tr>
+                    <td>06 June 2021</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, vero?</td>
+                </tr>
+                <tr>
+                    <td>02 June 2021</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, vero?</td>
+                </tr>
+            </table><br /><br /><br />
+            <div class="column ISearch">
+                <input type="text" class="issue-search" placeholder="Search by tags" />
+            </div>
+            <div class="column ITable">
+                <table class="issueTable">
+                    <tr>
+                        <th>Issue No</th>
+                        <th>Question</th>
+                        <th>Solution</th>
+                        <th>Tags</th>
+                    </tr>
+                    <tr>
+                        <td>I00024</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, vero?</td>
+                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+                        <td>Booking, Payment</td>
+                    </tr>
+                    <tr>
+                        <td>I00178</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, vero?</td>
+                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+                        <td>Booking</td>
+                    </tr>
+                    <tr>
+                        <td>I00079</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, vero?</td>
+                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+                        <td>Payment, Cancellation</td>
+                    </tr>
+                </table>
+            </div>
+        </div><br style="clear:both;" /><br /><br /><hr /><br /><br />
+
+        <div id="generate_report" class="report">
+            <h1>Generate Reports</h1><br /><br />
+            <label>Choose the duration: </label>
+            <select class="filter" name="duration">
+                <option>Daily</option>
+                <option>Weekly</option>
+                <option>Monthly</option>
+                <option>Yearly</option>
+            </select><br />
+            <label>Choose the time period: </label>
+            <select class="filter" name="date">
+
+            </select><br />
+            <label>Choose the type: </label>
+            <select class="filter" name="type">
+                <option>Customers</option>
+                <option>Sports Arenas</option>
+                <option>Bookings</option>
+                <option>Cancellations</option>
+                <option>Pending Payments</option>
+            </select><br />
         </div>
 
 
@@ -222,7 +299,7 @@
     </div>
     <div class="footer-col">
       <div class="about_us">
-  <h2>Contact Details</h4><br>
+  <h2>Contact Details</h2><br>
   <p> Contact:+94 765282976 <br><br>
   Address: No. 35, Reid Avenue, Colombo 07 <br><br>
 Email: contact.sportizza@gmail.com <br> <br></p>
