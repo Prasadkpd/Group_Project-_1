@@ -1,6 +1,5 @@
 @use postcss-nested;
-@import url('https://fonts.googleapis.com/css?family=Raleway:400,700,900'); 
-
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700,900');
 
 :root{
   --menu-width: 100%;
@@ -170,12 +169,16 @@ img{
 	float:left;
 }
 
+
 .left {
 	width: 15%;
 	background-color: #f0f0f0;
+	height: auto;
+	position: relative;
+	margin-bottom: 400px;
 }
 
-.left p{
+/*.left p{
 	color: #000;
 	text-align:left;
 	margin:10px;
@@ -184,7 +187,7 @@ img{
 .left p a{
 	text-decoration: none;
 	color: inherit;
-}
+}*/
 
 .left h4{
   text-align:left;
@@ -259,19 +262,41 @@ h3{
 
 .one {
 	width: 25%;
-	background-color: #ADD8E6;
+	border: 2px solid #ADD8E6;
 	margin: 0px 10px 0px 30px;
 }
+
+.one:hover {
+	border: 2px solid #ADD8E6;
+	background-color: #ADD8E6;
+	cursor: default;
+	transition: 0.5s;
+}
+
 .two {
 	width: 25%;
-	background-color: #fbc933;
+	border: 2px solid #fbc933;
 	margin: 0px 10px 0px 10px;
+}
+
+.two:hover {
+	border: 2px solid #fbc933;
+	background-color: #fbc933;
+	cursor: default;
+	transition: 0.5s;
 }
 
 .three {
 	width: 25%;
-	background-color: #23f15b;
+	border: 2px solid #23f15b;
 	margin: 0px 10px 0px 10px;
+}
+
+.three:hover {
+	border: 2px solid #23f15b;
+	background-color: #23f15b;
+	cursor: default;
+	transition: 0.5s;
 }
 
 .chart-1 {
@@ -356,9 +381,28 @@ h3{
 	border-bottom: 1px solid #dddddd;
 }
 
+.blacklist {
+	font-style: italic;
+}
+
 .removeAcc {
 	color: red;
 	cursor: pointer;
+}
+
+.removeAcc:hover {
+	font-weight: bold;
+	transition: 0.5s;
+}
+
+.blacklist2 {
+	color: #000;
+	cursor: pointer;
+}
+
+.blacklist2:hover {
+	font-weight: bold;
+	transition: 0.5s;
 }
 /*END OF COMPLIANTS SECTION*/
 
@@ -468,11 +512,71 @@ h3{
 	text-align: right;
 }
 
+.generateButton {
+	text-decoration: none;
+	color: #000;
+	border: 2px solid #0c6423;
+	padding: 12px 34px;
+	font-size: 15px;
+	background: #35d760;
+	cursor: pointer;
+	border-radius: 20px;
+	float: right;
+	margin-top: 15px;
+	margin-left: 500px;
+}
+
+.generateButton:hover {
+	background: #23f15b;
+	color: #fff;
+	transition: 0.5s;
+}
 
 
 /*END OF GENERATE REPORT SECTION*/
 
 
+/*REMOVE NEGATIVE RATING SECTION*/
+
+.negativeRate h1 {
+	text-align: center;
+}
+
+.ratingTable {
+	border-collapse: collapse;
+	font-size: 0.9em;
+	font-family: Poppins;
+	max-width: 1000px;
+	width: 100%;
+	margin: auto;
+	height: 150px;
+	border: 2px solid #dddddd;
+}
+
+.ratingTable th {
+	background-color: #fd461f;
+	color: #ffffff;
+	text-align: left;
+}
+
+.ratingTable th, td {
+	padding: 12px 25px 12px 15px;
+}
+
+.ratingTable td {
+	border-bottom: 1px solid #dddddd;
+}
+
+.stars {
+	width: 123px;
+}
+
+.rated {
+	color: orange;
+}
+
+
+/*END OF REMOVE NEGATIVE RATING SECTION*/
 
 
 /*Footer section*/

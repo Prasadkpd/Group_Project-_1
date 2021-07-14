@@ -11,7 +11,8 @@
   <link rel="footer-file" href="footer.html">
   <link rel ="preconnect" href="https://fonts.gstatic.com">  
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;500;700&display=swap">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css"> 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="js/admin-home-area-chart.js"></script>
@@ -46,21 +47,23 @@
 <section class="dashboard">
 
     <div class="column left">
-        <h4><img class="iconLeft" src="images/google-forms.png"><a href="#form_submissions"> Form Submissions</a></h4><br><br>
-        <h4><img class="iconLeft" src="images/location.png"><a href="#complaints"> Complaints</a></h4><br><br>
-        <h4><img class="iconLeft" src="images/remove-user.png"><a href="#customer"> Remove customers</a></h4><br><br>
-        <h4><img class="iconLeft" src="images/information.png"><a href="#help-&-support"> Help & Support</a></h4><br><br>
-        <h4><img class="iconLeft" src="images/seo-report.png"><a href="#generate_report"> Generate Reports</a></h4><br><br>
-        <h4><img class="iconLeft" src="images/bar-chart.png"><a href="#statistics"> Statistics</a></h4><br><br>
-        <h4><img class="iconLeft" src="images/settings.png"><a href="#"> Settings</a></h4><br><br>
-        <h4><img class="iconLeft" src="images/calendar.png"><a href="#"> Calendar</a></h4><br><br>
+        <h4><img class="iconLeft" src="images/admin_homepage/google-forms.png"><a href="#form_submissions"> Form Submissions</a></h4><br><br>
+        <h4><img class="iconLeft" src="images/admin_homepage/location.png"><a href="#complaints"> Complaints</a></h4><br><br>
+        <h4><img class="iconLeft" src="images/admin_homepage/remove-user.png"><a href="#customer"> Remove customers</a></h4><br><br>
+        <h4><img class="iconLeft" src="images/admin_homepage/information.png"><a href="#help-&-support"> Help & Support</a></h4><br><br>
+        <h4><img class="iconLeft" src="images/admin_homepage/seo-report.png"><a href="#generate_report"> Generate Reports</a></h4><br><br>
+        <h4><img class="iconLeft" src="images/admin_homepage/bar-chart.png"><a href="#statistics"> Statistics</a></h4><br><br>
+        <h4><img class="iconLeft" src="images/admin_homepage/star.png"><a href="#negative"> Remove Negative<br />&emsp;&ensp; Ratings</a></h4><br><br><br />
+        <h4><img class="iconLeft" src="images/admin_homepage/settings.png"><a href="#"> Settings</a></h4><br><br>
+        <!--<h4><img class="iconLeft" src="images/admin_homepage/calendar.png"><a href="#"> Calendar</a></h4><br><br>-->
+        <h4><img class="iconLeft" src="images/admin_homepage/logout.png"><a href="#"> Log Out</a></h4><br><br>
     </div>
 
     <div class="column right">
 
         <div id="statistics">
             <section>
-                <pre class="tab1">	<img src="images/outline_show_chart_black_24dp.png">	<b>Today's Statistics</b></pre><br>
+                <pre class="tab1">	<img src="images/admin_homepage/outline_show_chart_black_24dp.png">	<b>Today's Statistics</b></pre><br>
                 <div class="stat one">
                     <h3>05</h3>
                     <p>Bookings Made</p>
@@ -75,7 +78,7 @@
                 </div>
             </section><br style="clear:both;" /><br><br>
             <section>
-                <pre class="tab1">	<img src="images/outline_show_chart_black_24dp.png">	<b>Last Month's Statistics</b></pre><br>
+                <pre class="tab1">	<img src="images/admin_homepage/outline_show_chart_black_24dp.png">	<b>Last Month's Statistics</b></pre><br>
                 <div class="stat one">
                     <h3>150</h3>
                     <p>Bookings Made</p>
@@ -107,19 +110,19 @@
                     <td>Michael Sports</td>
                     <td>Colombo</td>
                     <td>0758829312</td>
-                    <td><img src="images/check.png"></td>
+                    <td><img src="images/admin_homepage/check.png"></td>
                 </tr>
                 <tr>
                     <td>Michael Sports</td>
                     <td>Colombo</td>
                     <td>0758829312</td>
-                    <td><img src="images/check.png"></td>
+                    <td><img src="images/admin_homepage/check.png"></td>
                 </tr>
                 <tr>
                     <td>Michael Sports</td>
                     <td>Colombo</td>
                     <td>0758829312</td>
-                    <td><img src="images/check.png"></td>
+                    <td><img src="images/admin_homepage/check.png"></td>
                 </tr>
 
             </table>
@@ -135,27 +138,31 @@
                     <th>Complaint</th>
                     <th></th>
                     <th></th>
+                    <th></th>
                 </tr>
                 <tr>
                     <td>Trevor Parker</td>
                     <td>Michael Sports</td>
                     <td>I've made bookings twice. And all of them got cancelled at the last minute</td>
-                    <td><img src="images/rounded-black-cross.png"></td>
+                    <td class="blacklist">Blacklisted</td>
                     <td class="removeAcc">Remove account</td>
+                    <td class="blacklist2">Blacklist Sports Arena</td>
                 </tr>
                 <tr>
                     <td>Trevor Parker</td>
                     <td>Michael Sports</td>
                     <td>I've made bookings twice. And all of them got cancelled at the last minute</td>
-                    <td></td>
+                    <td class="blacklist"></td>
                     <td class="removeAcc">Remove account</td>
+                    <td class="blacklist2">Blacklist Sports Arena</td>
                 </tr>
                 <tr>
                     <td>Trevor Parker</td>
                     <td>Michael Sports</td>
                     <td>I've made bookings twice. And all of them got cancelled at the last minute</td>
-                    <td><img src="images/rounded-black-cross.png"></td>
-                    <td class="removeAcc">Remove account</td>
+                    <td class="blacklist">Blacklisted</td>
+                    <td class="removeAcc"><img class="removeAcc" src="images/admin_homepage/trash-bin.png"</td>
+                    <td class="blacklist2">Blacklist Sports Arena</td>
                 </tr>
             </table>
         </div><br /><br /><hr /><br /><br />
@@ -218,7 +225,7 @@
                 </tr>
             </table><br /><br /><br />
             <div class="column ISearch">
-                <input type="text" class="issue-search" placeholder="Search by tags" />
+                <input type="text" class="issue-search" placeholder="Search by similar words" />
             </div>
             <div class="column ITable">
                 <table class="issueTable">
@@ -252,25 +259,89 @@
 
         <div id="generate_report" class="report">
             <h1>Generate Reports</h1><br /><br />
-            <label>Choose the duration: </label>
-            <select class="filter" name="duration">
-                <option>Daily</option>
-                <option>Weekly</option>
-                <option>Monthly</option>
-                <option>Yearly</option>
-            </select><br />
-            <label>Choose the time period: </label>
-            <select class="filter" name="date">
+            <div class="column filters">
+                <label>Choose the duration: </label>
+                <select class="filter" name="duration">
+                    <option>Daily</option>
+                    <option>Weekly</option>
+                    <option>Monthly</option>
+                    <option>Yearly</option>
+                </select><br />
+                <label>Choose the time period: </label>
+                <select class="filter" name="date">
+                </select><br />
+                <label>Choose the type: </label>
+                <select class="filter" name="type">
+                    <option>Customers</option>
+                    <option>Sports Arenas</option>
+                    <option>Bookings</option>
+                    <option>Cancellations</option>
+                    <option>Pending Payments</option>
+                </select><br />
+            </div>
+            <div class="column genButton">
+                <button class="generateButton" name="generateButton" type="submit">Generate Report</button>
+            </div>
 
-            </select><br />
-            <label>Choose the type: </label>
-            <select class="filter" name="type">
-                <option>Customers</option>
-                <option>Sports Arenas</option>
-                <option>Bookings</option>
-                <option>Cancellations</option>
-                <option>Pending Payments</option>
-            </select><br />
+        </div><br style="clear:both;" /><br /><br /><hr /><br /><br />
+
+
+        <div id="negative" class="negativeRate">
+            <h1>Remove Negative Ratings</h1><br /><br />
+            <div>
+                <table class="ratingTable">
+                    <tr>
+                        <th>Sports Arena</th>
+                        <th class="stars">Rating</th>
+                        <th>Issue</th>
+                        <th>Date posted</th>
+                        <th>Deadline</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td>Michael Sports</td>
+                        <td class="stars">
+                            <span class="fa fa-star rated"></span>
+                            <span class="fa fa-star rated"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </td>
+                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+                        <td>11 June 2021</td>
+                        <td>25 June 2021</td>
+                        <td class="blacklist2">Blacklist Sports Arena</td>
+                    </tr>
+                    <tr>
+                        <td>Michael Sports</td>
+                        <td class="stars">
+                            <span class="fa fa-star rated"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </td>
+                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+                        <td>11 June 2021</td>
+                        <td>25 June 2021</td>
+                        <td class="blacklist2">Blacklist Sports Arena</td>
+                    </tr>
+                    <tr>
+                        <td>Michael Sports</td>
+                        <td class="stars">
+                            <span class="fa fa-star rated"></span>
+                            <span class="fa fa-star rated"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </td>
+                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+                        <td>11 June 2021</td>
+                        <td>25 June 2021</td>
+                        <td class="blacklist2">Blacklist Sports Arena</td>
+                    </tr>
+                </table>
+            </div>
         </div>
 
 

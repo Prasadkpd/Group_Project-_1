@@ -1218,7 +1218,7 @@ input {
     transition: 0.3s;
     width:90%;
 }
-.contact-input::placeholder {
+.contact-input:placeholder {
     font-weight: 400;
 }
 .contact-input.textarea {
