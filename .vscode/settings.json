@@ -2,5 +2,10 @@
     "git.ignoreLimitWarning": true,
     "files.watcherExclude": {
         "**/target": true
-    }
+    },
+<<<<<<< HEAD
+    "liveServer.settings.port": 5501
+=======
+    "python.linting.enabled": true
+>>>>>>> 402ad9512b13401e3760b87460cda005454effed
 }
