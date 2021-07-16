@@ -7,6 +7,9 @@
     <title>Customer</title>
     
     
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+	
 
     <link rel="stylesheet" href="./css/style.css">
     <link rel ="manifest" href ="/manifest.json">
@@ -21,28 +24,33 @@
 </head>
 <body>
 
-    <div class="container">
+    <div class="container_x">
 
 
         <div class="nav_main">
-            <section class ="header">
-                <nav id ="navigation">
-                  <a href ="index.html"><img src="images/logos/logo_and_name_large.png"></a>
-                  <div id= "nav-links">
-                    <div class ="nav-links">
-                      <ul>
-                        <li><a href="">HOME</a></li>
-                        <li><a href="">SPORTS ARENA</a></li>
-                        <li><a href="">FAQ</a></li>
-                        <li><a href="">ABOUT</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="btn-right">
-                    <a href="" class= "profile_btn"> PROFILE </a>
-                  </div>
-               </nav>
-              </section>
+            <nav>
+				<div class="container">
+				  <div class="logo">
+					<a href="visitor.html"><img src="images/logos/logo-white-final.svg"></a>
+				  </div>
+		
+				  <div class="links">
+					<ul>
+					  <li><a href="#">HOME</a></li>
+					  <li><a href="#sp-arena">SPORTS ARENAS</a></li>
+					  <li><a href="#reviews">REVIEWS</a></li>
+					  <li><a href="#faq">FAQ</a></li>
+					  <li><a href="#about">ABOUT</a></li>
+					  <li><a href="#contact">CONTACT</a></li>
+					  <!-- Direct to login page if not logged in -->
+					  <li><a href="#" class="active">PROFILE</a></li>
+					</ul>
+				  </div>
+				  <div class="hamburger-menu">
+					<div class="bar"></div>
+				  </div>
+				</div>
+			  </nav>
         </div>
 
 
@@ -77,14 +85,14 @@
 
                        
                        <li>
-                        <a href="#share-bookings">
+                        <a href="#booking_table">
                             <span class="icon"><i class="fas fa-share-square"></i></span>
                             <span class="title">share bookings</span>
                         </a>
                        
                     </li>
                        <li>
-                        <a href="#">
+                        <a href="#booking_table">
                             <span class="icon"><i class="fas fa-hands-helping"></i></span>
                             <span class="title">Rate sports arena</span>
                         </a>
@@ -121,15 +129,19 @@
                     
                     <div class="card">
                         <div class="left">
-                            <img   src="./images/Team members/bhashitha.png">
+                            <img   src="./images/Team members/jonathan.png">
                         </div>
                         <div class="right">
-                            <h1 style="margin-bottom: 30px;">
+                            <h1 style="margin-bottom: 8px;">
                                 sadeepa bhashitha
                             </h1>
-                            <p class="phone_number">User Name:  bhashi1233  <sapn><a><i class="fas fa-edit fa"></i> </a></sapn>  </p>
-                            <p class="phone_number">Mobile Number:  0705614640 <a><i class="fas fa-edit"></i></a></p>
-                            <p class="address">Address:  "Sinhegiri",Kolambage Watta,Uda Aparekka,Matara <a><i class="fas fa-edit"></i></a></p>
+                            <p class="username">bhashi1233  </p>
+        
+                            <p class="ed">
+								<a style="padding-left: 0px;"  href="./edit_customer_profile.html">
+									<button class="edit_profile_btn">Edit Profile</button>
+								</a>
+							</p>
 
                         </div>
                     </div>
@@ -137,100 +149,199 @@
                 </div>
 
 				<div id="my-bookings">
-					<h1 style="color: black;text-decoration: underline red;">My bookings</h1>   
-					<img style="margin-bottom: 50px;  margin-top: 50px;" src="./images/customer dashbord/undraw_date_picker_gorr.svg" alt="">
-					<table class="styled-table">
+
+					<div class="section">
+						<h1 style="color: black;text-decoration: underline red;margin-bottom: 60px; text-align: center;">My bookings</h1>   
+					<img style="margin-bottom: 50px; " src="./images/customer dashbord/undraw_date_picker_gorr.svg" alt="">
+					<table id="booking_table" class="styled-table">
 						<thead>
-							<tr>
+							<tr >
+								<th>NO.</th>
 								<th>Date</th>
 								<th>Name</th>
 								<th>Sport</th>
-								<th>Payment Statu</th>
+								<th>Payment <br>Status</th>
 								<th>Amount</th>
-								<th>Icons</th>
+								<th>Status</th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
+							<tr class="pending-row">
+								<td>01</td>
 								<td>2021.9.11</td>
 								<td>Matara Uynawatta</td>
 								<td>Cricket</td>
 								<td> Cash</td>
 								<td> Rs.3000</td>
-								<td> Rs.3000</td>
+								<td class="pending_status"> Pending</td>
+								<td>
+									<div class="icons-table">
+										<!-- <div><a href="#"><i class="fas fa-share-square"></i></a></div>
+										<div><a href="#"><i class="fas fa-window-close"></i></a></div>
+										<div><a href="#"><i class="fas fa-star"></i></a></div> -->
+										<a href="#"><i class="fas fa-share-square fa-lg">Share</i></a>
+										<a href="#"><i class="fas fa-window-close fa-lg">Cancel</i></a>
+										<!-- <a href="#"><i class="fas fa-star fa-lg">Rate</i></a> -->
+									</div>
+								</td>
 							</tr>
-							<tr class="active-row">
+							<tr class="pending-row">
+								<td>01</td>
 								<td>2021.9.11</td>
 								<td>Matara Uynawatta</td>
 								<td>Cricket</td>
 								<td> Cash</td>
 								<td> Rs.3000</td>
-								<td> Rs.3000</td>
+								<td class="pending_status"> Pending</td>
+								<td><div class="icons-table">
+									<!-- <div><a href="#"><i class="fas fa-share-square"></i></a></div>
+									<div><a href="#"><i class="fas fa-window-close"></i></a></div>
+									<div><a href="#"><i class="fas fa-star"></i></a></div> -->
+									<a href="#"><i class="fas fa-share-square fa-lg">Share</i></a>
+										<a href="#"><i class="fas fa-window-close fa-lg">Cancel</i></a>
+										<!-- <a href="#"><i class="fas fa-star fa-lg">Rate</i></a> -->
+								</div>
+							</td>
 							</tr>
-							<!-- and so on... -->
-							<tr>
+
+				
+							<tr class="pending-row">
+								<td>01</td>
 								<td>2021.9.11</td>
 								<td>Matara Uynawatta</td>
 								<td>Cricket</td>
 								<td> Cash</td>
 								<td> Rs.3000</td>
-								<td> Rs.3000</td>
+								<td class="pending_status"> Pending</td>
+								<td><div class="icons-table">
+									<!-- <div><a href="#"><i class="fas fa-share-square"></i></a></div>
+									<div><a href="#"><i class="fas fa-window-close"></i></a></div>
+									<div><a href="#"><i class="fas fa-star"></i></a></div> -->
+									<a href="#"><i class="fas fa-share-square fa-lg">Share</i></a>
+										<a href="#"><i class="fas fa-window-close fa-lg">Cancel</i></a>
+										<!-- <a href="#"><i class="fas fa-star fa-lg">Rate</i></a> -->
+								</div>
+							</td>
+
 							</tr>
-							<tr class="active-row">
+							<tr class="completed-row">
+								<td>01</td>
 								<td>2021.9.11</td>
 								<td>Matara Uynawatta</td>
 								<td>Cricket</td>
 								<td> Cash</td>
 								<td> Rs.3000</td>
-								<td> Rs.3000</td>
+								<td class="completed_status"> Completed</td>
+								<td><div class="icons-table">
+									
+										<a href="#">
+											<i class="fas fa-star fa-lg"></i>
+											<i class="fas fa-star fa-lg"></i>
+											<i class="fas fa-star fa-lg"></i>
+											<i class="fas fa-star fa-lg"></i>
+											<i class="fas fa-star fa-lg">Rate</i></a>
+								</div>
+							</td>
+
 							</tr>
-							<tr >
+
+							<tr class="completed-row">
+								<td>01</td>
 								<td>2021.9.11</td>
 								<td>Matara Uynawatta</td>
 								<td>Cricket</td>
 								<td> Cash</td>
 								<td> Rs.3000</td>
-								<td> Rs.3000</td>
+								<td class="completed_status"> Completed</td>
+								<td><div class="icons-table">
+									
+									<a href="#">
+										<i class="fas fa-star fa-lg"></i>
+										<i class="fas fa-star fa-lg"></i>
+										<i class="fas fa-star fa-lg"></i>
+										<i class="fas fa-star fa-lg"></i>
+										<i class="fas fa-star fa-lg">Rate</i></a>
+								</div>
+							</td>
 							</tr>
-							<tr class="active-row">
+							<tr class="completed-row">
+								<td>01</td>
 								<td>2021.9.11</td>
 								<td>Matara Uynawatta</td>
 								<td>Cricket</td>
 								<td> Cash</td>
 								<td> Rs.3000</td>
-								<td> Rs.3000</td>
+								<td class="completed_status"> Completed</td>
+								<td><div class="icons-table">
+									<a href="#">
+										<i class="fas fa-star fa-lg"></i>
+										<i class="fas fa-star fa-lg"></i>
+										<i class="fas fa-star fa-lg"></i>
+										<i class="fas fa-star fa-lg"></i>
+										<i class="fas fa-star fa-lg">Rate</i></a>
+								</div>
+							</td>
 							</tr>
-							<tr >
+
+							<tr class="completed-row">
+								<td>01</td>
 								<td>2021.9.11</td>
 								<td>Matara Uynawatta</td>
 								<td>Cricket</td>
 								<td> Cash</td>
 								<td> Rs.3000</td>
-								<td> Rs.3000</td>
+								<td class="completed_status"> Completed</td>
+								<td><div class="icons-table">
+									<a href="#">
+										<i class="fas fa-star fa-lg"></i>
+										<i class="fas fa-star fa-lg"></i>
+										<i class="fas fa-star fa-lg"></i>
+										<i class="fas fa-star fa-lg"></i>
+										<i class="fas fa-star fa-lg">Rate</i></a>
+								</div>
+							</td>
 							</tr>
-							<tr class="active-row">
+							<tr class="completed-row">
+								<td>01</td>
 								<td>2021.9.11</td>
 								<td>Matara Uynawatta</td>
 								<td>Cricket</td>
 								<td> Cash</td>
 								<td> Rs.3000</td>
-								<td> Rs.3000</td>
+								<td class="completed_status"> Completed</td>
+								<td><div class="icons-table">
+									<a href="#">
+										<i class="fas fa-star fa-lg"></i>
+										<i class="fas fa-star fa-lg"></i>
+										<i class="fas fa-star fa-lg"></i>
+										<i class="fas fa-star fa-lg"></i>
+										<i class="fas fa-star fa-lg">Rate</i></a>
+								</div>
+							</td>
 							</tr>
 						</tbody>
 					</table>
+					</div>
+					
 				</div>
 
+
+
+
 				<div id="my-favorite-list">
-					<h1 style="color: black;text-decoration: underline red ;margin-bottom: 100px;" >My favorite list</h1>   
+
+					<div  class="section">
+						<h1 style="color: black;text-decoration: underline red ;margin-bottom: 60px; text-align: center" >My favorite list</h1>   
 					<div class="favorite_list_container">
-						<div class="img"><img style="margin-bottom: 50px;  margin-top: 50px;" src="./images/customer dashbord/undraw_online_organizer_ofxm.svg" alt=""></div>
+						<div class="img"><img style="margin-bottom: 50px;padding-left: 20px;  margin-top: 50px;" src="./images/customer dashbord/undraw_online_organizer_ofxm.svg" alt=""></div>
 					<div class="table">
 						<table class="styled-table">
 							<thead>
 								<tr>
 									<th>Name</th>
 									<th>Location</th>
-									<th>Button</th>
+									<th></th>
 									
 								</tr>
 							</thead>
@@ -238,106 +349,137 @@
 								<tr>
 									<td>Colomo king</td>
 									<td>Colombo</td>
-									<td>Colombo</td>
+									<td><div class="icons-table">
+										<a href="#"><i class="fas fa-hourglass-half fa-lg">Check</i></a>
+									</div></td>
 								</tr>
 								<tr class="active-row">
 									<td>Colomo king</td>
 									<td>Colombo</td>
-									<td>Colombo</td>
+									<td><div class="icons-table">
+										<a href="#"><i class="fas fa-hourglass-half fa-lg">Check</i></a>
+									</div></td>
 								</tr>
 								<!-- and so on... -->
 								<tr>
 									<td>Colomo king</td>
 									<td>Colombo</td>
-									<td>Colombo</td>
+									<td><div class="icons-table">
+										<a href="#"><i class="fas fa-hourglass-half fa-lg">Check</i></a>
+									</div></td>
 								</tr>
 								<tr class="active-row">
 									<td>Colomo king</td>
 									<td>Colombo</td>
-									<td>Colombo</td>
+									<td><div class="icons-table">
+										<a href="#"><i class="fas fa-hourglass-half fa-lg">Check</i></a>
+									</div></td>
 								</tr>
 								<tr >
 									<td>Colomo king</td>
 									<td>Colombo</td>
-									<td>Colombo</td>
+									<td><div class="icons-table">
+										<a href="#"><i class="fas fa-hourglass-half fa-lg">Check</i></a>
+									</div></td>
 								</tr>
 								<tr class="active-row">
 									<td>Colomo king</td>
 									<td>Colombo</td>
-									<td>Colombo</td>
+									<td><div class="icons-table">
+										<a href="#"><i class="fas fa-hourglass-half fa-lg">Check</i></a>
+									</div></td>
 								</tr>
 								<tr >
 									<td>Colomo king</td>
 									<td>Colombo</td>
-									<td>Colombo</td>
+									<td><div class="icons-table">
+										<a href="#"><i class="fas fa-hourglass-half fa-lg">Check</i></a>
+									</div></td>
 								</tr>
 								<tr class="active-row">
 									<td>Colomo king</td>
 									<td>Colombo</td>
-									<td>Colombo</td>
+									<td><div class="icons-table">
+										<a href="#"><i class="fas fa-hourglass-half fa-lg">Check</i></a>
+									</div></td>
 								</tr>
 							</tbody>
 						</table>  
 					</div>
 					</div>
+					</div>
+					
 				</div>
 
 				<div id="notificaton">
-					<h1 style="color: black; text-decoration: underline red;" >Notifications</h1>
-					<img style="margin-bottom: 50px; margin-top: 50px;" src="./images/customer dashbord/undraw_Newsletter_re_wrob.svg" alt="">
-					<table class="styled-table">
+
+					<div class="section">
+						<h1 style="color: black; text-decoration: underline red;text-align: center" >Notifications</h1>
+					
+					<div class="notification_container">
+						<div class="left"><img style="margin-bottom: 50px; margin-top: 50px;margin-left: auto;" src="./images/customer dashbord/undraw_Newsletter_re_wrob.svg" alt=""></div>
+					
+					
+					<div class="right"><table class="styled-table">
 						<thead>
 							<tr>
 								<th>Date</th>
 								<th>Summary</th>
-								<th>Button</th>
-								
+																
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td>Colomo king</td>
-								<td>cancel</td>
-								<td>Colombo</td>
+						<tbody class="notification_tbody">
+							
+							<tr onclick="notification()">
+								
+								<td>2020.08.2</td>
+								<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus iste quasi ut. Quas facilis ipsam perferendis animi autem maxime veniam? Tempora, quod facilis? Debitis eveniet ut delectus nisi repellat voluptate.</td>
+									
 							</tr>
-							<tr class="active-row">
-								<td>Colomo king</td>
-								<td>Colombo</td>
-								<td>Colombo</td>
+							
+							<tr class="active-row" onclick="notification()">
+								<td>2020.08.22</td>
+								<td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat libero molestias dolor fugit, earum quo laudantium incidunt impedit suscipit atque iure dignissimos, esse quia minus quaerat hic explicabo iste quas?</td>
+								
 							</tr>
 							<!-- and so on... -->
-							<tr>
-								<td>Colomo king</td>
-								<td>Colombo</td>
-								<td>Colombo</td>
+							<tr onclick="notification()">
+								<td>2020.08.22</td>
+								<td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat libero molestias dolor fugit, earum quo laudantium incidunt impedit suscipit atque iure dignissimos, esse quia minus quaerat hic explicabo iste quas?</td>
+								
 							</tr>
-							<tr class="active-row">
-								<td>Colomo king</td>
-								<td>Colombo</td>
-								<td>Colombo</td>
+							<tr class="active-row" onclick="notification()">
+								<td>2020.08.22</td>
+								<td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat libero molestias dolor fugit, earum quo laudantium incidunt impedit suscipit atque iure dignissimos, esse quia minus quaerat hic explicabo iste quas?</td>
+								
 							</tr>
-							<tr >
-								<td>Colomo king</td>
-								<td>Colombo</td>
-								<td>Colombo</td>
+							<tr  onclick="notification()">
+								<td>2020.08.22</td>
+								<td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat libero molestias dolor fugit, earum quo laudantium incidunt impedit suscipit atque iure dignissimos, esse quia minus quaerat hic explicabo iste quas?</td>
+								
 							</tr>
-							<tr class="active-row">
-								<td>Colomo king</td>
-								<td>Colombo</td>
-								<td>Colombo</td>
+							<tr class="active-row" onclick="notification()">
+								<td>2020.08.22</td>
+								<td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat libero molestias dolor fugit, earum quo laudantium incidunt impedit suscipit atque iure dignissimos, esse quia minus quaerat hic explicabo iste quas?</td>
+								
 							</tr>
-							<tr >
-								<td>Colomo king</td>
-								<td>Colombo</td>
-								<td>Colombo</td>
+							<tr  onclick="notification()">
+								<td>2020.08.22</td>
+								<td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat libero molestias dolor fugit, earum quo laudantium incidunt impedit suscipit atque iure dignissimos, esse quia minus quaerat hic explicabo iste quas?</td>
+								
 							</tr>
-							<tr class="active-row">
-								<td>Colomo king</td>
-								<td>Colombo</td>
-								<td>Colombo</td>
+							<tr class="active-row" onclick="notification()">
+								<td>2020.08.22</td>
+								<td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat libero molestias dolor fugit, earum quo laudantium incidunt impedit suscipit atque iure dignissimos, esse quia minus quaerat hic explicabo iste quas?</td>
+								
 							</tr>
 						</tbody>
-					</table> 
+					</table> </div>
+					</div>
+					</div>
+					
+					
+					
 					
 				</div>
 
@@ -393,5 +535,6 @@
         </div>
     
         </div>
+		<script src="./js/customer-dashbord.js"></script>
 </body>
 </html>

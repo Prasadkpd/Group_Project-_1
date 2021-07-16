@@ -14,3 +14,34 @@ Jul 11, 2021 11:13:59 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint noti
 INFO: Unsupported notification method: $/setTrace
 Jul 12, 2021 1:05:32 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
 INFO: Unsupported notification method: $/setTrace
+Jul 12, 2021 10:06:09 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+[0m2021.07.12 10:09:55 INFO  shutting down Metals[0m
+[0m2021.07.12 10:11:37 INFO  Started: Metals version 0.10.4 in workspace 'F:\My Projects\2nd year group project\git project\Group_Project-_1' for client Visual Studio Code 1.58.0.[0m
+[0m2021.07.12 10:11:44 INFO  time: initialize in 7.6s[0m
+[0m2021.07.12 10:11:45 WARN  Build server is not auto-connectable.[0m
+[0m2021.07.12 10:11:45 WARN  no build tool detected in workspace 'F:\My Projects\2nd year group project\git project\Group_Project-_1'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+Jul 12, 2021 10:47:06 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+Jul 12, 2021 12:12:45 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+Jul 12, 2021 12:14:49 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+Jul 12, 2021 12:15:49 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+Jul 12, 2021 12:15:51 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+Jul 12, 2021 12:16:34 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+[0m2021.07.12 12:33:05 INFO  shutting down Metals[0m
+[0m2021.07.13 19:09:03 INFO  Started: Metals version 0.10.4 in workspace 'F:\My Projects\2nd year group project\git project\Group_Project-_1' for client Visual Studio Code 1.58.0.[0m
+[0m2021.07.13 19:09:08 INFO  time: initialize in 5.37s[0m
+[0m2021.07.13 19:09:08 WARN  Build server is not auto-connectable.[0m
+[0m2021.07.13 19:09:08 WARN  no build tool detected in workspace 'F:\My Projects\2nd year group project\git project\Group_Project-_1'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+[0m2021.07.16 11:26:06 INFO  Started: Metals version 0.10.5 in workspace 'F:\My Projects\2nd year group project\git project\Group_Project-_1' for client Visual Studio Code 1.58.1.[0m
+[0m2021.07.16 11:26:08 INFO  time: initialize in 3.32s[0m
+[0m2021.07.16 11:26:14 WARN  Build server is not auto-connectable.[0m
+[0m2021.07.16 11:26:14 WARN  no build tool detected in workspace 'F:\My Projects\2nd year group project\git project\Group_Project-_1'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+Jul 16, 2021 11:26:42 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+[0m2021.07.16 15:44:49 INFO  shutting down Metals[0m
