@@ -13,6 +13,10 @@
   box-sizing: border-box;
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 body {
 	margin: 0;
 	padding: 0;
@@ -173,9 +177,7 @@ img{
 .left {
 	width: 15%;
 	background-color: #f0f0f0;
-	height: auto;
-	position: relative;
-	margin-bottom: 400px;
+	/*height: 4400px;*/
 }
 
 /*.left p{
@@ -192,22 +194,26 @@ img{
 .left h4{
   text-align:left;
   font-weight: 600;
-  color: #fd461f;
+  color: #000;
   margin:10px;
   position: fixed;
+  text-transform: uppercase;
 }
 
 .left h4:hover {
 	/*border: 1px solid #141414;*/
-	background: #444444;
+	background: #ff8166;
 	transition: 0.5s;
 	cursor: pointer;
-	color: #f0f0f0;
 }
 
 .left h4 a {
 	text-decoration: none;
 	color: inherit;
+}
+
+.left a::after {
+	transition: linear 0.5s;
 }
 /*END OF MENU SECTION*/
 
@@ -220,6 +226,7 @@ img{
 .right {
 	width: 85%;
 	background-color: #f0f0f0;
+	padding-left: 3em;
 }
 
 .right p{
@@ -271,6 +278,7 @@ h3{
 	background-color: #ADD8E6;
 	cursor: default;
 	transition: 0.5s;
+	box-shadow: 0px 0px 10px 0px #ADD8E6;
 }
 
 .two {
@@ -284,6 +292,7 @@ h3{
 	background-color: #fbc933;
 	cursor: default;
 	transition: 0.5s;
+	box-shadow: 0px 0px 20px 0px #fbc933;
 }
 
 .three {
@@ -297,19 +306,18 @@ h3{
 	background-color: #23f15b;
 	cursor: default;
 	transition: 0.5s;
+	box-shadow: 0px 0px 20px 0px #23f15b;
 }
 
 .chart-1 {
 	width: 100%;
 	height: 500px;
-	background-color: #f0f0f0;
 }
 
 .chart-2 {
 	width: 100%;
 	height: 500px;
 	margin-left: 120px;
-	background-color: #f0f0f0;
 }
 /*END OF STATISTICS SECTION*/
 

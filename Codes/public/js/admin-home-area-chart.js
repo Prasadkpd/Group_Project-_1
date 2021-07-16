@@ -15,7 +15,9 @@ function drawChart() {
         var options = {
           title: 'Total sales within the past week', titleTextStyle: {fontName: 'Poppins',fontSize: '25'},
           hAxis: {title: 'Date',  titleTextStyle: {color: '#141414'}},
-          vAxis: {title: 'Rs.', minValue: 0}
+          vAxis: {title: 'Rs.', minValue: 0},
+          chartArea: { backgroundColor: '#f0f0f0' },
+          backgroundColor: '#f0f0f0',
         };
 
         var chart = new google.visualization.AreaChart(document.getElementById('chart_div_1'));
