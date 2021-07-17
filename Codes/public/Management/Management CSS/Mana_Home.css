@@ -28,7 +28,7 @@
 }
 
 .side-nav-container li{
-  width: 80%;
+  width: 70%;
   padding: .5em;
   border-radius: 10px;
   float:left;
@@ -41,7 +41,7 @@
    color: var(--black);
 }
 .side-nav-container i{
-  margin-right: 1.5rem;
+  margin-right: 1em;
 }
 .side-nav-container li:hover{
   font-size: 1.1rem;
@@ -54,9 +54,9 @@
 
 
 .container{
-  width: 79%;
+  width: 78%;
   position: relative;
-  top: 3.9em;
+  top: 4.2em;
   border-radius: 10px;
   /* box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset; */
   box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
@@ -65,6 +65,7 @@
   background-position-x: right;
   background-size: contain;
   height: 32em;
+
 }
 
 
