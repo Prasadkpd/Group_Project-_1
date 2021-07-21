@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Sportizza</title>
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <link rel="stylesheet" href="./css/visitor.css" />
@@ -46,12 +47,14 @@
       <div class="header-content">
         <div class="container grid-2">
           <div class="column-1">
-            <h1 class="header-title">Let's Play</h1>
+            <h1 class="header-title">Book a Sports Arena</h1>
             <p class="text">
-              Find a Sports Arena more easily and focus on getting fit!
+              Book a Sports Arena without any hassle
+              with the number 1 Sports arena Booking App in Srilanka.
             </p>
             <a href="#" class="book-now-btn">Book Now</a>
           </div>
+
           <div class="column-2 slideshow">
             <div class="slideshow-container">
 
@@ -100,7 +103,7 @@
         <img src="images/search-locations.svg">
         <div class=sp-arena-box>
           <div class="sports-arena-grid-2">
-            
+
             <div class="column-1">
               <div class="filter">
                 <button onclick="myFunction()" class="dropbtn">Location
@@ -110,9 +113,9 @@
                   <a href="#about">About</a>
                   <a href="#contact">Contact</a>
                 </div>
-                </div>
+              </div>
 
-                <div class="filter">
+              <div class="filter">
                 <button onclick="myFunction1()" class="dropbtn1">Category
                   <i class="fas fa-caret-down"></i></button>
                 <div id="myDropdown1" class="dropdown-content1">
@@ -120,7 +123,7 @@
                   <a href="#about">About</a>
                   <a href="#contact">Contact</a>
                 </div>
-                </div>
+              </div>
 
             </div>
 
@@ -128,7 +131,8 @@
               <div class="search-wrap">
                 <div class="search-box">
                   <input type="text" class="input" placeholder="Search by sports arena name">
-                  <a href="#search-results-id" class="btn search-btn">Search</a>
+                  <a href="#search-results-id" class="btn search-btn" onclick="showHiddenContent()">Search</a>
+                  <!-- <button class="btn search-btn" onclick="showHiddenContent()">Search</button> -->
                 </div>
               </div>
             </div>
@@ -139,10 +143,10 @@
 
 
       <!-- Search-results -->
-      <div class="container" id="search-results-id"> 
+      <!-- <div class="container" id="search-results-id">
         <div class="search-results">
 
-          <h3>Search Results: 
+          <h3>Search Results:
             <div class="chip" style="margin-left: 2rem;">
               Nugegoda
               <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
@@ -151,34 +155,199 @@
               Cricket Grounds
               <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
             </div>
-          </h3> 
+          </h3>
 
           <div class="result-details">
             <h4><a href="">Mercantile Cricket Grounds</a></h4>
             <div class="sp-arena-summary-items">
-              <h6>City: Colombo 07</h6>
-      
-              <h6>Category: Cricket Ground</h6>
+              <h5>City:<h6> Colombo 07</h6>
+              </h5>
+
+              <h5>Category: <h6> Cricket Ground</h6>
+              </h5>
+              <a href="#" class="btn check-availability-btn">Check Availability</a>
+              
+            </div>
             
-            <a href="#" class="btn check-availability-btn">Check Availability</a>
           </div>
-          </div>
-         
+
           <div class="result-details">
             <h4><a href="">Mercantile Cricket Grounds</a></h4>
             <div class="sp-arena-summary-items">
-              <h6>City: Colombo 07</h6>
-      
-              <h6>Category: Cricket Ground</h6>
-            
-            <a href="#" class="btn check-availability-btn">Check Availability</a>
-          </div>
-          </div>
+              <h5>City:<h6> Colombo 07</h6>
+              </h5>
 
+              <h5>Category: <h6> Cricket Ground</h6>
+              </h5>
+
+              <a href="#" class="btn check-availability-btn">Check Availability</a>
+            </div>
+          </div>
+          <div class="result-details">
+            <h4><a href="">Mercantile Cricket Grounds</a></h4>
+            <div class="sp-arena-summary-items">
+              <h5>City:<h6> Colombo 07</h6>
+              </h5>
+
+              <h5>Category: <h6> Cricket Ground</h6>
+              </h5>
+
+              <a href="#" class="btn check-availability-btn">Check Availability</a>
+            </div>
+          </div>
+          <div class="result-details">
+            <h4><a href="">Mercantile Cricket Grounds</a></h4>
+            <div class="sp-arena-summary-items">
+              <h5>City:<h6> Colombo 07</h6>
+              </h5>
+
+              <h5>Category: <h6> Cricket Ground</h6>
+              </h5>
+
+              <a href="#" class="btn check-availability-btn">Check Availability</a>
+            </div>
+          </div>
+          <div class="result-details">
+            <h4><a href="">Mercantile Cricket Grounds</a></h4>
+            <div class="sp-arena-summary-items">
+              <h5>City:<h6> Colombo 07</h6>
+              </h5>
+
+              <h5>Category: <h6> Cricket Ground</h6>
+              </h5>
+
+              <a href="#" class="btn check-availability-btn">Check Availability</a>
+            </div>
+          </div>
+          <div class="result-details">
+            <h4><a href="">Mercantile Cricket Grounds</a></h4>
+            <div class="sp-arena-summary-items">
+              <h5>City:<h6> Colombo 07</h6>
+              </h5>
+
+              <h5>Category: <h6> Cricket Ground</h6>
+              </h5>
+
+              <a href="#" class="btn check-availability-btn">Check Availability</a>
+            </div>
+          </div>
+          <div class="result-details">
+            <h4><a href="">Mercantile Cricket Grounds</a></h4>
+            <div class="sp-arena-summary-items">
+              <h5>City:<h6> Colombo 07</h6>
+              </h5>
+
+              <h5>Category: <h6> Cricket Ground</h6>
+              </h5>
+
+              <a href="#" class="btn check-availability-btn">Check Availability</a>
+            </div>
+          </div>
         </div>
-      </div>  
+      </div> -->
 
+      <div class="container" id="search-results-id">
+        <div class="search-results">
 
+          <h3>Search Results:
+            <div class="chip" style="margin-left: 2rem;">
+              Nugegoda
+              <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+            </div>
+            <div class="chip" style="margin-left: .5rem;">
+              Cricket Grounds
+              <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+            </div>
+          </h3>
+
+          <div class="result-details">
+            <h4><a href="">Mercantile Cricket Grounds</a></h4>
+            <div class="sp-arena-summary-items">
+              <h5>City:<h6> Colombo 07</h6>
+              </h5>
+
+              <h5>Category: <h6> Cricket Ground</h6>
+              </h5>
+              <a href="#" class="btn check-availability-btn"> Availability</a>
+              
+            </div>
+            
+          </div>
+
+          <div class="result-details">
+            <h4><a href="">Mercantile Cricket Grounds</a></h4>
+            <div class="sp-arena-summary-items">
+              <h5>City:<h6> Colombo 07</h6>
+              </h5>
+
+              <h5>Category: <h6> Cricket Ground</h6>
+              </h5>
+
+              <a href="#" class="btn check-availability-btn"> Availability</a>
+            </div>
+          </div>
+          <div class="result-details">
+            <h4><a href="">Mercantile Cricket Grounds</a></h4>
+            <div class="sp-arena-summary-items">
+              <h5>City:<h6> Colombo 07</h6>
+              </h5>
+
+              <h5>Category: <h6> Cricket Ground</h6>
+              </h5>
+
+              <a href="#" class="btn check-availability-btn"> Availability</a>
+            </div>
+          </div>
+          <div class="result-details">
+            <h4><a href="">Mercantile Cricket Grounds</a></h4>
+            <div class="sp-arena-summary-items">
+              <h5>City:<h6> Colombo 07</h6>
+              </h5>
+
+              <h5>Category: <h6> Cricket Ground</h6>
+              </h5>
+
+              <a href="#" class="btn check-availability-btn"> Availability</a>
+            </div>
+          </div>
+          <div class="result-details">
+            <h4><a href="">Mercantile Cricket Grounds</a></h4>
+            <div class="sp-arena-summary-items">
+              <h5>City:<h6> Colombo 07</h6>
+              </h5>
+
+              <h5>Category: <h6> Cricket Ground</h6>
+              </h5>
+
+              <a href="#" class="btn check-availability-btn"> Availability</a>
+            </div>
+          </div>
+          <div class="result-details">
+            <h4><a href="">Mercantile Cricket Grounds</a></h4>
+            <div class="sp-arena-summary-items">
+              <h5>City:<h6> Colombo 07</h6>
+              </h5>
+
+              <h5>Category: <h6> Cricket Ground</h6>
+              </h5>
+
+              <a href="#" class="btn check-availability-btn"> Availability</a>
+            </div>
+          </div>
+          <div class="result-details">
+            <h4><a href="">Mercantile Cricket Grounds</a></h4>
+            <div class="sp-arena-summary-items">
+              <h5>City:<h6> Colombo 07</h6>
+              </h5>
+
+              <h5>Category: <h6> Cricket Ground</h6>
+              </h5>
+
+              <a href="#" class="btn check-availability-btn"> Availability</a>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </section>
     <!-- End of Sports Arena Section -->
@@ -316,13 +485,14 @@
           </div>
 
         </div>
-        <a href="#" class="btn">Read more</a>
+        <button ONCLICK="ShowAndHide()" class="btn">Read More</button>
+        <!-- <a class="btn" ONCLICK="ShowAndHide()">Read more</a> -->
       </div>
     </section>
     <!-- End of Reviews section -->
 
     <!-- More reviews section -->
-    <section class="reviews-more section" id="reviews-more">
+    <section class="reviews-more section" id="reviews-more" Style="display:none">
       <div class="container">
         <div class="review-content grid-2">
           <div class="column-1 reviews">
@@ -523,13 +693,120 @@
         <div class="section-header">
           <h3 class="title" data-title="Frequently Asked Questions">FAQs</h3>
         </div>
-        <div class="customer-faq">
+
+        <div class="tabs">
+          <div class="tab-header">
+            <div class="active">
+              <i class="fa fa-code"></i> Code
+            </div>
+            <div>
+              <i class="fa fa-pencil-square-o"></i> About
+            </div>
+            <div>
+              <i class="fa fa-bar-chart"></i> Services
+            </div>
+            <div>
+              <i class="fa fa-envelope-o"></i> Contact
+            </div>
+          </div>
+          <div class="tab-indicator"></div>
+          <div class="tab-body">
+            <div class="active">
+              <h2>This is code section</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error neque saepe commodi blanditiis fugiat nisi aliquam ratione porro quibusdam in, eveniet accusantium cumque. Dolore officia reprehenderit perferendis quod libero omnis.</p>
+            </div>
+            <div>
+              <h2>This is about section</h2>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi minus exercitationem vero, id autem fugit assumenda a molestiae numquam at, quisquam cumque. Labore eligendi perspiciatis quia incidunt quaerat ut ducimus?</p>
+            </div>
+            <div>
+              <h2>This is services section</h2>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi minus exercitationem vero, id autem fugit assumenda a molestiae numquam at, quisquam cumque. Labore eligendi perspiciatis quia incidunt quaerat ut ducimus?</p>
+            </div>
+            <div>
+              <h2>This is contact section</h2>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi minus exercitationem vero, id autem fugit assumenda a molestiae numquam at, quisquam cumque. Labore eligendi perspiciatis quia incidunt quaerat ut ducimus?</p>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="faq-tabs">
+          <div class="faq-tab-header">
+            <div class="active"> -->
+            <!-- <div class="active">FAQ by Customer</div>
+             </div> -->
+            <!-- <div>FAQ by Sports Arena</div>
+          </div> -->
+          <!-- <div class="faq-tab-indicator"> -->
+            <!-- <div class="faq-tab-body" style="height:500px">
+
+              <div class="active">
+                <div class="question">
+                  <button class="accordion">What is lorem ipsum? fgdjfnjnjnjunfunufnefnrifneifn kefkefkemnfe ?
+                    <i class="fab fa-plus"></i> </button>
+                  <div class="panel">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                      nisi ut aliquip ex ea commodo consequat.</p>
+                  </div>
+                </div>
+
+                
+                <div class="question">
+                  <button class="accordion">What is lorem ipsum? fgdjfnjnjnjunfunufnefnrifneifn kefkefkemnfe ?
+                    <i class="fab fa-plus"></i> </button>
+                  <div class="panel">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                      nisi ut aliquip ex ea commodo consequat.</p>
+                  </div>
+                </div>
+                <div class="question">
+                  <button class="accordion">What is lorem ipsum? fgdjfnjnjnjunfunufnefnrifneifn kefkefkemnfe ?
+                    <i class="fab fa-plus"></i> </button>
+                  <div class="panel">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                      nisi ut aliquip ex ea commodo consequat.</p>
+                  </div>
+                </div>
+              </div> -->
+
+
+            <!-- </div>
+
+            <div class="faq-tab-body">
+
+
+              <div>
+                <div class="question">
+                  <button class="accordion">What is lorem ipsum? fgdjfnjnjnjunfunufnefnrifneifn kefkefkemnfe ?
+                    <i class="fab fa-plus"></i> </button>
+                  <div class="panel">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                      nisi ut aliquip ex ea commodo consequat.</p>
+                  </div>
+                </div>
+              </div>
+
+            </div> -->
+          <!-- </div> --> -->
+        </div>
+  
+
+
+      <!-- <div class="customer-faq">
           <div class="section-body grid-2">
             <div class="column-1">
 
               <h4>FAQs by Customers</h4>
               <div class="question">
-                <button class="accordion">What is lorem ipsum?</button>
+                <button class="accordion">What is lorem ipsum?
+                <i class="fab fa-plus"></i> </button>
                 <div class="panel">
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -572,12 +849,20 @@
 
             <div class="column-2">
               <img src="./images/visitor/faq/faq-customer.svg" class="z-index" alt="" />
+            
             </div>
           </div>
         </div>
-      </div>
+     
+          <div class="more-questions">
+          <h5>Still have questions?</h5>
+              <p>If you cannot find answers to your question in our FAQ section, you can always 
+              <a href="#contact" class="text-link">contact us.</a></p>
+            </div>
+        
+  
 
-      <div class="container">
+       <div class="container"> 
         <div class="sp-arena-faq">
           <div class="section-body grid-2">
             <div class="column-1">
@@ -628,7 +913,12 @@
             </div>
           </div>
         </div>
-      </div>
+        <div class="more-questions">
+          <h5>Still have questions?</h5>
+              <p>If you cannot find answers to your question in our FAQ section, you can always 
+              <a href="#contact" class="text-link">contact us.</a></p>
+            </div>
+      </div>  -->
     </section>
     <!-- End of FAQ section -->
 
@@ -647,12 +937,10 @@
               We are a group of second year Undergraduates from
               University of Colombo School of Computing interested
               in contributing to the greater well being of the nation.
-              <!-- Sportizza is a platform which facilitates both the consumers
-          as well as sports arenas to bridge the gap inbetween them and 
-          make the sports arena booking process more convenient.  -->
+
             </p>
             <br>
-            <a href="#" class="btn">Read more</a>
+            <a href="#team" class="btn">Read more</a>
           </div>
 
           <div class="column-2 image">
@@ -848,92 +1136,86 @@
 
   <footer class="footer">
     <div class="container">
-      <div class="grid-3">
-        <div class="grid-3-col footer-about">
+      <div class="grid-4">
+        <div class="grid-4-col footer-image">
           <img src="images/logos/Sportizza_Logo_Final.png" alt="" />
-
-          <h3 class="title-sm">About</h3>
-          <p class="text">
-            We are a group of individuals with the desire
-            of building a healthy community.
-          </p>
+          </div>
+          <div class="grid-4-col footer-about">
+            <h3 class="title-sm">Sportizza</h3>
+            <p class="text">
+              We have the desire of building a healthy community.
+            </p>
         </div>
 
-        <!-- EDIT A-HREF -->
         <div class="grid-4-col footer-links">
-          <h3 class="title-sm">Sportizza</h3>
           <ul>
             <li>
               <a href="#">HOME</a>
             </li>
             <li>
-              <a href="#portfolio">SPORTS ARENAS</a>
+              <a href="#sp-arena">SPORTS ARENAS</a>
             </li>
             <li>
-              <a href="#about">REVIEWS</a>
+              <a href="#reviews">REVIEWS</a>
+            </li>
+          </ul>
+        </div>
+        <div class="grid-4-col footer-links">
+          <ul>
+            <li>
+              <a href="#faq">FAQ</a>
             </li>
             <li>
-              <a href="#testimonials">FAQ</a>
+              <a href="#about">ABOUT</a>
             </li>
             <li>
-              <a href="#contact">ABOUT</a>
-            </li>
-            <li>
-              <a href="#about">CONTACT</a>
+              <a href="#contact">CONTACT</a>
             </li>
           </ul>
         </div>
 
-
-
+        </div>
+       
         <div class="grid-4-col footer-newstletter">
-          <h3 class="title-sm">Subscribe</h3>
-          <p class="text">
-            For promotional and new updates.
-          </p>
-          <div class="footer-input-wrap">
-            <input type="email" class="footer-input" placeholder="Email" />
-            <a href="#" class="input-arrow">
-              <i class="fas fa-angle-right"></i>
-            </a>
+          
+          
+        </div>
+      
+        <div class="bottom-footer">
+          <div class="copyright">
+            <p class="text">
+              Copyright &copy;2021 All rights reserved | Sportizza Inc.
+            </p>
           </div>
-        </div>
-      </div>
-
-      <div class="bottom-footer">
-        <div class="copyright">
-          <p class="text">
-            Copyright &copy;2021 All rights reserved | Sportizza Inc.
-          </p>
-        </div>
-
-        <div class="followme-wrap">
-          <div class="followme">
-            <h3>Follow us</h3>
-            <span class="footer-line"></span>
-            <div class="social-media">
-              <a href="#">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a href="#">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="#">
-                <i class="fab fa-instagram"></i>
-              </a>
-              <a href="#">
-                <i class="fab fa-linkedin-in"></i>
+  
+          <div class="followus-wrap">
+            <div class="followus">
+              <h3>Follow us</h3>
+              <span class="footer-line"></span>
+              <div class="social-media">
+                <a href="#">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#">
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#">
+                  <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+              </div>
+            </div>
+  
+            <div class="back-btn-wrap">
+              <a href="#" class="back-btn">
+                <i class="fas fa-chevron-up"></i>
               </a>
             </div>
           </div>
-
-          <div class="back-btn-wrap">
-            <a href="#" class="back-btn">
-              <i class="fas fa-chevron-up"></i>
-            </a>
-          </div>
         </div>
-      </div>
+      
     </div>
   </footer>
 

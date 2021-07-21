@@ -2,20 +2,11 @@ const filter_btns = document.querySelectorAll(".filter-btn");
 const skills_bars = document.querySelectorAll(".skill-progress");
 const records_wrap = document.querySelector(".records");
 const records_numbers = document.querySelectorAll(".number");
-const footer_input = document.querySelector(".footer-input");
 const hamburger_menu = document.querySelector(".hamburger-menu");
 const navbar = document.querySelector("header nav");
 const links = document.querySelectorAll(".links a");
 
-//Footer
-footer_input.addEventListener("focus", () => {
-  footer_input.classList.add("focus");
-});
 
-footer_input.addEventListener("blur", () => {
-  if (footer_input.value != "") return;
-  footer_input.classList.remove("focus");
-});
 
 //Hamburger Menu
 function closeMenu() {
@@ -39,7 +30,6 @@ links.forEach((link) => link.addEventListener("click", () => closeMenu()));
 //Slideshow function
 var slideIndex = 0;
 showSlides();
-
 function showSlides() {
   var i;
   var slides = document.getElementsByClassName("home-slides fade");
@@ -178,23 +168,48 @@ window.onclick = function(event) {
   }
 }
 
-// function myFunction1() {
-//   document.getElementById("myDropdown1").classList.toggle("show1");
+
+//Show the hidden content
+function ShowAndHide() {
+  var x = document.getElementById('reviews-more');
+  if (x.style.display == 'none') {
+      x.style.display = 'block';
+  } else {
+      x.style.display = 'none';
+  }
+}
+
+// //TABS SHOWING
+// let tabs = document.querySelector("faq-tabs");
+// let tabHeader = tabs.querySelector(".faq-tab-header");
+// let tabBody = tabs.querySelector(".faq-tab-body");
+// // let tabIndicator =faq-tabs.querySelector(".faq-tab-indicator");
+// let tabHeaderNodes =tabs.querySelectorAll(".faq-tab-header > div");
+// let tabBodyNodes =tabs.querySelectorAll(".faq-tab-body > div");
+
+// for (let i = 0; i <tabHeaderNodes.length; i++) {
+//   tabHeaderNodes[i].addEventListener("click", function(){
+//     tabHeader.querySelector(".active").classList.remove("active");
+//     tabHeaderNodes[i].classList.add("active");
+//     tabBody.querySelector(".active").classList.remove("active");
+//     tabBodyNodes[i].classList.add("active");
+//     // tabIndicator.style.left= 'calc(calc(50%-5px) *${i} +10px';
+//   });
 // }
-// // Close the dropdown if the user clicks outside of it
-// window.onclick = function(event) {
-//   if (!event.target.matches('.dropbtn1')) {
-//     var dropdowns = document.getElementsByClassName("dropdown-content1");
-//     var i;
-//     for (i = 0; i < dropdowns.length; i++) {
-//       var openDropdown = dropdowns[i];
-//       if (openDropdown.classList.contains('show1')) {
-//         openDropdown.classList.remove('show1');
-//       }
-//     }
-//   }
-// }
 
+let tabHeader = document.getElementsByClassName("tab-header")[0];
+let tabIndicator = document.getElementsByClassName("tab-indicator")[0];
+let tabBody = document.getElementsByClassName("tab-body")[0];
 
+let tabsPane = tabHeader.getElementsByTagName("div");
 
-
+for(let i=0;i<tabsPane.length;i++){
+  tabsPane[i].addEventListener("click",function(){
+    tabHeader.getElementsByClassName("active")[0].classList.remove("active");
+    tabsPane[i].classList.add("active");
+    tabBody.getElementsByClassName("active")[0].classList.remove("active");
+    tabBody.getElementsByTagName("div")[i].classList.add("active");
+    
+    tabIndicator.style.left = `calc(calc(100% / 4) * ${i})`;
+  });
+}
