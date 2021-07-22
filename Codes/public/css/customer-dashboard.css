@@ -376,7 +376,7 @@ nav.open .links {
     width: 80%;
     background-color: var(--light-ash);
     border-radius: 10px 10px 10px 10px;
-    box-shadow: 5px 5px 5px 5px gray;
+    box-shadow: 1px 0px 4px 1px gray;
     padding-bottom: 30px;
     padding-top: 30px;
     
