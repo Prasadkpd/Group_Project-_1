@@ -45,6 +45,19 @@ INFO: Unsupported notification method: $/setTrace
 Jul 16, 2021 11:26:42 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
 INFO: Unsupported notification method: $/setTrace
 [0m2021.07.16 15:44:49 INFO  shutting down Metals[0m
+<<<<<<< HEAD
+[0m2021.07.20 07:28:36 INFO  Started: Metals version 0.10.5 in workspace '/Users/manethwijetunga/Development/Group_Project-_1' for client Visual Studio Code 1.58.2.[0m
+[0m2021.07.20 07:28:42 INFO  time: initialize in 6.54s[0m
+[0m2021.07.20 07:28:46 WARN  Build server is not auto-connectable.[0m
+[0m2021.07.20 07:28:46 WARN  no build tool detected in workspace '/Users/manethwijetunga/Development/Group_Project-_1'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+Jul 20, 2021 9:47:09 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+Jul 20, 2021 9:59:53 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+Jul 20, 2021 9:59:56 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+[0m2021.07.20 23:11:17 INFO  shutting down Metals[0m
+=======
 [0m2021.07.16 15:46:13 INFO  Started: Metals version 0.10.5 in workspace 'F:\My Projects\2nd year group project\git project\Group_Project-_1' for client Visual Studio Code 1.58.2.[0m
 [0m2021.07.16 15:46:14 INFO  time: initialize in 1.08s[0m
 [0m2021.07.16 15:46:20 WARN  Build server is not auto-connectable.[0m
@@ -65,6 +78,7 @@ INFO: Unsupported notification method: $/setTrace
 [0m2021.07.19 18:48:51 WARN  no build tool detected in workspace 'E:\My Projects\2nd year group project\git project\Group_Project-_1'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
 Jul 19, 2021 7:00:11 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
 INFO: Unsupported notification method: $/setTrace
+<<<<<<< HEAD
 [0m2021.07.21 08:14:06 INFO  Started: Metals version 0.10.5 in workspace 'E:\My Projects\2nd year group project\git project\Group_Project-_1' for client Visual Studio Code 1.58.2.[0m
 [0m2021.07.21 08:14:09 INFO  time: initialize in 3.07s[0m
 [0m2021.07.21 08:14:18 WARN  Build server is not auto-connectable.[0m
@@ -211,3 +225,6 @@ Jul 22, 2021 10:34:23 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint noti
 INFO: Unsupported notification method: $/setTrace
 Jul 22, 2021 10:34:23 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
 INFO: Unsupported notification method: $/setTrace
+=======
+>>>>>>> 68fec8f98e9f9cb1b6078d5b82bdfc5c38c0c2d0
+>>>>>>> 0946e3986f8618b3f0a48df59667a109573e805e
