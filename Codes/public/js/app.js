@@ -43,20 +43,20 @@ function showSlides() {
 }
 
 //Accrodion function
-var acc = document.getElementsByClassName("accordion");
-var i;
+// var acc = document.getElementsByClassName("accordion");
+// var i;
 
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.display === "block") {
-      panel.style.display = "none";
-    } else {
-      panel.style.display = "block";
-    }
-  });
-}
+// for (i = 0; i < acc.length; i++) {
+//   acc[i].addEventListener("click", function() {
+//     this.classList.toggle("active");
+//     var panel = this.nextElementSibling;
+//     if (panel.style.display === "block") {
+//       panel.style.display = "none";
+//     } else {
+//       panel.style.display = "block";
+//     }
+//   });
+// }
 
 //Date picking from Calendar
 let calendar = document.querySelector('.calendar')
@@ -179,28 +179,10 @@ function ShowAndHide() {
   }
 }
 
-// //TABS SHOWING
-// let tabs = document.querySelector("faq-tabs");
-// let tabHeader = tabs.querySelector(".faq-tab-header");
-// let tabBody = tabs.querySelector(".faq-tab-body");
-// // let tabIndicator =faq-tabs.querySelector(".faq-tab-indicator");
-// let tabHeaderNodes =tabs.querySelectorAll(".faq-tab-header > div");
-// let tabBodyNodes =tabs.querySelectorAll(".faq-tab-body > div");
 
-// for (let i = 0; i <tabHeaderNodes.length; i++) {
-//   tabHeaderNodes[i].addEventListener("click", function(){
-//     tabHeader.querySelector(".active").classList.remove("active");
-//     tabHeaderNodes[i].classList.add("active");
-//     tabBody.querySelector(".active").classList.remove("active");
-//     tabBodyNodes[i].classList.add("active");
-//     // tabIndicator.style.left= 'calc(calc(50%-5px) *${i} +10px';
-//   });
-// }
-
+//Tabs for faq
 let tabHeader = document.getElementsByClassName("tab-header")[0];
-let tabIndicator = document.getElementsByClassName("tab-indicator")[0];
 let tabBody = document.getElementsByClassName("tab-body")[0];
-
 let tabsPane = tabHeader.getElementsByTagName("div");
 
 for(let i=0;i<tabsPane.length;i++){
@@ -210,6 +192,5 @@ for(let i=0;i<tabsPane.length;i++){
     tabBody.getElementsByClassName("active")[0].classList.remove("active");
     tabBody.getElementsByTagName("div")[i].classList.add("active");
     
-    tabIndicator.style.left = `calc(calc(100% / 4) * ${i})`;
   });
 }
