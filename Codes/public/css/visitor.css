@@ -113,7 +113,6 @@ img {
   z-index: 2;
 }
 .section {
-  padding: 6rem 0;
   padding-top: 10rem;
   overflow: hidden;
 }
@@ -745,86 +744,136 @@ input {
 
 /* FAQ section */
 .faq {
-  overflow: hidden;
-  padding-bottom: 0rem;
+   overflow: hidden; 
   height:max-content;
-}
-.faq .text {
-  margin-top: 1rem;
-  margin-bottom: 5rem;
-}
-.faq .container {
+  width:90%;
+    padding: 10px;
+   margin:  auto; 
+} 
+
+.faq-container {
   background-color: var(--white);
+    max-width: 92rem;
+}  
+
+.tabs {
+  position:relative;
+  width:70%;
+  height:1000px;
+  padding:0px 0px;
+  overflow:hidden;
 }
 
-/* .faq .section {
-  padding: 6rem 0;
-  padding-top: 10rem;
-  overflow:hidden;
-} */
-.tabs {
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  width:500px;
-  height:250px;
-  background:#f5f5f5;
-  padding:20px 30px;
-  overflow:hidden;
-  border-radius:50px;
-  box-shadow:5px 10px 5px #ccc;
-}
 .tabs .tab-header {
-  height:60px;
+  height:5rem;
   display:flex;
   align-items:center;
 }
 .tabs .tab-header > div {
-  width:calc(100% / 4);
+  width:calc(50% / 2);
   text-align:center;
-  color:#888;
+  color:var(--orange);
   font-weight:600;
   cursor:pointer;
   font-size:14px;
   text-transform:uppercase;
   outline:none;
+  border-radius:50px;
+  border: 1px solid var(--dark-orange);
+  padding: 0.5rem 0rem;
+  /* margin: auto 12%; */
 }
-.tabs .tab-header > div > i {
-  display:block;
-  margin-bottom:5px;
-}
+ 
 .tabs .tab-header > div.active {
-  color:#00acee;
-}
-.tabs .tab-indicator {
-  position:relative;
-  width:calc(100% / 4);
-  height:5px;
-  background:#00acee;
-  left:0px;
-  border-radius:5px;
-
-  transition:all 500ms ease-in-out;
+  color:var(--white);
+  background-color:var(--orange);
 }
 .tabs .tab-body {
   position:relative;
-  height:calc(100% - 60px);
-  padding:10px 5px;
+  width:100%;
+  margin-top: 1rem;
 }
 .tabs .tab-body > div {
   position:absolute;
+  background-color:var(--white);
   top:-200%;
   opacity:0;
   transform:scale(0.9);
-  transition:opacity 500ms ease-in-out 0ms,
-    transform 500ms ease-in-out 0ms;
+  transition:opacity 0s ease-in-out 0ms,
+  transform 0s ease-in-out 0ms;
 }
 .tabs .tab-body > div.active {
   top:0px;
   opacity:1;
   transform:scale(1);
+} 
+
+
+.accordion-item{
+  background-color: var(--pure-white);
+  border-radius:0.5rem;
+  margin-bottom: 1.2rem;
+  padding:0.5rem;
+  box-shadow: 0.5rem 2px 0.5rem rgba(0, 0, 0, 0.1);
 }
+.accordion-link{
+ font-size:1.3rem;
+ font-weight: 600;
+ color:var(--dark-ash-1);
+ text-decoration: none;
+ background-color: var(--pure-white);
+ width:100%;
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ padding:0.5rem 0rem;
+}
+.accordion-link i{
+ color:var(--orange);
+ padding:0.5rem;
+}
+
+.accordion-link .fa-minus{
+display:none;
+}
+.answer{
+ max-height:0; 
+ overflow:hidden;
+ position:relative;
+ transition:max-height 0.65s;
+ background-color: var(--ash-white);
+}
+
+.answer::before{
+ content: " ";
+ position: absolute;
+ width:0.6rem;
+ height:90%;
+ background-color: var(--dark-orange);
+ top: 50%;
+ left:0;
+ transform: translateY(-50%);
+}
+.answer p{
+ font-size:1rem;
+ font-weight: 400;
+ color:var(--light-ash-dull);
+ padding:1.5rem;
+}
+
+.accordion-item:target .answer{
+max-height: 20rem;
+}
+.accordion-item:target .accordion-link .fa-plus{
+display:none;
+}
+.accordion-item:target .accordion-link .fa-minus{
+ display:block;
+ }
+
+
+
+
 /* Customer FAQ Section */
 /* .faq-tabs {
   position: relative;
@@ -994,8 +1043,8 @@ input {
   overflow: hidden;
   background-color: var(--light-orange);
   padding-top: 8rem;
-
 }
+
 .about img {
   max-width: 600px;
 }
