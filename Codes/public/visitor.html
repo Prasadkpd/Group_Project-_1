@@ -101,7 +101,39 @@
         <div class="section-header">
           <h3 class="title" data-title="">Sports Arenas</h3>
         </div>
-        <img src="images/search-locations.svg">
+        
+        <div class="slideshow">
+          <div class="slideshow-container">
+
+            <div class="home-slides fade">
+              <img src="images/visitor/search/basketball.jpg" style="width:100%">
+            </div>
+
+            <div class="home-slides fade">
+              <img src="images/visitor/search/cricket.jpg" style="width:100%">
+            </div>
+
+            <div class="home-slides fade">
+              <img src="images/visitor/search/football.jpg" style="width:100%">
+            </div>
+
+            <div class="home-slides fade">
+              <img src="images/visitor/search/swimming.jpg" style="width:100%">
+            </div>
+
+            <div class="home-slides fade">
+              <img src="images/visitor/search/volleyball.jpg" style="width:100%">
+            </div>
+
+            <div class="home-slides fade">
+              <img src="images/visitor/search/volleyball.jpg" style="width:100%">
+            </div>
+
+            <div class="home-slides fade">
+              <img src="images/visitor/search/volleyball.jpg" style="width:100%">
+            </div>
+          </div>
+        </div>
         <div class=sp-arena-box>
           <div class="sports-arena-grid-2">
 
@@ -132,7 +164,7 @@
               <div class="search-wrap">
                 <div class="search-box">
                   <input type="text" class="input" placeholder="Search by sports arena name">
-                  <a href="#search-results-id" class="btn search-btn" onclick="showHiddenContent()">Search</a>
+                  <a href="#search-results-id" class="btn search-btn" onclick=showHiddenContent()>Search</a>
                   <!-- <button class="btn search-btn" onclick="showHiddenContent()">Search</button> -->
                 </div>
               </div>
@@ -487,7 +519,7 @@
 
         </div>
         <button ONCLICK="ShowAndHide()" class="btn">Read More</button>
-        <!-- <a class="btn" ONCLICK="ShowAndHide()">Read more</a> -->
+        
       </div>
     </section>
     <!-- End of Reviews section -->
@@ -798,7 +830,7 @@
               in contributing to the greater well being of the nation.
 
             </p>
-            <br>
+            <br><br>
             <a href="#team" class="btn">Read more</a>
           </div>
 
@@ -807,7 +839,7 @@
           </div>
         </div>
       </div>
-    </section> -->
+    </section> 
     <!-- End of About Us section -->
 
     <!-- Team section -->
@@ -878,7 +910,7 @@
           <div class="column-1">
             <div class="member-details">
               <div class="column-3">
-                <h4>Maneth Wijetunga</h4>
+                <h4>Bhashitha Ranasinghe</h4>
                 <h5> Developer</h5>
                 <div class="social-media">
                   <a href="#">
@@ -971,20 +1003,47 @@
 
           <div class="contact-form">
             <h3 class="title">Contact us</h3>
+            <form action="https://formspree.io/f/xpzkyeyk" method="POST">
             <div class="row">
-              <input type="text" class="contact-input" placeholder="First Name" />
-              <input type="text" class="contact-input" placeholder="Last Name" />
+              <div class="form-group">
+              <label for="firstName"> </label>
+              <input type="text" class="contact-input" id="firstName" name="firstName" placeholder="First Name" /> </div>
+              <div class="form-group">
+                <label for="lastName"> </label>
+                <input type="text" class="contact-input" id="lastName" name="lastName" placeholder="Last Name" /> </div>
             </div>
 
             <div class="row">
-              <input type="text" class="contact-input" placeholder="Phone" />
-              <input type="email" class="contact-input" placeholder="Email" />
+              <div class="form-group">
+                <label for="phone"> </label>
+                <input type="text" class="contact-input" id="phone" name="phone" placeholder="Phone" /> </div>
+              <div class="form-group">
+                <label for="email"> </label>
+                <input type="text" class="contact-input" id="email" name="email" placeholder="Email" /> </div>
+       
             </div>
 
             <div class="row">
               <textarea name="message" class="contact-input textarea" placeholder="Message"></textarea>
             </div>
-            <a href="#" class="btn">Send</a>
+            <button type="submit" class="btn">Send</button>
+            <!-- <div class="wrap">
+              <button class="js-open btn-open is-active" type="submit">Send</button>
+              <div class="modal js-modal">
+                <div class="modal-image">
+                  <svg viewBox="0 0 32 32" style="fill:#48DB71"><path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"></path></svg>
+                </div>
+                <h1>Nice job!</h1>
+                <p>To dismiss click the button below</p>
+                <button class="js-close">Dismiss</button>
+              </div>
+            </div> -->
+
+
+
+
+
+          </form>
           </div>
         </div>
       </div>
