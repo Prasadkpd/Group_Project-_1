@@ -7,6 +7,7 @@
     <script src="https://kit.fontawesome.com/c32bb29bee.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="Common Features/css/main.css">
     <link rel="stylesheet" href="Common Features/css/header.css">
+    <link rel="stylesheet" href="Common Features/css/layout.css">
     <link rel="stylesheet" href="Management CSS/Mana_Home.css">
 
     <title>Management Profile</title>
@@ -21,12 +22,12 @@
                 </div>
                 <div class="nav-links">
                    <ul>
-                       <li><a href="#">HOME</a></li>
-                       <li><a href="#">SPORTS ARENAS</a></li>
-                       <li><a href="#">REVIEWS</a></li>
-                       <li><a href="#">FAQ</a></li>
-                       <li><a href="#">ABOUT</a></li>
-                       <li><a href="#">CONTACT</a></li>
+                       <li><a href="">HOME</a></li>
+                       <li><a href="/visitor.html#sp-arena">SPORTS ARENAS</a></li>
+                       <li><a href="/visitor.html#reviews">REVIEWS</a></li>
+                       <li><a href="/visitor.html#faq">FAQ</a></li>
+                       <li><a href="/visitor.html#about">ABOUT</a></li>
+                       <li><a href="/visitor.html#contact">CONTACT</a></li>
                        <li><a href="#" class="active">PROFILE</a></li>
                      </ul>
                 </div>
@@ -35,68 +36,82 @@
                 </div>   
              </div>
         </div>
-        <div class="side-nav">
-            <ul class="side-nav-container">
-                <li><a href="profile"><i class="far fa-user-circle"></i>Profile</a></li>
-                <li><a href="booking"><i class="far fa-bookmark"></i>Booking</a></li>
-                <li><a href="#"><i class="far fa-chart-bar"></i>Reports</a></li>
-                <li><a href="Manage_User/manage_user.html"><i class="fas fa-users"></i>Manage User</a></li>
-                <li><a href="#"><i class="fas fa-user-cog"></i>Setting</a></li>
-                <li><a href="#log-out"><i class="fas fa-sign-out-alt"></i>Log Out</a></li>
-            </ul>
-        </div>
-        <div class="container">      
-        <div class="profile-container" id="profile">
-            <div class="profile-disc">
-                <div class="profile-disc-header">
-                    <div class="profile-picture">
-                        <img src="Management Images/footbal.svg" alt="">
-                        <div class="image-change"><i class="fas fa-pencil-alt"></i><i class="fas fa-trash-alt"></i></div>
-                    </div>
-                    <div class="profile-details">
-                        <h3>
-                            Mechantile Football Ground
-                        </h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint reprehenderit nostrum est, impedit fuga blanditiis minus minima consequuntur sit.</p>
-                        <div class="features">
-                            <div class="details-block sport-type">Football</div>
-                            <div class="details-block town">Colombo 07</div>
+        <div class="section">
+            <div class="side-nav">
+                <ul class="side-nav-container">
+                    <li><a href="profile"><i class="far fa-user-circle"></i>Profile</a></li>
+                    <li><a href="profile"><i class="far fa-bookmark"></i>Add Booking</a></li>
+                    <li><a href="booking"><i class="fas fa-search"></i>Check Booking</a></li>
+                    <li><a href="#"><i class="far fa-chart-bar"></i>Reports</a></li>
+                    <li><a href="Manage_User/manage_user.html"><i class="fas fa-users"></i>Manage User</a></li>
+                    <li><a href="#"><i class="fas fa-user-cog"></i>Setting</a></li>
+                    <li><a href="#log-out"><i class="fas fa-sign-out-alt"></i>Log Out</a></li>
+                </ul>
+            </div>
+            <div class="container">      
+                <div class="profile-container" id="profile">
+                    <div class="profile-disc">
+                        <div class="profile-disc-header">
+                            <div class="profile-picture">
+                                <img src="Management Images/footbal.svg" alt="">
+                                <div class="image-change"><i class="fas fa-pencil-alt"></i><i class="fas fa-trash-alt"></i></div>
+                            </div>
+                            <div class="profile-details">
+                                <h3>
+                                    Mechantile Football Ground
+                                </h3>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint reprehenderit nostrum est, impedit fuga blanditiis minus minima consequuntur sit.</p>
+                                <div class="features">
+                                    <div class="details-block sport-type">Football</div>
+                                    <div class="details-block town">Colombo 07</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <hr>
-            <div class="ground-images">
-                <h4>Ground Images</h4>
-                <div class="ground-image-container">
-                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                    <div class="goriund-image-slide fade">
-                        <img src="Management Images/footbal.svg" alt="">
+                    <hr>
+                    <div class="ground-images">
+                        <h4>Ground Images</h4>
+                        <main>
+                            <div class="slide-container">
+                            <img id="slide-left" class="arrow" src="Management Images/arrow-left.png">
+                        <section class="container" id="slider">
+                            
+                            <div class="thumbnail">
+                                <img src="Management Images/sliderimages/Screenshot_1.jpg" alt=""> 
+                            </div>
+                            <div class="thumbnail">
+                                <img src="Management Images/sliderimages/Screenshot_2.jpg" alt="">
+                            </div>
+                            <div class="thumbnail">
+                                <img src="Management Images/sliderimages/Screenshot_3.jpg" alt="">
+                            </div>
+                            <div class="thumbnail">
+                                <img src="Management Images/sliderimages/Screenshot_4.jpg" alt="">
+                            </div>
+                            <div class="thumbnail">
+                                <img src="Management Images/sliderimages/Screenshot_5.jpg" alt="">
+                            </div>
+                        </section>
+                        <img id="slide-right" class="arrow" src="Management Images/arrow-right.png">
                     </div>
-                    <div class="goriund-image-slide fade">
-                        <img src="Management Images/footbal.svg" alt="">
+                    </main>
                     </div>
-                    <div class="goriund-image-slide fade">
-                        <img src="Management Images/footbal.svg" alt="">
+                    <div class="other-facility">
+                        <div class="facility-header">
+                            <h4>Facilities:</h4>
+                            <ul>
+                                <li>Parking, </li>
+                                <li>Canteen, </li>
+                                <li>Gressing Rooms</li>
+                            </ul>
+                        </div>
                     </div>
-                    <!-- Next and previous buttons -->
-                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
-                </div>
+                </div>   
             </div>
-            <div class="other-facility">
-                <div class="facility-header">
-                    <h4>Facilities:</h4>
-                    <ul>
-                        <li>Parking, </li>
-                        <li>Canteen, </li>
-                        <li>Gressing Rooms</li>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
         </div>
     </div>
+    
+    <script src="Management CSS/slider.js"></script>
     
 </body>
 </html>
