@@ -5,11 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/c32bb29bee.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/Common Features/css/main.css">
-    <link rel="stylesheet" href="/Common Features/css/header.css">
-    <link rel="stylesheet" href="/Management CSS/Mana_Home.css">
-    <link rel="stylesheet" href="manage_user.css">
-    <title>Management Profile</title>
+    <link rel="stylesheet" href="/public/css/main.css">
+    <link rel="stylesheet" href="/public/css/header.css">
+    <link rel="stylesheet" href="/public/css/layout.css">
+    <link rel="stylesheet" href="/public/css/mana_home.css">
+    <link rel="stylesheet" href="/public/css/manage_user.css">
+    <title>Management Profile</title> 
 </head>
 <body>
     <div class="page-container">
@@ -17,7 +18,7 @@
             <div class="nav-container">
                 <div class="logo">
                    <a href ="Management Home.html">
-                    <img src="/Management Images/logos/logo_and_name_small-removebg.png"></a>
+                    <img src="/public/images/logos/logo_and_name_small-removebg.png"></a>
                 </div>
                 <div class="nav-links">
                    <ul>
@@ -35,18 +36,19 @@
                 </div>   
              </div>
         </div>
-        <div class="side-nav">
-            <ul class="side-nav-container">
-                <li><a href="profile"><i class="far fa-user-circle"></i>Profile</a></li>
-                <li><a href="booking"><i class="far fa-bookmark"></i>Booking</a></li>
-                <li><a href="#"><i class="far fa-chart-bar"></i>Reports</a></li>
-                <li><a href="Manage_User/user_manage.html"><i class="fas fa-users"></i>Manage User</a></li>
-                <li><a href="#"><i class="fas fa-user-cog"></i>Setting</a></li>
-                <li><a href="#log-out"><i class="fas fa-sign-out-alt"></i>Log Out</a></li>
-            </ul>
-        </div>
-        <div class="container">      
-            <div class="form-container">
+        <div class="section">
+            <div class="side-nav">
+                <ul class="side-nav-container">
+                    <li><a href="profile"><i class="far fa-user-circle"></i>Profile</a></li>
+                    <li><a href="booking"><i class="far fa-bookmark"></i>Booking</a></li>
+                    <li><a href="#"><i class="far fa-chart-bar"></i>Reports</a></li>
+                    <li><a href="Manage_User/user_manage.html"><i class="fas fa-users"></i>Manage User</a></li>
+                    <li><a href="#"><i class="fas fa-user-cog"></i>Setting</a></li>
+                    <li><a href="#log-out"><i class="fas fa-sign-out-alt"></i>Log Out</a></li>
+                </ul>
+            </div>
+            <div class="container">      
+                <div class="form-container">
                 <div class="add_user-remove_user">
                     <form action="post" class="add_user">
                         <h2 class="title">Add User</h2>
@@ -96,7 +98,7 @@
                         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus expedita repellendus ex ipsam aliquid hic</p>
                         <button class="btn transperant" id="remove_user">Remove User</button>
                     </div>
-                    <img src="add_user.svg" class="image" alt="">
+                    <img src="/public/images/add_user.svg" class="image" alt="">
                 </div>
                 
                 <div class="panel right-panel">
@@ -105,12 +107,13 @@
                         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus expedita repellendus </p>
                         <button class="btn transperant" id="add_user">Add User</button>
                     </div>
-                    <img src="remove_user.svg" class="image" alt="">
+                    <img src="/public/images/remove_user.svg" class="image" alt="">
                 </div>
+            </div>
             </div>
         </div>
     </div>
-    
+
     <script>
         const remove_user_btn = document.querySelector("#remove_user");
         const add_user_btn = document.querySelector("#add_user");
