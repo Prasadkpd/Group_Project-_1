@@ -51,14 +51,38 @@
             </div>
             <div class="container">      
                 <div class="manage-sport-arena-staff">
-                    <button class="add-user-button">
-                        <i class="fas fa-plus"></i>Add New User
-                    </button>
-                    <div class="add-user-form">
-                        
+                    <button class="add-sta-pop-btn" onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><i class="fas fa-user-plus"></i>Add User</button>
+
+                    <div id="id01" class="staff-add-fm-con">
+                    
+                    <form class="add-user-frm-content animate" action="/action_page.php" method="post">
+                        <div class="add-user-frm-container">
+                        <label for="uname"><b>User Name</b></label>
+                        <input type="text" placeholder="Enter Username" name="uname" required>
+                        <label for="uname"><b>First Name</b></label>
+                        <input type="text" placeholder="Enter First Name" name="uname" required>
+                        <label for="uname"><b>Last Name</b></label>
+                        <input type="text" placeholder="Enter Last Name" name="uname" required>
+                        <label for="uname"><b>Mobile No</b></label>
+                        <input type="tel" placeholder="Enter Mobile No" name="uname" required>
+                        <label for="uname"><b>Select The Category</b></label>
+                        <select>
+                            <option value="0">Select Staff</option>
+                            <option value="1">Administartion Staff</option>
+                            <option value="2">Booking Handeling Staff</option>
+                          </select>
+                        <label for="psw"><b>Password</b></label>
+                        <input type="password" placeholder="Enter Password" name="psw" required>
+                            
+                        <button type="submit"><i class="fas fa-user-plus"></i>Add The User</button>
+                        </div>
+                        <div class="add-user-frm-container" style="background-color:#f1f1f1">
+                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                        </div>
+                    </form>
                     </div>
 
-                    <table class="table">
+                    <table class="staff-table">
                         <thead>
                             <th>Staff Id</th>
                             <th>User Name</th>
@@ -85,7 +109,8 @@
                                 <td data-label="Last Name :">Lakshan</td>
                                 <td data-label="Mobile No :">0914564561</td>
                                 <td data-label="Category :">Booking Handeling</td>
-
+                                <td data-label="Edit-user :"><i class="fas fa-edit"></i><i class="far fa-trash-alt"></i></td>
+                                
                             </tr>
                             <tr>                                
                                 <td data-label="Staff Id :">1</td>
@@ -94,6 +119,7 @@
                                 <td data-label="Last Name :">Lakshan</td>
                                 <td data-label="Mobile No :">0914564561</td>
                                 <td data-label="Category :">Administartion</td>
+                                <td data-label="Edit-user :"><i class="fas fa-edit"></i><i class="far fa-trash-alt"></i></td>
                             </tr>
                             <tr>
                                 <td data-label="Staff Id :">1</td>
@@ -102,6 +128,7 @@
                                 <td data-label="Last Name :">Lakshan</td>
                                 <td data-label="Mobile No :">0914564561</td>
                                 <td data-label="Category :">Administartion</td>
+                                <td data-label="Edit-user :"><i class="fas fa-edit"></i><i class="far fa-trash-alt"></i></td>
                             </tr>
                             <tr>
                                 <td data-label="Staff Id :">1</td>
@@ -110,6 +137,7 @@
                                 <td data-label="Last Name :">Lakshan</td>
                                 <td data-label="Mobile No :">0914564561</td>
                                 <td data-label="Category :">Administartion</td>
+                                <td data-label="Edit-user :"><i class="fas fa-edit"></i><i class="far fa-trash-alt"></i></td>
                             </tr>
                         </tbody>
                     </table>

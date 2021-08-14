@@ -170,11 +170,12 @@
       
   }
 
-  /* .ground-images h4{
+  .ground-images h4{
     text-align: center;
     font-size: 1.2rem;
     margin: .5em;
   }
+  /*
   .ground-images .ground-image-container img{
     width: 15em;
     margin: .5em;
@@ -208,7 +209,9 @@
 }   */
 
 .other-facility{
+  margin-top: 1em;
   margin-left:4em ;
+  font-size: 1.2rem;
 }
 .facility-header{
   display: flex;
