@@ -4,8 +4,10 @@
     "\\Codes",
     "\\Codes\\public",
     "\\Codes\\public\\css",
-    "\\Codes\\public\\js"
+    "\\Codes\\public\\js",
+    "\\Codes\\public\\Management",
+    "\\Codes\\public\\Management\\Management CSS"
   ],
-  "SelectedNode": "\\Codes\\public\\js\\admin-home-bar-chart.js",
+  "SelectedNode": "\\Codes\\public\\css\\style-admin-home.css",
   "PreviewInSolutionExplorer": false
 }

@@ -1,0 +1,155 @@
+
+/* Genral Styles */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+:root {
+ 
+    --orange: #fd461f;
+    --dark-orange: #f63f17;
+    --light-orange: #ff8166;
+    --light-orange-dull: #fe6c4c;
+
+    --yellow: #ffbf00;
+    --light-yellow: #fbc933;
+    --dark-green: #0c6423;
+    --light-green: #23f15b;
+    --light-green-dull: #35d760;
+
+    --black: #141414;
+    --dark-ash-1: #333333;
+    --dark-ash-2:#444444;
+    --ash: #acacac;
+    --light-ash: #f3f3f3;
+    --white: #f0f0f0;
+    --white-1:#ececec;
+    --white-2:#eaeaea;
+    --pure-white: #fff;
+    --light-two: #f9fafb;
+    --light-three: #f6f7fb;
+  }
+body, button, input,textarea {
+  font-family: "Poppins", sans-serif;
+}
+
+a 
+{
+    text-decoration: none;
+}
+ul 
+{
+    list-style: none;
+}
+img 
+{
+    width: 100%;
+}
+
+
+/* Header */
+
+header {
+    width: 100%;
+    background-color: var(--white);
+    overflow: hidden;
+    position: relative;
+}
+nav 
+{
+    width: 100%;
+    position: relative;
+    z-index: 50;
+}
+nav .container {
+    display: flex;
+    justify-content: space-between;
+    height: 6rem;
+    align-items: center;
+}
+.logo {
+    width: 10rem;
+    display: flex;
+    align-items: center;
+}
+.links ul {
+    display: flex;
+}
+.links a {
+    display: inline-block;
+    padding: 0.9rem 1.2rem;
+    color: var(--dark-ash-2);
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    line-height: 1;
+    transition: 0.3s;
+}
+.links a.active {
+    background-color: var(--orange);
+    color: var(--white);
+    border-radius: 2rem;
+    font-size: 1rem;
+    padding: 0.9rem 2.1rem;
+    margin-left: 1rem;  
+}
+.links a:hover {
+    color: var(--orange);
+    width:fit-content;
+}
+.links a.active:hover {
+    color: var(--dark-orange);
+    background-color:var(--light-orange);
+}
+
+.sidenav{
+    margin-top: 5rem;
+    width: 25%;
+    height: 540px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #f0f0f0;
+    padding-top: 60px;
+    border-radius: 0 40px 40px 0px;
+}        
+
+.sidenav a{
+    padding: 10px 10px 10px 10px;
+    display:block;
+    margin: 1.5rem;
+    background-color: var(--light-orange);
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: black;
+    text-align: center;
+    border-radius: 40px;
+    box-sizing: border-box;
+}
+
+.sidenav a i{
+    margin-right: 10px;
+}
+
+.sidenav
+
+.manage-container{
+    margin-top: -.8rem;
+    background-color: #23f15b;
+    height: 500px;
+    width: 70%;
+    float: right;
+    margin-right:3%;
+}
+
+.manage-container .profile .sa-profile-pic
+{
+    width: 30%;
+    margin: 1%;
+    border:3px solid black;
+    border-radius: 50%;
+}
