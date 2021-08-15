@@ -75,12 +75,12 @@
             <div class="container-1">
                 <ul>
                     <li><i class="fa fa-bar-chart"></i><a href="#statistics"> Analytics</a></li>
-                    <li><i class="fa fa-file-text-o"></i><a href="#generate_report"> Reports</a></li>
                     <li><i class="fa fa-list-alt"></i><a href="#form_submissions"> Form Submissions</a></li>
-                    <li><i class="fa fa-question"></i><a href="#help-&-support"> Help & Support</a></li>
                     <li><i class="fa fa-exclamation"></i><a href="#complaints"> Complaints</a></li>
-                    <li><i class="fa fa-star"></i><a href="#negative"> Ratings</a></li>
-                    <li><i class="fa fa-minus"></i><a href="#customer"> Customers</a></li>
+                    <li><i class="fa fa-minus"></i><a href="#customer"> Manage Customers</a></li>
+                    <li><i class="fa fa-question"></i><a href="#help-&-support"> Help & Support</a></li>
+                    <li><i class="fa fa-file-text-o"></i><a href="#generate_report"> Reports</a></li>
+                    <li><i class="fa fa-star"></i><a href="#negative"> Negative Ratings</a></li>
                 </ul>
             </div>
 
@@ -145,9 +145,9 @@
             <h3>Rs. 22500</h3>
             <p>Income</p>
         </div>
-    </div><br style="clear:both;" /><br><br><br>
-    <div id="chart_div_1" class="chart-1"></div><br><br><br>
-    <div id="chart_div_2" class="chart-2"></div>-->
+    </div><br style="clear:both;" /><br><br><br>-->
+    <div id="chart_div_1" class="chart-1"></div>
+    <div id="chart_div_2" class="chart-2"></div>
             </div>
 
 
@@ -160,19 +160,19 @@
                         <th>Contact Number</th>
                         <th></th>
                     </tr>
-                    <tr>
+                    <tr class="transformableRows">
                         <td>Michael Sports</td>
                         <td>Colombo</td>
                         <td>0758829312</td>
                         <td><img src="images/admin_homepage/check.png"></td>
                     </tr>
-                    <tr>
+                    <tr class="transformableRows">
                         <td>Michael Sports</td>
                         <td>Colombo</td>
                         <td>0758829312</td>
                         <td><img src="images/admin_homepage/check.png"></td>
                     </tr>
-                    <tr>
+                    <tr class="transformableRows">
                         <td>Michael Sports</td>
                         <td>Colombo</td>
                         <td>0758829312</td>
@@ -194,23 +194,23 @@
                         <th></th>
                         <th></th>
                     </tr>
-                    <tr>
+                    <tr class="transformableRows">
                         <td>Trevor Parker</td>
                         <td>Michael Sports</td>
                         <td>I've made bookings twice. And all of them got cancelled at the last minute</td>
                         <td class="blacklist">Blacklisted</td>
-                        <td class="removeAcc">Remove account</td>
+                        <td class="removeAcc"><i class="fa fa-trash" aria-hidden="true"></i></td>
                         <td class="blacklist2">Blacklist Sports Arena</td>
                     </tr>
-                    <tr>
+                    <tr class="transformableRows">
                         <td>Trevor Parker</td>
                         <td>Michael Sports</td>
                         <td>I've made bookings twice. And all of them got cancelled at the last minute</td>
                         <td class="blacklist"></td>
-                        <td class="removeAcc">Remove account</td>
+                        <td class="removeAcc"><i class="fa fa-trash" aria-hidden="true"></i></td>
                         <td class="blacklist2">Blacklist Sports Arena</td>
                     </tr>
-                    <tr>
+                    <tr class="transformableRows">
                         <td>Trevor Parker</td>
                         <td>Michael Sports</td>
                         <td>I've made bookings twice. And all of them got cancelled at the last minute</td>
@@ -223,63 +223,58 @@
 
 
             <div id="customer" class="removeCustomer">
-                <h1>Remove Customers</h1><br /><br />
+                <h1>Manage Customers</h1>
                 <div class="column CSearch">
                     <input type="text" class="customer-search" placeholder="Customer name" />
+                    <button class="searchCButton" name="searchCButton" type="submit">Search</button>
                 </div>
                 <div class="column CTable">
                     <table class="customerTable">
                         <tr>
-                            <th>Name</th>
-                            <th>Contact Number</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Username</th>
+                            <th>Primary Contact</th>
+                            <th>Secondary Contact</th>
                             <th>Abided Rules</th>
                             <th></th>
                         </tr>
-                        <tr>
+                        <tr class="transformableRows">
                             <td>David Perera</td>
+                            <td>David Perera</td>
+                            <td>David Perera</td>
+                            <td>0718839384</td>
                             <td>0718839384</td>
                             <td>Yes</td>
                             <td class="removeAcc">Remove account</td>
                         </tr>
-                        <tr>
+                        <tr class="transformableRows">
                             <td>David Perera</td>
+                            <td>David Perera</td>
+                            <td>David Perera</td>
+                            <td>0718839384</td>
                             <td>0718839384</td>
                             <td>No</td>
                             <td class="removeAcc">Remove account</td>
                         </tr>
-                        <tr>
+                        <tr class="transformableRows">
                             <td>David Perera</td>
+                            <td>David Perera</td>
+                            <td>David Perera</td>
+                            <td>0718839384</td>
                             <td>0718839384</td>
                             <td>Yes</td>
                             <td class="removeAcc">Remove account</td>
                         </tr>
                     </table>
                 </div>
-            </div><br style="clear:both;" /><br /><br /><br /><br />
+            </div><br style="clear:both;" />
 
 
             <div id="help-&-support" class="help-support">
                 <h1>Help & Support</h1><br /><br />
-                <table class="issueTable">
-                    <tr>
-                        <th>Date</th>
-                        <th>Question</th>
-                    </tr>
-                    <tr>
-                        <td>09 June 2021</td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, vero?</td>
-                    </tr>
-                    <tr>
-                        <td>06 June 2021</td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, vero?</td>
-                    </tr>
-                    <tr>
-                        <td>02 June 2021</td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, vero?</td>
-                    </tr>
-                </table><br /><br /><br />
                 <div class="column ISearch">
-                    <input type="text" class="issue-search" placeholder="Search by similar words" />
+                    <button class="createFAQ" name="createFAQ" type="button">Create FAQ</button>
                 </div>
                 <div class="column ITable">
                     <table class="issueTable">
@@ -289,19 +284,19 @@
                             <th>Solution</th>
                             <th>Tags</th>
                         </tr>
-                        <tr>
+                        <tr class="transformableRows">
                             <td>I00024</td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, vero?</td>
                             <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
                             <td>Booking, Payment</td>
                         </tr>
-                        <tr>
+                        <tr class="transformableRows">
                             <td>I00178</td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, vero?</td>
                             <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
                             <td>Booking</td>
                         </tr>
-                        <tr>
+                        <tr class="transformableRows">
                             <td>I00079</td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, vero?</td>
                             <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
@@ -352,7 +347,7 @@
                             <th>Deadline</th>
                             <th></th>
                         </tr>
-                        <tr>
+                        <tr class="transformableRows">
                             <td>Michael Sports</td>
                             <td class="stars">
                                 <span class="fa fa-star rated"></span>
@@ -366,7 +361,7 @@
                             <td>25 June 2021</td>
                             <td class="blacklist2">Blacklist Sports Arena</td>
                         </tr>
-                        <tr>
+                        <tr class="transformableRows">
                             <td>Michael Sports</td>
                             <td class="stars">
                                 <span class="fa fa-star rated"></span>
@@ -380,7 +375,7 @@
                             <td>25 June 2021</td>
                             <td class="blacklist2">Blacklist Sports Arena</td>
                         </tr>
-                        <tr>
+                        <tr class="transformableRows">
                             <td>Michael Sports</td>
                             <td class="stars">
                                 <span class="fa fa-star rated"></span>
