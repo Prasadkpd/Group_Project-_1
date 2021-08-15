@@ -9,7 +9,7 @@ class Route {
         //print_r(self::$validRoutes)DEBUGGING;
         //execute code in function parameter variable if
         //route is correct
-        if($_GET['url']==$route){
+        if($_GET['URL']==$route){
             $function->__invoke();
         }
         

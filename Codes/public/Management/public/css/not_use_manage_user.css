@@ -1,0 +1,315 @@
+
+.form-container{
+    position: absolute;
+    width: 100%;
+    height: 35em;
+    top: 0;
+    left: 0;
+    border: 2px sloid black;
+}
+
+.add_user-remove_user{
+    position: absolute;
+    top: 50%;
+    left: 75%;
+    transform: translate(-50%,-50%);
+    width: 50%;
+    display: grid;
+    grid-template-columns: 1fr;
+    z-index: 5;
+    transition: 1s 0.7s ease-in-out;
+}
+
+form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 5rem;
+    overflow: hidden;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    transition: all 0.2s 0.7s;
+}
+form.add_user{
+    z-index: 2;
+}
+
+form.remove_user{
+    z-index: 1;
+    opacity: 0;
+}
+
+
+.title{
+    font-size: 2.2rem;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.input-field{
+    max-width: 380px;
+    width: 100%;
+    height: 55px;
+    background-color:#f0f0f0;
+    margin: 10px 0;
+    border-radius: 55px;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    padding: 0 .4rem;
+    transition: .5s;
+}
+select{
+    height: 55px;
+}
+
+.input-field i{
+    text-align: center;
+    line-height: 55px;
+    color: #acacac;
+    font-size: 1.1rem;
+}
+
+.input-field input,select{
+    background: none;
+    outline: none;
+    border: none;
+    line-height: 1;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.input-field input::placeholder{
+    color: #aaa;
+    font-weight: 500;
+}
+.btn{
+   width: 150px;
+   height: 49px;
+   border: none;
+   outline: none;
+   border-radius: 49px; 
+   cursor: pointer;
+   background-color: #fa8263;
+   color: #fff;
+   text-transform: uppercase;
+   font-weight: 600;
+   margin: 10px 0;
+   transition: 0.5s;
+}
+
+.panels-container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+.panel{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-around;
+    text-align: center;
+    z-index: 6;
+}
+
+.left-panel{
+    pointer-events: all;
+    padding: 3rem 17% 2rem 12%;
+}
+
+.right-panel{
+    pointer-events: none;
+    padding: 3rem 12% 2rem 17%;
+}
+
+.panel .content{
+    color: #444;
+    transition: transform .9s ease-in-out;
+    transition-delay: 0.6s;
+}
+
+.panel h3{
+    font-weight: 600;
+    line-height: 1;
+    font-size: 1.5rem;
+}
+.panel p{
+    font-size: .95rem;
+    padding: .7rem 0;
+}
+.btn.transperant{
+    margin: 0;
+    background:#fa8263;
+    width: 130px;
+    height: 41px;
+    font-weight: 600;
+    font-size:.8rem ;
+}
+
+.image{
+    width: 100%;
+    transition: 1.1s ease-in-out;
+    transition-delay: 0.4s;
+}
+.right-panel .content, .right-panel .image{
+    transform: translateX(800px);
+}
+
+
+.container.remove_user_mode:before{
+    transform: translate(100%,-50%);
+    right: 52%;
+}
+
+.container.remove_user_mode .left-panel .image,
+.container.remove_user_mode .left-panel .content{
+    transform: translate(-900px);
+}
+
+.container.remove_user_mode .right-panel .image,
+.container.remove_user_mode .right-panel .content{
+    transform: translateX(0px);
+}
+
+.container.remove_user_mode .left-panel{
+    pointer-events: none;
+}
+
+.container.remove_user_mode .right-panel{
+    pointer-events: all;
+}
+
+.container.remove_user_mode .add_user-remove_user{
+    left: 25%;
+}
+
+.container.remove_user_mode form.add_user{
+    z-index: 1;
+    opacity: 0;
+}
+
+.container.remove_user_mode form.remove_user{
+    z-index: 2;
+    opacity: 1;
+}
+.back_btn{
+    position: absolute;
+    top: 2%;
+    right: 3%;
+    z-index: 9;
+}
+
+@media (max-width:870px){
+    .container{
+        min-height: 800px;
+        height: 100vh;
+    }
+    .container:before{
+        width: 1500px;
+        height: 1500px;
+        left: 30%;
+        bottom: 60%;
+        transform: translateX(-50%);
+        right: initial;
+        top: initial;
+        transition: 2s ease-in-out;
+    }
+
+    .add_user-remove_user{
+        width: 100%;
+        left: 50%;
+        top: 95%;
+        transform: translate(-50%,-100%);
+        transition: 1s .8s ease-in-out;
+    }
+    .panels-container{
+       
+       grid-template-columns: 1fr;
+       grid-template-rows: 1fr 2fr 1fr;
+    }
+
+    .panel{
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        padding: 2.5rem 8%;
+    }
+    .panel .content{
+        padding-right: 15%;
+        transition: 0.9s 0.8s ease-in-out;
+    }
+    .panel h3{
+        font-size: 1.2rem;
+    }
+    .btn.transperant{
+        width: 110px;
+        height: 35px;
+        font-size: 0.7rem;
+    }
+
+    .panel p{
+        font-size: 0.7rem;
+        padding: 0.5rem 0;
+    }
+    .right-panel .content, .right-panel .image{
+        transform: translateY(300px);
+    }
+    .left-panel{
+        grid-row: 1/2;
+    }
+    .right-panel{
+        grid-row: 3/4 ;
+    }
+
+    .image{
+        width: 200px;
+        transition: 0.9s 0.6s ease-in-out;
+    }
+    .container.remove_user_mode:before{
+        transform: translate(-50%,100%);
+        bottom: 32%;
+        right: initial;
+    }
+
+    .container.remove_user_mode .left-panel .image,
+    .container.remove_user_mode .left-panel .content{
+        transform: translateY(-300px);
+    }
+    .container.remove_user_mode .add_user-remove_user{
+        top: 5%;
+        transform: translate(-50%,0);
+        left: 50%;
+    }
+    .back_btn{
+        width: 110px;
+        height: 35px;
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width:570px) {
+    form{
+        padding: 0 1.5rem;
+    }
+    .image{
+        display: none;
+    }
+    
+    .panel .content{
+        padding: 0.5rem 1rem;
+    }
+
+    .container:before{
+        bottom: 72%;
+        left: 50%;
+    }
+    .container.remove_user_mode:before{
+        bottom: 28%;
+        left: 50%;
+    }
+}

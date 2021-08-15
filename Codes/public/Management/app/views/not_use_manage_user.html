@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/c32bb29bee.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/public/css/main.css">
+    <link rel="stylesheet" href="/public/css/header.css">
+    <link rel="stylesheet" href="/public/css/layout.css">
+    <link rel="stylesheet" href="/public/css/mana_home.css">
+    <link rel="stylesheet" href="/public/css/manage_user.css">
+    <title>Management Profile</title> 
+</head>
+<body>
+    <div class="page-container">
+        <div class="nav">
+            <div class="nav-container">
+                <div class="logo">
+                   <a href ="Management Home.html">
+                    <img src="/public/images/logos/logo_and_name_small-removebg.png"></a>
+                </div>
+                <div class="nav-links">
+                   <ul>
+                       <li><a href="#">HOME</a></li>
+                       <li><a href="#">SPORTS ARENAS</a></li>
+                       <li><a href="#">REVIEWS</a></li>
+                       <li><a href="#">FAQ</a></li>
+                       <li><a href="#">ABOUT</a></li>
+                       <li><a href="#">CONTACT</a></li>
+                       <li><a href="#" class="active">PROFILE</a></li>
+                     </ul>
+                </div>
+                <div class="hamburger-menu">
+                <div class="bar"></div>
+                </div>   
+             </div>
+        </div>
+        <div class="section">
+            <div class="side-nav">
+                <ul class="side-nav-container">
+                    <li><a href="profile"><i class="far fa-user-circle"></i>Profile</a></li>
+                    <li><a href="booking"><i class="far fa-bookmark"></i>Booking</a></li>
+                    <li><a href="#"><i class="far fa-chart-bar"></i>Reports</a></li>
+                    <li><a href="Manage_User/user_manage.html"><i class="fas fa-users"></i>Manage User</a></li>
+                    <li><a href="#"><i class="fas fa-user-cog"></i>Setting</a></li>
+                    <li><a href="#log-out"><i class="fas fa-sign-out-alt"></i>Log Out</a></li>
+                </ul>
+            </div>
+            <div class="container">      
+                <div class="form-container">
+                <div class="add_user-remove_user">
+                    <form action="post" class="add_user">
+                        <h2 class="title">Add User</h2>
+                        <div class="input-field">
+                            <i class="fas fa-user"></i>
+                            <input type="text" name="username" placeholder="Username">
+                        </div>
+                        <div class="input-field">
+                            <i class="fas fa-phone"></i>
+                            <input type="tel" name="tel" placeholder="Mobile Number">
+                        </div>
+                                            
+                        <div class="input-field select_div">
+                            <i class="fas fa-user-friends"></i>
+                            <select name="user-type">
+                                <option value="">Select User Type</option>
+                                <option class="option" value="">Administration Staff</option>
+                                <option class="option" value="">Booking Handeling Staff</option>
+                            </select>
+                            <span class="custom-arrow"></span>
+                        </div>
+                        
+                        <div class="input-field">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" name="password" placeholder="Password">
+                        </div>
+                        <input type="submit" value="Submit" class="btn">
+                        <p>User Added Succesfully</p>
+                    </form>
+                    
+                    <form action="post" class="remove_user">
+                        <h2 class="title">Remove User</h2>
+                        <div class="input-field">
+                            <i class="fas fa-user"></i>
+                            <input type="text" name="username" placeholder="Username">
+                        </div>
+                        <input type="submit" value="Submit" class="btn">
+                        <p>User Removed Successfully</p>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="panels-container">
+                <div class="panel left-panel">
+                    <div class="content">
+                        <h3>New Here</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus expedita repellendus ex ipsam aliquid hic</p>
+                        <button class="btn transperant" id="remove_user">Remove User</button>
+                    </div>
+                    <img src="/public/images/add_user.svg" class="image" alt="">
+                </div>
+                
+                <div class="panel right-panel">
+                    <div class="content">
+                        <h3>New Here</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus expedita repellendus </p>
+                        <button class="btn transperant" id="add_user">Add User</button>
+                    </div>
+                    <img src="/public/images/remove_user.svg" class="image" alt="">
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const remove_user_btn = document.querySelector("#remove_user");
+        const add_user_btn = document.querySelector("#add_user");
+        const container = document.querySelector(".container");
+
+        remove_user_btn.addEventListener("click", () => {
+        container.classList.add("remove_user_mode");
+        });
+
+        add_user_btn.addEventListener("click", () => {
+        container.classList.remove("remove_user_mode");
+        });
+    </script>
+
+</body>
+</html>
