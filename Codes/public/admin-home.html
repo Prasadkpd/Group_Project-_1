@@ -1,437 +1,497 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Sportizza - Admin</title>
-  <link rel="stylesheet" href="css/style-admin-home.css">
-  <link rel ="manifest" href ="/manifest.json">
-  <link rel="mainjs" href="js/admin-home.js">
-  <link rel="header-file" href="header.html">
-  <link rel="footer-file" href="footer.html">
-  <link rel ="preconnect" href="https://fonts.gstatic.com">  
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;500;700&display=swap">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <title>Sportizza - Admin</title>
+    <link rel="stylesheet" href="css/style-admin-home.css">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mainjs" href="js/admin-home.js">
+    <link rel="header-file" href="header.html">
+    <link rel="footer-file" href="footer.html">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />-->
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="js/admin-home-area-chart.js"></script>
-	<script type="text/javascript" src="js/admin-home-bar-chart.js"></script>
+    <script type="text/javascript" src="js/admin-home-bar-chart.js"></script>
 </head>
   
 <body class="fullscreen">
-  <!-- <section class="header">
-    <script language="html" type ="" src="header.html"></script>
-  </section> -->
-<!--NAVIGATION BAR-->
-<section class ="header">
-  <nav id ="navigation">
-    <a href ="index.html"><img src="images/logos/logo_and_name_large.png"></a>
-    <div id= "nav-links">
-      <div class ="nav-links">
-        <ul>
-          <li><a href="">HOME</a></li>
-          <li><a href="">SPORTS ARENA</a></li>
-          <li><a href="">FAQ</a></li>
-          <li><a href="">ABOUT</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="btn-right">
-      <a href="" class= "profile_btn"> ADMIN </a>
-    </div>
- </nav>
-</section>
+    <!-- <section class="header">
+      <script language="html" type ="" src="header.html"></script>
+    </section> -->
+    <!--NAVIGATION BAR-->
+    <!--<section class ="header">
+      <nav id ="navigation">
+        <a href ="index.html"><img src="images/logos/logo_and_name_large.png"></a>
+        <div id= "nav-links">
+          <div class ="nav-links">
+            <ul>
+              <li><a href="">HOME</a></li>
+              <li><a href="">SPORTS ARENA</a></li>
+              <li><a href="">FAQ</a></li>
+              <li><a href="">ABOUT</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="btn-right">
+          <a href="" class= "profile_btn"> ADMIN </a>
+        </div>
+     </nav>
+    </section>-->
 
-<!-- SPLITTING SCREEN INTO TWO -->
-<section class="dashboard">
-
-    <div class="column left">
-        <h4><img class="iconLeft" src="images/admin_homepage/google-forms.png"><a href="#form_submissions"> Form Submissions</a></h4><br><br>
-        <h4><img class="iconLeft" src="images/admin_homepage/location.png"><a href="#complaints"> Complaints</a></h4><br><br>
-        <h4><img class="iconLeft" src="images/admin_homepage/remove-user.png"><a href="#customer"> Remove customers</a></h4><br><br>
-        <h4><img class="iconLeft" src="images/admin_homepage/information.png"><a href="#help-&-support"> Help & Support</a></h4><br><br>
-        <h4><img class="iconLeft" src="images/admin_homepage/seo-report.png"><a href="#generate_report"> Generate Reports</a></h4><br><br>
-        <h4><img class="iconLeft" src="images/admin_homepage/bar-chart.png"><a href="#statistics"> Statistics</a></h4><br><br>
-        <h4><img class="iconLeft" src="images/admin_homepage/star.png"><a href="#negative"> Remove Negative<br />&emsp;&ensp; Ratings</a></h4><br><br><br />
-        <h4><img class="iconLeft" src="images/admin_homepage/settings.png"><a href="#"> Settings</a></h4><br><br>
-        <!--<h4><img class="iconLeft" src="images/admin_homepage/calendar.png"><a href="#"> Calendar</a></h4><br><br>-->
-        <h4><img class="iconLeft" src="images/admin_homepage/logout.png"><a href="#"> Log Out</a></h4><br><br>
-    </div>
-
-    <div class="column right">
-
-        <div id="statistics">
-            <section>
-                <pre class="tab1">	<img src="images/admin_homepage/outline_show_chart_black_24dp.png">	<b>Today's Statistics</b></pre><br>
-                <div class="stat one">
-                    <h3>05</h3>
-                    <p>Bookings Made</p>
-                </div>
-                <div class="stat two">
-                    <h3>Rs. 15000</h3>
-                    <p>Total Sales</p>
-                </div>
-                <div class="stat three">
-                    <h3>Rs. 750</h3>
-                    <p>Income</p>
-                </div>
-            </section><br style="clear:both;" /><br><br>
-            <section>
-                <pre class="tab1">	<img src="images/admin_homepage/outline_show_chart_black_24dp.png">	<b>Last Month's Statistics</b></pre><br>
-                <div class="stat one">
-                    <h3>150</h3>
-                    <p>Bookings Made</p>
-                </div>
-                <div class="stat two">
-                    <h3>Rs. 450000</h3>
-                    <p>Total Sales</p>
-                </div>
-                <div class="stat three">
-                    <h3>Rs. 22500</h3>
-                    <p>Income</p>
-                </div>
-            </section><br style="clear:both;" /><br><br><br>
-            <div id="chart_div_1" class="chart-1"></div><br><br><br>
-            <div id="chart_div_2" class="chart-2"></div>
-        </div><br /><br /><hr /><br /><br />
-
-
-        <div id="form_submissions" class="request">
-            <h1>Form Submissions</h1><br /><br />
-            <table class="reqTable">
-                <tr>
-                    <th>Name</th>
-                    <th>Location</th>
-                    <th>Contact Number</th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <td>Michael Sports</td>
-                    <td>Colombo</td>
-                    <td>0758829312</td>
-                    <td><img src="images/admin_homepage/check.png"></td>
-                </tr>
-                <tr>
-                    <td>Michael Sports</td>
-                    <td>Colombo</td>
-                    <td>0758829312</td>
-                    <td><img src="images/admin_homepage/check.png"></td>
-                </tr>
-                <tr>
-                    <td>Michael Sports</td>
-                    <td>Colombo</td>
-                    <td>0758829312</td>
-                    <td><img src="images/admin_homepage/check.png"></td>
-                </tr>
-
-            </table>
-        </div><br /><br /><hr /><br /><br />
-
-
-        <div id="complaints" class="deleteSA">
-            <h1>Complaints</h1><br /><br />
-            <table class="compTable">
-                <tr>
-                    <th>Customer Name</th>
-                    <th>Sports Arena Name</th>
-                    <th>Complaint</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <td>Trevor Parker</td>
-                    <td>Michael Sports</td>
-                    <td>I've made bookings twice. And all of them got cancelled at the last minute</td>
-                    <td class="blacklist">Blacklisted</td>
-                    <td class="removeAcc">Remove account</td>
-                    <td class="blacklist2">Blacklist Sports Arena</td>
-                </tr>
-                <tr>
-                    <td>Trevor Parker</td>
-                    <td>Michael Sports</td>
-                    <td>I've made bookings twice. And all of them got cancelled at the last minute</td>
-                    <td class="blacklist"></td>
-                    <td class="removeAcc">Remove account</td>
-                    <td class="blacklist2">Blacklist Sports Arena</td>
-                </tr>
-                <tr>
-                    <td>Trevor Parker</td>
-                    <td>Michael Sports</td>
-                    <td>I've made bookings twice. And all of them got cancelled at the last minute</td>
-                    <td class="blacklist">Blacklisted</td>
-                    <td class="removeAcc"><img class="removeAcc" src="images/admin_homepage/trash-bin.png"</td>
-                    <td class="blacklist2">Blacklist Sports Arena</td>
-                </tr>
-            </table>
-        </div><br /><br /><hr /><br /><br />
-
-
-        <div id="customer" class="removeCustomer">
-            <h1>Remove Customers</h1><br /><br />
-            <div class="column CSearch">
-                <input type="text" class="customer-search" placeholder="Customer name" />
-            </div>
-            <div class="column CTable">
-                <table class="customerTable">
-                    <tr>
-                        <th>Name</th>
-                        <th>Contact Number</th>
-                        <th>Abided Rules</th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <td>David Perera</td>
-                        <td>0718839384</td>
-                        <td>Yes</td>
-                        <td class="removeAcc">Remove account</td>
-                    </tr>
-                    <tr>
-                        <td>David Perera</td>
-                        <td>0718839384</td>
-                        <td>No</td>
-                        <td class="removeAcc">Remove account</td>
-                    </tr>
-                    <tr>
-                        <td>David Perera</td>
-                        <td>0718839384</td>
-                        <td>Yes</td>
-                        <td class="removeAcc">Remove account</td>
-                    </tr>
-                </table>
-            </div>
-        </div><br style="clear:both;" /><br /><br /><hr /><br /><br />
-
-
-        <div id="help-&-support" class="help-support">
-            <h1>Help & Support</h1><br /><br />
-            <table class="issueTable">
-                <tr>
-                    <th>Date</th>
-                    <th>Question</th>
-                </tr>
-                <tr>
-                    <td>09 June 2021</td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, vero?</td>
-                </tr>
-                <tr>
-                    <td>06 June 2021</td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, vero?</td>
-                </tr>
-                <tr>
-                    <td>02 June 2021</td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, vero?</td>
-                </tr>
-            </table><br /><br /><br />
-            <div class="column ISearch">
-                <input type="text" class="issue-search" placeholder="Search by similar words" />
-            </div>
-            <div class="column ITable">
-                <table class="issueTable">
-                    <tr>
-                        <th>Issue No</th>
-                        <th>Question</th>
-                        <th>Solution</th>
-                        <th>Tags</th>
-                    </tr>
-                    <tr>
-                        <td>I00024</td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, vero?</td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
-                        <td>Booking, Payment</td>
-                    </tr>
-                    <tr>
-                        <td>I00178</td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, vero?</td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
-                        <td>Booking</td>
-                    </tr>
-                    <tr>
-                        <td>I00079</td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, vero?</td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
-                        <td>Payment, Cancellation</td>
-                    </tr>
-                </table>
-            </div>
-        </div><br style="clear:both;" /><br /><br /><hr /><br /><br />
-
-        <div id="generate_report" class="report">
-            <h1>Generate Reports</h1><br /><br />
-            <div class="column filters">
-                <label>Choose the duration: </label>
-                <select class="filter" name="duration">
-                    <option>Daily</option>
-                    <option>Weekly</option>
-                    <option>Monthly</option>
-                    <option>Yearly</option>
-                </select><br />
-                <label>Choose the time period: </label>
-                <select class="filter" name="date">
-                </select><br />
-                <label>Choose the type: </label>
-                <select class="filter" name="type">
-                    <option>Customers</option>
-                    <option>Sports Arenas</option>
-                    <option>Bookings</option>
-                    <option>Cancellations</option>
-                    <option>Pending Payments</option>
-                </select><br />
-            </div>
-            <div class="column genButton">
-                <button class="generateButton" name="generateButton" type="submit">Generate Report</button>
+    <nav>
+        <div class="container">
+            <div class="logo">
+                <a href="visitor.html"><img src="images/logos/logo-white-final.svg"></a>
             </div>
 
-        </div><br style="clear:both;" /><br /><br /><hr /><br /><br />
+            <div class="links">
+                <ul>
+                    <li><a href="#">HOME</a></li>
+                    <li><a href="#sp-arena">SPORTS ARENAS</a></li>
+                    <li><a href="#reviews">REVIEWS</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#about">ABOUT</a></li>
+                    <li><a href="#contact">CONTACT</a></li>
+                    <!-- Direct to login page if not logged in -->
+                    <li><a href="#" class="active">PROFILE</a></li>
+                </ul>
+            </div>
+            <div class="hamburger-menu">
+                <div class="bar"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SPLITTING SCREEN INTO TWO -->
+    <section class="dashboard">
+
+        <div class="column left">
+            <div class="container-1">
+                <ul>
+                    <li><i class="fa fa-bar-chart"></i><a href="#statistics"> Analytics</a></li>
+                    <li><i class="fa fa-file-text-o"></i><a href="#generate_report"> Reports</a></li>
+                    <li><i class="fa fa-list-alt"></i><a href="#form_submissions"> Form Submissions</a></li>
+                    <li><i class="fa fa-question"></i><a href="#help-&-support"> Help & Support</a></li>
+                    <li><i class="fa fa-exclamation"></i><a href="#complaints"> Complaints</a></li>
+                    <li><i class="fa fa-star"></i><a href="#negative"> Ratings</a></li>
+                    <li><i class="fa fa-minus"></i><a href="#customer"> Customers</a></li>
+                </ul>
+            </div>
 
 
-        <div id="negative" class="negativeRate">
-            <h1>Remove Negative Ratings</h1><br /><br />
-            <div>
-                <table class="ratingTable">
-                    <tr>
-                        <th>Sports Arena</th>
-                        <th class="stars">Rating</th>
-                        <th>Issue</th>
-                        <th>Date posted</th>
-                        <th>Deadline</th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <td>Michael Sports</td>
-                        <td class="stars">
-                            <span class="fa fa-star rated"></span>
-                            <span class="fa fa-star rated"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                        </td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
-                        <td>11 June 2021</td>
-                        <td>25 June 2021</td>
-                        <td class="blacklist2">Blacklist Sports Arena</td>
-                    </tr>
-                    <tr>
-                        <td>Michael Sports</td>
-                        <td class="stars">
-                            <span class="fa fa-star rated"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                        </td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
-                        <td>11 June 2021</td>
-                        <td>25 June 2021</td>
-                        <td class="blacklist2">Blacklist Sports Arena</td>
-                    </tr>
-                    <tr>
-                        <td>Michael Sports</td>
-                        <td class="stars">
-                            <span class="fa fa-star rated"></span>
-                            <span class="fa fa-star rated"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                        </td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
-                        <td>11 June 2021</td>
-                        <td>25 June 2021</td>
-                        <td class="blacklist2">Blacklist Sports Arena</td>
-                    </tr>
-                </table>
+
+            <div class="container-2">
+                <ul>
+                    <li><h4><i class="fa fa-cog"></i><a href="#"> Settings</a></h4></li>
+                    <li><h4><i class="fa fa-sign-out"></i><a href="#"> Log Out</a></h4></li>
+                </ul>
             </div>
         </div>
 
+        <div class="column right">
+
+            <div id="statistics" class="statistics">
+               <div class="todays-statistics">
+                   <h2>Today's Statistics</h2>
+                   <div class="stat-cards">
+                       <div class="stat-card1">
+                           <h3>10</h3>
+                           <p>No.of Bookings</p>
+                       </div>
+                       <div class="stat-card2">
+                           <h3>10</h3>
+                           <p>No.of Bookings</p>
+                       </div>
+                       <div class="stat-card3">
+                           <h3>10</h3>
+                           <p>No.of Bookings</p>
+                       </div>
+                   </div>
+
+               </div>
+                <!--<pre class="tab1">Today's Statistics</pre>
+    <div class="statistic-cards">
+
+        <div class="stat one">
+            <h3>05</h3>
+            <p>New Customers</p>
+        </div>
+        <div class="stat two">
+            <h3>04</h3>
+            <p>Bookings Made</p>
+        </div>
+        <div class="stat three">
+            <h3>07</h3>
+            <p>Transaction Volume</p>
+        </div>
+    </div><br style="clear:both;" /><br><br>
+    <div class="statistic-cards">
+        <br>
+        <div class="stat one">
+            <h3>150</h3>
+            <p>Bookings Made</p>
+        </div>
+        <div class="stat two">
+            <h3>Rs. 450000</h3>
+            <p>Total Sales</p>
+        </div>
+        <div class="stat three">
+            <h3>Rs. 22500</h3>
+            <p>Income</p>
+        </div>
+    </div><br style="clear:both;" /><br><br><br>
+    <div id="chart_div_1" class="chart-1"></div><br><br><br>
+    <div id="chart_div_2" class="chart-2"></div>-->
+            </div>
+
+
+            <div id="form_submissions" class="request">
+                <h1>Form Submissions</h1><br /><br />
+                <table class="reqTable">
+                    <tr>
+                        <th>Name</th>
+                        <th>Location</th>
+                        <th>Contact Number</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td>Michael Sports</td>
+                        <td>Colombo</td>
+                        <td>0758829312</td>
+                        <td><img src="images/admin_homepage/check.png"></td>
+                    </tr>
+                    <tr>
+                        <td>Michael Sports</td>
+                        <td>Colombo</td>
+                        <td>0758829312</td>
+                        <td><img src="images/admin_homepage/check.png"></td>
+                    </tr>
+                    <tr>
+                        <td>Michael Sports</td>
+                        <td>Colombo</td>
+                        <td>0758829312</td>
+                        <td><img src="images/admin_homepage/check.png"></td>
+                    </tr>
+
+                </table>
+            </div><br /><br /><br /><br />
+
+
+            <div id="complaints" class="deleteSA">
+                <h1>Complaints</h1><br /><br />
+                <table class="compTable">
+                    <tr>
+                        <th>Customer Name</th>
+                        <th>Sports Arena Name</th>
+                        <th>Complaint</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td>Trevor Parker</td>
+                        <td>Michael Sports</td>
+                        <td>I've made bookings twice. And all of them got cancelled at the last minute</td>
+                        <td class="blacklist">Blacklisted</td>
+                        <td class="removeAcc">Remove account</td>
+                        <td class="blacklist2">Blacklist Sports Arena</td>
+                    </tr>
+                    <tr>
+                        <td>Trevor Parker</td>
+                        <td>Michael Sports</td>
+                        <td>I've made bookings twice. And all of them got cancelled at the last minute</td>
+                        <td class="blacklist"></td>
+                        <td class="removeAcc">Remove account</td>
+                        <td class="blacklist2">Blacklist Sports Arena</td>
+                    </tr>
+                    <tr>
+                        <td>Trevor Parker</td>
+                        <td>Michael Sports</td>
+                        <td>I've made bookings twice. And all of them got cancelled at the last minute</td>
+                        <td class="blacklist">Blacklisted</td>
+                        <td class="removeAcc"><i class="fa fa-trash" aria-hidden="true"></i></td>
+                        <td class="blacklist2">Blacklist Sports Arena</td>
+                    </tr>
+                </table>
+            </div><br /><br /><br /><br />
+
+
+            <div id="customer" class="removeCustomer">
+                <h1>Remove Customers</h1><br /><br />
+                <div class="column CSearch">
+                    <input type="text" class="customer-search" placeholder="Customer name" />
+                </div>
+                <div class="column CTable">
+                    <table class="customerTable">
+                        <tr>
+                            <th>Name</th>
+                            <th>Contact Number</th>
+                            <th>Abided Rules</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td>David Perera</td>
+                            <td>0718839384</td>
+                            <td>Yes</td>
+                            <td class="removeAcc">Remove account</td>
+                        </tr>
+                        <tr>
+                            <td>David Perera</td>
+                            <td>0718839384</td>
+                            <td>No</td>
+                            <td class="removeAcc">Remove account</td>
+                        </tr>
+                        <tr>
+                            <td>David Perera</td>
+                            <td>0718839384</td>
+                            <td>Yes</td>
+                            <td class="removeAcc">Remove account</td>
+                        </tr>
+                    </table>
+                </div>
+            </div><br style="clear:both;" /><br /><br /><br /><br />
+
+
+            <div id="help-&-support" class="help-support">
+                <h1>Help & Support</h1><br /><br />
+                <table class="issueTable">
+                    <tr>
+                        <th>Date</th>
+                        <th>Question</th>
+                    </tr>
+                    <tr>
+                        <td>09 June 2021</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, vero?</td>
+                    </tr>
+                    <tr>
+                        <td>06 June 2021</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, vero?</td>
+                    </tr>
+                    <tr>
+                        <td>02 June 2021</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, vero?</td>
+                    </tr>
+                </table><br /><br /><br />
+                <div class="column ISearch">
+                    <input type="text" class="issue-search" placeholder="Search by similar words" />
+                </div>
+                <div class="column ITable">
+                    <table class="issueTable">
+                        <tr>
+                            <th>Issue No</th>
+                            <th>Question</th>
+                            <th>Solution</th>
+                            <th>Tags</th>
+                        </tr>
+                        <tr>
+                            <td>I00024</td>
+                            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, vero?</td>
+                            <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+                            <td>Booking, Payment</td>
+                        </tr>
+                        <tr>
+                            <td>I00178</td>
+                            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, vero?</td>
+                            <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+                            <td>Booking</td>
+                        </tr>
+                        <tr>
+                            <td>I00079</td>
+                            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, vero?</td>
+                            <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+                            <td>Payment, Cancellation</td>
+                        </tr>
+                    </table>
+                </div>
+            </div><br style="clear:both;" /><br /><br /><br /><br />
+
+            <div id="generate_report" class="report">
+                <h1>Generate Reports</h1><br /><br />
+                <div class="column filters">
+                    <label>Choose the duration: </label>
+                    <select class="filter" name="duration">
+                        <option>Daily</option>
+                        <option>Weekly</option>
+                        <option>Monthly</option>
+                        <option>Yearly</option>
+                    </select><br />
+                    <label>Choose the time period: </label>
+                    <select class="filter" name="date">
+                    </select><br />
+                    <label>Choose the type: </label>
+                    <select class="filter" name="type">
+                        <option>Customers</option>
+                        <option>Sports Arenas</option>
+                        <option>Bookings</option>
+                        <option>Cancellations</option>
+                        <option>Pending Payments</option>
+                    </select><br />
+                </div>
+                <div class="column genButton">
+                    <button class="generateButton" name="generateButton" type="submit">Generate Report</button>
+                </div>
+
+            </div><br style="clear:both;" /><br /><br /><br /><br />
+
+
+            <div id="negative" class="negativeRate">
+                <h1>Remove Negative Ratings</h1><br /><br />
+                <div>
+                    <table class="ratingTable">
+                        <tr>
+                            <th>Sports Arena</th>
+                            <th class="stars">Rating</th>
+                            <th>Issue</th>
+                            <th>Date posted</th>
+                            <th>Deadline</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td>Michael Sports</td>
+                            <td class="stars">
+                                <span class="fa fa-star rated"></span>
+                                <span class="fa fa-star rated"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                            </td>
+                            <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+                            <td>11 June 2021</td>
+                            <td>25 June 2021</td>
+                            <td class="blacklist2">Blacklist Sports Arena</td>
+                        </tr>
+                        <tr>
+                            <td>Michael Sports</td>
+                            <td class="stars">
+                                <span class="fa fa-star rated"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                            </td>
+                            <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+                            <td>11 June 2021</td>
+                            <td>25 June 2021</td>
+                            <td class="blacklist2">Blacklist Sports Arena</td>
+                        </tr>
+                        <tr>
+                            <td>Michael Sports</td>
+                            <td class="stars">
+                                <span class="fa fa-star rated"></span>
+                                <span class="fa fa-star rated"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                            </td>
+                            <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+                            <td>11 June 2021</td>
+                            <td>25 June 2021</td>
+                            <td class="blacklist2">Blacklist Sports Arena</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+    </section><br style="clear:both;" />
+
+
+
+
+
+
+    <!-- <section class="footer">
+      <script language="html" type ="" src="footer.html"></script>
+    </section> -->
+    <!--<section class="footer">
+    <div class="row">
+        <div class="footer-col">
+            <div class="about_us">
+                <h2>About Us</h2><br>
+                <p> We always believe that all humans deserve a healthy lifesytle. Thus, we made a hassle-free booking system for the customers to book timeslots in sports arenas around the island while simulataneously providing the sports arenas the ability to market their sports facilities & reach their customer.  </p>
+            </div>
+        </div>
+        <div class="footer-col">
+            <div class="about_us">
+                <h2>Contact Details</h2><br>
+                <p>
+                    Contact:+94 765282976 <br><br>
+                    Address: No. 35, Reid Avenue, Colombo 07 <br><br>
+                    Email: contact.sportizza@gmail.com <br> <br>
+                </p>
+            </div>
+            <div class="icons">
+                <i class="fa fa-facebook"></i>
+                <i class="fa fa-instagram"></i>
+                <i class="fa fa-linkedin"></i>
+            </div>
+        </div>
+        <div class="footer-col">
+            <div class="about_us">
+                <div id="nav-links">
+                    <div class="nav-links">
+                        <ul>
+                            <li><a href="">HOME</a></li>
+                            <br>
+                            <li><a href="">SPORTS ARENA</a></li>
+                            <br>
+                            <li><a href="">FAQ</a></li>
+                            <br>
+                            <li><a href="">ABOUT</a></li>
+                            <br>
+                        </ul><br>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
-    
-    
-
-</section><br style="clear:both;" />
-
-
-
-
-
-
-<!-- <section class="footer">
-  <script language="html" type ="" src="footer.html"></script>
-</section> -->
-
-<section class="footer">
-  <div class="row">
-    <div class="footer-col">
-      <div class="about_us">
-  <h2>About Us</h2><br>
-  <p> We always believe that all humans deserve a healthy lifesytle. Thus, we made a hassle-free booking system for the customers to book timeslots in sports arenas around the island while simulataneously providing the sports arenas the ability to market their sports facilities & reach their customer.  </p>
+    <div>
+        <hr class="solid">
+        <p> 2021 Sportizza. All rights Reserved. </p>
     </div>
-    </div>
-    <div class="footer-col">
-      <div class="about_us">
-  <h2>Contact Details</h2><br>
-  <p> Contact:+94 765282976 <br><br>
-  Address: No. 35, Reid Avenue, Colombo 07 <br><br>
-Email: contact.sportizza@gmail.com <br> <br></p>
-    </div>
-    <div class="icons">
-      <i class ="fa fa-facebook"></i>
-      <i class ="fa fa-instagram"></i>
-      <i class ="fa fa-linkedin"></i>
-    </div>
-    </div>
-    <div class="footer-col">
-      <div class="about_us">
-  <div id= "nav-links">
-    <div class ="nav-links">
-      <ul>
-        <li><a href="">HOME</a></li><br>
-        <li><a href="">SPORTS ARENA</a></li><br>
-        <li><a href="">FAQ</a></li><br>
-        <li><a href="">ABOUT</a></li><br>
-      </ul><br>
-    </div>
-  </div>
-    </div>
-    </div>
-    
-</div>
-<div>
-  <hr class="solid"> 
-      <p> 2021 Sportizza. All rights Reserved. </p>
-      </div>
-</section>
+    </section>
 
 
 
-<!--Javascript for Toggle Menu
-  <script>
-  var nav-links-links = document.getElementById("nav-links");
-  function showMenu(){
-    nav-links.style.left = "0";
-  }
-  function hideMenu(){
-    nav-links.style.left = "-200px";
-  } 
-  </script>
--->
-  <script>
-    //Creating a service worker
-  // Check that service workers are supported
-  if ('serviceWorker' in navigator) {
+    <!--Javascript for Toggle Menu
+      <script>
+      var nav-links-links = document.getElementById("nav-links");
+      function showMenu(){
+        nav-links.style.left = "0";
+      }
+      function hideMenu(){
+        nav-links.style.left = "-200px";
+      }
+      </script>
+    -->
+    <script>
+        //Creating a service worker
+        // Check that service workers are supported
+        if ('serviceWorker' in navigator) {
 
-  // Use the window load event to keep the page load performant
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js').then(sWReg=>{
-      console.log("Worker Registered!");
-    }).catch(error =>{
-      console.log("There was an error", error);
-    });
-  });}
-  var cacheName = 'hello-pwa';
-  </script>
-   
+            // Use the window load event to keep the page load performant
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js').then(sWReg => {
+                    console.log("Worker Registered!");
+                }).catch(error => {
+                    console.log("There was an error", error);
+                });
+            });
+        }
+        var cacheName = 'hello-pwa';
+    </script>
+
 
 
 
