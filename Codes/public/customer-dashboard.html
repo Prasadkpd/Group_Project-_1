@@ -19,6 +19,14 @@
     <script src="https://kit.fontawesome.com/cca6a8b4f3.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/customer-dashboard.css">
     <link rel="manifest" href="manifest.json">
+
+
+
+
+ 
+
+
+
 </head>
 
 <body>
@@ -63,7 +71,6 @@
                         <li><a href="#middle-first"><i class="far fa-user-circle"></i>Profile</a></li>
                         <li><a href="#my-booking"><i class="fas fa-book"></i>My bookings</a></li>
                         <li><a href="#my-favorite-list"><i class="fas fa-clipboard-list"></i>My favorite list</a></li>
-                        <li><a href="#booking_table"><i class="fas fa-share-square"></i>Share Bookings</a></li>
                         <!-- <li><a href="#booking_table"><i class="fas fa-hands-helping"></i>Rate sports arena</a></li> -->
                         <li><a href="#notificaton"><i class="fas fa-hands-helping"></i>Notification</a></li>
                         <li style="margin-top:50px"><a href="#"><i class="fas fa-users-cog"></i>Sign out</a></li>
@@ -75,6 +82,13 @@
                 <div id="middle-first">
 
                     <div class="card">
+
+
+
+                      
+
+
+
                         <div class="left">
                             <img src="./images/Team members/jonathan.png">
                         </div>
@@ -86,7 +100,19 @@
                             <p style="font-weight:600;">0705614640</p>
 
                             <p style="margin-top: 100px;" class="edit_profile_p">
-                                <a href="./edit_customer_profile.html" class="btn">Edit Profile</a>
+                                <!-- <a href="./edit_customer_profile.html" class="btn">Edit Profile</a> -->
+                                  <div class="sectionpop ">
+                            <input class=" modal-btn " type="checkbox" id="modal-btn" name="modal-btn"/>
+                            <label for="modal-btn">Open Modal </label>     
+                            <div class="modal">   
+                              <div class="modal-wrap">  
+                            <img src="https://assets.codepen.io/1462889/sl3.jpg" alt="">  
+                                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>                
+                              </div>                    
+                            </div>  
+                    
+                         
+                      </div>
 
                             </p>
 
@@ -100,7 +126,7 @@
                     <div class="section">
                         <div class="booking-section-top">
                             <div class="my-booking-header">
-                                <h1 style="color: black;text-decoration: underline red;margin-bottom: 60px; text-align: right;">
+                                <h1 style="color: black;text-decoration: underline red;margin-bottom: 60px; text-align: right;" >
                                     My bookings</h1>
                             </div>
                             <div class="my-bookings-img">
@@ -113,12 +139,14 @@
                                 <tr>
                                     <th>NO.</th>
                                     <th>Date</th>
-                                    <th>Time</th>
-                                    <th>Name</th>
-                                    <th>Sport</th>
-                                    <th>Payment <br>Status</th>
+                                    <th>Start Time</th>
+                                    <th>End Time</th>
+                                    <th>Sports Arena Name</th>
+                                    <th>Category</th>
+                                    <th>Payment Method</th>
+                                    <th>Payment Status</th>
                                     <th>Amount</th>
-                                    <th>Status</th>
+                                    <th>Booking Status</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -127,39 +155,48 @@
                                     <td>01</td>
                                     <td>2021.9.11</td>
                                     <td>2.30</td>
+                                    <td>3.30</td>
                                     <td>Matara Uynawatta</td>
                                     <td>Cricket</td>
                                     <td> Cash</td>
+                                    <td>Completed</td>
                                     <td> Rs.3000</td>
                                     <td class="pending_status"> Pending</td>
                                     <td>
-                                        <div class="icons-table">
-                                            <!-- <div><a href="#"><i class="fas fa-share-square"></i></a></div>
-										<div><a href="#"><i class="fas fa-window-close"></i></a></div>
-										<div><a href="#"><i class="fas fa-star"></i></a></div> -->
-                                            <a href="#"><i class="fas fa-share-square fa-lg">Share</i></a>
-                                            <a href="#"><i class="fas fa-window-close fa-lg">Cancel</i></a>
-                                            <!-- <a href="#"><i class="fas fa-star fa-lg">Rate</i></a> -->
-                                        </div>
+                                        
+                                            
+                                           <div class="dropdown">
+                                                <button class="dropbtn"><i class="fas fa-ellipsis-v"></i></button>
+                                            <div class="dropdown-content">
+                                                <a href="#">Share</a>
+                                                <a href="#">Booking Cancellation</a>
+                                                <a href="#">Rate Sports Arena</a>
+                                                <a href="#">Remove</a>
+                                            </div>
+                                            </div>  
+              
                                     </td>
                                 </tr>
                                 <tr  style="border-bottom:1pt solid black;" class="pending-row">
                                     <td>01</td>
                                     <td>2021.9.11</td>
                                     <td>2.30</td>
+                                    <td>3.30</td>
                                     <td>Matara Uynawatta</td>
                                     <td>Cricket</td>
                                     <td> Cash</td>
+                                    <td>Completed</td>
                                     <td> Rs.3000</td>
                                     <td class="pending_status"> Pending</td>
                                     <td>
-                                        <div class="icons-table">
-                                            <!-- <div><a href="#"><i class="fas fa-share-square"></i></a></div>
-									<div><a href="#"><i class="fas fa-window-close"></i></a></div>
-									<div><a href="#"><i class="fas fa-star"></i></a></div> -->
-                                            <a href="#"><i class="fas fa-share-square fa-lg">Share</i></a>
-                                            <a href="#"><i class="fas fa-window-close fa-lg">Cancel</i></a>
-                                            <!-- <a href="#"><i class="fas fa-star fa-lg">Rate</i></a> -->
+                                        <div class="dropdown">
+                                            <button class="dropbtn"><i class="fas fa-ellipsis-v"></i></button>
+                                        <div class="dropdown-content">
+                                            <a href="#">Share</a>
+                                            <a href="#">Booking Cancellation</a>
+                                            <a href="#">Rate Sports Arena</a>
+                                            <a href="#">Remove</a>
+                                        </div>
                                         </div>
                                     </td>
                                 </tr>
@@ -169,19 +206,22 @@
                                     <td>01</td>
                                     <td>2021.9.11</td>
                                     <td>2.30</td>
+                                    <td>3.30</td>
                                     <td>Matara Uynawatta</td>
                                     <td>Cricket</td>
                                     <td> Cash</td>
+                                    <td>Completed</td>
                                     <td> Rs.3000</td>
                                     <td class="pending_status"> Pending</td>
                                     <td>
-                                        <div class="icons-table">
-                                            <!-- <div><a href="#"><i class="fas fa-share-square"></i></a></div>
-									<div><a href="#"><i class="fas fa-window-close"></i></a></div>
-									<div><a href="#"><i class="fas fa-star"></i></a></div> -->
-                                            <a href="#"><i class="fas fa-share-square fa-lg">Share</i></a>
-                                            <a href="#"><i class="fas fa-window-close fa-lg">Cancel</i></a>
-                                            <!-- <a href="#"><i class="fas fa-star fa-lg">Rate</i></a> -->
+                                        <div class="dropdown">
+                                            <button class="dropbtn"><i class="fas fa-ellipsis-v"></i></button>
+                                        <div class="dropdown-content">
+                                            <a href="#">Share</a>
+                                            <a href="#">Booking Cancellation</a>
+                                            <a href="#">Rate Sports Arena</a>
+                                            <a href="#">Remove</a>
+                                        </div>
                                         </div>
                                     </td>
 
@@ -190,20 +230,22 @@
                                     <td>01</td>
                                     <td>2021.9.11</td>
                                     <td>2.30</td>
+                                    <td>3.30</td>
                                     <td>Matara Uynawatta</td>
                                     <td>Cricket</td>
                                     <td> Cash</td>
+                                    <td>Completed</td>
                                     <td> Rs.3000</td>
                                     <td class="completed_status"> Completed</td>
                                     <td>
-                                        <div class="icons-table">
-
-                                            <a href="#">
-                                                <i class="fas fa-star fa-lg"></i>
-                                                <i class="fas fa-star fa-lg"></i>
-                                                <i class="fas fa-star fa-lg"></i>
-                                                <i class="fas fa-star fa-lg"></i>
-                                                <i class="fas fa-star fa-lg">Rate</i></a>
+                                        <div class="dropdown">
+                                            <button class="dropbtn"><i class="fas fa-ellipsis-v"></i></button>
+                                        <div class="dropdown-content">
+                                            <a href="#">Share</a>
+                                            <a href="#">Booking Cancellation</a>
+                                            <a href="#">Rate Sports Arena</a>
+                                            <a href="#">Remove</a>
+                                        </div>
                                         </div>
                                     </td>
 
@@ -213,20 +255,69 @@
                                     <td>01</td>
                                     <td>2021.9.11</td>
                                     <td>2.30</td>
+                                    <td>3.30</td>
                                     <td>Matara Uynawatta</td>
                                     <td>Cricket</td>
                                     <td> Cash</td>
+                                    <td>Completed</td>
                                     <td> Rs.3000</td>
                                     <td class="completed_status"> Completed</td>
                                     <td>
-                                        <div class="icons-table">
+                                        <div class="dropdown">
+                                            <button class="dropbtn"><i class="fas fa-ellipsis-v"></i></button>
+                                        <div class="dropdown-content">
+                                            <a href="#">Share</a>
+                                            <a href="#">Booking Cancellation</a>
+                                            <a href="#">Rate Sports Arena</a>
+                                            <a href="#">Remove</a>
+                                        </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="completed-row">
+                                    <td>01</td>
+                                    <td>2021.9.11</td>
+                                    <td>2.30</td>
+                                    <td>3.30</td>
+                                    <td>Matara Uynawatta</td>
+                                    <td>Cricket</td>
+                                    <td> Cash</td>
+                                    <td>Completed</td>
+                                    <td> Rs.3000</td>
+                                    <td class="completed_status"> Completed</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="dropbtn"><i class="fas fa-ellipsis-v"></i></button>
+                                        <div class="dropdown-content">
+                                            <a href="#">Share</a>
+                                            <a href="#">Booking Cancellation</a>
+                                            <a href="#">Rate Sports Arena</a>
+                                            <a href="#">Remove</a>
+                                        </div>
+                                        </div>
+                                    </td>
+                                </tr>
 
-                                            <a href="#">
-                                                <i class="fas fa-star fa-lg"></i>
-                                                <i class="fas fa-star fa-lg"></i>
-                                                <i class="fas fa-star fa-lg"></i>
-                                                <i class="fas fa-star fa-lg"></i>
-                                                <i class="fas fa-star fa-lg">Rate</i></a>
+                                <tr class="completed-row">
+                                    <td>01</td>
+                                    <td>2021.9.11</td>
+                                    <td>2.30</td>
+                                    <td>3.30</td>
+                                    <td>Matara Uynawatta</td>
+                                    <td>Cricket</td>
+                                    <td> Cash</td>
+                                    <td>Completed</td>
+                                    <td> Rs.3000</td>
+                                    <td class="completed_status"> Completed</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="dropbtn"><i class="fas fa-ellipsis-v"></i></button>
+                                        <div class="dropdown-content">
+                                            <a href="#">Share</a>
+                                            <a href="#">Booking Cancellation</a>
+                                            <a href="#">Rate Sports Arena</a>
+                                            <a href="#">Remove</a>
+                                        </div>
                                         </div>
                                     </td>
                                 </tr>
@@ -234,60 +325,22 @@
                                     <td>01</td>
                                     <td>2021.9.11</td>
                                     <td>2.30</td>
+                                    <td>3.30</td>
                                     <td>Matara Uynawatta</td>
                                     <td>Cricket</td>
                                     <td> Cash</td>
+                                    <td>Completed</td>
                                     <td> Rs.3000</td>
                                     <td class="completed_status"> Completed</td>
                                     <td>
-                                        <div class="icons-table">
-                                            <a href="#">
-                                                <i class="fas fa-star fa-lg"></i>
-                                                <i class="fas fa-star fa-lg"></i>
-                                                <i class="fas fa-star fa-lg"></i>
-                                                <i class="fas fa-star fa-lg"></i>
-                                                <i class="fas fa-star fa-lg">Rate</i></a>
+                                        <div class="dropdown">
+                                            <button class="dropbtn"><i class="fas fa-ellipsis-v"></i></button>
+                                        <div class="dropdown-content">
+                                            <a href="#">Share</a>
+                                            <a href="#">Booking Cancellation</a>
+                                            <a href="#">Rate Sports Arena</a>
+                                            <a href="#">Remove</a>
                                         </div>
-                                    </td>
-                                </tr>
-
-                                <tr class="completed-row">
-                                    <td>01</td>
-                                    <td>2021.9.11</td>
-                                    <td>2.30</td>
-                                    <td>Matara Uynawatta</td>
-                                    <td>Cricket</td>
-                                    <td> Cash</td>
-                                    <td> Rs.3000</td>
-                                    <td class="completed_status"> Completed</td>
-                                    <td>
-                                        <div class="icons-table">
-                                            <a href="#">
-                                                <i class="fas fa-star fa-lg"></i>
-                                                <i class="fas fa-star fa-lg"></i>
-                                                <i class="fas fa-star fa-lg"></i>
-                                                <i class="fas fa-star fa-lg"></i>
-                                                <i class="fas fa-star fa-lg">Rate</i></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="completed-row">
-                                    <td>01</td>
-                                    <td>2021.9.11</td>
-                                    <td>2.30</td>
-                                    <td>Matara Uynawatta</td>
-                                    <td>Cricket</td>
-                                    <td> Cash</td>
-                                    <td> Rs.3000</td>
-                                    <td class="completed_status"> Completed</td>
-                                    <td>
-                                        <div class="icons-table">
-                                            <a href="#">
-                                                <i class="fas fa-star fa-lg"></i>
-                                                <i class="fas fa-star fa-lg"></i>
-                                                <i class="fas fa-star fa-lg"></i>
-                                                <i class="fas fa-star fa-lg"></i>
-                                                <i class="fas fa-star fa-lg">Rate</i></a>
                                         </div>
                                     </td>
                                 </tr>
@@ -303,15 +356,30 @@
                 <div id="my-favorite-list">
 
                     <div class="section">
-                        <h1 style="color: black;text-decoration: underline red ;margin-bottom: 60px; text-align: center">
-                            My favorite list</h1>
+                        
+
+
+                        <div class="favorite-list-top">
+                            <div class="favorite-list-header">
+                                <h1 style="color: black;text-decoration: underline red;margin-bottom: 60px; text-align: right;">
+                                    My favorite list</h1>
+                            </div>
+                            <div class="my-bookings-img">
+                                <div class="img"><img style="margin-bottom: 50px;padding-left: 20px;  margin-top: 50px;" src="./images/customer dashbord/undraw_online_organizer_ofxm.svg" alt=""></div>
+                            </div>
+                        </div>
+
+
+                        
                         <div class="favorite_list_container">
-                            <div class="img"><img style="margin-bottom: 50px;padding-left: 20px;  margin-top: 50px;" src="./images/customer dashbord/undraw_online_organizer_ofxm.svg" alt=""></div>
+                            
                             <div class="table">
                                 <table class="styled-table">
                                     <thead>
                                         <tr>
                                             <th>Name</th>
+                                            
+                                            <th>Category</th>
                                             <th>Location</th>
                                             <th></th>
 
@@ -320,78 +388,92 @@
                                     <tbody>
                                         <tr>
                                             <td>Colomo king</td>
+                                            <td>Cricket</td>
                                             <td>Reid avenue,Colombo 07</td>
-                                            <td >
-                                                <div class="icons-table"></div>
-                                                    <a href="#" class="check-availability-btn"> Availability</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="active-row">
-                                            <td>Colomo king</td>
-                                            <td>Reid avenue,Colombo 07</td>
-                                            <td >
-                                               
-                                                <div class="icons-table"></div>
-                                                <a href="#" class="check-availability-btn"> Availability</a>
-                                            </div>
+                                            <td style="display:flex;">
                                                 
-                                            </td>
-                                        </tr>
-                                        <!-- and so on... -->
-                                        <tr>
-                                            <td>Colomo king</td>
-                                            <td>Reid avenue,Colombo 07</td>
-                                            <td>
-                                                <div class="icons-table"></div>
                                                     <a href="#" class="check-availability-btn"> Availability</a>
-                                                </div>
+                                                
+                                                     <a><i class="far fa-trash-alt"></i></a>
                                             </td>
                                         </tr>
                                         <tr class="active-row">
                                             <td>Colomo king</td>
+                                            <td>Cricket</td>
                                             <td>Reid avenue,Colombo 07</td>
-                                            <td>
-                                                <div class="icons-table"></div>
-                                                    <a href="#" class="check-availability-btn"> Availability</a>
-                                                </div>
-                                            </td>
+                                            <td style="display:flex;">
+                                                
+                                                <a href="#" class="check-availability-btn"> Availability</a>
+                                            
+                                                 <a><i class="far fa-trash-alt"></i></a>
+                                        </td>
                                         </tr>
+                                        
                                         <tr>
                                             <td>Colomo king</td>
+                                            <td>Cricket</td>
                                             <td>Reid avenue,Colombo 07</td>
-                                            <td>
-                                                <div class="icons-table"></div>
-                                                    <a href="#" class="check-availability-btn"> Availability</a>
-                                                </div>
-                                            </td>
+                                            <td style="display:flex;">
+                                                
+                                                <a href="#" class="check-availability-btn"> Availability</a>
+                                            
+                                                 <a><i class="far fa-trash-alt"></i></a>
+                                        </td>
                                         </tr>
                                         <tr class="active-row">
                                             <td>Colomo king</td>
+                                            <td>Cricket</td>
                                             <td>Reid avenue,Colombo 07</td>
-                                            <td>
-                                                <div class="icons-table"></div>
-                                                    <a href="#" class="check-availability-btn"> Availability</a>
-                                                </div>
-                                            </td>
+                                            <td style="display:flex;">
+                                                
+                                                <a href="#" class="check-availability-btn"> Availability</a>
+                                            
+                                                 <a><i class="far fa-trash-alt"></i></a>
+                                        </td>
                                         </tr>
                                         <tr>
                                             <td>Colomo king</td>
+                                            <td>Cricket</td>
                                             <td>Reid avenue,Colombo 07</td>
-                                            <td>
-                                                <div class="icons-table"></div>
-                                                    <a href="#" class="check-availability-btn"> Availability</a>
-                                                </div>
-                                            </td>
+                                            <td style="display:flex;">
+                                                
+                                                <a href="#" class="check-availability-btn"> Availability</a>
+                                            
+                                                 <a><i class="far fa-trash-alt"></i></a>
+                                        </td>
                                         </tr>
                                         <tr class="active-row">
                                             <td>Colomo king</td>
+                                            <td>Cricket</td>
                                             <td>Reid avenue,Colombo 07</td>
-                                            <td>
-                                                <div class="icons-table"></div>
-                                                    <a href="#" class="check-availability-btn"> Availability</a>
-                                                </div>
-                                            </td>
+                                            <td style="display:flex;">
+                                                
+                                                <a href="#" class="check-availability-btn"> Availability</a>
+                                            
+                                                 <a><i class="far fa-trash-alt"></i></a>
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Colomo king</td>
+                                            <td>Cricket</td>
+                                            <td>Reid avenue,Colombo 07</td>
+                                            <td style="display:flex;">
+                                                
+                                                <a href="#" class="check-availability-btn"> Availability</a>
+                                            
+                                                 <a><i class="far fa-trash-alt"></i></a>
+                                        </td>
+                                        </tr>
+                                        <tr class="active-row">
+                                            <td>Colomo king</td>
+                                            <td>Cricket</td>
+                                            <td>Reid avenue,Colombo 07</td>
+                                            <td style="display:flex;">
+                                                
+                                                <a href="#" class="check-availability-btn"> Availability</a>
+                                            
+                                                 <a><i class="far fa-trash-alt"></i></a>
+                                        </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -404,10 +486,21 @@
                 <div id="notificaton">
 
                     <div class="section">
-                        <h1 style="color: black; text-decoration: underline red;text-align: center">Notifications</h1>
+
+                        <div class="notificaton-top">
+                            <div class="notificaton-header">
+                                <h1 style="color: black;text-decoration: underline red;margin-bottom: 60px; text-align: right;">
+                                    Notifications</h1>
+                            </div>
+                            <div class="notificaton-img">
+                                <div class="img"><img style="margin-bottom: 50px;padding-left: 20px;  margin-top: 50px;" src="./images/customer dashbord/undraw_Newsletter_re_wrob.svg" alt=""></div>
+                            </div>
+                        </div>
+
+                        
 
                         <div class="notification_container">
-                            <div class="left"><img style="margin-bottom: 50px; margin-top: 50px;margin-left: auto;" src="./images/customer dashbord/undraw_Newsletter_re_wrob.svg" alt=""></div>
+                            
 
 
                             <div class="right">
@@ -446,9 +539,20 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                                <p style="margin-top: 100px;" class="edit_profile_p" >
+                                    <a href="./edit_customer_profile.html" class="btn">View More</a>
+    
+                                </p>
                             </div>
                         </div>
+                        
                     </div>
+
+
+                    
+            
+
+                    
 
 
 
