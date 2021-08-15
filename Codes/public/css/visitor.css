@@ -405,13 +405,15 @@ nav.open .links {
 }
 .sp-arena-box {
   background-color: var(--light-orange);
-  width: 100%;
+  width: 90%;
   border-radius: 50px;
   height: max-content;
   padding-top: 1rem;
   padding-bottom: 1rem;
   z-index: 30;
   margin-top: 26rem;
+  margin-left:5%;
+  margin-right:5%;
 }
 .sports-arena-grid-2 {
   display: grid;
@@ -420,12 +422,7 @@ nav.open .links {
   justify-content: center;
   padding-left: 10%;
 }
-/* .sports-arena img {
-  z-index: -5;
-  position: absolute;
-  padding-top: 2rem;
-  max-height: 500px;
-} */
+
 .sports-arena h3 {
   font-size: 2.5rem;
 }
@@ -442,6 +439,15 @@ nav.open .links {
 }
 .sports-arena .slideshow-container img{
   height:600px;
+  padding-bottom: 30px;
+}
+
+.container2 {
+  position: relative;
+  z-index: 5;
+  /* max-width: 92rem;
+  padding: 0 4rem;
+  margin: 0 auto; */
 }
 .dropbtn {
   background-color: var(--light-orange);
@@ -522,7 +528,7 @@ nav.open .links {
 /* SearchBox */
 .search-wrap {
   z-index: 5;
-  width: 100%;
+  width: 80%;
   padding-right: 5rem;
 }
 .search-wrap .search-box {
@@ -577,10 +583,16 @@ input {
 /* End of Searchbox */
 
 /* Search Results */
-.search-results {
-  padding-top: 8rem;
+.search-results2 {
+  /* overflow: hidden; */
   /* display:none; */
 }
+.search-results {
+  padding-top: 8rem;
+  /* overflow: hidden; */
+  /* display:none; */
+}
+
 .search-results h3 {
   color: var(--orange);
   font-weight: 700;
@@ -799,7 +811,7 @@ input {
   overflow: hidden;
   padding-top: 0rem;
   padding-bottom: 0rem;
-  /* display: none; */
+
 }
 .reviews-more .column-1 {
   padding-bottom: 2rem;

@@ -192,7 +192,15 @@ function ShowAndHide() {
       x.style.display = 'none';
   }
 }
-
+//Show the hidden content
+function ShowSearchResults() {
+  var x = document.getElementsById('search-results2');
+  if (x.style.display == 'none') {
+      x.style.display = 'block';
+  } else {
+      x.style.display = 'none';
+  }
+}
 
 //Tabs for faq
 let tabHeader = document.getElementsByClassName("tab-header")[0];
@@ -205,7 +213,6 @@ for(let i=0;i<tabsPane.length;i++){
     tabsPane[i].classList.add("active");
     tabBody.getElementsByClassName("active")[0].classList.remove("active");
     tabBody.getElementsByTagName("div")[i].classList.add("active");
-    
   });
 }
 
