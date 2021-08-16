@@ -1,0 +1,23 @@
+{
+    "authors":[
+        {"name": "Maneth Wijetunga",
+        "email": "2019cs194@stu.ucsc.lk"
+        },
+        {"name": "Johnathan Dass",
+            "email": "2019cs028@stu.ucsc.lk"
+            },
+            {"name": "Bhashitha Ranasinghe",
+                "email": "2019cs131@stu.ucsc.lk"
+                },
+                {"name": "Prasad Lakshan",
+                    "email": "2019cs078@stu.ucsc.lk"
+                    }
+    ],
+    
+        "autoload": {
+            "psr-4": {"App\\": "src/"}
+        },
+        "require": {
+            "twig/twig": "^3.0"
+        }
+}
