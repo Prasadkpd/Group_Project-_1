@@ -3,10 +3,12 @@
 namespace App\Controllers;
 
 use \Core\View;
+use App\Models\Post;
+
 /**
  * Posts controller
  *
- * PHP version 7.4.12
+ * PHP version 5.4
  */
 class Posts extends \Core\Controller
 {
@@ -18,8 +20,11 @@ class Posts extends \Core\Controller
      */
     public function indexAction()
     {
-        // echo 'Hello from the index action in the Posts controller!';
-        View::renderTemplate('Posts/index.html');
+        $posts = Post::getAll();
+
+        View::renderTemplate('Posts/index.html', [
+            'posts' => $posts
+        ]);
     }
 
     /**

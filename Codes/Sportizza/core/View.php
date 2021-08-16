@@ -5,10 +5,9 @@ namespace Core;
 /**
  * View
  *
- * PHP version 7.4.12
+ * PHP version 5.4
  */
-
- class View
+class View
 {
 
     /**
@@ -19,7 +18,6 @@ namespace Core;
      *
      * @return void
      */
-    
     public static function render($view, $args = [])
     {
         extract($args, EXTR_SKIP);
@@ -29,7 +27,7 @@ namespace Core;
         if (is_readable($file)) {
             require $file;
         } else {
-            echo "$file not found";
+            throw new \Exception("$file not found");
         }
     }
 

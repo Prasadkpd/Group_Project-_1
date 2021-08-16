@@ -5,11 +5,11 @@ namespace Core;
 /**
  * Base controller
  *
- * PHP version 7.4.12 
+ * PHP version 5.4
  */
-
 abstract class Controller
 {
+
     /**
      * Parameters from the matched route
      * @var array
@@ -49,7 +49,7 @@ abstract class Controller
                 $this->after();
             }
         } else {
-            echo "Method $method not found in controller " . get_class($this);
+            throw new \Exception("Method $method not found in controller " . get_class($this));
         }
     }
 
