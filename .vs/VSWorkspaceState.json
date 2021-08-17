@@ -6,8 +6,9 @@
     "\\Codes\\public\\css",
     "\\Codes\\public\\js",
     "\\Codes\\public\\Management",
-    "\\Codes\\public\\Management\\Management CSS"
+    "\\Codes\\public\\Management\\app",
+    "\\Codes\\public\\Management\\app\\views"
   ],
-  "SelectedNode": "\\Codes\\public\\css\\style-admin-home.css",
+  "SelectedNode": "\\Codes\\public\\css\\visitor.css",
   "PreviewInSolutionExplorer": false
 }
