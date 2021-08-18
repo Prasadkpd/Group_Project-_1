@@ -9,23 +9,27 @@
   display: flex;
 }
 .profile-picture{
+  margin-top: 1.5em;
+}
+.profile-picture .image-change{
+  height: 10px;
+}
+
+.profile-picture img{
   border: 1px solid #444444;
   border-radius: 20px;
   height: 13em;
   margin: .5em;
   background-color: #fafafa;
-}
-
-.profile-picture img{
-  width: 15em;
+  width: 250px;
   margin: .5em;
   padding: 1em;
   border-radius: 20px;
-  object-fit: cover;
+  object-fit: contain;
 }
 .profile-picture i{
   position: relative;
-  top: -3em;
+  top: -4em;
   left: 4em;
   background-color: rgb(223, 223, 223);
   color: #444444;
@@ -45,12 +49,12 @@
     font-size: 16px;
     text-align: justify;
  }
+ 
  .profile-details .features{
    display: flex;
-   justify-content: space-around;
-   width: 300px;
   }
   .profile-details .features .details-block{
+    margin-left: 20px;
     border-radius: 20px;
     color: white;
     background-color: var(--light-orange-dull);
@@ -61,13 +65,7 @@
   }
 
 
-  .slide-container {
-    max-width: 1000px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-  }
+ 
 
   .arrow {
       width: 2rem;
@@ -119,38 +117,6 @@
     font-size: 1.2rem;
     margin: .5em;
   }
-  /*
-  .ground-images .ground-image-container img{
-    width: 15em;
-    margin: .5em;
-    border-radius: 10px;
-    border: 0.1px solid #444444;
-    
-  }
-.ground-images .ground-image-container{
-  display: flex;
-  justify-content: space-evenly;
-}
-.ground-images .ground-image-container img:hover{
-  width: 15.2em;
-}
-.ground-images .ground-image-container .prev, .next {
-  cursor: pointer;
-  color:black;
-  font-weight: bold;
-  font-size: 60px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-  margin: auto 0 auto 0;
-}
-.ground-images .ground-image-container .prev{
-  margin-left: 1em;
-}
-
-.ground-images .ground-image-container .next{
-  right: 10em;
-}   */
 
 .other-facility{
   margin-top: 1em;
@@ -334,22 +300,38 @@
   
   @media screen and (max-width: 992px) {
     
-    .section{
-     display: flex;
-     flex-direction: row;
+    .profile-container{
+     width: 100%;
       
     }
-    .nav-links{
-      display: none;
+    .profile-disc-header{
+      margin: .1em;
+    }
+    
+    .profile-picture img{
+      width: 210px;
+      height: 200px;
+    }
+    .profile-disc-header h3{
+      font-size: 1.7rem;
     }
 
-    .side-nav{
-      width: 25vw;
-      margin-right: 1em;
+    .profile-disc-header p{
+      font-size: 14px;
     }
-    .container{
-      width:70vw;
-      margin-left: 5vw;  
+    .profile-details{
+      margin: 10px;
+    }
+    .profile-details .features{
+      width: 300px;
+    }
+    .profile-details .features .details-block{
+      padding: 5px 10px;
+    }
+    
+
+    .slide-container .thumbnail{
+      width: 250px;
     }
     
   }
