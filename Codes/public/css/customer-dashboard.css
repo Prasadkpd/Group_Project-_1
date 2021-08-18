@@ -303,6 +303,40 @@ nav.open .links {
 
 
 /* start profile */
+form input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+ form input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+ form input[type=submit]:hover {
+    background-color: #45a049;
+  }
+  
+  .modal-wrap {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+  }
+
+
+
+
 #middle-first{
     width: 100%  ;
     height:auto;
@@ -373,8 +407,8 @@ nav.open .links {
 
 }
 #middle-first  .left img{
-    width: 200px;
-    height: 200px;
+    width: 80%;
+    height: 70%;
     margin: 0 auto;
 }
 
@@ -683,35 +717,7 @@ a :hover{
 }
 /* end up button */
 
- @media (max-width:576px) {
-    .card{
-        flex-direction: column;
-        width: 100vw;
-    }
-    .drawer{
-        display: none;
-    }
-    .middle .left{
-        width: 0%;
-        display: none;
-        
-    }
-    .middle .right{
-        width: 100vw;
-        display: flex;
-        flex-direction: column;
-        margin: auto;
-        align-items: center;
-    }
-    #my-favorite-list .favorite_list_container{
-        display: flex;
-        flex-direction: column;
-    }
-    #notificaton .notification_container{
-        display: flex;
-        flex-direction: column;
-    }
-}
+ 
 
 
 /* Footer */
@@ -838,69 +844,6 @@ a :hover{
   opacity: 0.08;
   animation: scale 1.2s ease-out infinite 1s;
 }
-@media (max-width:768px) {
-    .card{
-        flex-direction: column;
-    }
-    .drawer{
-        display: none;
-    }
-    .middle .left{
-        display: none;
-    }
-}
-@media (max-width:992px) {
-    .card{
-        flex-direction: column;
-    }
-}
-@media (max-width:1200px) {
-    .card{
-        flex-direction: column;
-    }
-} 
-
-
-
-
-
-
-
-/* side dropdown menu */
-.dropbtn {
-
-    color: black;
-    padding: 8px;
-    font-size:  26px;
-    border: none;
-  }
-  
-  .dropdown {
-    
-    display: inline-block;
-  }
-  
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-  
-  .dropdown-content a:hover {background-color: #ddd;}
-  
-  .dropdown:hover .dropdown-content {display: block;}
-  /* end */
-
 
 
 
@@ -935,7 +878,7 @@ a :hover{
     height: 50px;
     transition: all 200ms linear;
     border-radius: 2rem;
-    width: 240px;
+    width: 40%;
     letter-spacing: 1px;
     display: -webkit-inline-flex;
     display: -ms-inline-flexbox;
@@ -982,7 +925,7 @@ a :hover{
     background-color: #ffeba7;
     color: var(--orange);
     font-family: 'unicons';
-    content: '\eac6'; 
+    content: "❌";
     box-shadow: 0 12px 25px 0 rgba(16,39,112,.25);
     transition: all 200ms linear;
     opacity: 0;
@@ -1080,22 +1023,401 @@ a :hover{
     transition: all 250ms linear;
   }
   
+
+
+
+
+
+
+
+
+
+
+
   
-  @media screen and (max-width: 500px) {
-    .modal-wrap {
-      width: calc(100% - 40px);
-      padding-bottom: 15px;
+
+
+
+/* pop up delete message start */
+.buttondel {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 50%;
+  opacity: 0.9;
+}
+
+.buttondel:hover {
+  opacity:1;
+}
+
+
+/* Float cancel and delete buttons and add an equal width */
+.cancelbtn, .deletebtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add a color to the cancel button */
+.cancelbtn {
+  background-color: #ccc;
+  color: black;
+}
+
+/* Add a color to the delete button */
+.deletebtn {
+  background-color: #f44336;
+}
+
+/* Add padding and center-align text to the container */
+.containerdel {
+  padding: 16px;
+  text-align: center;
+}
+
+/* The Modal (background) */
+.modaldel {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  
+  width: 100%; /* Full width */
+  height: 300px; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: #474e5d;
+  padding-top: 50px;
+}
+
+/* Modal Content/Box */
+.modaldel-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Modal Close Button (x) */
+.close {
+  position: absolute;
+  right: 35px;
+  top: 15px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #f1f1f1;
+}
+
+.close:hover,
+.close:focus {
+  color: #f44336;
+  cursor: pointer;
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+  
+}
+
+/* Change styles for cancel button and delete button on extra small screens */
+@media screen and (max-width: 300px) {
+  .cancelbtn, .deletebtn {
+     width: 100%;
+  }
+}
+
+
+
+
+
+
+
+/* dropdown content */
+.dropbtn {
+  
+  color: black;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+
+
+.dropdown {
+  float:right;
+  position: inherit;
+  display: inline-block;
+  
+}
+
+.dropdown-content {
+  right: 0;
+  display: none;
+  position: fixed;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+
+/* end */
+
+
+
+
+
+
+
+/* The Modal (background) */
+.modalshare {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+
+  left: 0;
+ 
+  width: 100%; /* Full width */
+  height: 200px; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  
+  
+}
+
+/* Modal Content */
+.modalshare-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  
+}
+
+/* The Close Button */
+.closeshare {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  color: black;
+}
+
+.closeshare:hover,
+.closeshare:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+
+
+/* responsive */
+@media (max-width:1200px) {
+
+  .text {
+    font-size: 1rem;
+  }
+  .title {
+    font-size: 2.1rem;
+    padding-bottom: 0.65rem;
+  }
+  .title:before {
+    margin-bottom: 0.2rem;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+  }
+  .title:after {
+    height: 3.5px;
+    width: 70px;
+  }
+
+
+  .card{
+      flex-direction: column;
+  }
+}
+
+@media (max-width:992px) {
+  nav img {
+    padding-top: 1rem;
+    display: flex;
+    float: left;
+    width: 15rem;
+  }
+  nav .container {
+    height: 4.5rem;
+    overflow: hidden;
+  }
+  .hamburger-menu {
+    display: flex;
+  }
+  .links {
+    position: fixed;
+    width: 40%;
+    height: 50vh;
+    top: 0;
+    right: 0;
+    background-color: var(--light-orange-dull);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    transform: translateX(100%);
+    transition: 0.5s;
+  }
+  .links ul {
+    flex-direction: column;
+    padding-top: 5rem;
+  }
+  .links a {
+    color: var(--white);
+    padding-bottom: 2rem;
+    font-size: 30px;
+  }
+  .links a:hover {
+    color: var(--black);
+  }
+  .links a.active {
+    margin-left: 0;
+    margin-bottom: 2rem;
+    background-color: var(--orange);
+    color: var(--white);
+    font-size: 30px;
+  }
+  .links a.active:hover {
+    color: var(--orange);
+    background-color: var(--white);
+    border: 1px solid var(--orange);
+  }
+  .hamburger-menu {
+    width: 3rem;
+    height: 3rem;
+  }
+  .hamburger-menu .bar {
+    width: 2.5rem;
+    height: 5px;
+    border-radius: 5px;
+  }
+  .bar:before,
+  .bar:after {
+    width: 2.5rem;
+    height: 5px;
+    border-radius: 5px;
+  }
+
+
+
+
+  .card{
+      flex-direction: column;
+  }
+}
+@media (max-width:768px) {
+
+  nav img {
+    width: 20rem;
+  }
+  .hamburger-menu {
+    display: flex;
+  }
+  .container {
+    padding: 0 2rem;
+  }
+  .title {
+    font-size: 1.8rem;
+  }
+  .book-now-btn {
+    font-size: 16px;
+    padding: 12px;
+    float: right;
+  }
+
+
+
+    .card{
+        flex-direction: column;
     }
-    .modal-wrap p {
-      padding: 15px 20px 0 20px;
+    .drawer{
+        display: none;
     }
+    .middle .left{
+        display: none;
+    }
+}
+
+@media (max-width: 576px) {
+  
+  nav img {
+    width: 20rem;
+  }
+  .hamburger-menu {
+    display: flex;
+  }
+  .header-title {
+    font-size: 2rem;
+    line-height: 0.8;
+    color: var(--dark-ash-1);
+  }
+  .container {
+    padding: 0 2rem;
+  }
+  .title {
+    font-size: 1.8rem;
+  }
+  .book-now-btn {
+    font-size: 16px;
+    padding: 12px;
+    float: right;
   }
 
 
 
 
 
-
-
-
-  
+  .card{
+    flex-direction: column;
+    width: 100vw;
+}
+.drawer{
+    display: none;
+}
+.middle .left{
+    width: 0%;
+    display: none;
+    
+}
+.middle .right{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    align-items: center;
+}
+#my-favorite-list .favorite_list_container{
+    display: flex;
+    flex-direction: column;
+}
+#notificaton .notification_container{
+    display: flex;
+    flex-direction: column;
+}
+}

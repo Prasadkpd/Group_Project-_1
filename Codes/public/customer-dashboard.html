@@ -100,14 +100,33 @@
                             <p style="font-weight:600;">0705614640</p>
 
                             <p style="margin-top: 100px;" class="edit_profile_p">
-                                <!-- <a href="./edit_customer_profile.html" class="btn">Edit Profile</a> -->
+                                 
                                   <div class="sectionpop ">
-                            <input class=" modal-btn " type="checkbox" id="modal-btn" name="modal-btn"/>
-                            <label for="modal-btn">Open Modal </label>     
+                            <input class=" modal-btn " type="checkbox" id="modal-btn" name="modal-btn">
+                            <label for="modal-btn">Edit Profile</label>     
                             <div class="modal">   
                               <div class="modal-wrap">  
-                            <img src="https://assets.codepen.io/1462889/sl3.jpg" alt="">  
-                                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>                
+                            <img src="./images/Team members/jonathan.png" alt="">  
+                            <form action="/action_page.php">
+                                <label for="fname">First Name</label>
+                                <input type="text" id="fname" name="firstname" placeholder="Enter First Name" value="sadeepa">
+                            
+                                <label for="lname">Last Name</label>
+                                <input type="text" id="lname" name="lastname" placeholder="Enter Last Names" value="bhashitha">
+
+                                <label for="lname">User Id</label>
+                                <input type="text" id="userid" name="lastname" placeholder="Enter User Id" value="bhashi1233">
+
+                                <label for="lname">Primary Number</label>
+                                <input type="text" id="lname" name="lastname" placeholder="Enter Primary Number" value="0705614640">
+
+                                <label for="lname">Secondary Number</label>
+                                <input type="text" id="userid" name="lastname" placeholder="Enter Secondary Number" value="0705614640">
+                            
+            
+                              
+                                <input type="submit" value="Submit">
+                              </form>                
                               </div>                    
                             </div>  
                     
@@ -164,16 +183,80 @@
                                     <td class="pending_status"> Pending</td>
                                     <td>
                                         
-                                            
-                                           <div class="dropdown">
-                                                <button class="dropbtn"><i class="fas fa-ellipsis-v"></i></button>
-                                            <div class="dropdown-content">
-                                                <a href="#">Share</a>
-                                                <a href="#">Booking Cancellation</a>
-                                                <a href="#">Rate Sports Arena</a>
-                                                <a href="#">Remove</a>
+                                        <div class="dropdown">
+                                            <button onclick="myFunction()" class="dropbtn"><i class="fas fa-ellipsis-v"></i></button>
+                                            <div id="myDropdown" class="dropdown-content">
+                                                
+
+                                                <div class="share">
+                                                    <button style="border: none; margin-right:25px" onclick="document.getElementById('id02').style.display='block'"><i class="fas fa-share"></i>Share</button>
+
+                                                    <div id="id02" class="modaldel">
+                                                    <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modaldel">×</span>
+                                                    <div style="color: white;">
+                                                        copy this LINK:http://127.0.0.1:5501/Codes/public/customer-dashboard.html
+                                                    </div>
+                                                    </div>
+                                                </div>
+
+
+                                                    <div class="cancel_booking">
+                                                        <button style="border: none; margin-right:25px" onclick="document.getElementById('id03').style.display='block'"><i class="far fa-calendar-times"></i>Booking Cancellation</button>
+
+                                                    <div id="id03" class="modaldel">
+                                                    <span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modaldel">×</span>
+                                                    <form class="modaldeldel-content" action="/action_page.php">
+                                                        <div class="containerdel">
+                                                        <h1>Delete Sports Arena From The List</h1>
+                                                        <p>Are you sure you want to delete Sport Arena?</p>
+                                                        
+                                                        <div class="clearfix">
+                                                            <button type="button" onclick="document.getElementById('id03').style.display='none'" class="cancelbtn buttondel">No</button>
+                                                            <button type="button" onclick="document.getElementById('id03').style.display='none'" class="deletebtn buttondel">Yes</button>
+                                                        </div>
+                                                        </div>
+                                                    </form>
+                                                    </div>
+                                                    </div>
+
+
+
+
+                                                    <div class="rate_sports_arena">
+                                                        <button style="border: none; margin-right:25px" onclick="document.getElementById('id04').style.display='block'"><i class="fas fa-star-half-alt"></i>Rate Sports Arena</button>
+    
+                                                        <div id="id04" class="modaldel">
+                                                        <span onclick="document.getElementById('id04').style.display='none'" class="close" title="Close Modaldel">×</span>
+                                                        <div style="color: white;">
+                                                            
+                                                        </div>
+                                                        </div>
+                                                    </div>
+
+                                                
+                                                    <div class="remove">
+                                                        <button style="border: none; margin-right:25px" onclick="document.getElementById('id05').style.display='block'"><i class="fas fa-trash-alt"></i>Remove</button>
+
+                                                    <div id="id05" class="modaldel">
+                                                    <span onclick="document.getElementById('id05').style.display='none'" class="close" title="Close Modaldel">×</span>
+                                                    <form class="modaldeldel-content" action="/action_page.php">
+                                                        <div class="containerdel">
+                                                        <h1>Are You Sure?</h1>
+                                                       
+                                                        
+                                                        <div class="clearfix">
+                                                            <button type="button" onclick="document.getElementById('id05').style.display='none'" class="cancelbtn buttondel">No</button>
+                                                            <button type="button" onclick="document.getElementById('id05').style.display='none'" class="deletebtn buttondel">Yes</button>
+                                                        </div>
+                                                        </div>
+                                                    </form>
+                                                    </div>
+                                                    </div>
+                                               
+                                                
                                             </div>
-                                            </div>  
+                                          </div> 
+                                           
               
                                     </td>
                                 </tr>
@@ -394,7 +477,31 @@
                                                 
                                                     <a href="#" class="check-availability-btn"> Availability</a>
                                                 
-                                                     <a><i class="far fa-trash-alt"></i></a>
+                                                     
+
+
+
+                                                    
+                                                    <button style="border: none; margin-right:25px" onclick="document.getElementById('id01').style.display='block'"><i class="far fa-trash-alt fa-2x"></i></button>
+
+                                                    <div id="id01" class="modaldel">
+                                                    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modaldel">×</span>
+                                                    <form class="modaldeldel-content" action="/action_page.php">
+                                                        <div class="containerdel">
+                                                        <h1>Delete Sports Arena From The List</h1>
+                                                        <p>Are you sure you want to delete Sport Arena?</p>
+                                                        
+                                                        <div class="clearfix">
+                                                            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn buttondel">No</button>
+                                                            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="deletebtn buttondel">Yes</button>
+                                                        </div>
+                                                        </div>
+                                                    </form>
+                                                    </div>
+
+
+
+                                                    
                                             </td>
                                         </tr>
                                         <tr class="active-row">
@@ -405,8 +512,12 @@
                                                 
                                                 <a href="#" class="check-availability-btn"> Availability</a>
                                             
-                                                 <a><i class="far fa-trash-alt"></i></a>
-                                        </td>
+                                                 <a><i class="far fa-trash-alt fa-2x"></i></a>
+
+
+
+
+                                                </td>
                                         </tr>
                                         
                                         <tr>
@@ -417,7 +528,7 @@
                                                 
                                                 <a href="#" class="check-availability-btn"> Availability</a>
                                             
-                                                 <a><i class="far fa-trash-alt"></i></a>
+                                                 <a><i class="far fa-trash-alt fa-2x"></i></a>
                                         </td>
                                         </tr>
                                         <tr class="active-row">
@@ -428,7 +539,7 @@
                                                 
                                                 <a href="#" class="check-availability-btn"> Availability</a>
                                             
-                                                 <a><i class="far fa-trash-alt"></i></a>
+                                                 <a><i class="far fa-trash-alt fa-2x"></i></a>
                                         </td>
                                         </tr>
                                         <tr>
@@ -439,7 +550,7 @@
                                                 
                                                 <a href="#" class="check-availability-btn"> Availability</a>
                                             
-                                                 <a><i class="far fa-trash-alt"></i></a>
+                                                 <a><i class="far fa-trash-alt fa-2x"></i></a>
                                         </td>
                                         </tr>
                                         <tr class="active-row">
@@ -450,7 +561,7 @@
                                                 
                                                 <a href="#" class="check-availability-btn"> Availability</a>
                                             
-                                                 <a><i class="far fa-trash-alt"></i></a>
+                                                 <a><i class="far fa-trash-alt fa-2x"></i></a>
                                         </td>
                                         </tr>
                                         <tr>
@@ -461,7 +572,7 @@
                                                 
                                                 <a href="#" class="check-availability-btn"> Availability</a>
                                             
-                                                 <a><i class="far fa-trash-alt"></i></a>
+                                                 <a><i class="far fa-trash-alt fa-2x"></i></a>
                                         </td>
                                         </tr>
                                         <tr class="active-row">
@@ -472,7 +583,7 @@
                                                 
                                                 <a href="#" class="check-availability-btn"> Availability</a>
                                             
-                                                 <a><i class="far fa-trash-alt"></i></a>
+                                                 <a><i class="far fa-trash-alt fa-2x"></i></a>
                                         </td>
                                         </tr>
                                     </tbody>
@@ -652,6 +763,22 @@
 
     </div>
     <script src="./js/customer-dashbord.js"></script>
+
+
+
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById('id01');
+        
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+        </script>
+    
 </body>
 
 </html>
