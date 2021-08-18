@@ -52,8 +52,12 @@
   }
   .profile-details .features .details-block{
     border-radius: 20px;
+    color: white;
     background-color: var(--light-orange-dull);
     padding: 10px 15px;
+  }
+  .profile-details .features .details-block:hover{
+    opacity: 0.9;
   }
 
 
@@ -325,6 +329,61 @@
 	.log-out .cancelbutton,.log-out-btn {
 	   width: 100%;
 	}
+  }
+
+  
+  @media screen and (max-width: 992px) {
+    
+    .section{
+     display: flex;
+     flex-direction: row;
+      
+    }
+    .nav-links{
+      display: none;
+    }
+
+    .side-nav{
+      width: 25vw;
+      margin-right: 1em;
+    }
+    .container{
+      width:70vw;
+      margin-left: 5vw;  
+    }
+    
+  }
+
+  @media screen and (max-width: 768px) {
+    
+    .section{
+      display: flex;
+      flex-direction: column;
+    }
+    .side-nav{
+      display: none;
+    }
+    .container{
+      width: 90%;
+      position: relative;
+      left: auto;
+    }
+    
+    @media screen and (max-width:576px)
+    {
+      
+      .section{
+        display: flex;
+        flex-direction: column;
+      }
+      .side-nav{
+        display: none;
+      }
+      .container{
+        width: 90%;
+        position: relative;
+        left: auto;
+    }
   }
 
 

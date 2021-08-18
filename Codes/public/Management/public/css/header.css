@@ -2,7 +2,6 @@
     width: 100%;
     background-color:#ffff;
     border-radius: 20px;
-    background-image: url(/public/images/bg-svg-1.svg);
     background-repeat: no-repeat;
     background-position-x: right;
     background-position-y: top;
@@ -77,8 +76,8 @@
 
 @media screen and (max-width: 992px) {
     .page-container{
+        width: 100vw;
         overflow-y: scroll;
-        background-image: none;
     }
     
     
@@ -86,12 +85,17 @@
   }
 
   @media screen and (max-width: 768px) {
-    
+    .page-container{
+        width:100vw;
+    }
     
     
   }
   
   @media screen and (max-width:576px)
   {
+      .page-container{
+        width: 100vw;
+      }
     
   }
