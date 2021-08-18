@@ -1,0 +1,223 @@
+.manage-booking{
+	height: 38em;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.booking-search-input-con{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.search-bookings{
+    margin:  1em 2em 1em 2em;
+    border-radius: 20px;
+    outline: none;
+    background-color: var(--white);
+    text-align: center;
+}
+/* Add User Button */
+/* Full-width input fields */
+.add-booking-fm-con input[type=text],input[type=password],input[type=tel],select,input[type=date],input[type=time] {
+	width: 90%;
+	padding: 12px 20px;
+	margin: 5px 10;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+	font-size: 15px;
+  }
+  .manage-booking .add-booking-pop-btn
+  {
+	  background-color: #888;
+	  color: white;
+	  padding:10px 20px;
+	  width: 40%;
+	  margin: 18px 10%;
+	  border: none;
+	  cursor: pointer;
+	  font-size: 1.2em;
+	  border-radius: 20px;
+	  display: flex;
+	  align-self: flex-start;
+  }
+  .manage-booking.add-booking-pop-btn i{
+	margin-right: 10px;
+  }
+  
+  .manage-booking button{
+	background-color: #888;
+	color: white;
+	padding:10px 20px;
+	width: 40%;
+	margin: 8px 30%;
+	border: none;
+	cursor: pointer;
+	font-size: 1.2em;
+	border-radius: 20px;
+  }
+  
+ .manage-booking button:hover{
+	opacity: 0.8;
+  }
+  
+  .manage-booking .cancelbtn {
+	width: auto;
+	padding: 10px 18px;
+	background-color: #f44336;
+	margin: 0;
+	
+  }
+  
+  
+  
+  .add-booking-frm-container {
+	padding: 16px;
+    display: grid;
+    grid-row-gap: 15px;
+    grid-template-columns: 10% 40% 10% 40%
+    
+  }
+
+  .add-booking-fm-con{
+	display: none; 
+	position: fixed;
+	z-index: 1; 
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%; 
+	overflow: auto; 
+	background-color: rgb(0,0,0); 
+	background-color: rgba(0,0,0,0.4); 
+	padding-top: 20px;
+	margin: auto;
+    
+  }
+  .add-booking-btn-con{
+    grid-template-columns: 100%;
+  }
+  
+.add-booking-frm-content {
+    width: 60%;
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+	border: 1px solid #888;
+	width: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.add-booking-frm {
+ display: none; 
+ position: fixed; 
+ z-index: 1; 
+ left: 0;
+ top: 0;
+ width: 100%; 
+ height: 100%; 
+ overflow: auto; 
+ background-color: rgb(0,0,0); 
+ background-color: rgba(0,0,0,0.4); 
+ padding-top: 60px;
+}
+
+.add-booking-frm-content {
+ background-color: #fefefe;
+ margin: 5% auto 15% auto; 
+ border: 1px solid #888;
+ width: 80%;
+}
+  
+.animate {
+	-webkit-animation: animatezoom 0.6s;
+	animation: animatezoom 0.6s
+  }
+  
+  @-webkit-keyframes animatezoom {
+	from {-webkit-transform: scale(0)} 
+	to {-webkit-transform: scale(1)}
+  }
+	
+  @keyframes animatezoom {
+	from {transform: scale(0)} 
+	to {transform: scale(1)}
+  }
+  
+  @media screen and (max-width: 300px) {
+	.cancelbtn {
+	   width: 100%;
+	}
+  }
+
+
+.booking-table{
+	width: 80%;
+    margin:0 auto 0 auto;
+	border-collapse: collapse;
+}
+
+.booking-table td,.booking-table th{
+	padding:12px 15px;
+	text-align: center;
+	font-size:16px;
+	
+}
+
+.booking-table th{
+	background-color: rgb(231, 117, 117);
+	color:#ffffff;
+}
+.booking-table tbody tr:hover{
+	opacity: 0.9;
+}
+
+.booking-table tbody tr:nth-child(even){
+	background-color: rgb(233, 231, 231);
+}
+.booking-table i{
+	margin: 10px;
+	cursor: pointer;
+}
+.booking-table i:hover{
+	 color: #f44336;
+}
+
+/*responsive*/
+
+@media(max-width: 500px){
+	.booking-table thead{
+		display: none;
+	}
+	
+	.booking-table, .booking-table tbody, .booking-table tr, .booking-table td{
+		display: block;
+		width: 100%;
+	}
+	.booking-table tr{
+		margin-bottom:15px;
+	}
+	.booking-table td{
+		text-align: right;
+		padding-left: 50%;
+		text-align: right;
+		position: relative;
+	}
+	.booking-table td::before{
+		content: attr(data-label);
+		position: absolute;
+		left:0;
+		width: 50%;
+		padding-left:15px;
+		font-size:15px;
+		font-weight: bold;
+		text-align: left;
+	}
+}
+
+
+  
+
+
+
+
+

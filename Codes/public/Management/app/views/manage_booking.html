@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/c32bb29bee.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/public/css/main.css">
+    <link rel="stylesheet" href="/public/css/header.css">
+    <link rel="stylesheet" href="/public/css/layout.css">
+    <link rel="stylesheet" href="/public/css/mana_home.css">
+    <link rel="stylesheet" href="/public/css/manage_booking.css">
+    <title>Management Profile</title>
+</head>
+<body>
+    <div class="page-container">
+        <div class="nav">
+            <div class="nav-container">
+                <div class="logo">
+                   <a href ="Management Home.html">
+                    <img src="/public/images/logos/logo_and_name_small-removebg.png"></a>
+                </div>
+                <div class="nav-links">
+                   <ul>
+                       <li><a href="">HOME</a></li>
+                       <li><a href="/visitor.html#sp-arena">SPORTS ARENAS</a></li>
+                       <li><a href="/visitor.html#reviews">REVIEWS</a></li>
+                       <li><a href="/visitor.html#faq">FAQ</a></li>
+                       <li><a href="/visitor.html#about">ABOUT</a></li>
+                       <li><a href="/visitor.html#contact">CONTACT</a></li>
+                       <li><a href="#" class="active">PROFILE</a></li>
+                     </ul>
+                </div>
+                <div class="hamburger-menu">
+                <div class="bar"></div>
+                </div>   
+             </div>
+        </div>
+        <div class="section">
+            <div class="side-nav">
+                <ul class="side-nav-container">
+                    <li><a href="management_home.html"><i class="far fa-user-circle"></i>Profile</a></li>
+                    <li><a href="manage_booking.html"><i class="far fa-bookmark"></i>Manage Booking</a></li>
+                    <li><a href="mana_reports.html"><i class="far fa-chart-bar"></i>Reports</a></li>
+                    <li><a href="manage_user.html"><i class="fas fa-users"></i>Manage User</a></li>
+                    <li><a href="user_setting_change.html"><i class="fas fa-user-cog"></i>Setting</a></li>
+                    <li><a onclick="document.getElementById('log-out').style.display='block'"><i class="fas fa-sign-out-alt"></i>Log Out</a></li>
+                </ul>
+            </div>
+            <div class="container">      
+                <div class="manage-booking">
+                    <button class="add-booking-pop-btn" onclick="document.getElementById('staff-add').style.display='block'" style="width:auto;"><i class="fas fa-user-plus"></i>Add Booking</button>
+                    <div class="booking-search-input-con">
+                        <input type="text" class="search-bookings">
+                        <input type="date" class="search-bookings">
+                        <input type="time" class="search-bookings">
+
+                    </div>
+                    <div id="staff-add" class="add-booking-fm-con">
+                    
+                    <form class="add-booking-frm-content animate" action="/action_page.php" method="post">
+                        <div class="add-booking-frm-container">
+                        <label for="uname"><b>First Name</b></label>
+                        <input type="text" placeholder="Enter First Name" name="uname" required>
+                        <label for="uname"><b>Last Name</b></label>
+                        <input type="text" placeholder="Enter Last Name" name="uname" required>
+                        <label for="uname"><b>Mobile No</b></label>
+                        <input type="tel" placeholder="Enter Mobile No" name="uname" required>
+                        <label for="uname"><b>Select Facility</b></label>
+                        <select>
+                            <option value="0">Select Staff</option>
+                            <option value="1">Administartion Staff</option>
+                            <option value="2">Booking Handeling Staff</option>
+                          </select>
+                        <label for="psw"><b>Booked Date</b></label>
+                        <input type="date" placeholder="Enter Password" name="psw" required>
+                        <label for="psw"><b>Booking Date</b></label>
+                        <input type="date" placeholder="Enter Password" name="psw" required>
+                        <label for="psw"><b>Start Time</b></label>
+                        <input type="time" placeholder="Enter Password" name="psw" required>
+                        <label for="psw"><b>End Time</b></label>
+                        <input type="time" placeholder="Enter Password" name="psw" required>
+
+
+                        </div>
+                        <button type="submit" class="add-booking-btn"><i class="fas fa-user-plus"></i>Add Booking</button>             
+                        <div class="add-booking-frm-container" style="background-color:#f1f1f1">
+                        <button type="button" onclick="document.getElementById('staff-add').style.display='none'" class="cancelbtn">Cancel</button>
+                        </div>
+                    </form>
+                    </div>
+
+                    <table class="booking-table">
+                        <thead>
+                            <th>Booking Id</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Mobile No</th>
+                            <th>Booked Date</th>
+                            <th>Booking Date</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                            <th>Facility ID</th>
+                            <th>Payment Status</th>
+                            <th>Payment</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-label="Booking ID :">1</td>
+                                <td data-label="First Name :">Dinesh</td>
+                                <td data-label="Last Name :">Lakshan</td>
+                                <td data-label="Mobile No :">0914564561</td>
+                                <td data-label="Booked Date:">2021/08/29</td>
+                                <td data-label="Booking Date:">2021/10/29</td>
+                                <td data-label="Start Time:">06.30 pm</td>
+                                <td data-label="End Time:">08.30 pm</td>
+                                <td data-label="Facility ID:">1</td>
+                                <td data-label="Payment Status:">Pending</td>
+                                <td data-label="Payment:">Rs. 5000</td>
+
+                            </tr>
+                            <tr>
+                                <td data-label="Booking ID :">1</td>
+                                <td data-label="First Name :">Dinesh</td>
+                                <td data-label="Last Name :">Lakshan</td>
+                                <td data-label="Mobile No :">0914564561</td>
+                                <td data-label="Booked Date:">2021/08/29</td>
+                                <td data-label="Booking Date:">2021/10/29</td>
+                                <td data-label="Start Time:">06.30 pm</td>
+                                <td data-label="End Time:">08.30 pm</td>
+                                <td data-label="Facility ID:">1</td>
+                                <td data-label="Payment Status:">Pending</td>
+                                <td data-label="Payment:">Rs. 5000</td>
+
+                                
+                            </tr>
+                            <tr>                                
+                                <td data-label="Booking ID :">1</td>
+                                <td data-label="First Name :">Dinesh</td>
+                                <td data-label="Last Name :">Lakshan</td>
+                                <td data-label="Mobile No :">0914564561</td>
+                                <td data-label="Booked Date:">2021/08/29</td>
+                                <td data-label="Booking Date:">2021/10/29</td>
+                                <td data-label="Start Time:">06.30 pm</td>
+                                <td data-label="End Time:">08.30 pm</td>
+                                <td data-label="Facility ID:">1</td>
+                                <td data-label="Payment Status:">Pending</td>
+                                <td data-label="Payment:">Rs. 5000</td>
+
+                            </tr>
+                            <tr>
+                                <td data-label="Booking ID :">1</td>
+                                <td data-label="First Name :">Dinesh</td>
+                                <td data-label="Last Name :">Lakshan</td>
+                                <td data-label="Mobile No :">0914564561</td>
+                                <td data-label="Booked Date:">2021/08/29</td>
+                                <td data-label="Booking Date:">2021/10/29</td>
+                                <td data-label="Start Time:">06.30 pm</td>
+                                <td data-label="End Time:">08.30 pm</td>
+                                <td data-label="Facility ID:">1</td>
+                                <td data-label="Payment Status:">Pending</td>
+                                <td data-label="Payment:">Rs. 5000</td>
+
+                            </tr>
+                            <tr>
+                                <td data-label="Booking ID :">1</td>
+                                <td data-label="First Name :">Dinesh</td>
+                                <td data-label="Last Name :">Lakshan</td>
+                                <td data-label="Mobile No :">0914564561</td>
+                                <td data-label="Booked Date:">2021/08/29</td>
+                                <td data-label="Booking Date:">2021/10/29</td>
+                                <td data-label="Start Time:">06.30 pm</td>
+                                <td data-label="End Time:">08.30 pm</td>
+                                <td data-label="Facility ID:">1</td>
+                                <td data-label="Payment Status:">Pending</td>
+                                <td data-label="Payment:">Rs. 5000</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
+            <div id="log-out" class="log-out">
+                <form class="log-out-content" action="/action_page.php">
+                  <div class="log-out-con">
+                    <h1>Log Out</h1>
+                    <p>Are you sure you want to log out from your account?</p>
+                  
+                    <div class="clearfix">
+                      <button type="button" onclick="document.getElementById('log-out').style.display='none'" class="cancelbutton">Cancel</button>
+                      <button type="button" onclick="document.getElementById('log-out').style.display='none'" class="log-out-btn">Log Out</button>
+                    </div>
+                  </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script src="/public/js/slider.js"></script>
+    
+</body>
+</html>
