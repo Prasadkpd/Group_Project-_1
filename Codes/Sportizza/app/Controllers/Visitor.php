@@ -46,8 +46,8 @@ class Home extends \Core\Controller
             'colours' => ['red', 'green', 'blue']
         ]);
         */
-        View::renderTemplate('Home/index.html', [
-            'name'    => 'Dave',
+        View::renderTemplate('visitor.html', [
+            'name'    => 'Visitor',
             'colours' => ['red', 'green', 'blue']
         ]);
     }

@@ -598,8 +598,8 @@ input {
 
 .search-results {
   padding-top: 8rem;
-  /* overflow: hidden; */
-  /* display:none; */
+  overflow: hidden;
+  display:none;
 }
 
 .search-results h3 {

@@ -5,7 +5,7 @@ namespace App;
 /**
  * Application configuration
  *
- * PHP version 5.4
+ * PHP version 7.4.12
  */
 class Config
 {
@@ -20,7 +20,7 @@ class Config
      * Database name
      * @var string
      */
-    const DB_NAME = 'mvc';
+    const DB_NAME = 'Sportizza';
 
     /**
      * Database user
