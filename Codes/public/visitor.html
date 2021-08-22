@@ -20,7 +20,7 @@
     <header>
       <!-- Navigation Bar -->
       <nav>
-        <div class="container">
+        <div class="nav-container">
           <div class="logo">
             <a href="visitor.html"><img src="images/logos/logo-white-final.svg"></a>
           </div>
@@ -53,7 +53,7 @@
               Book a Sports Arena without any hassle
               with the number 1 Sports arena Booking App in Srilanka.
             </p>
-            <a href="#" class="book-now-btn">Book Now</a>
+            <a href="#sp-arena" class="book-now-btn">Book Now</a>
           </div>
 
           <div class="column-2 slideshow">
@@ -102,8 +102,8 @@
           <h3 class="title" data-title="">Sports Arenas</h3>
         </div>
 
-        <div class="slideshow">
-          <div class="slideshow-container">
+        <div class="sports-arena-slideshow">
+          <div class="sports-arena-slideshow-container">
 
             <div class="sports-arena-slides fade">
               <img src="images/visitor/search/basketball.jpg" style="width:100%">
@@ -125,7 +125,6 @@
               <img src="images/visitor/search/volleyball.jpg" style="width:100%">
             </div>
 
-
           </div>
         </div>
         <div class=sp-arena-box>
@@ -133,22 +132,22 @@
 
             <div class="column-1">
               <div class="filter">
-                <button onclick="myFunction()" class="dropbtn">Location
+                <button onclick="showLocationList()" class="dropbtn">Location
                   <i class="fas fa-caret-down"></i></button>
-                <div id="myDropdown" class="dropdown-content">
-                  <a href="#home">Home</a>
-                  <a href="#about">About</a>
-                  <a href="#contact">Contact</a>
+                <div id="locationDropdown" class="dropdown-content">
+                  <a href="#home">Nugegoda</a>
+                  <a href="#about">Kelaniya</a>
+                  <a href="#contact">Dehiwala</a>
                 </div>
               </div>
 
               <div class="filter">
-                <button onclick="myFunction1()" class="dropbtn1">Category
+                <button onclick="showCategoryList()" class="dropbtn1">Category
                   <i class="fas fa-caret-down"></i></button>
-                <div id="myDropdown1" class="dropdown-content1">
-                  <a href="#home">Home</a>
-                  <a href="#about">About</a>
-                  <a href="#contact">Contact</a>
+                <div id="categoryDropdown" class="dropdown-content1">
+                  <a href="#home">Cricket</a>
+                  <a href="#about">Chess</a>
+                  <a href="#contact">Basketball</a>
                 </div>
               </div>
 
@@ -158,19 +157,124 @@
               <div class="search-wrap">
                 <div class="search-box">
                   <input type="text" class="input" placeholder="Search by sports arena name">
-                  <!-- <a href="#search-results2" class="btn search-btn" ONCLICK="ShowSearchResults()">Search</a> -->
+                  <a href="#search-results2" class="btn search-btn" ONCLICK="ShowSearchResults()">Search</a>
                   <!-- <button ONCLICK="ShowAndHide()" class="btn search-btn" href="#search-results-id">Search</button> -->
 
-                  <!-- <button class="btn search-btn" onclick="showHiddenContent()">Search</button> -->
+                  <!-- <button class="btn search-btn" ONCLICK="ShowSearchResults()">Search</button> -->
                 </div>
               </div>
             </div>
-            <button class="btn search-btn" ONCLICK="showAndHide()">Search</button>
           </div>
         </div>
       </div>
 
+
+
+      <!-- Search-results -->
+      <!-- <div class="container" id="search-results-id">
+        <div class="search-results">
+
+          <h3>Search Results:
+            <div class="chip" style="margin-left: 2rem;">
+              Nugegoda
+              <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+            </div>
+            <div class="chip" style="margin-left: 2rem;">
+              Cricket Grounds
+              <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+            </div>
+          </h3>
+
+          <div class="result-details">
+            <h4><a href="">Mercantile Cricket Grounds</a></h4>
+            <div class="sp-arena-summary-items">
+              <h5>City:<h6> Colombo 07</h6>
+              </h5>
+
+              <h5>Category: <h6> Cricket Ground</h6>
+              </h5>
+              <a href="#" class="btn check-availability-btn">Check Availability</a>
+              
+            </div>
+            
+          </div>
+
+          <div class="result-details">
+            <h4><a href="">Mercantile Cricket Grounds</a></h4>
+            <div class="sp-arena-summary-items">
+              <h5>City:<h6> Colombo 07</h6>
+              </h5>
+
+              <h5>Category: <h6> Cricket Ground</h6>
+              </h5>
+
+              <a href="#" class="btn check-availability-btn">Check Availability</a>
+            </div>
+          </div>
+          <div class="result-details">
+            <h4><a href="">Mercantile Cricket Grounds</a></h4>
+            <div class="sp-arena-summary-items">
+              <h5>City:<h6> Colombo 07</h6>
+              </h5>
+
+              <h5>Category: <h6> Cricket Ground</h6>
+              </h5>
+
+              <a href="#" class="btn check-availability-btn">Check Availability</a>
+            </div>
+          </div>
+          <div class="result-details">
+            <h4><a href="">Mercantile Cricket Grounds</a></h4>
+            <div class="sp-arena-summary-items">
+              <h5>City:<h6> Colombo 07</h6>
+              </h5>
+
+              <h5>Category: <h6> Cricket Ground</h6>
+              </h5>
+
+              <a href="#" class="btn check-availability-btn">Check Availability</a>
+            </div>
+          </div>
+          <div class="result-details">
+            <h4><a href="">Mercantile Cricket Grounds</a></h4>
+            <div class="sp-arena-summary-items">
+              <h5>City:<h6> Colombo 07</h6>
+              </h5>
+
+              <h5>Category: <h6> Cricket Ground</h6>
+              </h5>
+
+              <a href="#" class="btn check-availability-btn">Check Availability</a>
+            </div>
+          </div>
+          <div class="result-details">
+            <h4><a href="">Mercantile Cricket Grounds</a></h4>
+            <div class="sp-arena-summary-items">
+              <h5>City:<h6> Colombo 07</h6>
+              </h5>
+
+              <h5>Category: <h6> Cricket Ground</h6>
+              </h5>
+
+              <a href="#" class="btn check-availability-btn">Check Availability</a>
+            </div>
+          </div>
+          <div class="result-details">
+            <h4><a href="">Mercantile Cricket Grounds</a></h4>
+            <div class="sp-arena-summary-items">
+              <h5>City:<h6> Colombo 07</h6>
+              </h5>
+
+              <h5>Category: <h6> Cricket Ground</h6>
+              </h5>
+
+              <a href="#" class="btn check-availability-btn">Check Availability</a>
+            </div>
+          </div>
+        </div>
+      </div> -->
     </section>
+
     <section class="search-results2 section" id="search-results2" Style="display:none">
       <div class="container">
         <div class="search-results">
@@ -623,16 +727,12 @@
 
         <div class="tabs">
           <div class="tab-header">
-            <div class="active">
-              FAQ by Customers
-            </div>
-            <div>
-              FAQ by Sports Arena
-            </div>
+            <button class="tablinks" onclick="changeFaq(event, 'Customers')" id="defaultButton">FAQ by Customers</button>
+            <button class="tablinks" onclick="changeFaq(event, 'SportsArena')">FAQ by Sports Arena</button>
           </div>
 
           <div class="tab-body">
-            <div class="active">
+            <div class="tabcontent" id="Customers">
 
               <section class="accordion">
 
@@ -706,7 +806,7 @@
 
 
             </div>
-            <div>
+            <div class="tabcontent" id="SportsArena">
               <section class="accordion">
 
                 <section class="accordion-item" id="question2b">

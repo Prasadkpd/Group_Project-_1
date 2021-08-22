@@ -14,7 +14,7 @@ class Posts extends \Core\Controller
 {
 
     /**
-     * Show the index page
+     * Show the customer page
      *
      * @return void
      */
@@ -22,8 +22,8 @@ class Posts extends \Core\Controller
     {
         $posts = Post::getAll();
 
-        View::renderTemplate('Posts/index.html', [
-            'posts' => $posts
+        View::renderTemplate('Visitor/visitor.php', [
+            'customer' => $posts
         ]);
     }
 

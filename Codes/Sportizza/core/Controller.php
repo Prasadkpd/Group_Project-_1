@@ -7,6 +7,8 @@ namespace Core;
  *
  * PHP version 7.4.12
  */
+
+// Only create objects that extends Controller class
 abstract class Controller
 {
 

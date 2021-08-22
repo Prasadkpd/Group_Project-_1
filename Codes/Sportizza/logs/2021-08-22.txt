@@ -1,0 +1,912 @@
+[22-Aug-2021 04:15:26 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/lo...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:15:26 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('js/app.js')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:15:26 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/Sp...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:15:28 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('apple-touch-ico...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:15:28 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('apple-touch-ico...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:17:08 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/lo...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:17:08 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('js/app.js')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:17:08 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/Sp...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:17:11 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('js/app.js')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:17:11 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/Sp...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:17:11 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/lo...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:18:00 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/lo...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:18:00 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/Sp...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:18:00 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('js/app.js')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:29:03 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/Sp...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:29:03 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/lo...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:29:03 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('js/app.js')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:29:05 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/lo...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:29:05 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('js/app.js')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:29:05 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/Sp...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:30:48 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/lo...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:30:48 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/Sp...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:30:48 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('js/app.js')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:30:50 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/lo...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:30:50 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/Sp...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:30:50 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('js/app.js')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:31:19 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('js/app.js')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:31:19 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/lo...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:31:19 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/Sp...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:31:21 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/lo...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:31:21 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/Sp...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:31:21 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('js/app.js')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:31:23 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('js/app.js')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:31:23 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/Sp...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:31:23 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/lo...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:31:39 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/lo...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:31:39 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('js/app.js')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:31:39 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/Sp...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:32:43 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/lo...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:32:43 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/Sp...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:32:46 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/Sp...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:32:46 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/lo...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:32:49 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/Sp...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:32:49 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/lo...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:32:49 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('js/app.js')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:33:15 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/lo...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:33:15 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('js/app.js')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:33:15 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/Sp...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:33:37 UTC] Uncaught exception: 'Twig_Error_Loader' with message 'Unable to find template "customer.php" (looked into: ../App/Views) in "Home/index.html" at line 1.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('customer.php')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('customer.php')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('customer.php', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Template.php(286): Twig_Environment->loadTemplate('customer.php', NULL)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code(11): Twig_Template->loadTemplate('customer.php', 'Home/index.html', 1)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(411): __TwigTemplate_ffde33c2d63dbb262ae07bac7fde77e98d1da7e2f9b45161664301d2de1e5307->__construct(Object(Twig_Environment))
+#6 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(347): Twig_Environment->loadTemplate('Home/index.html')
+#7 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/View.php(51): Twig_Environment->render('Home/index.html', Array)
+#8 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/App/Controllers/Home.php(50): Core\View::renderTemplate('Home/index.html', Array)
+#9 [internal function]: App\Controllers\Home->indexAction()
+#10 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Controller.php(50): call_user_func_array(Array, Array)
+#11 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php(121): Core\Controller->__call('index', Array)
+#12 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('')
+#13 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php' on line 215
+[22-Aug-2021 04:33:37 UTC] PHP Fatal error:  Uncaught Twig_Error_Syntax: Unknown "endblock" tag in "500.html" at line 11. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php:178
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php(100): Twig_Parser->subparse(NULL, false)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(615): Twig_Parser->parse(Object(Twig_TokenStream))
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(667): Twig_Environment->parse(Object(Twig_TokenStream))
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(396): Twig_Environment->compileSource('{% extends "bas...', '500.html')
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(347): Twig_Environment->loadTemplate('500.html')
+#5 /Applications/MAMP/htdocs/Group_Project-_1/C in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php on line 178
+[22-Aug-2021 04:33:37 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/Sp...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:33:37 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('js/app.js')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:33:37 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/lo...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:33:39 UTC] Uncaught exception: 'Twig_Error_Loader' with message 'Unable to find template "customer.php" (looked into: ../App/Views) in "Home/index.html" at line 1.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('customer.php')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('customer.php')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('customer.php', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Template.php(286): Twig_Environment->loadTemplate('customer.php', NULL)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code(11): Twig_Template->loadTemplate('customer.php', 'Home/index.html', 1)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(411): __TwigTemplate_ffde33c2d63dbb262ae07bac7fde77e98d1da7e2f9b45161664301d2de1e5307->__construct(Object(Twig_Environment))
+#6 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(347): Twig_Environment->loadTemplate('Home/index.html')
+#7 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/View.php(51): Twig_Environment->render('Home/index.html', Array)
+#8 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/App/Controllers/Home.php(50): Core\View::renderTemplate('Home/index.html', Array)
+#9 [internal function]: App\Controllers\Home->indexAction()
+#10 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Controller.php(50): call_user_func_array(Array, Array)
+#11 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php(121): Core\Controller->__call('index', Array)
+#12 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('')
+#13 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php' on line 215
+[22-Aug-2021 04:33:39 UTC] PHP Fatal error:  Uncaught Twig_Error_Syntax: Unknown "endblock" tag in "500.html" at line 11. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php:178
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php(100): Twig_Parser->subparse(NULL, false)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(615): Twig_Parser->parse(Object(Twig_TokenStream))
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(667): Twig_Environment->parse(Object(Twig_TokenStream))
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(396): Twig_Environment->compileSource('{% extends "bas...', '500.html')
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(347): Twig_Environment->loadTemplate('500.html')
+#5 /Applications/MAMP/htdocs/Group_Project-_1/C in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php on line 178
+[22-Aug-2021 04:33:39 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/lo...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:33:39 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('js/app.js')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:33:39 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/Sp...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:33:52 UTC] Uncaught exception: 'Twig_Error_Loader' with message 'Unable to find template "customer.php" (looked into: ../App/Views) in "Home/index.html" at line 1.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('customer.php')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('customer.php')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('customer.php', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Template.php(286): Twig_Environment->loadTemplate('customer.php', NULL)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code(11): Twig_Template->loadTemplate('customer.php', 'Home/index.html', 1)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(411): __TwigTemplate_ffde33c2d63dbb262ae07bac7fde77e98d1da7e2f9b45161664301d2de1e5307->__construct(Object(Twig_Environment))
+#6 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(347): Twig_Environment->loadTemplate('Home/index.html')
+#7 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/View.php(51): Twig_Environment->render('Home/index.html', Array)
+#8 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/App/Controllers/Home.php(50): Core\View::renderTemplate('Home/index.html', Array)
+#9 [internal function]: App\Controllers\Home->indexAction()
+#10 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Controller.php(50): call_user_func_array(Array, Array)
+#11 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php(121): Core\Controller->__call('index', Array)
+#12 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('')
+#13 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php' on line 215
+[22-Aug-2021 04:33:52 UTC] PHP Fatal error:  Uncaught Twig_Error_Syntax: Unknown "endblock" tag in "500.html" at line 11. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php:178
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php(100): Twig_Parser->subparse(NULL, false)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(615): Twig_Parser->parse(Object(Twig_TokenStream))
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(667): Twig_Environment->parse(Object(Twig_TokenStream))
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(396): Twig_Environment->compileSource('{% extends "bas...', '500.html')
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(347): Twig_Environment->loadTemplate('500.html')
+#5 /Applications/MAMP/htdocs/Group_Project-_1/C in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php on line 178
+[22-Aug-2021 04:33:52 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('js/app.js')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:33:52 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/lo...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:33:52 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/Sp...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:33:57 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('controller/')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:33:57 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('controller/imag...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:33:57 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('controller/imag...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:33:57 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('controller/js/a...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:34:01 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('customer')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:34:01 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/lo...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:34:01 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/Sp...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:34:01 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('js/app.js')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:34:14 UTC] Uncaught exception: 'Exception' with message 'Controller class App\Controllers\Customer not found'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('customer/custom...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 127
+[22-Aug-2021 04:34:14 UTC] PHP Fatal error:  Uncaught Twig_Error_Syntax: Unknown "endblock" tag in "500.html" at line 11. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php:178
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php(100): Twig_Parser->subparse(NULL, false)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(615): Twig_Parser->parse(Object(Twig_TokenStream))
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(667): Twig_Environment->parse(Object(Twig_TokenStream))
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(396): Twig_Environment->compileSource('{% extends "bas...', '500.html')
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(347): Twig_Environment->loadTemplate('500.html')
+#5 /Applications/MAMP/htdocs/Group_Project-_1/C in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php on line 178
+[22-Aug-2021 04:34:16 UTC] Uncaught exception: 'Exception' with message 'Controller class App\Controllers\Customer not found'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('customer/custom...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 127
+[22-Aug-2021 04:34:16 UTC] PHP Fatal error:  Uncaught Twig_Error_Syntax: Unknown "endblock" tag in "500.html" at line 11. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php:178
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php(100): Twig_Parser->subparse(NULL, false)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(615): Twig_Parser->parse(Object(Twig_TokenStream))
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(667): Twig_Environment->parse(Object(Twig_TokenStream))
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(396): Twig_Environment->compileSource('{% extends "bas...', '500.html')
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(347): Twig_Environment->loadTemplate('500.html')
+#5 /Applications/MAMP/htdocs/Group_Project-_1/C in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php on line 178
+[22-Aug-2021 04:34:18 UTC] Uncaught exception: 'Twig_Error_Loader' with message 'Unable to find template "customer.php" (looked into: ../App/Views) in "Home/index.html" at line 1.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('customer.php')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('customer.php')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('customer.php', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Template.php(286): Twig_Environment->loadTemplate('customer.php', NULL)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code(11): Twig_Template->loadTemplate('customer.php', 'Home/index.html', 1)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(411): __TwigTemplate_ffde33c2d63dbb262ae07bac7fde77e98d1da7e2f9b45161664301d2de1e5307->__construct(Object(Twig_Environment))
+#6 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(347): Twig_Environment->loadTemplate('Home/index.html')
+#7 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/View.php(51): Twig_Environment->render('Home/index.html', Array)
+#8 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/App/Controllers/Home.php(50): Core\View::renderTemplate('Home/index.html', Array)
+#9 [internal function]: App\Controllers\Home->indexAction()
+#10 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Controller.php(50): call_user_func_array(Array, Array)
+#11 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php(121): Core\Controller->__call('index', Array)
+#12 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('')
+#13 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php' on line 215
+[22-Aug-2021 04:34:18 UTC] PHP Fatal error:  Uncaught Twig_Error_Syntax: Unknown "endblock" tag in "500.html" at line 11. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php:178
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php(100): Twig_Parser->subparse(NULL, false)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(615): Twig_Parser->parse(Object(Twig_TokenStream))
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(667): Twig_Environment->parse(Object(Twig_TokenStream))
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(396): Twig_Environment->compileSource('{% extends "bas...', '500.html')
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(347): Twig_Environment->loadTemplate('500.html')
+#5 /Applications/MAMP/htdocs/Group_Project-_1/C in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php on line 178
+[22-Aug-2021 04:34:18 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/lo...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:34:18 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/Sp...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:34:18 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('js/app.js')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:36:22 UTC] Uncaught exception: 'Twig_Error_Loader' with message 'Unable to find template "Home/index.html" (looked into: ../App/Views).'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('Home/index.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('Home/index.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('Home/index.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(347): Twig_Environment->loadTemplate('Home/index.html')
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/View.php(51): Twig_Environment->render('Home/index.html', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/App/Controllers/Home.php(50): Core\View::renderTemplate('Home/index.html', Array)
+#6 [internal function]: App\Controllers\Home->indexAction()
+#7 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Controller.php(50): call_user_func_array(Array, Array)
+#8 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php(121): Core\Controller->__call('index', Array)
+#9 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('')
+#10 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php' on line 215
+[22-Aug-2021 04:36:22 UTC] PHP Fatal error:  Uncaught Twig_Error_Syntax: Unknown "endblock" tag in "500.html" at line 11. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php:178
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php(100): Twig_Parser->subparse(NULL, false)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(615): Twig_Parser->parse(Object(Twig_TokenStream))
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(667): Twig_Environment->parse(Object(Twig_TokenStream))
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(396): Twig_Environment->compileSource('{% extends "bas...', '500.html')
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(347): Twig_Environment->loadTemplate('500.html')
+#5 /Applications/MAMP/htdocs/Group_Project-_1/C in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php on line 178
+[22-Aug-2021 04:36:22 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/lo...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:36:22 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/Sp...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:36:22 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('js/app.js')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:36:22 UTC] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "base.html" (looked into: ../App/Views) in "404.html" at line 1. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('base.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('base.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('base.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Template.php(286): Twig_Environment->loadTemplate('base.html', NULL)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code(11): Twig in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php on line 215
+[22-Aug-2021 04:36:22 UTC] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "base.html" (looked into: ../App/Views) in "404.html" at line 1. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('base.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('base.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('base.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Template.php(286): Twig_Environment->loadTemplate('base.html', NULL)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code(11): Twig in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php on line 215
+[22-Aug-2021 04:36:22 UTC] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "base.html" (looked into: ../App/Views) in "404.html" at line 1. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('base.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('base.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('base.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Template.php(286): Twig_Environment->loadTemplate('base.html', NULL)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code(11): Twig in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php on line 215
+[22-Aug-2021 04:45:02 UTC] Uncaught exception: 'Twig_Error_Loader' with message 'Unable to find template "Home/index.html" (looked into: ../App/Views).'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('Home/index.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('Home/index.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('Home/index.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(347): Twig_Environment->loadTemplate('Home/index.html')
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/View.php(51): Twig_Environment->render('Home/index.html', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/App/Controllers/Home.php(50): Core\View::renderTemplate('Home/index.html', Array)
+#6 [internal function]: App\Controllers\Home->indexAction()
+#7 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Controller.php(50): call_user_func_array(Array, Array)
+#8 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php(121): Core\Controller->__call('index', Array)
+#9 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('')
+#10 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php' on line 215
+[22-Aug-2021 04:45:02 UTC] PHP Fatal error:  Uncaught Twig_Error_Syntax: Unknown "endblock" tag in "500.html" at line 11. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php:178
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php(100): Twig_Parser->subparse(NULL, false)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(615): Twig_Parser->parse(Object(Twig_TokenStream))
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(667): Twig_Environment->parse(Object(Twig_TokenStream))
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(396): Twig_Environment->compileSource('{% extends "bas...', '500.html')
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(347): Twig_Environment->loadTemplate('500.html')
+#5 /Applications/MAMP/htdocs/Group_Project-_1/C in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php on line 178
+[22-Aug-2021 04:45:02 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/Sp...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:45:02 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('js/app.js')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:45:02 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/lo...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:45:02 UTC] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "base.html" (looked into: ../App/Views) in "404.html" at line 1. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('base.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('base.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('base.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Template.php(286): Twig_Environment->loadTemplate('base.html', NULL)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code(11): Twig in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php on line 215
+[22-Aug-2021 04:45:02 UTC] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "base.html" (looked into: ../App/Views) in "404.html" at line 1. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('base.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('base.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('base.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Template.php(286): Twig_Environment->loadTemplate('base.html', NULL)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code(11): Twig in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php on line 215
+[22-Aug-2021 04:45:02 UTC] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "base.html" (looked into: ../App/Views) in "404.html" at line 1. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('base.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('base.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('base.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Template.php(286): Twig_Environment->loadTemplate('base.html', NULL)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code(11): Twig in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php on line 215
+[22-Aug-2021 04:45:03 UTC] Uncaught exception: 'Twig_Error_Loader' with message 'Unable to find template "Home/index.html" (looked into: ../App/Views).'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('Home/index.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('Home/index.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('Home/index.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(347): Twig_Environment->loadTemplate('Home/index.html')
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/View.php(51): Twig_Environment->render('Home/index.html', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/App/Controllers/Home.php(50): Core\View::renderTemplate('Home/index.html', Array)
+#6 [internal function]: App\Controllers\Home->indexAction()
+#7 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Controller.php(50): call_user_func_array(Array, Array)
+#8 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php(121): Core\Controller->__call('index', Array)
+#9 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('')
+#10 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php' on line 215
+[22-Aug-2021 04:45:03 UTC] PHP Fatal error:  Uncaught Twig_Error_Syntax: Unknown "endblock" tag in "500.html" at line 11. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php:178
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php(100): Twig_Parser->subparse(NULL, false)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(615): Twig_Parser->parse(Object(Twig_TokenStream))
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(667): Twig_Environment->parse(Object(Twig_TokenStream))
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(396): Twig_Environment->compileSource('{% extends "bas...', '500.html')
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(347): Twig_Environment->loadTemplate('500.html')
+#5 /Applications/MAMP/htdocs/Group_Project-_1/C in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php on line 178
+[22-Aug-2021 04:45:03 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/Sp...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:45:03 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('images/logos/lo...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:45:03 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(49): Core\Router->dispatch('js/app.js')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:45:03 UTC] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "base.html" (looked into: ../App/Views) in "404.html" at line 1. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('base.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('base.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('base.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Template.php(286): Twig_Environment->loadTemplate('base.html', NULL)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code(11): Twig in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php on line 215
+[22-Aug-2021 04:45:03 UTC] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "base.html" (looked into: ../App/Views) in "404.html" at line 1. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('base.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('base.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('base.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Template.php(286): Twig_Environment->loadTemplate('base.html', NULL)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code(11): Twig in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php on line 215
+[22-Aug-2021 04:45:03 UTC] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "base.html" (looked into: ../App/Views) in "404.html" at line 1. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('base.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('base.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('base.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Template.php(286): Twig_Environment->loadTemplate('base.html', NULL)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code(11): Twig in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php on line 215
+[22-Aug-2021 04:47:23 UTC] Uncaught exception: 'Twig_Error_Loader' with message 'Unable to find template "Home/index.html" (looked into: ../App/Views).'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('Home/index.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('Home/index.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('Home/index.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(347): Twig_Environment->loadTemplate('Home/index.html')
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/View.php(51): Twig_Environment->render('Home/index.html', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/App/Controllers/Home.php(50): Core\View::renderTemplate('Home/index.html', Array)
+#6 [internal function]: App\Controllers\Home->indexAction()
+#7 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Controller.php(50): call_user_func_array(Array, Array)
+#8 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php(121): Core\Controller->__call('index', Array)
+#9 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('')
+#10 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php' on line 215
+[22-Aug-2021 04:47:23 UTC] PHP Fatal error:  Uncaught Twig_Error_Syntax: Unknown "endblock" tag in "500.html" at line 11. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php:178
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php(100): Twig_Parser->subparse(NULL, false)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(615): Twig_Parser->parse(Object(Twig_TokenStream))
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(667): Twig_Environment->parse(Object(Twig_TokenStream))
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(396): Twig_Environment->compileSource('{% extends "bas...', '500.html')
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(347): Twig_Environment->loadTemplate('500.html')
+#5 /Applications/MAMP/htdocs/Group_Project-_1/C in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php on line 178
+[22-Aug-2021 04:47:23 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('images/logos/lo...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:47:23 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('images/logos/Sp...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:47:23 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('js/app.js')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:47:23 UTC] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "base.html" (looked into: ../App/Views) in "404.html" at line 1. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('base.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('base.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('base.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Template.php(286): Twig_Environment->loadTemplate('base.html', NULL)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code(11): Twig in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php on line 215
+[22-Aug-2021 04:47:23 UTC] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "base.html" (looked into: ../App/Views) in "404.html" at line 1. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('base.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('base.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('base.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Template.php(286): Twig_Environment->loadTemplate('base.html', NULL)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code(11): Twig in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php on line 215
+[22-Aug-2021 04:47:23 UTC] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "base.html" (looked into: ../App/Views) in "404.html" at line 1. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('base.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('base.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('base.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Template.php(286): Twig_Environment->loadTemplate('base.html', NULL)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code(11): Twig in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php on line 215
+[22-Aug-2021 04:47:24 UTC] Uncaught exception: 'Twig_Error_Loader' with message 'Unable to find template "Home/index.html" (looked into: ../App/Views).'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('Home/index.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('Home/index.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('Home/index.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(347): Twig_Environment->loadTemplate('Home/index.html')
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/View.php(51): Twig_Environment->render('Home/index.html', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/App/Controllers/Home.php(50): Core\View::renderTemplate('Home/index.html', Array)
+#6 [internal function]: App\Controllers\Home->indexAction()
+#7 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Controller.php(50): call_user_func_array(Array, Array)
+#8 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php(121): Core\Controller->__call('index', Array)
+#9 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('')
+#10 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php' on line 215
+[22-Aug-2021 04:47:24 UTC] PHP Fatal error:  Uncaught Twig_Error_Syntax: Unknown "endblock" tag in "500.html" at line 11. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php:178
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php(100): Twig_Parser->subparse(NULL, false)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(615): Twig_Parser->parse(Object(Twig_TokenStream))
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(667): Twig_Environment->parse(Object(Twig_TokenStream))
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(396): Twig_Environment->compileSource('{% extends "bas...', '500.html')
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(347): Twig_Environment->loadTemplate('500.html')
+#5 /Applications/MAMP/htdocs/Group_Project-_1/C in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php on line 178
+[22-Aug-2021 04:47:24 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('images/logos/lo...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:47:24 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('images/logos/Sp...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:47:24 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('js/app.js')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:47:24 UTC] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "base.html" (looked into: ../App/Views) in "404.html" at line 1. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('base.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('base.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('base.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Template.php(286): Twig_Environment->loadTemplate('base.html', NULL)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code(11): Twig in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php on line 215
+[22-Aug-2021 04:47:24 UTC] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "base.html" (looked into: ../App/Views) in "404.html" at line 1. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('base.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('base.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('base.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Template.php(286): Twig_Environment->loadTemplate('base.html', NULL)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code(11): Twig in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php on line 215
+[22-Aug-2021 04:47:24 UTC] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "base.html" (looked into: ../App/Views) in "404.html" at line 1. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('base.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('base.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('base.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Template.php(286): Twig_Environment->loadTemplate('base.html', NULL)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code(11): Twig in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php on line 215
+[22-Aug-2021 04:48:23 UTC] Uncaught exception: 'Twig_Error_Loader' with message 'Unable to find template "Home/index.html" (looked into: ../App/Views).'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('Home/index.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('Home/index.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('Home/index.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(347): Twig_Environment->loadTemplate('Home/index.html')
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/View.php(51): Twig_Environment->render('Home/index.html', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/App/Controllers/Home.php(50): Core\View::renderTemplate('Home/index.html', Array)
+#6 [internal function]: App\Controllers\Home->indexAction()
+#7 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Controller.php(50): call_user_func_array(Array, Array)
+#8 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php(121): Core\Controller->__call('index', Array)
+#9 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('')
+#10 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php' on line 215
+[22-Aug-2021 04:48:23 UTC] PHP Fatal error:  Uncaught Twig_Error_Syntax: Unknown "endblock" tag in "500.html" at line 11. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php:178
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php(100): Twig_Parser->subparse(NULL, false)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(615): Twig_Parser->parse(Object(Twig_TokenStream))
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(667): Twig_Environment->parse(Object(Twig_TokenStream))
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(396): Twig_Environment->compileSource('{% extends "bas...', '500.html')
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(347): Twig_Environment->loadTemplate('500.html')
+#5 /Applications/MAMP/htdocs/Group_Project-_1/C in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php on line 178
+[22-Aug-2021 04:48:23 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('js/app.js')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:48:23 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('images/logos/lo...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:48:23 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('images/logos/Sp...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:48:23 UTC] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "base.html" (looked into: ../App/Views) in "404.html" at line 1. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('base.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('base.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('base.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Template.php(286): Twig_Environment->loadTemplate('base.html', NULL)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code(11): Twig in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php on line 215
+[22-Aug-2021 04:48:23 UTC] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "base.html" (looked into: ../App/Views) in "404.html" at line 1. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('base.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('base.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('base.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Template.php(286): Twig_Environment->loadTemplate('base.html', NULL)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code(11): Twig in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php on line 215
+[22-Aug-2021 04:48:23 UTC] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "base.html" (looked into: ../App/Views) in "404.html" at line 1. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('base.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('base.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('base.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Template.php(286): Twig_Environment->loadTemplate('base.html', NULL)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code(11): Twig in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php on line 215
+[22-Aug-2021 04:48:25 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('customer')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:48:25 UTC] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "base.html" (looked into: ../App/Views) in "404.html" at line 1. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('base.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('base.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('base.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Template.php(286): Twig_Environment->loadTemplate('base.html', NULL)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code(11): Twig in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php on line 215
+[22-Aug-2021 04:48:28 UTC] Uncaught exception: 'Exception' with message 'Controller class App\Controllers\Customer not found'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('customer/custom...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 127
+[22-Aug-2021 04:48:28 UTC] PHP Fatal error:  Uncaught Twig_Error_Syntax: Unknown "endblock" tag in "500.html" at line 11. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php:178
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php(100): Twig_Parser->subparse(NULL, false)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(615): Twig_Parser->parse(Object(Twig_TokenStream))
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(667): Twig_Environment->parse(Object(Twig_TokenStream))
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(396): Twig_Environment->compileSource('{% extends "bas...', '500.html')
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(347): Twig_Environment->loadTemplate('500.html')
+#5 /Applications/MAMP/htdocs/Group_Project-_1/C in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php on line 178
+[22-Aug-2021 04:48:42 UTC] Uncaught exception: 'Twig_Error_Loader' with message 'Unable to find template "Home/index.html" (looked into: ../App/Views).'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('Home/index.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('Home/index.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('Home/index.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(347): Twig_Environment->loadTemplate('Home/index.html')
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/View.php(51): Twig_Environment->render('Home/index.html', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/App/Controllers/Home.php(50): Core\View::renderTemplate('Home/index.html', Array)
+#6 [internal function]: App\Controllers\Home->indexAction()
+#7 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Controller.php(50): call_user_func_array(Array, Array)
+#8 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php(121): Core\Controller->__call('index', Array)
+#9 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('')
+#10 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php' on line 215
+[22-Aug-2021 04:48:42 UTC] PHP Fatal error:  Uncaught Twig_Error_Syntax: Unknown "endblock" tag in "500.html" at line 11. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php:178
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php(100): Twig_Parser->subparse(NULL, false)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(615): Twig_Parser->parse(Object(Twig_TokenStream))
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(667): Twig_Environment->parse(Object(Twig_TokenStream))
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(396): Twig_Environment->compileSource('{% extends "bas...', '500.html')
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(347): Twig_Environment->loadTemplate('500.html')
+#5 /Applications/MAMP/htdocs/Group_Project-_1/C in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php on line 178
+[22-Aug-2021 04:48:42 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('images/logos/lo...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:48:42 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('js/app.js')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:48:42 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('images/logos/Sp...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:48:42 UTC] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "base.html" (looked into: ../App/Views) in "404.html" at line 1. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('base.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('base.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('base.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Template.php(286): Twig_Environment->loadTemplate('base.html', NULL)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code(11): Twig in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php on line 215
+[22-Aug-2021 04:48:42 UTC] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "base.html" (looked into: ../App/Views) in "404.html" at line 1. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('base.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('base.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('base.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Template.php(286): Twig_Environment->loadTemplate('base.html', NULL)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code(11): Twig in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php on line 215
+[22-Aug-2021 04:48:42 UTC] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "base.html" (looked into: ../App/Views) in "404.html" at line 1. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('base.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('base.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('base.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Template.php(286): Twig_Environment->loadTemplate('base.html', NULL)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code(11): Twig in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php on line 215
+[22-Aug-2021 04:48:48 UTC] Uncaught exception: 'Twig_Error_Loader' with message 'Unable to find template "Home/index.html" (looked into: ../App/Views).'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('Home/index.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('Home/index.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('Home/index.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(347): Twig_Environment->loadTemplate('Home/index.html')
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/View.php(51): Twig_Environment->render('Home/index.html', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/App/Controllers/Home.php(50): Core\View::renderTemplate('Home/index.html', Array)
+#6 [internal function]: App\Controllers\Home->indexAction()
+#7 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Controller.php(50): call_user_func_array(Array, Array)
+#8 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php(121): Core\Controller->__call('index', Array)
+#9 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('')
+#10 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php' on line 215
+[22-Aug-2021 04:48:48 UTC] PHP Fatal error:  Uncaught Twig_Error_Syntax: Unknown "endblock" tag in "500.html" at line 11. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php:178
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php(100): Twig_Parser->subparse(NULL, false)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(615): Twig_Parser->parse(Object(Twig_TokenStream))
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(667): Twig_Environment->parse(Object(Twig_TokenStream))
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(396): Twig_Environment->compileSource('{% extends "bas...', '500.html')
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(347): Twig_Environment->loadTemplate('500.html')
+#5 /Applications/MAMP/htdocs/Group_Project-_1/C in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php on line 178
+[22-Aug-2021 04:48:48 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('images/logos/lo...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:48:48 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('images/logos/Sp...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:48:48 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('js/app.js')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:48:48 UTC] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "base.html" (looked into: ../App/Views) in "404.html" at line 1. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('base.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('base.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('base.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Template.php(286): Twig_Environment->loadTemplate('base.html', NULL)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code(11): Twig in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php on line 215
+[22-Aug-2021 04:48:48 UTC] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "base.html" (looked into: ../App/Views) in "404.html" at line 1. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('base.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('base.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('base.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Template.php(286): Twig_Environment->loadTemplate('base.html', NULL)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code(11): Twig in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php on line 215
+[22-Aug-2021 04:48:48 UTC] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "base.html" (looked into: ../App/Views) in "404.html" at line 1. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('base.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('base.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('base.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Template.php(286): Twig_Environment->loadTemplate('base.html', NULL)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code(11): Twig in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php on line 215
+[22-Aug-2021 04:48:50 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('404')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:48:50 UTC] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "base.html" (looked into: ../App/Views) in "404.html" at line 1. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('base.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('base.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('base.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Template.php(286): Twig_Environment->loadTemplate('base.html', NULL)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code(11): Twig in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php on line 215
+[22-Aug-2021 04:48:52 UTC] Uncaught exception: 'Twig_Error_Loader' with message 'Unable to find template "Home/index.html" (looked into: ../App/Views).'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('Home/index.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('Home/index.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('Home/index.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(347): Twig_Environment->loadTemplate('Home/index.html')
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/View.php(51): Twig_Environment->render('Home/index.html', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/App/Controllers/Home.php(50): Core\View::renderTemplate('Home/index.html', Array)
+#6 [internal function]: App\Controllers\Home->indexAction()
+#7 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Controller.php(50): call_user_func_array(Array, Array)
+#8 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php(121): Core\Controller->__call('index', Array)
+#9 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('')
+#10 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php' on line 215
+[22-Aug-2021 04:48:52 UTC] PHP Fatal error:  Uncaught Twig_Error_Syntax: Unknown "endblock" tag in "500.html" at line 11. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php:178
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php(100): Twig_Parser->subparse(NULL, false)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(615): Twig_Parser->parse(Object(Twig_TokenStream))
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(667): Twig_Environment->parse(Object(Twig_TokenStream))
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(396): Twig_Environment->compileSource('{% extends "bas...', '500.html')
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(347): Twig_Environment->loadTemplate('500.html')
+#5 /Applications/MAMP/htdocs/Group_Project-_1/C in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Parser.php on line 178
+[22-Aug-2021 04:48:52 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('images/logos/Sp...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:48:52 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('js/app.js')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:48:52 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('images/logos/lo...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[22-Aug-2021 04:48:52 UTC] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "base.html" (looked into: ../App/Views) in "404.html" at line 1. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('base.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('base.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('base.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Template.php(286): Twig_Environment->loadTemplate('base.html', NULL)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code(11): Twig in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php on line 215
+[22-Aug-2021 04:48:52 UTC] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "base.html" (looked into: ../App/Views) in "404.html" at line 1. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('base.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('base.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('base.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Template.php(286): Twig_Environment->loadTemplate('base.html', NULL)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code(11): Twig in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php on line 215
+[22-Aug-2021 04:48:52 UTC] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "base.html" (looked into: ../App/Views) in "404.html" at line 1. in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('base.html')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('base.html')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(378): Twig_Environment->getTemplateClass('base.html', NULL)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Template.php(286): Twig_Environment->loadTemplate('base.html', NULL)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Environment.php(403) : eval()'d code(11): Twig in /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/vendor/twig/twig/lib/Twig/Loader/Filesystem.php on line 215

@@ -7,6 +7,9 @@ const navbar = document.querySelector("header nav");
 const links = document.querySelectorAll(".links a");
 
 
+window.onload = function() {
+  document.getElementById("defaultButton").click();
+};
 
 //Hamburger Menu
 function closeMenu() {
@@ -163,8 +166,12 @@ document.querySelector('#next-year').onclick = () => {
 
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
+function showLocationList() {
+  document.getElementById("locationDropdown").classList.toggle("show-location");
+}
+
+function showCategoryList() {
+  document.getElementById("categoryDropdown").classList.toggle("show-category");
 }
 
 
@@ -186,6 +193,7 @@ window.onclick = function(event) {
 //Show the hidden content
 function ShowAndHide() {
   var x = document.getElementById('reviews-more');
+  console.log("clicked")
   if (x.style.display == 'none') {
       x.style.display = 'block';
   } else {
@@ -194,7 +202,7 @@ function ShowAndHide() {
 }
 //Show the hidden content
 function ShowSearchResults() {
-  var x = document.getElementsById('search-results2');
+  var x = document.getElementById('search-results2');
   if (x.style.display == 'none') {
       x.style.display = 'block';
   } else {
@@ -203,18 +211,23 @@ function ShowSearchResults() {
 }
 
 //Tabs for faq
-let tabHeader = document.getElementsByClassName("tab-header")[0];
-let tabBody = document.getElementsByClassName("tab-body")[0];
-let tabsPane = tabHeader.getElementsByTagName("div");
-
-for(let i=0;i<tabsPane.length;i++){
-  tabsPane[i].addEventListener("click",function(){
-    tabHeader.getElementsByClassName("active")[0].classList.remove("active");
-    tabsPane[i].classList.add("active");
-    tabBody.getElementsByClassName("active")[0].classList.remove("active");
-    tabBody.getElementsByTagName("div")[i].classList.add("active");
-  });
+function changeFaq(event, faqType) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(faqType).style.display = "block";
+  event.currentTarget.className += " active";
+  console.log(event)
 }
+
+
+
 
 //Popup box
 
