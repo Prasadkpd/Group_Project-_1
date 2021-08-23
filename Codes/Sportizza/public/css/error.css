@@ -51,7 +51,6 @@ nav {
 }
 .cell {
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 .horizontal-container ul li i {
@@ -73,7 +72,7 @@ nav {
   justify-content: center;
 }
 .error {
-  margin: 10% auto;
+  margin: 5% auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -94,7 +93,7 @@ nav {
   text-align: center;
 }
 .error-img img {
-  width: 400px;
+  width: 350px;
   margin: 3vh auto;
 }
 .home-link a {
@@ -125,7 +124,7 @@ footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  text-align: center;
+  /* text-align: center; */
 }
 .copyright {
   margin: 0px auto;

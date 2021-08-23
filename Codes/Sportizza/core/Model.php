@@ -18,6 +18,8 @@ abstract class Model
      *
      * @return mixed
      */
+    
+    // Static database connection:Using one database connectoin for one user request to all the methods involved in
     protected static function getDB()
     {
         static $db = null;

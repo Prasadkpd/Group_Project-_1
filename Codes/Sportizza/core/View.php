@@ -20,10 +20,12 @@ class View
      */
     public static function render($view, $args = [])
     {
+        // Converting Associative array into individual variables
         extract($args, EXTR_SKIP);
 
         $file = "../App/Views/$view";  // relative to Core directory
 
+        // Rendering the view file
         if (is_readable($file)) {
             require $file;
         } else {

@@ -29,6 +29,7 @@ class Users extends \Core\Controller
      */
     public function indexAction()
     {
-        echo 'User customer index';
+        View::renderTemplate('Customer/customer.php');
+        // echo 'User customer index';
     }
 }

@@ -17,7 +17,7 @@ class Post extends \Core\Model
      *
      * @return array
      */
-    public static function getAll()
+    public static function getAll() 
     {
         //$host = 'localhost';
         //$dbname = 'mvc';
@@ -26,6 +26,7 @@ class Post extends \Core\Model
     
         try {
             //$db = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+            //Connection Function
             $db = static::getDB();
 
             $stmt = $db->query('SELECT id, title, content FROM posts ORDER BY created_at');
