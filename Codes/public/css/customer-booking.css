@@ -18,8 +18,8 @@ input textarea {
   position: relative;
   width: 100%;
 }
-body{
-    height: 100vh;
+body {
+  height: calc(100vh- 6rem);
 }
 a {
   text-decoration: none;
@@ -113,153 +113,387 @@ nav {
   margin-left: 15px;
 }
 h1 {
-    font-size: 3em;
-    margin-bottom: 1em;
+  font-size: 3em;
+  margin-bottom: 1em;
 }
-.calendar {
-    padding: 50px;
-    width: 850px;
+.container {
+  width: 80%;
+  margin: auto 10%;
+  height: calc(100vh - 6rem);
+  position: relative;
+  overflow: hidden;
 }
-.calendar::after {
-    content: "";
-    display: block;
-    height: 50px;
+.sp-arena {
+  display: flex;
+  margin: 2rem;
+  margin-bottom: 1rem;
+  height: max-content;
 }
-.calendar-layout {
-    padding: 50px;
-    background: white;
-    border-radius: 24px;
-    display: flex;
-    width: 750px;
-    flex-wrap: wrap;
+.sp-arena .sp-arena-img img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  justify-self: center;
 }
-.calendar-layout h2 {
-    flex: 1 100%;
+.sp-arena .sp-arena-details {
+  display: flex;
+  flex-direction: column;
+  height: 20vh;
+  align-items: left;
+  padding-left: 5rem;
+  margin-top: 1rem;
 }
-.calendar-layout span {
-    width: calc(100% / 14);
-    display: block;
-    margin: calc(100% / 28);
-    padding: calc(100% / 56) calc(100% / 28);
-    border-radius: 100px;
-    text-indent: -7.5px;
-    text-align: center;
-    transition: background 0.2s, color 0.2s;
-    cursor: pointer;
+.sp-arena-details .sp-name h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #353b48;
 }
-.calendar-layout span:not(.null):hover,
-.calendar-layout span:not(.null)[data-selected] {
-    background: #bbd2ff;
-    color: #05f;
+.sp-arena-details .other h4 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #7f8c8d;
 }
-.events {
-    width: calc(100% - 850px - 150px);
-    height: 100%;
-    background: #039;
-    color: #fff;
-    padding: 50px;
-    overflow: scroll;
-    position: sticky;
-    top: 0;
-    left: 0;
+.sp-arena-details .other h5 {
+  font-size: 1rem;
+  font-weight: 400;
+  /* padding-top: 0.5rem; */
+  color: #7f8c8d;
 }
-.events ul {
-    padding: 50px 0;
-    list-style: none;
-    width: 100%;
+.sp-arena-details a{
+  padding-top: 0.5rem;
+  color:#fd461f;
 }
-.events ul li {
-    padding: 25px;
-    background: #fff2;
-    width: 100%;
-    margin-bottom: 20px;
-    border-radius: 24px;
-    transition: background 0.2s;
-    cursor: pointer;
+.more-details{
+  height:54vh;
+  width:100%;
+  border-radius: 25px;
+  margin:0.5rem 2rem;
 }
-.events ul li:hover {
-    background: #fff3;
+.more-details h5{
+  font-size:1.4rem;
+  font-weight: 600;
+  color:#34495e;
 }
-.events ul li .time {
-    display: inline-block;
-    width: 75px;
+.more-details .detail{
+  padding-bottom:20px;
 }
-.show-header {
-    display: none;
+.detail p{
+  color:#7f8c8d;
 }
-.top-search {
-    background: var(--background-overlay-color);
-    border-radius: 100px;
-    display: flex;
-    margin-bottom: 50px;
+.detail-grid{
+  display:grid;
+  grid-template-columns: 1fr 2fr;
 }
-.top-search svg {
-    width: 24px;
-    height: 24px;
-    margin: 12px;
-    stroke: #ccc !important;
+.detail-grid .sp-arena-slide{
+width:100%;
+height:30vh;
 }
-.top-search input {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    padding: 12px;
-    padding-left: 0;
-    border: none;
-    background: none;
-    font: inherit;
-    width: calc(100% - 48px);
-    outline: none;
-    color: inherit;
+.detail-grid .google-map{
+  justify-content:center;
 }
-.top-search input::placeholder {
-    color: #ccc;
+.detail-grid .google-map iframe{
+  height:30vh;
+  width:100%;
 }
-input[type="search"]::-webkit-search-decoration,
-input[type="search"]::-webkit-search-cancel-button,
-input[type="search"]::-webkit-search-results-button,
-input[type="search"]::-webkit-search-results-decoration {
-    display: none;
+.detail-grid .sp-arena-slide{
+  padding:auto 2rem;
+}
+
+.arrow {
+  width: 2rem;
+  margin: 0 1rem;
+}
+
+.slide-container {
+  width: 100%;
+  /* height: 300px; */
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  /* border: 1px solid black; */
+}
+
+.slide-container::-webkit-scrollbar {
+  display: none;     
+}
+
+.slide-container::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary);
+  outline: 1px solid #eee;
+  /* border-radius: 100px; */
+}
+
+.slide-container .thumbnail {
+  flex: 0 0 auto;
+  object-fit: cover;
+  cursor: pointer;
+  margin: 5px;
+  width: 300px;
+  border-radius: 20px;
+  overflow: hidden;
+  transform: scale(.95);
+  transition: all .3s;
+}
+
+.slide-container .thumbnail:hover {
+  transform: scale(1);
+  
+}
+
+.ground-images h4{
+text-align: center;
+font-size: 1.2rem;
+margin: .5em;
+}
+
+/* Change styles for cancel button and delete button on extra small screens */
+@media screen and (max-width: 300px) {
+.log-out .cancelbutton,.log-out-btn {
+ width: 100%;
+}
+}
+
+
+@media screen and (max-width: 992px) {
+
+.slide-container .thumbnail{
+  width: 250px;
+}
+
+}
+
+
+
+.booking{
+  display:grid;
+  grid-template-columns:1fr 2fr;
+  flex-direction:row;
+  height:54vh;
+  width:100%;
+  border-radius: 25px;
+  display:none;
+}
+.left-container{
+  background-color: #ff6348;
+  display:flex;
+  height:54vh;
+  align-items: center;
+  padding:20% 2rem;
+  flex-direction:column;
+  border-radius: 25px 0px 0px 25px;
+}
+
+.left-container .heading h3{
+  font-size:2.8rem;
+  font-weight: 700;
+  color:#fff;
+  margin:2rem auto;
+}
+.date-picker input[type="date"]{
+  background-color: #fff;
+  color: #34495e;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+  outline: none;
+  border-radius: 30px;
+  padding: 5px 15px;
+  border: none;
+  height:50px;
+  margin:10px auto;
+}
+.available-bookings{
+  background-color:#F97F51;
+  height:54vh;
+  overflow-y: scroll;
+  color: #fff;
+  padding: 50px;
+  border-radius: 0px 25px 25px 0px;
+ 
+}
+.available-bookings ul {
+  padding: 50px 0;
+  list-style: none;
+  width: 100%;
+}
+.available-bookings ul li {
+  padding: 25px;
+  background: #fff2;
+  width: 100%;
+  margin-bottom: 20px;
+  border-radius: 24px;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+.available-bookings ul li:hover {
+  background: #fff3;
+}
+.available-bookings ul li .s-time .e-time .facility{
+  display: inline-block;
+  width: 75px;
+}
+.available-bookings .facility{
+  font-weight: 600;
+  font-size:20px;
+}
+.available-bookings ul li .price{
+  margin:auto 5rem;
+  font-weight: 500;
+  font-size:18px;
+}
+.available-bookings i{
+  float:right;
+  font-size:1.6rem;
+}
+.available-bookings i:hover{
+  color:#2c3e50;
+}
+.btn.check-availability-btn{
+  background-color: #fd461f;
+  color: #fff;
+  border-radius: 2rem;
+ float:right;
+  font-size: 1.2rem;
+  position: relative;
+  font-weight:600;
+  z-index:40;
+  width:max-content;
+    text-transform: initial;
+    padding: .75rem 2.2rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+.check-availability-btn:hover {
+  background-color: #fff;
+  color: #fd461f;
+}
+.cart{
+  position: fixed;
+  bottom: 40px;
+  right:30px;
+  height: 56px;
+  width: 56px;
+  border-radius: 50%;
+  background-color: #fd461f;
+  color: #fff;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, .05);
+  transition: 200ms opacity ease;
+}
+footer {
+  box-shadow: 1px 7px 25px rgb(0 0 0 / 13%);
+  background-color: #e74c3c;
+  color: #fff;
+  font-weight: 400;
+  font-size: 1rem;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+.copyright {
+  margin: 0px auto;
+  padding: 2px 20px;
+  display: sticky;
 }
 @media (max-width: 1400px) {
-    header {
-        width: 100px;
-        padding: 25px;
-    }
-    header ul li a {
-        width: 50px;
-        height: 50px;
-        margin-bottom: 25px;
-    }
-    header ul li a svg {
-        width: 24px;
-    }
-    .calendar {
-        padding: 50px;
-        width: 600px;
-    }
-    .calendar-layout {
-        width: 500px;
-    }
-    .events {
-        width: calc(100% - 600px - 100px);
-    }
+  header {
+    width: 100px;
+    padding: 25px;
+  }
+  header ul li a {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 25px;
+  }
+  header ul li a svg {
+    width: 24px;
+  }
+  .calendar {
+    padding: 50px;
+    width: 600px;
+  }
+  .calendar-layout {
+    width: 500px;
+  }
+  .available-bookings {
+    width: calc(100% - 600px - 100px);
+  }
+}
+@media (max-width: 576px) {
+  .container{
+    width:95%;
+    margin: auto;
+  }
+  .sp-arena {
+    width:100%;
+    margin:1rem;
+  }
+.sp-arena .sp-arena-img img {
+  width: 80px;
+  height: 80px;
+  float:left;
+}
+.sp-arena .sp-arena-details{
+  height: max-content;
+  padding-left: 1rem;
+  margin:0;
+}
+.sp-arena-details .sp-name h2 {
+  font-size: 1rem;
+}
+.sp-arena-details .other h4 {
+  font-size: 1rem;
+}
+.sp-arena-details .other h5 {
+  font-size: 0.8rem;
+}
+.booking{
+  display:flex;
+  flex-direction:column;
+  height:56vh;
+}
+.left-container{
+  /* width:100%; */
+  height:10vh;
+  padding:5%;
+  flex-direction:row;
+  align-items: center;
+  border-radius: 25px;
+}
+.left-container .heading h3{
+  font-size:1.4rem;
+  margin:0rem auto;
+  padding-right:10px;
+}
+.date-picker input[type="date"]{
+  width:150px;
+  font-size: 0.8rem;
+  border-radius: 30px;
+  padding: 5px 10px;
+  height:40px;
+  margin:0px auto;
+}
+.available-bookings{
+  margin:1rem auto;
+  border-radius:25px;
+  height:50vh;
+  padding: 20px;
+  width:100%;
+}
+.available-bookings ul {
+  padding: 15px 0;
+}
+/* .available-bookings ul li {
+
+} */
 }
 
-
-footer {
-    box-shadow: 1px 7px 25px rgb(0 0 0 / 13%);
-    background-color: #e74c3c;
-    color: #fff;
-    font-weight: 400;
-    font-size: 1rem;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-  }
-  .copyright {
-    margin: 0px auto;
-    padding: 2px 20px;
-    display: sticky;
-  }

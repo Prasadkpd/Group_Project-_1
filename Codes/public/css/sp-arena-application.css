@@ -388,7 +388,6 @@ form input[type="submit"]:hover {
   display: flex;
   margin-bottom:2rem;
 }
-
   .page{
       display:flex;
       justify-content: center;
@@ -399,9 +398,9 @@ form input[type="submit"]:hover {
     max-width: 700px;
     width: 100%;
     overflow-y: scroll;
-    height: 80vh;
+    height: 82vh;
     background-color: #fff;
-    padding: 25px 30px;
+    padding: 0px 30px;
     border-radius: 25px;
     box-shadow: 0 5px 10px rgba(0,0,0,0.15);
   }
@@ -424,6 +423,12 @@ form input[type="submit"]:hover {
     width: calc(100% / 2 - 20px);
   }
   form .input-box span.details{
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color:#2c3e50;
+  }
+  form .input-box span.details-other{
     display: block;
     font-weight: 500;
     margin-bottom: 5px;
