@@ -5,11 +5,11 @@ let buttonRight = document.getElementById('slide-right');
 let buttonLeft = document.getElementById('slide-left');
 
 buttonLeft.addEventListener('click', function(){
-    slider.scrollLeft -= 200;
+    slider.scrollLeft -= 280;
 })
 
 buttonRight.addEventListener('click', function(){
-    slider.scrollLeft += 200;
+    slider.scrollLeft += 280;
 })
 
 const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
