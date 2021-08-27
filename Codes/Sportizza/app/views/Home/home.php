@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <link rel="stylesheet" href="./css/visitor.css" />
-  <link rel="manifest" href="manifest.json">
+  <link rel="manifest" href="/manifest.json" />
 
 </head>
 
@@ -24,6 +24,7 @@
           <div class="logo">
             <a href="visitor.html"><img src="images/logos/logo-white-final.svg"></a>
           </div>
+          <!-- <img src="././Assets/Images/Error-Images/error_404.svg"> -->
 
           <div class="links">
             <ul>

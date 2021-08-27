@@ -12,31 +12,58 @@
 <body>
     <!-- Top Navigation Bar -->
     <nav>
-        <div class="nav-container">
-            <div class="horizontal-container">
-                <div class="cell">
-                    <ul class="home-nav">
-                        <li>
-                            <a href="#">
-                                <i class="fas fa-running"></i>
-                                <span class="sportizza-logo">Sportizza</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="cell">
-                    <div class="search-container">
-                        <input type="text" name="search" placeholder="Search..." class="search-input">
-
-                        <a href="#" class="search-btn">
-                            <i class="fas fa-search" style="margin:2px 15px"></i>
-                        </a>
+        <div class="nav-left">
+            <div class="logo-container">
+                <a href="#">
+                    <i class="fas fa-running "></i>
+                    <span class="logo-name">Sportizza</span>
+                </a>
+            </div>
+            <div class="search-bar-container">
+                <input type="search" name="search" placeholder="Search">
+                <i class="fas fa-search "></i>
+            </div>
+            <div class="nav-profile">
+                <button class="openbutton" onclick="openpopupform()">
+                    <div class="profile-details">
+                        <img src="assets/profile-picture.jpg" alt="" class="profile-picture">
+                        <div class="username">Bhashitha Ranasinghe</div>
                     </div>
-                </div>
+                </button>
+            </div>
+            <div class="sign-in-out-btn">
+                <a style="font-weight:500; " href="">Sign Out </a>
             </div>
         </div>
+        <!-- search bar for mobile -->
+        <div class="search-bar-container-mobi">
+            <input type="search" name="search" placeholder="Search">
+            <i class="fas fa-search "></i>
+        </div>
     </nav>
+    <div id="myForm" class="sectionpop ">
+        <div class="formsection">
+            <div>
+                <button s class="closebutton" onclick="closepopupform()">❌</button>
+            </div>
+            <img class="form-profile-picture" src="assets/profile-picture.jpg" alt="">
+            <form action="/action_page.php" style="margin:20px">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="firstname" placeholder="Enter First Name" value="sadeepa">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lastname" placeholder="Enter Last Names" value="bhashitha">
+                <label for="lname">Primary Number</label>
+                <input type="text" id="lname" name="lastname" placeholder="Enter Primary Number" value="0705614640">
+                <label for="lname">Secondary Number</label>
+                <input type="text" id="userid" name="lastname" placeholder="Enter Secondary Number" value="0705614640">
+                <input type="submit" value="Save">
+            </form>
+        </div>
+    </div>
+   
+    <!-- End Top Navigation Bar -->
+
+
     <div class="container">
         <div class="sp-arena">
 

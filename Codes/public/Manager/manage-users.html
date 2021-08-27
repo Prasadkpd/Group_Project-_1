@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users</title>
+    <link rel="stylesheet" href="manage-users.css">
+    <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- Top Navigation Bar -->
+    <nav>
+        <div class="nav-left">
+            <div class="logo-container">
+                <a href="#">
+                    <i class="fas fa-running "></i>
+                    <span class="logo-name">Sportizza</span>
+                </a>
+            </div>
+            <div class="search-bar-container">
+                <input type="search" name="search" placeholder="Search">
+                <i class="fas fa-search "></i>
+            </div>
+            <div class="nav-profile">
+                <button class="openbutton" onclick="openpopupform()">
+                    <div class="profile-details">
+                        <img src="assets/profile-picture.jpg" alt="" class="profile-picture">
+                        <div class="username">Bhashitha Ranasinghe</div>
+                    </div>
+                </button>
+            </div>
+            <div class="sign-in-out-btn">
+                <a style="font-weight:500; " href="">Sign Out </a>
+            </div>
+        </div>
+        <!-- search bar for mobile -->
+        <div class="search-bar-container-mobi">
+            <input type="search" name="search" placeholder="Search">
+            <i class="fas fa-search "></i>
+        </div>
+    </nav>
+    <div id="myForm" class="sectionpop ">
+        <div class="formsection">
+            <div>
+                <button s class="closebutton" onclick="closepopupform()">❌</button>
+            </div>
+            <img class="form-profile-picture" src="assets/profile-picture.jpg" alt="">
+            <form action="/action_page.php" style="margin:20px">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="firstname" placeholder="Enter First Name" value="sadeepa">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lastname" placeholder="Enter Last Names" value="bhashitha">
+                <label for="lname">Primary Number</label>
+                <input type="text" id="lname" name="lastname" placeholder="Enter Primary Number" value="0705614640">
+                <label for="lname">Secondary Number</label>
+                <input type="text" id="userid" name="lastname" placeholder="Enter Secondary Number" value="0705614640">
+                <input type="submit" value="Save">
+            </form>
+        </div>
+    </div>
+  
+    <!-- End Top Navigation Bar -->
+
+    <section class="page-container">
+
+        <!-- SIDE NAVIGATION BAR - START -->
+        <div class="sidebar">
+            <div class="sidebar-container">
+                <div class="side-menu">
+                    <i class="fas fa-bars fa-2x " id="side-menu-open-btn"></i>
+                    <i class="fas fa-times fa-2x" id="side-menu-close-btn"></i>
+                </div>
+                <ul class="side-menu-list">
+                    <li>
+                        <a href="#" class="side-menu-li">
+                            <i class="fas fa-home"></i>
+                            <p class="side-menu-item">Arena Profile</p>
+                        </a>
+                        <p class="side-menu-tooltip">Arena Profile</p>
+                    </li>
+                    <li>
+                        <a href="#" class="side-menu-li">
+                            <i class="fas fa-bookmark"></i>
+                            <p class="side-menu-item">Manage Bookings</p>
+                        </a>
+                        <p class="side-menu-tooltip">Bookings</p>
+                    </li>
+                    <li>
+                        <a href="#" class="side-menu-li">
+                            <i class="fas fa-bell"></i>
+                            <p class="side-menu-item">Notifications</p>
+                        </a>
+                        <p class="side-menu-tooltip">Notifications</p>
+                    </li>
+                    <li>
+                        <a href="#" class="side-menu-li">
+                            <i class="fas fa-clock"></i>
+                            <p class="side-menu-item">Manage Timeslot</p>
+                        </a>
+                        <p class="side-menu-tooltip">Timeslot</p>
+                    </li>
+                    <li>
+                        <a href="#" class="side-menu-li">
+                            <i class="fas fa-building"></i>
+                            <p class="side-menu-item">Manage Facility</p>
+                        </a>
+                        <p class="side-menu-tooltip">Facility</p>
+                    </li>
+
+                    <li>
+                        <a href="#" class="side-menu-li">
+                            <i class="fas fa-users"></i>
+                            <p class="side-menu-item">Manage Users</p>
+                        </a>
+                        <p class="side-menu-tooltip">Manage Users</p>
+                    </li>
+                    <li>
+                        <a href="#" class="side-menu-li">
+                            <i class="fas fa-chart-bar"></i>
+                            <p class="side-menu-item">Analytics</p>
+                        </a>
+                        <p class="side-menu-tooltip">Analytics</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- SIDE NAVIGATION BAR - END -->
+
+        <!-- Manage Facility Page -->
+        <div class="page-content-container">
+            <div class="container">
+                <h1 class="page-header">Manage Staff</h1>
+                <div class="tab">
+                    <button class="booking_tab tab-btn active" onclick="openTab(event, 'view_bookings')"><i
+                            class="fas fa-eye"></i>
+                        <p>View Staff</p>
+                    </button>
+                    <button class="booking_tab tab-btn" onclick="openTab(event, 'add_bookings')"><i
+                            class="fas fa-plus-circle"></i>
+                        <p>Add Staff</p>
+                    </button>
+                    <button class="booking_tab tab-btn" onclick="openTab(event, 'cancel_booking')"><i
+                            class="fas fa-trash-alt"></i>
+                        <p>Remove Staff</p>
+                    </button>
+                </div>
+
+                <!-- View Facility Tab -->
+                <div id="view_bookings" class="booking_tab_content active" style="display: block;">
+                    <table class="booking-table">
+                        <thead>
+                            <tr class="booking-thead-first-tr">
+                                <th class="booking-table-first-th">
+                                    <div class="booking-table-filter-container">
+                                        <div class="booking-table-search-container">
+                                            <input type="search" name="search" placeholder="Search">
+                                            <i class="fas fa-search"></i>
+                                        </div>
+                                       
+                                    </div>
+                                </th>
+                            </tr>
+                            <tr class="booking-thead-second-tr">
+                                <th class="b-first-th">First Name</th>
+                                <th>Last Name</th>
+                                <th>Username</th>
+                                <th>Primary Contact</th>
+                                <th class="b-last-th">Secondary Contact</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-label="First Name :">Aruna</td>
+                                <td data-label="Last Name :">Rajakaruna</td>
+                                <td data-label="Username :">ArunaRaja345</td>
+                                <td data-label="Primary Contact :"> 0712345678</td>
+                                <td data-label="Secondary Contact :"> 0712345678</td>
+                            </tr>
+                            <tr>
+                                <td data-label="First Name :">Aruna</td>
+                                <td data-label="Last Name :">Rajakaruna</td>
+                                <td data-label="Username :">ArunaRaja345</td>
+                                <td data-label="Primary Contact :"> 0712345678</td>
+                                <td data-label="Secondary Contact :"> 0712345678</td>
+                            </tr>
+                            <tr>
+                                <td data-label="First Name :">Aruna</td>
+                                <td data-label="Last Name :">Rajakaruna</td>
+                                <td data-label="Username :">ArunaRaja345</td>
+                                <td data-label="Primary Contact :"> 0712345678</td>
+                                <td data-label="Secondary Contact :"> 0712345678</td>
+                            </tr>
+                            <tr>
+                                <td data-label="First Name :">Aruna</td>
+                                <td data-label="Last Name :">Rajakaruna</td>
+                                <td data-label="Username :">ArunaRaja345</td>
+                                <td data-label="Primary Contact :"> 0712345678</td>
+                                <td data-label="Secondary Contact :"> 0712345678</td>
+                            </tr>
+                            <tr>
+                                <td data-label="First Name :">Aruna</td>
+                                <td data-label="Last Name :">Rajakaruna</td>
+                                <td data-label="Username :">ArunaRaja345</td>
+                                <td data-label="Primary Contact :"> 0712345678</td>
+                                <td data-label="Secondary Contact :"> 0712345678</td>
+                            </tr>
+                            <tr>
+                                <td data-label="First Name :">Aruna</td>
+                                <td data-label="Last Name :">Rajakaruna</td>
+                                <td data-label="Username :">ArunaRaja345</td>
+                                <td data-label="Primary Contact :"> 0712345678</td>
+                                <td data-label="Secondary Contact :"> 0712345678</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Add Facility Tab -->
+                <div id="add_bookings" class="booking_tab_content">
+                    <div id="staff-add" class="add-booking-fm-con">
+
+                        <form class="add-booking-frm-content animate" action="/action_page.php" method="post">
+                            <div class="add-booking-frm-container">
+                                <div class="input-row">
+                                    <div class="col1">
+                                        <label for="fname"><b>First Name</b></label>
+                                        <input type="text" placeholder="Enter First Name" name="fname" required>
+                                    </div>
+                                    <div class="col2">
+                                        <label for="lname"><b>Last Name</b></label>
+                                        <input type="text" placeholder="Enter Last Name" name="lname" required>
+                                    </div>
+                                </div>
+                                <div class="input-row">
+                                    <div class="col1">
+                                        <label for="uname"><b>Userame</b></label>
+                                        <input type="text" placeholder="Enter Userame" name="uname" required>
+                                    </div>
+                                    <div class="col2">
+                                        <label for="uname"><b>Account Type</b></label>
+                                        <select>
+                                            <option value="0">Select Staff</option>
+                                            <option value="1">Administration Staff</option>
+                                            <option value="2">Booking Handling Staff</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-row">
+                                    <div class="col1">
+                                        <label for="ptel"><b>Primary Contact</b></label>
+                                        <input type="text" placeholder="Enter Primary contact" name="ptel" required>
+                                    </div>
+                                    <div class="col2">
+                                        <label for="stel"><b>Secondary Contact</b></label>
+                                        <input type="text" placeholder="Enter Secondary Contact" name="stel" required>
+                                    </div>
+                                </div>
+                                <div class="input-row">
+                                    <div class="col1">
+                                        <label for="fname"><b>Password</b></label>
+                                        <input type="text" placeholder="Enter Password" name="pwd" required>
+                                    </div>
+                                    <div class="col2">
+                                        <label for="lname"><b>Confirm Password</b></label>
+                                        <input type="text" placeholder="Re-enter your password" name="pwd" required>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="add-booking-btn"><i class="fas fa-user-plus"></i>Add
+                                    Staff Member</button>
+                               </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Remove Facility Tab -->
+                <div id="cancel_booking" class="booking_tab_content">
+                    <table class="booking-table">
+                        <thead>
+                            <tr class="booking-thead-first-tr">
+                                <th class="booking-table-first-th">
+                                    <div class="booking-table-filter-container">
+                                        <div class="booking-table-search-container">
+                                            <input type="search" name="search" placeholder="Search">
+                                            <i class="fas fa-search"></i>
+                                        </div>
+                                        <!-- <div class="booking-table-date-picker">
+                                            <label class="date-label">Booking Date</label>
+                                            <input type="date">
+                                        </div> -->
+                                    </div>
+                                </th>
+                            </tr>
+                            <tr class="booking-thead-second-tr">
+                            
+                                <th class="b-first-th">First Name</th>
+                                <th>Last Name</th>
+                                <th>Username</th>
+                                <th>Primary Contact</th>
+                                <th>Secondary Contact</th>
+                                <th class="b-last-th">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-label="First Name :">Aruna</td>
+                                <td data-label="Last Name :">Rajakaruna</td>
+                                <td data-label="Username :">ArunaRaja345</td>
+                                <td data-label="Primary Contact :"> 0712345678</td>
+                                <td data-label="Secondary Contact :"> 0712345678</td>
+                                <td data-label="Action :"> <a href=""><i class="fas fa-trash-alt"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td data-label="First Name :">Aruna</td>
+                                <td data-label="Last Name :">Rajakaruna</td>
+                                <td data-label="Username :">ArunaRaja345</td>
+                                <td data-label="Primary Contact :"> 0712345678</td>
+                                <td data-label="Secondary Contact :"> 0712345678</td>
+                                <td data-label="Action :"> <a href=""><i class="fas fa-trash-alt"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td data-label="First Name :">Aruna</td>
+                                <td data-label="Last Name :">Rajakaruna</td>
+                                <td data-label="Username :">ArunaRaja345</td>
+                                <td data-label="Primary Contact :"> 0712345678</td>
+                                <td data-label="Secondary Contact :"> 0712345678</td>
+                                <td data-label="Action :"> <a href=""><i class="fas fa-trash-alt"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td data-label="First Name :">Aruna</td>
+                                <td data-label="Last Name :">Rajakaruna</td>
+                                <td data-label="Username :">ArunaRaja345</td>
+                                <td data-label="Primary Contact :"> 0712345678</td>
+                                <td data-label="Secondary Contact :"> 0712345678</td>
+                                <td data-label="Action :"> <a href=""><i class="fas fa-trash-alt"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td data-label="First Name :">Aruna</td>
+                                <td data-label="Last Name :">Rajakaruna</td>
+                                <td data-label="Username :">ArunaRaja345</td>
+                                <td data-label="Primary Contact :"> 0712345678</td>
+                                <td data-label="Secondary Contact :"> 0712345678</td>
+                                <td data-label="Action :"> <a href=""><i class="fas fa-trash-alt"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- Start of Footer -->
+    <footer>
+        <div class="copyright">
+            <p>
+                Copyright &copy;2021 All rights reserved | Sportizza Inc.
+            </p>
+        </div>
+    </footer>
+    <!-- End of Footer -->
+    <script type="text/javascript" src="manage-users.js"></script>
+</body>
+
+</html>
