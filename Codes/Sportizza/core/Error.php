@@ -34,7 +34,7 @@ class Error
      *
      * @return void
      */
-    // Classifying th errors: Code is 404 (not found) or 500 (general error)
+    // Classifying the errors: Code is 404 (not found) or 500 (general errors)
     public static function exceptionHandler($exception)
     {
        
