@@ -180,24 +180,25 @@ button {
   display: inline-block;
   padding: 0.85rem 2rem;
   background-color: var(--light-green);
-  color: var(--dark-green);
+  color: var(--pure-white);
   border-radius: 2rem;
   border-width: 1rem;
   font-size: 1.05rem;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 600;
   transition: 0.3s;
   cursor: pointer;
 }
 .book-now-btn:hover {
   border: 0.1rem solid var(--light-green);
-  background: var(--white);
+  background: var(--pure-white);
+  color: var(--light-green);
 }
 .btn {
   display: inline-block;
   padding: 0.85rem 2rem;
   background-color: var(--orange);
-  color: var(--white);
+  color: var(--pure-white);
   border-radius: 2rem;
   border-width: 0rem;
   font-size: 1.05rem;
@@ -206,9 +207,9 @@ button {
   transition: 0.3s;
 }
 .btn:hover {
-  background-color: var(--white);
-  border: 0.1rem solid var(--orange);
-  color: var(--light-orange-dull);
+  background-color: var(--pure-white);
+  border: 0.1rem solid var(--dark-orange);
+  color: var(--dark-orange);
 }
 .btn.small {
   padding: 0.7rem 1.8rem;
@@ -269,7 +270,7 @@ button {
 /* Header */
 header {
   width: 100%;
-  background-color: var(--white);
+  background-color: var(--pure-white);
   overflow: hidden;
   position: relative;
 }
@@ -319,7 +320,7 @@ nav img {
   width: fit-content;
 }
 .links a.active:hover {
-  color: var(--white);
+  color: var(--pure-white);
   background-color: var(--orange);
 }
 .hamburger-menu {
@@ -361,11 +362,11 @@ nav.open .hamburger-menu .bar {
 }
 nav.open .hamburger-menu .bar:before {
   transform: translateY(0) rotate(45deg);
-  background-color: var(--white);
+  background-color: var(--pure-white);
 }
 nav.open .hamburger-menu .bar:after {
   transform: translateY(0) rotate(-45deg);
-  background-color: var(--white);
+  background-color: var(--pure-white);
 }
 nav.open .links {
   transform: translateX(0);
@@ -402,7 +403,7 @@ nav.open .links {
 /* Sports Arena Section */
 
 .sports-arena {
-  background-color: var(--white);
+  background-color: var(--pure-white);
   width: 100%;
   align-items: center;
 }
@@ -420,7 +421,7 @@ nav.open .links {
   margin: 0 auto; */
 }
 
-.sports-arena-slideshow {
+/* .sports-arena-slideshow {
   position: relative;
   width: 100%;
   margin:0;
@@ -438,15 +439,15 @@ nav.open .links {
   position: absolute;
   margin:0;
   padding:0;
-}
-.sports-arena .sports-arena-slideshow-container img{
+} */
+/* .sports-arena .sports-arena-slideshow-container img{
   height:600px;
   padding-bottom: 30px;
-}
+} */
 
 .dropbtn {
   background-color: var(--light-orange);
-  color: var(--white);
+  color: var(--pure-white);
   padding: 16px;
   border: none;
   cursor: pointer;
@@ -477,7 +478,7 @@ nav.open .links {
 
 .dropbtn1 {
   background-color: var(--light-orange);
-  color: var(--white);
+  color: var(--pure-white);
   padding: 16px;
   border: none;
   cursor: pointer;
@@ -581,7 +582,7 @@ nav.open .links {
   vertical-align: middle;
 }
 .search-wrap .search-box .search-btn:hover {
-  background-color: var(--white);
+  background-color: var(--pure-white);
   color: var(--dark-orange);
   border-color: var(--dark-orange);
 }
@@ -602,7 +603,7 @@ input {
 /* Search Results */
 .search-results2 {
   overflow: hidden;
-  background-color: var(--white);
+  background-color: var(--pure-white);
   padding-top: 0rem;
   padding-bottom: 0rem;
   /* display:none; */
@@ -756,7 +757,7 @@ input {
 
 /* Reviews section */
 .reviews {
-  background-color: var(--white);
+  background-color: var(--pure-white);
   overflow: hidden;
   padding-bottom: 0rem;
 }
@@ -768,7 +769,7 @@ input {
   padding-bottom: 2rem;
 }
 .review {
-  background-color: var(--white);
+  background-color: var(--pure-white);
   border-radius: 2rem;
   transition: 0.3s;
   cursor: pointer;
@@ -828,7 +829,7 @@ input {
 
 /* More reviews section */
 .reviews-more {
-  background-color: var(--white);
+  background-color: var(--pure-white);
   overflow: hidden;
   padding-top: 0rem;
   padding-bottom: 0rem;
@@ -852,7 +853,7 @@ input {
 } 
 
 .faq-container {
-  background-color: var(--white);
+  background-color: var(--pure-white);
   /* max-width: 92rem; */
 }  
 
@@ -884,7 +885,7 @@ input {
 }
  
 .tabs .tab-header > button.active {
-  color:var(--white);
+  color:var(--pure-white);
   background-color:var(--orange);
 }
 .tabs .tab-body {
@@ -894,7 +895,7 @@ input {
 }
 .tabs .tab-body > div {
   /* position:absolute; */
-  background-color:var(--white);
+  background-color:var(--pure-white);
   top:-200%;
   /* opacity:0;
   transform:scale(0.9);
@@ -1177,7 +1178,7 @@ display:none;
 /* Team section */
 .team {
   overflow: hidden;
-  background-color: var(--white);
+  background-color: var(--pure-white);
   margin-bottom: 1.2rem;
 }
 .team .section-header{

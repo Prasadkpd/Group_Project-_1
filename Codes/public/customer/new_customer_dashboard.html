@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+     <!-- CSS File -->
+    <link rel="stylesheet" href="new_customer_dashboard.css">
+    <!-- FontAwesome Icon -->
+    <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav>
+       <div class="nav-left">
+        <div class="logo-container">
+            <a href="#">
+                <i class="fas fa-running "></i>
+                <span class="logo-name">Sportizza</span>
+            </a>
+       </div>
+       <div class="search-bar-container">
+            <input type="search" name="search" placeholder="Search">
+            <i class="fas fa-search "></i>
+       </div>
+
+
+
+       <div  class="nav-profile">
+
+        
+
+
+       
+
+<button   class="openbutton" onclick="openpopupform()">
+
+            
+        
+<div class="profile-details">
+    <img src="assets/profile-picture.jpg" alt="" class="profile-picture">
+    <div class="username">Bhashitha Ranasinghe</div>
+    
+</div>
+
+</button>
+        </div>
+
+        
+
+
+
+       <div class="sign-in-out-btn">
+           
+            <button onclick="open_popup_signout_message()" > Sign Out </button>
+       </div> 
+       </div>
+
+
+       
+
+       <!-- search bar for mobile -->
+       <div class="search-bar-container-mobi">
+        <input type="search" name="search" placeholder="Search">
+        <i class="fas fa-search "></i>
+   </div>
+    </nav>
+   <!-- End Top Navigation Bar -->
+
+
+<!-- popup form for edit profile -->
+<div id="myForm" class="sectionpop ">
+
+
+    <div class="formsection">
+
+        <div>
+            <button s class="closebutton"onclick="closepopupform()">❌</button>
+        </div>
+    <img class="form-profile-picture"  src="assets/profile-picture.jpg" alt="">
+    <form action="/action_page.php" style="margin:20px">
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" name="firstname"
+            placeholder="Enter First Name" value="sadeepa">
+
+        <label for="lname">Last Name</label>
+        <input type="text" id="lname" name="lastname"
+            placeholder="Enter Last Names" value="bhashitha">
+
+
+        <label for="lname">Primary Number</label>
+        <input type="text" id="lname" name="lastname"
+            placeholder="Enter Primary Number" value="0705614640">
+
+        <label for="lname">Secondary Number</label>
+        <input type="text" id="userid" name="lastname"
+            placeholder="Enter Secondary Number" value="0705614640">
+
+
+
+        <input  type="submit" value="Save">
+    </form> 
+    </div>    
+</div>
+<!-- end popup form for edit profile -->
+
+
+<!-- start pop up sign out section -->
+<div id="popup_signout" class="sectionpop ">
+   
+
+    <div class="formsection">
+
+        <div>
+            <button s class="closebutton"onclick="close_popup_signout_message()">❌</button>
+        </div>
+    <form action="/action_page.php" style="margin:20px">
+        <div style="margin:auto">
+            <h1 style="margin:auto">
+                Sign Out
+            </h1>
+            <p style="margin:auto">
+                Do your really want to sign up now?
+            </p>
+        </div>
+    </form> 
+
+ 
+<div style="display:flex">
+    
+    <button style="background-color:#e74c3c    " class="popup_button">
+       YES
+    </button>
+    <button onclick="close_popup_signout_message()"  class="popup_button">
+        NO
+     </button>
+</div>
+    </div>  
+</div>
+<!-- end pop up sign out section -->
+
+
+<!-- popup share section -->
+<div id="popup_share" class="sectionpop ">
+
+
+    <div  class="formsection">
+
+        <div>
+            <button s class="closebutton"onclick="close_popup_share()">❌</button>
+        </div>
+    
+    <form action="/action_page.php" style="margin:20px">
+        <h1 >Copy this link and share</h1>
+        <div>
+            <p>https://ugvle.ucsc.cmb.ac.lk/course/<br>?id=125</p>
+        </div>
+      
+    </form> 
+    <button onclick="close_popup_share()" class="popup_button">
+        Copy
+    </button>
+    </div>    
+</div>
+<!-- End popup share section -->
+
+
+                   
+<!-- start pop up cancel section -->
+<div id="popup_cancel" class="sectionpop ">
+   
+
+    <div class="formsection">
+
+        <div>
+            <button s class="closebutton"onclick="close_popup_cancel_message()">❌</button>
+        </div>
+    <form action="/action_page.php" style="margin:20px">
+        <div style="margin:auto">
+            <h1 style="margin:auto">
+                Booking Cancellation
+            </h1>
+            <p style="margin:auto">
+                Are you sure to cancel the booking?
+            </p>
+        </div>
+    </form> 
+
+ 
+<div style="display:flex">
+    
+    <button style="background-color:#e74c3c    " class="popup_button">
+       YES
+    </button>
+    <button onclick="close_popup_cancel_message()"  class="popup_button">
+        NO
+     </button>
+</div>
+    </div>  
+</div>
+<!-- end pop up cancel section -->
+
+
+<!-- start pop up rate section -->
+<div id="popup_rate" class="sectionpop ">
+    <div class="formsection">
+
+        <div>
+            <button s class="closebutton"onclick="close_popup_rate_message()">❌</button>
+        </div>
+    <form action="/action_page.php" style="margin:20px">
+        <label for="fname">Sports Arena Name</label>
+        <input type="text" id="fname" name="firstname"
+            placeholder="Enter First Name" value="sadeepa" readonly>
+
+        <label for="lname">Booking Id</label>
+        <input type="text" id="lname" name="lastname"
+            placeholder="Enter Last Names" value="bhashitha" readonly>
+
+
+        <label for="lname">Stars</label><br>
+        <div class="rate">
+            <input type="radio" id="star5" name="rate" value="5" />
+            <label for="star5" title="text">5 stars</label>
+            <input type="radio" id="star4" name="rate" value="4" />
+            <label for="star4" title="text">4 stars</label>
+            <input type="radio" id="star3" name="rate" value="3" />
+            <label for="star3" title="text">3 stars</label>
+            <input type="radio" id="star2" name="rate" value="2" />
+            <label for="star2" title="text">2 stars</label>
+            <input type="radio" id="star1" name="rate" value="1" />
+            <label for="star1" title="text">1 star</label>
+          </div><br><br>
+
+        <label for="lname">Feedback</label>
+        <textarea style="width:90%; border-radius:100px">
+
+        </textarea>
+
+
+
+        <input style="background-color:#2ecc71" type="submit" value="Save">
+    </form> 
+    </div>    
+</div>
+<!-- end pop up rate section -->
+
+
+
+<!-- start pop up delete section -->
+<div id="popup_delete" class="sectionpop ">
+   
+
+    <div class="formsection">
+
+        <div>
+            <button s class="closebutton"onclick="close_popup_delete_message()">❌</button>
+        </div>
+    <form action="/action_page.php" style="margin:20px">
+        <div style="margin:auto">
+            <h1 style="margin:auto">
+                Booking deletion
+            </h1>
+            <p style="margin:auto">
+                Are sure to delete booking
+            </p>
+        </div>
+    </form> 
+
+ 
+<div style="display:flex">
+    <button onclick="close_popup_delete_message()"  class="popup_button">
+       NO
+    </button>
+    <button style="background-color:red" class="popup_button">
+       YES
+    </button>
+</div>
+    </div>  
+</div>
+<!-- end pop up delete section -->
+
+
+
+
+
+<!-- start pop up delete section for favorite-list -->
+<div id="popup_delete_favorite_list" class="sectionpop ">
+   
+
+    <div class="formsection">
+
+        <div>
+            <button s class="closebutton"onclick="close_popup_delete_message_favorite_list()">❌</button>
+        </div>
+    <form action="/action_page.php" style="margin:20px">
+        <div style="margin:auto">
+            <h1 style="margin:auto">
+               Favorite Sports Arena Deletion
+            </h1>
+            <p style="margin:auto">
+                Are sure to delete sports Arena
+            </p>
+        </div>
+    </form> 
+
+ 
+<div style="display:flex">
+    <button onclick="close_popup_delete_message_favorite_list()"  class="popup_button">
+       NO
+    </button>
+    <button style="background-color:red" class="popup_button">
+       YES
+    </button>
+</div>
+    </div>  
+</div>
+<!-- end pop up delete section  for favorite-list -->
+
+
+<!-- popup notification section -->
+<div id="popup_notification" class="sectionpop ">
+
+
+    <div  class="formsection">
+
+        <div>
+            <button s class="closebutton"onclick="close_popup_notification()">❌</button>
+        </div>
+    
+    <form action="/action_page.php" style="margin:20px">
+        <h1>Notification</h1>
+        <div>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consectetur id ea ullam sunt debitis inventore cupiditate delectus labore, esse, vel, eaque possimus eos at odio molestias quaerat. Eveniet, eos animi.</p>
+        </div>
+      
+    </form> 
+    <!-- <button onclick="close_popup_share()" class="popup_button">
+        OK
+    </button> -->
+    </div>    
+</div>
+<!-- End popup notification section -->
+
+    <section class="page-container">
+        
+            
+            <div class="page-content-container" >
+                <div class="container">
+                 <h1 class="page-header">Hi Sadeepa Bhashitha!</h1>                 
+                <div class="tab">
+                <button class="booking_tab tab-btn" onclick="openTab(event, 'my_bookings')"><i class="fas fa-list"></i><p>My bookings</p></button>
+                <button class="booking_tab tab-btn" onclick="openTab(event, 'my_favorite_list')"><i class="fas fa-star"></i>
+                    <p>My favorite lists</p></button>
+                <button class="booking_tab tab-btn" onclick="openTab(event, 'notification')"><i class="fas fa-bell"></i>
+                    <p>Notification</p></button>
+                </div>
+
+                <div id="my_bookings" class="booking_tab_content">
+                    <table class="booking-table">
+                        <thead>
+                            <tr class="booking-thead-first-tr">
+                                <th class="booking-table-first-th">
+                                    <div class="booking-table-filter-container">
+                                        <div class="booking-table-search-container">
+                                            <input type="search" name="search" placeholder="Search">
+                                            <i class="fas fa-search"></i>
+                                        </div>
+                                        <div class="booking-table-date-picker">
+                                            <label class="date-label">Date</label>
+                                            <input type="date">
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                            <tr class="booking-thead-second-tr">
+                                <th >Booking ID</th>
+                                <th>Booking Date</th>
+                                <th>Start Time</th>
+                                <th>End Time</th>
+                                <th>Sports Arena Name</th>
+                                <th>Category</th>
+                                <th>Payment Method</th>
+                                <th>Payment Status</th>
+                                <th>Amount</th>
+                                <th>Booking Status</th>
+                                <th >  </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-label="Booking ID :">BD12345678910</td>
+                                <td data-label="Booking Date :">2021/09/30</td>
+                                <td data-label="Start Time :">1530h</td>
+                                <td data-label="End Time :">1630h</td>
+                                <td data-label="Arena Name:">Matara Uynawatta</td>
+                                <td data-label="Category:">Cricket</td>
+                                <td data-label="Payment Method :">Cash</td>
+                                <td data-label="Payment Status :">Unpaid</td>
+                                <td data-label="Amount:">2000</td>
+                                
+                                <td data-label="Booking Status">Pending</td>
+                                <td data-label="">
+                                        <div style="display:flex">
+                                            <div>
+                                                <button onclick="open_popup_share()">
+                                                    <i class="fas fa-share "></i>
+                                                </button>
+                                            </div>
+                                            <div>  
+                                            <button class="icon_red" onclick="open_popup_cancel_message()">
+                                                <i class="fas fa-times"></i>
+                                                
+
+                                            </button>
+                                            </div>
+                                            
+                                        </div>
+                                    </td>
+                                
+                            </tr>
+                            <tr>
+                                <td data-label="Booking ID :">BD1234567</td>
+                                <td data-label="Booking Date :">2021/09/30</td>
+                                <td data-label="Start Time :">1530h</td>
+                                <td data-label="End Time :">1630h</td>
+                                <td data-label="Arena Name:">Matara Uynawatta</td>
+                                <td data-label="Category:">Cricket</td>
+                                <td data-label="Payment Method :">Cash</td>
+                                <td data-label="Payment Status :">Unpaid</td>
+                                <td data-label="Amount:">2000</td>
+                                
+                                <td data-label="Booking Status">Completed</td>
+                                <td data-label="">
+
+                                    
+                                        
+                                        <div style="display:flex">
+                                            <div>
+                                                <button onclick="open_popup_rate_message()" >
+                                                    <i class="fas fa-star-half-alt"></i>
+                                                </button>
+                                            </div>
+                                            <div>  
+                                            <button class="icon_red" onclick="open_popup_delete_message()">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                            </div>
+                                            
+                                        </div>
+
+                                </td>   
+                            </tr>
+
+                               <tr>
+                                <td data-label="Booking ID :">BD1234567</td>
+                                <td data-label="Booking Date :">2021/09/30</td>
+                                <td data-label="Start Time :">1530h</td>
+                                <td data-label="End Time :">1630h</td>
+                                <td data-label="Arena Name:">Matara Uynawatta</td>
+                                <td data-label="Category:">Cricket</td>
+                                <td data-label="Payment Method :">Cash</td>
+                                <td data-label="Payment Status :">Unpaid</td>
+                                <td data-label="Amount:">2000</td>
+                                
+                                <td data-label="Booking Status">Pending</td>
+                                <td data-label="Pop up">
+                                </td>   
+                            </tr>
+                            
+                            <tr>
+                                <td data-label="Booking ID :">BD1234567</td>
+                                <td data-label="Booking Date :">2021/09/30</td>
+                                <td data-label="Start Time :">1530h</td>
+                                <td data-label="End Time :">1630h</td>
+                                <td data-label="Arena Name:">Matara Uynawatta</td>
+                                <td data-label="Category:">Cricket</td>
+                                <td data-label="Payment Method :">Cash</td>
+                                <td data-label="Payment Status :">Unpaid</td>
+                                <td data-label="Amount:">2000</td>
+                                
+                                <td data-label="Booking Status">Pending</td>
+                                <td data-label="Pop up">
+                                </td>   
+                            </tr>
+                            
+                            <tr>
+                                <td data-label="Booking ID :">BD1234567</td>
+                                <td data-label="Booking Date :">2021/09/30</td>
+                                <td data-label="Start Time :">1530h</td>
+                                <td data-label="End Time :">1630h</td>
+                                <td data-label="Arena Name:">Matara Uynawatta</td>
+                                <td data-label="Category:">Cricket</td>
+                                <td data-label="Payment Method :">Cash</td>
+                                <td data-label="Payment Status :">Unpaid</td>
+                                <td data-label="Amount:">2000</td>
+                                
+                                <td data-label="Booking Status">Pending</td>
+                                <td data-label="Pop up">
+                                </td>   
+                            </tr>
+                            
+                            <tr>
+                                <td data-label="Booking ID :">BD1234567</td>
+                                <td data-label="Booking Date :">2021/09/30</td>
+                                <td data-label="Start Time :">1530h</td>
+                                <td data-label="End Time :">1630h</td>
+                                <td data-label="Arena Name:">Matara Uynawatta</td>
+                                <td data-label="Category:">Cricket</td>
+                                <td data-label="Payment Method :">Cash</td>
+                                <td data-label="Payment Status :">Unpaid</td>
+                                <td data-label="Amount:">2000</td>
+                                
+                                <td data-label="Booking Status">Pending</td>
+                                <td data-label="Pop up">
+                                </td>   
+                            </tr>
+                            <tr>
+                                <td data-label="Booking ID :">BD1234567</td>
+                                <td data-label="Booking Date :">2021/09/30</td>
+                                <td data-label="Start Time :">1530h</td>
+                                <td data-label="End Time :">1630h</td>
+                                <td data-label="Arena Name:">Matara Uynawatta</td>
+                                <td data-label="Category:">Cricket</td>
+                                <td data-label="Payment Method :">Cash</td>
+                                <td data-label="Payment Status :">Unpaid</td>
+                                <td data-label="Amount:">2000</td>
+                                
+                                <td data-label="Booking Status">Pending</td>
+                                <td data-label="Pop up">
+                                </td>   
+                            </tr>
+  
+                            <tr>
+                                <td data-label="Booking ID :">BD1234567</td>
+                                <td data-label="Booking Date :">2021/09/30</td>
+                                <td data-label="Start Time :">1530h</td>
+                                <td data-label="End Time :">1630h</td>
+                                <td data-label="Arena Name:">Matara Uynawatta</td>
+                                <td data-label="Category:">Cricket</td>
+                                <td data-label="Payment Method :">Cash</td>
+                                <td data-label="Payment Status :">Unpaid</td>
+                                <td data-label="Amount:">2000</td>
+                                
+                                <td data-label="Booking Status">Pending</td>
+                                <td data-label="Pop up">
+                                </td>   
+                            </tr>
+                            <tr>
+                                <td data-label="Booking ID :">BD1234567</td>
+                                <td data-label="Booking Date :">2021/09/30</td>
+                                <td data-label="Start Time :">1530h</td>
+                                <td data-label="End Time :">1630h</td>
+                                <td data-label="Arena Name:">Matara Uynawatta</td>
+                                <td data-label="Category:">Cricket</td>
+                                <td data-label="Payment Method :">Cash</td>
+                                <td data-label="Payment Status :">Unpaid</td>
+                                <td data-label="Amount:">2000</td>
+                                
+                                <td data-label="Booking Status">Pending</td>
+                                <td data-label="Pop up">
+                                </td>   
+                            </tr>
+                            <tr>
+                                <td data-label="Booking ID :">BD1234567</td>
+                                <td data-label="Booking Date :">2021/09/30</td>
+                                <td data-label="Start Time :">1530h</td>
+                                <td data-label="End Time :">1630h</td>
+                                <td data-label="Arena Name:">Matara Uynawatta</td>
+                                <td data-label="Category:">Cricket</td>
+                                <td data-label="Payment Method :">Cash</td>
+                                <td data-label="Payment Status :">Unpaid</td>
+                                <td data-label="Amount:">2000</td>
+                                
+                                <td data-label="Booking Status">Pending</td>
+                                <td data-label="Pop up">
+                                </td>   
+                            </tr>
+                            <tr>
+                                <td data-label="Booking ID :">BD1234567</td>
+                                <td data-label="Booking Date :">2021/09/30</td>
+                                <td data-label="Start Time :">1530h</td>
+                                <td data-label="End Time :">1630h</td>
+                                <td data-label="Arena Name:">Matara Uynawatta</td>
+                                <td data-label="Category:">Cricket</td>
+                                <td data-label="Payment Method :">Cash</td>
+                                <td data-label="Payment Status :">Unpaid</td>
+                                <td data-label="Amount:">2000</td>
+                                
+                                <td data-label="Booking Status">Pending</td>
+                                <td data-label="Pop up">
+                                </td>   
+                            </tr>
+                            <tr>
+                                <td data-label="Booking ID :">BD1234567</td>
+                                <td data-label="Booking Date :">2021/09/30</td>
+                                <td data-label="Start Time :">1530h</td>
+                                <td data-label="End Time :">1630h</td>
+                                <td data-label="Arena Name:">Matara Uynawatta</td>
+                                <td data-label="Category:">Cricket</td>
+                                <td data-label="Payment Method :">Cash</td>
+                                <td data-label="Payment Status :">Unpaid</td>
+                                <td data-label="Amount:">2000</td>
+                                
+                                <td data-label="Booking Status">Pending</td>
+                                <td data-label="Pop up">
+                                </td>   
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="my_favorite_list" class="booking_tab_content">
+
+
+
+                    <table class="booking-table">
+                        <thead>
+                            <tr class="booking-thead-first-tr">
+                                <th class="booking-table-first-th">
+                                    <div class="booking-table-filter-container">
+                                        <div class="booking-table-search-container">
+                                            <input type="search" name="search" placeholder="Search">
+                                            <i class="fas fa-search"></i>
+                                        </div>
+                                        
+                                    </div>
+                                </th>
+                            </tr>
+                            <tr class="booking-thead-second-tr">
+                                <th class="b-first-th">Sports Arena Name</th>
+                                <th>Category</th>
+                                <th>Location</th>
+                                <th></th>
+                                <th class="b-last-th"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-label="Sports Arena Name:">Colombo Kings</td>
+                                <td data-label="Category:">Cricket</td>
+                                <td data-label="Address:">Reid Avenue, Colombo 07</td>
+                                <td data-label="Availability button:">
+                                    <button style="background-color:rgb(33, 219, 95); width:150px;height:auto" class="popup_button">
+                                        availability
+                                    </button>
+                                </td>
+                                <td data-label="Delete Button:">
+                                    <button class="icon_red" onclick="open_popup_delete_message_favorite_list()" class="delete_button">
+                                        <i  class="far fa-trash-alt fa-2x"></i>
+                                    </button>
+
+
+                                </td>
+                                
+                            </tr>
+                            <tr>
+                                <td data-label="Sports Arena Name:">Colombo Kings</td>
+                                <td data-label="Category:">Cricket</td>
+                                <td data-label="Address:">Reid Avenue, Colombo 07</td>
+                                <td data-label="Availability button:"></td>
+                                <td data-label="Delete Button:"></td>
+                                
+                            </tr>
+                            <tr>
+                                <td data-label="Sports Arena Name:">Colombo Kings</td>
+                                <td data-label="Category:">Cricket</td>
+                                <td data-label="Address:">Reid Avenue, Colombo 07</td>
+                                <td data-label="Availability button:"></td>
+                                <td data-label="Delete Button:"></td>
+                                
+                            </tr>
+                            <tr>
+                                <td data-label="Sports Arena Name:">Colombo Kings</td>
+                                <td data-label="Category:">Cricket</td>
+                                <td data-label="Address:">Reid Avenue, Colombo 07</td>
+                                <td data-label="Availability button:"></td>
+                                <td data-label="Delete Button:"></td>
+                                
+                            </tr>
+                            <tr>
+                                <td data-label="Sports Arena Name:">Colombo Kings</td>
+                                <td data-label="Category:">Cricket</td>
+                                <td data-label="Address:">Reid Avenue, Colombo 07</td>
+                                <td data-label="Availability button:"></td>
+                                <td data-label="Delete Button:"></td>
+                                
+                            </tr>
+                            <tr>
+                                <td data-label="Sports Arena Name:">Colombo Kings</td>
+                                <td data-label="Category:">Cricket</td>
+                                <td data-label="Address:">Reid Avenue, Colombo 07</td>
+                                <td data-label="Availability button:"></td>
+                                <td data-label="Delete Button:"></td>
+                                
+                            </tr>
+                            <tr>
+                                <td data-label="Sports Arena Name:">Colombo Kings</td>
+                                <td data-label="Category:">Cricket</td>
+                                <td data-label="Address:">Reid Avenue, Colombo 07</td>
+                                <td data-label="Availability button:"></td>
+                                <td data-label="Delete Button:"></td>
+                                
+                            </tr>
+                            <tr>
+                                <td data-label="Sports Arena Name:">Colombo Kings</td>
+                                <td data-label="Category:">Cricket</td>
+                                <td data-label="Address:">Reid Avenue, Colombo 07</td>
+                                <td data-label="Availability button:"></td>
+                                <td data-label="Delete Button:"></td>
+                                
+                            </tr>
+                            <tr>
+                                <td data-label="Sports Arena Name:">Colombo Kings</td>
+                                <td data-label="Category:">Cricket</td>
+                                <td data-label="Address:">Reid Avenue, Colombo 07</td>
+                                <td data-label="Availability button:"></td>
+                                <td data-label="Delete Button:"></td>
+                                
+                            </tr>
+                            <tr>
+                                <td data-label="Sports Arena Name:">Colombo Kings</td>
+                                <td data-label="Category:">Cricket</td>
+                                <td data-label="Address:">Reid Avenue, Colombo 07</td>
+                                <td data-label="Availability button:"></td>
+                                <td data-label="Delete Button:"></td>
+                                
+                            </tr>
+                            <tr>
+                                <td data-label="Sports Arena Name:">Colombo Kings</td>
+                                <td data-label="Category:">Cricket</td>
+                                <td data-label="Address:">Reid Avenue, Colombo 07</td>
+                                <td data-label="Availability button:">
+                                    
+                                </td>
+                                <td data-label="Delete Button:"></td>
+                                
+                            </tr>
+                            <tr>
+                                <td data-label="Sports Arena Name:">Colombo Kings</td>
+                                <td data-label="Category:">Cricket</td>
+                                <td data-label="Address:">Reid Avenue, Colombo 07</td>
+                                <td data-label="Availability button:"></td>
+                                <td data-label="Delete Button:"></td>
+                                
+                            </tr>
+                    </tbody>
+                    </table>
+                </div>
+
+                <div id="notification" class="booking_tab_content">
+                    <table class="booking-table">
+                        <thead>
+                            <tr class="booking-thead-first-tr">
+                                <th class="booking-table-first-th">
+                                    <div class="booking-table-filter-container">
+                                        <div class="booking-table-search-container">
+                                            <input type="search" name="search" placeholder="Search">
+                                            <i class="fas fa-search"></i>
+                                        </div>
+                                        <div class="booking-table-date-picker">
+                                            <label class="date-label">Date</label>
+                                            <input type="date">
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                            <tr class="booking-thead-second-tr">
+                                <th class="b-first-th">Date</th>
+                                <th>Time</th>
+                                <th class="b-last-th">Notification</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="cursor: pointer" onclick="open_popup_notification()">
+                                <td data-label="Date:">BD1234567</td>
+                                <td data-label="Time:">7.35 AM</td>
+                                <td style="width: 70%" data-label="Notification :">Lorem ipsum dolor sit amet consectetur</td>
+                            </tr>
+                            <tr style="cursor: pointer" onclick="open_popup_notification()">
+                                <td data-label="Date:">BD1234567</td>
+                                <td data-label="Time:">7.35 AM</td>
+                                <td style="width: 70%" data-label="Notification :">Lorem ipsum dolor sit amet consectetur</td>
+                            </tr>
+                            <tr style="cursor: pointer" onclick="open_popup_notification()">
+                                <td data-label="Date:">BD1234567</td>
+                                <td data-label="Time:">7.35 AM</td>
+                                <td style="width: 70%" data-label="Notification :">Lorem ipsum dolor sit amet consectetur</td>
+                            </tr>
+                            <tr style="cursor: pointer" onclick="open_popup_notification()">
+                                <td data-label="Date:">BD1234567</td>
+                                <td data-label="Time:">7.35 AM</td>
+                                <td style="width: 70%" data-label="Notification :">Lorem ipsum dolor sit amet consectetur</td>
+                            </tr>
+                            <tr style="cursor: pointer" onclick="open_popup_notification()">
+                                <td data-label="Date:">BD1234567</td>
+                                <td data-label="Time:">7.35 AM</td>
+                                <td style="width: 70%" data-label="Notification :">Lorem ipsum dolor sit amet consectetur</td>
+                            </tr>
+                            <tr style="cursor: pointer" onclick="open_popup_notification()">
+                                <td data-label="Date:">BD1234567</td>
+                                <td data-label="Time:">7.35 AM</td>
+                                <td style="width: 70%" data-label="Notification :">Lorem ipsum dolor sit amet consectetur</td>
+                            </tr>
+                            <tr style="cursor: pointer" onclick="open_popup_notification()">
+                                <td data-label="Date:">BD1234567</td>
+                                <td data-label="Time:">7.35 AM</td>
+                                <td style="width: 70%" data-label="Notification :">Lorem ipsum dolor sit amet consectetur</td>
+                            </tr>
+
+                              
+                            
+                    </tbody>
+                    </table>
+                </div>
+
+
+
+                <div id="add_bookings" class="booking_tab_content">
+                <h3>add_bookings</h3>
+                <p>add_bookings is the capital of France.</p> 
+                </div>
+
+                <div id="cancel_booking" class="booking_tab_content">
+                <h3>cancel_booking</h3>
+                <p>cancel_booking is the capital of Japan.</p>
+                </div>
+                <div id="booking_payment" class="booking_tab_content">
+                <h3>booking_payment</h3>
+                <p>cancel_booking is the capital of Japan.</p>
+                </div>
+
+                </div>
+            </div>
+                
+
+    </section>
+    <script src="./new_customer_dashbord.js"></script>
+
+</body>
+</html>

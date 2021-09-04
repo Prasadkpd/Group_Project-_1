@@ -33,6 +33,7 @@ set_exception_handler('Core\Error::exceptionHandler');
 /**
  * Routing
  */
+require '../Core/Router.php';
 $router = new Core\Router();
 
 // Add the routes
@@ -48,3 +49,6 @@ $router->add('bookinghandlingstaff/{controller}/{action}', ['namespace' => 'Book
 
 //Dispatching URLs to controllers and methods
 $router->dispatch($_SERVER['QUERY_STRING']);  
+// echo '<pre>';
+// var_dump($router->getRoutes());
+// echo '<pre>';
