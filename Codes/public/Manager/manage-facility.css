@@ -897,3 +897,70 @@ margin-right: 1rem;
     font-size: 0.75rem;
   }
 }
+
+
+/* for pop up section */
+.sectionpop h1{
+  font-size:24px;
+  text-align:center;
+  margin-bottom: 20px;
+}
+.sectionpop p{
+
+  text-align:center;
+  margin: 20px auto;
+}
+
+.popup_button{
+  background-color: #2ecc71;
+  color: white;
+  padding: 10px 15px;
+  font-weight: 600;
+  font-size:16px;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+  opacity: 0.9;
+  margin: 5px auto;
+  border-radius: 50px;
+  border: none;
+}
+
+.popup_button:hover{
+  background-color: white;
+  color: #2ecc71;
+  
+  border:1px solid #2ecc71;
+}
+
+.popup_delete_message button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.popup_delete_message button:hover {
+  opacity:1;
+}
+
+/* Float cancel and delete buttons and add an equal width */
+.cancelbtn, .deletebtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add a color to the cancel button */
+.popup_delete_message cancelbtn {
+  background-color: #ccc;
+  color: black;
+}
+
+/* Add a color to the delete button */
+.popup_delete_message .deletebtn {
+  background-color: #f44336;
+}

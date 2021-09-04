@@ -2250,3 +2250,6 @@ file%3A%2F%2F%2FUsers%2Fmanethwijetunga%2FDevelopment%2FFunctional_Programming%2
 [0m2021.09.04 00:21:32 INFO  time: initialize in 1.79s[0m
 [0m2021.09.04 00:21:37 WARN  Build server is not auto-connectable.[0m
 [0m2021.09.04 00:21:37 WARN  no build tool detected in workspace 'E:\My Projects\2nd year group project\new group project\Group_Project-_1'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+Sep 04, 2021 12:24:24 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+[0m2021.09.04 00:26:02 INFO  shutting down Metals[0m

@@ -35,3 +35,26 @@ function closepopupform() {
     var form = document.getElementById("myForm");
     form.style.display = "none";
 }
+
+
+    //popup delete message for favorite list
+    function open_popup_delete_message(){
+        var form=document.getElementById("popup_delete");
+        
+        form.style.display = "block";
+    }
+    function close_popup_delete_message(){
+      var form=document.getElementById("popup_delete");
+      
+      form.style.display = "none";
+  }
+
+  // popup section for update
+function openpopupform_for_update() {
+    var form = document.getElementById("myForm_for_update");
+    form.style.display = "block";
+}
+function closepopupform_for_update() {
+    var form = document.getElementById("myForm_for_update");
+    form.style.display = "none";
+}
