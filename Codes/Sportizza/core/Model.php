@@ -34,8 +34,13 @@ abstract class Model
 
         return $db;
     }
+<<<<<<< HEAD
+    //writeData("customer", "'id', 'phone', 'nic'", "'1212', 'sumanapala', '1231231'");
+    //INSERT INTO customer ('id', 'phone', 'nic') VALUES ('1212', 'sumanapala', '1231231')
+=======
 
     // Insert query
+>>>>>>> 067f62a5cfaa23412e5cbc7c8a1f5aad8fabb211
     public function writeData($tableName, $columns, $data){
         $sql = 'INSERT INTO '.$tableName.' ('.$columns.' ) VALUES ('.$data.');';
 
@@ -48,6 +53,12 @@ abstract class Model
             return $result; 
         }
     }
+<<<<<<< HEAD
+
+    //getAllData(customer)
+    //SELECT * FROM customer
+=======
+>>>>>>> 067f62a5cfaa23412e5cbc7c8a1f5aad8fabb211
     public function getAllData($tableName){
         $sql = 'SELECT * FROM '.$tableName;
         $result =  $this->con->query($sql);
@@ -57,6 +68,12 @@ abstract class Model
             return $result; 
         }
     }
+<<<<<<< HEAD
+
+    //getAllDataWhere('customer', 'phone', '0771655198')
+    //SELECT * FROM customer WHERE phone=0771655198
+=======
+>>>>>>> 067f62a5cfaa23412e5cbc7c8a1f5aad8fabb211
     public function getAllDataWhere($tableName, $column, $data){
         $sql = 'SELECT * FROM '.$tableName.' WHERE '.$column.'="'.$data.'"';
         $result =  $this->con->query($sql);
@@ -68,6 +85,12 @@ abstract class Model
             return $result; 
         }
     }
+<<<<<<< HEAD
+
+    //getAllDataWhere('customer', 'phone', '0771655198', 'id', '11001')
+    //SELECT * FROM customer WHERE phone=0771655198 AND id=11001
+=======
+>>>>>>> 067f62a5cfaa23412e5cbc7c8a1f5aad8fabb211
     public function getAllDataWhereAnd($tableName, $column1, $data1,$column2, $data2){
         $sql = 'SELECT * FROM '.$tableName.' WHERE '.$column1.'="'.$data1.'" AND '.$column2.'="'.$data2.'"';
         $result =  $this->con->query($sql);
@@ -81,6 +104,12 @@ abstract class Model
             return $result; 
         }
     }
+<<<<<<< HEAD
+
+    //getAllDataWhere('name','customer', 'phone', '0771655198')
+    //SELECT name FROM customer WHERE phone=0771655198
+=======
+>>>>>>> 067f62a5cfaa23412e5cbc7c8a1f5aad8fabb211
     public function getSpecificDataWhere($columnName,$tableName, $column, $data){
         $sql = 'SELECT '.$columnName.' FROM '.$tableName.' WHERE '.$column.'="'.$data.'"';
         $result =  $this->con->query($sql);
@@ -91,6 +120,12 @@ abstract class Model
             return $result; 
         }
     }
+<<<<<<< HEAD
+
+    //updateData('customer', 'phone', 0771655198', array('fname' => 'Suvin', 'lname' => 'Nimnaka' ))
+    // This is equivilent to UPDATE customer SET "fname"="suvin", "lname"="nimnaka" WHERE "phone"="0771655198";
+=======
+>>>>>>> 067f62a5cfaa23412e5cbc7c8a1f5aad8fabb211
     public function updateData($tableName, $key, $keyvalue, $data) {
         $set = '';
         $x = 1;
@@ -114,6 +149,12 @@ abstract class Model
     
         return false;
     }
+<<<<<<< HEAD
+
+    //deleteTable('customer', 'phone', '0771655198')
+    // Equilent to DELETE FROM customer WHERE 'phone'='0771655198'
+=======
+>>>>>>> 067f62a5cfaa23412e5cbc7c8a1f5aad8fabb211
     function deleteData($tableName, $key, $keyvalue){
         $sql = "DELETE FROM {$tableName} WHERE {$key}='{$keyvalue}'";
         $result =  $this->con->query($sql);
@@ -124,6 +165,11 @@ abstract class Model
             return $result; 
         }
     }
+<<<<<<< HEAD
+
+    //For other uses
+=======
+>>>>>>> 067f62a5cfaa23412e5cbc7c8a1f5aad8fabb211
     public function executeSql($query){
         // echo $query;
         $result =  $this->con->query($query);
