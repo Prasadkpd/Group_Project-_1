@@ -2241,3 +2241,8 @@ file%3A%2F%2F%2FUsers%2Fmanethwijetunga%2FDevelopment%2FFunctional_Programming%2
 [0m2021.08.09 09:56:40 WARN  Build server is not auto-connectable.[0m
 [0m2021.08.09 09:56:40 WARN  no build tool detected in workspace '/Applications/MAMP/htdocs/Group_Project-_1'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
 [0m2021.08.09 10:47:49 INFO  shutting down Metals[0m
+[0m2021.09.02 08:36:13 INFO  Started: Metals version 0.10.5 in workspace '/Applications/MAMP/htdocs/Group_Project-_1' for client Visual Studio Code 1.59.1.[0m
+[0m2021.09.02 08:36:31 INFO  time: initialize in 18s[0m
+[0m2021.09.02 08:36:36 WARN  Build server is not auto-connectable.[0m
+[0m2021.09.02 08:36:36 WARN  no build tool detected in workspace '/Applications/MAMP/htdocs/Group_Project-_1'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+[0m2021.09.02 16:01:36 INFO  shutting down Metals[0m
