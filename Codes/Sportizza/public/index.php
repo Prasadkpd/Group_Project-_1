@@ -39,13 +39,13 @@ $router = new Core\Router();
 // Add the routes
 $router->add('', ['controller' => 'Home', 'action' => 'index']);
 $router->add('{controller}/{action}');
-$router->add('{controller}/{id:\d+}/{action}');
-$router->add('admin/{controller}/{action}', ['namespace' => 'Admin']);
-$router->add('visitor/{controller}/{action}', ['namespace' => 'Visitor']);
-$router->add('customer/{controller}/{action}', ['namespace' => 'Customer']);
-$router->add('manager/{controller}/{action}', ['namespace' => 'Manager']);
-$router->add('administrationstaff/{controller}/{action}', ['namespace' => 'AdministrationStaff']);
-$router->add('bookinghandlingstaff/{controller}/{action}', ['namespace' => 'BookingHandlingStaff']);
+// $router->add('{controller}/{id:\d+}/{action}');
+// $router->add('admin/{controller}/{action}', ['namespace' => 'Admin']);
+// $router->add('visitor/{controller}/{action}', ['namespace' => 'Visitor']);
+// $router->add('customer/{controller}/{action}', ['namespace' => 'Customer']);
+// $router->add('manager/{controller}/{action}', ['namespace' => 'Manager']);
+// $router->add('administrationstaff/{controller}/{action}', ['namespace' => 'AdministrationStaff']);
+// $router->add('bookinghandlingstaff/{controller}/{action}', ['namespace' => 'BookingHandlingStaff']);
 
 //Dispatching URLs to controllers and methods
 $router->dispatch($_SERVER['QUERY_STRING']);  
