@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+  <script>
+    $(document).ready(function() {
+
+        /**
+         * Validate the form
+         */
+        $('#formSpArenaApplication').validate({
+            rules: {
+                name: 'required',
+                email: {
+                    required: true,
+                    email: true,
+                    remote: '/account/validate-email'
+                },
+                password: {
+                    required: true,
+                    minlength: 6,
+                    validPassword: true
+                }
+            },
+            messages: {
+                email: {
+                    remote: 'email already taken'
+                }
+            }
+        });
+    });
+</script>
+  
+<link rel="stylesheet" href="/public/css/sp-arena-application.css">
+  <title>Sportizza</title>
+</head>
+
+<body>
+  <!-- Top Navigation Bar -->
+  <nav>
+    <div class="nav-container">
+      <div class="horizontal-container">
+        <div class="cell">
+          <ul class="home-nav">
+            <li>
+              <a href="#">
+                <i class="fas fa-running"></i>
+                <span class="sportizza-logo">Sportizza</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="cell">
+          <div class="search-container">
+            <input type="text" name="search" placeholder="Search..." class="search-input">
+
+            <a href="#" class="search-btn">
+              <i class="fas fa-search" style="margin:2px 15px"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="page">
+    <div class="container">
+      <div class="title">Sports Arena Application</div>
+      <div class="content">
+
+        <form method="post" action="signup/create" id="formSpArenaApplication">
+
+          <div class="sp-details">
+            <div class="input-box">
+              <label for="spArenaName">Sports Arena Name</label>
+              <input id="spArenaName" type="text" placeholder="Enter name" required autofocus>
+            </div>
+            <div class="input-box">
+              <label for="contact">Contact Number</label>
+              <input id="contact" type="text" placeholder="Enter contact number" required>
+            </div>
+
+            <div class="input-box">
+              <label for="category">Category</label>
+              <div class="options-container">
+                <div class="custom-select">
+                  <select id="category">
+                    <option value="0">Select Category</option>
+                    <option value="1">Cricket</option>
+                    <option value="2">Football</option>
+                    <option value="3">Rugby</option>
+                    <option value="4">Swimming</option>
+                    <option value="5">Tennis</option>
+                    <option value="6">Vollyball</option>
+                    <option value="7">Karathe</option>
+                  </select>
+                </div>
+
+              </div>
+            </div>
+            <div class="input-box">
+              <label for="other-category">Please specify if other</label>
+              <input id="other-category" type="text" placeholder="">
+            </div>
+            <div class="input-box">
+              <label for="location">Location</label>
+              <div class="options-container">
+
+                <div class="custom-select">
+                  <select id="location">
+                    <option value="0">Select Location</option>
+                    <option value="1">Colombo 7</option>
+                    <option value="2">Matara</option>
+                    <option value="3">Galle</option>
+                    <option value="4">Gampaha</option>
+                    <option value="5">Kandy</option>
+                    <option value="6">Hambanthota</option>
+                    <option value="7">Baththaramulla</option>
+                    <option value="8">Nugegoda</option>
+                    <option value="9">Maradana</option>
+                    <option value="10">Mirissa</option>
+                    <option value="11">Weiligama</option>
+                    <option value="12">Wattala</option>
+                  </select>
+                </div>
+
+              </div>
+            </div>
+            <div class="input-box">
+              <label for="other-location">Please specify if other</label>
+              <input id="other-location" type="text" placeholder="">
+            </div>
+            <div class="input-box-map">
+              <label for="map-link" required>Google Map Link</label>
+              <input id="map-link" type="text" placeholder="Paste google map link to provide directions to sports arena"
+                required>
+            </div>
+            <div class="input-box-descr">
+              <label for="description">Description</label>
+              <input id="description" type="text" placeholder="(Briefly state about sports arena)" required>
+            </div>
+            <div class="input-box-map">
+              <label for="other-facilities">Other Facilities</label>
+              <input id="other-facilities" type="text" placeholder="Ex: Changing Rooms, Cafeteria, Car Parking, etc.">
+            </div>
+
+            <div class="input-box">
+              <label for="payment">Payment Methods
+                <div class="cash-method">
+
+                  <label class="pay-method">
+                    <h4>Cash</h4>
+                    <input id="pay-method" type="checkbox">
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="pay-method">
+                    <h4>Card</h4>
+                    <input id="pay-method" type="checkbox">
+                    <span class="checkmark"></span>
+                  </label>
+
+                </div>
+              </label>
+            </div>
+
+            <div class="input-box-img">
+              <label for="photos">Sports Arena Photos</label>
+
+              <label class="img-button">Image 1
+                <input style="display: none;" type="file" name="file1" onchange="change_color(this.files,event)" required>
+              </label>
+              <label class="img-button">Image 2
+                <input style="display: none;" type="file" name="file2" onchange="change_color(this.files,event)" required>
+              </label>
+              <label class="img-button">Image 3
+                <input style="display: none;" type="file" name="file3" onchange="change_color(this.files,event)" required>
+              </label>
+              <label class="img-button">Image 4
+                <input style="display: none;" type="file" name="file4" onchange="change_color(this.files,event)" required>
+              </label>
+              <label class="img-button">Image 5
+                <input style="display: none;" type="file" name="file5" onchange="change_color(this.files,event)" required>
+              </label>
+            </div>
+          </div>
+          <div class="button">
+            <input type="submit" value="Register" class="btn solid" />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Start of Footer -->
+  <footer>
+    <div class="copyright">
+      <p>
+        Copyright &copy;2021 All rights reserved | Sportizza Inc.
+      </p>
+    </div>
+  </footer>
+  <!-- End of Footer -->
+  <script type="text/javascript">
+
+    function change_color(files, e) {
+      if (files.length > 0) {
+        console.log(e.currentTarget);
+        e.currentTarget.parentNode.style.backgroundColor = "#fab1a0";
+      }
+    }
+
+  </script>
+</body>
+
+</html>
