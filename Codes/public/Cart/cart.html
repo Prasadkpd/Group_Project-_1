@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cart</title>
+    <link rel="stylesheet" href="cart.css">
+    <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-left">
+            <div class="logo-container">
+                <a href="#">
+                    <i class="fas fa-running "></i>
+                    <span class="logo-name">Sportizza</span>
+                </a>
+            </div>
+            <div class="search-bar-container">
+                <input type="search" name="search" placeholder="Search">
+                <i class="fas fa-search "></i>
+            </div>
+
+
+            <div class="nav-profile">
+                <div class="sectionpop ">
+                    <input class="modal-btn " type="checkbox" id="modal-btn" name="modal-btn">
+                    <label for="modal-btn" class="modal-label">
+
+                        <div class="profile-details">
+                            <img src="assets/profile-picture.jpg" alt="" class="profile-picture">
+                            <span class="username">Bhashitha Ranasinghe</span>
+                        </div>
+                    </label>
+
+                    <div class="modal">
+                        <div class="modal-wrap">
+                            <img src="assets/profile-picture.jpg" alt="">
+                            <form action="/action_page.php" style="margin:20px">
+                                <label for="fname">First Name</label>
+                                <input type="text" id="fname" name="firstname" placeholder="Enter First Name"
+                                    value="sadeepa">
+
+                                <label for="lname">Last Name</label>
+                                <input type="text" id="lname" name="lastname" placeholder="Enter Last Names"
+                                    value="bhashitha">
+
+                                <label for="lname">User Id</label>
+                                <input type="text" id="userid" name="lastname" placeholder="Enter User Id"
+                                    value="bhashi1233">
+
+                                <label for="lname">Primary Number</label>
+                                <input type="text" id="lname" name="lastname" placeholder="Enter Primary Number"
+                                    value="0705614640">
+
+                                <label for="lname">Secondary Number</label>
+                                <input type="text" id="userid" name="lastname" placeholder="Enter Secondary Number"
+                                    value="0705614640">
+                                <input type="submit" value="Submit">
+                            </form>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+            <div class="sign-in-out-btn">
+                <a style="font-weight:500; " href="">Sign Out </a>
+            </div>
+        </div>
+        <!-- search bar for mobile -->
+        <div class="search-bar-container-mobi">
+            <input type="search" name="search" placeholder="Search">
+            <i class="fas fa-search "></i>
+        </div>
+    </nav>
+    <!-- End Top Navigation Bar -->
+
+    <section class="page-container">
+
+        <div class="page-content-container">
+            <div class="container">
+                <h1 class="page-header">Order Summary</h1>
+
+
+                <div id="view_bookings" class="booking_tab_content active" style="display: block;">
+                    <table class="booking-table">
+                        <thead>
+
+                            <tr class="booking-thead-second-tr">
+                                <th class="b-first-th">Sports Arena</th>
+                                <th>Facility</th>
+                                <th>Booking Date</th>
+                                <th>Start Time</th>
+                                <th>End Time</th>
+                                <th class="b-last-th">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <tr>
+                                <td data-label="Sports Arena :">Mercantile Basketball Courts</td>
+                                <td data-label="Facility Name :">Basketball Court 1</td>
+                                <td data-label="Booking Date :">2021/09/23</td>
+                                <td data-label="Start Time :">1530h</td>
+                                <td data-label="End Time :">1630h</td>
+                                <td data-label="Amount :">2000</td>
+                            </tr>
+                            <tr>
+                                <td data-label="Sports Arena :">Mercantile Basketball Courts</td>
+                                <td data-label="Facility Name :">Basketball Court 1</td>
+                                <td data-label="Booking Date :">2021/09/23</td>
+                                <td data-label="Start Time :">1530h</td>
+                                <td data-label="End Time :">1630h</td>
+                                <td data-label="Amount :">2000</td>
+                            </tr>
+                            <tr>
+                                <td data-label="Sports Arena :">Mercantile Basketball Courts</td>
+                                <td data-label="Facility Name :">Basketball Court 1</td>
+                                <td data-label="Booking Date :">2021/09/23</td>
+                                <td data-label="Start Time :">1530h</td>
+                                <td data-label="End Time :">1630h</td>
+                                <td data-label="Amount :">2000</td>
+                            </tr>
+
+
+
+
+                        </tbody>
+                    </table>
+                    <div class="last">
+                        <div class="backbtn">
+                            Go Back
+                        </div>
+                        <div class="amount">
+                            <div class="wording">Net amount:
+                            </div>
+                            <div class="value">
+                                LKR 5000.00
+                            </div>
+                            <div class="btn">Pay
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    <!-- Start of Footer -->
+    <footer>
+        <div class="copyright">
+            <p>
+                Copyright &copy;2021 All rights reserved | Sportizza Inc.
+            </p>
+        </div>
+    </footer>
+    <!-- End of Footer -->
+</body>
+</html>
