@@ -1,4 +1,4 @@
-const green = '#2ecc71';
+const green = '#26de81';
 const red = '#e74c3c';
 
 //Show password button

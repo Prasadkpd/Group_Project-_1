@@ -1,10 +1,14 @@
 .container {
   height: 80vh;
-  padding-bottom: 1rem;
+
+}
+.page{
+    padding-bottom:2rem;
 }
 @media (max-width: 576px) {
     .page{
         padding-top:0;
+        padding-bottom: 0;
     }
     .container {
         margin-top:0;
