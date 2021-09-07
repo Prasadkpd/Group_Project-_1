@@ -105,7 +105,6 @@ form input[type="submit"]:hover {
   color: #fd461f;
 }
 
-
 .btn {
   display: inline-block;
   transition: 0.3s;
@@ -126,7 +125,7 @@ form input[type="submit"]:hover {
   justify-content: center;
   align-items: center;
   margin: auto;
-  padding-top:15px;
+  padding-top: 15px;
   background-color: #ff6348;
 }
 .container {
@@ -137,7 +136,7 @@ form input[type="submit"]:hover {
   background-color: #fff;
   padding: 0px 30px;
   padding-bottom: 5rem;
-  
+
   border-radius: 15px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
 }
@@ -183,7 +182,7 @@ form .manager-details .input-box {
 }
 form .sp-details .input-box span.details {
   display: block;
-  
+
   margin-bottom: 15px;
   color: #34495e;
 }
@@ -433,11 +432,11 @@ form i {
   margin-left: -40px;
   cursor: pointer;
 }
-.specialMsg{
-  font-size:0.9rem;
+.specialMsg {
+  font-size: 0.9rem;
   font-weight: 500;
-  margin:1rem auto;
-  color:#34495e;
+  margin: 1rem auto;
+  color: #34495e;
   font-style: italic;
 }
 footer {
@@ -457,8 +456,11 @@ footer {
   display: sticky;
 }
 @media (max-width: 576px) {
-  .nav-container{
-    padding:0 1rem;
+  .nav-container {
+    padding: 0 1rem;
+  }
+  .page {
+    background-color: #fff;
   }
   .container {
     max-width: 100%;
@@ -475,19 +477,17 @@ footer {
     margin-bottom: 5px;
     width: 100%;
   }
-  .upload-images{
-    flex-direction:column;
- 
+  .upload-images {
+    flex-direction: column;
   }
   .img-button {
-    width:50%;
-    font-weight:600;
-    font-size:14px;
-    margin:0rem auto;
+    width: 50%;
+    font-weight: 600;
+    font-size: 14px;
+    margin: 0rem auto;
   }
 
   footer {
     font-size: 0.8rem;
   }
-  
 }

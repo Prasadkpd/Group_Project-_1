@@ -26,9 +26,9 @@
           </ul>
         </div>
 
-          
-        </div> 
+
       </div>
+    </div>
     </div>
   </nav>
   <div class="page">
@@ -48,8 +48,8 @@
 
             <div class="input-box">
               <label for="contact">Contact Number</label>
-              <input id="contact" type="text" name="contact" placeholder="Ex: 0712345678"
-                onfocusout="validateContact()" value="{{ post.contact}}">
+              <input id="contact" type="text" name="contact" placeholder="Ex: 0712345678" onfocusout="validateContact()"
+                value="{{ post.contact}}">
               <div class="helper-text" id="contactMsg"></div>
             </div>
 
@@ -141,7 +141,8 @@
               <div class="options-container">
 
                 <div class="custom-select">
-                  <select id="payment" name="payment method" onchange="validatePayment()" value="{{ post.(payment method)}}">
+                  <select id="payment" name="payment method" onchange="validatePayment()"
+                    value="{{ post.(payment method)}}">
                     <option value="0"> </option>
                     <option value="1">Only cash payments</option>
                     <option value="2">Only card payments</option>
@@ -158,30 +159,35 @@
 
                 <label class="img-button">Image 1
                   <input style="display: none;" type="file" name="Image 1" value="submit" accept="image/*" type="submit"
-                    id="file1" onchange="change_color(this.files,event) , validateImgFiles()" value="{{ post.(Image 1)}}">
+                    id="file1" onchange="change_color(this.files,event) , validateImgFiles()"
+                    value="{{ post.(Image 1)}}">
                 </label>
                 <div class="helper-text" id="imgMsg1"></div>
 
                 <label class="img-button">Image 2
                   <input style="display: none;" type="file" name="Image 2" value="submit" accept="image/*" type="submit"
-                    id="file2" onchange="change_color(this.files,event) , validateImgFiles()" value="{{ post.(Image 2)}}">
+                    id="file2" onchange="change_color(this.files,event) , validateImgFiles()"
+                    value="{{ post.(Image 2)}}">
                 </label>
                 <div class="helper-text" id="imgMsg2"></div>
                 <label class="img-button">Image 3
                   <input style="display: none;" type="file" name="Image 3" value="submit" accept="image/*" type="submit"
-                    id="file3" onchange="change_color(this.files,event) , validateImgFiles()" value="{{ post.(Image 3)}}">
+                    id="file3" onchange="change_color(this.files,event) , validateImgFiles()"
+                    value="{{ post.(Image 3)}}">
                 </label>
                 <div class="helper-text" id="imgMsg3"></div>
 
                 <label class="img-button">Image 4
                   <input style="display: none;" type="file" name="Image 4" value="submit" accept="image/*" type="submit"
-                    id="file4" onchange="change_color(this.files,event) , validateImgFiles()" value="{{ post.(Image 4)}}">
+                    id="file4" onchange="change_color(this.files,event) , validateImgFiles()"
+                    value="{{ post.(Image 4)}}">
                 </label>
                 <div class="helper-text" id="imgMsg4"></div>
 
                 <label class="img-button">Image 5
                   <input style="display: none;" type="file" name="Image 5" value="submit" accept="image/*" type="submit"
-                    id="file5" onchange="change_color(this.files,event) , validateImgFiles()" value="{{ post.(Image 5)}}">
+                    id="file5" onchange="change_color(this.files,event) , validateImgFiles()"
+                    value="{{ post.(Image 5)}}">
                 </label>
                 <div class="helper-text" id="imgMsg5"></div>
               </div>
@@ -196,7 +202,7 @@
             <div class="input-box">
               <label for="firstName">First Name</label>
               <input id="firstName" type="text" name="first name" onfocusout="validateFirstName()"
-                placeholder="Enter first name">
+                placeholder="Enter first name" value="{{ post.(first name)}}">
               <div class="helper-text" id="firstNameMsg"></div>
             </div>
 
@@ -204,7 +210,7 @@
             <div class="input-box">
               <label for="lastName">Last Name</label>
               <input id="lastName" type="text" name="last name" onfocusout="validateLastName()"
-                placeholder="Enter last name">
+                placeholder="Enter last name" value="{{ post.(last name)}}">
               <div class="helper-text" id="lastNameMsg"></div>
             </div>
 
@@ -212,7 +218,7 @@
             <div class="input-box">
               <label for="mobile">Mobile Number</label>
               <input id="mobile" type="text" name="mobile number" onfocusout="validateMobile()"
-                placeholder="Enter mobile number">
+                placeholder="Enter mobile number" value="{{ post.(mobile number)}}">
               <div class="helper-text" id="mobileMsg"></div>
             </div>
 
@@ -220,7 +226,7 @@
             <div class="input-box">
               <label for="username">Username</label>
               <input id="username" type="text" name="username" onfocusout="validateUsername()"
-                placeholder="Enter a unique Username">
+                placeholder="Enter a unique Username" value="{{ post.(username)}}">
               <div class="helper-text" id="usernameMsg"></div>
             </div>
 
@@ -228,7 +234,7 @@
             <div class="input-box">
               <label for="password">Password</label>
               <input id="password" type="password" name="password" onfocusout="validatePassword()"
-                placeholder="Enter a password">
+                placeholder="Enter a password" value="{{ post.(password)}}">
               <i class="bi bi-eye-slash" id="togglePassword"></i>
               <div class="helper-text" id="passwordMsg"></div>
             </div>
@@ -256,5 +262,7 @@
   <!-- End of Footer -->
 
   <script type="text/javascript" src="/public/js/signup_validation.js"></script>
+  <script type="text/javascript" src="/public/js/spArenaSignup_validations.js"></script>
 </body>
+
 </html>
