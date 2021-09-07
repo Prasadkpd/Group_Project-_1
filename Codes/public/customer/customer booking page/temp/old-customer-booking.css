@@ -387,6 +387,7 @@ h1 {
   width: 100%;
   border-radius: 25px;
   /* display:none; */
+  
 }
 .booking.hide {
   display:none;
@@ -513,9 +514,10 @@ footer {
   font-weight: 400;
   font-size: 0.8rem;
   position: absolute;
-  bottom: 0;
+
   width: 100%;
   text-align: center;
+  
 }
 .copyright {
   margin: 0px auto;
@@ -626,6 +628,7 @@ footer {
     flex-direction: column;
     height: 56vh;
     display:none;
+    
   }
 
   .left-container {

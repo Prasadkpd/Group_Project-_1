@@ -64,6 +64,66 @@
    
     <!-- End Top Navigation Bar -->
 
+
+
+
+    <!-- start pop up delete section -->
+<div id="popup_delete" class="sectionpop ">
+   
+
+    <div class="formsection">
+
+        <div>
+            <button s class="closebutton"onclick="close_popup_delete_message()">❌</button>
+        </div>
+    <form action="/action_page.php" style="margin:20px">
+        <div style="margin:auto">
+            <h1 style="margin:auto">
+                Booking deletion
+            </h1>
+            <p style="margin:auto">
+                Are sure to delete booking
+            </p>
+        </div>
+    </form> 
+
+ 
+<div style="display:flex">
+    <button onclick="close_popup_delete_message()"  class="popup_button">
+       NO
+    </button>
+    <button style="background-color:red" class="popup_button">
+       YES
+    </button>
+</div>
+    </div>  
+</div>
+<!-- end pop up delete section -->
+
+
+<!-- update popup form -->
+<div id="myForm_for_update" class="sectionpop ">
+    <div class="formsection">
+        <div>
+            <button s class="closebutton" onclick="closepopupform_for_update()">❌</button>
+        </div>
+        <img class="form-profile-picture" src="assets/profile-picture.jpg" alt="">
+        <form action="/action_page.php" style="margin:20px">
+            <label for="fname">Facility Name</label>
+            <input type="text" id="fname" name="firstname" placeholder="Facility Name" value="Cricket Ground 1">
+            <!-- <label for="lname">Last Name</label>
+            <input type="text" id="lname" name="lastname" placeholder="Enter Last Names" value="bhashitha">
+            <label for="lname">Primary Number</label>
+            <input type="text" id="lname" name="lastname" placeholder="Enter Primary Number" value="0705614640">
+            <label for="lname">Secondary Number</label>
+            <input type="text" id="userid" name="lastname" placeholder="Enter Secondary Number" value="0705614640"> -->
+            <input type="submit" value="Save">
+        </form>
+    </div>
+</div>
+
+<!--end update popup form -->
+
     <section class="page-container">
 
         <!-- SIDE NAVIGATION BAR - START -->
@@ -146,6 +206,11 @@
                             class="fas fa-trash-alt"></i>
                         <p>Delete Facility</p>
                     </button>
+
+                    <button class="booking_tab tab-btn" onclick="openTab(event, 'update_booking')">
+                        <i class="fas fa-edit"></i>
+                    <p>Update Facility</p>
+                </button>
                 </div>
 
                 <!-- View Facility Tab -->
@@ -243,7 +308,9 @@
                             <tr>
                                 <td data-label="Facility ID :">BD123456789101</td>
                                 <td data-label="Facility Name :">Cricket Ground 1 </td>
-                                <td data-label="Action :"> <a href=""><i class="fas fa-trash-alt"></i></a></td>
+                                <td data-label="Action :"> <button class="icon_red" style="border:none"onclick="open_popup_delete_message()">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button></td>
                             </tr>
                             <tr>
                                 <td data-label="Facility ID :">BD123456789101</td>
@@ -264,6 +331,61 @@
                                 <td data-label="Facility ID :">BD123456789101</td>
                                 <td data-label="Facility Name :">Cricket Ground 5 </td>
                                 <td data-label="Action :"> <a href=""><i class="fas fa-trash-alt"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+                <!-- Update Facility Tab -->
+                <div id="update_booking" class="booking_tab_content">
+                    <table class="booking-table">
+                        <thead>
+                            <tr class="booking-thead-first-tr">
+                                <th class="booking-table-first-th">
+                                    <div class="booking-table-filter-container">
+                                        <div class="booking-table-search-container">
+                                            <input type="search" name="search" placeholder="Search">
+                                            <i class="fas fa-search"></i>
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                            <tr class="booking-thead-second-tr">
+                                <th class="b-first-th">Facility ID</th>
+                                <th>Facility Name</th>
+                                <th class="b-last-th"> Action</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-label="Facility ID :">BD123456789101</td>
+                                <td data-label="Facility Name :">Cricket Ground 1 </td>
+                                <td data-label="Action :"> <button class="icon_red" style="border:none"onclick="openpopupform_for_update()">
+                                    <i class="fas fa-edit"></i>
+                                </button></td>
+                            </tr>
+                            <tr>
+                                <td data-label="Facility ID :">BD123456789101</td>
+                                <td data-label="Facility Name :">Cricket Ground 2 </td>
+                                <td data-label="Action :"> <a href=""><i class="fas fa-edit"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td data-label="Facility ID :">BD123456789101</td>
+                                <td data-label="Facility Name :">Cricket Ground 3 </td>
+                                <td data-label="Action :"> <a href=""><i class="fas fa-edit"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td data-label="Facility ID :">BD123456789101</td>
+                                <td data-label="Facility Name :">Cricket Ground 4 </td>
+                                <td data-label="Action :"> <a href=""><i class="fas fa-edit"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td data-label="Facility ID :">BD123456789101</td>
+                                <td data-label="Facility Name :">Cricket Ground 5 </td>
+                                <td data-label="Action :"> <a href=""><i class="fas fa-edit"></i></a></td>
                             </tr>
                         </tbody>
                     </table>
