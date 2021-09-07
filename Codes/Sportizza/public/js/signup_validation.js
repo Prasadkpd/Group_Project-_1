@@ -15,11 +15,12 @@ const description = document.getElementById('description');
 const other_facilities = document.getElementById('other-facilities');
 const payment = document.getElementById('payment');
 
-const file1 =document.getElementById('file1');
-const file2 =document.getElementById('file2');
-const file3 =document.getElementById('file3');
-const file4 =document.getElementById('file4');
-const file5 =document.getElementById('file5');
+//Image files
+const file1 = document.getElementById('file1');
+const file2 = document.getElementById('file2');
+const file3 = document.getElementById('file3');
+const file4 = document.getElementById('file4');
+const file5 = document.getElementById('file5');
 
 //Manager Details
 const firstName = document.getElementById('firstName');
@@ -27,53 +28,77 @@ const lastName = document.getElementById('lastName');
 const mobile = document.getElementById('mobile');
 const username = document.getElementById('username');
 const password = document.getElementById('password');
+const togglePassword = document.querySelector('#togglePassword');
+const showPassword = document.querySelector('#password');
 
 // Form
 const form = document.getElementById('formSpArenaApplication');
 
-
-// Handle form
-form.addEventListener('submit', function (event) {
-    // Prevent default behaviour
-    event.preventDefault();
-    if (
-        validateSpArenaName() &&
-        validateContact() &&
-            validateCategory() &&
-            // validateOtherCategory() &&
-            validateLocation() &&
-            // valiadteOtherLocation() &&
-        validateMapLink() &&
-        validateDescription() &&
-        validateOtherFacilities() &&
-            validatePayment() &&
-
-        validateFirstName() &&
-        validateLastName() &&
-        validateMobile() &&
-        validateUsername() &&
-        validatePassword()
-
-    ) {
-        form.submit();
-    }
+//Show password button
+togglePassword.addEventListener('click', function (e) {
+    // toggle the type attribute
+    const type = showPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+    showPassword.setAttribute('type', type);
+    // toggle the eye / eye slash icon
+    this.classList.toggle('bi-eye');
 });
+
+//Change colour after submitting image files
+function change_color(files, e) {
+    if (files.length > 0) {
+      console.log(e.currentTarget);
+      e.currentTarget.parentNode.style.backgroundColor = "#fab1a0";
+    }
+  }
+
 //Capitalize first letter
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+// Validations
+// Handle form
+form.addEventListener('submit', function (event) {
+    // Prevent default behaviour
+    event.preventDefault();
+    if (
+        //Sports Arena validations
+        validateSpArenaName() &&
+        validateContact() &&
+        validateCategory() &&
+        validateOtherCategory() &&
+        validateLocation() &&
+        validateOtherLocation() &&
+        validateMapLink() &&
+        validateDescription() &&
+        validateOtherFacilities() &&
+        validatePayment() &&
+
+        //Manager account validations
+        validateFirstName() &&
+        validateLastName() &&
+        validateMobile() &&
+        validateUsername() &&
+        validatePassword()
+    ) {
+        form.submit();
+    }
+});
+
+//Function to check all the validations before getting submitted
 function validateForm() {
+    //Sports Arena validations
     validateSpArenaName();
     validateContact();
     validateCategory();
-    // valiadteOtherCategory();
+    validateOtherCategory();
     validateLocation();
-     // valiadteOtherLocation();
+    validateOtherLocation();
     validateMapLink();
     validateDescription();
     validateOtherFacilities();
 
+    //Manager account validations
     validatePayment();
     validateFirstName();
     validateLastName();
@@ -82,10 +107,9 @@ function validateForm() {
     validatePassword();
 }
 
-
-// Validation
-
 //General Validation
+
+//Valid & Invalid property display dynamic functions
 function setInvalid(field, message) {
     field.style.borderColor = red;
     field.nextElementSibling.innerHTML = (field, message);
@@ -96,6 +120,27 @@ function setValid(field) {
     field.nextElementSibling.innerHTML = '';
 }
 
+function selectValid(field) {
+    field.style.borderColor = green;
+    field.nextElementSibling.innerHTML = '';
+}
+
+function selectInvalid(field, message) {
+    field.style.borderColor = red;
+    field.nextElementSibling.innerHTML = (field, message);
+}
+
+function setInvalidNext(field, message) {
+    field.style.borderColor = red;
+    field.nextElementSibling.nextElementSibling.innerHTML = (field, message);
+}
+
+function setValidNext(field) {
+    field.style.borderColor = green;
+    field.nextElementSibling.nextElementSibling.innerHTML = '';
+}
+
+//Checking the submission of null vales
 function isEmpty(value) {
     if (value === '') return true;
     return false;
@@ -113,6 +158,19 @@ function checkIfEmpty(field) {
     }
 }
 
+function checkIfEmptyNext(field) {
+    if (isEmpty(field.value.trim())) {
+        // set field invalid
+        setInvalidNext(field, `${capitalizeFirstLetter(field.name)} should be filled!`);
+        return true;
+    } else {
+        // set field valid
+        setValidNext(field);
+        return false;
+    }
+}
+
+//Check for leters, numbers & characters
 function checkIfOnlyLetters(field) {
     if (/^[a-zA-Z ]+$/.test(field.value)) {
         setValid(field);
@@ -132,8 +190,9 @@ function checkIfOnlyNumbers(field) {
         return false;
     }
 }
-function checkCharacters(field){
-    if ((/^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/.test(field.value))){
+
+function checkCharacters(field) {
+    if ((/^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/.test(field.value))) {
         setValid(field);
         return true;
     } else {
@@ -142,6 +201,7 @@ function checkCharacters(field){
     }
 }
 
+//Length validations
 function meetLength(field, minLength, maxLength) {
     if (field.value.length >= minLength && field.value.length <= maxLength) {
         setValid(field);
@@ -159,6 +219,24 @@ function meetLength(field, minLength, maxLength) {
     }
 }
 
+function meetLengthNext(field, minLength, maxLength) {
+    if (field.value.length >= minLength && field.value.length <= maxLength) {
+        setValidNext(field);
+        return true;
+    } else if (field.value.length < minLength) {
+        setInvalidNext(field, `${capitalizeFirstLetter(field.name)} 
+            must be at least ${minLength} characters long`
+        );
+        return false;
+    } else {
+        setInvalid(field, `${capitalizeFirstLetter(field.name)} 
+            must be shorter than ${maxLength} characters`
+        );
+        return false;
+    }
+}
+
+//Checking with Regular Expressions
 function matchWithRegEx(regEx, field) {
     if (field.value.match(regEx)) {
         setValid(field);
@@ -171,10 +249,10 @@ function matchWithRegEx(regEx, field) {
 
 function matchWithRegExPassword(regEx, field) {
     if (field.value.match(regEx)) {
-        setValid(field);
+        setValidNext(field);
         return true;
     } else {
-        setInvalid(field, ` ${capitalizeFirstLetter(field.name)} 
+        setInvalidNext(field, ` ${capitalizeFirstLetter(field.name)} 
         must consists of atleast 1 capital letter, 
         1 simple letter, 1 character & 1 number!`);
         return false;
@@ -183,79 +261,90 @@ function matchWithRegExPassword(regEx, field) {
 
 function selectValidate(field) {
     var selectedCategory = field.options[field.selectedIndex].value;
-    if (selectedCategory == "0"){
+    if (selectedCategory == "0") {
         selectInvalid(field, `Please select a ${capitalizeFirstLetter(field.name)}`);
         return false;
     }
-    else{
-        selectValid(field);
-        return true;
-    }
-}
-function selectOtherValidate(field) {
-    var otherCategory = field.options[field.selectedIndex].value;
-    if (otherCategory == "1"){
-
-        selectInvalid(field, `Please select a ${capitalizeFirstLetter(field.name)}`);
-        return false;
-    }
-    else{
+    else {
         selectValid(field);
         return true;
     }
 }
 
-function validateImgFiles(){
-    if (fileExists(file1)) return;
-    return true;
-}
-
-function fileExists(field){
-    if (field.files.length == 0 ) {
-        setInvalid (field, `Please upload ${capitalizeFirstLetter(field.name)}!`);
-        return false;
-    }
-    else{
-        setValid(field);
-        return true;
+function selectOtherCategoryValidate(field) {
+    if (category.options[category.selectedIndex].value == "1") {
+        if (checkIfEmpty(other_category)) {
+            selectInvalid(field, `Please state the ${capitalizeFirstLetter(field.name)}`);
+            return false;
+        }
+        else {
+            selectValid(field);
+            return true;
+        }
     }
 }
 
-function selectValid(field){
-    field.style.borderColor = green;
-    field.nextElementSibling.innerHTML = '';
-}
-function selectInvalid(field, message){
-    field.style.borderColor = red;
-    field.nextElementSibling.innerHTML = (field, message);
+function selectOtherLocationValidate(field) {
+    if (spLocation.options[spLocation.selectedIndex].value == "1") {
+        if (checkIfEmpty(other_location)) {
+            selectInvalid(field, `Please state the ${capitalizeFirstLetter(field.name)}`);
+            return false;
+        }
+        else {
+            selectValid(field);
+            return true;
+        }
+    }
 }
 
-//Sports Arena Validation
+function validateImgFiles() {
+    // if (fileExists(file1)) return;
+    // return true;
+}
+
+// function fileExists(field) {
+//     if (field.files.length == 0) {
+//         setInvalid(field, `Please upload ${capitalizeFirstLetter(field.name)}!`);
+//         return false;
+//     }
+//     else {
+//         setValid(field);
+//         return true;
+//     }
+// }
+
+
+
+//Sports Arena Validations
 function validateSpArenaName() {
     if (checkIfEmpty(spArenaName)) return;
     return true;
 }
+
 function validateContact() {
     if (checkIfEmpty(contact)) return;
     if (!checkIfOnlyNumbers(contact)) return;
     if (!meetLength(contact, 10, 10)) return;
     return true;
 }
+
 function validateCategory() {
     if (selectValidate(category)) return;
     return true;
 }
-// function validateOtherCategory() {
-//     if (selectOtherValidate(category))
-//     // other_category)) 
-//     return;
-//     return true;
-// }
 
-
+function validateOtherCategory() {
+    if (selectOtherCategoryValidate(other_category)) return;
+    return true;
+}
 
 function validateLocation() {
     if (selectValidate(spLocation)) return;
+    return true;
+}
+
+function validateOtherLocation() {
+    if (selectOtherLocationValidate(other_location)) return;
     return true;
 }
 
@@ -281,7 +370,6 @@ function validatePayment() {
     if (selectValidate(payment)) return;
     return true;
 }
-
 
 //Manager details validation
 function validateFirstName() {
@@ -310,10 +398,9 @@ function validateUsername() {
     return true;
 }
 
-
-function validatePassword(){
-    if (checkIfEmpty(password)) return;
-    if (!meetLength(password, 8, 255)) return;
+function validatePassword() {
+    if (checkIfEmptyNext(password)) return;
+    if (!meetLengthNext(password, 8, 255)) return;
     regEx = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
     if (matchWithRegExPassword(regEx, password)) return;
     return true;

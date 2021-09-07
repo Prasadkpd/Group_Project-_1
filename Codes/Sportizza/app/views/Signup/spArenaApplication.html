@@ -5,36 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
-
-  <!-- <script>
-    $(document).ready(function() {
-
-        /**
-         * Validate the form
-         */
-        $('#formSpArenaApplication').validate({
-            rules: {
-                name: 'required',
-                email: {
-                    required: true,
-                    email: true,
-                    remote: '/account/validate-email'
-                },
-                password: {
-                    required: true,
-                    minlength: 6,
-                    validPassword: true
-                }
-            },
-            messages: {
-                email: {
-                    remote: 'email already taken'
-                }
-            }
-        });
-    });
-</script> -->
-
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
   <link rel="stylesheet" href="/public/css/sp-arena-application.css">
   <title>Sportizza</title>
 </head>
@@ -55,15 +26,8 @@
           </ul>
         </div>
 
-        <div class="cell">
-          <div class="search-container">
-            <input type="text" name="search" placeholder="Search..." class="search-input">
-
-            <a href="#" class="search-btn">
-              <i class="fas fa-search" style="margin:2px 15px"></i>
-            </a>
-          </div>
-        </div>
+          
+        </div> 
       </div>
     </div>
   </nav>
@@ -72,26 +36,28 @@
       <div class="title">Sports Arena Application</div>
       <div class="content">
 
-        <form method="post" action="signup/create" id="formSpArenaApplication" onsubmit= "validateForm()">
+        <form method="post" action="signup/create" id="formSpArenaApplication" onsubmit="validateForm()">
 
           <div class="sp-details">
             <div class="input-box">
               <label for="spArenaName">Sports Arena Name</label>
-              <input id="spArenaName" type="text" name="arena name" placeholder="Enter Arena Name" onfocusout="validateSpArenaName()">
+              <input id="spArenaName" type="text" name="arena name" placeholder="Enter Arena Name"
+                onfocusout="validateSpArenaName()" value="{{ post.(arena name)}}">
               <div class="helper-text" id="spArenaNameMsg"></div>
             </div>
 
             <div class="input-box">
               <label for="contact">Contact Number</label>
-              <input id="contact" type="text" name="contact" placeholder="Ex: 0712345678" onfocusout="validateContact()">
+              <input id="contact" type="text" name="contact" placeholder="Ex: 0712345678"
+                onfocusout="validateContact()" value="{{ post.contact}}">
               <div class="helper-text" id="contactMsg"></div>
             </div>
-           
+
             <div class="input-box">
               <label for="category">Category</label>
               <div class="options-container">
                 <div class="custom-select">
-                  <select id="category" name="category" onchange="validateCategory()">
+                  <select id="category" name="category" onchange="validateCategory()" value="{{ post.category }}">
                     <option value="0"> </option>
                     <option value="1">Other</option>
                     <option value="2">Football</option>
@@ -108,16 +74,17 @@
               </div>
             </div>
             <div class="input-box">
-              <label for="other-category">Please specify if other</label>
-              <input id="other-category" type="text" placeholder="" name="other category">
-              <div class="helper-text" id="other-categoryMsg"></div>
+              <label for="other_category">Other Category</label>
+              <input id="other_category" type="text" name="other category" placeholder="Please specify if other"
+                onfocusout="validateOtherCategory()" value="{{ post.(other category)}}">
+              <div class="helper-text" id="otherCategoryMsg"></div>
             </div>
             <div class="input-box">
               <label for="location">Location</label>
               <div class="options-container">
 
                 <div class="custom-select">
-                  <select id="location" name="location" onchange="validateLocation()">
+                  <select id="location" name="location" onchange="validateLocation()" value="{{ post.location}}">
                     <option value="0"> </option>
                     <option value="1">Other</option>
                     <option value="2">Matara</option>
@@ -139,39 +106,42 @@
               </div>
             </div>
             <div class="input-box">
-              <label for="other-location">Please specify if other</label>
-              <input id="other-location" type="text" placeholder="" name="other location">
-              <div class="helper-text" id="other-categoryMsg"></div>
+              <label for="other_location">Other Location</label>
+              <input id="other_location" type="text" name="other location" placeholder="Please specify the nearest town"
+                onfocusout="validateOtherLocation()" value="{{ post.(other location)}}">
+              <div class="helper-text" id="otherLocationMsg"></div>
             </div>
 
             <div class="input-box-map">
               <label for="map-link">Google Map Link</label>
               <input id="map-link" type="text" name="google map link"
-                placeholder="Ex: https://www.google.com/maps?q=204+C+Sandpiper+Place,+Fort+McMurray,+AB,+Canada" onfocusout="validateContact()">
-                <div class="helper-text" id="map-linkMsg"></div>
+                placeholder="Ex: https://www.google.com/maps?q=204+C+Sandpiper+Place,+Fort+McMurray,+AB,+Canada"
+                onfocusout="validateContact()" value="{{ post.(google map link)}}">
+              <div class="helper-text" id="map-linkMsg"></div>
             </div>
-            
+
             <div class="input-box-descr">
               <label for="description">Description</label>
-              <input id="description" type="text" name="description" 
-              placeholder="(Briefly state about sports arena)" onfocusout="validateDescription()">
+              <input id="description" type="text" name="description" placeholder="(Briefly state about sports arena)"
+                onfocusout="validateDescription()" value="{{ post.description}}">
               <div class="helper-text" id="descriptionMsg"></div>
             </div>
-            
+
 
             <div class="input-box-map">
               <label for="other-facilities">Other Facilities</label>
-              <input id="other-facilities" type="text" name="other facilities" onfocusout="validateOtherFacilities()" 
-              placeholder="Ex: Changing Rooms, Cafeteria, Car Parking, etc.">
-              <div class="helper-text" id="descriptionMsg"></div> </div>
-            
+              <input id="other-facilities" type="text" name="other facilities" onfocusout="validateOtherFacilities()"
+                placeholder="Ex: Changing Rooms, Cafeteria, Car Parking, etc." value="{{ post.(other facilities)}}">
+              <div class="helper-text" id="descriptionMsg"></div>
+            </div>
+
 
             <div class="input-box">
               <label for="payment">Accepted Payment Method</label>
               <div class="options-container">
 
                 <div class="custom-select">
-                  <select id="payment" name="payment method" onchange="validatePayment()">
+                  <select id="payment" name="payment method" onchange="validatePayment()" value="{{ post.(payment method)}}">
                     <option value="0"> </option>
                     <option value="1">Only cash payments</option>
                     <option value="2">Only card payments</option>
@@ -185,34 +155,37 @@
             <div class="input-box-img">
               <label for="photos">Sports Arena Photos</label>
               <div class="upload-images">
+
                 <label class="img-button">Image 1
-                  <input style="display: none;" type="file" name="Image 1" value="submit" accept="image/*"
-                  type="submit"  id="file1" onchange="change_color(this.files,event) , validateImgFiles()">
+                  <input style="display: none;" type="file" name="Image 1" value="submit" accept="image/*" type="submit"
+                    id="file1" onchange="change_color(this.files,event) , validateImgFiles()" value="{{ post.(Image 1)}}">
                 </label>
                 <div class="helper-text" id="imgMsg1"></div>
 
                 <label class="img-button">Image 2
-                  <input style="display: none;" type="file" name="Image 2" value="submit" accept="image/*"
-                  type="submit"  id="file2" onchange="change_color(this.files,event) , validateImgFiles()">
+                  <input style="display: none;" type="file" name="Image 2" value="submit" accept="image/*" type="submit"
+                    id="file2" onchange="change_color(this.files,event) , validateImgFiles()" value="{{ post.(Image 2)}}">
                 </label>
                 <div class="helper-text" id="imgMsg2"></div>
-                
-                <!-- <label class="img-button" id="file2">Image 2
-                  <input style="display: none;" type="file" name="Image 2" onchange="change_color(this.files,event), validateImgFiles()">
+                <label class="img-button">Image 3
+                  <input style="display: none;" type="file" name="Image 3" value="submit" accept="image/*" type="submit"
+                    id="file3" onchange="change_color(this.files,event) , validateImgFiles()" value="{{ post.(Image 3)}}">
                 </label>
-                <label class="img-button" id="file3">Image 3
-                  <input style="display: none;" type="file" name="Image 3" onchange="change_color(this.files,event)">
-                </label>
-                <label class="img-button" id="file4">Image 4
-                  <input style="display: none;" type="file" name="Image 4" onchange="change_color(this.files,event)">
-                </label>
-                <label class="img-button" id="file5">Image 5
-                  <input style="display: none;" type="file" name="Image 5" onchange="change_color(this.files,event)">
-                </label> -->
-              </div>
-              <div class="helper-text" id="imagesMsg"></div>
-            </div>
+                <div class="helper-text" id="imgMsg3"></div>
 
+                <label class="img-button">Image 4
+                  <input style="display: none;" type="file" name="Image 4" value="submit" accept="image/*" type="submit"
+                    id="file4" onchange="change_color(this.files,event) , validateImgFiles()" value="{{ post.(Image 4)}}">
+                </label>
+                <div class="helper-text" id="imgMsg4"></div>
+
+                <label class="img-button">Image 5
+                  <input style="display: none;" type="file" name="Image 5" value="submit" accept="image/*" type="submit"
+                    id="file5" onchange="change_color(this.files,event) , validateImgFiles()" value="{{ post.(Image 5)}}">
+                </label>
+                <div class="helper-text" id="imgMsg5"></div>
+              </div>
+            </div>
           </div>
 
           <div class="title">
@@ -222,40 +195,48 @@
           <div class="manager-details">
             <div class="input-box">
               <label for="firstName">First Name</label>
-              <input id="firstName" type="text" name="first name" onfocusout="validateFirstName()" placeholder="Enter first name">
+              <input id="firstName" type="text" name="first name" onfocusout="validateFirstName()"
+                placeholder="Enter first name">
               <div class="helper-text" id="firstNameMsg"></div>
             </div>
-            
+
 
             <div class="input-box">
               <label for="lastName">Last Name</label>
-              <input id="lastName" type="text" name="last name" onfocusout="validateLastName()" placeholder="Enter last name">
+              <input id="lastName" type="text" name="last name" onfocusout="validateLastName()"
+                placeholder="Enter last name">
               <div class="helper-text" id="lastNameMsg"></div>
             </div>
-        
+
 
             <div class="input-box">
               <label for="mobile">Mobile Number</label>
-              <input id="mobile" type="text" name="mobile number" onfocusout="validateMobile()" placeholder="Enter mobile number">
+              <input id="mobile" type="text" name="mobile number" onfocusout="validateMobile()"
+                placeholder="Enter mobile number">
               <div class="helper-text" id="mobileMsg"></div>
             </div>
-          
+
 
             <div class="input-box">
               <label for="username">Username</label>
-              <input id="username" type="text" name="username" onfocusout="validateUsername()" placeholder="Enter a unique Username">
+              <input id="username" type="text" name="username" onfocusout="validateUsername()"
+                placeholder="Enter a unique Username">
               <div class="helper-text" id="usernameMsg"></div>
             </div>
-          
+
 
             <div class="input-box">
               <label for="password">Password</label>
-              <input id="password" type="text" name="password" onfocusout="validatePassword()" placeholder="Enter a password">
+              <input id="password" type="password" name="password" onfocusout="validatePassword()"
+                placeholder="Enter a password">
+              <i class="bi bi-eye-slash" id="togglePassword"></i>
               <div class="helper-text" id="passwordMsg"></div>
             </div>
           </div>
-          
-          
+
+          <div class="specialMsg">
+            ** Please note that you'll recieve an SMS to the mobile number after Registration.
+          </div>
           <div class="button">
             <input type="submit" value="Register" class="btn solid" />
           </div>
@@ -263,8 +244,6 @@
       </div>
     </div>
   </div>
-
-
 
   <!-- Start of Footer -->
   <footer>
@@ -275,155 +254,7 @@
     </div>
   </footer>
   <!-- End of Footer -->
-  <script type="text/javascript">
 
-    function change_color(files, e) {
-      if (files.length > 0) {
-        console.log(e.currentTarget);
-        e.currentTarget.parentNode.style.backgroundColor = "#fab1a0";
-      }
-    }
-
-  </script>
-  <!-- <script>
-    $('#password').hideShowPassword({
-        show: false,
-        innerToggle: 'focus',
-        outerWidth: 
-}); -->
-</script>
-  <!-- <script type="text/javascript">
-    // Color values
-    let validColor = '#2ecc71';
-    let invalidColor = '#e74c3c';
-
-    //Input fileds and form field
-    let email = document.getElementById('email');
-    let password = document.getElementById('password');
-    let loginForm = document.getElementById('loginForm');
-
-    loginForm.addEventListener('submit', function (event) {
-      event.preventDefault();
-
-      if (validateLoginPassword() && validateEmail()) {
-        loginForm.submit();
-      }
-    });
-
-    function setValid(iconField, lineField, messageFiled) {
-      iconField.style.color = validColor;
-      lineField.style.borderBottomColor = validColor;
-      messageFiled.innerHTML = '';
-    }
-
-    function setInvalid(iconField, lineField, messageFiled, message) {
-      iconField.style.color = invalidColor;
-      lineField.style.borderBottomColor = invalidColor;
-      messageFiled.innerHTML = message;
-    }
-
-    /* EMAIL VALIDATION START */
-    // function checkEmailEmpty(field) {
-    //     let iconField = document.getElementById('icon-email');
-    //     let lineField = document.getElementById('div-email');
-    //     let messageFiled = document.getElementById('helper-email');
-
-    //     if (field.value.trim() === '') {
-    //         let message = 'Email must not be empty';
-    //         setInvalid(iconField, lineField, messageFiled, message)
-    //         return true;
-    //     } else {
-    //         setValid(iconField, lineField, messageFiled)
-    //         return false;
-    //     }
-    // }
-
-    // function containsCharacters(field) {
-    //     let iconField = document.getElementById('icon-email');
-    //     let lineField = document.getElementById('div-email');
-    //     let messageFiled = document.getElementById('helper-email');
-
-    //     regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-    //     if (field.value.match(regEx)) {
-    //         setValid(iconField, lineField, messageFiled)
-    //         return true;
-    //     } else {
-    //         let message = 'Must be a valid email address';
-    //         setInvalid(iconField, lineField, messageFiled, message)
-    //         return false;
-    //     }
-    // }
-
-    // function validateEmail() {
-
-    //     if (checkEmailEmpty(email)) {
-    //         return false;
-    //     }
-
-    //     if (!containsCharacters(email)) {
-    //         return false;
-    //     }
-
-    //     return true;
-    // }
-    /* EMAIL VALIDATION END */
-
-    /* PASSWORD VALIDATION END */
-    function checkPasswordEmpty(field) {
-      let iconField = document.getElementById('icon-password');
-      let lineField = document.getElementById('div-password');
-      let messageFiled = document.getElementById('helper-password');
-
-      if (field.value.trim() === '') {
-        let message = 'Password must not be empty';
-        setInvalid(iconField, lineField, messageFiled, message)
-        return true;
-      } else {
-        setValid(iconField, lineField, messageFiled)
-        return false;
-      }
-    }
-
-    function meetLength(field, minLength, maxLength) {
-      let iconField = document.getElementById('icon-password');
-      let lineField = document.getElementById('div-password');
-      let messageFiled = document.getElementById('helper-password');
-
-      if (field.value.length >= minLength && field.value.length < maxLength) {
-        setValid(iconField, lineField, messageFiled)
-        return true;
-      } else if (field.value.length < minLength) {
-        let message = `Password must be at least ${minLength} characters long`
-        setInvalid(iconField, lineField, messageFiled, message)
-        return false;
-      } else {
-        let message = `Password must be shorter than ${maxLength} characters`
-        setInvalid(iconField, lineField, messageFiled, message)
-        return false;
-      }
-    }
-
-    function validateLoginPassword() {
-      if (checkPasswordEmpty(password)) {
-        return false;
-      }
-
-      if (!meetLength(password, 4, 100)) {
-        return false;
-      }
-
-
-      let iconField = document.getElementById('icon-password');
-      let lineField = document.getElementById('div-password');
-      let messageFiled = document.getElementById('helper-password');
-
-      setValid(iconField, lineField, messageFiled);
-      return true;
-    }
-/* PASSWORD VALIDATION START */
-  </script> -->
   <script type="text/javascript" src="/public/js/signup_validation.js"></script>
 </body>
-
 </html>
