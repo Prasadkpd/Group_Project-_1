@@ -503,13 +503,11 @@ nav .sign-in-out-btn :hover{
     margin: 5px auto;
     border-radius: 50px;
     border: none;
-    background-color:rgb(33, 219, 95);
-     width:150px;
 }
 
 .popup_button:hover{
     background-color: white;
-    color: rgb(33, 219, 95);
+    color: #2ecc71;
     
     border:1px solid #2ecc71;
 }
@@ -790,25 +788,6 @@ display: flex;
 
 
 
-footer {
-    box-shadow: 1px 7px 25px rgb(0 0 0 / 13%);
-    background-color: #e74c3c;
-    color: #fff;
-    font-weight: 400;
-    font-size: 0.8rem;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-  }
-  .copyright {
-    margin: 0px auto;
-    padding: 2px 20px;
-    display: sticky;
-  }
-
-
-/* starting media queries */
       @media screen and (max-width: 768px) {
     
         nav{
@@ -1056,10 +1035,13 @@ footer {
             background-color:white;
         }
 
+        
+
+
+
+        
+
   }
-
-  /* starting media queries */
-
 
 
 

@@ -145,7 +145,3 @@
       } 
     
 
-// set onclick button as a view booking button in the page loading process
-      window.onload=function(){
-        document.getElementById("view_booking_button").click();
-    };

@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="old-customer-booking.css" />
+    <title>Booking</title>
+</head>
+
+<body>
+    <!-- Top Navigation Bar -->
+    <nav>
+        <div class="nav-left">
+            <div class="logo-container">
+                <a href="#">
+                    <i class="fas fa-running "></i>
+                    <span class="logo-name">Sportizza</span>
+                </a>
+            </div>
+            <div class="search-bar-container">
+                <input type="search" name="search" placeholder="Search">
+                <i class="fas fa-search "></i>
+            </div>
+            <div class="nav-profile">
+                <button class="openbutton" onclick="openpopupform()">
+                    <div class="profile-details">
+                        <img src="assets/profile-picture.jpg" alt="" class="profile-picture">
+                        <div class="username">Bhashitha Ranasinghe</div>
+                    </div>
+                </button>
+            </div>
+            <div class="sign-in-out-btn">
+                <a style="font-weight:500; " href="">Sign Out </a>
+            </div>
+        </div>
+        <!-- search bar for mobile -->
+        <div class="search-bar-container-mobi">
+            <input type="search" name="search" placeholder="Search">
+            <i class="fas fa-search "></i>
+        </div>
+    </nav>
+    <div id="myForm" class="sectionpop ">
+        <div class="formsection">
+            <div>
+                <button s class="closebutton" onclick="closepopupform()">❌</button>
+            </div>
+            <img class="form-profile-picture" src="assets/profile-picture.jpg" alt="">
+            <form action="/action_page.php" style="margin:20px">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="firstname" placeholder="Enter First Name" value="sadeepa">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lastname" placeholder="Enter Last Names" value="bhashitha">
+                <label for="lname">Primary Number</label>
+                <input type="text" id="lname" name="lastname" placeholder="Enter Primary Number" value="0705614640">
+                <label for="lname">Secondary Number</label>
+                <input type="text" id="userid" name="lastname" placeholder="Enter Secondary Number" value="0705614640">
+                <input type="submit" value="Save">
+            </form>
+        </div>
+    </div>
+   
+    <!-- End Top Navigation Bar -->
+
+
+    <div class="container">
+        <div class="sp-arena">
+
+            <div class="sp-arena-img">
+                <img src="images/cricket.jpg">
+            </div>
+            <div class="sp-arena-details">
+                <div class="sp-name">
+                    <h2>Mercantile Cricket Grounds</h2>
+                </div>
+                <div class="other">
+                    <h4>Contact No: 0746464327</h4>
+                </div>
+                <div class="other">
+                    <h5>Accepted Payment Methods: Card Payments & Cash Payments</h5>
+                </div>
+                <a type="" class="more-link">More Details
+                </a>
+
+            </div>
+        </div>
+        <div class="container2">
+            <div class="more-details">
+                <div class="detail">
+                    <div class="description">
+                        <h5>About Sports Arena</h5>
+                        <p>
+                            Lorem Ipsum dolor sit amet, consectetur adipiscing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna
+                            aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                            ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        </p>
+                    </div>
+                </div>
+                <div class="detail">
+                    <div class="Other-facilities">
+                        <h5>Other facilities</h5>
+                        <p>Car Parking, Changing Rooms, Cafeteria.</p>
+                    </div>
+                </div>
+                <div class="detail-grid">
+                    <div class="google-map">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.856271141694!2d79.86827001482301!3d6.907784420492848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25979bfbde28d%3A0xae825954d8507c7d!2sMercantile%20Cricket%20Association!5e0!3m2!1sen!2slk!4v1629887793472!5m2!1sen!2slk"
+                            width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+
+                    <div class="slide-container">
+                        <img id="slide-left" class="arrow" src="sliderimages/arrow-left.png">
+                        <section class="slide-container" id="slider">
+
+                            <div class="thumbnail">
+                                <img src="sliderimages/Screenshot_1.jpg" alt="">
+                            </div>
+                            <div class="thumbnail">
+                                <img src="sliderimages/Screenshot_2.jpg" alt="">
+                            </div>
+                            <div class="thumbnail">
+                                <img src="sliderimages/Screenshot_3.jpg" alt="">
+                            </div>
+                            <div class="thumbnail">
+                                <img src="sliderimages/Screenshot_4.jpg" alt="">
+                            </div>
+
+                            <div class="thumbnail">
+                                <img src="sliderimages/Screenshot_4.jpg" alt="">
+                            </div>
+
+                        </section>
+                        <img id="slide-right" class="arrow" src="sliderimages/arrow-right.png">
+                    </div>
+                </div>
+                <a class="bookings-link">Go to Bookings
+                </a>
+            </div>
+
+            <div class="booking">
+                <div class="left-container">
+                    <div class="heading">
+                        <h3>Booking Date</h3>
+                    </div>
+
+                    <div class="date-picker">
+                        <input type="date">
+                    </div>
+
+                </div>
+
+                <div class="right-container">
+                    <div class="available-bookings">
+                        <h2>Available Time Slots</h2>
+                        <ul class="events-list">
+                            <li>
+                                <div class="row">
+                                    <span class="s-time">10:30 - </span>
+                                    <span class="e-time">12:30 : </span>
+                                </div>
+                                <div class="row">
+                                    <span class="facility">Indoor Cricket Ground 1</span>
+                                </div>
+                                <div class="row">
+                                    <span class="price">LKR 2500</span>
+                                    <i class="fas fa-cart-plus"></i>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="row">
+                                    <span class="s-time">10:30 - </span>
+                                    <span class="e-time">12:30 : </span>
+                                </div>
+                                <div class="row">
+                                    <span class="facility">Indoor Cricket Ground 1</span>
+                                </div>
+                                <div class="row">
+                                    <span class="price">LKR 2500</span>
+                                    <i class="fas fa-cart-plus"></i>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="row">
+                                    <span class="s-time">10:30 - </span>
+                                    <span class="e-time">12:30 : </span>
+                                </div>
+                                <div class="row">
+                                    <span class="facility">Indoor Cricket Ground 1</span>
+                                </div>
+                                <div class="row">
+                                    <span class="price">LKR 2500</span>
+                                    <i class="fas fa-cart-plus"></i>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="row">
+                                    <span class="s-time">10:30 - </span>
+                                    <span class="e-time">12:30 : </span>
+                                </div>
+                                <div class="row">
+                                    <span class="facility">Indoor Cricket Ground 1</span>
+                                </div>
+                                <div class="row">
+                                    <span class="price">LKR 2500</span>
+                                    <i class="fas fa-cart-plus"></i>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="row">
+                                    <span class="s-time">10:30 - </span>
+                                    <span class="e-time">12:30 : </span>
+                                </div>
+                                <div class="row">
+                                    <span class="facility">Indoor Cricket Ground 1</span>
+                                </div>
+                                <div class="row">
+                                    <span class="price">LKR 2500</span>
+                                    <i class="fas fa-cart-plus"></i>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="row">
+                                    <span class="s-time">10:30 - </span>
+                                    <span class="e-time">12:30 : </span>
+                                </div>
+                                <div class="row">
+                                    <span class="facility">Indoor Cricket Ground 1</span>
+                                </div>
+                                <div class="row">
+                                    <span class="price">LKR 2500</span>
+                                    <i class="fas fa-cart-plus"></i>
+                                </div>
+                            </li>
+
+                        </ul>
+                        <a href="#" class="btn check-availability-btn"> Pay Now</a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="cart">
+            <i class="fas fa-shopping-cart"></i>
+        </div>
+    </div>
+
+    <!-- Start of Footer -->
+    <footer>
+        <div class="copyright">
+            <p>
+                Copyright &copy;2021 All rights reserved | Sportizza Inc.
+            </p>
+        </div>
+    </footer>
+    <!-- End of Footer -->
+    <script src="js/slider.js"></script>
+    <script>let slide_open = document.querySelector(".more-details");
+        let slide_close = document.querySelector(".more-link");
+    let booking_show = document.querySelector(".bookings-link");
+    let booking_content = document.querySelector(".bookings");
+        slide_close.onclick = function () {
+            slide_open.classList.add("active");
+            slide_close.style.display = "none";
+           booking_content.classList.add("hide");
+        }
+      
+        slide_close.onclick = function () {
+            slide_open.classList.add("active");
+            slide_close.style.display = "none";
+            booking_content.classList.remove("hide");
+        }
+
+
+    </script>
+</body>
+
+</html>
