@@ -3,12 +3,8 @@
     "",
     "\\Codes",
     "\\Codes\\public",
-    "\\Codes\\public\\css",
-    "\\Codes\\public\\js",
-    "\\Codes\\public\\Management",
-    "\\Codes\\public\\Management\\app",
-    "\\Codes\\public\\Management\\app\\views"
+    "\\Codes\\public\\Admin"
   ],
-  "SelectedNode": "\\Codes\\public\\css\\visitor.css",
+  "SelectedNode": "\\Codes\\public\\Admin\\admin-analytics.html",
   "PreviewInSolutionExplorer": false
 }
