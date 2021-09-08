@@ -17,10 +17,11 @@ class Signup extends \Core\Controller
      *
      * @return void
      */
-    public function newAction()
+    public function indexAction()
     {
         View::renderTemplate('Signup/spArenaApplication.html');
     }
+    
     
     /**
      * Sign up a new sports arena
@@ -29,6 +30,7 @@ class Signup extends \Core\Controller
      */
     public function createAction()
     {
+        // var_dump($_POST);
         $user = new User($_POST);
 
         if ($user->spArenaReg()) {

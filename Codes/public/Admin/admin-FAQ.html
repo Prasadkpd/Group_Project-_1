@@ -13,26 +13,99 @@
 <body>
     <!-- Top Navigation Bar -->
     <nav>
-       <div class="logo-container">
-            <a href="#">
-                <i class="fas fa-running "></i>
-                <span class="logo-name">Sportizza</span>
-            </a>
-       </div>
-       <div class="search-bar-container">
-            <input type="search" name="search" placeholder="Search">
-            <i class="fas fa-search "></i>
-       </div>
-       <div class="nav-profile">
-            <button class="edit-profile-btn"">Edit Profile</button>
-            <img class="profile-image" src="assets/profile-picture.jpg" alt="">
-            <span class="profile-name">Maneth Wijethunga</span>
-       </div>
-       <div class="sign-in-out-btn">
-            <button>Sign Out</button>
-       </div> 
-    </nav>
-    <!-- End Top Navigation Bar -->
+        <div class="logo-container">
+             <a href="#">
+                 <i class="fas fa-running "></i>
+                 <span class="logo-name">Sportizza</span>
+             </a>
+        </div>
+        <div class="search-bar-container">
+             <input type="search" name="search" placeholder="Search">
+             <i class="fas fa-search "></i>
+        </div>
+        <div  class="nav-profile">
+             <button   class="openbutton" onclick="openpopupform()">
+             <div class="profile-details">
+                 <img src="assets/profile-picture.jpg" alt="" class="profile-picture">
+                 <div class="username">Bhashitha Ranasinghe</div>
+                 
+             </div>
+             </button>
+         </div>
+        <div class="sign-in-out-btn">
+            <button onclick="open_popup_signout_message()" > Sign Out </button>
+        </div> 
+     </nav>
+     <!-- End Top Navigation Bar -->
+     
+     <!-- popup form for edit profile -->
+     <div id="myForm" class="sectionpop ">
+ 
+ 
+     <div class="formsection">
+ 
+         <div>
+             <button s class="closebutton"onclick="closepopupform()">❌</button>
+         </div>
+     <img class="form-profile-picture"  src="assets/profile-picture.jpg" alt="">
+     <form action="/action_page.php" style="margin:20px">
+         <label for="fname">First Name</label>
+         <input type="text" id="fname" name="firstname"
+             placeholder="Enter First Name" value="sadeepa">
+ 
+         <label for="lname">Last Name</label>
+         <input type="text" id="lname" name="lastname"
+             placeholder="Enter Last Names" value="bhashitha">
+ 
+ 
+         <label for="lname">Primary Number</label>
+         <input type="text" id="lname" name="lastname"
+             placeholder="Enter Primary Number" value="0705614640">
+ 
+         <label for="lname">Secondary Number</label>
+         <input type="text" id="userid" name="lastname"
+             placeholder="Enter Secondary Number" value="0705614640">
+ 
+ 
+ 
+         <input  type="submit" value="Save">
+     </form> 
+     </div>    
+     </div>
+ 
+     <!-- start pop up sign out section -->
+     <div id="popup_signout" class="sectionpop ">
+     
+ 
+     <div class="formsection">
+ 
+         <div>
+             <button s class="closebutton"onclick="close_popup_signout_message()">❌</button>
+         </div>
+     <form action="/action_page.php" style="margin:20px">
+         <div style="margin:auto">
+             <h1 style="margin:auto">
+                 Sign Out
+             </h1>
+             <p style="margin:auto">
+                 Do your really want to sign up now?
+             </p>
+         </div>
+     </form> 
+ 
+ 
+     <div style="display:flex">
+     
+     <button style="background-color:#e74c3c    " class="popup_button">
+         YES
+     </button>
+     <button onclick="close_popup_signout_message()"  class="popup_button">
+         NO
+         </button>
+     </div>
+     </div>  
+     </div>
+     <!-- end pop up sign out section -->
 
     <section class="page-container">
         
@@ -200,6 +273,11 @@
                 <div id="add_bookings" class="booking_tab_content">
                     <div class="form-container">
                         <form action="">
+                            <select class="userTypeSelect">
+                                <option value="0">Select category</option>
+                                <option value="1">Customer</option>
+                                <option value="2">Sports Arena</option>
+                            </select>
 
                             <label for="question" class="faqLabel">Question : </label>
                             <textarea id="question" class="faqInput" name="question" placeholder="Type the question..."></textarea>
@@ -234,7 +312,7 @@
                                 <th class="b-first-th">FAQ ID</th>
                                 <th>Question</th>
                                 <th>Solution</th>
-                                <th class="b-last-th">Remove Account</th>
+                                <th class="b-last-th">Remove FAQ</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -317,9 +395,21 @@
                 <div id="booking_payment" class="booking_tab_content">
                     <div class="form-container">
                         <form action="">
+                            <select class="userTypeSelect">
+                                <option value="0">Select category</option>
+                                <option value="1">Customer</option>
+                                <option value="2">Sports Arena</option>
+                            </select>
 
                             <label for="question" class="faqLabel">Question : </label>
-                            <textarea id="question" class="faqInput" name="question" placeholder="Type the question..."></textarea>
+                            <select class="questionSelect">
+                                <option value="0">Select question</option>
+                                <option value="1">Integer pulvinar metus sit amet magna hendrerit?</option>
+                                <option value="2">Integer pulvinar metus sit amet magna hendrerit?</option>
+                                <option value="3">Integer pulvinar metus sit amet magna hendrerit?</option>
+                                <option value="4">Integer pulvinar metus sit amet magna hendrerit?</option>
+                                <option value="5">Integer pulvinar metus sit amet magna hendrerit?</option>
+                            </select>
 
                             <label for="solution" class="faqLabel">Solution : </label>
                             <textarea id="solution" class="faqInput" name="solution" placeholder="Type your solution..."></textarea>
@@ -371,6 +461,33 @@
         
         document.getElementById(tabName).style.display = "block";
         evt.currentTarget.className += " active";
+        }
+
+         // popup form section
+
+         function openpopupform(){
+            var form=document.getElementById("myForm");
+            
+            form.style.display = "block";
+
+        }
+
+        function closepopupform(){
+            var form=document.getElementById("myForm");
+            
+            form.style.display = "none";
+
+        }
+        //popup sign out message
+        function open_popup_signout_message(){
+        var form=document.getElementById("popup_signout");
+        
+        form.style.display = "block";
+        }
+        function close_popup_signout_message(){
+            var form=document.getElementById("popup_signout");
+            
+            form.style.display = "none";
         }
 
     </script>
