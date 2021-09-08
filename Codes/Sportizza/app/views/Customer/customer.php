@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Customer</title>
 </head>
 <body>
     <h1>Welcome</h1>
