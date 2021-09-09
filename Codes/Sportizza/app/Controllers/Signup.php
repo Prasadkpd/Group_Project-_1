@@ -19,9 +19,8 @@ class Signup extends \Core\Controller
      */
     public function indexAction()
     {
-        View::renderTemplate('Signup/spArenaApplication.html');
+        View::renderTemplate('LoginSignup/spArenaApplication.html');
     }
-    
     
     /**
      * Sign up a new sports arena
@@ -30,17 +29,16 @@ class Signup extends \Core\Controller
      */
     public function createAction()
     {
-        // var_dump($_POST);
         $user = new User($_POST);
 
         if ($user->spArenaReg()) {
 
-            header('Location: http://' . $_SERVER['HTTP_HOST'] . '/Signup/success', true, 303);
+            header('Location: http://' . $_SERVER['HTTP_HOST'] . '/LoginSignup/success', true, 303);
             exit;
 
         } else {
 
-            View::renderTemplate('Signup/spArenaApplication.html', [
+            View::renderTemplate('LoginSignup/spArenaApplication.html', [
                 'user' => $user
             ]);
 
@@ -53,7 +51,7 @@ class Signup extends \Core\Controller
      */
     public function successAction()
     {
-        View::renderTemplate('Signup/success.html');
+        View::renderTemplate('LoginSignup/success.html');
     }
 
 

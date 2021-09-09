@@ -10,14 +10,14 @@ use \App\Models\User;
  *
  * PHP version 7.4.12
  */
-class Signup extends \Core\Controller
+class Login extends \Core\Controller
 {
     /**
      * Show the Signup page
      *
      * @return void
      */
-    public function newAction()
+    public function indexAction()
     {
         View::renderTemplate('LoginSignup/login.html');
     }
@@ -33,12 +33,12 @@ class Signup extends \Core\Controller
 
         if ($user->spArenaReg()) {
 
-            header('Location: http://' . $_SERVER['HTTP_HOST'] . '/Signup/success', true, 303);
+            header('Location: http://' . $_SERVER['HTTP_HOST'] . '/LoginSignup/success', true, 303);
             exit;
 
         } else {
 
-            View::renderTemplate('Signup/spArenaApplication.html', [
+            View::renderTemplate('LoginSignup/spArenaApplication.html', [
                 'user' => $user
             ]);
 

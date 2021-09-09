@@ -33,7 +33,7 @@ set_exception_handler('Core\Error::exceptionHandler');
 /**
  * Routing
  */
-require '../Core/Router.php';
+
 $router = new Core\Router();
 
 // Add the routes
