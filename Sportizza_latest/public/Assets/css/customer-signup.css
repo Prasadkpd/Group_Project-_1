@@ -1,0 +1,23 @@
+.container {
+  height: 80vh;
+
+}
+.page{
+    padding-bottom:2rem;
+}
+@media (max-width: 576px) {
+    .page{
+        padding-top:0;
+        padding-bottom: 0;
+    }
+    .container {
+        margin-top:0;
+        height:86vh;
+    
+    }
+    form input[type="text"], select {
+        margin: 2px 0;
+        margin-bottom: 0px;
+    }
+
+}
