@@ -76,31 +76,31 @@ class Signup extends \Core\Controller
      */
     public function indexAction()
     {
-        View::renderTemplate('LoginSignup/spArenaApplication.html');
+        View::renderTemplate('LoginSignup/signup.html');
     }
     
     /**
      * Sign up a new sports arena
      *
-     * @return void
+     * 
      */
-    public function createAction()
-    {
-        $user = new User($_POST);
+    // public function createAction()
+    // {
+    //     $user = new User($_POST);
 
-        if ($user->spArenaReg()) {
+    //     if ($user->spArenaReg()) {
 
-            header('Location: http://' . $_SERVER['HTTP_HOST'] . '/LoginSignup/success', true, 303);
-            exit;
+    //         header('Location: http://' . $_SERVER['HTTP_HOST'] . '/LoginSignup/success', true, 303);
+    //         exit;
 
-        } else {
+    //     } else {
 
-            View::renderTemplate('LoginSignup/spArenaApplication.html', [
-                'user' => $user
-            ]);
+    //         View::renderTemplate('LoginSignup/spArenaApplication.html', [
+    //             'user' => $user
+    //         ]);
 
-        }
-    }
+    //     }
+    // }
     // /**
     //  * Show the signup success page
     //  *
