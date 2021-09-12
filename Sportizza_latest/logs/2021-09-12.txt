@@ -2208,3 +2208,276 @@ Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vend
 #17 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup')
 #18 {main}
 Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Views/LoginSignup/customerSignup.html' on line 44
+[12-Sep-2021 10:41:53 UTC] Uncaught exception: 'Twig\Error\SyntaxError' with message 'Expected name or number.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/ExpressionParser.php(414): Twig\ExpressionParser->parseSubscriptExpression(Object(Twig\Node\Expression\NameExpression))
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/ExpressionParser.php(299): Twig\ExpressionParser->parsePostfixExpression(Object(Twig\Node\Expression\NameExpression))
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/ExpressionParser.php(183): Twig\ExpressionParser->parsePrimaryExpression()
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/ExpressionParser.php(78): Twig\ExpressionParser->getPrimary()
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Parser.php(166): Twig\ExpressionParser->parseExpression()
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Parser.php(122): Twig\Parser->subparse(NULL, false)
+#6 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(735): Twig\Parser->parse(Object(Twig\TokenStream))
+#7 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(793): Twig\Environment->parse(Object(Twig\TokenStream))
+#8 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(482): Twig\Environment->compileSource(Object(Twig\Source))
+#9 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(445): Twig\Environment->loadClass('__TwigTemplate_...', 'LoginSignup/cus...', NULL)
+#10 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(423): Twig\Environment->loadTemplate('LoginSignup/cus...')
+#11 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(384): Twig\Environment->load('LoginSignup/cus...')
+#12 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/View.php(31): Twig\Environment->render('LoginSignup/cus...', Array)
+#13 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Controllers/Signup.php(13): Core\View::renderTemplate('LoginSignup/cus...')
+#14 [internal function]: App\Controllers\Signup->indexAction()
+#15 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php(22): call_user_func_array(Array, Array)
+#16 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('index', Array)
+#17 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup')
+#18 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Views/LoginSignup/customerSignup.html' on line 44
+[12-Sep-2021 10:41:56 UTC] Uncaught exception: 'Twig\Error\SyntaxError' with message 'Expected name or number.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/ExpressionParser.php(414): Twig\ExpressionParser->parseSubscriptExpression(Object(Twig\Node\Expression\NameExpression))
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/ExpressionParser.php(299): Twig\ExpressionParser->parsePostfixExpression(Object(Twig\Node\Expression\NameExpression))
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/ExpressionParser.php(183): Twig\ExpressionParser->parsePrimaryExpression()
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/ExpressionParser.php(78): Twig\ExpressionParser->getPrimary()
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Parser.php(166): Twig\ExpressionParser->parseExpression()
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Parser.php(122): Twig\Parser->subparse(NULL, false)
+#6 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(735): Twig\Parser->parse(Object(Twig\TokenStream))
+#7 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(793): Twig\Environment->parse(Object(Twig\TokenStream))
+#8 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(482): Twig\Environment->compileSource(Object(Twig\Source))
+#9 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(445): Twig\Environment->loadClass('__TwigTemplate_...', 'LoginSignup/cus...', NULL)
+#10 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(423): Twig\Environment->loadTemplate('LoginSignup/cus...')
+#11 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(384): Twig\Environment->load('LoginSignup/cus...')
+#12 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/View.php(31): Twig\Environment->render('LoginSignup/cus...', Array)
+#13 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Controllers/Signup.php(13): Core\View::renderTemplate('LoginSignup/cus...')
+#14 [internal function]: App\Controllers\Signup->indexAction()
+#15 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php(22): call_user_func_array(Array, Array)
+#16 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('index', Array)
+#17 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup')
+#18 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Views/LoginSignup/customerSignup.html' on line 44
+[12-Sep-2021 10:43:00 UTC] Uncaught exception: 'Twig\Error\LoaderError' with message 'Unable to find template "LoginSignup/signup.html" (looked into: ../App/Views).'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Loader/FilesystemLoader.php(161): Twig\Loader\FilesystemLoader->findTemplate('LoginSignup/sig...')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(351): Twig\Loader\FilesystemLoader->getCacheKey('LoginSignup/sig...')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(445): Twig\Environment->getTemplateClass('LoginSignup/sig...')
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(423): Twig\Environment->loadTemplate('LoginSignup/sig...')
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(384): Twig\Environment->load('LoginSignup/sig...')
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/View.php(31): Twig\Environment->render('LoginSignup/sig...', Array)
+#6 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Controllers/Signup.php(13): Core\View::renderTemplate('LoginSignup/sig...')
+#7 [internal function]: App\Controllers\Signup->indexAction()
+#8 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php(22): call_user_func_array(Array, Array)
+#9 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('index', Array)
+#10 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup')
+#11 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Loader/FilesystemLoader.php' on line 265
+[12-Sep-2021 10:43:03 UTC] Uncaught exception: 'Twig\Error\LoaderError' with message 'Unable to find template "LoginSignup/signup.html" (looked into: ../App/Views).'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Loader/FilesystemLoader.php(161): Twig\Loader\FilesystemLoader->findTemplate('LoginSignup/sig...')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(351): Twig\Loader\FilesystemLoader->getCacheKey('LoginSignup/sig...')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(445): Twig\Environment->getTemplateClass('LoginSignup/sig...')
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(423): Twig\Environment->loadTemplate('LoginSignup/sig...')
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(384): Twig\Environment->load('LoginSignup/sig...')
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/View.php(31): Twig\Environment->render('LoginSignup/sig...', Array)
+#6 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Controllers/Signup.php(13): Core\View::renderTemplate('LoginSignup/sig...')
+#7 [internal function]: App\Controllers\Signup->indexAction()
+#8 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php(22): call_user_func_array(Array, Array)
+#9 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('index', Array)
+#10 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup')
+#11 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Loader/FilesystemLoader.php' on line 265
+[12-Sep-2021 10:45:57 UTC] Uncaught exception: 'Twig\Error\LoaderError' with message 'Unable to find template "LoginSignup/signup.html" (looked into: ../App/Views).'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Loader/FilesystemLoader.php(161): Twig\Loader\FilesystemLoader->findTemplate('LoginSignup/sig...')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(351): Twig\Loader\FilesystemLoader->getCacheKey('LoginSignup/sig...')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(445): Twig\Environment->getTemplateClass('LoginSignup/sig...')
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(423): Twig\Environment->loadTemplate('LoginSignup/sig...')
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(384): Twig\Environment->load('LoginSignup/sig...')
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/View.php(31): Twig\Environment->render('LoginSignup/sig...', Array)
+#6 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Controllers/Signup.php(13): Core\View::renderTemplate('LoginSignup/sig...')
+#7 [internal function]: App\Controllers\Signup->indexAction()
+#8 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php(22): call_user_func_array(Array, Array)
+#9 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('index', Array)
+#10 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup')
+#11 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Loader/FilesystemLoader.php' on line 265
+[12-Sep-2021 10:46:50 UTC] Uncaught exception: 'Twig\Error\SyntaxError' with message 'Expected name or number.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/ExpressionParser.php(414): Twig\ExpressionParser->parseSubscriptExpression(Object(Twig\Node\Expression\NameExpression))
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/ExpressionParser.php(299): Twig\ExpressionParser->parsePostfixExpression(Object(Twig\Node\Expression\NameExpression))
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/ExpressionParser.php(183): Twig\ExpressionParser->parsePrimaryExpression()
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/ExpressionParser.php(78): Twig\ExpressionParser->getPrimary()
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Parser.php(166): Twig\ExpressionParser->parseExpression()
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Parser.php(122): Twig\Parser->subparse(NULL, false)
+#6 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(735): Twig\Parser->parse(Object(Twig\TokenStream))
+#7 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(793): Twig\Environment->parse(Object(Twig\TokenStream))
+#8 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(482): Twig\Environment->compileSource(Object(Twig\Source))
+#9 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(445): Twig\Environment->loadClass('__TwigTemplate_...', 'LoginSignup/cus...', NULL)
+#10 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(423): Twig\Environment->loadTemplate('LoginSignup/cus...')
+#11 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(384): Twig\Environment->load('LoginSignup/cus...')
+#12 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/View.php(31): Twig\Environment->render('LoginSignup/cus...', Array)
+#13 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Controllers/Signup.php(13): Core\View::renderTemplate('LoginSignup/cus...')
+#14 [internal function]: App\Controllers\Signup->indexAction()
+#15 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php(22): call_user_func_array(Array, Array)
+#16 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('index', Array)
+#17 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup')
+#18 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Views/LoginSignup/customersignup.html' on line 44
+[12-Sep-2021 10:47:40 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/css/cust...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:47:40 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/signu...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:47:40 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/_vali...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:47:40 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/css/sp-a...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:48:45 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('Sportizza_lates...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:48:45 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('Sportizza_lates...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:48:45 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/signu...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:48:45 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/_vali...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:48:48 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('Sportizza_lates...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:48:48 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/_vali...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:48:48 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/signu...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:48:48 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('Sportizza_lates...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:48:51 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/signu...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:48:51 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/_vali...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:48:51 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('Sportizza_lates...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:48:51 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('Sportizza_lates...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:48:54 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/signu...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:48:54 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/_vali...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:48:54 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('Sportizza_lates...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:48:54 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('Sportizza_lates...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:49:08 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('Sportizza_lates...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:49:08 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/_vali...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:49:08 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/signu...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:49:08 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('Sportizza_lates...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:49:08 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/_vali...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:49:08 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/signu...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:49:08 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('Sportizza_lates...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:49:08 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('Sportizza_lates...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:49:09 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/signu...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:49:09 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('Sportizza_lates...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:49:09 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('Sportizza_lates...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:49:09 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('Sportizza_lates...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:49:09 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/_vali...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:49:09 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/signu...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:49:09 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('Sportizza_lates...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:49:10 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/_vali...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:49:11 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/signu...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:49:11 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/_vali...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:49:11 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('Sportizza_lates...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:49:11 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('Sportizza_lates...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:51:21 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/signu...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[12-Sep-2021 10:51:21 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/_vali...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
