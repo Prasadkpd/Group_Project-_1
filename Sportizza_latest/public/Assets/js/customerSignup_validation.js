@@ -20,8 +20,8 @@ formCustomerSignup.addEventListener('submit', function (event) {
         validateFirstName() &&
         validateLastName() &&
         validateMobile() &&
-        validateUsername() &&
-        validatePassword()
+        validateUsername() 
+        // validatePassword()
     ) {
         formCustomerSignup.submit();
     }

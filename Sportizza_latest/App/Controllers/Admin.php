@@ -2,8 +2,11 @@
 
 
 namespace App\Controllers;
+
+
+use App\Models\AdminManage;
 use Core\View;
-use App\Models\AdminManageUser;
+
 class Admin extends \Core\Controller
 {
     protected function before()
@@ -31,7 +34,7 @@ class Admin extends \Core\Controller
 
     public function manageuserAction()
     {
-        $users = AdminManageUser::getAll();
+        $users = AdminManage::getAlluser();
         View::renderTemplate('Admin/admin-manage-users.html', [
             'users' => $users
         ]);

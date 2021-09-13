@@ -1,11 +1,9 @@
 <?php
 
 namespace App\Models;
-
 use Core\Model;
 use PDO;
 use PDOException;
-
 
 // class User extends Model
 // {
@@ -24,16 +22,8 @@ use PDOException;
 //         }
 //     }
 // } 
-
-
-/**
- * User model
- *
- * PHP version 7.0
- */
 class User extends \Core\Model
 {
-
     /**
      * Error messages
      *
@@ -66,17 +56,19 @@ class User extends \Core\Model
 
         if (empty($this->errors)) {
 
-            $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
+            $password = password_hash($this->password, PASSWORD_DEFAULT);
 
-            $sql = 'INSERT INTO users (name, email, password_hash)
-                    VALUES (:name, :email, :password_hash)';
+            $sql = 'INSERT INTO user (first_name, last_name, primary_contact, username, password)
+                    VALUES (:first_name, :last_name, :mobile_number, :username, :password)';
 
             $db = static::getDB();
             $stmt = $db->prepare($sql);
 
-            $stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
-            $stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
-            $stmt->bindValue(':password_hash', $password_hash, PDO::PARAM_STR);
+            $stmt->bindValue(':first_name', $this->first_name, PDO::PARAM_STR);
+            $stmt->bindValue(':last_name', $this->last_name, PDO::PARAM_STR);
+            $stmt->bindValue(':mobile_number', $this->primary_contact, PDO::PARAM_INT);
+            $stmt->bindValue(':username', $this->username, PDO::PARAM_STR);
+            $stmt->bindValue(':password', $password, PDO::PARAM_STR);
 
             return $stmt->execute();
         }
@@ -89,34 +81,69 @@ class User extends \Core\Model
      *
      * @return void
      */
-    // public function validate()
-    // {
-    //     // Name
-    //     if ($this->name == '') {
-    //         $this->errors[] = 'Name is required';
-    //     }
+    public function validate()
+    {
+        // First Name
+        if ($this->first_name == '') {
+            $this->errors[] = 'First Name is required';
+        }
+        //letter match
+        if (preg_match('/.*[a-z\s]+.*/i', $this->first_name) == 0) {
+            $this->errors[] = 'First Name should consists of only letters';
+        }
 
-    //     // email address
-    //     if (filter_var($this->email, FILTER_VALIDATE_EMAIL) === false) {
-    //         $this->errors[] = 'Invalid email';
-    //     }
-    //     if (static::emailExists($this->email)) {
-    //         $this->errors[] = 'email already taken';
-    //     }
+        // Last Name
+        if ($this->last_name == '') {
+            $this->errors[] = 'Last Name is required';
+        }
+        //letter match
+        if (preg_match('/.*[a-z\s]+.*/i', $this->last_name) == 0) {
+            $this->errors[] = 'Last Name should consists of only letters';
+        }
 
-    //     // Password
-    //     if (strlen($this->password) < 6) {
-    //         $this->errors[] = 'Please enter at least 6 characters for the password';
-    //     }
+        // mobile number
+        if ($this->primary_contact == '') {
+            $this->errors[] = 'Mobile number is required';
+        }
+        if (preg_match('/.*07[0-9]{8}+.*/', $this->primary_contact) == 0) {
+            $this->errors[] = 'Mobile number entered is invalid';
+        }
 
-    //     if (preg_match('/.*[a-z]+.*/i', $this->password) == 0) {
-    //         $this->errors[] = 'Password needs at least one letter';
-    //     }
+        // username
+        if ($this->username == '') {
+            $this->errors[] = 'Username is required';
+        }
+        if (static::usernameExists($this->username)) {
+            $this->errors[] = 'Username is already taken';
+        }
 
-    //     if (preg_match('/.*\d+.*/i', $this->password) == 0) {
-    //         $this->errors[] = 'Password needs at least one number';
-    //     }
-    // }
+        // Password
+        if ($this->password == '') {
+            $this->errors[] = 'Password is required';
+        }
+        if (strlen($this->password) < 8) {
+            $this->errors[] = 'Please enter at least 8 characters for the password';
+        }
+        //Letter match
+        if (preg_match('/.*[a-z]+.*/i', $this->password) == 0) {
+            $this->errors[] = 'Password needs at least one simple letter';
+        }
+        if (preg_match('/.*[A-Z]+.*/i', $this->password) == 0) {
+            $this->errors[] = 'Password needs at least one capital letter';
+        }
+
+        //number match
+        if (preg_match('/.*\d+.*/i', $this->password) == 0) {
+            $this->errors[] = 'Password needs at least one number';
+        }
+
+        //character match
+        if (preg_match('/.*[!@#$%^&*-].*/i', $this->password) == 0) {
+            $this->errors[] = 'Password needs at least one character';
+        }
+    }
+
+
 
     /**
      * See if a user record already exists with the specified username
@@ -128,8 +155,11 @@ class User extends \Core\Model
     public static function usernameExists($username)
     {
         return static::findByUsername($username) !== false;
+         //And Check whether account_status== inactive 
     }
 
+
+   
     /**
      * Find a user model by username
      *
@@ -139,7 +169,7 @@ class User extends \Core\Model
      */
     public static function findByUsername($username)
     {
-        $sql = 'SELECT * FROM users WHERE username = :username';
+        $sql = 'SELECT * FROM user WHERE username = :username';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -173,4 +203,3 @@ class User extends \Core\Model
         return false;
     }
 }
-
