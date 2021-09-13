@@ -27,6 +27,8 @@ $router = new Core\Router();
 // Add the routes
 $router->add('', ['controller' => 'Home', 'action' => 'index']);
 $router->add('posts', ['controller' => 'Posts', 'action' => 'index']);
+// $router->add('signup', ['controller' => 'Signup', 'action' => 'index']);
+
 
 $router->add('{controller}',['action' => 'index']);
 $router->add('{controller}/',['action' => 'index']);
