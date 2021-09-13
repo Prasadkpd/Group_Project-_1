@@ -6,6 +6,6 @@
 </head>
 <body>
     <h1>Welcome</h1>
-    <p>Hello Man!</p>
+    <p>Hello Man</p>
 </body>
 </html>

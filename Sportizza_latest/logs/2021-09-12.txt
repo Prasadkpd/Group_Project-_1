@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+[12-Sep-2021 18:04:46 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 G:\xampp\htdocs\Group_Project-_1\Sportizza_latest\public\index.php(36): Core\Router->dispatch('favicon.ico')
+#1 {main}
+Thrown in 'G:\xampp\htdocs\Group_Project-_1\Sportizza_latest\Core\Router.php' on line 85
+=======
 [12-Sep-2021 02:18:37 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
 Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(36): Core\Router->dispatch('apple-touch-ico...')
 #1 {main}
@@ -2481,6 +2487,7 @@ Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Rout
 Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/_vali...')
 #1 {main}
 Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+<<<<<<< HEAD
 [12-Sep-2021 14:17:42 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
 Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/_vali...')
 #1 {main}
@@ -2506,3 +2513,6 @@ Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core
 #1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup/create')
 #2 {main}
 Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php' on line 26
+=======
+>>>>>>> f18298c68624669093d69da6785d4fcabd73c473
+>>>>>>> 1d99d9a7ae34d9b99c089058793a363308741c1d

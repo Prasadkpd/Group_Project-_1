@@ -6,9 +6,9 @@ use PDO;
 use PDOException;
 
 
-class AdminManageUser extends \Core\Model
+class AdminManage extends \Core\Model
 {
-    public static function getAll(): array
+    public static function getAlluser(): array
     {
 
         try {

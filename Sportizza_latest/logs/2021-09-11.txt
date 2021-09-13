@@ -18,3 +18,11 @@ Stack trace: #0 G:\xampp\htdocs\Sportizza_latest\App\Controllers\Admin.php(34): 
 #4 G:\xampp\htdocs\Sportizza_latest\public\index.php(36): Core\Router->dispatch('admin/manageuse...')
 #5 {main}
 Thrown in 'G:\xampp\htdocs\Sportizza_latest\App\Models\AdminManageUser.php' on line 24
+[11-Sep-2021 07:57:19 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 G:\xampp\htdocs\Group_Project-_1\Sportizza_latest\public\index.php(36): Core\Router->dispatch('favicon.ico')
+#1 {main}
+Thrown in 'G:\xampp\htdocs\Group_Project-_1\Sportizza_latest\Core\Router.php' on line 85
+[11-Sep-2021 08:03:22 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 G:\xampp\htdocs\Group_Project-_1\Sportizza_latest\public\index.php(36): Core\Router->dispatch('action_page.php')
+#1 {main}
+Thrown in 'G:\xampp\htdocs\Group_Project-_1\Sportizza_latest\Core\Router.php' on line 85
