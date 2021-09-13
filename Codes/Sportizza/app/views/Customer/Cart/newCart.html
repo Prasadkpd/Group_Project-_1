@@ -81,8 +81,13 @@
         <div>
             <button s class="closebutton"onclick="closepopupform()">❌</button>
         </div>
-    <img class="form-profile-picture"  src="../assets/profile-picture.jpg" alt="">
-    <form action="/action_page.php" style="margin:20px">
+    <div class="editProPic">
+        <img id="form-profile-picture"  src="../assets/profile-picture.jpg" alt="">
+        <input type="file" id="file">
+        <label for="file" id="uploadBtn">Choose Photo</label>
+    </div>
+    <form action="/action_page.php" style="margin:20px;margin-top: 0px;">
+
         <label for="fname">First Name</label>
         <input type="text" id="fname" name="firstname"
             placeholder="Enter First Name" value="sadeepa">
@@ -91,6 +96,9 @@
         <input type="text" id="lname" name="lastname"
             placeholder="Enter Last Names" value="bhashitha">
 
+            <label for="username">User Name</label>
+            <input type="text" id="username" name="username"
+                placeholder="Enter User Name" value="bhashitha99">
 
         <label for="lname">Primary Number</label>
         <input type="text" id="lname" name="lastname"
@@ -99,6 +107,12 @@
         <label for="lname">Secondary Number</label>
         <input type="text" id="userid" name="lastname"
             placeholder="Enter Secondary Number" value="0705614640">
+
+        <label for="password">New Password</label>
+        <input type="password" id="password" name="password"
+            placeholder="Enter Password" >
+
+
 
 
 
@@ -228,25 +242,9 @@
         </div>
     </footer>
     <!-- End of Footer -->
-    <script src="newCart.js"></script>
-    <script>let slide_open = document.querySelector(".more-details");
-        let slide_close = document.querySelector(".more-link");
-    let booking_show = document.querySelector(".bookings-link");
-    let booking_content = document.querySelector(".bookings");
-        slide_close.onclick = function () {
-            slide_open.classList.add("active");
-            slide_close.style.display = "none";
-           booking_content.classList.add("hide");
-        }
-      
-        slide_close.onclick = function () {
-            slide_open.classList.add("active");
-            slide_close.style.display = "none";
-            booking_content.classList.remove("hide");
-        }
+    
 
-
-    </script>
+    <script src="./newCart.js"></script>
 
 </body>
 </html>

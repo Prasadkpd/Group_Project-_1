@@ -149,3 +149,36 @@
       window.onload=function(){
         document.getElementById("view_booking_button").click();
     };
+
+
+  // js for edit profile picture
+  const imgDiv = document.querySelector(".editProPic");
+  const img =document.querySelector("#form-profile-picture");
+const file=document.querySelector("#file");
+const uploadBtn=document.querySelector("#uploadBtn");
+
+//if user hover image div
+imgDiv.addEventListener("mouseenter",function(){
+  uploadBtn.style.display="block"
+})
+
+//if user out from img div
+imgDiv.addEventListener("mouseleave",function(){
+  uploadBtn.style.display="none"
+})
+
+//work form image showing function
+file.addEventListener("change",function(){
+  //this refers to file upload
+  const choosedFile = this.files[0];
+  if(choosedFile){
+    const reader= new FileReader();
+     //file reader function
+     reader.addEventListener("load",function(){
+       img.setAttribute("src",reader.result);
+     });
+
+     reader.readAsDataURL(choosedFile);
+
+  }
+})
