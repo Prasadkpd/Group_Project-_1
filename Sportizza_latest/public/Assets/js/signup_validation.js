@@ -17,6 +17,10 @@ function change_color(files, e) {
         e.currentTarget.parentNode.style.backgroundColor = "#fab1a0";
     }
 }
+//function to remove the underscore inbetween 2 names
+function replaceUnderscore(word) {
+    return word.replace(/_/g, ' ')
+}
 
 //Capitalize first letter
 function capitalizeFirstLetter(string) {
@@ -66,7 +70,7 @@ function isEmpty(value) {
 function checkIfEmpty(field) {
     if (isEmpty(field.value.trim())) {
         // set field invalid
-        setInvalid(field, `${capitalizeFirstLetter(field.name)} should be filled!`);
+        setInvalid(field, `${capitalizeFirstLetter(replaceUnderscore(field.name))} should be filled!`);
         return true;
     } else {
         // set field valid
@@ -78,7 +82,7 @@ function checkIfEmpty(field) {
 function checkIfEmptyNext(field) {
     if (isEmpty(field.value.trim())) {
         // set field invalid
-        setInvalidNext(field, `${capitalizeFirstLetter(field.name)} should be filled!`);
+        setInvalidNext(field, `${capitalizeFirstLetter(replaceUnderscore(field.name))} should be filled!`);
         return true;
     } else {
         // set field valid
@@ -93,7 +97,7 @@ function checkIfOnlyLetters(field) {
         setValid(field);
         return true;
     } else {
-        setInvalid(field, `${capitalizeFirstLetter(field.name)} should have only letters!`);
+        setInvalid(field, `${capitalizeFirstLetter(replaceUnderscore(field.name))} should have only letters!`);
         return false;
     }
 }
@@ -103,14 +107,14 @@ function checkIfOnlyNumbers(field) {
         setValid(field);
         return true;
     } else {
-        setInvalid(field, `${capitalizeFirstLetter(field.name)} should have only numbers!`);
+        setInvalid(field, `${capitalizeFirstLetter(replaceUnderscore(field.name))} should have only numbers!`);
         return false;
     }
 }
 
 function checkCharacters(field) {
     if ((/^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/.test(field.value))) {
-        setInvalid(field, `${capitalizeFirstLetter(field.name)} should not have any special characters!`);
+        setInvalid(field, `${capitalizeFirstLetter(replaceUnderscore(field.name))} should not have any special characters!`);
         return false;
     } else {
         setValid(field);
@@ -122,7 +126,7 @@ function checkSLNumber(field){
         setValid(field);
         return true;
     } else {
-        setInvalid(field, `${capitalizeFirstLetter(field.name)} entered is invalid!`);
+        setInvalid(field, `${capitalizeFirstLetter(replaceUnderscore(field.name))} entered is invalid!`);
         return false;
     }
 }
@@ -133,12 +137,12 @@ function meetLength(field, minLength, maxLength) {
         setValid(field);
         return true;
     } else if (field.value.length < minLength) {
-        setInvalid(field, `${capitalizeFirstLetter(field.name)} 
+        setInvalid(field, `${capitalizeFirstLetter(replaceUnderscore(field.name))} 
             must be at least ${minLength} characters long`
         );
         return false;
     } else {
-        setInvalid(field, `${capitalizeFirstLetter(field.name)} 
+        setInvalid(field, `${capitalizeFirstLetter(replaceUnderscore(field.name))} 
             must be shorter than ${maxLength} characters`
         );
         return false;
@@ -150,12 +154,12 @@ function meetLengthNext(field, minLength, maxLength) {
         setValidNext(field);
         return true;
     } else if (field.value.length < minLength) {
-        setInvalidNext(field, `${capitalizeFirstLetter(field.name)} 
+        setInvalidNext(field, `${capitalizeFirstLetter(replaceUnderscore(field.name))} 
             must be at least ${minLength} characters long`
         );
         return false;
     } else {
-        setInvalid(field, `${capitalizeFirstLetter(field.name)} 
+        setInvalid(field, `${capitalizeFirstLetter(replaceUnderscore(field.name))} 
             must be shorter than ${maxLength} characters`
         );
         return false;
@@ -168,17 +172,27 @@ function matchWithRegEx(regEx, field) {
         setValid(field);
         return true;
     } else {
-        setInvalid(field, `${capitalizeFirstLetter(field.name)} entered in invalid!`);
+        setInvalid(field, `${capitalizeFirstLetter(replaceUnderscore(field.name))} entered in invalid!`);
         return false;
     }
 }
+function matchWithRegExSpace(regEx, field) {
+    if (field.value.match(regEx)) {
+        setValid(field);
+        return true;
+    } else {
+        setInvalid(field, `${capitalizeFirstLetter(replaceUnderscore(field.name))} should not have whitespace!`);
+        return false;
+    }
+}
+
 
 function matchWithRegExPassword(regEx, field) {
     if (field.value.match(regEx)) {
         setValidNext(field);
         return true;
     } else {
-        setInvalidNext(field, ` ${capitalizeFirstLetter(field.name)} 
+        setInvalidNext(field, ` ${capitalizeFirstLetter(replaceUnderscore(field.name))} 
         must consists of atleast 1 capital letter, 
         1 simple letter, 1 character & 1 number!`);
         return false;
@@ -188,7 +202,7 @@ function matchWithRegExPassword(regEx, field) {
 function selectValidate(field) {
     var selectedCategory = field.options[field.selectedIndex].value;
     if (selectedCategory == "0") {
-        selectInvalid(field, `Please select a ${capitalizeFirstLetter(field.name)}`);
+        selectInvalid(field, `Please select a ${capitalizeFirstLetter(replaceUnderscore(field.name))}`);
         return false;
     }
     else {
@@ -200,7 +214,7 @@ function selectValidate(field) {
 function selectOtherCategoryValidate(field) {
     if (category.options[category.selectedIndex].value == "1") {
         if (checkIfEmpty(other_category)) {
-            selectInvalid(field, `Please state the ${capitalizeFirstLetter(field.name)}`);
+            selectInvalid(field, `Please state the ${capitalizeFirstLetter(replaceUnderscore(field.name))}`);
             return false;
         }
         else {
@@ -213,7 +227,7 @@ function selectOtherCategoryValidate(field) {
 function selectOtherLocationValidate(field) {
     if (spLocation.options[spLocation.selectedIndex].value == "1") {
         if (checkIfEmpty(other_location)) {
-            selectInvalid(field, `Please state the ${capitalizeFirstLetter(field.name)}`);
+            selectInvalid(field, `Please state the ${capitalizeFirstLetter(replaceUnderscore(field.name))}`);
             return false;
         }
         else {
@@ -301,12 +315,15 @@ function validatePayment() {
 function validateFirstName() {
     if (checkIfEmpty(firstName)) return;
     if (!checkIfOnlyLetters(firstName)) return;
+    regEx = /^\S+$/;
+    if (!matchWithRegExSpace(regEx,firstName)) return;
     return true;
 }
 
 function validateLastName() {
     if (checkIfEmpty(lastName)) return;
     if (!checkIfOnlyLetters(lastName)) return;
+    if (!matchWithRegExSpace(regEx,lastName)) return;
     return true;
 }
 
@@ -322,6 +339,7 @@ function validateUsername() {
     if (checkIfEmpty(username)) return;
     if (!meetLength(username, 10, 15)) return;
     if (!checkCharacters(username)) return;
+    if (!matchWithRegExSpace(regEx,username)) return;
     return true;
 }
 
@@ -329,7 +347,7 @@ function validatePassword() {
     if (checkIfEmptyNext(password)) return;
     if (!meetLengthNext(password, 8, 255)) return;
     regEx = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
-    if (!matchWithRegExPassword(regEx, password)) return;
+    if (matchWithRegExPassword(regEx, password)) return;
     return true;
 }
 

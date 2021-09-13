@@ -41,8 +41,8 @@
                     <div class="manager-details">
                         <div class="input-box">
                             <label for="firstName">First Name</label>
-                            <input id="firstName" type="text" name="first name" onfocusout="validateFirstName()"
-                                placeholder="Enter first name" value="{{ user.first_name}}">
+                            <input id="firstName" type="text" name="first_name" onfocusout="validateFirstName()"
+                                placeholder="Enter first name" value="{{user.first_name}}">
                             <div class="helper-text" id="firstNameMsg"></div>
                         </div>
 
@@ -50,15 +50,15 @@
                         <div class="input-box">
                             <label for="lastName">Last Name</label>
                             <input id="lastName" type="text" name="last_name" onfocusout="validateLastName()"
-                                placeholder="Enter last name" value="{{ user.last_name}}">
+                                placeholder="Enter last name" value="{{user.last_name}}">
                             <div class="helper-text" id="lastNameMsg"></div>
                         </div>
 
 
                         <div class="input-box">
                             <label for="mobile">Mobile Number</label>
-                            <input id="mobile" type="text" name="mobile number" onfocusout="validateMobile()"
-                                placeholder="Ex:-) 0712345678" value="{{ user.mobile_number}}" >
+                            <input id="mobile" type="text" name="mobile_number" onfocusout="validateMobile()"
+                                placeholder="Ex:-) 0712345678" value="{{user.mobile_number}}" >
                             <div class="helper-text" id="mobileMsg"></div>
                         </div>
 

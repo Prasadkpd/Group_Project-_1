@@ -12,7 +12,8 @@ class Config
 
     const DB_USER = 'root';
 
-    const DB_PASSWORD = '';
+    //password for maneth= rootpass
+    const DB_PASSWORD = 'rootpass';
 
     const SHOW_ERRORS = true;
 }
