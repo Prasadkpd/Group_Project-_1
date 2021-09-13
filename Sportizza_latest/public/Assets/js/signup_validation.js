@@ -87,7 +87,7 @@ function checkIfEmptyNext(field) {
     }
 }
 
-//Check for leters, numbers & characters
+//Check for letters, numbers & characters
 function checkIfOnlyLetters(field) {
     if (/^[a-zA-Z ]+$/.test(field.value)) {
         setValid(field);
@@ -110,10 +110,19 @@ function checkIfOnlyNumbers(field) {
 
 function checkCharacters(field) {
     if ((/^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/.test(field.value))) {
+        setInvalid(field, `${capitalizeFirstLetter(field.name)} should not have any special characters!`);
+        return false;
+    } else {
+        setValid(field);
+        return true;
+    }
+}
+function checkSLNumber(field){
+    if (/^07[0-9]{8}/.test(field.value)) {
         setValid(field);
         return true;
     } else {
-        setInvalid(field, `${capitalizeFirstLetter(field.name)} should not have any special characters!`);
+        setInvalid(field, `${capitalizeFirstLetter(field.name)} entered is invalid!`);
         return false;
     }
 }
@@ -305,13 +314,14 @@ function validateMobile() {
     if (checkIfEmpty(mobile)) return;
     if (!meetLength(mobile, 10, 10)) return;
     if (!checkIfOnlyNumbers(mobile)) return;
+    if (!checkSLNumber(mobile)) return;
     return true;
 }
 
 function validateUsername() {
     if (checkIfEmpty(username)) return;
     if (!meetLength(username, 10, 15)) return;
-    if (checkCharacters(username)) return;
+    if (!checkCharacters(username)) return;
     return true;
 }
 
@@ -319,7 +329,7 @@ function validatePassword() {
     if (checkIfEmptyNext(password)) return;
     if (!meetLengthNext(password, 8, 255)) return;
     regEx = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
-    if (matchWithRegExPassword(regEx, password)) return;
+    if (!matchWithRegExPassword(regEx, password)) return;
     return true;
 }
 
