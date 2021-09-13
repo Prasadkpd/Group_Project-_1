@@ -18,8 +18,8 @@ class Signup extends \Core\Controller
      *
      * @return void
      */
-    public function createAction()
-    {
+    public function createAction(){
+    
         
         $user = new User($_POST);
 
@@ -30,9 +30,9 @@ class Signup extends \Core\Controller
         } else {
             
 
-            // View::renderTemplate('LoginSignup/signup.html', [
-            //     'user' => $user
-            // ]);
+            View::renderTemplate('LoginSignup/signup.html', [
+                'user' => $user
+            ]);
 
         }
     }

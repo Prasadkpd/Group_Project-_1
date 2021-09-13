@@ -364,3 +364,13 @@ Stack trace: #0 G:\xampp\htdocs\Group_Project-_1\Sportizza_latest\public\index.p
 #1 {main}
 Thrown in 'G:\xampp\htdocs\Group_Project-_1\Sportizza_latest\Core\Router.php' on line 79
 >>>>>>> 1d99d9a7ae34d9b99c089058793a363308741c1d
+[13-Sep-2021 12:17:11 UTC] Uncaught exception: 'ErrorException' with message 'Undefined property: App\Models\User::$first_name'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Models/User.php(73): Core\Error::errorHandler(8, 'Undefined prope...', '/Applications/M...', 73, Array)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Models/User.php(40): App\Models\User->validate()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Controllers/Signup.php(26): App\Models\User->save()
+#3 [internal function]: App\Controllers\Signup->createAction()
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php(22): call_user_func_array(Array, Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('create', Array)
+#6 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup/create')
+#7 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Models/User.php' on line 73

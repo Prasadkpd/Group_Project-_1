@@ -5,25 +5,9 @@ use Core\Model;
 use PDO;
 use PDOException;
 
-// class User extends Model
-// {
-
-//     public static function findbyUsername($username)
-//     {
-//         try {
-//             $db = static::getDB();
-//             $stmt = $db->query('SELECT * FROM users WHERE username = :username');
-//             stmt->bindVlaue(':email', $email, PDO::PARAM_STR);
-//             stmt->execute();
-//             return $stmt->execute();
-
-//         } catch (PDOException $e) {
-//             echo $e->getMessage();
-//         }
-//     }
-// } 
 class User extends \Core\Model
 {
+    
     /**
      * Error messages
      *
@@ -52,25 +36,30 @@ class User extends \Core\Model
      */
     public function save()
     {
+        
         $this->validate();
 
+        
         if (empty($this->errors)) {
 
             $password = password_hash($this->password, PASSWORD_DEFAULT);
 
-            $sql = 'INSERT INTO user (first_name, last_name, primary_contact, username, password)
-                    VALUES (:first_name, :last_name, :mobile_number, :username, :password)';
+            $sql = 'INSERT INTO `user`(`prefix`, `username`,`password`, `first_name`, `last_name`
+            ,`primary_contact`) 
+            VALUES ("CS",:username, :password, :first_name, :last_name, :mobile_number)';
 
-            $db = static::getDB();
+            $sql2 = 'UPDATE `user` SET `user_id`=concat( `prefix`, `no` )';
+
+            $db = static::getDB(); 
             $stmt = $db->prepare($sql);
 
             $stmt->bindValue(':first_name', $this->first_name, PDO::PARAM_STR);
             $stmt->bindValue(':last_name', $this->last_name, PDO::PARAM_STR);
-            $stmt->bindValue(':mobile_number', $this->primary_contact, PDO::PARAM_INT);
+            $stmt->bindValue(':mobile_number', $this->mobile_number, PDO::PARAM_INT);
             $stmt->bindValue(':username', $this->username, PDO::PARAM_STR);
             $stmt->bindValue(':password', $password, PDO::PARAM_STR);
 
-            return $stmt->execute();
+            return ($stmt->execute());
         }
 
         return false;
@@ -81,13 +70,13 @@ class User extends \Core\Model
      *
      * @return void
      */
-    public function validate()
-    {
+    public function validate(){
+        // $first_name = $_POST['first_name'];
         // First Name
         if ($this->first_name == '') {
             $this->errors[] = 'First Name is required';
         }
-        //letter match
+        // letter match
         if (preg_match('/.*[a-z\s]+.*/i', $this->first_name) == 0) {
             $this->errors[] = 'First Name should consists of only letters';
         }
@@ -102,11 +91,14 @@ class User extends \Core\Model
         }
 
         // mobile number
-        if ($this->primary_contact == '') {
+        if ($this->mobile_number == '') {
             $this->errors[] = 'Mobile number is required';
         }
-        if (preg_match('/.*07[0-9]{8}+.*/', $this->primary_contact) == 0) {
+        if (preg_match('/.*07[0-9]{8}+.*/', $this->mobile_number) == 0) {
             $this->errors[] = 'Mobile number entered is invalid';
+        }
+        if (static::mobileNumberExists($this->mobile_number)) {
+            $this->errors[] = 'An account already exists with this mobile number';
         }
 
         // username
@@ -157,8 +149,14 @@ class User extends \Core\Model
         return static::findByUsername($username) !== false;
          //And Check whether account_status== inactive 
     }
+    //Checking whether the mobile number is already exists
+    public static function mobileNumberExists($mobile_number)
+    {
+        return static::findByMobileNumber($mobile_number) !== false;
+    //      
+    }
 
-
+//And Check whether account_status== inactive 
    
     /**
      * Find a user model by username
@@ -169,7 +167,7 @@ class User extends \Core\Model
      */
     public static function findByUsername($username)
     {
-        $sql = 'SELECT * FROM user WHERE username = :username';
+        $sql = 'SELECT * FROM user WHERE username = :username AND account_status= "active"';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -180,6 +178,31 @@ class User extends \Core\Model
         $stmt->execute();
 
         return $stmt->fetch();
+    }
+    /**
+     * Find a user model by mobile number
+     *
+     * @param string $mobile_number to search for
+     *
+     * @return mixed User object if found, false otherwise
+     */
+
+    public static function findByMobileNumber($mobile_number)
+    {
+        $sql = 'SELECT * FROM user WHERE primary_contact = :mobile_number AND account_status= "active"';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':mobile_number', $mobile_number, PDO::PARAM_STR);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+
+        return $stmt->fetch();
+    }
+
+    public function validateSMS(){
     }
 
     /**
