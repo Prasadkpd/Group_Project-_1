@@ -177,7 +177,6 @@ file.addEventListener("change",function(){
      reader.addEventListener("load",function(){
        img.setAttribute("src",reader.result);
      });
-
      reader.readAsDataURL(choosedFile);
 
   }
