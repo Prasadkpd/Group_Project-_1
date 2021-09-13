@@ -1,24 +1,5 @@
 
-    // let side_menu_open_btn = document.querySelector("#side-menu-open-btn");
-    // let sidebar = document.querySelector(".sidebar");
-    // let side_menu_close_btn = document.querySelector("#side-menu-close-btn");
-    // // let homecontent = document.querySelector(".home-content");
 
-
-    // side_menu_open_btn.onclick = function () {    
-    //     sidebar.classList.add("active");
-    // }
-    // side_menu_close_btn.onclick = function () {
-    //     sidebar.classList.remove("active");
-    // }
-
-    
-
-    //notification
-    // function showNotifycation() {
-    //     document.querySelector(".pop-up").classList.toggle("show");
-    //     document.querySelector(".notification-container").classList.toggle("hide");
-    // }
 
     function openTab(evt, cityName) {
         var i, booking_tab_content, booking_tab;
@@ -201,3 +182,38 @@ thumbnails[i].addEventListener('mouseout', function() {
     return play = setInterval(autoPlay, 50);
 });
 }
+
+
+
+
+  // js for edit profile picture
+  const imgDiv = document.querySelector(".editProPic");
+  const img =document.querySelector("#form-profile-picture");
+const file=document.querySelector("#file");
+const uploadBtn=document.querySelector("#uploadBtn");
+
+//if user hover image div
+imgDiv.addEventListener("mouseenter",function(){
+  uploadBtn.style.display="block"
+})
+
+//if user out from img div
+imgDiv.addEventListener("mouseleave",function(){
+  uploadBtn.style.display="none"
+})
+
+//work form image showing function
+file.addEventListener("change",function(){
+  //this refers to file upload
+  const choosedFile = this.files[0];
+  if(choosedFile){
+    const reader= new FileReader();
+     //file reader function
+     reader.addEventListener("load",function(){
+       img.setAttribute("src",reader.result);
+     });
+
+     reader.readAsDataURL(choosedFile);
+
+  }
+})
