@@ -56,7 +56,13 @@
 
        <div class="sign-in-out-btn">
            
-            <button onclick="open_popup_signout_message()" > Sign Out </button>
+            <button  onclick="open_popup_signout_message()" > Sign Out </button>
+
+        <!-- {% if session.user_id %}
+            User with ID {{session.user_id}} is logged in.
+
+        {% endif %} -->
+        
        </div> 
        </div>
 
@@ -71,6 +77,7 @@
     </nav>
    <!-- End Top Navigation Bar -->
 
+   
 
 <!-- popup form for edit profile -->
 <div id="myForm" class="sectionpop ">
@@ -269,7 +276,7 @@
     <div class="formsection">
 
         <div>
-            <button s class="closebutton"onclick="close_popup_signout_message()">❌</button>
+            <button  class="closebutton"onclick="close_popup_signout_message()">❌</button>
         </div>
     <form action="/action_page.php" style="margin:20px">
         <div style="margin:auto">
@@ -285,8 +292,10 @@
  
 <div style="display:flex">
     
-    <button style="background-color:#e74c3c    " class="popup_button">
-       YES
+    <button  style="background-color:#e74c3c" class="popup_button">
+        {% if is_logged_in %}
+        <a href="/logout"> Yes</a>
+        {% endif %}
     </button>
     <button onclick="close_popup_signout_message()"  class="popup_button">
         NO
