@@ -18,17 +18,16 @@ class Signup extends \Core\Controller
      *
      * @return void
      */
-    public function createAction(){
-    
-        
+    public function createAction()
+    {
         $user = new User($_POST);
 
         if ($user->save()) {
 
-            $this->redirect('signup/success');
+            header('Location: http://' . $_SERVER['HTTP_HOST'] . '/signup/success', true, 303);
+            exit;
 
         } else {
-            
 
             View::renderTemplate('LoginSignup/signup.html', [
                 'user' => $user
@@ -36,7 +35,6 @@ class Signup extends \Core\Controller
 
         }
     }
-
     /**
      * Show the signup success page
      *
@@ -45,6 +43,6 @@ class Signup extends \Core\Controller
     public function successAction()
     {
         //direct to the message modal page
-        View::renderTemplate('Home/visitor.html');
+        View::renderTemplate('otp.html');
     }
 }

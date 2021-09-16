@@ -10,10 +10,9 @@ class Config
 
     const DB_NAME = 'sportizza';
 
-    const DB_USER = 'root';
+    const DB_USER = 'admin';
 
-    //password for maneth= rootpass
-    const DB_PASSWORD = 'rootpass';
+    const DB_PASSWORD = 'admin';
 
     const SHOW_ERRORS = true;
 }

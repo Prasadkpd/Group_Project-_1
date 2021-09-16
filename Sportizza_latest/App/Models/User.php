@@ -44,11 +44,10 @@ class User extends \Core\Model
 
             $password = password_hash($this->password, PASSWORD_DEFAULT);
 
-            $sql = 'INSERT INTO `user`(`prefix`, `username`,`password`, `first_name`, `last_name`
+            $sql = 'INSERT INTO `user`(`username`,`password`, `first_name`, `last_name`
             ,`primary_contact`) 
-            VALUES ("CS",:username, :password, :first_name, :last_name, :mobile_number)';
+            VALUES (:username, :password, :first_name, :last_name, :mobile_number)';
 
-            $sql2 = 'UPDATE `user` SET `user_id`=concat( `prefix`, `no` )';
 
             $db = static::getDB(); 
             $stmt = $db->prepare($sql);
