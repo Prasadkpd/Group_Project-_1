@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sportizza</title>
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
-    <link href="/Assets/css/visitor.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/Assets/css/visitor.css" />
 
 </head>
 
@@ -15,33 +15,48 @@
     <header>
         <!-- Navigation Bar -->
         <nav>
-            <div class="nav-container">
-                <div class="logo-container">
-                    <a href="#">
-                        <i class="fas fa-running "></i>
-                        <span class="logo-name">Sportizza</span>
-                    </a>
-                </div>
-                <div class="nav-links">
-                    <ul>
-                        <li><a href=" ">HOME</a></li>
-                        <li><a href="#sport-arena">SPORTS ARENAS</a></li>
-                        <li><a href="#reviews">REVIEWS</a></li>
-                        <li><a href="#faq">FAQ</a></li>
-                        <li><a href="#about">ABOUT</a></li>
-                        <li><a href="#contact">CONTACT</a></li>
-                        <!-- Direct to login page if not logged in -->
-                        <li><a href="/login" class="active">Log In</a></li>
-                        <li><a href="/signup" class="active">Sign Up</a></li>
-                    </ul>
-                </div>
-                <div class="hamburger-menu">
-                    <i class="fas fa-bars fa-2x"></i>
-                </div>
-            </div>
+            <label class="logo"><i class="fas fa-running "></i>Sportizza</label>
+            <input type="checkbox" id="check">
+            <label for="check" class="checkbtn">
+                <i class="fas fa-bars"></i>
+            </label>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#sport-arena" onclick="uncheck()">Sports Arena</a></li>
+                <li><a href="#reviews" onclick="uncheck()">Reviews</a></li>
+                <li><a href="#faq" onclick="uncheck()">Faq</a></li>
+                <li><a href="#about" onclick="uncheck()">About</a></li>
+                <li><a href="#contact" onclick="uncheck()">Contact</a></li>
+                <li><a href="#">Sign In</a></li>
+                <li><a href="#" onclick="open_popup_signup_message()">Sign Up</a></li>
+            </ul>
         </nav>
         <!-- End of navigation bar -->
     </header>
+    <div id="popup_signup" class="sectionpop ">
+        <div class="formsection">
+    
+            <div>
+                <button class="closebutton" onclick="close_popup_signup_message()">❌</button>
+            </div>
+            <form action="/action_page.php" style="margin:20px">
+                <div style="margin:auto">
+                    <h1 style="margin:auto">
+                        Sign Up As
+                    </h1>
+                </div>
+            </form>
+            <div style="display:flex">
+    
+                <a href="" class="popup_button">
+                    Customer
+                </a>
+                <a href="" class="popup_button">
+                    Sports Arena
+                </a>
+            </div>
+        </div>
+    </div>
     <section class="page-container">
         <div class="visitor-home" id="home">
             <div class="visitor-welcome">
@@ -70,15 +85,15 @@
 
                     <div class="visitor-slides fade">
                         <img src="/Assets/images/visitor/slides/image4.svg" style="width:100%">
-                    </div>
+                    </div> 
 
                     <div class="visitor-slides fade">
                         <img src="/Assets/images/visitor/slides/image5.svg" style="width:100%">
-                    </div>
+                    </div> 
 
                     <div class="visitor-slides fade">
                         <img src="/Assets/images/visitor/slides/image6.svg" style="width:100%">
-                    </div>
+                    </div> 
                     <div class="visitor-slides fade">
                         <img src="/Assets/images/visitor/slides/image7.svg" style="width:100%">
                     </div>
@@ -134,23 +149,24 @@
             </div>
             <div class="search-results">
 
-                <h3>Search Results:
-                    <div class="chip" style="margin-left: 2rem;">
-                        Nugegoda
-                        <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                    <h3>Search Results:</h3>
+                    <div class="chip-container">  
+                        <div class="chip">
+                            Nugegoda
+                            <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                        </div>
+                        <div class="chip">
+                            Cricket Grounds
+                            <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                        </div>
                     </div>
-                    <div class="chip" style="margin-left: .5rem;">
-                        Cricket Grounds
-                        <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
-                    </div>
-                </h3>
+                        
 
                 <div class="result-details">
                     <h4><a href="">Mercantile Cricket Grounds</a></h4>
                     <div class="sp-arena-summary-items">
                         <h5>City:<h6> Colombo 07</h6>
                         </h5>
-
                         <h5>Category: <h6> Cricket Ground</h6>
                         </h5>
                         <a href="#" class="btn check-availability-btn"> Availability</a>
@@ -247,7 +263,6 @@
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
-
                         </div>
                         <div class="review-sp-arena-name">
                             - Mercantile Basketball Courts, Colombo 07
@@ -350,19 +365,63 @@
                 <h3 class="title" data-title="">Frequently Asked Questions</h3>
             </div>
             <div class="faq-category">
-                <button class="faq-btn" onclick="openFaqTab(event,'customer-faq')">FAQ BY CUSTOMER</button>
-                <button class="faq-btn" onclick="openFaqTab(event,'sp-arena-faq')">FAQ BY SPORT ARENA</button>
+                <button class="faq-btn active" onclick="openFaqTab(event,'customer-faq')">FAQ BY CUSTOMER</button>
+                <button class="faq-btn" onclick="openFaqTab(event,'sparena-faq')">FAQ BY SPORT ARENA</button>
             </div>
             <div class="faq-container">
-                <div class="faq-content faq-customer-tab" id="customer-faq">
-                    <div class="customer-faq" id="sp-arena-faq">
-                        customer
+                <div class="faq-content" id="customer-faq" style="display: block;">
+                    <button class="faq-accordian">How to Create my favourite sports arena list?</button>
+                    <div class="faq-accordian-content">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae saepe, itaque neque iusto, non rem blanditiis voluptate quibusdam ea vitae sint alias unde quae a, quo aperiam animi tenetur quis.</p>
+                    </div>
+                    <button class="faq-accordian">How to Create my favourite sports arena list?</button>
+                    <div class="faq-accordian-content">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae saepe, itaque neque iusto, non rem blanditiis voluptate quibusdam ea vitae sint alias unde quae a, quo aperiam animi tenetur quis.</p>
+                    </div>
+                    <button class="faq-accordian">How to Create my favourite sports arena list?</button>
+                    <div class="faq-accordian-content">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae saepe, itaque neque iusto, non rem blanditiis voluptate quibusdam ea vitae sint alias unde quae a, quo aperiam animi tenetur quis.</p>
+                    </div>
+                    <button class="faq-accordian">How to Create my favourite sports arena list?</button>
+                    <div class="faq-accordian-content">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae saepe, itaque neque iusto, non rem blanditiis voluptate quibusdam ea vitae sint alias unde quae a, quo aperiam animi tenetur quis.</p>
+                    </div>
+                    <button class="faq-accordian">How to Create my favourite sports arena list?</button>
+                    <div class="faq-accordian-content">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae saepe, itaque neque iusto, non rem blanditiis voluptate quibusdam ea vitae sint alias unde quae a, quo aperiam animi tenetur quis.</p>
+                    </div>
+                    <button class="faq-accordian">How to Create my favourite sports arena list?</button>
+                    <div class="faq-accordian-content">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae saepe, itaque neque iusto, non rem blanditiis voluptate quibusdam ea vitae sint alias unde quae a, quo aperiam animi tenetur quis.</p>
                     </div>
                 </div>
-                <div class="faq-content faq-sport-arena-tab" id="sp-arena-faq">
-                    <div class="sp-arena-faq">
-                        sp arena
+                <div class="faq-content" id="sparena-faq">
+                    <button class="faq-accordian">How to Create my favourite sports arena list?</button>
+                    <div class="faq-accordian-content">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae saepe, itaque neque iusto, non rem blanditiis voluptate quibusdam ea vitae sint alias unde quae a, quo aperiam animi tenetur quis.</p>
                     </div>
+                    <button class="faq-accordian">How to Create my favourite sports arena list?</button>
+                    <div class="faq-accordian-content">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae saepe, itaque neque iusto, non rem blanditiis voluptate quibusdam ea vitae sint alias unde quae a, quo aperiam animi tenetur quis.</p>
+                    </div>
+                    <button class="faq-accordian">How to Create my favourite sports arena list?</button>
+                    <div class="faq-accordian-content">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae saepe, itaque neque iusto, non rem blanditiis voluptate quibusdam ea vitae sint alias unde quae a, quo aperiam animi tenetur quis.</p>
+                    </div>
+                    <button class="faq-accordian">How to Create my favourite sports arena list?</button>
+                    <div class="faq-accordian-content">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae saepe, itaque neque iusto, non rem blanditiis voluptate quibusdam ea vitae sint alias unde quae a, quo aperiam animi tenetur quis.</p>
+                    </div>
+                    <button class="faq-accordian">How to Create my favourite sports arena list?</button>
+                    <div class="faq-accordian-content">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae saepe, itaque neque iusto, non rem blanditiis voluptate quibusdam ea vitae sint alias unde quae a, quo aperiam animi tenetur quis.</p>
+                    </div>
+                    <button class="faq-accordian">How to Create my favourite sports arena list?</button>
+                    <div class="faq-accordian-content">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae saepe, itaque neque iusto, non rem blanditiis voluptate quibusdam ea vitae sint alias unde quae a, quo aperiam animi tenetur quis.</p>
+                    </div>
+                </div>
+        
                 </div>
 
             </div>
@@ -494,7 +553,7 @@
                 <div class="group-member-card">
                     <div class="group-member-header">
                         <div class="group-member-img">
-                            <img src="/Assets/images/Team members/jonathan.png" alt="" />
+                            <img src="/Assets/images/Team members/prasad.png" alt="" />
                         </div>
                         <div class="group-member-details">
                             <div class="group-member-name">
@@ -556,24 +615,23 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <h2 class="contact-us-title">Contact Us</h2>
+                    <div class="section-header">
+                        <h3 class="title" data-title="">Contact us</h3>
+                    </div>
                     <form action="post">
-                        <div class="visitro-name">
-                            <input type="text" name="" id="">
-                            <input type="text" name="" id="">
+                        <div class="visitor-name">
+                            <input type="text" name="" id="" placeholder="First Name">
+                            <input type="text" name="" id="" placeholder="Last Name">
                         </div>
-                        <input type="tel" name="" id="">
-                        <input type="email" name="" id="">
+                        <input type="email" name="" id="" placeholder="Email">
+                        <input type="text" class="subject" placeholder="Subject">
                         <br>
-                        <textarea name="" id="" cols="50" rows="10"></textarea>
+                        <textarea name="" id="" placeholder="Message" cols="53" rows="8"></textarea>
 
                     </form>
                 </div>
-
             </div>
-            <div class="contact-form">
-
-            </div>
+    
         </div>
         </div>
     </section>
@@ -638,7 +696,7 @@
                         <a href="#">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
-                        <<a href="#" class="back-btn">
+                        <a href="#" class="back-btn">
                         <i class="fas fa-chevron-up"></i>
                         </a>
                     </div>
@@ -648,7 +706,7 @@
     </footer>
 
 
-    <script src="/Assets/js/app.js"></script>
+    <script src="/Assets/js/visitor.js"></script>
 </body>
 
 </html>
