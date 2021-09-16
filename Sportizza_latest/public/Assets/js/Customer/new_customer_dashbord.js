@@ -52,6 +52,53 @@
         form.style.display = "none";
 
     }
+
+
+    //popup editPrimaryPhoneNumber section
+    function open_editPrimaryPhoneNumber(){
+      var form=document.getElementById("popup_editPrimaryNumber");
+      var profile=document.getElementById("myForm");
+      profile.style.display="none"
+      form.style.display = "block";
+  }
+  function close_editPrimaryPhoneNumber(){
+    var form=document.getElementById("popup_editPrimaryNumber");
+    var profile=document.getElementById("myForm");
+    profile.style.display="block"
+    form.style.display = "none";
+}
+
+   //popup editSecondaryPhoneNumber section
+   function open_editSecondaryPhoneNumber(){
+    var form=document.getElementById("popup_editSecondaryNumber");
+    var profile=document.getElementById("myForm");
+    profile.style.display="none"
+    form.style.display = "block";
+}
+function close_editSecondaryPhoneNumber(){
+  var form=document.getElementById("popup_editSecondaryNumber");
+  var profile=document.getElementById("myForm");
+  profile.style.display="block"
+  form.style.display = "none";
+}
+
+
+   //popup edit password section
+   function open_editPassword(){
+    var form=document.getElementById("popup_editPassword");
+    var profile=document.getElementById("myForm");
+    profile.style.display="none"
+    form.style.display = "block";
+}
+function close_editPassword(){
+  var form=document.getElementById("popup_editPassword");
+  var profile=document.getElementById("myForm");
+  profile.style.display="block"
+  form.style.display = "none";
+}
+
+
+
     //popup sign out message
     function open_popup_signout_message(){
       var form=document.getElementById("popup_signout");

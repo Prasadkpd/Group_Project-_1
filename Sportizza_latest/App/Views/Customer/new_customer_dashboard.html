@@ -88,38 +88,177 @@
     </div>
     <form action="/action_page.php" style="margin:20px;margin-top: 0px;">
 
-        <label for="fname">First Name</label>
-        <input type="text" id="fname" name="firstname"
-            placeholder="Enter First Name" value="sadeepa">
+        <label for="firstName">First Name</label>
+        <input id="firstName" type="text" name="first_name" onfocusout="validateFirstName()"
+        placeholder="Enter first name" value="{{user.first_name}}">
+        <div class="helper-text" id="firstNameMsg"></div>
 
-        <label for="lname">Last Name</label>
-        <input type="text" id="lname" name="lastname"
-            placeholder="Enter Last Names" value="bhashitha">
+        <label for="lastName">Last Name</label>
+        <input id="lastName" type="text" name="last_name" onfocusout="validateLastName()"
+        placeholder="Enter last name" value="{{user.last_name}}">
+        <div class="helper-text" id="lastNameMsg"></div>
 
-            <label for="username">User Name</label>
-            <input type="text" id="username" name="username"
-                placeholder="Enter User Name" value="bhashitha99">
+        <label for="username">Username</label>
+        <input id="username" type="text" name="username" onfocusout="validateUsername()"
+        placeholder="Enter a unique Username"  value="{{ user.username}}">
+        <div class="helper-text" id="usernameMsg"></div>
 
-        <label for="lname">Primary Number</label>
-        <input type="text" id="lname" name="lastname"
+        <label for="primaryNumber">Primary Number</label>
+        <input   type="text" id="primaryNumber" name="primaryNumber"
             placeholder="Enter Primary Number" value="0705614640">
+        <a class="formLink"  onclick="open_editPrimaryPhoneNumber()">Click here to change</a> <br> 
+        
 
-        <label for="lname">Secondary Number</label>
-        <input type="text" id="userid" name="lastname"
+
+        <label   for="lname">Secondary Number</label>
+        <input  type="text" id="userid" name="lastname"
             placeholder="Enter Secondary Number" value="0705614640">
+            <a class="formLink" " onclick="open_editSecondaryPhoneNumber()">Click here to change</a> <br>
 
-        <label for="password">New Password</label>
-        <input type="password" id="password" name="password"
-            placeholder="Enter Password" >
-
-
-
-
+            <label for="lname">Password</label>
+            <a class="formLink" onclick="open_editPassword()">Click here to change</a> <br>
 
         <input  type="submit" value="Save">
+        
     </form> 
-    </div>    
+    
+   
+    </div>  
+      
 </div>
+
+
+
+
+<!-- start edit primary number section -->
+<div id="popup_editPrimaryNumber" class="sectionpop ">
+   
+
+    <div class="formsection">
+
+        <div>
+            <button s class="closebutton"onclick="close_editPrimaryPhoneNumber()">❌</button>
+        </div>
+    <form action="/action_page.php" style="margin:20px">
+
+        <label for="oldNumberOTP">OTP Code From Old Mobile Number</label>
+        <input type="text" id="userid" name="oldNumberOTP"
+            placeholder="Example-1293" value="">
+
+            <label for="mobile">Primary Number</label>
+            <input id="mobile" type="text" name="mobile_number" onfocusout="validateMobile()"
+            placeholder="Ex:-) 0712345678" value="{{user.mobile_number}}" >
+            <div class="helper-text" id="mobileMsg"></div>
+        
+
+
+        <label for="newNumberOTP">OTP Code From New Mobile Number</label>
+        <input type="text" id="newNumberOTP" name="newNumberOTP"
+            placeholder="Example-1293" value="">
+    </form> 
+
+ 
+<div style="display:flex">
+    
+    <button style="background-color:#e74c3c    " class="popup_button">
+       Submit
+    </button>
+    <button onclick="close_editPrimaryPhoneNumber()"  class="popup_button">
+        NO
+     </button>
+</div>
+    </div>  
+</div>
+<!--end edit primary number section -->
+
+
+<!-- start edit secondary number section -->
+<div id="popup_editSecondaryNumber" class="sectionpop ">
+   
+
+    <div class="formsection">
+
+        <div>
+            <button s class="closebutton"onclick="close_editSecondaryPhoneNumber()">❌</button>
+        </div>
+    <form action="/action_page.php" style="margin:20px">
+
+        <label for="oldNumberOTP">OTP Code From Old Mobile Number</label>
+        <input type="text" id="userid" name="oldNumberOTP"
+            placeholder="Example-1293" value="">
+
+            <label for="mobile">Primary Number</label>
+            <input id="mobile" type="text" name="mobile_number" onfocusout="validateMobile()"
+            placeholder="Ex:-) 0712345678" value="{{user.mobile_number}}" >
+            <div class="helper-text" id="mobileMsg"></div>
+        
+
+
+        <label for="newNumberOTP">OTP Code From New Mobile Number</label>
+        <input type="text" id="newNumberOTP" name="newNumberOTP"
+            placeholder="Example-1293" value="">
+    </form> 
+
+ 
+<div style="display:flex">
+    
+    <button style="background-color:#e74c3c    " class="popup_button">
+       Submit
+    </button>
+    <button onclick="close_editSecondaryPhoneNumber()"  class="popup_button">
+        NO
+     </button>
+</div>
+    </div>  
+</div>
+<!--end edit secondary number section -->
+
+<!-- start edit password number section -->
+<div id="popup_editPassword" class="sectionpop ">
+   
+
+    <div class="formsection">
+
+        <div>
+            <button s class="closebutton"onclick="close_editPassword()">❌</button>
+        </div>
+    <form action="/action_page.php" style="margin:20px">
+
+        <label for="oldNumberOTP">OTP Code From Mobile Number</label>
+        <input type="text" id="userid" name="oldNumberOTP"
+            placeholder="Example-1293" value="">
+
+
+            <!-- <label for="newNumberOTP">Enter Old Password</label>
+            <input type="text" id="newNumberOTP" name="newNumberOTP"
+                placeholder="" value=""> -->
+
+
+            <label for="password">New Password</label>
+            <input id="password" type="password" name="password" onfocusout="validatePassword()"
+                placeholder="Enter a password" value="" >
+            <i class="bi bi-eye-slash" id="togglePassword"></i>
+            <div class="helper-text" id="passwordMsg"></div>
+        
+
+
+
+    </form> 
+
+ 
+<div style="display:flex">
+    
+    <button style="background-color:#e74c3c    " class="popup_button">
+       Submit
+    </button>
+    <button onclick="close_editPassword()"  class="popup_button">
+        NO
+     </button>
+</div>
+    </div>  
+</div>
+<!--end edit password number section -->
+
 <!-- end popup form for edit profile -->
 
 
@@ -863,7 +1002,9 @@
     </footer>
     <!-- End of Footer -->
     
-    <script src="/Assets/js/Customer/new_customer_dashbord.js"></script>
+    <script type="text/javascript" src="/Assets/js/Customer/new_customer_dashbord.js?v=1"></script>
+    <script type="text/javascript" src="/Assets/js/Customer/customerEditProfileValidation.js?v=1"></script>
+    <script type="text/javascript" src="/Assets/js/Customer/editProfileValidation.js?v=1"></script>
 
 </body>
 </html>

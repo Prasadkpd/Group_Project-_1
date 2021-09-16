@@ -2267,3 +2267,8 @@ INFO: Unsupported notification method: $/setTrace
 =======
 >>>>>>> 067f62a5cfaa23412e5cbc7c8a1f5aad8fabb211
 >>>>>>> 22aac0c8fc03ef5357d17d564b61b5f0d520545b
+[0m2021.09.14 18:18:11 INFO  Started: Metals version 0.10.6 in workspace '/Applications/MAMP/htdocs/Group_Project-_1' for client Visual Studio Code 1.60.0.[0m
+[0m2021.09.14 18:18:37 INFO  time: initialize in 25s[0m
+[0m2021.09.14 18:18:43 WARN  Build server is not auto-connectable.[0m
+[0m2021.09.14 18:18:43 WARN  no build tool detected in workspace '/Applications/MAMP/htdocs/Group_Project-_1'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+[0m2021.09.14 20:05:16 INFO  shutting down Metals[0m
