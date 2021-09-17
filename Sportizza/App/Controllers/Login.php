@@ -83,6 +83,7 @@ class Login extends \Core\Controller
         //direct to the customer page
         View::renderTemplate('BookHandelStaff/aStaffManageBookingsView.html');
     }
+    
     public function administrationstaffloginAction()
     {
         //direct to the customer page
