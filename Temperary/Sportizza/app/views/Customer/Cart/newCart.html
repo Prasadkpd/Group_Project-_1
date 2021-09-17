@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cart</title>
+     <!-- CSS File -->
+    <link rel="stylesheet" href="newCart.css">
+    <!-- FontAwesome Icon -->
+    <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav>
+       <div class="nav-left">
+        <div class="logo-container">
+            <a href="#">
+                <i class="fas fa-running "></i>
+                <span class="logo-name">Sportizza</span>
+            </a>
+       </div>
+       <div class="search-bar-container">
+            <input type="search" name="search" placeholder="Search">
+            <i class="fas fa-search "></i>
+       </div>
+
+
+
+       <div  class="nav-profile">
+
+        
+
+
+       
+
+<button   class="openbutton" onclick="openpopupform()">
+
+            
+        
+<div class="profile-details">
+    <img src="../assets/profile-picture.jpg" alt="" class="profile-picture">
+    <div class="username">Bhashitha Ranasinghe</div>
+    
+</div>
+
+</button>
+        </div>
+
+        
+
+
+
+       <div class="sign-in-out-btn">
+           
+            <button onclick="open_popup_signout_message()" > Sign Out </button>
+       </div> 
+       </div>
+
+
+       
+
+       <!-- search bar for mobile -->
+       <div class="search-bar-container-mobi">
+        <input type="search" name="search" placeholder="Search">
+        <i class="fas fa-search "></i>
+   </div>
+    </nav>
+   <!-- End Top Navigation Bar -->
+
+
+<!-- popup form for edit profile -->
+<div id="myForm" class="sectionpop ">
+
+
+    <div class="formsection">
+
+        <div>
+            <button s class="closebutton"onclick="closepopupform()">❌</button>
+        </div>
+    <div class="editProPic">
+        <img id="form-profile-picture"  src="../assets/profile-picture.jpg" alt="">
+        <input type="file" id="file">
+        <label for="file" id="uploadBtn">Choose Photo</label>
+    </div>
+    <form action="/action_page.php" style="margin:20px;margin-top: 0px;">
+
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" name="firstname"
+            placeholder="Enter First Name" value="sadeepa">
+
+        <label for="lname">Last Name</label>
+        <input type="text" id="lname" name="lastname"
+            placeholder="Enter Last Names" value="bhashitha">
+
+            <label for="username">User Name</label>
+            <input type="text" id="username" name="username"
+                placeholder="Enter User Name" value="bhashitha99">
+
+        <label for="lname">Primary Number</label>
+        <input type="text" id="lname" name="lastname"
+            placeholder="Enter Primary Number" value="0705614640">
+
+        <label for="lname">Secondary Number</label>
+        <input type="text" id="userid" name="lastname"
+            placeholder="Enter Secondary Number" value="0705614640">
+
+        <label for="password">New Password</label>
+        <input type="password" id="password" name="password"
+            placeholder="Enter Password" >
+
+
+
+
+
+        <input  type="submit" value="Save">
+    </form> 
+    </div>    
+</div>
+<!-- end popup form for edit profile -->
+
+
+<!-- start pop up sign out section -->
+<div id="popup_signout" class="sectionpop ">
+   
+
+    <div class="formsection">
+
+        <div>
+            <button s class="closebutton"onclick="close_popup_signout_message()">❌</button>
+        </div>
+    <form action="/action_page.php" style="margin:20px">
+        <div style="margin:auto">
+            <h1 style="margin:auto">
+                Sign Out
+            </h1>
+            <p style="margin:auto">
+                Do your really want to sign up now?
+            </p>
+        </div>
+    </form> 
+
+ 
+<div style="display:flex">
+    
+    <button style="background-color:#e74c3c    " class="popup_button">
+       YES
+    </button>
+    <button onclick="close_popup_signout_message()"  class="popup_button">
+        NO
+     </button>
+</div>
+    </div>  
+</div>
+<!-- end pop up sign out section -->
+
+
+    <section class="page-container">
+        
+            
+            <div class="page-content-container" >
+                <div class="container">
+                    <h1 class="page-header">Order Summary</h1>
+    
+    
+                    <div id="view_bookings" class="booking_tab_content active" style="display: block;">
+                        <table class="booking-table">
+                            <thead>
+    
+                                <tr class="booking-thead-second-tr">
+                                    <th class="b-first-th">Sports Arena</th>
+                                    <th>Facility</th>
+                                    <th>Booking Date</th>
+                                    <th>Start Time</th>
+                                    <th>End Time</th>
+                                    <th class="b-last-th">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                <tr>
+                                    <td data-label="Sports Arena :">Mercantile Basketball Courts</td>
+                                    <td data-label="Facility Name :">Basketball Court 1</td>
+                                    <td data-label="Booking Date :">2021/09/23</td>
+                                    <td data-label="Start Time :">1530h</td>
+                                    <td data-label="End Time :">1630h</td>
+                                    <td data-label="Amount :">2000</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Sports Arena :">Mercantile Basketball Courts</td>
+                                    <td data-label="Facility Name :">Basketball Court 1</td>
+                                    <td data-label="Booking Date :">2021/09/23</td>
+                                    <td data-label="Start Time :">1530h</td>
+                                    <td data-label="End Time :">1630h</td>
+                                    <td data-label="Amount :">2000</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Sports Arena :">Mercantile Basketball Courts</td>
+                                    <td data-label="Facility Name :">Basketball Court 1</td>
+                                    <td data-label="Booking Date :">2021/09/23</td>
+                                    <td data-label="Start Time :">1530h</td>
+                                    <td data-label="End Time :">1630h</td>
+                                    <td data-label="Amount :">2000</td>
+                                </tr>
+    
+    
+    
+    
+                            </tbody>
+                        </table>
+                        <div class="last">
+                            <div class="backbtn">
+                                Go Back
+                            </div>
+                            <div class="amount">
+                                <div class="wording">Net amount:
+                                </div>
+                                <div class="value">
+                                    LKR 5000.00
+                                </div>
+                                <div class="btn">Pay
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+                
+
+    </section>
+
+    <!-- Start of Footer -->
+    <footer>
+        <div class="copyright">
+            <p>
+                Copyright &copy;2021 All rights reserved | Sportizza Inc.
+            </p>
+        </div>
+    </footer>
+    <!-- End of Footer -->
+    
+
+    <script src="./newCart.js"></script>
+
+</body>
+</html>

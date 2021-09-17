@@ -1,0 +1,28 @@
+[11-Sep-2021 05:28:54 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 G:\xampp\htdocs\Sportizza_latest\public\index.php(36): Core\Router->dispatch('favicon.ico')
+#1 {main}
+Thrown in 'G:\xampp\htdocs\Sportizza_latest\Core\Router.php' on line 85
+[11-Sep-2021 05:29:02 Europe/Berlin] Uncaught exception: 'TypeError' with message 'Return value of App\Models\AdminManageUser::getAll() must be of the type array, none returned'
+Stack trace: #0 G:\xampp\htdocs\Sportizza_latest\App\Controllers\Admin.php(34): App\Models\AdminManageUser::getAll()
+#1 [internal function]: App\Controllers\Admin->manageuserAction()
+#2 G:\xampp\htdocs\Sportizza_latest\Core\Controller.php(22): call_user_func_array(Array, Array)
+#3 G:\xampp\htdocs\Sportizza_latest\Core\Router.php(77): Core\Controller->__call('manageuser', Array)
+#4 G:\xampp\htdocs\Sportizza_latest\public\index.php(36): Core\Router->dispatch('admin/manageuse...')
+#5 {main}
+Thrown in 'G:\xampp\htdocs\Sportizza_latest\App\Models\AdminManageUser.php' on line 24
+[11-Sep-2021 05:31:08 Europe/Berlin] Uncaught exception: 'TypeError' with message 'Return value of App\Models\AdminManageUser::getAll() must be of the type array, none returned'
+Stack trace: #0 G:\xampp\htdocs\Sportizza_latest\App\Controllers\Admin.php(34): App\Models\AdminManageUser::getAll()
+#1 [internal function]: App\Controllers\Admin->manageuserAction()
+#2 G:\xampp\htdocs\Sportizza_latest\Core\Controller.php(22): call_user_func_array(Array, Array)
+#3 G:\xampp\htdocs\Sportizza_latest\Core\Router.php(77): Core\Controller->__call('manageuser', Array)
+#4 G:\xampp\htdocs\Sportizza_latest\public\index.php(36): Core\Router->dispatch('admin/manageuse...')
+#5 {main}
+Thrown in 'G:\xampp\htdocs\Sportizza_latest\App\Models\AdminManageUser.php' on line 24
+[11-Sep-2021 07:57:19 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 G:\xampp\htdocs\Group_Project-_1\Sportizza_latest\public\index.php(36): Core\Router->dispatch('favicon.ico')
+#1 {main}
+Thrown in 'G:\xampp\htdocs\Group_Project-_1\Sportizza_latest\Core\Router.php' on line 85
+[11-Sep-2021 08:03:22 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 G:\xampp\htdocs\Group_Project-_1\Sportizza_latest\public\index.php(36): Core\Router->dispatch('action_page.php')
+#1 {main}
+Thrown in 'G:\xampp\htdocs\Group_Project-_1\Sportizza_latest\Core\Router.php' on line 85

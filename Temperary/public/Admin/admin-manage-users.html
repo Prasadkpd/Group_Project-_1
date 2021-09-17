@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Manage Users</title>
+     <!-- CSS File -->
+    <link rel="stylesheet" href="admin-manage-users.css">
+    <!-- FontAwesome Icon -->
+    <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav>
+        <div class="logo-container">
+             <a href="#">
+                 <i class="fas fa-running "></i>
+                 <span class="logo-name">Sportizza</span>
+             </a>
+        </div>
+        <div class="search-bar-container">
+             <input type="search" name="search" placeholder="Search">
+             <i class="fas fa-search "></i>
+        </div>
+        <div  class="nav-profile">
+             <button   class="openbutton" onclick="openpopupform()">
+             <div class="profile-details">
+                 <img src="assets/profile-picture.jpg" alt="" class="profile-picture">
+                 <div class="username">Bhashitha Ranasinghe</div>
+                 
+             </div>
+             </button>
+         </div>
+        <div class="sign-in-out-btn">
+            <button onclick="open_popup_signout_message()" > Sign Out </button>
+        </div> 
+     </nav>
+     <!-- End Top Navigation Bar -->
+     
+     <!-- popup form for edit profile -->
+     <div id="myForm" class="sectionpop ">
+ 
+ 
+     <div class="formsection">
+ 
+         <div>
+             <button s class="closebutton"onclick="closepopupform()">❌</button>
+         </div>
+     <img class="form-profile-picture"  src="assets/profile-picture.jpg" alt="">
+     <form action="/action_page.php" style="margin:20px">
+         <label for="fname">First Name</label>
+         <input type="text" id="fname" name="firstname"
+             placeholder="Enter First Name" value="sadeepa">
+ 
+         <label for="lname">Last Name</label>
+         <input type="text" id="lname" name="lastname"
+             placeholder="Enter Last Names" value="bhashitha">
+ 
+ 
+         <label for="lname">Primary Number</label>
+         <input type="text" id="lname" name="lastname"
+             placeholder="Enter Primary Number" value="0705614640">
+ 
+         <label for="lname">Secondary Number</label>
+         <input type="text" id="userid" name="lastname"
+             placeholder="Enter Secondary Number" value="0705614640">
+ 
+ 
+ 
+         <input  type="submit" value="Save">
+     </form> 
+     </div>    
+     </div>
+ 
+     <!-- start pop up sign out section -->
+     <div id="popup_signout" class="sectionpop ">
+     
+ 
+     <div class="formsection">
+ 
+         <div>
+             <button s class="closebutton"onclick="close_popup_signout_message()">❌</button>
+         </div>
+     <form action="/action_page.php" style="margin:20px">
+         <div style="margin:auto">
+             <h1 style="margin:auto">
+                 Sign Out
+             </h1>
+             <p style="margin:auto">
+                 Do your really want to sign up now?
+             </p>
+         </div>
+     </form> 
+ 
+ 
+     <div style="display:flex">
+     
+     <button style="background-color:#e74c3c    " class="popup_button">
+         YES
+     </button>
+     <button onclick="close_popup_signout_message()"  class="popup_button">
+         NO
+         </button>
+     </div>
+     </div>  
+     </div>
+     <!-- end pop up sign out section -->
+
+    <section class="page-container">
+        
+            <!-- SIDE NAVIGATION BAR - START -->
+            <div class="sidebar">
+                <div class="sidebar-container">
+                    <div class="side-menu">
+                        <i class="fas fa-bars fa-2x " id="side-menu-open-btn"></i>
+                        <i class="fas fa-times fa-2x" id="side-menu-close-btn"></i>
+                    </div>
+                    <ul class="side-menu-list">
+                        <li>
+                            <a href="#" class="side-menu-li">
+                                <i class="fas fa-chart-bar"></i>
+                                <p class="side-menu-item">Analytics</p>
+                            </a>
+                            <p class="side-menu-tooltip">Analytics</p>
+                        </li>
+                        <li>
+                            <a href="#" class="side-menu-li">
+                                <i class="fas fa-users"></i>
+                                <p class="side-menu-item">Manage Users</p>
+                            </a>
+                            <p class="side-menu-tooltip">Manage Users</p>
+                        </li>
+                        <!--<li>
+                            <a href="#" class="side-menu-li">
+                                <i class="fas fa-exclamation"></i>
+                                <p class="side-menu-item">Complaints</p>
+                            </a>
+                            <p class="side-menu-tooltip">Complaints</p>
+                        </li>-->
+                        <li>
+                            <a href="#" class="side-menu-li">
+                                <i class="fas fa-question"></i>
+                                <p class="side-menu-item">FAQ</p>
+                            </a>
+                            <p class="side-menu-tooltip">FAQ</p>
+                        </li>
+                        <!--<li>
+                            <a href="#" class="side-menu-li">
+                                <i class="fas fa-file-alt"></i>
+                                <p class="side-menu-item">Reports</p>
+                            </a>
+                            <p class="side-menu-tooltip">Reports</p>
+                        </li>-->
+                        <li>
+                            <a href="#" class="side-menu-li">
+                                <i class="fas fa-star"></i>
+                                <p class="side-menu-item">Ratings</p>
+                            </a>
+                            <p class="side-menu-tooltip">Ratings</p>
+                        </li>
+                        <!--<li>
+                            <a href="#" class="side-menu-li">
+                                <i class="fas fa-bell"></i>
+                                <p class="side-menu-item">Notifications</p>
+                            </a>
+                            <p class="side-menu-tooltip">Notifications</p>
+                        </li>-->
+                    </ul>
+                </div>
+            </div>
+            <!-- SIDE NAVIGATION BAR - END -->
+            <div class="page-content-container" >
+                <div class="container">
+                    <h1 class="page-header">Manage Users</h1>
+                    <div class="tab">
+                        <button class="booking_tab tab-btn active" onclick="openTab(event, 'view_bookings')"><i class="fas fa-user"></i><p>Remove Customers</p></button>
+                        <button class="booking_tab tab-btn" onclick="openTab(event, 'add_bookings')"><i class="fas fa-map-marker-alt"></i><p>Add Sports Arenas</p></button>
+                        <button class="booking_tab tab-btn" onclick="openTab(event, 'cancel_booking')"><i class="fas fa-map-marker-alt"></i><p>Remove Sports Arenas</p></button>
+                        <!--<button class="booking_tab tab-btn" onclick="openTab(event, 'booking_payment')"><i class="fas fa-money-check-alt"></i><p> Booking Payment</p></button>-->
+                    </div>
+                </div>
+
+                <div id="view_bookings" class="booking_tab_content active"  style="display: block;">
+                    <table class="booking-table">
+                        <thead>
+                            <tr class="booking-thead-first-tr">
+                                <th class="booking-table-first-th">
+                                    <div class="booking-table-filter-container">
+                                        <div class="booking-table-search-container">
+                                            <input type="search" name="search" placeholder="Search">
+                                            <i class="fas fa-search"></i>
+                                        </div>
+                                        <!--<div class="booking-table-date-picker">
+                                            <label class="date-label">Booking Date</label>
+                                            <input type="date">
+                                        </div>-->
+                                    </div>
+                                </th>
+                            </tr>
+                            <tr class="booking-thead-second-tr">
+                                <th class="b-first-th">User ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Username</th>
+                                <th>Primary Contact</th>
+                                <th>Secondary Contact</th>
+                                <th>Abided Rules</th>
+                                <th>Remove Account</th>
+                                <!--<th class="b-last-th">Payment Status</th>-->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-label="User ID :">CS1000000004</td>
+                                <td data-label="First Name :">Heshan</td>
+                                <td data-label="Last Name :">Perera</td>
+                                <td data-label="Username :">heshan_22</td>
+                                <td data-label="Primary Contact :">753397419</td>
+                                <td data-label="Secondary Contact :">726341008</td>
+                                <td data-label="Abided Rules :">Yes</td>
+                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
+                            </tr>
+                            <tr>
+                                <td data-label="User ID :">CS1000000004</td>
+                                <td data-label="First Name :">Heshan</td>
+                                <td data-label="Last Name :">Perera</td>
+                                <td data-label="Username :">heshan_22</td>
+                                <td data-label="Primary Contact :">753397419</td>
+                                <td data-label="Secondary Contact :">726341008</td>
+                                <td data-label="Abided Rules :">Yes</td>
+                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
+                            </tr>
+                            <tr>
+                                <td data-label="User ID :">CS1000000004</td>
+                                <td data-label="First Name :">Heshan</td>
+                                <td data-label="Last Name :">Perera</td>
+                                <td data-label="Username :">heshan_22</td>
+                                <td data-label="Primary Contact :">753397419</td>
+                                <td data-label="Secondary Contact :">726341008</td>
+                                <td data-label="Abided Rules :">Yes</td>
+                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
+                            </tr>
+                            <tr>
+                                <td data-label="User ID :">CS1000000004</td>
+                                <td data-label="First Name :">Heshan</td>
+                                <td data-label="Last Name :">Perera</td>
+                                <td data-label="Username :">heshan_22</td>
+                                <td data-label="Primary Contact :">753397419</td>
+                                <td data-label="Secondary Contact :">726341008</td>
+                                <td data-label="Abided Rules :">Yes</td>
+                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
+                            </tr>
+                            <tr>
+                                <td data-label="User ID :">CS1000000004</td>
+                                <td data-label="First Name :">Heshan</td>
+                                <td data-label="Last Name :">Perera</td>
+                                <td data-label="Username :">heshan_22</td>
+                                <td data-label="Primary Contact :">753397419</td>
+                                <td data-label="Secondary Contact :">726341008</td>
+                                <td data-label="Abided Rules :">Yes</td>
+                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
+                            </tr>
+                            <tr>
+                                <td data-label="User ID :">CS1000000004</td>
+                                <td data-label="First Name :">Heshan</td>
+                                <td data-label="Last Name :">Perera</td>
+                                <td data-label="Username :">heshan_22</td>
+                                <td data-label="Primary Contact :">753397419</td>
+                                <td data-label="Secondary Contact :">726341008</td>
+                                <td data-label="Abided Rules :">Yes</td>
+                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
+                            </tr>
+                            <tr>
+                                <td data-label="User ID :">CS1000000004</td>
+                                <td data-label="First Name :">Heshan</td>
+                                <td data-label="Last Name :">Perera</td>
+                                <td data-label="Username :">heshan_22</td>
+                                <td data-label="Primary Contact :">753397419</td>
+                                <td data-label="Secondary Contact :">726341008</td>
+                                <td data-label="Abided Rules :">Yes</td>
+                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
+                            </tr>
+                            <tr>
+                                <td data-label="User ID :">CS1000000004</td>
+                                <td data-label="First Name :">Heshan</td>
+                                <td data-label="Last Name :">Perera</td>
+                                <td data-label="Username :">heshan_22</td>
+                                <td data-label="Primary Contact :">753397419</td>
+                                <td data-label="Secondary Contact :">726341008</td>
+                                <td data-label="Abided Rules :">Yes</td>
+                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
+                            </tr>
+                            <tr>
+                                <td data-label="User ID :">CS1000000004</td>
+                                <td data-label="First Name :">Heshan</td>
+                                <td data-label="Last Name :">Perera</td>
+                                <td data-label="Username :">heshan_22</td>
+                                <td data-label="Primary Contact :">753397419</td>
+                                <td data-label="Secondary Contact :">726341008</td>
+                                <td data-label="Abided Rules :">Yes</td>
+                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
+                            </tr>
+                            <tr>
+                                <td data-label="User ID :">CS1000000004</td>
+                                <td data-label="First Name :">Heshan</td>
+                                <td data-label="Last Name :">Perera</td>
+                                <td data-label="Username :">heshan_22</td>
+                                <td data-label="Primary Contact :">753397419</td>
+                                <td data-label="Secondary Contact :">726341008</td>
+                                <td data-label="Abided Rules :">Yes</td>
+                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
+                            </tr>
+                            <tr>
+                                <td data-label="User ID :">CS1000000004</td>
+                                <td data-label="First Name :">Heshan</td>
+                                <td data-label="Last Name :">Perera</td>
+                                <td data-label="Username :">heshan_22</td>
+                                <td data-label="Primary Contact :">753397419</td>
+                                <td data-label="Secondary Contact :">726341008</td>
+                                <td data-label="Abided Rules :">Yes</td>
+                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
+                            </tr>
+                            <tr>
+                                <td data-label="User ID :">CS1000000004</td>
+                                <td data-label="First Name :">Heshan</td>
+                                <td data-label="Last Name :">Perera</td>
+                                <td data-label="Username :">heshan_22</td>
+                                <td data-label="Primary Contact :">753397419</td>
+                                <td data-label="Secondary Contact :">726341008</td>
+                                <td data-label="Abided Rules :">Yes</td>
+                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div id="add_bookings" class="booking_tab_content">
+                    <table class="booking-table">
+                        <thead>
+                            <tr class="booking-thead-first-tr">
+                                <th class="booking-table-first-th">
+                                    <div class="booking-table-filter-container">
+                                        <div class="booking-table-search-container">
+                                            <input type="search" name="search" placeholder="Search">
+                                            <i class="fas fa-search"></i>
+                                        </div>
+                                        <!--<div class="booking-table-date-picker">
+                        <label class="date-label">Booking Date</label>
+                        <input type="date">
+                    </div>-->
+                                    </div>
+                                </th>
+                            </tr>
+                            <tr class="booking-thead-second-tr">
+                                <th class="b-first-th">Sports Arena Name</th>
+                                <th>Registered Date</th>
+                                <th>Contact Number</th>
+                                <th class="b-last-th">Request Status</th>
+                                <!--<th>Google Map Link</th>
+                                <th>Contact Number</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                                <th>Payment Method</th>
+                                <th class="b-last-th">Request Status</th>-->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="popup" onclick="sportsArenaPopup()">
+                                <td data-label="Sports Arena Name :">Michael Sports Academy</td>
+                                <td data-label="Registered Date :">2021-08-05</td>
+                                <td data-label="Contact Number :">771199384</td>
+                                <td data-label="Accept Request :" class="acceptAcc"><i class="fas fa-check"></i></td>
+                                <!--<td data-label="Google Map Link :">https://goo.gl/maps/SjbY7wowaqSR1J929</td>
+                                <td data-label="Contact Number :">771199384</td>
+                                <td data-label="Description :">Lorem ipsum dolor sit amet, consectetur adipiscing.</td>
+                                <td data-label="Category :">Futsal</td>
+                                <td data-label="Payment Method :">Cash</td-->
+                            </tr>
+                            <tr>
+                                <td data-label="Sports Arena Name :">Michael Sports Academy</td>
+                                <td data-label="Registered Date :">2021-08-05</td>
+                                <td data-label="Contact Number :">771199384</td>
+                                <td data-label="Accept Request :" class="acceptAcc"><i class="fas fa-check"></i></td>
+                            </tr>
+                            <tr>
+                                <td data-label="Sports Arena Name :">Michael Sports Academy</td>
+                                <td data-label="Registered Date :">2021-08-05</td>
+                                <td data-label="Contact Number :">771199384</td>
+                                <td data-label="Accept Request :" class="acceptAcc"><i class="fas fa-check"></i></td>
+                            </tr>
+                            <tr>
+                                <td data-label="Sports Arena Name :">Michael Sports Academy</td>
+                                <td data-label="Registered Date :">2021-08-05</td>
+                                <td data-label="Contact Number :">771199384</td>
+                                <td data-label="Accept Request :" class="acceptAcc"><i class="fas fa-check"></i></td>
+                            </tr>
+                            <tr>
+                                <td data-label="Sports Arena Name :">Michael Sports Academy</td>
+                                <td data-label="Registered Date :">2021-08-05</td>
+                                <td data-label="Contact Number :">771199384</td>
+                                <td data-label="Accept Request :" class="acceptAcc"><i class="fas fa-check"></i></td>
+                            </tr>
+                            <tr>
+                                <td data-label="Sports Arena Name :">Michael Sports Academy</td>
+                                <td data-label="Registered Date :">2021-08-05</td>
+                                <td data-label="Contact Number :">771199384</td>
+                                <td data-label="Accept Request :" class="acceptAcc"><i class="fas fa-check"></i></td>
+                            </tr>
+                            <tr>
+                                <td data-label="Sports Arena Name :">Michael Sports Academy</td>
+                                <td data-label="Registered Date :">2021-08-05</td>
+                                <td data-label="Contact Number :">771199384</td>
+                                <td data-label="Accept Request :" class="acceptAcc"><i class="fas fa-check"></i></td>
+                            </tr>
+                            <tr>
+                                <td data-label="Sports Arena Name :">Michael Sports Academy</td>
+                                <td data-label="Registered Date :">2021-08-05</td>
+                                <td data-label="Contact Number :">771199384</td>
+                                <td data-label="Accept Request :" class="acceptAcc"><i class="fas fa-check"></i></td>
+                            </tr>
+                            <tr>
+                                <td data-label="Sports Arena Name :">Michael Sports Academy</td>
+                                <td data-label="Registered Date :">2021-08-05</td>
+                                <td data-label="Contact Number :">771199384</td>
+                                <td data-label="Accept Request :" class="acceptAcc"><i class="fas fa-check"></i></td>
+                            </tr>
+                            <tr>
+                                <td data-label="Sports Arena Name :">Michael Sports Academy</td>
+                                <td data-label="Registered Date :">2021-08-05</td>
+                                <td data-label="Contact Number :">771199384</td>
+                                <td data-label="Accept Request :" class="acceptAcc"><i class="fas fa-check"></i></td>
+                            </tr>
+                            <tr>
+                                <td data-label="Sports Arena Name :">Michael Sports Academy</td>
+                                <td data-label="Registered Date :">2021-08-05</td>
+                                <td data-label="Contact Number :">771199384</td>
+                                <td data-label="Accept Request :" class="acceptAcc"><i class="fas fa-check"></i></td>
+                            </tr>
+                            <tr>
+                                <td data-label="Sports Arena Name :">Michael Sports Academy</td>
+                                <td data-label="Registered Date :">2021-08-05</td>
+                                <td data-label="Contact Number :">771199384</td>
+                                <td data-label="Accept Request :" class="acceptAcc"><i class="fas fa-check"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>  
+                    <div class="form-container">
+                        <h6>Sports Arena Name : </h6>
+                        <p>Michael Sports Academy</p>
+
+                        <h6>Registered Date : </h6>
+                        <p>2021-08-05</p>
+
+
+                        <h6>Contact Number : </h6>
+                        <p>77 119 9384</p>
+
+
+                        <h6>Location : </h6>
+                        <p>Colombo 07</p>
+
+
+                        <h6>Google Map Link : </h6>
+                        <p>https://goo.gl/maps/SjbY7wowaqSR1J929</p>
+
+
+                        <h6>Description : </h6>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
+
+                        <h6>Category : </h6>
+                        <p>Futsal</p>
+                    </div>
+                </div>
+
+                <div id="cancel_booking" class="booking_tab_content">
+                    <table class="booking-table">
+                        <thead>
+                            <tr class="booking-thead-first-tr">
+                                <th class="booking-table-first-th">
+                                    <div class="booking-table-filter-container">
+                                        <div class="booking-table-search-container">
+                                            <input type="search" name="search" placeholder="Search">
+                                            <i class="fas fa-search"></i>
+                                        </div>
+                                        <!--<div class="booking-table-date-picker">
+                        <label class="date-label">Booking Date</label>
+                        <input type="date">
+                    </div>-->
+                                    </div>
+                                </th>
+                            </tr>
+                            <tr class="booking-thead-second-tr">
+                                <th class="b-first-th">User ID</th>
+                                <th>Customer Name</th>
+                                <th>Sports Arena ID</th>
+                                <th>Sports Arena Name</th>
+                                <th>Complaint</th>
+                                <th>Blacklisted</th>
+                                <th>Blacklist Sports Arena</th>
+                                <th>Remove Account</th>
+                                <!--<th class="b-last-th">Payment Status</th>-->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-label="User ID :">CS1000000004</td>
+                                <td data-label="Customer Name :">Heshan Perera</td>
+                                <td data-label="Sports Arena ID :">SA1000000000</td>
+                                <td data-label="Sports Arena name :">Michael Sports</td>
+                                <td data-label="Complaint :">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+                                <td data-label="Blacklisted :">Yes</td>
+                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
+                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
+                            </tr>
+                            <tr>
+                                <td data-label="User ID :">CS1000000004</td>
+                                <td data-label="Customer Name :">Heshan Perera</td>
+                                <td data-label="Sports Arena ID :">SA1000000000</td>
+                                <td data-label="Sports Arena name :">Michael Sports</td>
+                                <td data-label="Complaint :">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+                                <td data-label="Blacklisted :">Yes</td>
+                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
+                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
+                            </tr>
+                            <tr>
+                                <td data-label="User ID :">CS1000000004</td>
+                                <td data-label="Customer Name :">Heshan Perera</td>
+                                <td data-label="Sports Arena ID :">SA1000000000</td>
+                                <td data-label="Sports Arena name :">Michael Sports</td>
+                                <td data-label="Complaint :">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+                                <td data-label="Blacklisted :">Yes</td>
+                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
+                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
+                            </tr>
+                            <tr>
+                                <td data-label="User ID :">CS1000000004</td>
+                                <td data-label="Customer Name :">Heshan Perera</td>
+                                <td data-label="Sports Arena ID :">SA1000000000</td>
+                                <td data-label="Sports Arena name :">Michael Sports</td>
+                                <td data-label="Complaint :">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+                                <td data-label="Blacklisted :">Yes</td>
+                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
+                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
+                            </tr>
+                            <tr>
+                                <td data-label="User ID :">CS1000000004</td>
+                                <td data-label="Customer Name :">Heshan Perera</td>
+                                <td data-label="Sports Arena ID :">SA1000000000</td>
+                                <td data-label="Sports Arena name :">Michael Sports</td>
+                                <td data-label="Complaint :">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+                                <td data-label="Blacklisted :">Yes</td>
+                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
+                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
+                            </tr>
+                            <tr>
+                                <td data-label="User ID :">CS1000000004</td>
+                                <td data-label="Customer Name :">Heshan Perera</td>
+                                <td data-label="Sports Arena ID :">SA1000000000</td>
+                                <td data-label="Sports Arena name :">Michael Sports</td>
+                                <td data-label="Complaint :">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+                                <td data-label="Blacklisted :">Yes</td>
+                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
+                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
+                            </tr>
+                            <tr>
+                                <td data-label="User ID :">CS1000000004</td>
+                                <td data-label="Customer Name :">Heshan Perera</td>
+                                <td data-label="Sports Arena ID :">SA1000000000</td>
+                                <td data-label="Sports Arena name :">Michael Sports</td>
+                                <td data-label="Complaint :">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+                                <td data-label="Blacklisted :">Yes</td>
+                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
+                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
+                            </tr>
+                            <tr>
+                                <td data-label="User ID :">CS1000000004</td>
+                                <td data-label="Customer Name :">Heshan Perera</td>
+                                <td data-label="Sports Arena ID :">SA1000000000</td>
+                                <td data-label="Sports Arena name :">Michael Sports</td>
+                                <td data-label="Complaint :">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+                                <td data-label="Blacklisted :">Yes</td>
+                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
+                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
+                            </tr>
+                            <tr>
+                                <td data-label="User ID :">CS1000000004</td>
+                                <td data-label="Customer Name :">Heshan Perera</td>
+                                <td data-label="Sports Arena ID :">SA1000000000</td>
+                                <td data-label="Sports Arena name :">Michael Sports</td>
+                                <td data-label="Complaint :">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+                                <td data-label="Blacklisted :">Yes</td>
+                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
+                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
+                            </tr>
+                            <tr>
+                                <td data-label="User ID :">CS1000000004</td>
+                                <td data-label="Customer Name :">Heshan Perera</td>
+                                <td data-label="Sports Arena ID :">SA1000000000</td>
+                                <td data-label="Sports Arena name :">Michael Sports</td>
+                                <td data-label="Complaint :">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+                                <td data-label="Blacklisted :">Yes</td>
+                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
+                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
+                            </tr>
+                            <tr>
+                                <td data-label="User ID :">CS1000000004</td>
+                                <td data-label="Customer Name :">Heshan Perera</td>
+                                <td data-label="Sports Arena ID :">SA1000000000</td>
+                                <td data-label="Sports Arena name :">Michael Sports</td>
+                                <td data-label="Complaint :">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+                                <td data-label="Blacklisted :">Yes</td>
+                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
+                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
+                            </tr>
+                            <tr>
+                                <td data-label="User ID :">CS1000000004</td>
+                                <td data-label="Customer Name :">Heshan Perera</td>
+                                <td data-label="Sports Arena ID :">SA1000000000</td>
+                                <td data-label="Sports Arena name :">Michael Sports</td>
+                                <td data-label="Complaint :">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+                                <td data-label="Blacklisted :">Yes</td>
+                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
+                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="booking_payment" class="booking_tab_content">
+                <h3>booking_payment</h3>
+                <p>cancel_booking is the capital of Japan.</p>
+                </div>
+                </div>
+            </div>
+                
+
+    </section>
+
+    <script>
+        let side_menu_open_btn = document.querySelector("#side-menu-open-btn");
+        let sidebar = document.querySelector(".sidebar");
+        let side_menu_close_btn = document.querySelector("#side-menu-close-btn");
+        // let homecontent = document.querySelector(".home-content");
+
+
+        side_menu_open_btn.onclick = function () {    
+            sidebar.classList.add("active");
+        }
+        side_menu_close_btn.onclick = function () {
+            sidebar.classList.remove("active");
+        }
+
+        //notification
+        function showNotifycation() {
+            document.querySelector(".pop-up").classList.toggle("show");
+            document.querySelector(".notification-container").classList.toggle("hide");
+        }
+
+        function openTab(evt, tabName) {
+        var i, booking_tab_content, booking_tab;
+
+        booking_tab_content = document.getElementsByClassName("booking_tab_content");
+        
+        for (i = 0; i < booking_tab_content.length; i++) {
+            booking_tab_content[i].style.display = "none";            
+        }
+        
+        booking_tab = document.getElementsByClassName("booking_tab");
+        for (i = 0; i < booking_tab.length; i++) {
+            booking_tab[i].className = booking_tab[i].className.replace(" active", "");
+        }
+        
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+        }
+
+        function sportsArenaPopup() {
+            document.getElementsByClassName("form-container").style.display = "block";
+        }
+
+         // popup form section
+
+         function openpopupform(){
+            var form=document.getElementById("myForm");
+            
+            form.style.display = "block";
+
+        }
+
+        function closepopupform(){
+            var form=document.getElementById("myForm");
+            
+            form.style.display = "none";
+
+        }
+        //popup sign out message
+        function open_popup_signout_message(){
+        var form=document.getElementById("popup_signout");
+        
+        form.style.display = "block";
+        }
+        function close_popup_signout_message(){
+            var form=document.getElementById("popup_signout");
+            
+            form.style.display = "none";
+        }
+
+    </script>
+</body>
+</html>

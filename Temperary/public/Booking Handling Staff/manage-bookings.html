@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Bookings</title>
+    <link rel="stylesheet" href="manage-bookings.css">
+    <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- Top Navigation Bar -->
+    <nav>
+        <div class="nav-left">
+            <div class="logo-container">
+                <a href="#">
+                    <i class="fas fa-running "></i>
+                    <span class="logo-name">Sportizza</span>
+                </a>
+            </div>
+            <div class="search-bar-container">
+                <input type="search" name="search" placeholder="Search">
+                <i class="fas fa-search "></i>
+            </div>
+            <div class="nav-profile">
+                <button class="openbutton" onclick="openpopupform()">
+                    <div class="profile-details">
+                        <img src="assets/profile-picture.jpg" alt="" class="profile-picture">
+                        <div class="username">Bhashitha Ranasinghe</div>
+                    </div>
+                </button>
+            </div>
+            <div class="sign-in-out-btn">
+                <a style="font-weight:500; " href="">Sign Out </a>
+            </div>
+        </div>
+        <!-- search bar for mobile -->
+        <div class="search-bar-container-mobi">
+            <input type="search" name="search" placeholder="Search">
+            <i class="fas fa-search "></i>
+        </div>
+    </nav>
+    <div id="myForm" class="sectionpop ">
+        <div class="formsection">
+            <div>
+                <button s class="closebutton" onclick="closepopupform()">❌</button>
+            </div>
+            <img class="form-profile-picture" src="assets/profile-picture.jpg" alt="">
+            <form action="/action_page.php" style="margin:20px">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="firstname" placeholder="Enter First Name" value="sadeepa">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lastname" placeholder="Enter Last Names" value="bhashitha">
+                <label for="lname">Primary Number</label>
+                <input type="text" id="lname" name="lastname" placeholder="Enter Primary Number" value="0705614640">
+                <label for="lname">Secondary Number</label>
+                <input type="text" id="userid" name="lastname" placeholder="Enter Secondary Number" value="0705614640">
+                <input type="submit" value="Save">
+            </form>
+        </div>
+    </div>
+    <!-- End Top Navigation Bar -->
+
+    <section class="page-container">
+
+        <!-- SIDE NAVIGATION BAR - START -->
+        <div class="sidebar">
+            <div class="sidebar-container">
+                <div class="side-menu">
+                    <i class="fas fa-bars fa-2x " id="side-menu-open-btn"></i>
+                    <i class="fas fa-times fa-2x" id="side-menu-close-btn"></i>
+                </div>
+                <ul class="side-menu-list">
+                    <li>
+                        <a href="#" class="side-menu-li">
+                            <i class="fas fa-home"></i>
+                            <p class="side-menu-item">Arena Profile</p>
+                        </a>
+                        <p class="side-menu-tooltip">Arena Profile</p>
+                    </li>
+                    <li>
+                        <a href="#" class="side-menu-li">
+                            <i class="fas fa-bookmark"></i>
+                            <p class="side-menu-item">Manage Bookings</p>
+                        </a>
+                        <p class="side-menu-tooltip">Bookings</p>
+                    </li>
+                    <li>
+                        <a href="#" class="side-menu-li">
+                            <i class="fas fa-bell"></i>
+                            <p class="side-menu-item">Notifications</p>
+                        </a>
+                        <p class="side-menu-tooltip">Notifications</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- SIDE NAVIGATION BAR - END -->
+
+        <!-- Manage Bookings Page -->
+        <div class="page-content-container">
+            <div class="container">
+                <h1 class="page-header">View Bookings</h1>
+                <!-- <div class="tab">
+                    <button class="booking_tab tab-btn active" onclick="openTab(event, 'view_bookings')"><i
+                            class="fas fa-eye"></i>
+                        <p>View Bookings</p>
+                    </button>
+                    <button class="booking_tab tab-btn" onclick="openTab(event, 'add_bookings')"><i
+                            class="fas fa-plus-circle"></i>
+                        <p>Add Bookings</p>
+                    </button>
+                    <button class="booking_tab tab-btn" onclick="openTab(event, 'cancel_booking')"><i
+                            class="fas fa-trash-alt"></i>
+                        <p>Cancel Bookings</p>
+                    </button>
+                    <button class="booking_tab tab-btn" onclick="openTab(event, 'booking_payment')"><i
+                            class="fas fa-money-check-alt"></i>
+                        <p> Booking Payment</p>
+                    </button>
+                </div> -->
+
+                <!-- View Bookings Tab -->
+                <div id="view_bookings" class="booking_tab_content active" style="display: block;">
+                    <table class="booking-table">
+                        <thead>
+                            <tr class="booking-thead-first-tr">
+                                <th class="booking-table-first-th">
+                                    <div class="booking-table-filter-container">
+                                        <div class="booking-table-search-container">
+                                            <input type="search" name="search" placeholder="Search">
+                                            <i class="fas fa-search"></i>
+                                        </div>
+                                        <div class="booking-table-date-picker">
+                                            <label class="date-label">Booking Date</label>
+                                            <input type="date">
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                            <tr class="booking-thead-second-tr">
+                                <th class="b-first-th">Booking ID</th>
+                                <th>Start Time</th>
+                                <th>End Time</th>
+                                <th>Amount</th>
+                                <th>Booked Date</th>
+                                <th>Mobile Number</th>
+                                <th>Payment Method</th>
+                                <th class="b-last-th">Payment Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-label="Booking ID :">BD123456789101</td>
+                                <td data-label="Start Time :">1530h</td>
+                                <td data-label="End Time :">1630h</td>
+                                <td data-label="Amount :">2000</td>
+                                <td data-label="Booked Date :">2021/09/23</td>
+                                <td data-label="Mobile Number :">0765555550</td>
+                                <td data-label="Payment Method :">Cash</td>
+                                <td data-label="Payment Status:"> <div class="Payment-status"><a href="">Pending</a></div></td>
+                                
+                            </tr>
+                            <tr>
+                                <td data-label="Booking ID :">BD123456789101</td>
+                                <td data-label="Start Time :">1530h</td>
+                                <td data-label="End Time :">1630h</td>
+                                <td data-label="Amount :">2000</td>
+                                <td data-label="Booked Date :">2021/09/23</td>
+                                <td data-label="Mobile Number :">0765555550</td>
+                                <td data-label="Payment Method :">Card</td>
+                                <td data-label="Payment Status:"> <div class="Payment-status active"><a href="">Paid</a></div></td>
+                            </tr>
+                            
+                            <tr>
+                                <td data-label="Booking ID :">BD123456789101</td>
+                                <td data-label="Start Time :">1530h</td>
+                                <td data-label="End Time :">1630h</td>
+                                <td data-label="Amount :">2000</td>
+                                <td data-label="Booked Date :">2021/09/23</td>
+                                <td data-label="Mobile Number :">0765555550</td>
+                                <td data-label="Payment Method :">Cash</td>
+                                <td data-label="Payment Status:"> <div class="Payment-status"><a href="">Pending</a></div></td>
+                                
+                            </tr>
+                            <tr>
+                                <td data-label="Booking ID :">BD123456789101</td>
+                                <td data-label="Start Time :">1530h</td>
+                                <td data-label="End Time :">1630h</td>
+                                <td data-label="Amount :">2000</td>
+                                <td data-label="Booked Date :">2021/09/23</td>
+                                <td data-label="Mobile Number :">0765555550</td>
+                                <td data-label="Payment Method :">Card</td>
+                                <td data-label="Payment Status:"> <div class="Payment-status active"><a href="">Paid</a></div></td>
+                            </tr>
+                            <tr>
+                                <td data-label="Booking ID :">BD123456789101</td>
+                                <td data-label="Start Time :">1530h</td>
+                                <td data-label="End Time :">1630h</td>
+                                <td data-label="Amount :">2000</td>
+                                <td data-label="Booked Date :">2021/09/23</td>
+                                <td data-label="Mobile Number :">0765555550</td>
+                                <td data-label="Payment Method :">Cash</td>
+                                <td data-label="Payment Status:"> <div class="Payment-status"><a href="">Pending</a></div></td>
+                                
+                            </tr>
+                            <tr>
+                                <td data-label="Booking ID :">BD123456789101</td>
+                                <td data-label="Start Time :">1530h</td>
+                                <td data-label="End Time :">1630h</td>
+                                <td data-label="Amount :">2000</td>
+                                <td data-label="Booked Date :">2021/09/23</td>
+                                <td data-label="Mobile Number :">0765555550</td>
+                                <td data-label="Payment Method :">Card</td>
+                                <td data-label="Payment Status:"> <div class="Payment-status active"><a href="">Paid</a></div></td>
+                            </tr>
+                            <tr>
+                                <td data-label="Booking ID :">BD123456789101</td>
+                                <td data-label="Start Time :">1530h</td>
+                                <td data-label="End Time :">1630h</td>
+                                <td data-label="Amount :">2000</td>
+                                <td data-label="Booked Date :">2021/09/23</td>
+                                <td data-label="Mobile Number :">0765555550</td>
+                                <td data-label="Payment Method :">Cash</td>
+                                <td data-label="Payment Status :"> <div class="Payment-status"><a href="">Pending</a></div></td>
+                                
+                            </tr>
+                            <tr>
+                                <td data-label="Booking ID :">BD123456789101</td>
+                                <td data-label="Start Time :">1530h</td>
+                                <td data-label="End Time :">1630h</td>
+                                <td data-label="Amount :">2000</td>
+                                <td data-label="Booked Date :">2021/09/23</td>
+                                <td data-label="Mobile Number :">0765555550</td>
+                                <td data-label="Payment Method :">Card</td>
+                                <td data-label="Payment Status:"> <div class="Payment-status active"><a href="">Paid</a></div></td>
+                            </tr>
+                            <tr>
+                                <td data-label="Booking ID :">BD123456789101</td>
+                                <td data-label="Start Time :">1530h</td>
+                                <td data-label="End Time :">1630h</td>
+                                <td data-label="Amount :">2000</td>
+                                <td data-label="Booked Date :">2021/09/23</td>
+                                <td data-label="Mobile Number :">0765555550</td>
+                                <td data-label="Payment Method :">Cash</td>
+                                <td data-label="Payment Status:"> <div class="Payment-status"><a href="">Pending</a></div></td>
+                                
+                            </tr>
+                            <tr>
+                                <td data-label="Booking ID :">BD123456789101</td>
+                                <td data-label="Start Time :">1530h</td>
+                                <td data-label="End Time :">1630h</td>
+                                <td data-label="Amount :">2000</td>
+                                <td data-label="Booked Date :">2021/09/23</td>
+                                <td data-label="Mobile Number :">0765555550</td>
+                                <td data-label="Payment Method :">Card</td>
+                                <td data-label="Payment Status:"> <div class="Payment-status active"><a href="">Paid</a></div></td>
+                            </tr>
+                            
+                              
+                        </tbody>
+                    </table>
+                </div>
+                
+               
+            </div> 
+        </div>
+       
+    </section>
+    <!-- Start of Footer -->
+    <footer style="position:fixed;">
+        <div class="copyright">
+            <p>
+                Copyright &copy;2021 All rights reserved | Sportizza Inc.
+            </p>
+        </div>
+    </footer>
+    <!-- End of Footer -->
+    <script type="text/javascript" src="manage-bookings.js"></script>
+</body>
+</html>
