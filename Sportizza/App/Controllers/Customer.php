@@ -16,19 +16,19 @@ class Customer extends Authenticated
 
         
         
-       View::renderTemplate('Customer/new_customer_dashboard.html');
+       View::renderTemplate('Customer/customerDashboardView.html');
     }
 
     public  function cartAction()
     {
         
 
-        View::renderTemplate('Customer/newcart.html');
+        View::renderTemplate('Customer/customerCartView.html');
     }
 
     public function bookingAction()
     {
-        View::renderTemplate('Customer/newCustomerBooking.html');
+        View::renderTemplate('Customer/customerBookingView.html');
     }
 
    

@@ -12,7 +12,7 @@ class Login extends \Core\Controller
 {
     public function indexAction()
     {
-        View::renderTemplate('LoginSignup/login.html');
+        View::renderTemplate('LoginSignup/loginView.html');
     }
 
 
@@ -65,7 +65,7 @@ class Login extends \Core\Controller
     public function adminloginAction()
     {
         //direct to the admin page
-        View::renderTemplate('Admin/admin-FAQ.html');
+        View::renderTemplate('Admin/adminFAQView.html');
     }
 
     public function customerloginAction()
@@ -75,18 +75,18 @@ class Login extends \Core\Controller
         $bookings= CustomerModel::customerBookings($id);
         // var_dump($bookings);
         //direct to the customer page
-        View::renderTemplate('Customer/new_customer_dashboard.html',['bookings'=>$bookings]);
+        View::renderTemplate('Customer/customerDashboardView.html',['bookings'=>$bookings]);
     }
  
     public function bookinghandlingstaffloginAction()
     {
         //direct to the customer page
-        View::renderTemplate('BookHandelStaff/manage-bookings.html');
+        View::renderTemplate('BookHandelStaff/aStaffManageBookingsView.html');
     }
     public function administrationstaffloginAction()
     {
         //direct to the customer page
-        View::renderTemplate('AdministrationStaff/manage-facility.html');
+        View::renderTemplate('AdministrationStaff/aStaffManageFacilityView.html');
     }
 
     public function managerloginAction()
@@ -100,6 +100,6 @@ class Login extends \Core\Controller
     {
         Auth::logout();
 
-        $this->redirect('/');
+        $this->redirect('/login');
     }
     }
