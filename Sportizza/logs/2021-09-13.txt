@@ -1,0 +1,376 @@
+<<<<<<< HEAD
+[13-Sep-2021 03:21:34 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('apple-touch-ico...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[13-Sep-2021 03:21:35 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('apple-touch-ico...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[13-Sep-2021 03:21:40 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/signu...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[13-Sep-2021 03:21:40 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/_vali...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[13-Sep-2021 03:25:40 UTC] Uncaught exception: 'Twig\Error\SyntaxError' with message 'Unexpected token "name" of value "name" ("end of print statement" expected).'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Parser.php(167): Twig\TokenStream->expect(4)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Parser.php(122): Twig\Parser->subparse(NULL, false)
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(735): Twig\Parser->parse(Object(Twig\TokenStream))
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(793): Twig\Environment->parse(Object(Twig\TokenStream))
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(482): Twig\Environment->compileSource(Object(Twig\Source))
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(445): Twig\Environment->loadClass('__TwigTemplate_...', 'LoginSignup/cus...', NULL)
+#6 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(423): Twig\Environment->loadTemplate('LoginSignup/cus...')
+#7 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(384): Twig\Environment->load('LoginSignup/cus...')
+#8 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/View.php(31): Twig\Environment->render('LoginSignup/cus...', Array)
+#9 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Controllers/Signup.php(13): Core\View::renderTemplate('LoginSignup/cus...')
+#10 [internal function]: App\Controllers\Signup->indexAction()
+#11 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php(22): call_user_func_array(Array, Array)
+#12 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('index', Array)
+#13 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup')
+#14 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Views/LoginSignup/customersignup.html' on line 45
+[13-Sep-2021 03:25:40 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/_vali...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[13-Sep-2021 03:25:40 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/signu...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[13-Sep-2021 03:25:54 UTC] Uncaught exception: 'Twig\Error\SyntaxError' with message 'Expected name or number.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/ExpressionParser.php(414): Twig\ExpressionParser->parseSubscriptExpression(Object(Twig\Node\Expression\NameExpression))
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/ExpressionParser.php(299): Twig\ExpressionParser->parsePostfixExpression(Object(Twig\Node\Expression\NameExpression))
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/ExpressionParser.php(183): Twig\ExpressionParser->parsePrimaryExpression()
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/ExpressionParser.php(78): Twig\ExpressionParser->getPrimary()
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Parser.php(166): Twig\ExpressionParser->parseExpression()
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Parser.php(122): Twig\Parser->subparse(NULL, false)
+#6 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(735): Twig\Parser->parse(Object(Twig\TokenStream))
+#7 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(793): Twig\Environment->parse(Object(Twig\TokenStream))
+#8 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(482): Twig\Environment->compileSource(Object(Twig\Source))
+#9 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(445): Twig\Environment->loadClass('__TwigTemplate_...', 'LoginSignup/cus...', NULL)
+#10 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(423): Twig\Environment->loadTemplate('LoginSignup/cus...')
+#11 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(384): Twig\Environment->load('LoginSignup/cus...')
+#12 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/View.php(31): Twig\Environment->render('LoginSignup/cus...', Array)
+#13 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Controllers/Signup.php(13): Core\View::renderTemplate('LoginSignup/cus...')
+#14 [internal function]: App\Controllers\Signup->indexAction()
+#15 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php(22): call_user_func_array(Array, Array)
+#16 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('index', Array)
+#17 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup')
+#18 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Views/LoginSignup/customersignup.html' on line 45
+[13-Sep-2021 03:26:05 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/signu...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[13-Sep-2021 03:26:05 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/_vali...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[13-Sep-2021 03:26:26 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/signu...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[13-Sep-2021 03:26:26 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/_vali...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[13-Sep-2021 03:27:09 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/_vali...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[13-Sep-2021 03:27:09 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/signu...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[13-Sep-2021 03:27:22 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/signu...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[13-Sep-2021 03:27:22 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/_vali...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[13-Sep-2021 03:27:24 UTC] Uncaught exception: 'Error' with message 'Call to undefined method App\Models\User::validate()'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Controllers/Signup.php(25): App\Models\User->save()
+#1 [internal function]: App\Controllers\Signup->createAction()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php(22): call_user_func_array(Array, Array)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('create', Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup/create')
+#5 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Models/User.php' on line 58
+[13-Sep-2021 03:27:28 UTC] Uncaught exception: 'Error' with message 'Call to undefined method App\Models\User::validate()'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Controllers/Signup.php(25): App\Models\User->save()
+#1 [internal function]: App\Controllers\Signup->createAction()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php(22): call_user_func_array(Array, Array)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('create', Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup/create')
+#5 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Models/User.php' on line 58
+[13-Sep-2021 03:27:51 UTC] Uncaught exception: 'Error' with message 'Call to undefined method App\Models\User::validate()'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Controllers/Signup.php(25): App\Models\User->save()
+#1 [internal function]: App\Controllers\Signup->createAction()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php(22): call_user_func_array(Array, Array)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('create', Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup/create')
+#5 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Models/User.php' on line 58
+[13-Sep-2021 03:29:38 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/_vali...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[13-Sep-2021 03:29:38 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/signu...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[13-Sep-2021 03:29:40 UTC] Uncaught exception: 'Error' with message 'Call to undefined method App\Models\User::validate()'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Controllers/Signup.php(25): App\Models\User->save()
+#1 [internal function]: App\Controllers\Signup->createAction()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php(22): call_user_func_array(Array, Array)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('create', Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup/create')
+#5 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Models/User.php' on line 58
+[13-Sep-2021 03:30:08 UTC] Uncaught exception: 'Error' with message 'Call to undefined method App\Models\User::validate()'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Controllers/Signup.php(25): App\Models\User->save()
+#1 [internal function]: App\Controllers\Signup->createAction()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php(22): call_user_func_array(Array, Array)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('create', Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup/create')
+#5 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Models/User.php' on line 58
+[13-Sep-2021 03:30:09 UTC] Uncaught exception: 'Error' with message 'Call to undefined method App\Models\User::validate()'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Controllers/Signup.php(25): App\Models\User->save()
+#1 [internal function]: App\Controllers\Signup->createAction()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php(22): call_user_func_array(Array, Array)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('create', Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup/create')
+#5 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Models/User.php' on line 58
+[13-Sep-2021 03:30:14 UTC] Uncaught exception: 'Error' with message 'Call to undefined method App\Models\User::validate()'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Controllers/Signup.php(25): App\Models\User->save()
+#1 [internal function]: App\Controllers\Signup->createAction()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php(22): call_user_func_array(Array, Array)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('create', Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup/create')
+#5 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Models/User.php' on line 58
+[13-Sep-2021 03:30:17 UTC] Uncaught exception: 'Error' with message 'Call to undefined method App\Models\User::validate()'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Controllers/Signup.php(25): App\Models\User->save()
+#1 [internal function]: App\Controllers\Signup->createAction()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php(22): call_user_func_array(Array, Array)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('create', Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup/create')
+#5 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Models/User.php' on line 58
+[13-Sep-2021 03:30:18 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/_vali...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[13-Sep-2021 03:30:18 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/signu...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[13-Sep-2021 03:30:18 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/custo...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[13-Sep-2021 03:30:20 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/_vali...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[13-Sep-2021 03:30:20 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/signu...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[13-Sep-2021 03:30:21 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/custo...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[13-Sep-2021 03:30:22 UTC] Uncaught exception: 'Error' with message 'Call to undefined method App\Models\User::validate()'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Controllers/Signup.php(25): App\Models\User->save()
+#1 [internal function]: App\Controllers\Signup->createAction()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php(22): call_user_func_array(Array, Array)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('create', Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup/create')
+#5 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Models/User.php' on line 58
+[13-Sep-2021 03:31:38 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('public/js/signu...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[13-Sep-2021 03:31:38 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('js/signup_valid...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[13-Sep-2021 03:31:38 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('js/customerSign...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[13-Sep-2021 03:31:39 UTC] Uncaught exception: 'Error' with message 'Call to undefined method App\Models\User::validate()'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Controllers/Signup.php(25): App\Models\User->save()
+#1 [internal function]: App\Controllers\Signup->createAction()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php(22): call_user_func_array(Array, Array)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('create', Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup/create')
+#5 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Models/User.php' on line 58
+[13-Sep-2021 03:31:48 UTC] Uncaught exception: 'Error' with message 'Call to undefined method App\Models\User::validate()'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Controllers/Signup.php(25): App\Models\User->save()
+#1 [internal function]: App\Controllers\Signup->createAction()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php(22): call_user_func_array(Array, Array)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('create', Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup/create')
+#5 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Models/User.php' on line 58
+[13-Sep-2021 03:31:50 UTC] Uncaught exception: 'Error' with message 'Call to undefined method App\Models\User::validate()'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Controllers/Signup.php(25): App\Models\User->save()
+#1 [internal function]: App\Controllers\Signup->createAction()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php(22): call_user_func_array(Array, Array)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('create', Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup/create')
+#5 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Models/User.php' on line 58
+[13-Sep-2021 03:31:52 UTC] Uncaught exception: 'Error' with message 'Call to undefined method App\Models\User::validate()'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Controllers/Signup.php(25): App\Models\User->save()
+#1 [internal function]: App\Controllers\Signup->createAction()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php(22): call_user_func_array(Array, Array)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('create', Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup/create')
+#5 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Models/User.php' on line 58
+[13-Sep-2021 03:31:53 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('js/signup_valid...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[13-Sep-2021 03:31:53 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('js/customerSign...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[13-Sep-2021 03:31:56 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('js/signup_valid...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[13-Sep-2021 03:31:56 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('js/customerSign...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[13-Sep-2021 03:31:58 UTC] Uncaught exception: 'Error' with message 'Call to undefined method App\Models\User::validate()'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Controllers/Signup.php(25): App\Models\User->save()
+#1 [internal function]: App\Controllers\Signup->createAction()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php(22): call_user_func_array(Array, Array)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('create', Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup/create')
+#5 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Models/User.php' on line 58
+[13-Sep-2021 03:32:59 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('Assetsjs/signup...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php' on line 85
+[13-Sep-2021 03:33:01 UTC] Uncaught exception: 'Error' with message 'Call to undefined method App\Models\User::validate()'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Controllers/Signup.php(25): App\Models\User->save()
+#1 [internal function]: App\Controllers\Signup->createAction()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php(22): call_user_func_array(Array, Array)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('create', Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup/create')
+#5 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Models/User.php' on line 58
+[13-Sep-2021 03:34:23 UTC] Uncaught exception: 'Error' with message 'Call to undefined method App\Models\User::validate()'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Controllers/Signup.php(25): App\Models\User->save()
+#1 [internal function]: App\Controllers\Signup->createAction()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php(22): call_user_func_array(Array, Array)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('create', Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup/create')
+#5 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Models/User.php' on line 58
+[13-Sep-2021 03:34:32 UTC] Uncaught exception: 'Error' with message 'Call to undefined method App\Models\User::validate()'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Controllers/Signup.php(25): App\Models\User->save()
+#1 [internal function]: App\Controllers\Signup->createAction()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php(22): call_user_func_array(Array, Array)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('create', Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup/create')
+#5 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Models/User.php' on line 58
+[13-Sep-2021 03:35:03 UTC] Uncaught exception: 'Error' with message 'Call to undefined method App\Models\User::validate()'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Controllers/Signup.php(25): App\Models\User->save()
+#1 [internal function]: App\Controllers\Signup->createAction()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php(22): call_user_func_array(Array, Array)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('create', Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup/create')
+#5 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Models/User.php' on line 58
+[13-Sep-2021 03:36:28 UTC] Uncaught exception: 'Error' with message 'Call to undefined method App\Models\User::validate()'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Controllers/Signup.php(25): App\Models\User->save()
+#1 [internal function]: App\Controllers\Signup->createAction()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php(22): call_user_func_array(Array, Array)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('create', Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup/create')
+#5 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Models/User.php' on line 58
+[13-Sep-2021 04:21:34 UTC] Uncaught exception: 'Exception' with message 'Method createAction not found in controller App\Controllers\Signup'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('create', Array)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup/create')
+#2 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php' on line 26
+[13-Sep-2021 04:22:28 UTC] Uncaught exception: 'Error' with message 'Call to undefined method App\Models\User::validate()'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Controllers/Signup.php(25): App\Models\User->save()
+#1 [internal function]: App\Controllers\Signup->createAction()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php(22): call_user_func_array(Array, Array)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('create', Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup/create')
+#5 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Models/User.php' on line 58
+[13-Sep-2021 04:22:29 UTC] Uncaught exception: 'Error' with message 'Call to undefined method App\Models\User::validate()'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Controllers/Signup.php(25): App\Models\User->save()
+#1 [internal function]: App\Controllers\Signup->createAction()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php(22): call_user_func_array(Array, Array)
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('create', Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup/create')
+#5 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Models/User.php' on line 58
+[13-Sep-2021 04:34:51 UTC] Uncaught exception: 'Twig\Error\LoaderError' with message 'Unable to find template "LoginSignup/signup.html" (looked into: ../App/Views).'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Loader/FilesystemLoader.php(161): Twig\Loader\FilesystemLoader->findTemplate('LoginSignup/sig...')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(351): Twig\Loader\FilesystemLoader->getCacheKey('LoginSignup/sig...')
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(445): Twig\Environment->getTemplateClass('LoginSignup/sig...')
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(423): Twig\Environment->loadTemplate('LoginSignup/sig...')
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Environment.php(384): Twig\Environment->load('LoginSignup/sig...')
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/View.php(31): Twig\Environment->render('LoginSignup/sig...', Array)
+#6 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Controllers/Signup.php(32): Core\View::renderTemplate('LoginSignup/sig...', Array)
+#7 [internal function]: App\Controllers\Signup->createAction()
+#8 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php(22): call_user_func_array(Array, Array)
+#9 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('create', Array)
+#10 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup/create')
+#11 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/vendor/twig/twig/src/Loader/FilesystemLoader.php' on line 265
+[13-Sep-2021 04:34:54 UTC] Uncaught exception: 'ErrorException' with message 'Undefined property: App\Models\User::$first_name'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Models/User.php(90): Core\Error::errorHandler(8, 'Undefined prope...', '/Applications/M...', 90, Array)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Models/User.php(58): App\Models\User->validate()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Controllers/Signup.php(25): App\Models\User->save()
+#3 [internal function]: App\Controllers\Signup->createAction()
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php(22): call_user_func_array(Array, Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('create', Array)
+#6 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup/create')
+#7 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Models/User.php' on line 90
+=======
+[13-Sep-2021 06:53:10 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 G:\xampp\htdocs\Group_Project-_1\Sportizza_latest\public\index.php(36): Core\Router->dispatch('favicon.ico')
+#1 {main}
+Thrown in 'G:\xampp\htdocs\Group_Project-_1\Sportizza_latest\Core\Router.php' on line 85
+[13-Sep-2021 07:09:15 Europe/Berlin] Uncaught exception: 'Exception' with message 'Method manageuser (in controller App\Controllers\Admin) not found'
+Stack trace: #0 G:\xampp\htdocs\Group_Project-_1\Sportizza_latest\public\index.php(36): Core\Router->dispatch('admin/manageuse...')
+#1 {main}
+Thrown in 'G:\xampp\htdocs\Group_Project-_1\Sportizza_latest\Core\Router.php' on line 79
+>>>>>>> 1d99d9a7ae34d9b99c089058793a363308741c1d
+[13-Sep-2021 12:17:11 UTC] Uncaught exception: 'ErrorException' with message 'Undefined property: App\Models\User::$first_name'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Models/User.php(73): Core\Error::errorHandler(8, 'Undefined prope...', '/Applications/M...', 73, Array)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Models/User.php(40): App\Models\User->validate()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Controllers/Signup.php(26): App\Models\User->save()
+#3 [internal function]: App\Controllers\Signup->createAction()
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Controller.php(22): call_user_func_array(Array, Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/Core/Router.php(77): Core\Controller->__call('create', Array)
+#6 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/public/index.php(38): Core\Router->dispatch('signup/create')
+#7 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza_latest/App/Models/User.php' on line 73

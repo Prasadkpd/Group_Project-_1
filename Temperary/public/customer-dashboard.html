@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer</title>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <link rel="header-file" href="header.html">
+    <link rel="footer-file" href="footer.html">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css">
+    <script src="https://kit.fontawesome.com/cca6a8b4f3.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/customer-dashboard.css">
+    <link rel="manifest" href="manifest.json">
+
+
+
+
+ 
+
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+
+        <div class="nav_main">
+            <nav>
+                <div class="container-nav">
+                    <div class="logo">
+                        <a href="visitor.html"><img src="images/logos/logo-white-final.svg"></a>
+                    </div>
+
+                    <div class="links">
+                        <ul>
+                            <li><a href="#">HOME</a></li>
+                            <li><a href="#sp-arena">SPORTS ARENAS</a></li>
+                            <li><a href="#reviews">REVIEWS</a></li>
+                            <li><a href="#faq">FAQ</a></li>
+                            <li><a href="#about">ABOUT</a></li>
+                            <li><a href="#contact">CONTACT</a></li>
+                            <!-- Direct to login page if not logged in -->
+                            <li><a href="#" class="active">PROFILE</a></li>
+
+                        </ul>
+                    </div>
+                    <div class="hamburger-menu">
+                        <div class="bar"></div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+
+
+        <div class="middle">
+            <div class="left">
+
+                <div class="side-nav">
+                    <ul class="side-nav-container">
+                        <li><a href="#middle-first"><i class="far fa-user-circle"></i>Profile</a></li>
+                        <li><a href="#my-booking"><i class="fas fa-book"></i>My bookings</a></li>
+                        <li><a href="#my-favorite-list"><i class="fas fa-clipboard-list"></i>My favorite list</a></li>
+                        <!-- <li><a href="#booking_table"><i class="fas fa-hands-helping"></i>Rate sports arena</a></li> -->
+                        <li><a href="#notificaton"><i class="fas fa-hands-helping"></i>Notification</a></li>
+                        <li style="margin-top:50px"><a href="#"><i class="fas fa-users-cog"></i>Sign out</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="right">
+                <div id="middle-first">
+
+                    <div class="card">
+
+
+
+                      
+
+
+
+                        <div class="left">
+                            <img src="./images/Team members/jonathan.png">
+                        </div>
+                        <div class="right">
+                            <h1 style="margin-bottom: 8px;">
+                                sadeepa bhashitha
+                            </h1>
+                            <p class="username">bhashi1233 </p>
+                            <p style="font-weight:600;">0705614640</p>
+
+                            <p style="margin-top: 100px;" class="edit_profile_p">
+                                 
+                                  <div class="sectionpop ">
+                            <input class=" modal-btn " type="checkbox" id="modal-btn" name="modal-btn">
+                            <label for="modal-btn">Edit Profile</label>     
+                            <div class="modal">   
+                              <div class="modal-wrap">  
+                            <img src="./images/Team members/jonathan.png" alt="">  
+                            <form action="/action_page.php">
+                                <label for="fname">First Name</label>
+                                <input type="text" id="fname" name="firstname" placeholder="Enter First Name" value="sadeepa">
+                            
+                                <label for="lname">Last Name</label>
+                                <input type="text" id="lname" name="lastname" placeholder="Enter Last Names" value="bhashitha">
+
+                                <label for="lname">User Id</label>
+                                <input type="text" id="userid" name="lastname" placeholder="Enter User Id" value="bhashi1233">
+
+                                <label for="lname">Primary Number</label>
+                                <input type="text" id="lname" name="lastname" placeholder="Enter Primary Number" value="0705614640">
+
+                                <label for="lname">Secondary Number</label>
+                                <input type="text" id="userid" name="lastname" placeholder="Enter Secondary Number" value="0705614640">
+                            
+            
+                              
+                                <input type="submit" value="Submit">
+                              </form>                
+                              </div>                    
+                            </div>  
+                    
+                         
+                      </div>
+
+                            </p>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="my-bookings">
+
+                    <div class="section">
+                        <div class="booking-section-top">
+                            <div class="my-booking-header">
+                                <h1 style="color: black;text-decoration: underline red;margin-bottom: 60px; text-align: right;" >
+                                    My bookings</h1>
+                            </div>
+                            <div class="my-bookings-img">
+                                <img style="margin-bottom: 50px;   " src="./images/customer dashbord/undraw_date_picker_gorr.svg" alt="">
+                            </div>
+                        </div>
+                        
+                        <table  id="booking_table" class="styled-table">
+                            <thead>
+                                <tr>
+                                    <th>NO.</th>
+                                    <th>Date</th>
+                                    <th>Start Time</th>
+                                    <th>End Time</th>
+                                    <th>Sports Arena Name</th>
+                                    <th>Category</th>
+                                    <th>Payment Method</th>
+                                    <th>Payment Status</th>
+                                    <th>Amount</th>
+                                    <th>Booking Status</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr  style="border-bottom:1pt solid black;" class="pending-row">
+                                    <td>01</td>
+                                    <td>2021.9.11</td>
+                                    <td>2.30</td>
+                                    <td>3.30</td>
+                                    <td>Matara Uynawatta</td>
+                                    <td>Cricket</td>
+                                    <td> Cash</td>
+                                    <td>Completed</td>
+                                    <td> Rs.3000</td>
+                                    <td class="pending_status"> Pending</td>
+                                    <td>
+                                        
+                                        <div class="dropdown">
+                                            <button onclick="myFunction()" class="dropbtn"><i class="fas fa-ellipsis-v"></i></button>
+                                            <div id="myDropdown" class="dropdown-content">
+                                                
+
+                                                <div class="share">
+                                                    <button style="border: none; margin-right:25px" onclick="document.getElementById('id02').style.display='block'"><i class="fas fa-share"></i>Share</button>
+
+                                                    <div id="id02" class="modaldel">
+                                                    <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modaldel">×</span>
+                                                    <div style="color: white;">
+                                                        copy this LINK:http://127.0.0.1:5501/Codes/public/customer-dashboard.html
+                                                    </div>
+                                                    </div>
+                                                </div>
+
+
+                                                    <div class="cancel_booking">
+                                                        <button style="border: none; margin-right:25px" onclick="document.getElementById('id03').style.display='block'"><i class="far fa-calendar-times"></i>Booking Cancellation</button>
+
+                                                    <div id="id03" class="modaldel">
+                                                    <span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modaldel">×</span>
+                                                    <form class="modaldeldel-content" action="/action_page.php">
+                                                        <div class="containerdel">
+                                                        <h1>Delete Sports Arena From The List</h1>
+                                                        <p>Are you sure you want to delete Sport Arena?</p>
+                                                        
+                                                        <div class="clearfix">
+                                                            <button type="button" onclick="document.getElementById('id03').style.display='none'" class="cancelbtn buttondel">No</button>
+                                                            <button type="button" onclick="document.getElementById('id03').style.display='none'" class="deletebtn buttondel">Yes</button>
+                                                        </div>
+                                                        </div>
+                                                    </form>
+                                                    </div>
+                                                    </div>
+
+
+
+
+                                                    <div class="rate_sports_arena">
+                                                        <button style="border: none; margin-right:25px" onclick="document.getElementById('id04').style.display='block'"><i class="fas fa-star-half-alt"></i>Rate Sports Arena</button>
+    
+                                                        <div id="id04" class="modaldel">
+                                                        <span onclick="document.getElementById('id04').style.display='none'" class="close" title="Close Modaldel">×</span>
+                                                        <div style="color: white;">
+                                                            
+                                                        </div>
+                                                        </div>
+                                                    </div>
+
+                                                
+                                                    <div class="remove">
+                                                        <button style="border: none; margin-right:25px" onclick="document.getElementById('id05').style.display='block'"><i class="fas fa-trash-alt"></i>Remove</button>
+
+                                                    <div id="id05" class="modaldel">
+                                                    <span onclick="document.getElementById('id05').style.display='none'" class="close" title="Close Modaldel">×</span>
+                                                    <form class="modaldeldel-content" action="/action_page.php">
+                                                        <div class="containerdel">
+                                                        <h1>Are You Sure?</h1>
+                                                       
+                                                        
+                                                        <div class="clearfix">
+                                                            <button type="button" onclick="document.getElementById('id05').style.display='none'" class="cancelbtn buttondel">No</button>
+                                                            <button type="button" onclick="document.getElementById('id05').style.display='none'" class="deletebtn buttondel">Yes</button>
+                                                        </div>
+                                                        </div>
+                                                    </form>
+                                                    </div>
+                                                    </div>
+                                               
+                                                
+                                            </div>
+                                          </div> 
+                                           
+              
+                                    </td>
+                                </tr>
+                                <tr  style="border-bottom:1pt solid black;" class="pending-row">
+                                    <td>01</td>
+                                    <td>2021.9.11</td>
+                                    <td>2.30</td>
+                                    <td>3.30</td>
+                                    <td>Matara Uynawatta</td>
+                                    <td>Cricket</td>
+                                    <td> Cash</td>
+                                    <td>Completed</td>
+                                    <td> Rs.3000</td>
+                                    <td class="pending_status"> Pending</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="dropbtn"><i class="fas fa-ellipsis-v"></i></button>
+                                        <div class="dropdown-content">
+                                            <a href="#">Share</a>
+                                            <a href="#">Booking Cancellation</a>
+                                            <a href="#">Rate Sports Arena</a>
+                                            <a href="#">Remove</a>
+                                        </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+
+                                <tr  style="border-bottom:1pt solid black;" class="pending-row">
+                                    <td>01</td>
+                                    <td>2021.9.11</td>
+                                    <td>2.30</td>
+                                    <td>3.30</td>
+                                    <td>Matara Uynawatta</td>
+                                    <td>Cricket</td>
+                                    <td> Cash</td>
+                                    <td>Completed</td>
+                                    <td> Rs.3000</td>
+                                    <td class="pending_status"> Pending</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="dropbtn"><i class="fas fa-ellipsis-v"></i></button>
+                                        <div class="dropdown-content">
+                                            <a href="#">Share</a>
+                                            <a href="#">Booking Cancellation</a>
+                                            <a href="#">Rate Sports Arena</a>
+                                            <a href="#">Remove</a>
+                                        </div>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                                <tr class="completed-row">
+                                    <td>01</td>
+                                    <td>2021.9.11</td>
+                                    <td>2.30</td>
+                                    <td>3.30</td>
+                                    <td>Matara Uynawatta</td>
+                                    <td>Cricket</td>
+                                    <td> Cash</td>
+                                    <td>Completed</td>
+                                    <td> Rs.3000</td>
+                                    <td class="completed_status"> Completed</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="dropbtn"><i class="fas fa-ellipsis-v"></i></button>
+                                        <div class="dropdown-content">
+                                            <a href="#">Share</a>
+                                            <a href="#">Booking Cancellation</a>
+                                            <a href="#">Rate Sports Arena</a>
+                                            <a href="#">Remove</a>
+                                        </div>
+                                        </div>
+                                    </td>
+
+                                </tr>
+
+                                <tr class="completed-row">
+                                    <td>01</td>
+                                    <td>2021.9.11</td>
+                                    <td>2.30</td>
+                                    <td>3.30</td>
+                                    <td>Matara Uynawatta</td>
+                                    <td>Cricket</td>
+                                    <td> Cash</td>
+                                    <td>Completed</td>
+                                    <td> Rs.3000</td>
+                                    <td class="completed_status"> Completed</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="dropbtn"><i class="fas fa-ellipsis-v"></i></button>
+                                        <div class="dropdown-content">
+                                            <a href="#">Share</a>
+                                            <a href="#">Booking Cancellation</a>
+                                            <a href="#">Rate Sports Arena</a>
+                                            <a href="#">Remove</a>
+                                        </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="completed-row">
+                                    <td>01</td>
+                                    <td>2021.9.11</td>
+                                    <td>2.30</td>
+                                    <td>3.30</td>
+                                    <td>Matara Uynawatta</td>
+                                    <td>Cricket</td>
+                                    <td> Cash</td>
+                                    <td>Completed</td>
+                                    <td> Rs.3000</td>
+                                    <td class="completed_status"> Completed</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="dropbtn"><i class="fas fa-ellipsis-v"></i></button>
+                                        <div class="dropdown-content">
+                                            <a href="#">Share</a>
+                                            <a href="#">Booking Cancellation</a>
+                                            <a href="#">Rate Sports Arena</a>
+                                            <a href="#">Remove</a>
+                                        </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr class="completed-row">
+                                    <td>01</td>
+                                    <td>2021.9.11</td>
+                                    <td>2.30</td>
+                                    <td>3.30</td>
+                                    <td>Matara Uynawatta</td>
+                                    <td>Cricket</td>
+                                    <td> Cash</td>
+                                    <td>Completed</td>
+                                    <td> Rs.3000</td>
+                                    <td class="completed_status"> Completed</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="dropbtn"><i class="fas fa-ellipsis-v"></i></button>
+                                        <div class="dropdown-content">
+                                            <a href="#">Share</a>
+                                            <a href="#">Booking Cancellation</a>
+                                            <a href="#">Rate Sports Arena</a>
+                                            <a href="#">Remove</a>
+                                        </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="completed-row">
+                                    <td>01</td>
+                                    <td>2021.9.11</td>
+                                    <td>2.30</td>
+                                    <td>3.30</td>
+                                    <td>Matara Uynawatta</td>
+                                    <td>Cricket</td>
+                                    <td> Cash</td>
+                                    <td>Completed</td>
+                                    <td> Rs.3000</td>
+                                    <td class="completed_status"> Completed</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="dropbtn"><i class="fas fa-ellipsis-v"></i></button>
+                                        <div class="dropdown-content">
+                                            <a href="#">Share</a>
+                                            <a href="#">Booking Cancellation</a>
+                                            <a href="#">Rate Sports Arena</a>
+                                            <a href="#">Remove</a>
+                                        </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+
+
+
+                <div id="my-favorite-list">
+
+                    <div class="section">
+                        
+
+
+                        <div class="favorite-list-top">
+                            <div class="favorite-list-header">
+                                <h1 style="color: black;text-decoration: underline red;margin-bottom: 60px; text-align: right;">
+                                    My favorite list</h1>
+                            </div>
+                            <div class="my-bookings-img">
+                                <div class="img"><img style="margin-bottom: 50px;padding-left: 20px;  margin-top: 50px;" src="./images/customer dashbord/undraw_online_organizer_ofxm.svg" alt=""></div>
+                            </div>
+                        </div>
+
+
+                        
+                        <div class="favorite_list_container">
+                            
+                            <div class="table">
+                                <table class="styled-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            
+                                            <th>Category</th>
+                                            <th>Location</th>
+                                            <th></th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Colomo king</td>
+                                            <td>Cricket</td>
+                                            <td>Reid avenue,Colombo 07</td>
+                                            <td style="display:flex;">
+                                                
+                                                    <a href="#" class="check-availability-btn"> Availability</a>
+                                                
+                                                     
+
+
+
+                                                    
+                                                    <button style="border: none; margin-right:25px" onclick="document.getElementById('id01').style.display='block'"><i class="far fa-trash-alt fa-2x"></i></button>
+
+                                                    <div id="id01" class="modaldel">
+                                                    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modaldel">×</span>
+                                                    <form class="modaldeldel-content" action="/action_page.php">
+                                                        <div class="containerdel">
+                                                        <h1>Delete Sports Arena From The List</h1>
+                                                        <p>Are you sure you want to delete Sport Arena?</p>
+                                                        
+                                                        <div class="clearfix">
+                                                            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn buttondel">No</button>
+                                                            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="deletebtn buttondel">Yes</button>
+                                                        </div>
+                                                        </div>
+                                                    </form>
+                                                    </div>
+
+
+
+                                                    
+                                            </td>
+                                        </tr>
+                                        <tr class="active-row">
+                                            <td>Colomo king</td>
+                                            <td>Cricket</td>
+                                            <td>Reid avenue,Colombo 07</td>
+                                            <td style="display:flex;">
+                                                
+                                                <a href="#" class="check-availability-btn"> Availability</a>
+                                            
+                                                 <a><i class="far fa-trash-alt fa-2x"></i></a>
+
+
+
+
+                                                </td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td>Colomo king</td>
+                                            <td>Cricket</td>
+                                            <td>Reid avenue,Colombo 07</td>
+                                            <td style="display:flex;">
+                                                
+                                                <a href="#" class="check-availability-btn"> Availability</a>
+                                            
+                                                 <a><i class="far fa-trash-alt fa-2x"></i></a>
+                                        </td>
+                                        </tr>
+                                        <tr class="active-row">
+                                            <td>Colomo king</td>
+                                            <td>Cricket</td>
+                                            <td>Reid avenue,Colombo 07</td>
+                                            <td style="display:flex;">
+                                                
+                                                <a href="#" class="check-availability-btn"> Availability</a>
+                                            
+                                                 <a><i class="far fa-trash-alt fa-2x"></i></a>
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Colomo king</td>
+                                            <td>Cricket</td>
+                                            <td>Reid avenue,Colombo 07</td>
+                                            <td style="display:flex;">
+                                                
+                                                <a href="#" class="check-availability-btn"> Availability</a>
+                                            
+                                                 <a><i class="far fa-trash-alt fa-2x"></i></a>
+                                        </td>
+                                        </tr>
+                                        <tr class="active-row">
+                                            <td>Colomo king</td>
+                                            <td>Cricket</td>
+                                            <td>Reid avenue,Colombo 07</td>
+                                            <td style="display:flex;">
+                                                
+                                                <a href="#" class="check-availability-btn"> Availability</a>
+                                            
+                                                 <a><i class="far fa-trash-alt fa-2x"></i></a>
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Colomo king</td>
+                                            <td>Cricket</td>
+                                            <td>Reid avenue,Colombo 07</td>
+                                            <td style="display:flex;">
+                                                
+                                                <a href="#" class="check-availability-btn"> Availability</a>
+                                            
+                                                 <a><i class="far fa-trash-alt fa-2x"></i></a>
+                                        </td>
+                                        </tr>
+                                        <tr class="active-row">
+                                            <td>Colomo king</td>
+                                            <td>Cricket</td>
+                                            <td>Reid avenue,Colombo 07</td>
+                                            <td style="display:flex;">
+                                                
+                                                <a href="#" class="check-availability-btn"> Availability</a>
+                                            
+                                                 <a><i class="far fa-trash-alt fa-2x"></i></a>
+                                        </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="notificaton">
+
+                    <div class="section">
+
+                        <div class="notificaton-top">
+                            <div class="notificaton-header">
+                                <h1 style="color: black;text-decoration: underline red;margin-bottom: 60px; text-align: right;">
+                                    Notifications</h1>
+                            </div>
+                            <div class="notificaton-img">
+                                <div class="img"><img style="margin-bottom: 50px;padding-left: 20px;  margin-top: 50px;" src="./images/customer dashbord/undraw_Newsletter_re_wrob.svg" alt=""></div>
+                            </div>
+                        </div>
+
+                        
+
+                        <div class="notification_container">
+                            
+
+
+                            <div class="right">
+                                <table class="styled-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Summary</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody class="notification_tbody">
+
+                                        <tr onclick="notification()">
+
+                                            <td>2020.08.2</td>
+                                            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus iste quasi ut. Quas facilis ipsam perferendis animi autem maxime veniam? Tempora, quod facilis? Debitis eveniet ut delectus nisi repellat voluptate.
+                                            </td>
+
+                                        </tr>
+
+                                        <tr  onclick="notification()">
+                                            <td>2020.08.22</td>
+                                            <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat libero molestias dolor fugit, earum quo laudantium incidunt impedit suscipit atque iure dignissimos, esse quia minus quaerat hic explicabo iste
+                                                quas?
+                                            </td>
+
+                                        </tr>
+                                        <!-- and so on... -->
+                                        <tr onclick="notification()">
+                                            <td>2020.08.22</td>
+                                            <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat libero molestias dolor fugit, earum quo laudantium incidunt impedit suscipit atque iure dignissimos, esse quia minus quaerat hic explicabo iste
+                                                quas?
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p style="margin-top: 100px;" class="edit_profile_p" >
+                                    <a href="./edit_customer_profile.html" class="btn">View More</a>
+    
+                                </p>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+
+                    
+            
+
+                    
+
+
+
+
+                </div>
+
+                <div id="footer-div">
+                    <footer class="footer">
+    <div class="container">
+      <div class="grid-4">
+        <div class="grid-4-col footer-image">
+          <img src="images/logos/Sportizza_Logo_Final.png" alt="" />
+          </div>
+          <div class="grid-4-col footer-about">
+            <h3 class="title-sm">Sportizza</h3>
+            <p class="text">
+              We have the desire of building a healthy community.
+            </p>
+        </div>
+
+        <div class="grid-4-col footer-links">
+          <ul>
+            <li>
+              <a href="#">HOME</a>
+            </li>
+            <li>
+              <a href="#sp-arena">SPORTS ARENAS</a>
+            </li>
+            <li>
+              <a href="#reviews">REVIEWS</a>
+            </li>
+          </ul>
+        </div>
+        <div class="grid-4-col footer-links">
+          <ul>
+            <li>
+              <a href="#faq">FAQ</a>
+            </li>
+            <li>
+              <a href="#about">ABOUT</a>
+            </li>
+            <li>
+              <a href="#contact">CONTACT</a>
+            </li>
+          </ul>
+        </div>
+
+        </div>
+       
+        <div class="grid-4-col footer-newstletter">
+          
+          
+        </div>
+      
+        <div class="bottom-footer">
+          <div class="copyright">
+            <p class="text">
+              Copyright &copy;2021 All rights reserved | Sportizza Inc.
+            </p>
+          </div>
+  
+          <div class="followus-wrap">
+            <div class="followus">
+              <h3>Follow us</h3>
+              <span class="footer-line"></span>
+              <div class="social-media">
+                <a href="#">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#">
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#">
+                  <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+              </div>
+            </div>
+  
+            <div class="back-btn-wrap">
+              <a href="#" class="back-btn">
+                <i class="fas fa-chevron-up"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      
+    </div>
+  </footer>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <script src="./js/customer-dashbord.js"></script>
+
+
+
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById('id01');
+        
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+        </script>
+    
+</body>
+
+</html>
+
+</html>

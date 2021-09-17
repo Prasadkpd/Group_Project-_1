@@ -1,0 +1,76 @@
+[27-Aug-2021 03:44:19 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('images/visitor/...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[27-Aug-2021 03:44:19 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('images/logos/lo...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[27-Aug-2021 03:44:19 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('images/visitor/...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[27-Aug-2021 03:44:19 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('images/visitor/...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[27-Aug-2021 03:44:19 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('js/app.js')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[27-Aug-2021 03:44:19 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('images/visitor/...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[27-Aug-2021 03:44:19 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('images/visitor/...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[27-Aug-2021 03:44:19 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('images/visitor/...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[27-Aug-2021 03:44:19 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('images/visitor/...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[27-Aug-2021 03:44:19 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('images/visitor/...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[27-Aug-2021 03:44:19 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('images/visitor/...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[27-Aug-2021 03:44:19 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('images/visitor/...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[27-Aug-2021 03:44:19 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('images/visitor/...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[27-Aug-2021 03:44:19 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('images/visitor/...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[27-Aug-2021 03:44:19 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('images/Team mem...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[27-Aug-2021 03:44:19 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('images/visitor/...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[27-Aug-2021 03:44:19 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('images/Team mem...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[27-Aug-2021 03:44:19 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('images/Team mem...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130
+[27-Aug-2021 03:44:19 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/public/index.php(50): Core\Router->dispatch('images/logos/Sp...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Codes/Sportizza/Core/Router.php' on line 130

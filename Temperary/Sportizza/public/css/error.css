@@ -1,0 +1,239 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body,
+button,
+input textarea {
+  font-family: "Poppins", sans-serif;
+  background-color: #fff;
+  position: relative;
+  height: 100vh;
+  width: 100%;
+}
+a {
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+}
+nav {
+  width: 100%;
+  position: sticky;
+  z-index: 50;
+  background-color: #fff;
+  overflow: hidden;
+  box-shadow: 1px 7px 25px rgb(0 0 0 / 13%);
+}
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  height: 6rem;
+  align-items: center;
+  position: relative;
+  padding: 0 4rem;
+  margin: 0 auto;
+}
+.horizontal-container {
+  margin: auto;
+  display: grid;
+
+  grid-template-columns: 1.5fr 3fr;
+  width: 100%;
+}
+.cell {
+  display: flex;
+  align-items: center;
+}
+.horizontal-container ul li i {
+  font-size: 2.5rem;
+}
+.horizontal-container ul li a {
+  position: relative;
+  height: 50px;
+  width: 100%;
+  margin: 0 25px;
+  list-style: none;
+  line-height: 50px;
+  font-weight: 700;
+  font-size: 2rem;
+  color: #fd461f;
+  font-style: italic;
+  display: flex;
+  align-items: left;
+  justify-content: center;
+}
+.error {
+  margin: 5% auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #34495e;
+}
+.error p {
+  font-weight: 500;
+  font-size: 1.2rem;
+  margin-bottom: 1vh;
+  text-align: center;
+}
+.error-msg {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #34495e;
+  margin-bottom: 2vh;
+  text-align: center;
+}
+.error-img img {
+  width: 350px;
+  margin: 3vh auto;
+}
+.home-link a {
+  display: inline-block;
+  padding: 0.85rem 2rem;
+  margin: 2vh auto;
+  background-color: #fd461f;
+  color: #fff;
+  border-radius: 3rem;
+  border-width: 1rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.home-link a:hover {
+  border: 0.1rem solid #fd461f;
+  background: var(--white);
+  color: #fd461f;
+}
+footer {
+  box-shadow: 1px 7px 25px rgb(0 0 0 / 13%);
+  background-color: #e74c3c;
+  opacity: 90%;
+  color: #fff;
+  font-weight: 400;
+  font-size: 1rem;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* text-align: center; */
+}
+.copyright {
+  margin: 0px auto;
+  padding: 2px 20px;
+  display: sticky;
+}
+
+@media (max-width: 1200px) {
+  .horizontal-container ul li a {
+    font-size: 2rem;
+  }
+  .horizontal-container ul li i {
+    font-size: 2.4rem;
+  }
+  .error-msg {
+    font-size: 1.2rem;
+  }
+  .error p {
+    font-size: 1.2rem;
+  }
+  .home-link a {
+    font-size: 1.2rem;
+  }
+  footer {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .horizontal-container ul li a {
+    font-size: 2.2rem;
+  }
+  .horizontal-container ul li i {
+    font-size: 2.4rem;
+  }
+  .error-img img {
+    width: 300px;
+  }
+  .error-msg {
+    font-size: 1rem;
+  }
+  .error p {
+    font-size: 1.6rem;
+  }
+}
+@media (max-width: 768px) {
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    /* height: 8rem; */
+  }
+  .horizontal-container {
+    display: flex;
+    grid-template-columns: 3fr 3fr;
+  }
+  .horizontal-container ul li a {
+    font-size: 3rem;
+  }
+  .horizontal-container ul li i {
+    font-size: 2.8rem;
+  }
+
+  .error {
+    margin: 20% auto;
+    width: 80%;
+  }
+  .error-msg {
+    font-size: 0.8rem;
+  }
+  .error p {
+    font-size: 1rem;
+  }
+
+  .error-img img {
+    width: 280px;
+  }
+  .home-link a {
+    font-size: 0.8rem;
+    padding: 0.6rem 1.5rem;
+  }
+  footer {
+    font-size: 0.8rem;
+  }
+}
+@media (max-width: 576px) {
+  .horizontal-container {
+    grid-template-columns: 1fr 1fr;
+  }
+  .horizontal-container ul li a {
+    font-size: 2rem;
+  }
+  .horizontal-container ul li i {
+    font-size: 3rem;
+  }
+  .error-msg {
+    font-size: 1rem;
+  }
+  /* .error {
+    padding: 10% 0%;
+    width:80%;
+  } */
+  .error p {
+    font-size: 1.1rem;
+  }
+  .home-link a {
+    font-size: 1.2rem;
+    padding: 0.6rem 1.5rem;
+  }
+  footer {
+    font-size: 1rem;
+  }
+}
