@@ -549,6 +549,8 @@ nav{
 }
 .page-content-container .container{
     width: 100%;
+    overflow-y:scroll;
+    height:86vh;
 }
 .page-content-container .container .page-header{
     font-size: 3rem;
@@ -556,215 +558,103 @@ nav{
     margin: .5rem 0 1rem 2rem;
 }
 
-/* Start Tab Style */
-.tab {
-    display: flex;
-    justify-content: space-evenly;
-}
-  
-.tab .tab-btn{
-    border: none;
-    outline: none;
-    cursor: pointer;
-    transition: 0.3s;
-    font-size: 1.2rem;
-    padding: 8px;
-    border-radius: 25px;
-    width: 20%;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #fff;
-    color: #fd461f;
-  }
-  .tab .tab-btn i{
-      margin-right: 10px;
-  }
-  .tab .tab-btn:hover {
-      background-color: #fd5936;
-      color: #fff;
-    }
-    
-    .tab .tab-btn.active {
-        color: #fff;
-        background-color: #fd5936;
-        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-        rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
-        rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-    }
-    
-    .booking_tab_content{
-        display: none;
-        width: 100%;
-        margin: 1.5rem auto;
-    }
-    
-    
-    /* start booking-table */
-    /* ======================================================================== */
-    
-    .booking-table {
-        width: 100%;
-        margin: 0 auto;
-        border-collapse: collapse;
-    }
-    .booking-table thead tr {
-          display: block;
-          width: 100%;
-          background-color:#ffb499;
-          box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
-    }
-    .booking-table thead .booking-thead-first-tr {
-        border-radius: 20px 20px 0 0;
-    }
-    .booking-table thead .booking-thead-second-tr {
-        border-radius: 0 0 20px 20px ;
-        padding: 5px 25px;
-    }
-    
-    .booking-table th,.booking-table td{ 
-        width: 220px;  
-    }
-    .booking-table .booking-table-first-th{
-        width: 100%;
-        padding: 10px;
-        display: flex;
-    }
-    .booking-table .booking-table-first-th .booking-table-filter-container{
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-        width: 100%;
-    }
-    .booking-table .booking-table-first-th .booking-table-filter-container .booking-table-search-container{
-        background-color: rgb(255, 255, 255);
-        color: rgb(177, 157, 157);
-        padding: 5px;
-        padding-left: 10px;
-        width: 30%;
-        margin-left: 20px;
-        display: flex;
-        align-items: center;
-        border-radius: 20px;
-    }
-    .booking-table .booking-table-filter-container .booking-table-search-container input[type="search"]{
-        font-weight: 600;
-        font-size: 1rem;
-        outline: none;
-        width: 90%;
-        border: none;
-    }
-    .booking-table .booking-table-filter-container .booking-table-search-container i{
-        color: #fd461f;
-    }
-    .booking-table .booking-table-filter-container .booking-table-date-picker{
-        display: flex;
-        align-items: center;
-    }
-    .booking-table .booking-table-filter-container .booking-table-date-picker .date-label{
-        padding:5px 30px;
-        color: #fd461f;
-        font-size: 1.2rem;
-        font-weight: 600;
-    }
-    
-    .booking-table .booking-table-filter-container .booking-table-date-picker input[type="date"]{
-        background-color: #ff7f50;
-        color: #000;
-        font-size: 1rem;
-        font-weight: 600;
-        text-align: center;
-        outline: none;
-        border-radius: 30px;
-        border: none;
-        padding: 5px 15px;
-        margin:10px auto;
-    }
-    
-      .booking-table tbody{
-        display: block;
-        overflow-y: scroll;
-        width: 100%;
-        height: 40vh;
-        margin: 10px auto;
-        text-align: center;
-        overflow-x: hidden;
+      .filters {
+        display:flex;
+        flex-direction:row;
+        justify-content:space-evenly;
       }
-      
-      .booking-table tbody tr{
-          display: block;
-          box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
-          background-color:#FFFAFA;
-          padding: 20px 10px;
-          margin: 10px auto;
-          border-radius: 20px;
-          color:#222f3e;
-          font-weight: 400;
-          font-size:1rem;
-          transition: transform .2s linear,box-shadow .2s linear,-webkit-transform .2s linear;
+      .chart-row {
+        display:flex;
+        flex-direction:row;
       }
-      .booking-table tbody tr:hover{
-        background-color:#fff;
-        box-shadow: 1px 7px 25px rgb(0 0 0 / 13%);
-        -webkit-transform: translateY(-4px);
-        transform: translateY(-4px);
-        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+      .chart-container h5 {
+        text-align:center;
+        margin-top:30px;
+        font-size:24px;
       }
-      .booking-table tbody::-webkit-scrollbar{
-          width: 12px;
-        }
-        .booking-table tbody::-webkit-scrollbar-track {
-          border-radius: 15px;
-          background: rgb(233, 232, 229); 
-          box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;       
-      }
-      
-      .booking-table tbody::-webkit-scrollbar-thumb {
-        background-color: rgb(228, 228, 230);  
-        border-radius: 20px;         
-        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;  
-      }
-
       .chart {
         display: block;
         margin: auto;
         padding: 10px;
+        width: 500px;
       }
       .chart-Table {
         display: block;
-        margin: auto;
         padding: 30px;
+        width:50%;
       }
-      .dataTableHeader {
-        background-color: #fd461f;
+      .tableHeader1{
+        text-align:center;
+        margin:65px 0 30px 0;
+        font-size:24px;
+      }
+      .tableHeader2{
+        text-align:center;
+        margin-bottom:30px;
+        font-size:24px;
+      }
+      .dataTableHeader1 {
+        background-color: #130f40;
+        color: #fff;
+        font-weight: 500;
+        font-size: 16px;
         width: 20rem;
         text-align: center;
         padding: 1rem;
-      }
-      .dataTableRows {
-        background-color: lightgrey;
+    }
+    .dataTableHeader2 {
+        background-color: #2C3A47;
+        color: #fff;
+        font-weight: 500;
+        font-size: 16px;
         width: 20rem;
         text-align: center;
         padding: 1rem;
-      }
+    }
+    .dataTableRows1 {
+        background-color: #c7ecee;
+        width: 20rem;
+        text-align: center;
+        padding: 1rem;
+    }
+    .dataTableRows2 {
+        background-color: #78e08f;
+        width: 20rem;
+        text-align: center;
+        padding: 1rem;
+    }
 
       .faqSubmit {
           float: right;
-          background-color: #04AA6D;
+          background-color: #2ed573;
           color: white;
           font-weight: 600;
           padding: 12px 20px;
           border: none;
           border-radius: 15px;
           cursor: pointer;
-          margin-bottom: 1rem;
+          margin: 1rem 1rem 3rem 0;
        }
        .faqSubmit:hover {
           background-color: #45a049;
        }
-    
+       footer {
+        box-shadow: 1px 7px 25px rgb(0 0 0 / 13%);
+        background-color: #e74c3c;
+        color: #fff;
+        font-weight: 400;
+        font-size: 0.8rem;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+      }
+      .copyright {
+        margin: 0px auto;
+        padding: 2px 20px;
+        display: sticky;
+      }
+       
 
 
 
@@ -848,6 +738,7 @@ nav{
         text-align: left;
     }
     
+    
   }
 
   @media screen and (max-width: 420px) {
@@ -925,7 +816,12 @@ nav{
         content: attr(data-label);
         font-size: .75rem;
     }
-
+    .filters {
+        display:inline-block;
+    }
+    .chart-row {
+        display: none;
+    }
     
   }
   
