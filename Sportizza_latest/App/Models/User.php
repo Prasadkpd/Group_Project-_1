@@ -217,11 +217,27 @@ class User extends \Core\Model
         $user = static::findByUsername($username);
 
         if ($user) {
-            if (password_verify($password, $user->password_hash)) {
+            if (password_verify($password, $user->password)) {
                 return $user;
             }
         }
 
         return false;
+    }
+
+
+    public static function findByID($id)
+    {
+        $sql = 'SELECT * FROM user WHERE user_id = :id';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+
+        return $stmt->fetch();
     }
 }

@@ -1,5 +1,35 @@
 <?php
 
+
+
+
+
+// not usefull have to delete
+// not usefull have to delete
+// not usefull have to delete
+// not usefull have to delete
+
+
+
+
+// not usefull have to delete
+// not usefull have to delete
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 namespace App\Models;
 
 use PDO;
@@ -150,5 +180,22 @@ class LoginModel extends \Core\Model
         }
 
         return false;
+    }
+
+
+
+    public static function findByID($id)
+    {
+        $sql = 'SELECT * FROM user WHERE user_id = :id';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+
+        return $stmt->fetch();
     }
 }

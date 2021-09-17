@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Models\User;
+
 /**
  * Authentication
  *
@@ -57,17 +59,33 @@ class Auth
      *
      * @return boolean
      */
-    public static function isLoggedIn()
-    {   
-        // var_dump($_SESSION['user_id']);
-        return isset($_SESSION['user_id']);
-    }  
+    // public static function isLoggedIn()
+    // {   
+    //     // var_dump($_SESSION['user_id']);
+    //     return isset($_SESSION['user_id']);
+    // }  
     
-    public static function rememberRequestedPage(){
-        $_SESSION['return_to']=$_SESSION['REQUEST_UR'];
+    public static function rememberRequestedPage()
+    {
+        $_SESSION['return_to'] = $_SERVER['REQUEST_URI'];
     }
 
-    public static function getReturnToPage(){
+    /**
+     * Get the originally-requested page to return to after requiring login, or default to the homepage
+     *
+     * @return void
+     */
+    public static function getReturnToPage()
+    {
         return $_SESSION['return_to'] ?? '/';
     }
+
+    public static function getUser()
+    {
+        if (isset($_SESSION['user_id'])) {
+            return User::findByID($_SESSION['user_id']);
+        }
+    }
+
+
 }

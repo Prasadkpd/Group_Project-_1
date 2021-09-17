@@ -43,7 +43,7 @@
         
 <div class="profile-details">
     <img src="/Assets/images/customer/profile-picture.jpg" alt="" class="profile-picture">
-    <div class="username">Bhashitha Ranasinghe</div>
+    <div class="username">{{current_user.first_name}}  {{current_user.last_name}}</div>
     
 </div>
 
@@ -293,7 +293,7 @@
 <div style="display:flex">
     
     <button  style="background-color:#e74c3c" class="popup_button">
-        {% if is_logged_in %}
+        {% if current_user %}
         <a href="/logout"> Yes</a>
         {% endif %}
     </button>
@@ -304,6 +304,9 @@
     </div>  
 </div>
 <!-- end pop up sign out section -->
+
+
+
 
 
 <!-- popup share section -->
@@ -513,7 +516,13 @@
             
             <div class="page-content-container" >
                 <div class="container">
-                 <h1 class="page-header">Hi Sadeepa Bhashitha!</h1>                 
+                 <h1 class="page-header">Hi {{current_user.first_name}}  {{current_user.last_name}}!</h1>                 
+                 <!-- <ul>
+                    {% for book in bookings %}
+                        <h2>{{book.booking_id}}</h2>
+                    {% endfor %}
+
+                </ul> -->
                 <div class="tab">
                 <button id="view_booking_button" class="booking_tab tab-btn" onclick="openTab(event, 'my_bookings')"><i class="fas fa-list"></i><p>My bookings</p></button>
                 <button class="booking_tab tab-btn" onclick="openTab(event, 'my_favorite_list')"><i class="fas fa-star"></i>
@@ -554,16 +563,19 @@
                             </tr>
                         </thead>
                         <tbody>
+
+                            
+                            {% for book in bookings %}
                             <tr>
-                                <td data-label="Booking ID :">BD12345678910</td>
-                                <td data-label="Booking Date :">2021/09/30</td>
-                                <td data-label="Start Time :">1530h</td>
-                                <td data-label="End Time :">1630h</td>
-                                <td data-label="Arena Name:">Matara Uynawatta</td>
-                                <td data-label="Category:">Cricket</td>
-                                <td data-label="Payment Method :">Cash</td>
-                                <td data-label="Payment Status :">Unpaid</td>
-                                <td data-label="Amount:">2000</td>
+                                <td data-label="Booking ID :">{{book.booking_id}}</td>
+                                <td data-label="Booking Date :">{{book.booked_date}}</td>
+                                <td data-label="Start Time :">{{book.start_time}}</td>
+                                <td data-label="End Time :">{{book.end_time}}</td>
+                                <td data-label="Arena Name:">{{book.sa_name}}</td>
+                                <td data-label="Category:">{{book.category}}</td>
+                                <td data-label="Payment Method :">{{book.payment_method}}</td>
+                                <td data-label="Payment Status :">{{book.payment_status}}</td>
+                                <td data-label="Amount:">{{book.price_per_booking}}</td>
                                 
                                 <td data-label="Booking Status">Pending</td>
                                 <td data-label="">
@@ -585,6 +597,10 @@
                                     </td>
                                 
                             </tr>
+
+                            {% endfor %}
+
+
                             <tr>
                                 <td data-label="Booking ID :">BD1234567</td>
                                 <td data-label="Booking Date :">2021/09/30</td>
@@ -618,160 +634,7 @@
                                 </td>   
                             </tr>
 
-                               <tr>
-                                <td data-label="Booking ID :">BD1234567</td>
-                                <td data-label="Booking Date :">2021/09/30</td>
-                                <td data-label="Start Time :">1530h</td>
-                                <td data-label="End Time :">1630h</td>
-                                <td data-label="Arena Name:">Matara Uynawatta</td>
-                                <td data-label="Category:">Cricket</td>
-                                <td data-label="Payment Method :">Cash</td>
-                                <td data-label="Payment Status :">Unpaid</td>
-                                <td data-label="Amount:">2000</td>
-                                
-                                <td data-label="Booking Status">Pending</td>
-                                <td data-label="Pop up">
-                                </td>   
-                            </tr>
-                            
-                            <tr>
-                                <td data-label="Booking ID :">BD1234567</td>
-                                <td data-label="Booking Date :">2021/09/30</td>
-                                <td data-label="Start Time :">1530h</td>
-                                <td data-label="End Time :">1630h</td>
-                                <td data-label="Arena Name:">Matara Uynawatta</td>
-                                <td data-label="Category:">Cricket</td>
-                                <td data-label="Payment Method :">Cash</td>
-                                <td data-label="Payment Status :">Unpaid</td>
-                                <td data-label="Amount:">2000</td>
-                                
-                                <td data-label="Booking Status">Pending</td>
-                                <td data-label="Pop up">
-                                </td>   
-                            </tr>
-                            
-                            <tr>
-                                <td data-label="Booking ID :">BD1234567</td>
-                                <td data-label="Booking Date :">2021/09/30</td>
-                                <td data-label="Start Time :">1530h</td>
-                                <td data-label="End Time :">1630h</td>
-                                <td data-label="Arena Name:">Matara Uynawatta</td>
-                                <td data-label="Category:">Cricket</td>
-                                <td data-label="Payment Method :">Cash</td>
-                                <td data-label="Payment Status :">Unpaid</td>
-                                <td data-label="Amount:">2000</td>
-                                
-                                <td data-label="Booking Status">Pending</td>
-                                <td data-label="Pop up">
-                                </td>   
-                            </tr>
-                            
-                            <tr>
-                                <td data-label="Booking ID :">BD1234567</td>
-                                <td data-label="Booking Date :">2021/09/30</td>
-                                <td data-label="Start Time :">1530h</td>
-                                <td data-label="End Time :">1630h</td>
-                                <td data-label="Arena Name:">Matara Uynawatta</td>
-                                <td data-label="Category:">Cricket</td>
-                                <td data-label="Payment Method :">Cash</td>
-                                <td data-label="Payment Status :">Unpaid</td>
-                                <td data-label="Amount:">2000</td>
-                                
-                                <td data-label="Booking Status">Pending</td>
-                                <td data-label="Pop up">
-                                </td>   
-                            </tr>
-                            <tr>
-                                <td data-label="Booking ID :">BD1234567</td>
-                                <td data-label="Booking Date :">2021/09/30</td>
-                                <td data-label="Start Time :">1530h</td>
-                                <td data-label="End Time :">1630h</td>
-                                <td data-label="Arena Name:">Matara Uynawatta</td>
-                                <td data-label="Category:">Cricket</td>
-                                <td data-label="Payment Method :">Cash</td>
-                                <td data-label="Payment Status :">Unpaid</td>
-                                <td data-label="Amount:">2000</td>
-                                
-                                <td data-label="Booking Status">Pending</td>
-                                <td data-label="Pop up">
-                                </td>   
-                            </tr>
-  
-                            <tr>
-                                <td data-label="Booking ID :">BD1234567</td>
-                                <td data-label="Booking Date :">2021/09/30</td>
-                                <td data-label="Start Time :">1530h</td>
-                                <td data-label="End Time :">1630h</td>
-                                <td data-label="Arena Name:">Matara Uynawatta</td>
-                                <td data-label="Category:">Cricket</td>
-                                <td data-label="Payment Method :">Cash</td>
-                                <td data-label="Payment Status :">Unpaid</td>
-                                <td data-label="Amount:">2000</td>
-                                
-                                <td data-label="Booking Status">Pending</td>
-                                <td data-label="Pop up">
-                                </td>   
-                            </tr>
-                            <tr>
-                                <td data-label="Booking ID :">BD1234567</td>
-                                <td data-label="Booking Date :">2021/09/30</td>
-                                <td data-label="Start Time :">1530h</td>
-                                <td data-label="End Time :">1630h</td>
-                                <td data-label="Arena Name:">Matara Uynawatta</td>
-                                <td data-label="Category:">Cricket</td>
-                                <td data-label="Payment Method :">Cash</td>
-                                <td data-label="Payment Status :">Unpaid</td>
-                                <td data-label="Amount:">2000</td>
-                                
-                                <td data-label="Booking Status">Pending</td>
-                                <td data-label="Pop up">
-                                </td>   
-                            </tr>
-                            <tr>
-                                <td data-label="Booking ID :">BD1234567</td>
-                                <td data-label="Booking Date :">2021/09/30</td>
-                                <td data-label="Start Time :">1530h</td>
-                                <td data-label="End Time :">1630h</td>
-                                <td data-label="Arena Name:">Matara Uynawatta</td>
-                                <td data-label="Category:">Cricket</td>
-                                <td data-label="Payment Method :">Cash</td>
-                                <td data-label="Payment Status :">Unpaid</td>
-                                <td data-label="Amount:">2000</td>
-                                
-                                <td data-label="Booking Status">Pending</td>
-                                <td data-label="Pop up">
-                                </td>   
-                            </tr>
-                            <tr>
-                                <td data-label="Booking ID :">BD1234567</td>
-                                <td data-label="Booking Date :">2021/09/30</td>
-                                <td data-label="Start Time :">1530h</td>
-                                <td data-label="End Time :">1630h</td>
-                                <td data-label="Arena Name:">Matara Uynawatta</td>
-                                <td data-label="Category:">Cricket</td>
-                                <td data-label="Payment Method :">Cash</td>
-                                <td data-label="Payment Status :">Unpaid</td>
-                                <td data-label="Amount:">2000</td>
-                                
-                                <td data-label="Booking Status">Pending</td>
-                                <td data-label="Pop up">
-                                </td>   
-                            </tr>
-                            <tr>
-                                <td data-label="Booking ID :">BD1234567</td>
-                                <td data-label="Booking Date :">2021/09/30</td>
-                                <td data-label="Start Time :">1530h</td>
-                                <td data-label="End Time :">1630h</td>
-                                <td data-label="Arena Name:">Matara Uynawatta</td>
-                                <td data-label="Category:">Cricket</td>
-                                <td data-label="Payment Method :">Cash</td>
-                                <td data-label="Payment Status :">Unpaid</td>
-                                <td data-label="Amount:">2000</td>
-                                
-                                <td data-label="Booking Status">Pending</td>
-                                <td data-label="Pop up">
-                                </td>   
-                            </tr>
+                               
                         </tbody>
                     </table>
                 </div>

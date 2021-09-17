@@ -3,8 +3,9 @@
 
 namespace App\Controllers;
 use Core\View;
-use \App\Models\LoginModel;
+use \App\Models\User;
 use \App\Auth;
+use \App\Models\CustomerModel;
 
 
 class Login extends \Core\Controller
@@ -20,7 +21,7 @@ class Login extends \Core\Controller
     
 
 
-        $user=LoginModel::authenticate($_POST['username'],$_POST['password']);
+        $user=User::authenticate($_POST['username'],$_POST['password']);
         // echo($user);
         if ($user) {
 
@@ -33,7 +34,9 @@ class Login extends \Core\Controller
             }
 
             elseif($user->type=='Customer'){
+                
                 $this->redirect('/login/customerlogin');
+                // $this->redirect(Auth::getReturnToPage());
             }
             elseif($user->type=='Manager'){
                 $this->redirect('/login/managerlogin');
@@ -67,11 +70,12 @@ class Login extends \Core\Controller
 
     public function customerloginAction()
     {
-        if(! Auth::isLoggedIn()){
-            $this->redirect('/login');
-        }
+        $current_user= Auth::getUser();
+        $id=$current_user->user_id;
+        $bookings= CustomerModel::customerBookings($id);
+        // var_dump($bookings);
         //direct to the customer page
-        View::renderTemplate('Customer/new_customer_dashboard.html');
+        View::renderTemplate('Customer/new_customer_dashboard.html',['bookings'=>$bookings]);
     }
  
     public function bookinghandlingstaffloginAction()
