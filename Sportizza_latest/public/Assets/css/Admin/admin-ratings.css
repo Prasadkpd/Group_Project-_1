@@ -732,6 +732,22 @@ nav{
           font-weight: bold;
           transition: 0.5s;
       }
+      footer {
+        box-shadow: 1px 7px 25px rgb(0 0 0 / 13%);
+        background-color: #e74c3c;
+        color: #fff;
+        font-weight: 400;
+        font-size: 0.8rem;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+      }
+      .copyright {
+        margin: 0px auto;
+        padding: 2px 20px;
+        display: sticky;
+      }
     
 
 
