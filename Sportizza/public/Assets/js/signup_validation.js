@@ -242,17 +242,6 @@ function validateImgFiles() {
     // return true;
 }
 
-// function fileExists(field) {
-//     if (field.files.length == 0) {
-//         setInvalid(field, `Please upload ${capitalizeFirstLetter(field.name)}!`);
-//         return false;
-//     }
-//     else {
-//         setValid(field);
-//         return true;
-//     }
-// }
-
 
 
 //Sports Arena Validations
@@ -269,29 +258,29 @@ function validateContact() {
 }
 
 function validateCategory() {
-    if (selectValidate(category)) return;
+    if (!selectValidate(category)) return;
     return true;
 }
 
 function validateOtherCategory() {
-    if (selectOtherCategoryValidate(other_category)) return;
+    if (!selectOtherCategoryValidate(other_category)) return;
     return true;
 }
 
 function validateLocation() {
-    if (selectValidate(spLocation)) return;
+    if (!selectValidate(spLocation)) return;
     return true;
 }
 
 function validateOtherLocation() {
-    if (selectOtherLocationValidate(other_location)) return;
+    if (!selectOtherLocationValidate(other_location)) return;
     return true;
 }
 
 function validateMapLink() {
     if (checkIfEmpty(map_link)) return;
-    regEx = /^https?\:\/\/(www\.|maps\.)?google(\.[a-z]+){1,2}\/maps\/?\?([^&]+&)*(ll=-?[0-9]{1,2}\.[0-9]+,-?[0-9]{1,2}\.[0-9]+|q=[^&]+)+($|&)/;
-    if (matchWithRegEx(regEx, map_link)) return;
+    regEx = /^http\:\/\/|https\:\/\/|www\.google$/;
+    if (!matchWithRegEx(regEx, map_link)) return;
     return true;
 }
 
@@ -307,7 +296,7 @@ function validateOtherFacilities() {
 }
 
 function validatePayment() {
-    if (selectValidate(payment)) return;
+    if (!selectValidate(payment)) return;
     return true;
 }
 
@@ -347,7 +336,7 @@ function validatePassword() {
     if (checkIfEmptyNext(password)) return;
     if (!meetLengthNext(password, 8, 255)) return;
     regEx = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
-    if (matchWithRegExPassword(regEx, password)) return;
+    if (!matchWithRegExPassword(regEx, password)) return;
     return true;
 }
 
