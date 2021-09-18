@@ -10,7 +10,7 @@ class Signup extends \Core\Controller
 {
     public function indexAction()
     {
-        View::renderTemplate('LoginSignup/customersignup.html');
+        View::renderTemplate('LoginSignup/customerSignupView.html');
     }
 
     /**
