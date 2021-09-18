@@ -98,7 +98,7 @@ nav ul li{
   margin: 0 1em 0 0;
 }
 nav ul li a{
-  color: var(--dark-ash-2ash);
+  color: #2f3640;
   font-size: 1.2em;
   text-transform: uppercase;
   font-weight: 600;
@@ -522,6 +522,7 @@ nav a:hover{
 
 .chip {
   margin-left: 1em;
+  margin-bottom: 1em;
   font-weight: 300;
   border-radius: 25px;
   background-color: #F0F4F7;
@@ -560,17 +561,19 @@ nav a:hover{
   display: flex;
   flex-direction: column;
   align-items: center;
+  
 }
 .visitor-reviews .customer-reviews{
   width: 88vw;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  overflow-y: scroll;
   justify-content: space-evenly;
 }
 .customer-review-card{
   width: 38vw;
-  margin: 1em;
+  margin: 2em;
   border-radius: 20px;
   padding: 1em;
 }
@@ -620,34 +623,19 @@ nav a:hover{
   font-weight:500;
 
 }
+.customer-reviews::-webkit-scrollbar{
+  width: 8px;
+  background-color: #cccccc;
+  border-radius: 10px;
+}
+
+.customer-reviews::-webkit-scrollbar-thumb {
+  background: #3a3a3a;
+  border-radius: 8px;
+}
 
 /* End of Reviews section */
 
-/* More reviews section */
-.review-more{
-  width: 80vw;
-  align-items: center;
-}
-.more-review-btn{
-  float: right;
-  padding: 0.85rem 2rem;
-  background-color: var(--orange);
-  color: var(--pure-white);
-  border-radius: 2rem;
-  border-width: 0rem;
-  font-size: 1.05rem;
-  text-transform: uppercase;
-  font-weight: 500;
-  transition: 0.3s;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-}
-
-.more-review-btn:hover {
-  background-color: var(--pure-white);
-  color:var(--orange);
-  border: .1em solid var(--orange);
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-}
 
 .faq{
   margin: auto;
@@ -794,6 +782,7 @@ nav a:hover{
   font-size: 1.3rem;
   color: var(--dark-ash-2);
   line-height: 1.6;
+  margin-bottom: 2em;
 }
 
 .about-us-image {
@@ -806,8 +795,7 @@ nav a:hover{
 }
 
 .read-more-about-btn{
-  margin-top: 3em;
-  padding: 0.85rem 2rem;
+  padding: 0.85rem 1rem;
   background-color: var(--orange);
   color: var(--pure-white);
   border-radius: 2rem;
@@ -967,12 +955,11 @@ nav a:hover{
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  
+  justify-content: center;  
 }
-.contact-form .visitor-name {
-  width: 100%;
-}
+
+
+
 .contact-form form input, textarea{
   padding: .5em 2em .5em 1em;
   margin: .3em;
@@ -983,6 +970,21 @@ nav a:hover{
   border: none;
   background: var(--pure-white);
 }
+.contact-form .visitor-name {
+  width: 100%;
+  padding: 0 2em;
+  display: flex;
+  padding-left: 0;
+  padding-right:0;
+  margin-left: 0;
+  margin-right: 0;
+  justify-content: space-between;
+}
+.contact-form .visitor-name input {
+  box-sizing: border-box;
+  width: 50%;  
+}
+
 
 .contact-form input[type='email'] ,textarea{
   width: 100%;
@@ -997,6 +999,27 @@ nav a:hover{
 
 .contact-form input::placeholder,textarea::placeholder{
   font-weight: 400;
+}
+.contact-form-submit-btn {
+  float: right;
+  padding: 0.65rem 2rem;
+  background-color: var(--orange);
+  color: var(--pure-white);
+  border-radius: 2rem;
+  border-width: 0rem;
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: 0.3s;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+
+.contact-form-submit-btn:hover {
+  background-color: var(--pure-white);
+  color:var(--orange);
+  border: .1em solid var(--orange);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
 

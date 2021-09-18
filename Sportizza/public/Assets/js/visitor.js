@@ -70,3 +70,6 @@ let i;
             }
         });
     }
+
+    //Expand the review page
+let  
