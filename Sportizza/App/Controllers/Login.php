@@ -103,7 +103,7 @@ class Login extends \Core\Controller
     public function managerloginAction()
     {
         //direct to the customer page
-        View::renderTemplate('Manager/mStaffManageBookingView.html');
+        View::renderTemplate('Manager/mStaffManageBookingsView.html');
     }
 
      //Logout for a user
