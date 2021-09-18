@@ -6,12 +6,20 @@ namespace App\Controllers;
 
 use App\Models\AdminManage;
 use Core\View;
+use App\Auth;
 
 class Admin extends \Core\Controller
 {
     protected function before()
     {
-
+        if(Auth::getUser()->type=='admin'){
+            
+            return true;
+        }
+        else{
+            View::renderTemplate('500.html');
+            return false;
+        }
     }
 
     public function after()
@@ -19,12 +27,12 @@ class Admin extends \Core\Controller
     }
     public function indexAction()
     {
-        View::renderTemplate('Admin/admin-FAQ.html');
+        View::renderTemplate('Admin/adminManageUsersView.html');
     }
 
     public function analyticsAction()
     {
-        View::renderTemplate('Admin/admin-FAQ.html');
+        View::renderTemplate('Admin/adminAnalyticsView.php');
     }
 
     public function faqAction()
@@ -34,10 +42,8 @@ class Admin extends \Core\Controller
 
     public function manageuserAction()
     {
-        $users = AdminManage::getAlluser();
-        View::renderTemplate('Admin/admin-manage-users.html', [
-            'users' => $users
-        ]);
+        
+        View::renderTemplate('Admin/adminManageUsersView.html');
     }
 
     public function ratingsAction()

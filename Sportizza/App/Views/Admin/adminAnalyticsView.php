@@ -1,18 +1,21 @@
 <?php
-    require_once "../koolreport/autoload.php";
-    use \koolreport\datasources\PdoDataSource;
-    use \koolreport\widgets\koolphp\Table;
-    use \koolreport\widgets\google\ColumnChart;
-    use \koolreport\widgets\google\AreaChart;
-    use \koolreport\widgets\google\BarChart;
-    use \koolreport\widgets\google\DonutChart;
+ $connection = array(
+    "connectionString"=>"mysql:host=localhost;dbname=sportizza",
+    "username"=>"admin",
+    "password"=>"admin",
+    "charset"=>"utf8"
+);
+?>
+<?php
+    require_once "../../../vendor/autoload/autoload.php";
+    use \vendor\koolreport\datasources\PdoDataSource;
+    use \vendor\koolreport\widgets\koolphp\Table;
+    use \vendor\koolreport\widgets\google\ColumnChart;
+    use \vendor\koolreport\widgets\google\AreaChart;
+    use \vendor\koolreport\widgets\google\BarChart;
+    use \vendor\koolreport\widgets\google\DonutChart;
 
-    $connection = array(
-        "connectionString"=>"mysql:host=localhost;dbname=alt_sportizza",
-        "username"=>"root",
-        "password"=>"",
-        "charset"=>"utf8"
-    );
+   
 ?>
 
     <html lang="en">
@@ -22,7 +25,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Analytics</title>
      <!-- CSS File -->
-    <link rel="stylesheet" href="admin-analytics.css">
+     <link rel="stylesheet" href="/Assets/css/Admin/admin-analytics.css">
     <!-- FontAwesome Icon -->
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 </head>
