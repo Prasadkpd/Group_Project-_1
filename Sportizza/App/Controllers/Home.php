@@ -9,7 +9,7 @@ class Home extends \Core\Controller
    
     public function indexAction()
     {
-       View::renderTemplate('Home/visitor.html');
+       View::renderTemplate('Visitor/visitorView.html');
     }
     // public function loginAction()
     // {
