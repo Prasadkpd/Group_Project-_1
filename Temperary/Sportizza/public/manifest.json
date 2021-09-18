@@ -1,0 +1,15 @@
+{
+    "name":"Sportizza Booking App",
+    "short_name":"Sportizza",
+    "start_url":"./Home/home.php",
+    "scope":".",
+    "display":"standalone",
+    "background_color":"#fff",
+    "theme_color":"#fd461f",
+    "decription":"Sports Arena Booking Application",
+    "dir":"ltr",
+    "lang":"en-US",
+    "orientation":"portrait"
+   
+
+}

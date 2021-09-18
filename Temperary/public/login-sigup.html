@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style-login.css" />
+    <title>Sportizza</title>
+</head>
+
+<body>
+     <!-- Top Navigation Bar -->
+     <nav>
+        <div class="nav-container">
+            <div class="horizontal-container">
+                <div class="cell">
+                    <ul class="home-nav">
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-running"></i>
+                                <span class="sportizza-logo">Sportizza</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="cell">
+                    <div class="search-container">
+                        <input type="text" name="search" placeholder="Search..." class="search-input">
+
+                        <a href="#" class="search-btn">
+                            <i class="fas fa-search" style="margin:2px 15px"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="forms-container">
+
+            <div class="login-signup">
+                <!-- Login Form -->
+                <form action="#" class="login-form">
+                    <div class="login-container">
+                        <h2 class="title">Log In</h2>
+                        <h4 class="wording">We are happy to see you return! Please Login to continue.</h4>
+
+                        <div class="input-field success">
+                            <i class="fas fa-user"></i>
+                            <div class="error-signs">
+                                <input type="text" placeholder="Username" />
+
+                                <i class="fas fa-check-circle"></i>
+                                <i class="fas fa-exclamation-circle"></i>
+                            </div>
+                            <small>Error message</small>
+                        </div>
+                        <div class="input-field error">
+                            <i class="fas fa-lock"></i>
+                            <div class="error-signs">
+                                <input type="password" placeholder="Password" />
+
+                                <i class="fas fa-check-circle"></i>
+                                <i class="fas fa-exclamation-circle"></i>
+                            </div>
+                            <small>Error message</small>
+                        </div>
+
+
+                        <input type="submit" value="Login" class="btn solid" />
+                        <a class="text" href=#>Forgot Password?</a>
+                    </div>
+                </form>
+
+
+                <!-- Sign up Form -->
+                <form action="#" class="signup-form">
+                    <div class="signup-container">
+                        <h2 class="title">Sign Up</h2>
+                        <div class="tab_container">
+                            <input class="tab_input" id="tab1" type="radio" name="tabs" checked>
+                            <label for="tab1"><i class="fas fa-user"></i><span>Customer</span></label>
+
+                            <input class="tab_input" id="tab2" type="radio" name="tabs">
+                            <label for="tab2"><i class="fas fa-building"></i><span>Sports Arena</span></label>
+
+                            <section id="content1" class="tab-content">
+                                <div class="tab1-content">
+                                    <form action="#" class="signup-form">
+                                        <div class="input-row">
+                                            <div class="input-field success">
+                                                <i class="fas fa-user"></i>
+                                                <div class="error-signs">
+                                                    <input type="text" placeholder="First Name" />
+
+                                                    <i class="fas fa-check-circle"></i>
+                                                    <i class="fas fa-exclamation-circle"></i>
+                                                </div>
+                                                <small>Error message</small>
+                                            </div>
+
+                                            <div class="input-field success">
+                                                <i class="fas fa-user"></i>
+                                                <div class="error-signs">
+                                                    <input type="text" placeholder="Last Name" />
+
+                                                    <i class="fas fa-check-circle"></i>
+                                                    <i class="fas fa-exclamation-circle"></i>
+                                                </div>
+                                                <small>Error message</small>
+                                            </div>
+                                        </div>
+                                        <div class="input-row">
+                                            <div class="input-field success">
+                                                <i class="fas fa-user"></i>
+                                                <div class="error-signs">
+                                                    <input type="text" placeholder="Username" />
+
+                                                    <i class="fas fa-check-circle"></i>
+                                                    <i class="fas fa-exclamation-circle"></i>
+                                                </div>
+                                                <small>Error message</small>
+                                            </div>
+
+                                            <div class="input-field success">
+                                                <i class="fas fa-phone-alt"></i>
+                                                <div class="error-signs">
+                                                    <input type="text" placeholder="Mobile Number" />
+
+                                                    <i class="fas fa-check-circle"></i>
+                                                    <i class="fas fa-exclamation-circle"></i>
+                                                </div>
+                                                <small>Error message</small>
+                                            </div>
+                                        </div>
+                                        <div class="input-row">
+                                            <div class="input-field error">
+                                                <i class="fas fa-lock"></i>
+                                                <div class="error-signs">
+                                                    <input type="password" placeholder="Enter Password" />
+
+                                                    <i class="fas fa-check-circle"></i>
+                                                    <i class="fas fa-exclamation-circle"></i>
+                                                </div>
+                                                <small>Error message</small>
+                                            </div>
+                                            <div class="input-field error">
+                                                <i class="fas fa-lock"></i>
+                                                <div class="error-signs">
+                                                    <input type="password" placeholder="Confirm Password" />
+
+                                                    <i class="fas fa-check-circle"></i>
+                                                    <i class="fas fa-exclamation-circle"></i>
+                                                </div>
+                                                <small>Error message</small>
+                                            </div>
+                                        </div>
+
+                                        <input type="submit" value="Sign Up" class="btn solid" />
+                                    </form>
+                                </div>
+                            </section>
+
+                            <section id="content2" class="tab-content">
+                                <div class="tab2-content">
+                                    <form action="#" class="signup-form">
+                                        <h6>Get listed as a Sports Arena in Sportizza:
+                                            <a href="" class="text">Sports Arena Application</a></h6>
+                                        <div class="sp-arena-manager-details">
+                                            
+                                            <h4>Sports Arena Manager Details</h4>
+                                        </div>
+                                        <form action="#" class="signup-form">
+                                            <div class="input-row">
+                                                <div class="input-field success">
+                                                    <i class="fas fa-user"></i>
+                                                    <div class="error-signs">
+                                                        <input type="text" placeholder="First Name" />
+
+                                                        <i class="fas fa-check-circle"></i>
+                                                        <i class="fas fa-exclamation-circle"></i>
+                                                    </div>
+                                                    <small>Error message</small>
+                                                </div>
+
+                                                <div class="input-field success">
+                                                    <i class="fas fa-user"></i>
+                                                    <div class="error-signs">
+                                                        <input type="text" placeholder="Last Name" />
+
+                                                        <i class="fas fa-check-circle"></i>
+                                                        <i class="fas fa-exclamation-circle"></i>
+                                                    </div>
+                                                    <small>Error message</small>
+                                                </div>
+                                            </div>
+                                            <div class="input-row">
+                                                <div class="input-field success">
+                                                    <i class="fas fa-user"></i>
+                                                    <div class="error-signs">
+                                                        <input type="text" placeholder="Username" />
+
+                                                        <i class="fas fa-check-circle"></i>
+                                                        <i class="fas fa-exclamation-circle"></i>
+                                                    </div>
+                                                    <small>Error message</small>
+                                                </div>
+
+                                                <div class="input-field success">
+                                                    <i class="fas fa-phone-alt"></i>
+                                                    <div class="error-signs">
+                                                        <input type="text" placeholder="Mobile Number" />
+
+                                                        <i class="fas fa-check-circle"></i>
+                                                        <i class="fas fa-exclamation-circle"></i>
+                                                    </div>
+                                                    <small>Error message</small>
+                                                </div>
+                                            </div>
+                                            <div class="input-row">
+                                                <div class="input-field error">
+                                                    <i class="fas fa-lock"></i>
+                                                    <div class="error-signs">
+                                                        <input type="password" placeholder="Enter Password" />
+
+                                                        <i class="fas fa-check-circle"></i>
+                                                        <i class="fas fa-exclamation-circle"></i>
+                                                    </div>
+                                                    <small>Error message</small>
+                                                </div>
+                                                <div class="input-field error">
+                                                    <i class="fas fa-lock"></i>
+                                                    <div class="error-signs">
+                                                        <input type="password" placeholder="Confirm Password" />
+
+                                                        <i class="fas fa-check-circle"></i>
+                                                        <i class="fas fa-exclamation-circle"></i>
+                                                    </div>
+                                                    <small>Error message</small>
+                                                </div>
+                                            </div>
+                                        </form>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="panels-container">
+            <div class="panel left-panel">
+                <div class="content">
+                    <h3>New to Sportizza?</h3>
+                    <p>
+                        Let's get started!
+                    </p>
+                    <button class="btn transparent" id="sign-up-btn">
+                        Sign Up
+                    </button>
+                </div>
+                <img src="/public/images/LoginPage/Loginpage.svg" class="image" alt="" />
+            </div>
+            <div class="panel right-panel">
+                <div class="content">
+                    <h3>Already have an account?</h3>
+                    <p>
+                        Let's get logged in
+                    </p>
+                    <button class="btn transparent" id="login-btn">
+                        Login
+                    </button>
+                </div>
+                <img src="images/LoginPage/undraw_Access_account_re_8spm-2.svg" class="image" alt="" />
+            </div>
+        </div>
+    </div>
+
+    <script src="js/login.js"></script>
+    <!-- Start of Footer -->
+    <footer>
+        <div class="copyright">
+            <p>
+                Copyright &copy;2021 All rights reserved | Sportizza Inc.
+            </p>
+        </div>
+    </footer>
+    <!-- End of Footer -->
+</body>
+
+</html>
