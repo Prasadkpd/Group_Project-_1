@@ -499,9 +499,14 @@
     
     <form action="/action_page.php" style="margin:20px">
         <h1>Notification</h1>
+        
+
+        {% for notification in notifications %}
         <div>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consectetur id ea ullam sunt debitis inventore cupiditate delectus labore, esse, vel, eaque possimus eos at odio molestias quaerat. Eveniet, eos animi.</p>
+            <p>{{notification.description}}</p>
         </div>
+
+        {% endfor %}
       
     </form> 
     <!-- <button onclick="close_popup_share()" class="popup_button">
@@ -664,10 +669,12 @@
                             </tr>
                         </thead>
                         <tbody>
+
+                            {% for item in list %}
                             <tr>
-                                <td data-label="Sports Arena Name:">Colombo Kings</td>
-                                <td data-label="Category:">Cricket</td>
-                                <td data-label="Address:">Reid Avenue, Colombo 07</td>
+                                <td data-label="Sports Arena Name:">{{item.sa_name}}</td>
+                                <td data-label="Category:">{{item.category}}</td>
+                                <td data-label="Address:">{{item.location}}</td>
                                 <td data-label="Availability button:">
                                     <button class="popup_button">
                                         availability
@@ -682,96 +689,9 @@
                                 </td>
                                 
                             </tr>
-                            <tr>
-                                <td data-label="Sports Arena Name:">Colombo Kings</td>
-                                <td data-label="Category:">Cricket</td>
-                                <td data-label="Address:">Reid Avenue, Colombo 07</td>
-                                <td data-label="Availability button:"></td>
-                                <td data-label="Delete Button:"></td>
-                                
-                            </tr>
-                            <tr>
-                                <td data-label="Sports Arena Name:">Colombo Kings</td>
-                                <td data-label="Category:">Cricket</td>
-                                <td data-label="Address:">Reid Avenue, Colombo 07</td>
-                                <td data-label="Availability button:"></td>
-                                <td data-label="Delete Button:"></td>
-                                
-                            </tr>
-                            <tr>
-                                <td data-label="Sports Arena Name:">Colombo Kings</td>
-                                <td data-label="Category:">Cricket</td>
-                                <td data-label="Address:">Reid Avenue, Colombo 07</td>
-                                <td data-label="Availability button:"></td>
-                                <td data-label="Delete Button:"></td>
-                                
-                            </tr>
-                            <tr>
-                                <td data-label="Sports Arena Name:">Colombo Kings</td>
-                                <td data-label="Category:">Cricket</td>
-                                <td data-label="Address:">Reid Avenue, Colombo 07</td>
-                                <td data-label="Availability button:"></td>
-                                <td data-label="Delete Button:"></td>
-                                
-                            </tr>
-                            <tr>
-                                <td data-label="Sports Arena Name:">Colombo Kings</td>
-                                <td data-label="Category:">Cricket</td>
-                                <td data-label="Address:">Reid Avenue, Colombo 07</td>
-                                <td data-label="Availability button:"></td>
-                                <td data-label="Delete Button:"></td>
-                                
-                            </tr>
-                            <tr>
-                                <td data-label="Sports Arena Name:">Colombo Kings</td>
-                                <td data-label="Category:">Cricket</td>
-                                <td data-label="Address:">Reid Avenue, Colombo 07</td>
-                                <td data-label="Availability button:"></td>
-                                <td data-label="Delete Button:"></td>
-                                
-                            </tr>
-                            <tr>
-                                <td data-label="Sports Arena Name:">Colombo Kings</td>
-                                <td data-label="Category:">Cricket</td>
-                                <td data-label="Address:">Reid Avenue, Colombo 07</td>
-                                <td data-label="Availability button:"></td>
-                                <td data-label="Delete Button:"></td>
-                                
-                            </tr>
-                            <tr>
-                                <td data-label="Sports Arena Name:">Colombo Kings</td>
-                                <td data-label="Category:">Cricket</td>
-                                <td data-label="Address:">Reid Avenue, Colombo 07</td>
-                                <td data-label="Availability button:"></td>
-                                <td data-label="Delete Button:"></td>
-                                
-                            </tr>
-                            <tr>
-                                <td data-label="Sports Arena Name:">Colombo Kings</td>
-                                <td data-label="Category:">Cricket</td>
-                                <td data-label="Address:">Reid Avenue, Colombo 07</td>
-                                <td data-label="Availability button:"></td>
-                                <td data-label="Delete Button:"></td>
-                                
-                            </tr>
-                            <tr>
-                                <td data-label="Sports Arena Name:">Colombo Kings</td>
-                                <td data-label="Category:">Cricket</td>
-                                <td data-label="Address:">Reid Avenue, Colombo 07</td>
-                                <td data-label="Availability button:">
-                                    
-                                </td>
-                                <td data-label="Delete Button:"></td>
-                                
-                            </tr>
-                            <tr>
-                                <td data-label="Sports Arena Name:">Colombo Kings</td>
-                                <td data-label="Category:">Cricket</td>
-                                <td data-label="Address:">Reid Avenue, Colombo 07</td>
-                                <td data-label="Availability button:"></td>
-                                <td data-label="Delete Button:"></td>
-                                
-                            </tr>
+
+                            {% endfor %}
+                            
                     </tbody>
                     </table>
                 </div>
@@ -800,44 +720,15 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {% for notification in notifications %}
                             <tr style="cursor: pointer" onclick="open_popup_notification()">
-                                <td data-label="Date:">BD1234567</td>
-                                <td data-label="Time:">7.35 AM</td>
-                                <td style="width: 70%" data-label="Notification :">Lorem ipsum dolor sit amet consectetur</td>
-                            </tr>
-                            <tr style="cursor: pointer" onclick="open_popup_notification()">
-                                <td data-label="Date:">BD1234567</td>
-                                <td data-label="Time:">7.35 AM</td>
-                                <td style="width: 70%" data-label="Notification :">Lorem ipsum dolor sit amet consectetur</td>
-                            </tr>
-                            <tr style="cursor: pointer" onclick="open_popup_notification()">
-                                <td data-label="Date:">BD1234567</td>
-                                <td data-label="Time:">7.35 AM</td>
-                                <td style="width: 70%" data-label="Notification :">Lorem ipsum dolor sit amet consectetur</td>
-                            </tr>
-                            <tr style="cursor: pointer" onclick="open_popup_notification()">
-                                <td data-label="Date:">BD1234567</td>
-                                <td data-label="Time:">7.35 AM</td>
-                                <td style="width: 70%" data-label="Notification :">Lorem ipsum dolor sit amet consectetur</td>
-                            </tr>
-                            <tr style="cursor: pointer" onclick="open_popup_notification()">
-                                <td data-label="Date:">BD1234567</td>
-                                <td data-label="Time:">7.35 AM</td>
-                                <td style="width: 70%" data-label="Notification :">Lorem ipsum dolor sit amet consectetur</td>
-                            </tr>
-                            <tr style="cursor: pointer" onclick="open_popup_notification()">
-                                <td data-label="Date:">BD1234567</td>
-                                <td data-label="Time:">7.35 AM</td>
-                                <td style="width: 70%" data-label="Notification :">Lorem ipsum dolor sit amet consectetur</td>
-                            </tr>
-                            <tr style="cursor: pointer" onclick="open_popup_notification()">
-                                <td data-label="Date:">BD1234567</td>
-                                <td data-label="Time:">7.35 AM</td>
-                                <td style="width: 70%" data-label="Notification :">Lorem ipsum dolor sit amet consectetur</td>
+                                <td data-label="Date:">{{notification.date}}</td>
+                                <td data-label="Time:">{{notification.time}}</td>
+                                <td style="width: 70%" data-label="Notification :">{{notification.subject}}</td>
                             </tr>
 
-                              
-                            
+                            {% endfor %}
+       
                     </tbody>
                     </table>
                 </div>

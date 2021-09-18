@@ -8,6 +8,17 @@ use \App\Auth;
 class Customer extends Authenticated
 {
 
+    protected function before()
+    {
+        if(Auth::getUser()->type=='customer'){
+            
+            return true;
+        }
+        else{
+            View::renderTemplate('500.html');
+            return false;
+        }
+    }
   
     
 
