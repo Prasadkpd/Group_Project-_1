@@ -199,6 +199,17 @@ function matchWithRegExPassword(regEx, field) {
     }
 }
 
+function matchWithRegExEmail(regEx, field) {
+    if (field.value.match(regEx)) {
+        setValid(field);
+        return true;
+    } else {
+        setInvalid(field, ` ${capitalizeFirstLetter(replaceUnderscore(field.name))} 
+       entered is invalid`);
+        return false;
+    }
+}
+
 function selectValidate(field) {
     var selectedCategory = field.options[field.selectedIndex].value;
     if (selectedCategory == "0") {
@@ -310,7 +321,6 @@ function validatePayment() {
     if (selectValidate(payment)) return;
     return true;
 }
-
 //Manager details validation
 function validateFirstName() {
     if (checkIfEmpty(firstName)) return;
@@ -350,7 +360,24 @@ function validatePassword() {
     if (matchWithRegExPassword(regEx, password)) return;
     return true;
 }
+//Visitor Contact validations
 
+function validateEmail() {
+    if (checkIfEmpty(email)) return;
+    regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!matchWithRegExEmail(regEx, email)) return;
+    return true;
+}
+
+
+function validateSubject() {
+    if (checkIfEmpty(subject)) return;
+    return true;
+}
+function validateMessage() {
+    if (checkIfEmpty(message)) return;
+    return true;
+}
 
 
 
