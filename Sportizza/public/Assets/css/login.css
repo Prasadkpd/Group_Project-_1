@@ -215,6 +215,7 @@ form .login-details .input-field span.details {
 }
 
 .image {
+  margin-top:3rem;
   width: 80%;
   transition: transform 1.1s ease-in-out;
   transition-delay: 0.4s;
