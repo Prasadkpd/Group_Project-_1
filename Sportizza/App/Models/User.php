@@ -281,7 +281,7 @@ class User extends \Core\Model
             echo "Sent Failed - Error : " . $res[1];
         }
 
-        // need to retunr the finalised textiturl
+        // need to return the finalised textiturl
     }
 
 

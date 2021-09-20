@@ -19,30 +19,30 @@ class Admin extends \Core\Controller
     }
     public function indexAction()
     {
-        View::renderTemplate('Admin/admin-FAQ.html');
+        View::renderTemplate('Admin/adminFAQView.html');
     }
 
     public function analyticsAction()
     {
-        View::renderTemplate('Admin/admin-FAQ.html');
+        View::renderTemplate('Admin/adminFAQView.html');
     }
 
     public function faqAction()
     {
-        View::renderTemplate('Admin/admin-FAQ.html');
+        View::renderTemplate('Admin/adminFAQView.html');
     }
 
     public function manageuserAction()
     {
         $users = AdminManage::getAlluser();
-        View::renderTemplate('Admin/admin-manage-users.html', [
+        View::renderTemplate('Admin/adminManageUsersView.html', [
             'users' => $users
         ]);
     }
 
     public function ratingsAction()
     {
-        View::renderTemplate('Admin/admin-ratings.html');
+        View::renderTemplate('Admin/adminRatingsView.html');
     }
 
 }
