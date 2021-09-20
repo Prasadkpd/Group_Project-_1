@@ -24,7 +24,7 @@ class Admin extends \Core\Controller
 
     public function analyticsAction()
     {
-        View::renderTemplate('Admin/admin-FAQ.html');
+        View::renderTemplate('Admin/adminAnalytics.html');
     }
 
     public function faqAction()
