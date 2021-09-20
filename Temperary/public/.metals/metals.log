@@ -1,0 +1,37 @@
+[0m2021.07.08 00:20:58 INFO  Started: Metals version 0.10.4 in workspace 'F:\My Projects\2nd year group project\git project\Group_Project-_1\Codes\public' for client Visual Studio Code 1.57.1.[0m
+[0m2021.07.08 00:21:00 INFO  time: initialize in 2.38s[0m
+[0m2021.07.08 00:21:00 WARN  Build server is not auto-connectable.[0m
+[0m2021.07.08 00:21:00 WARN  no build tool detected in workspace 'F:\My Projects\2nd year group project\git project\Group_Project-_1\Codes\public'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+[0m2021.07.08 11:31:38 INFO  shutting down Metals[0m
+<<<<<<< HEAD
+[0m2021.08.12 07:41:49 INFO  Started: Metals version 0.10.5 in workspace '/Applications/MAMP/htdocs/Group_Project-_1/Codes/public' for client Visual Studio Code 1.59.0.[0m
+[0m2021.08.12 07:41:56 INFO  time: initialize in 7.23s[0m
+[0m2021.08.12 07:42:01 WARN  Build server is not auto-connectable.[0m
+[0m2021.08.12 07:42:01 WARN  no build tool detected in workspace '/Applications/MAMP/htdocs/Group_Project-_1/Codes/public'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+[0m2021.08.12 07:55:52 INFO  shutting down Metals[0m
+=======
+[0m2021.08.08 13:47:21 INFO  Started: Metals version 0.10.5 in workspace 'E:\My Projects\2nd year group project\git project\Group_Project-_1\Codes\public' for client Visual Studio Code 1.59.0.[0m
+[0m2021.08.08 13:47:23 INFO  time: initialize in 1.6s[0m
+[0m2021.08.08 13:47:32 WARN  Build server is not auto-connectable.[0m
+[0m2021.08.08 13:47:32 WARN  no build tool detected in workspace 'E:\My Projects\2nd year group project\git project\Group_Project-_1\Codes\public'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+Aug 09, 2021 8:06:46 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+>>>>>>> 52133635dc34b85a79cc7a44cf7925f5fe523c58
+[0m2021.09.03 21:55:31 INFO  Started: Metals version 0.10.5 in workspace 'E:\My Projects\2nd year group project\new group project\Group_Project-_1\Codes\public' for client Visual Studio Code 1.60.0.[0m
+[0m2021.09.03 21:55:32 INFO  time: initialize in 1.64s[0m
+[0m2021.09.03 21:55:39 WARN  Build server is not auto-connectable.[0m
+[0m2021.09.03 21:55:39 WARN  no build tool detected in workspace 'E:\My Projects\2nd year group project\new group project\Group_Project-_1\Codes\public'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+[0m2021.09.04 00:10:55 INFO  shutting down Metals[0m
+<<<<<<< HEAD
+[0m2021.09.04 17:06:39 INFO  Started: Metals version 0.10.5 in workspace 'E:\My Projects\2nd year group project\new group project\Group_Project-_1\Codes\public' for client Visual Studio Code 1.60.0.[0m
+[0m2021.09.04 17:06:40 INFO  time: initialize in 1.54s[0m
+[0m2021.09.04 17:06:47 WARN  Build server is not auto-connectable.[0m
+[0m2021.09.04 17:06:47 WARN  no build tool detected in workspace 'E:\My Projects\2nd year group project\new group project\Group_Project-_1\Codes\public'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+[0m2021.09.04 18:01:04 INFO  shutting down Metals[0m
+[0m2021.09.04 18:27:01 INFO  Started: Metals version 0.10.5 in workspace 'E:\My Projects\2nd year group project\new group project\Group_Project-_1\Codes\public' for client Visual Studio Code 1.60.0.[0m
+[0m2021.09.04 18:27:02 INFO  time: initialize in 1.2s[0m
+[0m2021.09.04 18:27:05 WARN  Build server is not auto-connectable.[0m
+[0m2021.09.04 18:27:05 WARN  no build tool detected in workspace 'E:\My Projects\2nd year group project\new group project\Group_Project-_1\Codes\public'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+[0m2021.09.04 19:13:03 INFO  shutting down Metals[0m
+=======
+>>>>>>> 22aac0c8fc03ef5357d17d564b61b5f0d520545b

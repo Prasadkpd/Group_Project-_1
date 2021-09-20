@@ -97,7 +97,9 @@
      <div style="display:flex">
      
      <button style="background-color:#e74c3c    " class="popup_button">
-         YES
+        {% if current_user %}
+        <a href="/logout"> Yes</a>
+        {% endif %}
      </button>
      <button onclick="close_popup_signout_message()"  class="popup_button">
          NO
