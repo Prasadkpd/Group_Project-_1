@@ -526,7 +526,7 @@ nav .sign-in-out-btn :hover{
     height:100vh;
     display: none;
     z-index: 100;
-    background-color:gray;
+    background-color:rgba(214, 214, 214, 0.836);
     margin: 0 auto;
   }
   .editProPic{

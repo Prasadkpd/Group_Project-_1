@@ -28,12 +28,15 @@
                 <button class="openbutton" onclick="openpopupform()">
                     <div class="profile-details">
                         <img src="/Assets/images/Team members/jonathan.png" alt="" class="profile-picture">
-                        <div class="username">Bhashitha Ranasinghe</div>
+                        <div class="username">{{current_user.first_name}}  {{current_user.last_name}}</div>
                     </div>
                 </button>
             </div>
             <div class="sign-in-out-btn">
-                <a style="font-weight:500; " href="">Sign Out </a>
+                <!-- <a style="font-weight:500; " href="">Sign Out </a> -->
+                {% if current_user %}
+        <a href="/logout"> Sign Out</a>
+        {% endif %}
             </div>
         </div>
         <!-- search bar for mobile -->

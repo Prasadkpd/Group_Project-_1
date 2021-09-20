@@ -6,14 +6,14 @@ namespace App\Controllers;
 
 use Core\View;
 use App\Auth;
-use App\Models\SpArenaManagerModel;
+use App\Models\SpAdministrationStaffModel;
 
-class Sparenamanager extends \Core\Controller
+class Spadministrationstaff extends \Core\Controller
 {
 
     protected function before()
     {
-        if(Auth::getUser()->type=='Manager'){
+        if(Auth::getUser()->type=='AdministrationStaff'){
             
             return true;
         }
@@ -30,9 +30,9 @@ class Sparenamanager extends \Core\Controller
 
         $current_user= Auth::getUser();
         $id=$current_user->user_id;
-        $bookings= SpArenaManagerModel::managerViewBookings($id);
-        $cancelBookings= SpArenaManagerModel::managerCancelBookings($id);
-        $bookingPayments= SpArenaManagerModel::managerBookingPayment($id);
+        $bookings= SpAdministrationStaffModel::managerViewBookings($id);
+        $cancelBookings= SpAdministrationStaffModel::managerCancelBookings($id);
+        $bookingPayments= SpAdministrationStaffModel::managerBookingPayment($id);
         // var_dump($bookings);
         //direct to the customer page
         View::renderTemplate('Manager/mStaffManageBookingsView.html',['bookings'=>$bookings,
@@ -45,9 +45,9 @@ class Sparenamanager extends \Core\Controller
     {
         $current_user= Auth::getUser();
         $id=$current_user->user_id;
-        $bookings= SpArenaManagerModel::managerViewBookings($id);
-        $cancelBookings= SpArenaManagerModel::managerCancelBookings($id);
-        $bookingPayments= SpArenaManagerModel::managerBookingPayment($id);
+        $bookings= SpAdministrationStaffModel::managerViewBookings($id);
+        $cancelBookings= SpAdministrationStaffModel::managerCancelBookings($id);
+        $bookingPayments= SpAdministrationStaffModel::managerBookingPayment($id);
         // var_dump($bookings);
         //direct to the customer page
         View::renderTemplate('Manager/mStaffManageBookingsView.html',['bookings'=>$bookings,
@@ -59,7 +59,7 @@ class Sparenamanager extends \Core\Controller
     {
         $current_user= Auth::getUser();
         $id=$current_user->user_id;
-        $notifications= SpArenaManagerModel::managerNotification($id);
+        $notifications= SpAdministrationStaffModel::managerNotification($id);
         View::renderTemplate('Manager/mStaffNotificationView.html',['notifications'=>$notifications]);
     }
 
@@ -67,8 +67,8 @@ class Sparenamanager extends \Core\Controller
     {
         $current_user= Auth::getUser();
         $id=$current_user->user_id;
-        $viewTimeSlots= SpArenaManagerModel::managerViewTimeSlots($id);
-        $deleteTimeSlots= SpArenaManagerModel::managerDeleteTimeSlots($id);
+        $viewTimeSlots= SpAdministrationStaffModel::managerViewTimeSlots($id);
+        $deleteTimeSlots= SpAdministrationStaffModel::managerDeleteTimeSlots($id);
         View::renderTemplate('Manager/mStaffManageTimeslotsView.html',['timeSlots'=>$viewTimeSlots,
         'deleteTimeSlots'=>$deleteTimeSlots]);
     }
@@ -78,9 +78,9 @@ class Sparenamanager extends \Core\Controller
 
         $current_user= Auth::getUser();
         $id=$current_user->user_id;
-        $viewFacilities= SpArenaManagerModel::managerViewFacility($id);
-        $deleteFacilities= SpArenaManagerModel::managerDeleteFacility($id);
-        $updateFacilities= SpArenaManagerModel::managerUpdateFacility($id);
+        $viewFacilities= SpAdministrationStaffModel::managerViewFacility($id);
+        $deleteFacilities= SpAdministrationStaffModel::managerDeleteFacility($id);
+        $updateFacilities= SpAdministrationStaffModel::managerUpdateFacility($id);
         View::renderTemplate('Manager/mStaffManageFacilityView.html',['viewFacilities'=>$viewFacilities,
         'deleteFacilities'=>$deleteFacilities,'updateFacilities'=>$updateFacilities]);
     }
@@ -90,8 +90,8 @@ class Sparenamanager extends \Core\Controller
 
         $current_user= Auth::getUser();
         $id=$current_user->user_id;
-        $viewStaff= SpArenaManagerModel::managerViewStaff($id);
-        $removeStaff= SpArenaManagerModel::managerRemoveStaff($id);
+        $viewStaff= SpAdministrationStaffModel::managerViewStaff($id);
+        $removeStaff= SpAdministrationStaffModel::managerRemoveStaff($id);
     
         View::renderTemplate('Manager/mStaffManageUsersView.html',['viewStaff'=>$viewStaff,
         'removeStaff'=>$removeStaff]);

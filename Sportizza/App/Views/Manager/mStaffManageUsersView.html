@@ -28,12 +28,14 @@
                 <button class="openbutton" onclick="openpopupform()">
                     <div class="profile-details">
                         <img src="/Assets/images/Team members/jonathan.png" alt="" class="profile-picture">
-                        <div class="username">Bhashitha Ranasinghe</div>
+                        <div class="username">{{current_user.first_name}}  {{current_user.last_name}}</div>
                     </div>
                 </button>
             </div>
             <div class="sign-in-out-btn">
-                <a style="font-weight:500; " href="">Sign Out </a>
+                {% if current_user %}
+        <a href="/logout"> Sign Out</a>
+        {% endif %}
             </div>
         </div>
         <!-- search bar for mobile -->
@@ -172,48 +174,16 @@
                             </tr>
                         </thead>
                         <tbody>
+                            
+                            {% for  staff  in viewStaff %}
                             <tr>
-                                <td data-label="First Name :">Aruna</td>
-                                <td data-label="Last Name :">Rajakaruna</td>
-                                <td data-label="Username :">ArunaRaja345</td>
-                                <td data-label="Primary Contact :"> 0712345678</td>
-                                <td data-label="Secondary Contact :"> 0712345678</td>
+                                <td data-label="First Name :">{{staff.first_name}}</td>
+                                <td data-label="Last Name :">{{staff.last_name}}</td>
+                                <td data-label="Username :">{{staff.username}}</td>
+                                <td data-label="Primary Contact :"> {{staff.primary_contact}}</td>
+                                <td data-label="Secondary Contact :">{{staff.secondary_contact}}</td>
                             </tr>
-                            <tr>
-                                <td data-label="First Name :">Aruna</td>
-                                <td data-label="Last Name :">Rajakaruna</td>
-                                <td data-label="Username :">ArunaRaja345</td>
-                                <td data-label="Primary Contact :"> 0712345678</td>
-                                <td data-label="Secondary Contact :"> 0712345678</td>
-                            </tr>
-                            <tr>
-                                <td data-label="First Name :">Aruna</td>
-                                <td data-label="Last Name :">Rajakaruna</td>
-                                <td data-label="Username :">ArunaRaja345</td>
-                                <td data-label="Primary Contact :"> 0712345678</td>
-                                <td data-label="Secondary Contact :"> 0712345678</td>
-                            </tr>
-                            <tr>
-                                <td data-label="First Name :">Aruna</td>
-                                <td data-label="Last Name :">Rajakaruna</td>
-                                <td data-label="Username :">ArunaRaja345</td>
-                                <td data-label="Primary Contact :"> 0712345678</td>
-                                <td data-label="Secondary Contact :"> 0712345678</td>
-                            </tr>
-                            <tr>
-                                <td data-label="First Name :">Aruna</td>
-                                <td data-label="Last Name :">Rajakaruna</td>
-                                <td data-label="Username :">ArunaRaja345</td>
-                                <td data-label="Primary Contact :"> 0712345678</td>
-                                <td data-label="Secondary Contact :"> 0712345678</td>
-                            </tr>
-                            <tr>
-                                <td data-label="First Name :">Aruna</td>
-                                <td data-label="Last Name :">Rajakaruna</td>
-                                <td data-label="Username :">ArunaRaja345</td>
-                                <td data-label="Primary Contact :"> 0712345678</td>
-                                <td data-label="Secondary Contact :"> 0712345678</td>
-                            </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
@@ -303,46 +273,17 @@
                             </tr>
                         </thead>
                         <tbody>
+         
+                            {% for  staff  in removeStaff %}
                             <tr>
-                                <td data-label="First Name :">Aruna</td>
-                                <td data-label="Last Name :">Rajakaruna</td>
-                                <td data-label="Username :">ArunaRaja345</td>
-                                <td data-label="Primary Contact :"> 0712345678</td>
-                                <td data-label="Secondary Contact :"> 0712345678</td>
+                                <td data-label="First Name :">{{staff.first_name}}</td>
+                                <td data-label="Last Name :">{{staff.last_name}}</td>
+                                <td data-label="Username :">{{staff.username}}</td>
+                                <td data-label="Primary Contact :"> {{staff.primary_contact}}</td>
+                                <td data-label="Secondary Contact :">{{staff.secondary_contact}}</td>
                                 <td data-label="Action :"> <a href=""><i class="fas fa-trash-alt"></i></a></td>
                             </tr>
-                            <tr>
-                                <td data-label="First Name :">Aruna</td>
-                                <td data-label="Last Name :">Rajakaruna</td>
-                                <td data-label="Username :">ArunaRaja345</td>
-                                <td data-label="Primary Contact :"> 0712345678</td>
-                                <td data-label="Secondary Contact :"> 0712345678</td>
-                                <td data-label="Action :"> <a href=""><i class="fas fa-trash-alt"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td data-label="First Name :">Aruna</td>
-                                <td data-label="Last Name :">Rajakaruna</td>
-                                <td data-label="Username :">ArunaRaja345</td>
-                                <td data-label="Primary Contact :"> 0712345678</td>
-                                <td data-label="Secondary Contact :"> 0712345678</td>
-                                <td data-label="Action :"> <a href=""><i class="fas fa-trash-alt"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td data-label="First Name :">Aruna</td>
-                                <td data-label="Last Name :">Rajakaruna</td>
-                                <td data-label="Username :">ArunaRaja345</td>
-                                <td data-label="Primary Contact :"> 0712345678</td>
-                                <td data-label="Secondary Contact :"> 0712345678</td>
-                                <td data-label="Action :"> <a href=""><i class="fas fa-trash-alt"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td data-label="First Name :">Aruna</td>
-                                <td data-label="Last Name :">Rajakaruna</td>
-                                <td data-label="Username :">ArunaRaja345</td>
-                                <td data-label="Primary Contact :"> 0712345678</td>
-                                <td data-label="Secondary Contact :"> 0712345678</td>
-                                <td data-label="Action :"> <a href=""><i class="fas fa-trash-alt"></i></a></td>
-                            </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>

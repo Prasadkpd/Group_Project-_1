@@ -177,121 +177,24 @@
                                 <th class="b-first-th">Sports Arena ID</th>
                                 <th>Sports Arena Name</th>
                                 <th>Feedback ID</th>
-                                <th>Feedback</th>
+                                <th>Ratings</th>
                                 <th>Date Posted</th>
-                                <th>Deadline</th>
-                                <th class="b-last-th">Blacklist</th>
+                                
+                                <th class="b-last-th">Delete</th>
                             </tr>
                         </thead>
                         <tbody>
+                            {% for rating in ratings %}
                             <tr>
-                                <td data-label="Sports Arena ID :">SA1000000000</td>
-                                <td data-label="Sports Arena Name :">Michael Sports</td>
-                                <td data-label="Feedback ID :">FB1000000000</td>
-                                <td data-label="Feedback :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Date Posted :">2021-08-13</td>
-                                <td data-label="Deadline :">2021-08-13</td>
-                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
+                                <td data-label="Sports Arena ID :">{{rating.sports_arena_id}}</td>
+                                <td data-label="Sports Arena Name :">{{rating.sa_name}}</td>
+                                <td data-label="Feedback ID :">{{rating.feedback_id}}</td>
+                                <td data-label="Rating :">{{rating.feedback_rating}}</td>
+                                <td data-label="Date Posted :">{{rating.date}}</td>
+                                <td data-label="Delete Rating :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
                             </tr>
-                            <tr>
-                                <td data-label="Sports Arena ID :">SA1000000000</td>
-                                <td data-label="Sports Arena Name :">Michael Sports</td>
-                                <td data-label="Feedback ID :">FB1000000000</td>
-                                <td data-label="Feedback :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Date Posted :">2021-08-13</td>
-                                <td data-label="Deadline :">2021-08-13</td>
-                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="Sports Arena ID :">SA1000000000</td>
-                                <td data-label="Sports Arena Name :">Michael Sports</td>
-                                <td data-label="Feedback ID :">FB1000000000</td>
-                                <td data-label="Feedback :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Date Posted :">2021-08-13</td>
-                                <td data-label="Deadline :">2021-08-13</td>
-                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="Sports Arena ID :">SA1000000000</td>
-                                <td data-label="Sports Arena Name :">Michael Sports</td>
-                                <td data-label="Feedback ID :">FB1000000000</td>
-                                <td data-label="Feedback :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Date Posted :">2021-08-13</td>
-                                <td data-label="Deadline :">2021-08-13</td>
-                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="Sports Arena ID :">SA1000000000</td>
-                                <td data-label="Sports Arena Name :">Michael Sports</td>
-                                <td data-label="Feedback ID :">FB1000000000</td>
-                                <td data-label="Feedback :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Date Posted :">2021-08-13</td>
-                                <td data-label="Deadline :">2021-08-13</td>
-                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="Sports Arena ID :">SA1000000000</td>
-                                <td data-label="Sports Arena Name :">Michael Sports</td>
-                                <td data-label="Feedback ID :">FB1000000000</td>
-                                <td data-label="Feedback :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Date Posted :">2021-08-13</td>
-                                <td data-label="Deadline :">2021-08-13</td>
-                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="Sports Arena ID :">SA1000000000</td>
-                                <td data-label="Sports Arena Name :">Michael Sports</td>
-                                <td data-label="Feedback ID :">FB1000000000</td>
-                                <td data-label="Feedback :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Date Posted :">2021-08-13</td>
-                                <td data-label="Deadline :">2021-08-13</td>
-                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="Sports Arena ID :">SA1000000000</td>
-                                <td data-label="Sports Arena Name :">Michael Sports</td>
-                                <td data-label="Feedback ID :">FB1000000000</td>
-                                <td data-label="Feedback :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Date Posted :">2021-08-13</td>
-                                <td data-label="Deadline :">2021-08-13</td>
-                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="Sports Arena ID :">SA1000000000</td>
-                                <td data-label="Sports Arena Name :">Michael Sports</td>
-                                <td data-label="Feedback ID :">FB1000000000</td>
-                                <td data-label="Feedback :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Date Posted :">2021-08-13</td>
-                                <td data-label="Deadline :">2021-08-13</td>
-                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="Sports Arena ID :">SA1000000000</td>
-                                <td data-label="Sports Arena Name :">Michael Sports</td>
-                                <td data-label="Feedback ID :">FB1000000000</td>
-                                <td data-label="Feedback :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Date Posted :">2021-08-13</td>
-                                <td data-label="Deadline :">2021-08-13</td>
-                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="Sports Arena ID :">SA1000000000</td>
-                                <td data-label="Sports Arena Name :">Michael Sports</td>
-                                <td data-label="Feedback ID :">FB1000000000</td>
-                                <td data-label="Feedback :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Date Posted :">2021-08-13</td>
-                                <td data-label="Deadline :">2021-08-13</td>
-                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="Sports Arena ID :">SA1000000000</td>
-                                <td data-label="Sports Arena Name :">Michael Sports</td>
-                                <td data-label="Feedback ID :">FB1000000000</td>
-                                <td data-label="Feedback :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Date Posted :">2021-08-13</td>
-                                <td data-label="Deadline :">2021-08-13</td>
-                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
-                            </tr>
+                            {% endfor %}
+                            
 
                         </tbody>
                     </table>

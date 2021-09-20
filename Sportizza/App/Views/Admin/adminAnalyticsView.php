@@ -145,7 +145,7 @@
                             <p class="side-menu-tooltip">Analytics</p>
                         </li>
                         <li>
-                            <a href="#" class="side-menu-li">
+                            <a href="/Admin/manageuser" class="side-menu-li">
                                 <i class="fas fa-users"></i>
                                 <p class="side-menu-item">Manage Users</p>
                             </a>
