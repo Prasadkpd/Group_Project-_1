@@ -36,12 +36,12 @@
       <div class="title">Sports Arena Application</div>
       <div class="content">
 
-        <form method="post" action="arenaReg/create" id="formSpArenaApplication" onsubmit="validateForm()">
+        <form method="post" action="arenaReg/create" id="formSpArenaApplication" onsubmit="validateForm()" enctype="multipart/form-data">
 
           <div class="sp-details">
             <div class="input-box">
               <label for="spArenaName">Sports Arena Name</label>
-              <input id="spArenaName" type="text" name="arena name" placeholder="Enter Arena Name"
+              <input id="spArenaName" type="text" name="arena_name" placeholder="Enter Arena Name"
                 onfocusout="validateSpArenaName()" value="{{sp_arena.arena_name}}" >
               <div class="helper-text" id="spArenaNameMsg"></div>
             </div>
@@ -59,14 +59,14 @@
                 <div class="custom-select">
                   <select id="category" name="category" onchange="validateCategory()" value="{{sp_arena.category}}">
                     <option value="0"> </option>
-                    <option value="1">Other</option>
-                    <option value="2">Football</option>
-                    <option value="3">Rugby</option>
-                    <option value="4">Swimming</option>
-                    <option value="5">Tennis</option>
-                    <option value="6">Volleyball</option>
-                    <option value="7">Karathe</option>
-                    <option value="8">Cricket</option>
+                    <option value="Other">Other</option>
+                    <option value="Football">Football</option>
+                    <option value="Rugby">Rugby</option>
+                    <option value="Swimming">Swimming</option>
+                    <option value="Tennis">Tennis</option>
+                    <option value="Volleyball">Volleyball</option>
+                    <option value="Karathe">Karathe</option>
+                    <option value="Cricket">Cricket</option>
                   </select>
                   <div class="helper-text" id="other-categoryMsg"></div>
                 </div>
@@ -75,7 +75,7 @@
             </div>
             <div class="input-box">
               <label for="other_category">Other Category</label>
-              <input id="other_category" type="text" name="other_category" placeholder="Please specify if other"
+              <input id="other_category" type="text" name="other_category" placeholder="Please specify only if other"
                 onfocusout="validateOtherCategory()" >
               <div class="helper-text" id="otherCategoryMsg"></div>
             </div>
@@ -86,19 +86,19 @@
                 <div class="custom-select">
                   <select id="location" name="location" onchange="validateLocation()" value="{{sp_arena.location}}">
                     <option value="0"> </option>
-                    <option value="1">Other</option>
-                    <option value="2">Matara</option>
-                    <option value="3">Galle</option>
-                    <option value="4">Gampaha</option>
-                    <option value="5">Kandy</option>
-                    <option value="6">Hambanthota</option>
-                    <option value="7">Baththaramulla</option>
-                    <option value="8">Nugegoda</option>
-                    <option value="9">Maradana</option>
-                    <option value="10">Mirissa</option>
-                    <option value="11">Weiligama</option>
-                    <option value="12">Wattala</option>
-                    <option value="13">Malabe</option>
+                    <option value="Other">Other</option>
+                    <option value="Matara">Matara</option>
+                    <option value="Galle">Galle</option>
+                    <option value="Gampaha">Gampaha</option>
+                    <option value="Kandy">Kandy</option>
+                    <option value="Hmabanthota">Hambanthota</option>
+                    <option value="Baththaramulla">Baththaramulla</option>
+                    <option value="Nugegods">Nugegoda</option>
+                    <option value="Maradana">Maradana</option>
+                    <option value="Mirissa">Mirissa</option>
+                    <option value="Weligama">Weiligama</option>
+                    <option value="Wattala">Wattala</option>
+                    <option value="Malabe">Malabe</option>
                   </select>
                   <div class="helper-text" id="other-locationMsg"></div>
                 </div>
@@ -107,16 +107,16 @@
             </div>
             <div class="input-box">
               <label for="other_location">Other Location</label>
-              <input id="other_location" type="text" name="other location" placeholder="Please specify the nearest town"
+              <input id="other_location" type="text" name="other_location" placeholder="Please specify only if other"
                 onfocusout="validateOtherLocation()" >
               <div class="helper-text" id="otherLocationMsg"></div>
             </div>
 
             <div class="input-box-map">
               <label for="map-link">Google Map Link</label>
-              <input id="map-link" type="text" name="google map link"
+              <input id="map-link" type="text" name="google_map_link"
                 placeholder="Ex: https://www.google.com/maps?q=204+C+Sandpiper+Place,+Fort+McMurray,+AB,+Canada"
-                onfocusout="validateContact()" value="{{sp_arena.google_map_link}}">
+                onfocusout="validateMapLink()" value="{{sp_arena.google_map_link}}">
               <div class="helper-text" id="map-linkMsg"></div>
             </div>
 
@@ -130,7 +130,7 @@
 
             <div class="input-box-map">
               <label for="other-facilities">Other Facilities</label>
-              <input id="other-facilities" type="text" name="other facilities" onfocusout="validateOtherFacilities()"
+              <input id="other-facilities" type="text" name="other_facilities" onfocusout="validateOtherFacilities()"
                 placeholder="Ex: Changing Rooms, Cafeteria, Car Parking, etc." value="{{sp_arena.other_facilities}}">
               <div class="helper-text" id="descriptionMsg"></div>
             </div>
@@ -141,11 +141,11 @@
               <div class="options-container">
 
                 <div class="custom-select">
-                  <select id="payment" name="payment method" onchange="validatePayment()"
+                  <select id="payment" name="payment_method" onchange="validatePayment()"
                   value="{{sp_arena.payment_method}}">
                     <option value="0"> </option>
-                    <option value="1">Only cash payments</option>
-                    <option value="2">Only card payments</option>
+                    <option value="1">Only card payments</option>
+                    <option value="2">Only cash payments</option>
                     <option value="3">Both cash & card payments</option>
                   </select>
                   <div class="helper-text" id="paymentMsg"></div>
@@ -158,34 +158,34 @@
               <div class="upload-images">
 
                 <label class="img-button">Image 1
-                  <input style="display: none;" type="file" name="Image 1" value="submit" accept="image/*" type="submit"
+                  <input style="display: none;" type="file" name="image_1" value="submit" accept="image/*" type="submit"
                     id="file1" onchange="change_color(this.files,event) , validateImgFiles()"
                     value="{{sp_arena.photo1}}">
                 </label>
                 <div class="helper-text" id="imgMsg1"></div>
 
                 <label class="img-button">Image 2
-                  <input style="display: none;" type="file" name="Image 2" value="submit" accept="image/*" type="submit"
+                  <input style="display: none;" type="file" name="image_2" value="submit" accept="image/*" type="submit"
                     id="file2" onchange="change_color(this.files,event) , validateImgFiles()"
                     value="{{sp_arena.photo2}}">
                 </label>
                 <div class="helper-text" id="imgMsg2"></div>
                 <label class="img-button">Image 3
-                  <input style="display: none;" type="file" name="Image 3" value="submit" accept="image/*" type="submit"
+                  <input style="display: none;" type="file" name="image_3" value="submit" accept="image/*" type="submit"
                     id="file3" onchange="change_color(this.files,event) , validateImgFiles()"
                     value="{{sp_arena.photo3}}">
                 </label>
                 <div class="helper-text" id="imgMsg3"></div>
 
                 <label class="img-button">Image 4
-                  <input style="display: none;" type="file" name="Image 4" value="submit" accept="image/*" type="submit"
+                  <input style="display: none;" type="file" name="image_4" value="submit" accept="image/*" type="submit"
                     id="file4" onchange="change_color(this.files,event) , validateImgFiles()"
                     value="{{sp_arena.photo4}}">
                 </label>
                 <div class="helper-text" id="imgMsg4"></div>
 
                 <label class="img-button">Image 5
-                  <input style="display: none;" type="file" name="Image 5" value="submit" accept="image/*" type="submit"
+                  <input style="display: none;" type="file" name="image_5" value="submit" accept="image/*" type="submit"
                     id="file5" onchange="change_color(this.files,event) , validateImgFiles()"
                     value="{{sp_arena.photo5}}">
                 </label>
@@ -261,8 +261,8 @@
   </footer>
   <!-- End of Footer -->
 
-  <!-- <script type="text/javascript" src="/Assets/js/signup_validation.js?version=5.0"></script>
-  <script type="text/javascript" src="/Assets/js/spArenaSignup_validations.js?version=5.0"></script> -->
+ <script type="text/javascript" src="/Assets/js/signup_validation.js?version=5.0"></script>
+  <script type="text/javascript" src="/Assets/js/spArenaSignup_validations.js?version=5.0"></script> 
 </body>
 
 </html>

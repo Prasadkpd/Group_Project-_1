@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Models;
+
 use Core\Model;
 use PDO;
 use PDOException;
 
 class User extends \Core\Model
 {
-    
+
     /**
      * Error messages
      *
@@ -36,10 +37,10 @@ class User extends \Core\Model
      */
     public function save()
     {
-        
+
         $this->validate();
 
-        
+
         if (empty($this->errors)) {
 
             $password = password_hash($this->password, PASSWORD_DEFAULT);
@@ -49,7 +50,7 @@ class User extends \Core\Model
             VALUES (:username, :password, :first_name, :last_name, :mobile_number)';
 
 
-            $db = static::getDB(); 
+            $db = static::getDB();
             $stmt = $db->prepare($sql);
 
             $stmt->bindValue(':first_name', $this->first_name, PDO::PARAM_STR);
@@ -69,7 +70,8 @@ class User extends \Core\Model
      *
      * @return void
      */
-    public function validate(){
+    public function validate()
+    {
         // $first_name = $_POST['first_name'];
         // First Name
         if ($this->first_name == '') {
@@ -107,6 +109,7 @@ class User extends \Core\Model
         if (static::usernameExists($this->username)) {
             $this->errors[] = 'Username is already taken';
         }
+
 
         // Password
         if ($this->password == '') {
@@ -146,17 +149,15 @@ class User extends \Core\Model
     public static function usernameExists($username)
     {
         return static::findByUsername($username) !== false;
-         //And Check whether account_status== inactive 
     }
     //Checking whether the mobile number is already exists
     public static function mobileNumberExists($mobile_number)
     {
-        return static::findByMobileNumber($mobile_number) !== false;
-    //      
+        return static::findByMobileNumber($mobile_number) !== false;    
     }
 
-//And Check whether account_status== inactive 
-   
+    //And Check whether account_status== inactive 
+
     /**
      * Find a user model by username
      *
@@ -178,34 +179,27 @@ class User extends \Core\Model
 
         return $stmt->fetch();
     }
-    /**
-     * Find a user model by mobile number
-     *
-     * @param string $mobile_number to search for
-     *
-     * @return mixed User object if found, false otherwise
-     */
-
+   
     public static function findByMobileNumber($mobile_number)
     {
         $sql = 'SELECT * FROM user WHERE primary_contact = :mobile_number AND account_status= "active"';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
-        $stmt->bindValue(':mobile_number', $mobile_number, PDO::PARAM_STR);
+        $stmt->bindValue(':mobile_number', $mobile_number, PDO::PARAM_INT);
 
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
         $stmt->execute();
-
         return $stmt->fetch();
     }
+    
 
-    public function validateSMS(){
-    }
+   
 
-    /**
-     * Authenticate a user by username and password.
+    
+  
+     /** Authenticate a user by username and password.
      *
      * @param string $username username
      * @param string $password password
@@ -240,4 +234,55 @@ class User extends \Core\Model
 
         return $stmt->fetch();
     }
+
+    //Need to get the textiturl from createURL function
+    public static function sendSMS($textiturl)
+    {
+        // create curl resource 
+        $ch = curl_init();
+
+        // set url 
+        curl_setopt($ch, CURLOPT_URL, $textiturl);
+
+        //return the transfer as a string 
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+        // $output contains the output string 
+        $output = curl_exec($ch);
+
+        // close curl resource to free up system resources 
+        curl_close($ch);
+    }
+    
+
+    public static function createURL($mobile_number)
+    {
+        //our mobile number
+        $user = "94765282976";
+        //our account password
+        $password = 1627;
+        //Random OTP code
+        $otp= mt_rand(000000,999999);
+        //SMS Sent
+        $text = urlencode("Enter the following OTP code to activate your account:". $otp ."");
+        // Replacing the initial 0 with 94
+        $to = substr_replace($mobile_number, '94', 0, 0);
+        //Base URL
+        $baseurl = "http://www.textit.biz/sendmsg";
+        // regex to create the url
+        $url = "$baseurl/?id=$user&pw=$password&to=$to&text=$text";
+        //Don't understand from here onwards
+        $ret = file($url);
+        $res = explode(":", $ret[0]);
+
+        if (trim($res[0]) == "OK") {
+            echo "Message Sent - ID : " . $res[1];
+        } else {
+            echo "Sent Failed - Error : " . $res[1];
+        }
+
+        // need to retunr the finalised textiturl
+    }
+
+
 }

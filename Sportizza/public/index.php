@@ -20,6 +20,7 @@ error_reporting(E_ALL);
 set_error_handler('Core\Error::errorHandler');
 set_exception_handler('Core\Error::exceptionHandler');
 
+ini_set("file_uploads", "On");
 // Sessions
 session_start();
 
