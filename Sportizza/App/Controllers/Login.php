@@ -19,17 +19,14 @@ class Login extends \Core\Controller
 
     //Login for a user
     public function loginAction(){
-    
-
 
         $user=User::authenticate($_POST['username'],$_POST['password']);
-        // echo($user);
         if ($user) {
 
             // Auth::login($user);
             Auth::login($user);
 
-            //Redirects to home page atm (Change it to customised home page)
+            //Redirects to customised home page of each user)
 
             if($user->type=='Admin'){
                 $this->redirect('/login/adminlogin');

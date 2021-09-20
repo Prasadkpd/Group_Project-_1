@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sportizza</title>
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/Assets/css/visitor.css?version=54" />
+    <link rel="stylesheet" href="/Assets/css/visitor.css" />
 
 </head>
 
@@ -27,31 +27,29 @@
                 <li><a href="#faq" onclick="uncheck()">Faq</a></li>
                 <li><a href="#about" onclick="uncheck()">About</a></li>
                 <li><a href="#contact" onclick="uncheck()">Contact</a></li>
-                <li><a href="#">Sign In</a></li>
+                <li><a href="login">Sign In</a></li>
                 <li><a href="#" onclick="open_popup_signup_message()">Sign Up</a></li>
             </ul>
         </nav>
         <!-- End of navigation bar -->
     </header>
     <div id="popup_signup" class="sectionpop ">
-        <div class="formsection">
+        <div class="signupsection">
     
             <div>
                 <button class="closebutton" onclick="close_popup_signup_message()">❌</button>
             </div>
-            <form action="/action_page.php" style="margin:20px">
-                <div style="margin:auto">
-                    <h1 style="margin:auto">
+            <div class="signup-sec-head">
+                    <h1>
                         Sign Up As
                     </h1>
-                </div>
-            </form>
+            </div>
             <div style="display:flex">
     
-                <a href="" class="popup_button">
+                <a href="/signup" class="popup_button">
                     Customer
                 </a>
-                <a href="" class="popup_button">
+                <a href="/arenaReg" class="popup_button">
                     Sports Arena
                 </a>
             </div>
@@ -143,7 +141,7 @@
                     </div>
                     <div class="search-filter">
                         <input type="search" name="" id="">
-                        <label for="">Search</label>
+                        <button>Search</button>
                     </div>
                 </div>
             </div>
@@ -714,16 +712,35 @@
                     <div class="section-header">
                         <h3 class="title" data-title="">Contact us</h3>
                     </div>
-                    <form action="post">
+                    <form method="POST" action="home/contact" id="formVisitorContact" onsubmit="validateVisitorContactForm()">
                         <div class="visitor-name">
-                            <input type="text" name="" id="" placeholder="First Name">
-                            <input type="text" name="" id="" placeholder="Last Name">
+                            <div class="input-content">
+                                <input type="text" id="firstName" name="firstname" placeholder="First Name"
+                                    onfocusout="validateFirstName()">
+                                <div class="helper-text"></div>
+                            </div>
+                            <div class="input-content">
+                                <input type="text" id="lastName" name="lastname" placeholder="Last Name"
+                                    onfocusout="validateLastName()">
+                                <div class="helper-text"></div>
+                            </div>
+                            </div>
+                        <div class="input-content">
+                        <input type="email" id="email" name="email" placeholder="Email"
+                               onfocusout="validateEmail()">
+                        <div class="helper-text"></div>
                         </div>
-                        <input type="email" name="" id="" placeholder="Email">
-                        <input type="text" class="subject" placeholder="Subject">
-                        <br>
-                        <textarea name="" id="" placeholder="Message" cols="53" rows="8"></textarea>
-                        <button class="contact-form-submit-btn">Submit</button>
+                        <div class="input-content">
+                        <input type="text" id="subject" class="subject" name="subject" placeholder="Subject"
+                               onfocusout="validateSubject()">
+                        <div class="helper-text"></div>
+                        </div>
+                        <div class="input-content">
+                        <textarea placeholder="Message" id="message" cols="53" rows="5" name="message"
+                                  onfocusout="validateMessage()"></textarea>
+                        <div class="helper-text"></div>
+                        </div>
+                       <input type="submit" value="Submit">
                     </form>
                 </div>
             </div>
@@ -802,7 +819,8 @@
     </footer>
 
 
-    <script src="/Assets/js/visitor.js?version=1"></script>
+    <script src="/Assets/js/signup_validation.js?version=4"></script>
+    <script src="/Assets/js/visitor.js?version=4"></script>
 </body>
 
 </html>

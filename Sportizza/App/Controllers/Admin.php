@@ -37,7 +37,7 @@ class Admin extends \Core\Controller
 
     public function faqAction()
     {
-        View::renderTemplate('Admin/admin-FAQ.html');
+        View::renderTemplate('Admin/adminFAQView.html');
     }
 
     public function manageuserAction()
@@ -48,7 +48,7 @@ class Admin extends \Core\Controller
 
     public function ratingsAction()
     {
-        View::renderTemplate('Admin/admin-ratings.html');
+        View::renderTemplate('Admin/adminRatingsView.html');
     }
 
 }
