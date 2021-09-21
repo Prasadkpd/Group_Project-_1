@@ -133,8 +133,6 @@ nav .sign-in-out-btn button{
     background-color:transparent; 
     font-weight:600; 
     font-size:16px;
-    
-
 }
 
 nav .sign-in-out-btn :hover{
@@ -581,11 +579,7 @@ nav .sign-in-out-btn :hover{
     height:100vh;
     display: none;
     z-index: 100;
-<<<<<<< HEAD
-    background-color:rgba(214, 214, 214, 0.836);
-=======
     background-color:rgba(238, 236, 236, 0.836);
->>>>>>> dev_prasad
     margin: 0 auto;
   }
 
