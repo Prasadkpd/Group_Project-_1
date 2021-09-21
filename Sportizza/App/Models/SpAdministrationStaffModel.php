@@ -30,7 +30,7 @@ class SpAdministrationStaffModel extends \Core\Model
         };
     }
 
-    public static function managerViewBookings($id){
+    public static function saAdminViewBookings($id){
         
         $sql = 'SELECT booking.booking_id,booking.price_per_booking,booking.booked_date,
                 booking.payment_method,booking.payment_status,time_slot.start_time,time_slot.end_time
@@ -38,8 +38,8 @@ class SpAdministrationStaffModel extends \Core\Model
                 INNER JOIN booking_timeslot ON booking.booking_id = booking_timeslot.booking_id
                 INNER JOIN time_slot ON booking_timeslot.timeslot_id=time_slot.time_slot_id
                 INNER JOIN user ON user.user_id=booking.customer_user_id
-                INNER JOIN manager ON booking.sports_arena_id =manager.sports_arena_id
-                 WHERE booking.security_status="active" AND manager.user_id=:id';
+                INNER JOIN administration_staff ON booking.sports_arena_id =administration_staff.sports_arena_id
+                 WHERE booking.security_status="active" AND administration_staff.user_id=:id';
         
 
 
@@ -56,7 +56,7 @@ class SpAdministrationStaffModel extends \Core\Model
         return $result;
     }
 
-    public static function managerCancelBookings($id){
+    public static function saAdminCancelBookings($id){
         
         $sql = 'SELECT booking.booking_id,booking.price_per_booking,booking.booked_date,
                 booking.payment_method,booking.payment_status,time_slot.start_time,time_slot.end_time
@@ -64,8 +64,8 @@ class SpAdministrationStaffModel extends \Core\Model
                 INNER JOIN booking_timeslot ON booking.booking_id = booking_timeslot.booking_id
                 INNER JOIN time_slot ON booking_timeslot.timeslot_id=time_slot.time_slot_id
                 INNER JOIN user ON user.user_id=booking.customer_user_id
-                INNER JOIN manager ON booking.sports_arena_id =manager.sports_arena_id
-                 WHERE booking.security_status="active"AND manager.user_id=:id';
+                INNER JOIN administration_staff ON booking.sports_arena_id =administration_staff.sports_arena_id
+                 WHERE booking.security_status="active"AND administration_staff.user_id=:id';
         
 
 
@@ -82,7 +82,7 @@ class SpAdministrationStaffModel extends \Core\Model
         return $result;
     }
 
-    public static function managerBookingPayment($id){
+    public static function saAdminBookingPayment($id){
         
         $sql = 'SELECT booking.booking_id,booking.price_per_booking,booking.booked_date,
                 booking.payment_method,booking.payment_status,time_slot.start_time,time_slot.end_time
@@ -90,9 +90,9 @@ class SpAdministrationStaffModel extends \Core\Model
                 INNER JOIN booking_timeslot ON booking.booking_id = booking_timeslot.booking_id
                 INNER JOIN time_slot ON booking_timeslot.timeslot_id=time_slot.time_slot_id
                 INNER JOIN user ON user.user_id=booking.customer_user_id
-                INNER JOIN manager ON booking.sports_arena_id =manager.sports_arena_id
+                INNER JOIN administration_staff ON booking.sports_arena_id =administration_staff.sports_arena_id
                  WHERE (booking.security_status="active" AND booking.payment_method="cash") AND
-                  booking.payment_status="unpaid" AND manager.user_id=:id';
+                  booking.payment_status="unpaid" AND administration_staff.user_id=:id';
         
 
 
@@ -109,7 +109,7 @@ class SpAdministrationStaffModel extends \Core\Model
         return $result;
     }
 
-    public static function managerNotification($id){
+    public static function saAdminNotification($id){
         
         $sql = 'SELECT subject,description, DATE(date) as date , TIME(date) as time 
         FROM notification WHERE user_id=:id';
@@ -127,9 +127,10 @@ class SpAdministrationStaffModel extends \Core\Model
         return $result;
     }
 
-    public static function managerViewTimeSlots($id){
+    public static function saAdminViewTimeSlots($id){
         
-        $sql = 'SELECT *  FROM time_slot WHERE manager_user_id=:id';
+        $sql = 'SELECT *  FROM time_slot INNER JOIN administration_staff ON time_slot.manager_user_id=administration_staff.manager_user_id
+                 WHERE  administration_staff.user_id=:id';
 
 
         $db = static::getDB();
@@ -144,9 +145,10 @@ class SpAdministrationStaffModel extends \Core\Model
         return $result;
     }
 
-    public static function managerDeleteTimeSlots($id){
+    public static function saAdminDeleteTimeSlots($id){
         
-        $sql = 'SELECT *  FROM time_slot WHERE manager_user_id=:id';
+        $sql = 'SELECT *  FROM time_slot INNER JOIN administration_staff ON time_slot.manager_user_id=administration_staff.manager_user_id
+                 WHERE  administration_staff.user_id=:id';
 
 
         $db = static::getDB();
@@ -161,9 +163,12 @@ class SpAdministrationStaffModel extends \Core\Model
         return $result;
     }
 
-    public static function managerViewFacility($id){
+    public static function saAdminViewFacility($id){
         
-        $sql = 'SELECT *  FROM facility WHERE manager_user_id=:id';
+        // $sql = 'SELECT *  FROM facility WHERE manager_user_id=:id';
+
+        $sql = 'SELECT *  FROM facility INNER JOIN administration_staff ON facility.manager_user_id=administration_staff.manager_user_id
+                 WHERE  administration_staff.user_id=:id';
 
 
         $db = static::getDB();
@@ -178,9 +183,10 @@ class SpAdministrationStaffModel extends \Core\Model
         return $result;
     }
 
-    public static function managerDeleteFacility($id){
+    public static function saAdminDeleteFacility($id){
         
-        $sql = 'SELECT *  FROM facility WHERE manager_user_id=:id';
+        $sql = 'SELECT *  FROM facility INNER JOIN administration_staff ON facility.manager_user_id=administration_staff.manager_user_id
+                 WHERE  administration_staff.user_id=:id';
 
 
         $db = static::getDB();
@@ -195,9 +201,10 @@ class SpAdministrationStaffModel extends \Core\Model
         return $result;
     }
 
-    public static function managerUpdateFacility($id){
+    public static function saAdminUpdateFacility($id){
         
-        $sql = 'SELECT *  FROM facility WHERE manager_user_id=:id';
+        $sql = 'SELECT *  FROM facility INNER JOIN administration_staff ON facility.manager_user_id=administration_staff.manager_user_id
+                 WHERE  administration_staff.user_id=:id';
 
 
         $db = static::getDB();
