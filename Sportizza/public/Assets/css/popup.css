@@ -87,3 +87,13 @@
       border-radius: 8px;
       width:5px;
   }
+
+  /* media query */
+  
+   .formsection {
+            width: 80vw;
+            padding-bottom:2em;
+        }
+        .formsection .popup_button {
+            margin: auto;
+        }
