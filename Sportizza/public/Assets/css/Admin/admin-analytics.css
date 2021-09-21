@@ -566,10 +566,12 @@ nav{
       .chart-row {
         display:flex;
         flex-direction:row;
+        margin:5rem 0 5rem 0;
       }
       .chart-container h5 {
         text-align:center;
         margin-top:30px;
+        margin-bottom: 30px;
         font-size:24px;
       }
       .chart {
@@ -578,52 +580,49 @@ nav{
         padding: 10px;
         width: 500px;
       }
+      .chart-pie {
+        display: block;
+        padding: 10px;
+        height: 300px;
+        margin-right: 8rem;
+        margin-left: 6.5rem;
+      }
       .chart-Table {
         display: block;
         padding: 30px;
         width:50%;
+        margin: auto;
       }
-      .tableHeader1{
-        text-align:center;
-        margin:65px 0 30px 0;
-        font-size:24px;
-      }
-      .tableHeader2{
-        text-align:center;
-        margin-bottom:30px;
-        font-size:24px;
+      .chart-Table .cTable td{
+        width:27rem;
+        margin: auto;
+        padding: 5px;
       }
       .dataTableHeader1 {
         background-color: #130f40;
         color: #fff;
-        font-weight: 500;
+        font-weight: 600;
         font-size: 16px;
-        width: 20rem;
         text-align: center;
-        padding: 1rem;
     }
     .dataTableHeader2 {
         background-color: #2C3A47;
         color: #fff;
-        font-weight: 500;
+        font-weight: 600;
         font-size: 16px;
-        width: 20rem;
         text-align: center;
-        padding: 1rem;
     }
     .dataTableRows1 {
         background-color: #c7ecee;
-        width: 20rem;
-        text-align: center;
-        padding: 1rem;
+        text-align: left;
     }
     .dataTableRows2 {
         background-color: #78e08f;
-        width: 20rem;
-        text-align: center;
-        padding: 1rem;
+        text-align: left;
     }
-
+    .countData {
+        text-align: center;
+    }
       .faqSubmit {
           float: right;
           background-color: #2ed573;

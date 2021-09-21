@@ -98,7 +98,7 @@ nav ul li{
   margin: 0 1em 0 0;
 }
 nav ul li a{
-  color: var(--dark-ash-2ash);
+  color: #2f3640;
   font-size: 1.2em;
   text-transform: uppercase;
   font-weight: 600;
@@ -155,6 +155,10 @@ nav a:hover{
 }
   
 /* pop up form section */
+.signup-sec-head {
+  margin: auto;
+  margin-bottom: 1em;
+}
 .sectionpop {
     position: fixed;
     width:100vw;
@@ -164,7 +168,7 @@ nav a:hover{
     background-color:rgba(238, 236, 236, 0.836);
     margin: 0 auto;
   }
-  .formsection{
+  .signupsection{
     display: flex;
     flex-direction:column;
     width:25%;
@@ -391,10 +395,13 @@ nav a:hover{
     width: 83%;
     font-size: larger;
 }
-.search-filter label{
+.search-filter button{
     color: white;
     background-color: var(--dark-orange);
-    padding: .6em;
+    padding: .6em 1em;
+    outline: none;
+    border: none;
+    cursor: pointer;
     border-radius: 1.5em;
 }
 
@@ -522,6 +529,7 @@ nav a:hover{
 
 .chip {
   margin-left: 1em;
+  margin-bottom: 1em;
   font-weight: 300;
   border-radius: 25px;
   background-color: #F0F4F7;
@@ -560,17 +568,19 @@ nav a:hover{
   display: flex;
   flex-direction: column;
   align-items: center;
+  
 }
 .visitor-reviews .customer-reviews{
   width: 88vw;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  overflow-y: scroll;
   justify-content: space-evenly;
 }
 .customer-review-card{
   width: 38vw;
-  margin: 1em;
+  margin: 2em;
   border-radius: 20px;
   padding: 1em;
 }
@@ -620,34 +630,19 @@ nav a:hover{
   font-weight:500;
 
 }
+.customer-reviews::-webkit-scrollbar{
+  width: 8px;
+  background-color: #cccccc;
+  border-radius: 10px;
+}
+
+.customer-reviews::-webkit-scrollbar-thumb {
+  background: #3a3a3a;
+  border-radius: 8px;
+}
 
 /* End of Reviews section */
 
-/* More reviews section */
-.review-more{
-  width: 80vw;
-  align-items: center;
-}
-.more-review-btn{
-  float: right;
-  padding: 0.85rem 2rem;
-  background-color: var(--orange);
-  color: var(--pure-white);
-  border-radius: 2rem;
-  border-width: 0rem;
-  font-size: 1.05rem;
-  text-transform: uppercase;
-  font-weight: 500;
-  transition: 0.3s;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-}
-
-.more-review-btn:hover {
-  background-color: var(--pure-white);
-  color:var(--orange);
-  border: .1em solid var(--orange);
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-}
 
 .faq{
   margin: auto;
@@ -680,7 +675,7 @@ nav a:hover{
   border-radius: 2rem;
   font-size: 1.05rem;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 600;
   transition: 0.3s;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
@@ -794,6 +789,7 @@ nav a:hover{
   font-size: 1.3rem;
   color: var(--dark-ash-2);
   line-height: 1.6;
+  margin-bottom: 2em;
 }
 
 .about-us-image {
@@ -806,8 +802,7 @@ nav a:hover{
 }
 
 .read-more-about-btn{
-  margin-top: 3em;
-  padding: 0.85rem 2rem;
+  padding: 0.85rem 1rem;
   background-color: var(--orange);
   color: var(--pure-white);
   border-radius: 2rem;
@@ -967,22 +962,36 @@ nav a:hover{
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  
+  justify-content: center;  
 }
-.contact-form .visitor-name {
-  width: 100%;
-}
+
+
+
 .contact-form form input, textarea{
   padding: .5em 2em .5em 1em;
   margin: .3em;
   font-weight: 600;
   font-size: 1em;
-  border-radius: 2em;
   outline: none;
-  border: none;
+  border-radius: 2em;
+  border: 2px solid #cccccc;
   background: var(--pure-white);
 }
+.contact-form .visitor-name {
+  width: 100%;
+  padding: 0 2em;
+  display: flex;
+  padding-left: 0;
+  padding-right:0;
+  margin-left: 0;
+  margin-right: 0;
+  justify-content: space-between;
+}
+.contact-form .visitor-name input {
+  box-sizing: border-box;
+  width: 50%;  
+}
+
 
 .contact-form input[type='email'] ,textarea{
   width: 100%;
@@ -992,14 +1001,52 @@ nav a:hover{
 }
 
 .contact-form textarea {
-  padding: 1em 2em;
+    padding: 1em 2em;
+    margin: 0;
 }
 
 .contact-form input::placeholder,textarea::placeholder{
   font-weight: 400;
 }
 
+.contact-form .input-content {
+    margin: 0;
+    padding: 0;
+}
 
+.contact-form .input-content .helper-text {
+    padding-left: 2em;
+    padding-bottom: 0;
+    font-size: .9em;
+    font-weight: 500;
+    color: #e74c3c;
+}
+.contact-form .visitor-name .input-content input{
+    width: 98%;
+
+}
+
+.contact-form input[type='submit']{
+  float: right;
+  padding: 0.65rem 2rem;
+  background-color: var(--orange);
+  color: var(--pure-white);
+  border-radius: 2rem;
+  border-width: 0rem;
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: 0.3s;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+
+.contact-form input[type='submit']:hover {
+  background-color: var(--pure-white);
+  color:var(--orange);
+  border: .1em solid var(--orange);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
 
 
 /* ========================================================= */
@@ -1110,7 +1157,7 @@ footer .social-media i{
   transition: 0.3s;
   height: 50px;
   width: 50px;
-}
+} 
 
 .back-btn a{
   display: flex;
@@ -1197,7 +1244,13 @@ footer .social-media i{
     position: fixed;
     top: 0;
   }
-  
+  .signupsection{
+    width: 90%;
+  }
+  .signupsection .popup_button{
+    padding:.6em;
+  }
+
   .visitor-home{
     flex-direction: column-reverse;
     text-align: center;
@@ -1275,7 +1328,7 @@ footer .social-media i{
 .search-results .result-details{
   text-align: left; 
   width: 100%; 
-  margin: 0 auto;
+  margin: 10px auto;
   padding: 1em;
 }
 .search-results .sp-arena-summary-items{
@@ -1293,7 +1346,7 @@ footer .social-media i{
   padding: .1em 1em;
   position: relative;
   margin-top: .5em;
-  font-weight: 700;
+  font-weight: 600;
   font-size: .8em;
 }
 
@@ -1473,6 +1526,18 @@ footer .social-media i{
 .contact-form form input, textarea{
   width: 100%;
 }
+
+.contact-form .visitor-name{
+  display: flex;
+  flex-direction: column;
+}
+.contact-form .visitor-name input{
+  width: 100%;
+}
+.contact-form input[type='submit']{
+  width: 40%;
+}
+
 
 footer .footer-header {
   display: none;

@@ -46,10 +46,10 @@ formspArenaApplication.addEventListener('submit', function (event) {
         validateOtherLocation() &&
         validateMapLink() &&
         validateDescription() &&
-        validateOtherFacilities() &&
+        validateOtherFacilities()  &&
         validatePayment() &&
 
-        //Manager account validations
+        // //Manager account validations
         validateFirstName() &&
         validateLastName() &&
         validateMobile() &&
@@ -60,7 +60,7 @@ formspArenaApplication.addEventListener('submit', function (event) {
     }
 });
 
-//Function to check all the validations before getting submitted
+// //Function to check all the validations before getting submitted
 function validateForm() {
     //Sports Arena validations
     validateSpArenaName();

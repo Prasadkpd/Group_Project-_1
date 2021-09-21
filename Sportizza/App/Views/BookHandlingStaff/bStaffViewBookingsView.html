@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Bookings</title>
-    <link rel="stylesheet" href="/Assets/css/BookingHandelingStaff/manage-bookings.css">
+    <link rel="stylesheet" href="/Assets/css/BookingHandelingStaff/manage-bookings.css?version=5">
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 </head>
 
@@ -28,14 +28,15 @@
                 <button class="openbutton" onclick="openpopupform()">
                     <div class="profile-details">
                         <img src="/Assets/images/Team members/jonathan.png" alt="" class="profile-picture">
-                        <div class="username">{{current_user.first_name}}  {{current_user.last_name}}</div>
+                        <div class="username">{{current_user.first_name}} {{current_user.last_name}}</div>
                     </div>
                 </button>
             </div>
             <div class="sign-in-out-btn">
-                {% if current_user %}
+                <button onclick="open_popup_signout_message()"> Sign Out </button>
+                <!-- {% if current_user %}
         <a href="/logout"> Sign Out</a>
-        {% endif %}
+        {% endif %} -->
             </div>
         </div>
         <!-- search bar for mobile -->
@@ -44,6 +45,37 @@
             <i class="fas fa-search "></i>
         </div>
     </nav>
+    <div id="popup_signout" class="sectionpop ">
+        <div class="formsection">
+
+            <div>
+                <button class="closebutton" onclick="close_popup_signout_message()">❌</button>
+            </div>
+            <form action="/action_page.php" style="margin:20px">
+                <div style="margin:auto">
+                    <h1 style="margin:auto">
+                        Sign Out
+                    </h1>
+                    <p style="margin:auto">
+                        Do your really want to sign out now?
+                    </p>
+                </div>
+            </form>
+
+
+            <div style="display:flex">
+
+                <button class="popup_delete_button">
+                    {% if current_user %}
+                    <a href="/logout"> YES</a>
+                    {% endif %}
+                </button>
+                <button onclick="close_popup_signout_message()" class="popup_button">
+                    NO
+                </button>
+            </div>
+        </div>
+    </div>
     <div id="myForm" class="sectionpop ">
         <div class="formsection">
             <div>
@@ -146,7 +178,7 @@
                                 <th class="b-first-th">Booking ID</th>
                                 <th>Start Time</th>
                                 <th>End Time</th>
-                                <th>Amount</th>
+                                <th>Amount(LKR)</th>
                                 <th>Booked Date</th>
                                 <th>Mobile Number</th>
                                 <th>Payment Method</th>
@@ -155,6 +187,7 @@
                         </thead>
                         <tbody>
                             {% for book in bookings %}
+                            {% if book.payment_status=="paid" %}
                             <tr>
                                 <td data-label="Booking ID :">{{book.booking_id}}</td>
                                 <td data-label="Start Time :">{{book.start_time}}</td>
@@ -163,20 +196,39 @@
                                 <td data-label="Booked Date :">{{book.booked_date}}</td>
                                 <td data-label="Mobile Number :">{{book.primary_contact}}</td>
                                 <td data-label="Payment Method :">{{book.payment_method}}</td>
-                                <td data-label="Payment Status:"> <div class="Payment-status active"><a href="">{{book.payment_status}}</a></div></td>
-                                
+                                <td data-label="Payment Status:">
+                                    <div class="Payment-status active"><a href="">{{book.payment_status}}</a></div>
+                                </td>
+
                             </tr>
+                            {% endif %}
+
+                            {% if book.payment_status=="unpaid" %}
+                            <tr>
+                                <td data-label="Booking ID :">{{book.booking_id}}</td>
+                                <td data-label="Start Time :">{{book.start_time}}</td>
+                                <td data-label="End Time :">{{book.end_time}}</td>
+                                <td data-label="Amount :">{{book.price_per_booking}}</td>
+                                <td data-label="Booked Date :">{{book.booked_date}}</td>
+                                <td data-label="Mobile Number :">{{book.primary_contact}}</td>
+                                <td data-label="Payment Method :">{{book.payment_method}}</td>
+                                <td data-label="Payment Status:">
+                                    <div class="Payment-status"><a href="">{{book.payment_status}}</a></div>
+                                </td>
+
+                            </tr>
+                            {% endif %}
                             {% endfor %}
-                            
-                              
+
+
                         </tbody>
                     </table>
                 </div>
-                
-               
-            </div> 
+
+
+            </div>
         </div>
-       
+
     </section>
     <!-- Start of Footer -->
     <footer style="position:fixed;">
@@ -187,6 +239,7 @@
         </div>
     </footer>
     <!-- End of Footer -->
-    <script type="text/javascript" src="/Assets/js/BookingHandelingStaff/manage-bookings.js"></script>
+    <script type="text/javascript" src="/Assets/js/BookingHandelingStaff/manage-bookings.js?version=1"></script>
 </body>
+
 </html>

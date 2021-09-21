@@ -1,3 +1,10 @@
+const firstName = document.getElementById('firstName');
+const lastName = document.getElementById('lastName');
+const email = document.getElementById('email');
+const subject = document.getElementById('subject');
+const message = document.getElementById('message');
+const formVisitorContact = document.getElementById('formVisitorContact');
+
 //Nav
 function uncheck() {
     document.getElementById("check").checked=false;
@@ -70,3 +77,32 @@ let i;
             }
         });
     }
+
+// Contact form Validation
+// Input fields
+
+// Customer details
+
+// Form
+
+formVisitorContact.addEventListener('submit', function (event) {
+    // Prevent default behaviour
+    event.preventDefault();
+    if (
+        validateFirstName() &&
+        validateLastName() &&
+        validateEmail() &&
+        validateSubject() &&
+        validateMessage()
+    ) {
+        formVisitorContact.submit()
+    }
+});
+
+function validateVisitorContactForm() {
+    validateFirstName();
+    validateLastName();
+    validateEmail();
+    validateSubject();
+    validateMessage();
+}
