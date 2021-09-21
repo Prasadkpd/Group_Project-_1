@@ -583,10 +583,10 @@
                                 <th class="table-td-left">Start Time</th>
                                 <th class="table-td-left">End Time</th>
                                 <th>Sports Arena Name</th>
-                                <th>Category</th>
+                                <th class="table-td-right">Category</th>
                                 <th>Payment Method</th>
                                 <th>Payment Status</th>
-                                <th>Amount</th>
+                                <th>Amount(LKR)</th>
                                 <th style="padding-right: 2em;">Action</th>
                                 <!-- <th >  </th> -->
                             </tr>
@@ -595,30 +595,16 @@
 
 
                             {% for book in bookings %}
-<<<<<<< Updated upstream
-                            <tr>
-<<<<<<< HEAD
-                                <td data-label="Booking ID :">{{book.booking_id}}</td>
-                                <td data-label="Booking Date :">{{book.booked_date}}</td>
-                                <td data-label="Start Time :">{{book.start_time}}</td>
-                                <td data-label="End Time :">{{book.end_time}}</td>
-                                <td data-label="Arena Name:">{{book.sa_name}}</td>
-                                <td data-label="Category:">{{book.category}}</td>
-=======
                             {% if book.payment_status=="paid" %}
                             <tr >
-=======
->>>>>>> dev
+
+
                                 <td data-label="Booking ID :" class="table-td-left">{{book.booking_id}}</td>
                                 <td data-label="Booking Date :" class="table-td-left">{{book.booked_date}}</td>
                                 <td data-label="Start Time :" class="table-td-left">{{book.start_time}}</td>
                                 <td data-label="End Time :" class="table-td-left">{{book.end_time}}</td>
                                 <td data-label="Arena Name:" class="table-td-left">{{book.sa_name}}</td>
-                                <td data-label="Category:" class="table-td-left">{{book.category}}</td>
-<<<<<<< HEAD
->>>>>>> Stashed changes
-=======
->>>>>>> dev
+                                <td data-label="Category:" >{{book.category}}</td>
                                 <td data-label="Payment Method :">{{book.payment_method}}</td>
                                 <td data-label="Payment Status :"><div class="Payment-status active"><a href="">{{book.payment_status}}</a></div></td>
                                 <td data-label="Amount:">{{book.price_per_booking}}</td>
@@ -636,20 +622,11 @@
                                                 <i class="fas fa-times"></i>
                                             </button>
                                         </div>
-<<<<<<< HEAD
-<<<<<<< Updated upstream
                                     </td>
-                                
-=======
                                     </div>
                                 </td>
->>>>>>> Stashed changes
-=======
-
                                     </div>
                                 </td>
-
->>>>>>> dev
                             </tr>
                             {% endif %}
 
@@ -660,7 +637,7 @@
                                 <td data-label="Start Time :" class="table-td-left">{{book.start_time}}</td>
                                 <td data-label="End Time :" class="table-td-left">{{book.end_time}}</td>
                                 <td data-label="Arena Name:" class="table-td-left">{{book.sa_name}}</td>
-                                <td data-label="Category:" class="table-td-left">{{book.category}}</td>
+                                <td data-label="Category:" >{{book.category}}</td>
                                 <td data-label="Payment Method :">{{book.payment_method}}</td>
                                 <td data-label="Payment Status :"><div class="Payment-status"><a href="">{{book.payment_status}}</a></div></td>
                                 <td data-label="Amount:">{{book.price_per_booking}}</td>

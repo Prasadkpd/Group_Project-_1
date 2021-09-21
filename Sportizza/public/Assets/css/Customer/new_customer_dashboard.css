@@ -381,6 +381,10 @@ nav .sign-in-out-btn :hover{
     .table-td-left {
         text-align: left;
     }
+    .table-td-right{
+        text-align: right;
+        padding-right: 15px;
+    }
     .my-favourite-list {  
         width: 70vw;
     }
@@ -574,7 +578,7 @@ nav .sign-in-out-btn :hover{
         font-weight:600;
       font-size:0.9rem;
       width:50px;
-        background-color:#eb4d4b;
+        background-color:#ffa502;;
         padding:0.5rem 1.3rem;
         border-radius:25px;
         text-transform: uppercase;
@@ -611,15 +615,12 @@ nav .sign-in-out-btn :hover{
     height:100vh;
     display: none;
     z-index: 100;
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-    background-color:rgba(214, 214, 214, 0.836);
-=======
+
+
     background-color:rgba(238, 236, 236, 0.836);
->>>>>>> Stashed changes
-=======
-    background-color:rgba(238, 236, 236, 0.836);
->>>>>>> dev
+
+
+
     margin: 0 auto;
   }
 
@@ -926,13 +927,50 @@ footer {
       }
 
       @media screen and (max-width: 420px) {
+
+        .popup_button{
+            background-color: #2ed573;
+            color: white;
+            font-weight: 600;
+            font-size:16px;
+            border: none;
+            cursor: pointer;
+            width: 30%;
+            opacity: 0.9;
+            
+            border-radius: 50px;
+            border: none;
+             width:120px;
+             height: 49px;
+             align-items: center;
+             box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+        }
+
+        .popup_delete_button{
+            background-color: #e74c3c;
+            color: white;
+            font-weight: 600;
+            font-size:16px;
+            border: none;
+            cursor: pointer;
+            /* width: 20%; */
+            opacity: 0.9;
+            margin: 5px auto;
+            border-radius: 50px;
+            border: none;
+             width:120px;
+             height: 49px;
+             align-items: center;
+             margin-left:20px ;
+             box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+        }
         .booking-table tbody tr .Payment-status a{
-            font-size:0.7rem;
-            padding: 0.1rem 0.5rem;
+            font-size:0.6rem;
+            padding: 0.1rem 0.8rem;
           }
           .booking-table tbody tr .Payment-status.active a{
-            font-size:0.7rem;
-            padding: 0.1rem 0.5rem;
+            font-size:0.6rem;
+            padding: 0.1rem 0.8rem;
           }
    
         .sidebar{
@@ -1018,9 +1056,7 @@ footer {
             padding-bottom:2em;
             padding-right:0;       
         }
-        .popup_button,.popup_delete_button{
-            margin: .5em;
-        }
+        
         .formsection {
             width: 80vw;
             padding-bottom:2em;
