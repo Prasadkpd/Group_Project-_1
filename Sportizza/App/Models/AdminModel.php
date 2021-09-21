@@ -97,6 +97,61 @@ class AdminModel extends \Core\Model
         //  var_dump($result);
         return $result;
     }
+
+    public static function adminViewFAQ(){
+        
+        $sql = 'SELECT * FROM faq WHERE security_status="active" ';
+
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        // var_dump($result);
+        return $result;
+    }
+
+    public static function adminDeleteFAQ(){
+        
+        $sql = 'SELECT * FROM faq WHERE security_status="active" ';
+
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        // var_dump($result);
+        return $result;
+    }
+
+
+    public static function adminRemoveRatings(){
+        
+        $sql = 'SELECT feedback.feedback_id,feedback.feedback_rating,sports_arena_profile.sa_name,DATE(feedback.posted_date) as "date",
+                feedback.sports_arena_id FROM feedback
+        INNER JOIN sports_arena_profile ON feedback.sports_arena_id=sports_arena_profile.sports_arena_id 
+        WHERE feedback.security_status="active" ';
+
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        //  var_dump($result);
+        return $result;
+    }
     
 
 
