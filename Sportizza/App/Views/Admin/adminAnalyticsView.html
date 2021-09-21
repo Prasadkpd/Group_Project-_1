@@ -232,10 +232,12 @@
                                                 </tr>
                                             </thead>
                                             <tbody class="dataTableRows1">
+                                                {% for chart in chart5 %}
                                                 <tr>
-                                                    <td>Name</td>
-                                                    <td>Number</td>
+                                                    <td>{{chart.category}}</td>
+                                                    <td>{{chart.No_Of_Sports_Arenas}}</td>
                                                 </tr>
+                                                {% endfor %}
                                             </tbody>
                                         </table>
                                     </div>

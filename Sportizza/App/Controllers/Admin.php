@@ -32,7 +32,7 @@ class Admin extends \Core\Controller
 
     public function analyticsAction()
     {
-        View::renderTemplate('Admin/adminAnalytics.html');
+        View::renderTemplate('Admin/adminAnalyticsView.html');
     }
 
     public function faqAction()
@@ -49,6 +49,18 @@ class Admin extends \Core\Controller
     public function ratingsAction()
     {
         View::renderTemplate('Admin/adminRatingsView.html');
+    }
+
+    public function chartAction()
+    {
+        
+        $chart1=AdminModel::adminChart1();
+        $chart5=AdminModel::adminChart5();
+        //direct to the admin page
+        View::renderTemplate('Admin/adminAnalyticsView.html',
+        ['chart1'=>$chart1,'chart5'=>$chart5]);
+        
+
     }
 
 }

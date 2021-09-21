@@ -97,6 +97,118 @@ class AdminModel extends \Core\Model
         //  var_dump($result);
         return $result;
     }
+
+    public static function adminViewFAQ(){
+        
+        $sql = 'SELECT * FROM faq WHERE security_status="active" ';
+
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        // var_dump($result);
+        return $result;
+    }
+
+    public static function adminDeleteFAQ(){
+        
+        $sql = 'SELECT * FROM faq WHERE security_status="active" ';
+
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        // var_dump($result);
+        return $result;
+    }
+
+
+    public static function adminRemoveRatings(){
+        
+        $sql = 'SELECT feedback.feedback_id,feedback.feedback_rating,sports_arena_profile.sa_name,DATE(feedback.posted_date) as "date",
+                feedback.sports_arena_id FROM feedback
+        INNER JOIN sports_arena_profile ON feedback.sports_arena_id=sports_arena_profile.sports_arena_id 
+        WHERE feedback.security_status="active" ';
+
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        //  var_dump($result);
+        return $result;
+    }
+
+    // Models for displaying charts
+
+    public static function adminChart1(){
+        
+        $sql = 'SELECT CASE EXTRACT(MONTH FROM user.registered_time)
+            WHEN "1" THEN "January"
+            WHEN "2" THEN "February"
+            WHEN "3" THEN "March"
+            WHEN "4" THEN "April"
+            WHEN "5" THEN "May"
+            WHEN "6" THEN "June"
+            WHEN "7" THEN "July"
+            WHEN "8" THEN "August"
+            WHEN "9" THEN "September"
+            WHEN "10" THEN "October"
+            WHEN "11" THEN "November"
+            WHEN "12" THEN "December"
+            ELSE "Not Valid"
+        END AS Time_Registered, COUNT(DISTINCT customer_user_id) AS No_Of_Customers
+        FROM customer
+        JOIN user ON customer.customer_user_id=user.user_id
+        GROUP BY Time_Registered
+        ORDER BY user.registered_time ASC ';
+
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+          var_dump($result);
+        return $result;
+    }
+
+    public static function adminChart5(){
+        
+        $sql = 'SELECT category, COUNT(DISTINCT sports_arena_id) AS No_Of_Sports_Arenas
+        FROM sports_arena_profile
+        GROUP BY category;
+        ORDER BY category ASC ';
+
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        //  var_dump($result);
+        return $result;
+    }
     
 
 
