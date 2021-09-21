@@ -24,6 +24,7 @@ class Signup extends \Core\Controller
 
         if ($user->save()) {
 
+            //Have redirect instead
             header('Location: http://' . $_SERVER['HTTP_HOST'] . '/signup/success', true, 303);
             exit;
 

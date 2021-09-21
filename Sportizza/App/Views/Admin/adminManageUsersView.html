@@ -27,7 +27,7 @@
              <button   class="openbutton" onclick="openpopupform()">
              <div class="profile-details">
                  <img src="/Assets/images/Team members/jonathan.png" alt="" class="profile-picture">
-                 <div class="username">Bhashitha Ranasinghe</div>
+                 <div class="username">{{current_user.first_name}}  {{current_user.last_name}}</div>
                  
              </div>
              </button>
@@ -97,7 +97,9 @@
      <div style="display:flex">
      
      <button style="background-color:#e74c3c    " class="popup_button">
-         YES
+        {% if current_user %}
+        <a href="/logout"> Yes</a>
+        {% endif %}
      </button>
      <button onclick="close_popup_signout_message()"  class="popup_button">
          NO
@@ -192,14 +194,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for user in users %}
+                            {% for customer in customers %}
                             <tr>
-                                <td data-label="User ID :">{{user.user_id}}</td>
-                                <td data-label="First Name :">{{user.first_name}}</td>
-                                <td data-label="Last Name :">{{user.last_name}}</td>
-                                <td data-label="Username :">{{user.username}}</td>
-                                <td data-label="Primary Contact :">{{user.primary_contact}}</td>
-                                <td data-label="Secondary Contact :">{{user.secondary_contact}}</td>
+                                <td data-label="User ID :">{{customer.user_id}}</td>
+                                <td data-label="First Name :">{{customer.first_name}}</td>
+                                <td data-label="Last Name :">{{customer.last_name}}</td>
+                                <td data-label="Username :">{{customer.username}}</td>
+                                <td data-label="Primary Contact :">{{customer.primary_contact}}</td>
+                                <td data-label="Secondary Contact :">{{customer.secondary_contact}}</td>
                                 <td data-label="Abided Rules :">Yes</td>
                                 <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
                             </tr>
@@ -230,92 +232,22 @@
                                 <th>Registered Date</th>
                                 <th>Contact Number</th>
                                 <th class="b-last-th">Request Status</th>
-                                <!--<th>Google Map Link</th>
-                                <th>Contact Number</th>
-                                <th>Description</th>
-                                <th>Category</th>
-                                <th>Payment Method</th>
-                                <th class="b-last-th">Request Status</th>-->
+                                
                             </tr>
                         </thead>
                         <tbody>
+                            
+
+                            {% for arenas in inactiveArenas %}
                             <tr class="popup" onclick="sportsArenaPopup()">
-                                <td data-label="Sports Arena Name :">Michael Sports Academy</td>
-                                <td data-label="Registered Date :">2021-08-05</td>
-                                <td data-label="Contact Number :">771199384</td>
+                                <td data-label="Sports Arena Name :">{{arenas.sa_name}}</td>
+                                <td data-label="Registered Date :">{{arenas.date}}</td>
+                                <td data-label="Contact Number :">{{arenas.contact_no}}</td>
                                 <td data-label="Accept Request :" class="acceptAcc"><i class="fas fa-check"></i></td>
-                                <!--<td data-label="Google Map Link :">https://goo.gl/maps/SjbY7wowaqSR1J929</td>
-                                <td data-label="Contact Number :">771199384</td>
-                                <td data-label="Description :">Lorem ipsum dolor sit amet, consectetur adipiscing.</td>
-                                <td data-label="Category :">Futsal</td>
-                                <td data-label="Payment Method :">Cash</td-->
+                                
                             </tr>
-                            <tr>
-                                <td data-label="Sports Arena Name :">Michael Sports Academy</td>
-                                <td data-label="Registered Date :">2021-08-05</td>
-                                <td data-label="Contact Number :">771199384</td>
-                                <td data-label="Accept Request :" class="acceptAcc"><i class="fas fa-check"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="Sports Arena Name :">Michael Sports Academy</td>
-                                <td data-label="Registered Date :">2021-08-05</td>
-                                <td data-label="Contact Number :">771199384</td>
-                                <td data-label="Accept Request :" class="acceptAcc"><i class="fas fa-check"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="Sports Arena Name :">Michael Sports Academy</td>
-                                <td data-label="Registered Date :">2021-08-05</td>
-                                <td data-label="Contact Number :">771199384</td>
-                                <td data-label="Accept Request :" class="acceptAcc"><i class="fas fa-check"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="Sports Arena Name :">Michael Sports Academy</td>
-                                <td data-label="Registered Date :">2021-08-05</td>
-                                <td data-label="Contact Number :">771199384</td>
-                                <td data-label="Accept Request :" class="acceptAcc"><i class="fas fa-check"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="Sports Arena Name :">Michael Sports Academy</td>
-                                <td data-label="Registered Date :">2021-08-05</td>
-                                <td data-label="Contact Number :">771199384</td>
-                                <td data-label="Accept Request :" class="acceptAcc"><i class="fas fa-check"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="Sports Arena Name :">Michael Sports Academy</td>
-                                <td data-label="Registered Date :">2021-08-05</td>
-                                <td data-label="Contact Number :">771199384</td>
-                                <td data-label="Accept Request :" class="acceptAcc"><i class="fas fa-check"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="Sports Arena Name :">Michael Sports Academy</td>
-                                <td data-label="Registered Date :">2021-08-05</td>
-                                <td data-label="Contact Number :">771199384</td>
-                                <td data-label="Accept Request :" class="acceptAcc"><i class="fas fa-check"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="Sports Arena Name :">Michael Sports Academy</td>
-                                <td data-label="Registered Date :">2021-08-05</td>
-                                <td data-label="Contact Number :">771199384</td>
-                                <td data-label="Accept Request :" class="acceptAcc"><i class="fas fa-check"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="Sports Arena Name :">Michael Sports Academy</td>
-                                <td data-label="Registered Date :">2021-08-05</td>
-                                <td data-label="Contact Number :">771199384</td>
-                                <td data-label="Accept Request :" class="acceptAcc"><i class="fas fa-check"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="Sports Arena Name :">Michael Sports Academy</td>
-                                <td data-label="Registered Date :">2021-08-05</td>
-                                <td data-label="Contact Number :">771199384</td>
-                                <td data-label="Accept Request :" class="acceptAcc"><i class="fas fa-check"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="Sports Arena Name :">Michael Sports Academy</td>
-                                <td data-label="Registered Date :">2021-08-05</td>
-                                <td data-label="Contact Number :">771199384</td>
-                                <td data-label="Accept Request :" class="acceptAcc"><i class="fas fa-check"></i></td>
-                            </tr>
+                            {% endfor %}
+                            
                         </tbody>
                     </table>  
                     <div class="form-container">
@@ -364,138 +296,34 @@
                                 </th>
                             </tr>
                             <tr class="booking-thead-second-tr">
-                                <th class="b-first-th">User ID</th>
-                                <th>Customer Name</th>
+                                <!-- <th class="b-first-th">User ID</th> -->
+                                <!-- <th>Customer Name</th> -->
                                 <th>Sports Arena ID</th>
                                 <th>Sports Arena Name</th>
-                                <th>Complaint</th>
-                                <th>Blacklisted</th>
+                                <th>Complain count</th>
+                                <th>Account Status</th>
                                 <th>Blacklist Sports Arena</th>
                                 <th>Remove Account</th>
                                 <!--<th class="b-last-th">Payment Status</th>-->
                             </tr>
                         </thead>
                         <tbody>
+
+
+
+                            {% for arenas in activeArenas %}
                             <tr>
-                                <td data-label="User ID :">CS1000000004</td>
-                                <td data-label="Customer Name :">Heshan Perera</td>
-                                <td data-label="Sports Arena ID :">SA1000000000</td>
-                                <td data-label="Sports Arena name :">Michael Sports</td>
-                                <td data-label="Complaint :">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-                                <td data-label="Blacklisted :">Yes</td>
+                
+                                <td data-label="Sports Arena ID :">{{arenas.s_a_profile_id}}</td>
+                                <td data-label="Sports Arena name :">{{arenas.sa_name}}</td>
+                                <td data-label="Complaint :">{{arenas.count}}</td>
+                                <td data-label="Account Status :">{{arenas.account_status}}</td>
                                 <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
                                 <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
                             </tr>
-                            <tr>
-                                <td data-label="User ID :">CS1000000004</td>
-                                <td data-label="Customer Name :">Heshan Perera</td>
-                                <td data-label="Sports Arena ID :">SA1000000000</td>
-                                <td data-label="Sports Arena name :">Michael Sports</td>
-                                <td data-label="Complaint :">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-                                <td data-label="Blacklisted :">Yes</td>
-                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
-                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="User ID :">CS1000000004</td>
-                                <td data-label="Customer Name :">Heshan Perera</td>
-                                <td data-label="Sports Arena ID :">SA1000000000</td>
-                                <td data-label="Sports Arena name :">Michael Sports</td>
-                                <td data-label="Complaint :">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-                                <td data-label="Blacklisted :">Yes</td>
-                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
-                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="User ID :">CS1000000004</td>
-                                <td data-label="Customer Name :">Heshan Perera</td>
-                                <td data-label="Sports Arena ID :">SA1000000000</td>
-                                <td data-label="Sports Arena name :">Michael Sports</td>
-                                <td data-label="Complaint :">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-                                <td data-label="Blacklisted :">Yes</td>
-                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
-                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="User ID :">CS1000000004</td>
-                                <td data-label="Customer Name :">Heshan Perera</td>
-                                <td data-label="Sports Arena ID :">SA1000000000</td>
-                                <td data-label="Sports Arena name :">Michael Sports</td>
-                                <td data-label="Complaint :">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-                                <td data-label="Blacklisted :">Yes</td>
-                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
-                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="User ID :">CS1000000004</td>
-                                <td data-label="Customer Name :">Heshan Perera</td>
-                                <td data-label="Sports Arena ID :">SA1000000000</td>
-                                <td data-label="Sports Arena name :">Michael Sports</td>
-                                <td data-label="Complaint :">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-                                <td data-label="Blacklisted :">Yes</td>
-                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
-                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="User ID :">CS1000000004</td>
-                                <td data-label="Customer Name :">Heshan Perera</td>
-                                <td data-label="Sports Arena ID :">SA1000000000</td>
-                                <td data-label="Sports Arena name :">Michael Sports</td>
-                                <td data-label="Complaint :">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-                                <td data-label="Blacklisted :">Yes</td>
-                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
-                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="User ID :">CS1000000004</td>
-                                <td data-label="Customer Name :">Heshan Perera</td>
-                                <td data-label="Sports Arena ID :">SA1000000000</td>
-                                <td data-label="Sports Arena name :">Michael Sports</td>
-                                <td data-label="Complaint :">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-                                <td data-label="Blacklisted :">Yes</td>
-                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
-                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="User ID :">CS1000000004</td>
-                                <td data-label="Customer Name :">Heshan Perera</td>
-                                <td data-label="Sports Arena ID :">SA1000000000</td>
-                                <td data-label="Sports Arena name :">Michael Sports</td>
-                                <td data-label="Complaint :">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-                                <td data-label="Blacklisted :">Yes</td>
-                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
-                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="User ID :">CS1000000004</td>
-                                <td data-label="Customer Name :">Heshan Perera</td>
-                                <td data-label="Sports Arena ID :">SA1000000000</td>
-                                <td data-label="Sports Arena name :">Michael Sports</td>
-                                <td data-label="Complaint :">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-                                <td data-label="Blacklisted :">Yes</td>
-                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
-                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="User ID :">CS1000000004</td>
-                                <td data-label="Customer Name :">Heshan Perera</td>
-                                <td data-label="Sports Arena ID :">SA1000000000</td>
-                                <td data-label="Sports Arena name :">Michael Sports</td>
-                                <td data-label="Complaint :">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-                                <td data-label="Blacklisted :">Yes</td>
-                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
-                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="User ID :">CS1000000004</td>
-                                <td data-label="Customer Name :">Heshan Perera</td>
-                                <td data-label="Sports Arena ID :">SA1000000000</td>
-                                <td data-label="Sports Arena name :">Michael Sports</td>
-                                <td data-label="Complaint :">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-                                <td data-label="Blacklisted :">Yes</td>
-                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
-                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
-                            </tr>
+                            {% endfor %}
+                            
+                            
                         </tbody>
                     </table>
                 </div>

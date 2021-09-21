@@ -1,0 +1,6 @@
+[0m2021.09.08 10:09:01 INFO  Started: Metals version 0.10.5 in workspace 'E:\My Projects\2nd year group project\new group project\Group_Project-_1\Codes' for client Visual Studio Code 1.60.0.[0m
+[0m2021.09.08 10:09:02 INFO  time: initialize in 1.58s[0m
+[0m2021.09.08 10:09:05 WARN  Build server is not auto-connectable.[0m
+[0m2021.09.08 10:09:05 WARN  no build tool detected in workspace 'E:\My Projects\2nd year group project\new group project\Group_Project-_1\Codes'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+Sep 08, 2021 1:47:58 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace

@@ -6,6 +6,7 @@ use Core\View;
 use \App\Models\User;
 use \App\Auth;
 use \App\Models\CustomerModel;
+use \App\Models\AdminModel;
 
 
 class Login extends \Core\Controller
@@ -18,16 +19,14 @@ class Login extends \Core\Controller
 
     //Login for a user
     public function loginAction(){
-    
-
 
         $user=User::authenticate($_POST['username'],$_POST['password']);
-        // echo($user);
         if ($user) {
 
+            // Auth::login($user);
             Auth::login($user);
 
-            //Redirects to home page atm (Change it to customised home page)
+            //Redirects to customised home page of each user)
 
             if($user->type=='Admin'){
                 $this->redirect('/login/adminlogin');
@@ -64,8 +63,14 @@ class Login extends \Core\Controller
 
     public function adminloginAction()
     {
+
+        
+        $customers= AdminModel::adminRemoveCustomers();
+        $inactiveSportsArenas= AdminModel::adminAddSportsArenas();
+        $activeSportsArenas= AdminModel::adminRemoveSportsArenas();
         //direct to the admin page
-        View::renderTemplate('Admin/adminFAQView.html');
+        View::renderTemplate('Admin/adminManageUsersView.html',
+        ['customers'=>$customers,'inactiveArenas'=>$inactiveSportsArenas,'activeArenas'=>$activeSportsArenas]);
     }
 
     public function customerloginAction()
@@ -73,9 +78,11 @@ class Login extends \Core\Controller
         $current_user= Auth::getUser();
         $id=$current_user->user_id;
         $bookings= CustomerModel::customerBookings($id);
+        $favourie_list= CustomerModel::customerFavouriteList($id);
+        $notifications= CustomerModel::customerNotification($id);
         // var_dump($bookings);
         //direct to the customer page
-        View::renderTemplate('Customer/customerDashboardView.html',['bookings'=>$bookings]);
+        View::renderTemplate('Customer/customerDashboardView.html',['bookings'=>$bookings,'list'=>$favourie_list,'notifications'=>$notifications]);
     }
  
     public function bookinghandlingstaffloginAction()
@@ -83,6 +90,7 @@ class Login extends \Core\Controller
         //direct to the customer page
         View::renderTemplate('BookHandelStaff/aStaffManageBookingsView.html');
     }
+    
     public function administrationstaffloginAction()
     {
         //direct to the customer page
@@ -92,7 +100,7 @@ class Login extends \Core\Controller
     public function managerloginAction()
     {
         //direct to the customer page
-        View::renderTemplate('Customer/new_customer_dashboard.html');
+        View::renderTemplate('Manager/mStaffManageBookingsView.html');
     }
 
      //Logout for a user
