@@ -7,6 +7,7 @@ namespace App\Controllers;
 use App\Models\AdminModel;
 use Core\View;
 use App\Auth;
+use App\Models\AdminModel;
 
 class Admin extends \Core\Controller
 {
@@ -27,7 +28,15 @@ class Admin extends \Core\Controller
     }
     public function indexAction()
     {
-        View::renderTemplate('Admin/adminManageUsersView.html');
+        // View::renderTemplate('Admin/adminManageUsersView.html');
+
+
+        $customers=AdminModel::adminRemoveCustomers();
+        $inactiveSportsArenas= AdminModel::adminAddSportsArenas();
+        $activeSportsArenas= AdminModel::adminRemoveSportsArenas();
+        //direct to the admin page
+        View::renderTemplate('Admin/adminManageUsersView.html',
+        ['customers'=>$customers,'inactiveArenas'=>$inactiveSportsArenas,'activeArenas'=>$activeSportsArenas]);
     }
 
     public function analyticsAction()
@@ -37,18 +46,35 @@ class Admin extends \Core\Controller
 
     public function faqAction()
     {
-        View::renderTemplate('Admin/adminFAQView.html');
+
+        $viewFAQs=AdminModel::adminViewFAQ();
+        $deleteFAQs= AdminModel::adminDeleteFAQ();
+        //direct to the admin page
+        View::renderTemplate('Admin/adminFAQView.html',
+        ['viewFAQs'=>$viewFAQs,'deleteFAQs'=>$deleteFAQs]);
+
+
+        // View::renderTemplate('Admin/adminFAQView.html');
     }
 
     public function manageuserAction()
     {
         
-        View::renderTemplate('Admin/adminManageUsersView.html');
+        $customers=AdminModel::adminRemoveCustomers();
+        $inactiveSportsArenas= AdminModel::adminAddSportsArenas();
+        $activeSportsArenas= AdminModel::adminRemoveSportsArenas();
+        //direct to the admin page
+        View::renderTemplate('Admin/adminManageUsersView.html',
+        ['customers'=>$customers,'inactiveArenas'=>$inactiveSportsArenas,'activeArenas'=>$activeSportsArenas]);
     }
 
     public function ratingsAction()
     {
-        View::renderTemplate('Admin/adminRatingsView.html');
+        
+        $ratings=AdminModel::adminRemoveRatings();
+        //direct to the admin page
+        View::renderTemplate('Admin/adminRatingsView.html',
+        ['ratings'=>$ratings]);
     }
 
     public function chartAction()

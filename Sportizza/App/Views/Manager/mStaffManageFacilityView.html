@@ -28,12 +28,14 @@
                 <button class="openbutton" onclick="openpopupform()">
                     <div class="profile-details">
                         <img src="/Assets/images/Team members/jonathan.png" alt="" class="profile-picture">
-                        <div class="username">Bhashitha Ranasinghe</div>
+                        <div class="username">{{current_user.first_name}}  {{current_user.last_name}}</div>
                     </div>
                 </button>
             </div>
             <div class="sign-in-out-btn">
-                <a style="font-weight:500; " href="">Sign Out </a>
+                {% if current_user %}
+        <a href="/logout"> Sign Out</a>
+        {% endif %}
             </div>
         </div>
         <!-- search bar for mobile -->
@@ -149,14 +151,14 @@
                         <p class="side-menu-tooltip">Bookings</p>
                     </li>
                     <li>
-                        <a href="#" class="side-menu-li">
+                        <a href="/Sparenamanager/managernotification" class="side-menu-li">
                             <i class="fas fa-bell"></i>
                             <p class="side-menu-item">Notifications</p>
                         </a>
                         <p class="side-menu-tooltip">Notifications</p>
                     </li>
                     <li>
-                        <a href="/Sparenamanager/managetimeslots" class="side-menu-li">
+                        <a href="/Sparenamanager/managetimeslot" class="side-menu-li">
                             <i class="fas fa-clock"></i>
                             <p class="side-menu-item">Manage Timeslot</p>
                         </a>
@@ -237,26 +239,13 @@
                             </tr>
                         </thead>
                         <tbody>
+                            
+                            {% for facility in viewFacilities %}
                             <tr>
-                                <td data-label="Timeslot ID :">BD123456789101</td>
-                                <td data-label="Start Time :">Cricket Ground 1</td>
+                                <td data-label="Timeslot ID :">{{facility.facility_id}}</td>
+                                <td data-label="Start Time :">{{facility.facility_name}}</td>
                             </tr>
-                            <tr>
-                                <td data-label="Timeslot ID :">BD123456789101</td>
-                                <td data-label="Start Time :">Cricket Ground 2</td>
-                            </tr>
-                            <tr>
-                                <td data-label="Timeslot ID :">BD123456789101</td>
-                                <td data-label="Start Time :">Cricket Ground 3</td>
-                            </tr>
-                            <tr>
-                                <td data-label="Timeslot ID :">BD123456789101</td>
-                                <td data-label="Start Time :">Cricket Ground 4</td>
-                            </tr>
-                            <tr>
-                                <td data-label="Timeslot ID :">BD123456789101</td>
-                                <td data-label="Start Time :">Cricket Ground 5</td>
-                            </tr>
+                            {% endfor %}
 
                         </tbody>
                     </table>
@@ -305,33 +294,16 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {% for facility in deleteFacilities %}
                             <tr>
-                                <td data-label="Facility ID :">BD123456789101</td>
-                                <td data-label="Facility Name :">Cricket Ground 1 </td>
+                                <td data-label="Timeslot ID :">{{facility.facility_id}}</td>
+                                <td data-label="Start Time :">{{facility.facility_name}}</td>
                                 <td data-label="Action :"> <button class="icon_red" style="border:none"onclick="open_popup_delete_message()">
                                     <i class="fas fa-trash-alt"></i>
                                 </button></td>
                             </tr>
-                            <tr>
-                                <td data-label="Facility ID :">BD123456789101</td>
-                                <td data-label="Facility Name :">Cricket Ground 2 </td>
-                                <td data-label="Action :"> <a href=""><i class="fas fa-trash-alt"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td data-label="Facility ID :">BD123456789101</td>
-                                <td data-label="Facility Name :">Cricket Ground 3 </td>
-                                <td data-label="Action :"> <a href=""><i class="fas fa-trash-alt"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td data-label="Facility ID :">BD123456789101</td>
-                                <td data-label="Facility Name :">Cricket Ground 4 </td>
-                                <td data-label="Action :"> <a href=""><i class="fas fa-trash-alt"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td data-label="Facility ID :">BD123456789101</td>
-                                <td data-label="Facility Name :">Cricket Ground 5 </td>
-                                <td data-label="Action :"> <a href=""><i class="fas fa-trash-alt"></i></a></td>
-                            </tr>
+                            {% endfor %}
+                            
                         </tbody>
                     </table>
                 </div>
@@ -360,33 +332,16 @@
                             </tr>
                         </thead>
                         <tbody>
+                            
+                            {% for facility in updateFacilities %}
                             <tr>
-                                <td data-label="Facility ID :">BD123456789101</td>
-                                <td data-label="Facility Name :">Cricket Ground 1 </td>
+                                <td data-label="Timeslot ID :">{{facility.facility_id}}</td>
+                                <td data-label="Start Time :">{{facility.facility_name}}</td>
                                 <td data-label="Action :"> <button class="icon_red" style="border:none"onclick="openpopupform_for_update()">
                                     <i class="fas fa-edit"></i>
                                 </button></td>
                             </tr>
-                            <tr>
-                                <td data-label="Facility ID :">BD123456789101</td>
-                                <td data-label="Facility Name :">Cricket Ground 2 </td>
-                                <td data-label="Action :"> <a href=""><i class="fas fa-edit"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td data-label="Facility ID :">BD123456789101</td>
-                                <td data-label="Facility Name :">Cricket Ground 3 </td>
-                                <td data-label="Action :"> <a href=""><i class="fas fa-edit"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td data-label="Facility ID :">BD123456789101</td>
-                                <td data-label="Facility Name :">Cricket Ground 4 </td>
-                                <td data-label="Action :"> <a href=""><i class="fas fa-edit"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td data-label="Facility ID :">BD123456789101</td>
-                                <td data-label="Facility Name :">Cricket Ground 5 </td>
-                                <td data-label="Action :"> <a href=""><i class="fas fa-edit"></i></a></td>
-                            </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
