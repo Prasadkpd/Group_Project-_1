@@ -1,539 +1,563 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer</title>
-     <!-- CSS File -->
-    <link rel="stylesheet" href="/Assets/css/Customer/new_customer_dashboard.css">
+    <!-- CSS File -->
+    <link rel="stylesheet" href="/Assets/css/Customer/new_customer_dashboard.css?version=9">
     <!-- FontAwesome Icon -->
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
-    
+
 
 
 </head>
+
 <body>
     <!-- Top Navigation Bar -->
     <nav>
-       <div class="nav-left">
-        <div class="logo-container">
-            <a href="/">
-                <i class="fas fa-running "></i>
-                <span class="logo-name">Sportizza</span>
-            </a>
-       </div>
-       <div class="search-bar-container">
-            <input type="search" name="search" placeholder="Search">
-            <i class="fas fa-search "></i>
-       </div>
+        <div class="nav-left">
+            <div class="logo-container">
+                <a href="/">
+                    <i class="fas fa-running "></i>
+                    <span class="logo-name">Sportizza</span>
+                </a>
+            </div> 
+            <div class="search-bar-container">
+                <input type="search" name="search" placeholder="Search">
+                <i class="fas fa-search "></i>
+            </div>
 
 
 
-       <div  class="nav-profile">
-
-        
-
-
-       
-
-<button   class="openbutton" onclick="openpopupform()">
-
-            
-        
-<div class="profile-details">
-    <img src="/Assets/images/customer/profile-picture.jpg" alt="" class="profile-picture">
-    <div class="username">{{current_user.first_name}}  {{current_user.last_name}}</div>
-    
-</div>
-
-</button>
-        </div>
-
-        
+            <div class="nav-profile">
 
 
 
-       <div class="sign-in-out-btn">
-           
-            <button  onclick="open_popup_signout_message()" > Sign Out </button>
 
-        <!-- {% if session.user_id %}
+
+
+                <button class="openbutton" onclick="openpopupform()">
+
+
+
+                    <div class="profile-details">
+                        <img src="/Assets/images/customer/profile-picture.jpg" alt="" class="profile-picture">
+                        <div class="username">{{current_user.first_name}} {{current_user.last_name}}</div>
+
+                    </div>
+
+                </button>
+            </div>
+
+
+
+
+
+            <div class="sign-in-out-btn">
+
+                <button onclick="open_popup_signout_message()"> Sign Out </button>
+
+                <!-- {% if session.user_id %}
             User with ID {{session.user_id}} is logged in.
 
         {% endif %} -->
-        
-       </div> 
-       </div>
+
+            </div>
+        </div> 
 
 
-       
 
-       <!-- search bar for mobile -->
-       <div class="search-bar-container-mobi">
-        <input type="search" name="search" placeholder="Search">
-        <i class="fas fa-search "></i>
-   </div>
+
+        <!-- search bar for mobile -->
+        <div class="search-bar-container-mobi">
+            <input type="search" name="search" placeholder="Search">
+            <i class="fas fa-search "></i>
+        </div>
     </nav>
-   <!-- End Top Navigation Bar -->
-
-   
-
-<!-- popup form for edit profile -->
-<div id="myForm" class="sectionpop ">
+    <!-- End Top Navigation Bar -->
 
 
-    <div class="formsection">
 
-        <div>
-            <button s class="closebutton"onclick="closepopupform()">❌</button>
+    <!-- popup form for edit profile -->
+    <div id="myForm" class="sectionpop ">
+
+
+        <div class="formsection">
+
+            <div>
+                <button s class="closebutton" onclick="closepopupform()">❌</button>
+            </div>
+            <div class="editProPic">
+                <img id="form-profile-picture" src="/Assets/images/customer/profile-picture.jpg" alt="">
+                <input type="file" id="file">
+                <label for="file" id="uploadBtn">Choose Photo</label>
+            </div>
+            <form action="/action_page.php" style="margin:20px;margin-top: 0px;" class="nav-user-edit-from">
+
+                <label for="firstName">First Name</label>
+                <div class="form-input-contant">
+                    <input id="firstName" type="text" name="first_name" onfocusout="validateFirstName()"
+                        placeholder="Enter first name" value="{{user.first_name}}">
+                    <i class="fas fa-user-edit"></i>    
+                </div>
+                <div class="helper-text" id="firstNameMsg"></div>
+               
+
+
+                <label for="lastName">Last Name</label>
+                <div class="form-input-contant">
+                    <input id="lastName" type="text" name="last_name" onfocusout="validateLastName()"
+                        placeholder="Enter last name" value="{{user.last_name}}">
+                    <i class="fas fa-user-edit"></i>
+                </div>
+                <div class="helper-text" id="lastNameMsg"></div>
+
+                <label for="username">Username</label>
+                <div class="form-input-contant">
+                    <input id="username" type="text" name="username" onfocusout="validateUsername()"
+                        placeholder="Enter a unique Username" value="{{ user.username}}">
+                    <i class="fas fa-user-edit"></i>
+                </div>
+                <div class="helper-text" id="usernameMsg"></div>
+
+                <label for="primaryNumber">Primary Number</label>
+                <div class="form-input-contant">
+                    <input type="text" id="primaryNumber" name="primaryNumber" placeholder="Enter Primary Number"
+                        value="0705614640">
+                    <i class="fas fa-user-edit"></i>
+                </div>
+                <!-- <a class="formLink" onclick="open_editPrimaryPhoneNumber()">Click here to change</a> <br> -->
+
+
+
+                <label for="secondaryNumber">Secondary Number</label>
+                <div class="form-input-contant">
+                    <input type="text" id="secondaryNumber" name="lastname" placeholder="Enter Secondary Number"
+                        value="0705614640">
+                    <i class="fas fa-user-edit"></i>
+                </div>
+                <!-- <a class="formLink" " onclick=" open_editSecondaryPhoneNumber()">Click here to change</a> <br> -->
+
+                <label for="password">Password</label>
+                <div class="form-input-contant">
+                    <input type="password" id="password" name="password" 
+                        value="0705614640">
+                    <i class="fas fa-user-edit"></i>
+                </div>
+                <!-- <a class="formLink" onclick="open_editPassword()">Click here to change</a> <br> -->
+
+                <input type="submit" value="Save">
+
+            </form>
+
+
         </div>
-    <div class="editProPic">
-        <img id="form-profile-picture"  src="/Assets/images/customer/profile-picture.jpg" alt="">
-        <input type="file" id="file">
-        <label for="file" id="uploadBtn">Choose Photo</label>
+
     </div>
-    <form action="/action_page.php" style="margin:20px;margin-top: 0px;">
-
-        <label for="firstName">First Name</label>
-        <input id="firstName" type="text" name="first_name" onfocusout="validateFirstName()"
-        placeholder="Enter first name" value="{{user.first_name}}">
-        <div class="helper-text" id="firstNameMsg"></div>
-
-        <label for="lastName">Last Name</label>
-        <input id="lastName" type="text" name="last_name" onfocusout="validateLastName()"
-        placeholder="Enter last name" value="{{user.last_name}}">
-        <div class="helper-text" id="lastNameMsg"></div>
-
-        <label for="username">Username</label>
-        <input id="username" type="text" name="username" onfocusout="validateUsername()"
-        placeholder="Enter a unique Username"  value="{{ user.username}}">
-        <div class="helper-text" id="usernameMsg"></div>
-
-        <label for="primaryNumber">Primary Number</label>
-        <input   type="text" id="primaryNumber" name="primaryNumber"
-            placeholder="Enter Primary Number" value="0705614640">
-        <a class="formLink"  onclick="open_editPrimaryPhoneNumber()">Click here to change</a> <br> 
-        
-
-
-        <label   for="lname">Secondary Number</label>
-        <input  type="text" id="userid" name="lastname"
-            placeholder="Enter Secondary Number" value="0705614640">
-            <a class="formLink" " onclick="open_editSecondaryPhoneNumber()">Click here to change</a> <br>
-
-            <label for="lname">Password</label>
-            <a class="formLink" onclick="open_editPassword()">Click here to change</a> <br>
-
-        <input  type="submit" value="Save">
-        
-    </form> 
-    
-   
-    </div>  
-      
-</div>
 
 
 
 
-<!-- start edit primary number section -->
-<div id="popup_editPrimaryNumber" class="sectionpop ">
-   
+    <!-- start edit primary number section -->
+    <div id="popup_editPrimaryNumber" class="sectionpop ">
 
-    <div class="formsection">
 
-        <div>
-            <button s class="closebutton"onclick="close_editPrimaryPhoneNumber()">❌</button>
+        <div class="formsection">
+
+            <div>
+                <button s class="closebutton" onclick="close_editPrimaryPhoneNumber()">❌</button>
+            </div>
+            <form action="/action_page.php" style="margin:20px">
+
+                <label for="oldNumberOTP">OTP Code From Old Mobile Number</label>
+                <input type="text" id="userid" name="oldNumberOTP" placeholder="Example-1293" value="">
+
+                <label for="mobile">Primary Number</label>
+                <input id="mobile" type="text" name="mobile_number" onfocusout="validateMobile()"
+                    placeholder="Ex:-) 0712345678" value="{{user.mobile_number}}">
+                <div class="helper-text" id="mobileMsg"></div>
+
+
+
+                <label for="newNumberOTP">OTP Code From New Mobile Number</label>
+                <input type="text" id="newNumberOTP" name="newNumberOTP" placeholder="Example-1293" value="">
+            </form>
+
+
+            <div style="display:flex">
+
+                <button style="background-color:#e74c3c    " class="popup_button">
+                    Submit
+                </button>
+                <button onclick="close_editPrimaryPhoneNumber()" class="popup_button">
+                    NO
+                </button>
+            </div>
         </div>
-    <form action="/action_page.php" style="margin:20px">
-
-        <label for="oldNumberOTP">OTP Code From Old Mobile Number</label>
-        <input type="text" id="userid" name="oldNumberOTP"
-            placeholder="Example-1293" value="">
-
-            <label for="mobile">Primary Number</label>
-            <input id="mobile" type="text" name="mobile_number" onfocusout="validateMobile()"
-            placeholder="Ex:-) 0712345678" value="{{user.mobile_number}}" >
-            <div class="helper-text" id="mobileMsg"></div>
-        
+    </div>
+    <!--end edit primary number section -->
 
 
-        <label for="newNumberOTP">OTP Code From New Mobile Number</label>
-        <input type="text" id="newNumberOTP" name="newNumberOTP"
-            placeholder="Example-1293" value="">
-    </form> 
-
- 
-<div style="display:flex">
-    
-    <button style="background-color:#e74c3c    " class="popup_button">
-       Submit
-    </button>
-    <button onclick="close_editPrimaryPhoneNumber()"  class="popup_button">
-        NO
-     </button>
-</div>
-    </div>  
-</div>
-<!--end edit primary number section -->
+    <!-- start edit secondary number section -->
+    <div id="popup_editSecondaryNumber" class="sectionpop ">
 
 
-<!-- start edit secondary number section -->
-<div id="popup_editSecondaryNumber" class="sectionpop ">
-   
+        <div class="formsection">
 
-    <div class="formsection">
+            <div>
+                <button s class="closebutton" onclick="close_editSecondaryPhoneNumber()">❌</button>
+            </div>
+            <form action="/action_page.php" style="margin:20px">
 
-        <div>
-            <button s class="closebutton"onclick="close_editSecondaryPhoneNumber()">❌</button>
+                <label for="oldNumberOTP">OTP Code From Old Mobile Number</label>
+                <input type="text" id="userid" name="oldNumberOTP" placeholder="Example-1293" value="">
+
+                <label for="mobile">Primary Number</label>
+                <input id="mobile" type="text" name="mobile_number" onfocusout="validateMobile()"
+                    placeholder="Ex:-) 0712345678" value="{{user.mobile_number}}">
+                <div class="helper-text" id="mobileMsg"></div>
+
+
+
+                <label for="newNumberOTP">OTP Code From New Mobile Number</label>
+                <input type="text" id="newNumberOTP" name="newNumberOTP" placeholder="Example-1293" value="">
+            </form>
+
+
+            <div style="display:flex">
+
+                <button style="background-color:#e74c3c    " class="popup_button">
+                    Submit
+                </button>
+                <button onclick="close_editSecondaryPhoneNumber()" class="popup_button">
+                    NO
+                </button>
+            </div>
         </div>
-    <form action="/action_page.php" style="margin:20px">
+    </div>
+    <!--end edit secondary number section -->
 
-        <label for="oldNumberOTP">OTP Code From Old Mobile Number</label>
-        <input type="text" id="userid" name="oldNumberOTP"
-            placeholder="Example-1293" value="">
-
-            <label for="mobile">Primary Number</label>
-            <input id="mobile" type="text" name="mobile_number" onfocusout="validateMobile()"
-            placeholder="Ex:-) 0712345678" value="{{user.mobile_number}}" >
-            <div class="helper-text" id="mobileMsg"></div>
-        
+    <!-- start edit password number section -->
+    <div id="popup_editPassword" class="sectionpop ">
 
 
-        <label for="newNumberOTP">OTP Code From New Mobile Number</label>
-        <input type="text" id="newNumberOTP" name="newNumberOTP"
-            placeholder="Example-1293" value="">
-    </form> 
+        <div class="formsection">
 
- 
-<div style="display:flex">
-    
-    <button style="background-color:#e74c3c    " class="popup_button">
-       Submit
-    </button>
-    <button onclick="close_editSecondaryPhoneNumber()"  class="popup_button">
-        NO
-     </button>
-</div>
-    </div>  
-</div>
-<!--end edit secondary number section -->
+            <div>
+                <button s class="closebutton" onclick="close_editPassword()">❌</button>
+            </div>
+            <form action="/action_page.php" style="margin:20px">
 
-<!-- start edit password number section -->
-<div id="popup_editPassword" class="sectionpop ">
-   
-
-    <div class="formsection">
-
-        <div>
-            <button s class="closebutton"onclick="close_editPassword()">❌</button>
-        </div>
-    <form action="/action_page.php" style="margin:20px">
-
-        <label for="oldNumberOTP">OTP Code From Mobile Number</label>
-        <input type="text" id="userid" name="oldNumberOTP"
-            placeholder="Example-1293" value="">
+                <label for="oldNumberOTP">OTP Code From Mobile Number</label>
+                <input type="text" id="userid" name="oldNumberOTP" placeholder="Example-1293" value="">
 
 
-            <!-- <label for="newNumberOTP">Enter Old Password</label>
+                <!-- <label for="newNumberOTP">Enter Old Password</label>
             <input type="text" id="newNumberOTP" name="newNumberOTP"
                 placeholder="" value=""> -->
 
 
-            <label for="password">New Password</label>
-            <input id="password" type="password" name="password" onfocusout="validatePassword()"
-                placeholder="Enter a password" value="" >
-            <i class="bi bi-eye-slash" id="togglePassword"></i>
-            <div class="helper-text" id="passwordMsg"></div>
-        
+                <label for="password">New Password</label>
+                <input id="password" type="password" name="password" onfocusout="validatePassword()"
+                    placeholder="Enter a password" value="">
+                <i class="bi bi-eye-slash" id="togglePassword"></i>
+                <div class="helper-text" id="passwordMsg"></div>
 
 
 
-    </form> 
 
- 
-<div style="display:flex">
-    
-    <button style="background-color:#e74c3c    " class="popup_button">
-       Submit
-    </button>
-    <button onclick="close_editPassword()"  class="popup_button">
-        NO
-     </button>
-</div>
-    </div>  
-</div>
-<!--end edit password number section -->
-
-<!-- end popup form for edit profile -->
+            </form>
 
 
-<!-- start pop up sign out section -->
-<div id="popup_signout" class="sectionpop ">
-   
+            <div style="display:flex">
 
-    <div class="formsection">
-
-        <div>
-            <button  class="closebutton"onclick="close_popup_signout_message()">❌</button>
+                <button style="background-color:#e74c3c    " class="popup_button">
+                    Submit
+                </button>
+                <button onclick="close_editPassword()" class="popup_button">
+                    NO
+                </button>
+            </div>
         </div>
-    <form action="/action_page.php" style="margin:20px">
-        <div style="margin:auto">
-            <h1 style="margin:auto">
-                Sign Out
-            </h1>
-            <p style="margin:auto">
-                Do your really want to sign up now?
-            </p>
+    </div>
+    <!--end edit password number section -->
+
+    <!-- end popup form for edit profile -->
+
+
+    <!-- start pop up sign out section -->
+    <div id="popup_signout" class="sectionpop ">
+
+
+        <div class="formsection">
+
+            <div>
+                <button class="closebutton" onclick="close_popup_signout_message()">❌</button>
+            </div>
+            <form action="/action_page.php" style="margin:20px">
+                <div style="margin:auto">
+                    <h1 style="margin:auto">
+                        Sign Out
+                    </h1>
+                    <p style="margin:auto">
+                        Do your really want to sign up now?
+                    </p>
+                </div>
+            </form>
+
+
+            <div style="display:flex">
+
+                <button class="popup_delete_button">
+                    {% if current_user %}
+                    <a href="/logout"> YES</a>
+                    {% endif %}
+                </button>
+                <button onclick="close_popup_signout_message()" class="popup_button">
+                    NO
+                </button>
+            </div>
         </div>
-    </form> 
-
- 
-<div style="display:flex">
-    
-    <button  style="background-color:#e74c3c" class="popup_button">
-        {% if current_user %}
-        <a href="/logout"> Yes</a>
-        {% endif %}
-    </button>
-    <button onclick="close_popup_signout_message()"  class="popup_button">
-        NO
-     </button>
-</div>
-    </div>  
-</div>
-<!-- end pop up sign out section -->
+    </div>
+    <!-- end pop up sign out section -->
 
 
 
 
 
-<!-- popup share section -->
-<div id="popup_share" class="sectionpop ">
+    <!-- popup share section -->
+    <div id="popup_share" class="sectionpop ">
 
 
-    <div  class="formsection">
+        <div class="formsection">
 
-        <div>
-            <button s class="closebutton"onclick="close_popup_share()">❌</button>
+            <div>
+                <button s class="closebutton" onclick="close_popup_share()">❌</button>
+            </div>
+
+            <form action="/action_page.php" style="margin:20px">
+                <h1>Copy this link and share</h1>
+                <div>
+                    <p>https://ugvle.ucsc.cmb.ac.lk/course/<br>?id=125</p>
+                </div>
+
+            </form>
+            <button onclick="close_popup_share()" class="popup_button">
+                Copy
+            </button>
         </div>
-    
-    <form action="/action_page.php" style="margin:20px">
-        <h1 >Copy this link and share</h1>
-        <div>
-            <p>https://ugvle.ucsc.cmb.ac.lk/course/<br>?id=125</p>
+    </div>
+    <!-- End popup share section -->
+
+
+
+    <!-- start pop up cancel section -->
+    <div id="popup_cancel" class="sectionpop ">
+
+
+        <div class="formsection">
+
+            <div>
+                <button s class="closebutton" onclick="close_popup_cancel_message()">❌</button>
+            </div>
+            <form action="/action_page.php" style="margin:20px">
+                <div style="margin:auto">
+                    <h1 style="margin:auto">
+                        Booking Cancellation
+                    </h1>
+                    <p style="margin:auto">
+                        Are you sure to cancel the booking?
+                    </p>
+                </div>
+            </form>
+
+
+            <div style="display:flex">
+
+                <button class="popup_delete_button">
+                    YES
+                </button>
+                <button onclick="close_popup_cancel_message()" class="popup_button">
+                    NO
+                </button>
+            </div>
         </div>
-      
-    </form> 
-    <button onclick="close_popup_share()" class="popup_button">
-        Copy
-    </button>
-    </div>    
-</div>
-<!-- End popup share section -->
+    </div>
+    <!-- end pop up cancel section -->
 
 
-                   
-<!-- start pop up cancel section -->
-<div id="popup_cancel" class="sectionpop ">
-   
+    <!-- start pop up rate section -->
+    <div id="popup_rate" class="sectionpop ">
+        <div class="formsection">
 
-    <div class="formsection">
+            <div>
+                <button s class="closebutton" onclick="close_popup_rate_message()">❌</button>
+            </div>
+            <form action="/action_page.php" style="margin:20px">
+                <label for="fname">Sports Arena Name</label>
+                <input type="text" id="fname" name="firstname" placeholder="Enter First Name" value="sadeepa" readonly>
 
-        <div>
-            <button s class="closebutton"onclick="close_popup_cancel_message()">❌</button>
-        </div>
-    <form action="/action_page.php" style="margin:20px">
-        <div style="margin:auto">
-            <h1 style="margin:auto">
-                Booking Cancellation
-            </h1>
-            <p style="margin:auto">
-                Are you sure to cancel the booking?
-            </p>
-        </div>
-    </form> 
-
- 
-<div style="display:flex">
-    
-    <button style="background-color:#e74c3c    " class="popup_button">
-       YES
-    </button>
-    <button onclick="close_popup_cancel_message()"  class="popup_button">
-        NO
-     </button>
-</div>
-    </div>  
-</div>
-<!-- end pop up cancel section -->
+                <label for="lname">Booking Id</label>
+                <input type="text" id="lname" name="lastname" placeholder="Enter Last Names" value="bhashitha" readonly>
 
 
-<!-- start pop up rate section -->
-<div id="popup_rate" class="sectionpop ">
-    <div class="formsection">
+                <label for="lname">Stars</label><br>
+                <div class="rate">
+                    <input type="radio" id="star5" name="rate" value="5" />
+                    <label for="star5" title="text">5 stars</label>
+                    <input type="radio" id="star4" name="rate" value="4" />
+                    <label for="star4" title="text">4 stars</label>
+                    <input type="radio" id="star3" name="rate" value="3" />
+                    <label for="star3" title="text">3 stars</label>
+                    <input type="radio" id="star2" name="rate" value="2" />
+                    <label for="star2" title="text">2 stars</label>
+                    <input type="radio" id="star1" name="rate" value="1" />
+                    <label for="star1" title="text">1 star</label>
+                </div><br><br>
 
-        <div>
-            <button s class="closebutton"onclick="close_popup_rate_message()">❌</button>
-        </div>
-    <form action="/action_page.php" style="margin:20px">
-        <label for="fname">Sports Arena Name</label>
-        <input type="text" id="fname" name="firstname"
-            placeholder="Enter First Name" value="sadeepa" readonly>
-
-        <label for="lname">Booking Id</label>
-        <input type="text" id="lname" name="lastname"
-            placeholder="Enter Last Names" value="bhashitha" readonly>
-
-
-        <label for="lname">Stars</label><br>
-        <div class="rate">
-            <input type="radio" id="star5" name="rate" value="5" />
-            <label for="star5" title="text">5 stars</label>
-            <input type="radio" id="star4" name="rate" value="4" />
-            <label for="star4" title="text">4 stars</label>
-            <input type="radio" id="star3" name="rate" value="3" />
-            <label for="star3" title="text">3 stars</label>
-            <input type="radio" id="star2" name="rate" value="2" />
-            <label for="star2" title="text">2 stars</label>
-            <input type="radio" id="star1" name="rate" value="1" />
-            <label for="star1" title="text">1 star</label>
-          </div><br><br>
-
-        <label for="lname">Feedback</label>
-        <textarea style="width:90%; border-radius:100px">
+                <label for="lname">Feedback</label>
+                <textarea style="width:90%; border-radius:100px">
 
         </textarea>
 
 
 
-        <input style="background-color:#2ecc71" type="submit" value="Save">
-    </form> 
-    </div>    
-</div>
-<!-- end pop up rate section -->
-
-
-
-<!-- start pop up delete section -->
-<div id="popup_delete" class="sectionpop ">
-   
-
-    <div class="formsection">
-
-        <div>
-            <button s class="closebutton"onclick="close_popup_delete_message()">❌</button>
+                <input style="background-color:#2ecc71" type="submit" value="Save">
+            </form>
         </div>
-    <form action="/action_page.php" style="margin:20px">
-        <div style="margin:auto">
-            <h1 style="margin:auto">
-                Booking deletion
-            </h1>
-            <p style="margin:auto">
-                Are sure to delete booking
-            </p>
+    </div>
+    <!-- end pop up rate section -->
+
+
+
+    <!-- start pop up delete section -->
+    <div id="popup_delete" class="sectionpop ">
+
+
+        <div class="formsection">
+
+            <div>
+                <button s class="closebutton" onclick="close_popup_delete_message()">❌</button>
+            </div>
+            <form action="/action_page.php" style="margin:20px">
+                <div style="margin:auto">
+                    <h1 style="margin:auto">
+                        Booking deletion
+                    </h1>
+                    <p style="margin:auto">
+                        Are sure to delete booking
+                    </p>
+                </div>
+            </form>
+
+
+            <div style="display:flex">
+                <button onclick="close_popup_delete_message()" class="popup_button">
+                    NO
+                </button>
+                <button style="background-color:red" class="popup_button">
+                    YES
+                </button>
+            </div>
         </div>
-    </form> 
-
- 
-<div style="display:flex">
-    <button onclick="close_popup_delete_message()"  class="popup_button">
-       NO
-    </button>
-    <button style="background-color:red" class="popup_button">
-       YES
-    </button>
-</div>
-    </div>  
-</div>
-<!-- end pop up delete section -->
+    </div>
+    <!-- end pop up delete section -->
 
 
 
 
 
-<!-- start pop up delete section for favorite-list -->
-<div id="popup_delete_favorite_list" class="sectionpop ">
-   
+    <!-- start pop up delete section for favorite-list -->
+    <div id="popup_delete_favorite_list" class="sectionpop ">
 
-    <div class="formsection">
 
-        <div>
-            <button s class="closebutton"onclick="close_popup_delete_message_favorite_list()">❌</button>
+        <div class="formsection">
+
+            <div>
+                <button s class="closebutton" onclick="close_popup_delete_message_favorite_list()">❌</button>
+            </div>
+            <form action="/action_page.php" style="margin:20px">
+                <div style="margin:auto">
+                    <h1 style="margin:auto">
+                        Favorite Sports Arena Deletion
+                    </h1>
+                    <p style="margin:auto">
+                        Are you sure to delete sports Arena?
+                    </p>
+                </div>
+            </form>
+
+
+            <div style="display:flex">
+                <button onclick="close_popup_delete_message_favorite_list()" class="popup_button">
+                    NO
+                </button>
+                <button class="popup_delete_button">
+                    YES
+                </button>
+            </div>
         </div>
-    <form action="/action_page.php" style="margin:20px">
-        <div style="margin:auto">
-            <h1 style="margin:auto">
-               Favorite Sports Arena Deletion
-            </h1>
-            <p style="margin:auto">
-                Are sure to delete sports Arena
-            </p>
-        </div>
-    </form> 
-
- 
-<div style="display:flex">
-    <button onclick="close_popup_delete_message_favorite_list()"  class="popup_button">
-       NO
-    </button>
-    <button style="background-color:red" class="popup_button">
-       YES
-    </button>
-</div>
-    </div>  
-</div>
-<!-- end pop up delete section  for favorite-list -->
+    </div>
+    <!-- end pop up delete section  for favorite-list -->
 
 
-<!-- popup notification section -->
-<div id="popup_notification" class="sectionpop ">
+    <!-- popup notification section -->
+    <div id="popup_notification" class="sectionpop ">
 
 
-    <div  class="formsection">
+        <div class="formsection">
 
-        <div>
-            <button s class="closebutton"onclick="close_popup_notification()">❌</button>
-        </div>
-    
-    <form action="/action_page.php" style="margin:20px">
-        <h1>Notification</h1>
-        
+            <div>
+                <button s class="closebutton" onclick="close_popup_notification()">❌</button>
+            </div>
 
-        {% for notification in notifications %}
-        <div>
-            <p>{{notification.description}}</p>
-        </div>
+            <form action="/action_page.php" style="margin:20px">
+                <h1>Notification</h1>
 
-        {% endfor %}
-      
-    </form> 
-    <!-- <button onclick="close_popup_share()" class="popup_button">
+
+                {% for notification in notifications %}
+                <div>
+                    <p>{{notification.description}}</p>
+                </div>
+
+                {% endfor %}
+
+            </form>
+            <!-- <button onclick="close_popup_share()" class="popup_button">
         OK
     </button> -->
-    </div>    
-</div>
-<!-- End popup notification section -->
+        </div>
+    </div>
+    <!-- End popup notification section -->
 
     <section class="page-container">
-        
-            
-            <div class="page-content-container" >
-                <div class="container">
-                 <h1 class="page-header">Hi {{current_user.first_name}}  {{current_user.last_name}}!</h1>                 
-                 <!-- <ul>
+
+
+        <div class="page-content-container">
+            <div class="container">
+                <h1 class="page-header">Hi {{current_user.first_name}} {{current_user.last_name}}!</h1>
+                <!-- <ul>
                     {% for book in bookings %}
                         <h2>{{book.booking_id}}</h2>
                     {% endfor %}
 
                 </ul> -->
                 <div class="tab">
-                <button id="view_booking_button" class="booking_tab tab-btn" onclick="openTab(event, 'my_bookings')"><i class="fas fa-list"></i><p>My bookings</p></button>
-                <button class="booking_tab tab-btn" onclick="openTab(event, 'my_favorite_list')"><i class="fas fa-star"></i>
-                    <p>My favorite lists</p></button>
-                <button class="booking_tab tab-btn" onclick="openTab(event, 'notification')"><i class="fas fa-bell"></i>
-                    <p>Notification</p></button>
+                    <button id="view_booking_button" class="booking_tab tab-btn"
+                        onclick="openTab(event, 'my_bookings')"><i class="fas fa-list"></i>
+                        <p>My bookings</p>
+                    </button>
+                    <button class="booking_tab tab-btn" onclick="openTab(event, 'my_favorite_list')"><i
+                            class="fas fa-star"></i>
+                        <p>My favorite lists</p>
+                    </button>
+                    <button class="booking_tab tab-btn" onclick="openTab(event, 'notification')"><i
+                            class="fas fa-bell"></i>
+                        <p>Notification</p>
+                    </button>
                 </div>
 
                 <div id="my_bookings" class="booking_tab_content">
@@ -554,58 +578,56 @@
                                 </th>
                             </tr>
                             <tr class="booking-thead-second-tr">
-                                <th >Booking ID</th>
-                                <th>Booking Date</th>
-                                <th>Start Time</th>
-                                <th>End Time</th>
+                                <th style="text-align: left; padding-left:1rem;">Booking ID</th>
+                                <th class="table-td-left">Booking Date</th>
+                                <th class="table-td-left">Start Time</th>
+                                <th class="table-td-left">End Time</th>
                                 <th>Sports Arena Name</th>
                                 <th>Category</th>
                                 <th>Payment Method</th>
                                 <th>Payment Status</th>
                                 <th>Amount</th>
-                                <th>Booking Status</th>
-                                <th >  </th>
+                                <th style="padding-right: 2em;">Action</th>
+                                <!-- <th >  </th> -->
                             </tr>
                         </thead>
                         <tbody>
 
-                            
+
                             {% for book in bookings %}
                             <tr>
-                                <td data-label="Booking ID :">{{book.booking_id}}</td>
-                                <td data-label="Booking Date :">{{book.booked_date}}</td>
-                                <td data-label="Start Time :">{{book.start_time}}</td>
-                                <td data-label="End Time :">{{book.end_time}}</td>
-                                <td data-label="Arena Name:">{{book.sa_name}}</td>
-                                <td data-label="Category:">{{book.category}}</td>
+                                <td data-label="Booking ID :" class="table-td-left">{{book.booking_id}}</td>
+                                <td data-label="Booking Date :" class="table-td-left">{{book.booked_date}}</td>
+                                <td data-label="Start Time :" class="table-td-left">{{book.start_time}}</td>
+                                <td data-label="End Time :" class="table-td-left">{{book.end_time}}</td>
+                                <td data-label="Arena Name:" class="table-td-left">{{book.sa_name}}</td>
+                                <td data-label="Category:" class="table-td-left">{{book.category}}</td>
                                 <td data-label="Payment Method :">{{book.payment_method}}</td>
                                 <td data-label="Payment Status :">{{book.payment_status}}</td>
                                 <td data-label="Amount:">{{book.price_per_booking}}</td>
-                                
-                                <td data-label="Booking Status">Pending</td>
-                                <td data-label="">
-                                        <div style="display:flex">
-                                            <div>
-                                                <button onclick="open_popup_share()">
-                                                    <i class="fas fa-share "></i>
-                                                </button>
-                                            </div>
-                                            <div>  
+
+                                <!-- <td data-label="Booking Status">Pending</td> -->
+                                <td class="btn-float-right">
+                                    <div style="display:flex; float:right; padding-right:2rem;">
+                                        <div>
+                                            <button onclick="open_popup_share()">
+                                                <i class="fas fa-share "></i>
+                                            </button>
+                                        </div>
+                                        <div>
                                             <button class="icon_red" onclick="open_popup_cancel_message()">
                                                 <i class="fas fa-times"></i>
-                                                
-
                                             </button>
-                                            </div>
-                                            
                                         </div>
-                                    </td>
-                                
+
+                                    </div>
+                                </td>
+
                             </tr>
 
                             {% endfor %}
 
-
+                            <!-- 
                             <tr>
                                 <td data-label="Booking ID :">BD1234567</td>
                                 <td data-label="Booking Date :">2021/09/30</td>
@@ -637,9 +659,9 @@
                                         </div>
 
                                 </td>   
-                            </tr>
+                            </tr> -->
 
-                               
+
                         </tbody>
                     </table>
                 </div>
@@ -647,7 +669,7 @@
 
 
 
-                    <table class="booking-table">
+                    <table class="booking-table my-favourite-list">
                         <thead>
                             <tr class="booking-thead-first-tr">
                                 <th class="booking-table-first-th">
@@ -656,12 +678,13 @@
                                             <input type="search" name="search" placeholder="Search">
                                             <i class="fas fa-search"></i>
                                         </div>
-                                        
+
                                     </div>
                                 </th>
                             </tr>
                             <tr class="booking-thead-second-tr">
-                                <th class="b-first-th">Sports Arena Name</th>
+                                <th class="b-first-th" style="text-align:center;padding-left:1em;">Sports Arena Name
+                                </th>
                                 <th>Category</th>
                                 <th>Location</th>
                                 <th></th>
@@ -675,24 +698,23 @@
                                 <td data-label="Sports Arena Name:">{{item.sa_name}}</td>
                                 <td data-label="Category:">{{item.category}}</td>
                                 <td data-label="Address:">{{item.location}}</td>
-                                <td data-label="Availability button:">
+                                <td>
                                     <button class="popup_button">
-                                        availability
+                                        Availability
                                     </button>
                                 </td>
-                                <td data-label="Delete Button:">
-                                    <button class="icon_red" onclick="open_popup_delete_message_favorite_list()" class="delete_button">
-                                        <i  class="far fa-trash-alt fa-2x"></i>
+                                <td>
+                                    <button class="icon_red" onclick="open_popup_delete_message_favorite_list()"
+                                        class="delete_button">
+                                        <i class="far fa-trash-alt fa-2x"></i>
                                     </button>
-
-
                                 </td>
-                                
+
                             </tr>
 
                             {% endfor %}
-                            
-                    </tbody>
+
+                        </tbody>
                     </table>
                 </div>
 
@@ -713,10 +735,10 @@
                                     </div>
                                 </th>
                             </tr>
-                            <tr class="booking-thead-second-tr">
+                            <tr class="booking-thead-second-tr" style="text-align: center;">
                                 <th class="b-first-th">Date</th>
                                 <th>Time</th>
-                                <th class="b-last-th">Notification</th>
+                                <th class="b-last-th" style="width:57%; text-align:right;">Notification</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -724,34 +746,34 @@
                             <tr style="cursor: pointer" onclick="open_popup_notification()">
                                 <td data-label="Date:">{{notification.date}}</td>
                                 <td data-label="Time:">{{notification.time}}</td>
-                                <td style="width: 70%" data-label="Notification :">{{notification.subject}}</td>
+                                <td class="notification-td-left">{{notification.subject}}</td>
                             </tr>
 
                             {% endfor %}
-       
-                    </tbody>
+
+                        </tbody>
                     </table>
                 </div>
 
 
 
                 <div id="add_bookings" class="booking_tab_content">
-                <h3>add_bookings</h3>
-                <p>add_bookings is the capital of France.</p> 
+                    <h3>add_bookings</h3>
+                    <p>add_bookings is the capital of France.</p>
                 </div>
 
                 <div id="cancel_booking" class="booking_tab_content">
-                <h3>cancel_booking</h3>
-                <p>cancel_booking is the capital of Japan.</p>
+                    <h3>cancel_booking</h3>
+                    <p>cancel_booking is the capital of Japan.</p>
                 </div>
                 <div id="booking_payment" class="booking_tab_content">
-                <h3>booking_payment</h3>
-                <p>cancel_booking is the capital of Japan.</p>
+                    <h3>booking_payment</h3>
+                    <p>cancel_booking is the capital of Japan.</p>
                 </div>
 
-                </div>
             </div>
-                
+        </div>
+
 
     </section>
 
@@ -764,10 +786,11 @@
         </div>
     </footer>
     <!-- End of Footer -->
-    
+
     <script type="text/javascript" src="/Assets/js/Customer/new_customer_dashbord.js?v=1"></script>
     <script type="text/javascript" src="/Assets/js/Customer/customerEditProfileValidation.js?v=1"></script>
     <script type="text/javascript" src="/Assets/js/Customer/editProfileValidation.js?v=1"></script>
 
 </body>
+
 </html>
