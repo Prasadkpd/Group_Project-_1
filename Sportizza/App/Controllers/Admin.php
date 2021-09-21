@@ -7,7 +7,6 @@ namespace App\Controllers;
 use App\Models\AdminModel;
 use Core\View;
 use App\Auth;
-use App\Models\AdminModel;
 
 class Admin extends \Core\Controller
 {
