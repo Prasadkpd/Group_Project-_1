@@ -1328,7 +1328,7 @@ footer .social-media i{
 .search-results .result-details{
   text-align: left; 
   width: 100%; 
-  margin: 0 auto;
+  margin: 10px auto;
   padding: 1em;
 }
 .search-results .sp-arena-summary-items{
@@ -1346,7 +1346,7 @@ footer .social-media i{
   padding: .1em 1em;
   position: relative;
   margin-top: .5em;
-  font-weight: 700;
+  font-weight: 600;
   font-size: .8em;
 }
 

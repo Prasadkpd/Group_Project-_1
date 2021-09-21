@@ -153,8 +153,8 @@ nav .sign-in-out-btn :hover{
 /* ======================================================================== */
 /* Start-Page-container */
 .page-container{                                                                                           
-    /* overflow: hidden; */
-    height: 87vh;
+    overflow: hidden;
+    height: 83.5vh;
     display: flex;
 }                                                                                                                                                                                                                                                                                                                                                                                                                                                          
 /* End-Page-container */                                                                                                                        
@@ -294,7 +294,7 @@ nav .sign-in-out-btn :hover{
     }
     .booking-table .booking-table-filter-container .booking-table-date-picker input[type="date"]{
         background-color: #ff7f50;
-        color: #000;
+        color: #222f3e;
         font-size: 1rem;
         font-weight: 600;
         text-align: center;
@@ -333,13 +333,22 @@ nav .sign-in-out-btn :hover{
         box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
       }
       .booking-table tbody::-webkit-scrollbar{
-          /* width: 12px; */
+          background-color: #cccccc;
+          border-radius: 10px;
+          width:8px;
         }
-        .booking-table tbody::-webkit-scrollbar-track {
+        .booking-table tbody::-webkit-scrollbar-thumb {
+            background: #3a3a3a;
+            border-radius: 8px;
+            width:5px;
+        }
+        /* .booking-table tbody::-webkit-scrollbar-track {
           border-radius: 15px;
+          background: #3a3a3a;
+            border-radius: 8px;
           /* background: rgb(233, 232, 229); 
           box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;        */
-      }
+       
 
       .booking-table button i {
         font-size:20px;
@@ -353,22 +362,34 @@ nav .sign-in-out-btn :hover{
         border: none;
         margin: 5px;
         background-color: transparent;
-        
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     }
     
     tbody tr td button:hover{
-        background-color: #04AA6D;
+         background-color: #04AA6D; 
         color:white;
         
     }
     tbody tr td .icon_red{
         color:#e74c3c;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    }
+    tbody tr td .icon_red:hover{
+        background-color: #e74c3c;
+        color:white;
         
     }
 
- 
-
-
+    .table-td-left {
+        text-align: left;
+    }
+    .my-favourite-list {  
+        width: 70vw;
+    }
+    #notification .booking-table .notification-td-left{
+       width: 920px;
+       text-align: center;
+    }
 
       
 
@@ -396,7 +417,7 @@ nav .sign-in-out-btn :hover{
 }
 
 .popup_button{
-    background-color: #2ecc71;
+    background-color: #2ed573;
     color: white;
     font-weight: 600;
     font-size:16px;
@@ -407,21 +428,53 @@ nav .sign-in-out-btn :hover{
     margin: 5px auto;
     border-radius: 50px;
     border: none;
-    background-color:rgb(33, 219, 95);
      width:150px;
      height: 49px;
      align-items: center;
+     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+.popup_delete_button{
+    background-color: #e74c3c;
+    color: white;
+    font-weight: 600;
+    font-size:16px;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+    opacity: 0.9;
+    margin: 5px auto;
+    border-radius: 50px;
+    border: none;
+     width:150px;
+     height: 49px;
+     align-items: center;
+     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
 .popup_button:hover{
     background-color: white;
-    color: rgb(33, 219, 95);
-    
-    border:1px solid #2ecc71;
+    color: rgb(33, 219, 95);  
+    border:2px solid #2ecc71;
 }
 
-.popup_delete_message button {
-    background-color: #04AA6D;
+.popup_delete_button:hover {
+    background-color: white;
+    border:2px solid #e74c3c;
+    color: #e74c3c;
+
+}
+.popup_delete_button:hover *{
+    color: #e74c3c;
+}
+.popup_delete_button a{
+    color:white;
+    font-weight:600;
+}
+
+
+/* .popup_delete_message button {
+    background-color: #e74c3c;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -429,11 +482,13 @@ nav .sign-in-out-btn :hover{
     cursor: pointer;
     width: 100%;
     opacity: 0.9;
-  }
+  } */
   
-  .popup_delete_message button:hover {
+  /* .popup_delete_message button:hover {
     opacity:1;
-  }
+    background-color: white;
+    color:#e74c3c;
+  } */
   
   /* Float cancel and delete buttons and add an equal width */
   .cancelbtn, .deletebtn {
@@ -526,25 +581,28 @@ nav .sign-in-out-btn :hover{
     height:100vh;
     display: none;
     z-index: 100;
+<<<<<<< HEAD
     background-color:rgba(214, 214, 214, 0.836);
+=======
+    background-color:rgba(238, 236, 236, 0.836);
+>>>>>>> dev_prasad
     margin: 0 auto;
   }
+
   .editProPic{
       height:110px;
-      width:110px;border-radius:50%;
+      width:110px;
+      border-radius:50%;
       overflow: hidden;
       border: 1px solid gray;
       display: flex;
       flex-direction: column;
       margin: 0 auto;
-      transform: translate(0%,-25%);
-      
-      
-
-      
+      transform: translate(0%,-25%);  
   }
   .editProPic input,label{
     margin: 0 auto;
+
   }
   #file{
       display:none
@@ -610,15 +668,23 @@ nav .sign-in-out-btn :hover{
     padding-top: 10px;
     
 }
+.nav-user-edit-from {
+    display: flex;
+    flex-direction: column;
+    
+}
+.nav-user-edit-from .form-input-contant{
+    display: flex;
+    align-items: center;
+    border: 1px;
+}
 
-
-form label{
+.nav-user-edit-from label{
     font-weight: 500;
     font-size: 15px;
 }
-form input[type=text],
+/* .nav-user-edit-from input[type=text],
 select,input[type=password] {
-    
   width: 100%;
   padding:6px 20px;
   margin: 2px auto;
@@ -626,9 +692,9 @@ select,input[type=password] {
   border: 1px solid #ccc;
   border-radius: 140px;
   box-sizing: border-box;
-}
-
-form input[type=submit] {
+} */
+/* 
+.nav-user-edit-from input[type=submit] {
     
 display: flex;
   width:max-content;
@@ -640,11 +706,8 @@ display: flex;
   cursor: pointer;
   justify-content: center;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-
-
   display: inline-block;
-    padding: 0.65rem 2rem;
-    
+    padding: 0.65rem 2rem;    
     border-radius: 2rem;
     border-width: 0rem;
     font-size: 1.05rem;
@@ -652,8 +715,8 @@ display: flex;
     display: flex;
     justify-content: center;
   
-}
-  
+} */
+
 
 /* end popup section   */
 
@@ -743,7 +806,7 @@ footer {
     color: #fff;
     font-weight: 400;
     font-size: 0.8rem;
-    position: absolute;
+    position: static;
     bottom: 0;
     width: 100%;
     text-align: center;
@@ -794,6 +857,7 @@ footer {
         }
         .booking-table thead .booking-thead-first-tr {
             border-radius: 20px;
+
         }
         
         .booking-table, .booking-table tbody, .booking-table tr, .booking-table td{
@@ -803,7 +867,7 @@ footer {
     
         .booking-table tbody{
             margin-top: 0px;
-            height: 55vh;
+            height: 50vh;
         }
         .booking-table tr{
             margin-bottom:10px;
@@ -844,6 +908,18 @@ footer {
         }
         .sidebar .sidebar-container .side-menu #side-menu-open-btn{
             display: none;
+        }
+        .page-container{
+            height: 83vh;
+            overflow: hidden;
+        }
+        .page-content-container {
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            height: 100vh;
+            overflow: hidden;
         }
         .page-content-container .container .page-header{
             font-size:1rem;
@@ -887,7 +963,7 @@ footer {
             margin:10px auto;
         }
         .booking-table tbody{
-            height: 37vh;
+            height: 50vh;
         }
         .booking-table td{
             font-size: .75rem;
@@ -896,7 +972,33 @@ footer {
             content: attr(data-label);
             font-size: .75rem;
         }
-    
+        .booking-table .btn-float-right {
+            padding-bottom:2em;
+            padding-right:0;       
+        }
+        .popup_button,.popup_delete_button{
+            margin: .5em;
+        }
+        .formsection {
+            width: 80vw;
+            padding-bottom:2em;
+        }
+        .formsection .popup_button {
+            margin: auto;
+        }
+        .my-favourite-list .popup_button{
+            width: fit-content;
+            height: fit-content;
+            font-size: .9em;
+            padding: .7em;
+            float:left;
+        }
+        #notification .booking-table .notification-td-left{
+            width: 0px;
+            width:100%;
+            padding-left:1rem;
+            text-align: left;
+         }
         
       }
     @media screen and (max-width:576px){
@@ -990,9 +1092,7 @@ footer {
         }
 
         .nav-profile .username{
-    
             margin: auto;
-            
             font-weight: 600;
             font-size:15px;
             

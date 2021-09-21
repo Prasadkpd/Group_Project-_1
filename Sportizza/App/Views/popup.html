@@ -1,0 +1,35 @@
+<!-- start pop up sign out section -->
+<div id="popup_signout" class="sectionpop ">
+   
+
+    <div class="formsection">
+
+        <div>
+            <button  class="closebutton"onclick="close_popup_signout_message()">❌</button>
+        </div>
+    <form action="/action_page.php" style="margin:20px">
+        <div style="margin:auto">
+            <h1 style="margin:auto">
+                Sign Out
+            </h1>
+            <p style="margin:auto">
+                Do your really want to sign up now?
+            </p>
+        </div>
+    </form> 
+
+ 
+<div style="display:flex">
+    
+    <button class="popup_delete_button">
+        {% if current_user %}
+        <a href="/logout"> YES</a>
+        {% endif %}
+    </button>
+    <button onclick="close_popup_signout_message()"  class="popup_button">
+        NO
+     </button>
+</div>
+    </div>  
+</div>
+<!-- end pop up sign out section -->
