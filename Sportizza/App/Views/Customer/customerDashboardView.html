@@ -571,6 +571,7 @@
 
                             
                             {% for book in bookings %}
+<<<<<<< Updated upstream
                             <tr>
                                 <td data-label="Booking ID :">{{book.booking_id}}</td>
                                 <td data-label="Booking Date :">{{book.booked_date}}</td>
@@ -578,8 +579,18 @@
                                 <td data-label="End Time :">{{book.end_time}}</td>
                                 <td data-label="Arena Name:">{{book.sa_name}}</td>
                                 <td data-label="Category:">{{book.category}}</td>
+=======
+                            {% if book.payment_status=="paid" %}
+                            <tr >
+                                <td data-label="Booking ID :" class="table-td-left">{{book.booking_id}}</td>
+                                <td data-label="Booking Date :" class="table-td-left">{{book.booked_date}}</td>
+                                <td data-label="Start Time :" class="table-td-left">{{book.start_time}}</td>
+                                <td data-label="End Time :" class="table-td-left">{{book.end_time}}</td>
+                                <td data-label="Arena Name:" class="table-td-left">{{book.sa_name}}</td>
+                                <td data-label="Category:" class="table-td-left">{{book.category}}</td>
+>>>>>>> Stashed changes
                                 <td data-label="Payment Method :">{{book.payment_method}}</td>
-                                <td data-label="Payment Status :">{{book.payment_status}}</td>
+                                <td data-label="Payment Status :"><div class="Payment-status active"><a href="">{{book.payment_status}}</a></div></td>
                                 <td data-label="Amount:">{{book.price_per_booking}}</td>
                                 
                                 <td data-label="Booking Status">Pending</td>
@@ -599,10 +610,46 @@
                                             </div>
                                             
                                         </div>
+<<<<<<< Updated upstream
                                     </td>
                                 
+=======
+                                    </div>
+                                </td>
+>>>>>>> Stashed changes
                             </tr>
+                            {% endif %}
 
+                            {% if book.payment_status=="unpaid" %}
+                            <tr >
+                                <td data-label="Booking ID :" class="table-td-left">{{book.booking_id}}</td>
+                                <td data-label="Booking Date :" class="table-td-left">{{book.booked_date}}</td>
+                                <td data-label="Start Time :" class="table-td-left">{{book.start_time}}</td>
+                                <td data-label="End Time :" class="table-td-left">{{book.end_time}}</td>
+                                <td data-label="Arena Name:" class="table-td-left">{{book.sa_name}}</td>
+                                <td data-label="Category:" class="table-td-left">{{book.category}}</td>
+                                <td data-label="Payment Method :">{{book.payment_method}}</td>
+                                <td data-label="Payment Status :"><div class="Payment-status"><a href="">{{book.payment_status}}</a></div></td>
+                                <td data-label="Amount:">{{book.price_per_booking}}</td>
+
+                                <!-- <td data-label="Booking Status">Pending</td> -->
+                                <td class="btn-float-right">
+                                    <div style="display:flex; float:right; padding-right:2rem;">
+                                        <div>
+                                            <button onclick="open_popup_share()">
+                                                <i class="fas fa-share "></i>
+                                            </button>
+                                        </div>
+                                        <div>
+                                            <button class="icon_red" onclick="open_popup_cancel_message()">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endif %}
+                           
                             {% endfor %}
 
 

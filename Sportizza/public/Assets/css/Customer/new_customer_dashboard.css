@@ -516,7 +516,39 @@ nav .sign-in-out-btn :hover{
         border-radius: 20px;         
         box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;  
       } */
+      .booking-table tbody tr .Payment-status a{
+        color: #fff;
+        font-weight:600;
+      font-size:0.9rem;
+      width:50px;
+        background-color:#eb4d4b;
+        padding:0.5rem 1.3rem;
+        border-radius:25px;
+        text-transform: uppercase;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+      }
+      .booking-table tbody tr .Payment-status a:hover{
+        border: 1px solid #eb4d4b;
+        background-color: #fff;
+        color: #eb4d4b;
+      }
+      .booking-table tbody tr .Payment-status.active a{
+        color: #fff;
+        font-weight:600;
+      font-size:0.9rem;
+        background-color: #2ecc71;
+        padding:0.5rem 2.1rem;
+        border-radius:25px;
+        text-transform: uppercase;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+      }
 
+      .booking-table tbody tr .Payment-status.active a:hover{
+        border: 1px solid #2ecc71;
+        background-color: #fff;
+        color: #2ecc71;
+      }
+     
 
   
 /* pop up form section */
@@ -526,7 +558,11 @@ nav .sign-in-out-btn :hover{
     height:100vh;
     display: none;
     z-index: 100;
+<<<<<<< Updated upstream
     background-color:rgba(214, 214, 214, 0.836);
+=======
+    background-color:rgba(238, 236, 236, 0.836);
+>>>>>>> Stashed changes
     margin: 0 auto;
   }
   .editProPic{
@@ -828,6 +864,14 @@ footer {
       }
 
       @media screen and (max-width: 420px) {
+        .booking-table tbody tr .Payment-status a{
+            font-size:0.7rem;
+            padding: 0.1rem 0.5rem;
+          }
+          .booking-table tbody tr .Payment-status.active a{
+            font-size:0.7rem;
+            padding: 0.1rem 0.5rem;
+          }
    
         .sidebar{
             width:10vw;
