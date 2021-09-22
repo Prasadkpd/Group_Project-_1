@@ -274,6 +274,91 @@
                         </div>
                     </div>
                 </div>
+                <div class="customer-review-card">
+                    <div class="review-header">
+                        <div class="review-star-rate">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="review-sp-arena-name">
+                            {{feedbacks[4].sa_name}}
+                        </div>
+                    </div>
+                    <div class="review-desc">
+                        {{feedbacks[4].description}}
+                    </div>
+                    <div class="review-footer">
+                        <div class="review-info">
+                            <img class="reviewer-img" src="/Assets/images/Team members/bhashitha.png"></img>
+                            <h3 class="reviewer-name">{{feedbacks[4].first_name}}  {{feedbacks[4].last_name}}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="customer-review-card">
+                    <div class="review-header">
+                        <div class="review-star-rate">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="review-sp-arena-name">
+                            {{feedbacks[5].sa_name}}
+                        </div>
+                    </div>
+                    <div class="review-desc">
+                        {{feedbacks[5].description}}
+                    </div>
+                    <div class="review-footer">
+                        <div class="review-info">
+                            <img class="reviewer-img" src="/Assets/images/Team members/bhashitha.png"></img>
+                            <h3 class="reviewer-name">{{feedbacks[5].first_name}}  {{feedbacks[5].last_name}}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="customer-review-card">
+                    <div class="review-header">
+                        <div class="review-star-rate">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="review-sp-arena-name">
+                            {{feedbacks[6].sa_name}}
+                        </div>
+                    </div>
+                    <div class="review-desc">
+                        {{feedbacks[6].description}}
+                    </div>
+                    <div class="review-footer">
+                        <div class="review-info">
+                            <img class="reviewer-img" src="/Assets/images/Team members/bhashitha.png"></img>
+                            <h3 class="reviewer-name">{{feedbacks[6].first_name}}  {{feedbacks[6].last_name}}</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="customer-review-card">
+                    <div class="review-header">
+                        <div class="review-star-rate">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="review-sp-arena-name">
+                            {{feedbacks[7].sa_name}}
+                        </div>
+                    </div>
+                    <div class="review-desc">
+                        {{feedbacks[7].description}}
+                    </div>
+                    <div class="review-footer">
+                        <div class="review-info">
+                            <img class="reviewer-img" src="/Assets/images/Team members/bhashitha.png"></img>
+                            <h3 class="reviewer-name">{{feedbacks[7].first_name}}  {{feedbacks[7].last_name}}</h3>
+                        </div>
+                    </div>
+                </div>
                 
                 
             </div>
@@ -304,30 +389,13 @@
 
 
                 <div class="faq-content" id="sparena-faq">
-                    <button class="faq-accordian">How to Create my favourite sports arena list?</button>
+                    
+                    {% for faq in arenafaqs %}
+                    <button class="faq-accordian">{{faq.question}}</button>
                     <div class="faq-accordian-content">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae saepe, itaque neque iusto, non rem blanditiis voluptate quibusdam ea vitae sint alias unde quae a, quo aperiam animi tenetur quis.</p>
+                        <p>{{faq.answer}}</p>
                     </div>
-                    <button class="faq-accordian">How to Create my favourite sports arena list?</button>
-                    <div class="faq-accordian-content">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae saepe, itaque neque iusto, non rem blanditiis voluptate quibusdam ea vitae sint alias unde quae a, quo aperiam animi tenetur quis.</p>
-                    </div>
-                    <button class="faq-accordian">How to Create my favourite sports arena list?</button>
-                    <div class="faq-accordian-content">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae saepe, itaque neque iusto, non rem blanditiis voluptate quibusdam ea vitae sint alias unde quae a, quo aperiam animi tenetur quis.</p>
-                    </div>
-                    <button class="faq-accordian">How to Create my favourite sports arena list?</button>
-                    <div class="faq-accordian-content">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae saepe, itaque neque iusto, non rem blanditiis voluptate quibusdam ea vitae sint alias unde quae a, quo aperiam animi tenetur quis.</p>
-                    </div>
-                    <button class="faq-accordian">How to Create my favourite sports arena list?</button>
-                    <div class="faq-accordian-content">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae saepe, itaque neque iusto, non rem blanditiis voluptate quibusdam ea vitae sint alias unde quae a, quo aperiam animi tenetur quis.</p>
-                    </div>
-                    <button class="faq-accordian">How to Create my favourite sports arena list?</button>
-                    <div class="faq-accordian-content">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae saepe, itaque neque iusto, non rem blanditiis voluptate quibusdam ea vitae sint alias unde quae a, quo aperiam animi tenetur quis.</p>
-                    </div>
+                    {% endfor %}
                 </div>
         
                 </div>

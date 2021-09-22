@@ -149,10 +149,31 @@ class HomeModel extends \Core\Model
     }
 
 
-    public static function homeViewFAQs(){
+    public static function homeViewCustomerFAQs(){
         
         $sql = 'SELECT faq.question,faq.answer
-                FROM faq WHERE faq.security_status="active"';
+                FROM faq WHERE faq.security_status="active" AND faq.type="customer"';
+        
+
+
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        // var_dump($result);
+        return $result;
+    }
+
+
+    public static function homeViewArenaFAQs(){
+        
+        $sql = 'SELECT faq.question,faq.answer
+                FROM faq WHERE faq.security_status="active" AND faq.type="sports_arena"';
         
 
 

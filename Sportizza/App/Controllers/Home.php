@@ -14,9 +14,10 @@ class Home extends \Core\Controller
     public function indexAction()
     {
         $feedbacks=HomeModel::homeViewfeedbacks();
-        $faqs=HomeModel::homeViewfaqs();
+        $customerFAQs=HomeModel::homeViewCustomerfaqs();
         $arenas=HomeModel::homeViewarenas();
-       View::renderTemplate('Visitor/visitorView.html',['feedbacks'=>$feedbacks,'faqs'=>$faqs,'arenas'=>$arenas]);
+        $arenaFAQs=HomeModel::homeViewArenafaqs();
+       View::renderTemplate('Visitor/visitorView.html',['feedbacks'=>$feedbacks,'faqs'=>$customerFAQs,'arenafaqs'=>$arenaFAQs,'arenas'=>$arenas]);
     }
 
 
