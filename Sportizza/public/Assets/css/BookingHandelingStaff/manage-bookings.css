@@ -844,6 +844,8 @@ footer {
 .popup_delete_button a{
     color:white;
     font-weight:600;
+    padding: 1em 4em; 
+    border-radius: 30px;
 }
 
 /* ========================================================== */

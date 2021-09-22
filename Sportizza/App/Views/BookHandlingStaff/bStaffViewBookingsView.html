@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Bookings</title>
-    <link rel="stylesheet" href="/Assets/css/BookingHandelingStaff/manage-bookings.css?version=5">
+    <link rel="stylesheet" href="/Assets/css/BookingHandelingStaff/manage-bookings.css?version=6">
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 </head>
 
@@ -35,25 +35,28 @@
             <div class="sign-in-out-btn">
                 <button onclick="open_popup_signout_message()"> Sign Out </button>
                 <!-- {% if current_user %}
-        <a href="/logout"> Sign Out</a>
-        {% endif %} -->
+                    <a href="/logout"> Sign Out</a>
+                    {% endif %} -->
+                </div>
             </div>
-        </div>
-        <!-- search bar for mobile -->
-        <div class="search-bar-container-mobi">
-            <input type="search" name="search" placeholder="Search">
-            <i class="fas fa-search "></i>
-        </div>
-    </nav>
-    <div id="popup_signout" class="sectionpop ">
-        <div class="formsection">
+            <!-- search bar for mobile -->
+            <div class="search-bar-container-mobi">
+                <input type="search" name="search" placeholder="Search">
+                <i class="fas fa-search "></i>
+            </div>
+        </nav>
+        <!-- End Top Navigation Bar -->
+        <!-- Start of Sign out Pop up -->
 
-            <div>
-                <button class="closebutton" onclick="close_popup_signout_message()">❌</button>
-            </div>
-            <form action="/action_page.php" style="margin:20px">
-                <div style="margin:auto">
-                    <h1 style="margin:auto">
+        <div id="popup_signout" class="sectionpop ">
+            <div class="formsection">
+                
+                <div>
+                    <button class="closebutton" onclick="close_popup_signout_message()">❌</button>
+                </div>
+                <form action="/action_page.php" style="margin:20px">
+                    <div style="margin:auto">
+                        <h1 style="margin:auto">
                         Sign Out
                     </h1>
                     <p style="margin:auto">
@@ -95,7 +98,6 @@
             </form>
         </div>
     </div>
-    <!-- End Top Navigation Bar -->
 
     <section class="page-container">
 
