@@ -4,6 +4,8 @@
 namespace App\Controllers;
 use Core\View;
 use \App\Models\User;
+use \App\Controllers\Otp;
+
 
 
 class Signup extends \Core\Controller
@@ -24,8 +26,9 @@ class Signup extends \Core\Controller
 
         if ($user->save()) {
 
+            otp::sendSMS($_POST["mobile_number"]);
             //Have redirect instead
-            header('Location: http://' . $_SERVER['HTTP_HOST'] . '/signup/success', true, 303);
+            $this->redirect('/Signup/success');
             exit;
 
         } else {
@@ -43,6 +46,7 @@ class Signup extends \Core\Controller
      */
     public function successAction()
     {
+        
         //direct to the message modal page
         View::renderTemplate('otp.html');
     }

@@ -24,6 +24,7 @@ class Arenareg extends \Core\Controller
         $sp_arena = new SpArenaModel($_POST);
         
         if ($sp_arena->save()) {
+            otp::sendSMS($_POST["mobile_number"]);
             
             $this->redirect('/Arenareg/success');
             exit;
