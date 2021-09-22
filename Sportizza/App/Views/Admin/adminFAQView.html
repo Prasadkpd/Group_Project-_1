@@ -127,7 +127,7 @@
                             <p class="side-menu-tooltip">Analytics</p>
                         </li>
                         <li>
-                            <a href="/admin/manageuser" class="side-menu-li">
+                            <a href="/admin" class="side-menu-li">
                                 <i class="fas fa-users"></i>
                                 <p class="side-menu-item">Manage Users</p>
                             </a>
@@ -189,66 +189,14 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {% for FAQ in viewFAQs %}
                             <tr>
-                                <td data-label="FAQ ID :">FQ1000000000</td>
-                                <td data-label="Question :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Solution :">Lorem ipsum dolor sit amet, consectetur adipiscing.</td>
+                                <td data-label="FAQ ID :">{{FAQ.faq_id}}</td>
+                                <td data-label="Question :">{{FAQ.question}}</td>
+                                <td data-label="Solution :">{{FAQ.answer}}</td>
                             </tr>
-                            <tr>
-                                <td data-label="FAQ ID :">FQ1000000000</td>
-                                <td data-label="Question :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Solution :">Lorem ipsum dolor sit amet, consectetur adipiscing.</td>
-                            </tr>
-                            <tr>
-                                <td data-label="FAQ ID :">FQ1000000000</td>
-                                <td data-label="Question :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Solution :">Lorem ipsum dolor sit amet, consectetur adipiscing.</td>
-                            </tr>
-                            <tr>
-                                <td data-label="FAQ ID :">FQ1000000000</td>
-                                <td data-label="Question :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Solution :">Lorem ipsum dolor sit amet, consectetur adipiscing.</td>
-                            </tr>
-                            <tr>
-                                <td data-label="FAQ ID :">FQ1000000000</td>
-                                <td data-label="Question :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Solution :">Lorem ipsum dolor sit amet, consectetur adipiscing.</td>
-                            </tr>
-                            <tr>
-                                <td data-label="FAQ ID :">FQ1000000000</td>
-                                <td data-label="Question :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Solution :">Lorem ipsum dolor sit amet, consectetur adipiscing.</td>
-                            </tr>
-                            <tr>
-                                <td data-label="FAQ ID :">FQ1000000000</td>
-                                <td data-label="Question :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Solution :">Lorem ipsum dolor sit amet, consectetur adipiscing.</td>
-                            </tr>
-                            <tr>
-                                <td data-label="FAQ ID :">FQ1000000000</td>
-                                <td data-label="Question :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Solution :">Lorem ipsum dolor sit amet, consectetur adipiscing.</td>
-                            </tr>
-                            <tr>
-                                <td data-label="FAQ ID :">FQ1000000000</td>
-                                <td data-label="Question :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Solution :">Lorem ipsum dolor sit amet, consectetur adipiscing.</td>
-                            </tr>
-                            <tr>
-                                <td data-label="FAQ ID :">FQ1000000000</td>
-                                <td data-label="Question :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Solution :">Lorem ipsum dolor sit amet, consectetur adipiscing.</td>
-                            </tr>
-                            <tr>
-                                <td data-label="FAQ ID :">FQ1000000000</td>
-                                <td data-label="Question :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Solution :">Lorem ipsum dolor sit amet, consectetur adipiscing.</td>
-                            </tr>
-                            <tr>
-                                <td data-label="FAQ ID :">FQ1000000000</td>
-                                <td data-label="Question :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Solution :">Lorem ipsum dolor sit amet, consectetur adipiscing.</td>
-                            </tr>
+                            {% endfor %}
+                            
                         </tbody>
                     </table>
                 </div>
@@ -299,78 +247,17 @@
                             </tr>
                         </thead>
                         <tbody>
+
+                            {% for FAQ in deleteFAQs %}
                             <tr>
-                                <td data-label="FAQ ID :">FQ1000000000</td>
-                                <td data-label="Question :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Solution :">Lorem ipsum dolor sit amet, consectetur adipiscing.</td>
+                                <td data-label="FAQ ID :">{{FAQ.faq_id}}</td>
+                                <td data-label="Question :">{{FAQ.question}}</td>
+                                <td data-label="Solution :">{{FAQ.answer}}</td>
                                 <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
                             </tr>
-                            <tr>
-                                <td data-label="FAQ ID :">FQ1000000000</td>
-                                <td data-label="Question :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Solution :">Lorem ipsum dolor sit amet, consectetur adipiscing.</td>
-                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="FAQ ID :">FQ1000000000</td>
-                                <td data-label="Question :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Solution :">Lorem ipsum dolor sit amet, consectetur adipiscing.</td>
-                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="FAQ ID :">FQ1000000000</td>
-                                <td data-label="Question :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Solution :">Lorem ipsum dolor sit amet, consectetur adipiscing.</td>
-                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="FAQ ID :">FQ1000000000</td>
-                                <td data-label="Question :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Solution :">Lorem ipsum dolor sit amet, consectetur adipiscing.</td>
-                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="FAQ ID :">FQ1000000000</td>
-                                <td data-label="Question :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Solution :">Lorem ipsum dolor sit amet, consectetur adipiscing.</td>
-                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="FAQ ID :">FQ1000000000</td>
-                                <td data-label="Question :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Solution :">Lorem ipsum dolor sit amet, consectetur adipiscing.</td>
-                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="FAQ ID :">FQ1000000000</td>
-                                <td data-label="Question :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Solution :">Lorem ipsum dolor sit amet, consectetur adipiscing.</td>
-                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="FAQ ID :">FQ1000000000</td>
-                                <td data-label="Question :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Solution :">Lorem ipsum dolor sit amet, consectetur adipiscing.</td>
-                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="FAQ ID :">FQ1000000000</td>
-                                <td data-label="Question :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Solution :">Lorem ipsum dolor sit amet, consectetur adipiscing.</td>
-                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="FAQ ID :">FQ1000000000</td>
-                                <td data-label="Question :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Solution :">Lorem ipsum dolor sit amet, consectetur adipiscing.</td>
-                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
-                            </tr>
-                            <tr>
-                                <td data-label="FAQ ID :">FQ1000000000</td>
-                                <td data-label="Question :">Integer pulvinar metus sit amet magna hendrerit?</td>
-                                <td data-label="Solution :">Lorem ipsum dolor sit amet, consectetur adipiscing.</td>
-                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
-                            </tr>
+                            {% endfor %}
+                           
+                            
                         </tbody>
                     </table>
                 </div>
