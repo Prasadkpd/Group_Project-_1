@@ -101,7 +101,15 @@ class Sparenamanager extends \Core\Controller
 
     public function manageanalyticsAction()
     {
-        View::renderTemplate('SpArenaManager/manage-users.html');
+        $current_user= Auth::getUser();
+        $id=$current_user->user_id;
+        $chart1=SpArenaManagerModel::managerChart1($id);
+        $chart2=SpArenaManagerModel::managerChart2($id);
+        $chart3=SpArenaManagerModel::managerChart3($id);
+        $chart4=SpArenaManagerModel::managerChart4($id);
+        //direct to the manager page
+        View::renderTemplate('Manager/mStaffAnalyticsView.html',
+        ['chart1'=>$chart1, 'chart2'=>$chart2, 'chart3'=>$chart3, 'chart4'=>$chart4]);
     }
  
 

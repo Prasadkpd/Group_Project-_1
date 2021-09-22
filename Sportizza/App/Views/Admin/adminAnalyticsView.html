@@ -288,7 +288,8 @@
     
     <script>
  
-
+        var delayed;
+        
         var ctx1 = document.getElementById('myChart1').getContext('2d');
         var myChart1 = new Chart(ctx1, {
             type: 'bar',
@@ -313,6 +314,19 @@
             },
             options: {
                 responsive: true,
+                animation: {
+                    // delay: 500, // change delay to suit your needs.
+                    onComplete: () => {
+                        delayed = true;
+                    },
+                    delay: (context) => {
+                        let delay = 0;
+                        if (context.type === 'data' && context.mode === 'default' && !delayed) {
+                        delay = context.dataIndex * 300 + context.datasetIndex * 100;
+                        }
+                        return delay;
+                    },
+                },
                 scales: {
                     y: {
                         beginAtZero: true,
@@ -365,6 +379,19 @@
             options: {
                 indexAxis: 'y',
                 responsive: true,
+                animation: {
+                    // delay: 500, // change delay to suit your needs.
+                    onComplete: () => {
+                        delayed = true;
+                    },
+                    delay: (context) => {
+                        let delay = 0;
+                        if (context.type === 'data' && context.mode === 'default' && !delayed) {
+                        delay = context.dataIndex * 300 + context.datasetIndex * 100;
+                        }
+                        return delay;
+                    },
+                },
                 scales: {
                     y: {
                         beginAtZero: true,
@@ -417,6 +444,19 @@
             },
             options: {
                 responsive: true,
+                animation: {
+                    // delay: 500, // change delay to suit your needs.
+                    onComplete: () => {
+                        delayed = true;
+                    },
+                    delay: (context) => {
+                        let delay = 0;
+                        if (context.type === 'data' && context.mode === 'default' && !delayed) {
+                        delay = context.dataIndex * 300 + context.datasetIndex * 100;
+                        }
+                        return delay;
+                    },
+                },
                 scales: {
                     y: {
                         beginAtZero: true,
@@ -470,6 +510,19 @@
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                animation: {
+                    // delay: 500, // change delay to suit your needs.
+                    onComplete: () => {
+                        delayed = true;
+                    },
+                    delay: (context) => {
+                        let delay = 0;
+                        if (context.type === 'data' && context.mode === 'default' && !delayed) {
+                        delay = context.dataIndex * 300 + context.datasetIndex * 100;
+                        }
+                        return delay;
+                    },
+                },
                 plugins: {
                     legend: {
                         position: 'bottom'
