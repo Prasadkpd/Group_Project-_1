@@ -14,7 +14,7 @@ togglePassword.addEventListener('click', function (e) {
 function change_color(files, e) {
     if (files.length > 0) {
         console.log(e.currentTarget);
-        e.currentTarget.parentNode.style.backgroundColor = "#fab1a0";
+        e.currentTarget.style.backgroundColor = "#7bed9f";
     }
 }
 //function to remove the underscore inbetween 2 names
@@ -176,7 +176,10 @@ function matchWithRegEx(regEx, field) {
         return false;
     }
 }
+
 function matchWithRegExSpace(regEx, field) {
+    //test
+    // console.log(field.value);
     if (field.value.match(regEx)) {
         setValid(field);
         return true;
@@ -248,10 +251,10 @@ function selectOtherLocationValidate(field) {
     }
 }
 
-function validateImgFiles() {
-    // if (fileExists(file1)) return;
-    // return true;
-}
+// function validateImgFiles() {
+//     if( document.getElementById("").files.length == 0 ){
+//     // return true;
+// }
 
 
 
@@ -338,6 +341,7 @@ function validateUsername() {
     if (checkIfEmpty(username)) return;
     if (!meetLength(username, 10, 15)) return;
     if (!checkCharacters(username)) return;
+
     if (!matchWithRegExSpace(regEx,username)) return;
     return true;
 }

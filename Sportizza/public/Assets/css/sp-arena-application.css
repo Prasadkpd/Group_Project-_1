@@ -244,6 +244,16 @@ form .manager-details .input-box-descr span.detais {
   border: 2px solid #f0f0f0;
   transition: all 0.3s ease;
 }
+.sp-details .upload-images .input-box input {
+  height: 45px;
+  width: 200px;
+  outline: none;
+  font-size: 12px;
+  border-radius: 25px;
+  margin:auto;
+  border: 2px solid #f0f0f0;
+  transition: all 0.3s ease;
+}
 .manager-details .input-box input {
   height: 45px;
   width: 100%;
@@ -312,6 +322,10 @@ form .manager-details .input-box-descr {
   padding-left: 20px;
   border: 2px solid #f0f0f0;
   transition: all 0.3s ease;
+}
+.tag{
+  font-size:14px;
+  padding-right:15px;
 }
 .sp-details .input-box select {
   height: 45px;
@@ -409,14 +423,17 @@ form .manager-details .input-box-descr {
 .upload-images {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
-.img-button {
+ .img-button {
   background-color: #f2f2f2;
-  width: 85px;
+  width: 60px;
+  height:60px;
+  border-radius:60px;
   margin-bottom: 10px;
   font-size: 12px;
   font-weight: 500;
-  padding: 5px 15px;
+  padding: 10px 10px;
   color: #34495e;
   text-align: center;
   border-radius: 10px;
