@@ -140,7 +140,11 @@
                         </div>
                     </div>
                     <div class="search-filter">
-                        <input type="search" name="" id="">
+                        <!-- <form>
+                            <input  type="text" name="" id="">
+                            <input type="submit" value="Search" class="btn solid" />
+                        </form> -->
+                        <input  type="search" name="" id="">
                         <button>Search</button>
                     </div>
                 </div>
@@ -160,91 +164,20 @@
                     </div>
                         
 
+                {% for arena in arenas %}
                 <div class="result-details">
-                    <h4><a href="">Mercantile Cricket Grounds</a></h4>
+                    <h4><a href="">{{arena.sa_name}}</a></h4>
                     <div class="sp-arena-summary-items">
-                        <h5>City:<h6> Colombo 07</h6>
+                        <h5>City:<h6> {{arena.location}}</h6>
                         </h5>
-                        <h5>Category: <h6> Cricket Ground</h6>
+                        <h5>Category: <h6>{{arena.category}}</h6>
                         </h5>
                         <a href="/customer/booking" class="btn check-availability-btn"> Availability</a>
 
                     </div>
 
                 </div>
-
-                <div class="result-details">
-                    <h4><a href="">Mercantile Cricket Grounds</a></h4>
-                    <div class="sp-arena-summary-items">
-                        <h5>City:<h6> Colombo 07</h6>
-                        </h5>
-
-                        <h5>Category: <h6> Cricket Ground</h6>
-                        </h5>
-
-                        <a href="#" class="btn check-availability-btn"> Availability</a>
-                    </div>
-                </div>
-                <div class="result-details">
-                    <h4><a href="">Mercantile Cricket Grounds</a></h4>
-                    <div class="sp-arena-summary-items">
-                        <h5>City:<h6> Colombo 07</h6>
-                        </h5>
-
-                        <h5>Category: <h6> Cricket Ground</h6>
-                        </h5>
-
-                        <a href="#" class="btn check-availability-btn"> Availability</a>
-                    </div>
-                </div>
-                <div class="result-details">
-                    <h4><a href="">Mercantile Cricket Grounds</a></h4>
-                    <div class="sp-arena-summary-items">
-                        <h5>City:<h6> Colombo 07</h6>
-                        </h5>
-
-                        <h5>Category: <h6> Cricket Ground</h6>
-                        </h5>
-
-                        <a href="#" class="btn check-availability-btn"> Availability</a>
-                    </div>
-                </div>
-                <div class="result-details">
-                    <h4><a href="">Mercantile Cricket Grounds</a></h4>
-                    <div class="sp-arena-summary-items">
-                        <h5>City:<h6> Colombo 07</h6>
-                        </h5>
-
-                        <h5>Category: <h6> Cricket Ground</h6>
-                        </h5>
-
-                        <a href="#" class="btn check-availability-btn"> Availability</a>
-                    </div>
-                </div>
-                <div class="result-details">
-                    <h4><a href="">Mercantile Cricket Grounds</a></h4>
-                    <div class="sp-arena-summary-items">
-                        <h5>City:<h6> Colombo 07</h6>
-                        </h5>
-
-                        <h5>Category: <h6> Cricket Ground</h6>
-                        </h5>
-
-                        <a href="#" class="btn check-availability-btn"> Availability</a>
-                    </div>
-                </div>
-                <div class="result-details">
-                    <h4><a href="">Mercantile Cricket Grounds</a></h4>
-                    <div class="sp-arena-summary-items">
-                        <h5>City:<h6> Colombo 07</h6>
-                        </h5>
-
-                        <h5>Category: <h6> Cricket Ground</h6>
-                        </h5>
-
-                        <a href="#" class="btn check-availability-btn"> Availability</a>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -255,73 +188,26 @@
                 <h3 class="title" data-title="">Customer Reviews</h3>
             </div>
             <div class="customer-reviews">
-                <div class="customer-review-card">
-                    <div class="review-header">
-                        <div class="review-star-rate">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="review-sp-arena-name">
-                            - Mercantile Basketball Courts, Colombo 07
-                        </div>
-                    </div>
-                    <div class="review-desc">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime earum dicta eaque
-                        sequi! Saepe suscipit dignissimos est perspiciatis esse neque laudantium modi rem fugit.
-                        Aliquam qui enim nobis repellendus odit!
-                    </div>
-                    <div class="review-footer">
-                        <div class="review-info">
-                            <img class="reviewer-img" src="/Assets/images/Team members/bhashitha.png"></img>
-                            <h3 class="reviewer-name">Bhashitha Ranasinghe</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="customer-review-card">
-                    <div class="review-header">
-                        <div class="review-star-rate">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="review-sp-arena-name">
-                            - Mercantile Basketball Courts, Colombo 07
-                        </div>
-                    </div>
-                    <div class="review-desc">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime earum dicta eaque sequi! Saepe
-                        suscipit dignissimos est perspiciatis esse neque laudantium modi rem fugit. Aliquam qui enim
-                        nobis repellendus odit!
-                    </div>
-                    <div class="review-footer">
-                        <div class="review-info">
-                            <img class="reviewer-img" src="/Assets/images/Team members/bhashitha.png"></img>
-                            <h3 class="reviewer-name">Bhashitha Ranasinghe</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="customer-review-card">
-                    <div class="review-header">
-                        <div class="review-star-rate">
 
+            
+                <div class="customer-review-card">
+                    <div class="review-header">
+                        <div class="review-star-rate">
+                            <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                         </div>
                         <div class="review-sp-arena-name">
-                            - Mercantile Basketball Courts, Colombo 07
+                            {{feedbacks[0].sa_name}}
                         </div>
                     </div>
                     <div class="review-desc">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime earum dicta eaque sequi!
-                        Saepe suscipit dignissimos est perspiciatis esse neque laudantium modi rem fugit.
-                        Aliquam qui enim nobis repellendus odit!
+                        {{feedbacks[0].description}}
                     </div>
                     <div class="review-footer">
                         <div class="review-info">
                             <img class="reviewer-img" src="/Assets/images/Team members/bhashitha.png"></img>
-                            <h3 class="reviewer-name">Bhashitha Ranasinghe</h3>
+                            <h3 class="reviewer-name">{{feedbacks[0].first_name}}  {{feedbacks[0].last_name}}</h3>
                         </div>
                     </div>
                 </div>
@@ -331,22 +217,18 @@
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
                         </div>
                         <div class="review-sp-arena-name">
-                            - Mercantile Basketball Courts, Colombo 07
+                            {{feedbacks[1].sa_name}}
                         </div>
                     </div>
                     <div class="review-desc">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime earum dicta eaque sequi!
-                        Saepe suscipit dignissimos est perspiciatis esse neque laudantium modi rem fugit. A
-                        liquam qui enim nobis repellendus odit!
+                        {{feedbacks[1].description}}
                     </div>
                     <div class="review-footer">
                         <div class="review-info">
                             <img class="reviewer-img" src="/Assets/images/Team members/bhashitha.png"></img>
-                            <h3 class="reviewer-name">Bhashitha Ranasinghe</h3>
+                            <h3 class="reviewer-name">{{feedbacks[1].first_name}}  {{feedbacks[1].last_name}}</h3>
                         </div>
                     </div>
                 </div>
@@ -356,22 +238,18 @@
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
                         </div>
                         <div class="review-sp-arena-name">
-                            - Mercantile Basketball Courts, Colombo 07
+                            {{feedbacks[2].sa_name}}
                         </div>
                     </div>
                     <div class="review-desc">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime earum dicta eaque sequi!
-                        Saepe suscipit dignissimos est perspiciatis esse neque laudantium modi rem fugit. A
-                        liquam qui enim nobis repellendus odit!
+                        {{feedbacks[2].description}}
                     </div>
                     <div class="review-footer">
                         <div class="review-info">
                             <img class="reviewer-img" src="/Assets/images/Team members/bhashitha.png"></img>
-                            <h3 class="reviewer-name">Bhashitha Ranasinghe</h3>
+                            <h3 class="reviewer-name">{{feedbacks[2].first_name}}  {{feedbacks[2].last_name}}</h3>
                         </div>
                     </div>
                 </div>
@@ -381,75 +259,23 @@
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
                         </div>
                         <div class="review-sp-arena-name">
-                            - Mercantile Basketball Courts, Colombo 07
+                            {{feedbacks[3].sa_name}}
                         </div>
                     </div>
                     <div class="review-desc">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime earum dicta eaque sequi!
-                        Saepe suscipit dignissimos est perspiciatis esse neque laudantium modi rem fugit. A
-                        liquam qui enim nobis repellendus odit!
+                        {{feedbacks[3].description}}
                     </div>
                     <div class="review-footer">
                         <div class="review-info">
                             <img class="reviewer-img" src="/Assets/images/Team members/bhashitha.png"></img>
-                            <h3 class="reviewer-name">Bhashitha Ranasinghe</h3>
+                            <h3 class="reviewer-name">{{feedbacks[3].first_name}}  {{feedbacks[3].last_name}}</h3>
                         </div>
                     </div>
                 </div>
-                <div class="customer-review-card">
-                    <div class="review-header">
-                        <div class="review-star-rate">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="review-sp-arena-name">
-                            - Mercantile Basketball Courts, Colombo 07
-                        </div>
-                    </div>
-                    <div class="review-desc">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime earum dicta eaque sequi!
-                        Saepe suscipit dignissimos est perspiciatis esse neque laudantium modi rem fugit. A
-                        liquam qui enim nobis repellendus odit!
-                    </div>
-                    <div class="review-footer">
-                        <div class="review-info">
-                            <img class="reviewer-img" src="/Assets/images/Team members/bhashitha.png"></img>
-                            <h3 class="reviewer-name">Bhashitha Ranasinghe</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="customer-review-card">
-                    <div class="review-header">
-                        <div class="review-star-rate">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="review-sp-arena-name">
-                            - Mercantile Basketball Courts, Colombo 07
-                        </div>
-                    </div>
-                    <div class="review-desc">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime earum dicta eaque sequi!
-                        Saepe suscipit dignissimos est perspiciatis esse neque laudantium modi rem fugit. A
-                        liquam qui enim nobis repellendus odit!
-                    </div>
-                    <div class="review-footer">
-                        <div class="review-info">
-                            <img class="reviewer-img" src="/Assets/images/Team members/bhashitha.png"></img>
-                            <h3 class="reviewer-name">Bhashitha Ranasinghe</h3>
-                        </div>
-                    </div>
-                </div>
+                
+                
             </div>
         </div>
     </section>
@@ -465,31 +291,18 @@
             </div>
             <div class="faq-container">
                 <div class="faq-content" id="customer-faq" style="display: block;">
-                    <button class="faq-accordian">How to Create my favourite sports arena list?</button>
+                    {% for faq in faqs %}
+                    <button class="faq-accordian">{{faq.question}}</button>
                     <div class="faq-accordian-content">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae saepe, itaque neque iusto, non rem blanditiis voluptate quibusdam ea vitae sint alias unde quae a, quo aperiam animi tenetur quis.</p>
+                        <p>{{faq.answer}}</p>
                     </div>
-                    <button class="faq-accordian">How to Create my favourite sports arena list?</button>
-                    <div class="faq-accordian-content">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae saepe, itaque neque iusto, non rem blanditiis voluptate quibusdam ea vitae sint alias unde quae a, quo aperiam animi tenetur quis.</p>
-                    </div>
-                    <button class="faq-accordian">How to Create my favourite sports arena list?</button>
-                    <div class="faq-accordian-content">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae saepe, itaque neque iusto, non rem blanditiis voluptate quibusdam ea vitae sint alias unde quae a, quo aperiam animi tenetur quis.</p>
-                    </div>
-                    <button class="faq-accordian">How to Create my favourite sports arena list?</button>
-                    <div class="faq-accordian-content">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae saepe, itaque neque iusto, non rem blanditiis voluptate quibusdam ea vitae sint alias unde quae a, quo aperiam animi tenetur quis.</p>
-                    </div>
-                    <button class="faq-accordian">How to Create my favourite sports arena list?</button>
-                    <div class="faq-accordian-content">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae saepe, itaque neque iusto, non rem blanditiis voluptate quibusdam ea vitae sint alias unde quae a, quo aperiam animi tenetur quis.</p>
-                    </div>
-                    <button class="faq-accordian">How to Create my favourite sports arena list?</button>
-                    <div class="faq-accordian-content">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae saepe, itaque neque iusto, non rem blanditiis voluptate quibusdam ea vitae sint alias unde quae a, quo aperiam animi tenetur quis.</p>
-                    </div>
+                    {% endfor %}
                 </div>
+
+
+
+
+
                 <div class="faq-content" id="sparena-faq">
                     <button class="faq-accordian">How to Create my favourite sports arena list?</button>
                     <div class="faq-accordian-content">
