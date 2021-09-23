@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Models\User;
+use App\Models\LoginModel;
 
 /**
  * Authentication
@@ -83,7 +83,7 @@ class Auth
     public static function getUser()
     {
         if (isset($_SESSION['user_id'])) {
-            return User::findByID($_SESSION['user_id']);
+            return LoginModel::findByID($_SESSION['user_id']);
         }
     }
 

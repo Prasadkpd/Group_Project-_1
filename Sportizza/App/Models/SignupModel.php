@@ -6,7 +6,7 @@ use Core\Model;
 use PDO;
 use PDOException;
 
-class User extends \Core\Model
+class SignupModel extends \Core\Model
 {
 
     /**
@@ -206,18 +206,18 @@ class User extends \Core\Model
      *
      * @return mixed  The user object or false if authentication fails
      */
-    public static function authenticate($username, $password)
-    {
-        $user = static::findByUsername($username);
+    // public static function authenticate($username, $password)
+    // {
+    //     $user = static::findByUsername($username);
 
-        if ($user) {
-            if (password_verify($password, $user->password)) {
-                return $user;
-            }
-        }
+    //     if ($user) {
+    //         if (password_verify($password, $user->password)) {
+    //             return $user;
+    //         }
+    //     }
 
-        return false;
-    }
+    //     return false;
+    // }
 
 
     public static function findByID($id)

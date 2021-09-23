@@ -33,7 +33,8 @@ class HomeModel extends \Core\Model
 
     public static function homeViewArenas(){
         
-        $sql = 'SELECT * FROM sports_arena_profile';
+        $sql = 'SELECT * FROM sports_arena_profile ORDER BY RAND()
+        LIMIT 10';
         
 
 
@@ -131,7 +132,8 @@ class HomeModel extends \Core\Model
         
         $sql = 'SELECT feedback.description, feedback.feedback_rating,sports_arena.sa_name,user.first_name,user.last_name
                 FROM feedback INNER JOIN sports_arena ON feedback.sports_arena_id = sports_arena.sports_arena_id
-                INNER JOIN user ON feedback.customer_user_id=user.user_id';
+                INNER JOIN user ON feedback.customer_user_id=user.user_id  ORDER BY RAND()
+                LIMIT 10';
         
 
 
