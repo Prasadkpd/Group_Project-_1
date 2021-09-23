@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Facility</title>
-    <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-facility.css?version=4">
+    <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-facility.css?version=5">
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 </head>
 
@@ -276,8 +276,8 @@
                             
                             {% for facility in viewFacilities %}
                             <tr>
-                                <td data-label="Timeslot ID :">{{facility.facility_id}}</td>
-                                <td data-label="Start Time :">{{facility.facility_name}}</td>
+                                <td data-label="Facility ID :">{{facility.facility_id}}</td>
+                                <td data-label="Facility Name :">{{facility.facility_name}}</td>
                             </tr>
                             {% endfor %}
 
@@ -330,8 +330,8 @@
                         <tbody>
                             {% for facility in deleteFacilities %}
                             <tr>
-                                <td data-label="Timeslot ID :">{{facility.facility_id}}</td>
-                                <td data-label="Start Time :">{{facility.facility_name}}</td>
+                                <td data-label="Facility ID :">{{facility.facility_id}}</td>
+                                <td data-label="Facility Name :">{{facility.facility_name}}</td>
                                 <td class="trash-btn-padding-res"> <button class="icon_red trash-btn" style="border:none"onclick="open_popup_delete_message()">
                                     <i class="fas fa-trash-alt"></i>
                                 </button></td>
@@ -369,8 +369,8 @@
                             
                             {% for facility in updateFacilities %}
                             <tr>
-                                <td data-label="Timeslot ID :">{{facility.facility_id}}</td>
-                                <td data-label="Start Time :">{{facility.facility_name}}</td>
+                                <td data-label="Facility ID :">{{facility.facility_id}}</td>
+                                <td data-label="Facility Name :">{{facility.facility_name}}</td>
                                 <td> <button class="icon_red trash-btn" style="border:none"onclick="openpopupform_for_update()">
                                 <i class="fas fa-pencil-alt"></i>
                                 </button></td>

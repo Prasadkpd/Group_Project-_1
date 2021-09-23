@@ -519,7 +519,7 @@ border-radius: 30px;
 .booking-table .booking-table-first-th {
   padding: 10px;
   display: flex;
-  width: 80vw;
+  width: 88vw;
 }
 .booking-table .booking-table-first-th .booking-table-filter-container {
   display: flex;
@@ -944,7 +944,7 @@ nav .sign-in-out-btn a{
   .sidebar {
     width: 10vw;
   }
-
+  
   .page-container .page-content-container {
     width: 90vw;
     margin: 0;
@@ -1008,7 +1008,7 @@ nav .sign-in-out-btn a{
   }
 
   .booking-table tbody {
-    height: 45vh;
+    height: 52vh;
   }
   .booking-table td {
     font-size: 0.75rem;

@@ -760,6 +760,7 @@ footer {
   }
   .booking-table thead .booking-thead-first-tr {
     border-radius: 20px;
+    width: 88vw;
   }
 
   .booking-table,
@@ -937,7 +938,7 @@ nav .sign-in-out-btn a{
   .sidebar {
     width: 10vw;
   }
-
+ 
   .page-container .page-content-container {
     width: 90vw;
     margin: 0;
@@ -1017,4 +1018,5 @@ nav .sign-in-out-btn a{
   .trash-btn {
     padding: 8px 10px;
   }
+
 }
