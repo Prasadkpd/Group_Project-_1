@@ -3,9 +3,10 @@
 
 namespace App\Controllers;
 use Core\View;
-use \App\Models\User;
+
 use \App\Controllers\Otp;
 
+use \App\Models\SignupModel;
 
 
 class Signup extends \Core\Controller
@@ -22,7 +23,7 @@ class Signup extends \Core\Controller
      */
     public function createAction()
     {
-        $user = new User($_POST);
+        $user = new SignupModel($_POST);
 
         if ($user->save()) {
 

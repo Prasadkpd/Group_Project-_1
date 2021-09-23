@@ -6,13 +6,18 @@ use \Core\View;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
+use App\Models\HomeModel;
 
 class Home extends \Core\Controller
 {
    
     public function indexAction()
     {
-       View::renderTemplate('Visitor/visitorView.html');
+        $feedbacks=HomeModel::homeViewfeedbacks();
+        $customerFAQs=HomeModel::homeViewCustomerfaqs();
+        $arenas=HomeModel::homeViewarenas();
+        $arenaFAQs=HomeModel::homeViewArenafaqs();
+       View::renderTemplate('Visitor/visitorView.html',['feedbacks'=>$feedbacks,'faqs'=>$customerFAQs,'arenafaqs'=>$arenaFAQs,'arenas'=>$arenas]);
     }
 
 

@@ -5,7 +5,7 @@ namespace App\Controllers;
 use Core\View;
 use \App\Models\User;
 use \App\Auth;
-use \App\Models\CustomerModel;
+use \App\Models\LoginModel;
 use \App\Models\AdminModel;
 
 
@@ -20,7 +20,7 @@ class Login extends \Core\Controller
     //Login for a user
     public function loginAction(){
 
-        $user=User::authenticate($_POST['username'],$_POST['password']);
+        $user=LoginModel::authenticate($_POST['username'],$_POST['password']);
         if ($user) {
 
             // Auth::login($user);
