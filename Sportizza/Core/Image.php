@@ -18,12 +18,6 @@ class Image
 
         $file_ext = strtolower(pathinfo($this->file_path, PATHINFO_EXTENSION));
 
-        $check = getimagesize($_FILES[$file_name]["tmp_name"]);
-
-        if ($check == false) {
-            throw new Exception("File is not an image.", 400);
-        }
-
         if (file_exists($this->file_path)) {
             throw new  Exception("Sorry, file already exists.", 400);
         }

@@ -29,6 +29,9 @@ class SpArenaModel extends \Core\Model
         foreach ($data as $key => $value) {
             $this->$key = $value;
         };
+        echo"<pre>";
+        print_r($_POST);
+        print_r($_FILES);
         $this->image_1 =  (new Image("image_1"))->getURL();
         $this->image_2 =  (new Image("image_2"))->getURL();
         $this->image_3 =  (new Image("image_3"))->getURL();
@@ -156,8 +159,6 @@ class SpArenaModel extends \Core\Model
      */
     public function validate()
     {
-    
-
         // Arena Name
         if ($this->arena_name == '') {
             $this->errors[] = 'Sports Arena name is required';
@@ -249,7 +250,6 @@ class SpArenaModel extends \Core\Model
         if (preg_match('/.*07[0-9]{8}+.*/', $this->mobile_number) == 0) {
             $this->errors[] = 'Mobile number entered is invalid';
         }
-        //Correct
         if (static::mobileNumberExists($this->mobile_number)) {
             $this->errors[] = 'An account already exists with this mobile number';
         }
@@ -258,7 +258,6 @@ class SpArenaModel extends \Core\Model
         if ($this->username == '') {
             $this->errors[] = 'Username is required';
         }
-        //Correct
         if (static::usernameExists($this->username)) {
             $this->errors[] = 'Username is already taken';
         }
