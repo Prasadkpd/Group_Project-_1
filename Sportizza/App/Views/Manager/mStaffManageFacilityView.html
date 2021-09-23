@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Facility</title>
-    <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-facility.css">
+    <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-facility.css?version=4">
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 </head>
 
@@ -32,11 +32,12 @@
                     </div>
                 </button>
             </div>
-            <div class="sign-in-out-btn">
-                {% if current_user %}
-        <a href="/logout"> Sign Out</a>
-        {% endif %}
-            </div>
+        <div class="sign-in-out-btn">
+            <button onclick="open_popup_signout_message()"> Sign Out </button>
+            <!-- {% if current_user %}
+                         <a href="/logout"> Sign Out</a>
+                         {% endif %} -->
+        </div>
         </div>
         <!-- search bar for mobile -->
         <div class="search-bar-container-mobi">
@@ -65,6 +66,39 @@
     </div>
    
     <!-- End Top Navigation Bar -->
+<!-- Start OF the POP up SIGN out -->
+<div id="popup_signout" class="sectionpop ">
+    <div class="formsection">
+
+        <div>
+            <button class="closebutton" onclick="close_popup_signout_message()">❌</button>
+        </div>
+        <form action="/action_page.php" style="margin:20px">
+            <div style="margin:auto">
+                <h1 style="margin:auto">
+                    Sign Out
+                </h1>
+                <p style="margin:auto">
+                    Do your really want to sign out now?
+                </p>
+            </div>
+        </form>
+
+
+        <div style="display:flex">
+
+            <button class="popup_delete_button">
+                {% if current_user %}
+                <a href="/logout"> YES</a>
+                {% endif %}
+            </button>
+            <button onclick="close_popup_signout_message()" class="popup_button">
+                NO
+            </button>
+        </div>
+    </div>
+</div>
+<!-- End OF the POP up SIGN out -->
 
 
 
@@ -298,7 +332,7 @@
                             <tr>
                                 <td data-label="Timeslot ID :">{{facility.facility_id}}</td>
                                 <td data-label="Start Time :">{{facility.facility_name}}</td>
-                                <td data-label="Action :"> <button class="icon_red" style="border:none"onclick="open_popup_delete_message()">
+                                <td class="trash-btn-padding-res"> <button class="icon_red trash-btn" style="border:none"onclick="open_popup_delete_message()">
                                     <i class="fas fa-trash-alt"></i>
                                 </button></td>
                             </tr>
@@ -337,8 +371,8 @@
                             <tr>
                                 <td data-label="Timeslot ID :">{{facility.facility_id}}</td>
                                 <td data-label="Start Time :">{{facility.facility_name}}</td>
-                                <td data-label="Action :"> <button class="icon_red" style="border:none"onclick="openpopupform_for_update()">
-                                    <i class="fas fa-edit"></i>
+                                <td> <button class="icon_red trash-btn" style="border:none"onclick="openpopupform_for_update()">
+                                <i class="fas fa-pencil-alt"></i>
                                 </button></td>
                             </tr>
                             {% endfor %}

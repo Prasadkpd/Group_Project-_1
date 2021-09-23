@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Timeslot</title>
-    <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-timeslots.css">
+    <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-timeslots.css?version=3">
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 </head>
 
@@ -34,9 +34,10 @@
                 </button>
             </div>
             <div class="sign-in-out-btn">
-                {% if current_user %}
-        <a href="/logout"> Sign Out</a>
-        {% endif %}
+                <button onclick="open_popup_signout_message()"> Sign Out </button>
+                <!-- {% if current_user %}
+                             <a href="/logout"> Sign Out</a>
+                             {% endif %} -->
             </div>
         </div>
         <!-- search bar for mobile -->
@@ -64,9 +65,44 @@
             </form>
         </div>
     </div>
- 
      <!-- End Top Navigation Bar -->
-    <section class="page-container">
+    
+    <!-- Start OF the POP up SIGN out -->
+    <div id="popup_signout" class="sectionpop ">
+        <div class="formsection">
+    
+            <div>
+                <button class="closebutton" onclick="close_popup_signout_message()">❌</button>
+            </div>
+            <form action="/action_page.php" style="margin:20px">
+                <div style="margin:auto">
+                    <h1 style="margin:auto">
+                        Sign Out
+                    </h1>
+                    <p style="margin:auto">
+                        Do your really want to sign out now?
+                    </p>
+                </div>
+            </form>
+    
+    
+            <div style="display:flex">
+    
+                <button class="popup_delete_button">
+                    {% if current_user %}
+                    <a href="/logout"> YES</a>
+                    {% endif %}
+                </button>
+                <button onclick="close_popup_signout_message()" class="popup_button">
+                    NO
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- End OF the POP up SIGN out -->
+
+    
+     <section class="page-container">
 
         <!-- SIDE NAVIGATION BAR - START -->
         <div class="sidebar">
@@ -98,7 +134,7 @@
                         <p class="side-menu-tooltip">Notifications</p>
                     </li>
                     <li>
-                        <a href="/Sparenamanager/managetimeslots" class="side-menu-li">
+                        <a href="/Sparenamanager/managetimeslot" class="side-menu-li">
                             <i class="fas fa-clock"></i>
                             <p class="side-menu-item">Manage Timeslot</p>
                         </a>
@@ -257,7 +293,7 @@
                                 <td data-label="End Time :">{{timeSlot.end_time}}</td>
                                 <td data-label="Amount :">{{timeSlot.price}}</td>
                                 <td data-label="Facility ID :">{{timeSlot.facility_id}}</td>
-                                <td data-label="Action :"> <a href=""><i class="fas fa-trash-alt"></i></a></td>
+                                <td class="trash-btn-padding-res"> <a href="" class="trash-btn"><i class="fas fa-trash-alt"></i></a></td>
                             </tr>
                             {% endfor %}
                  

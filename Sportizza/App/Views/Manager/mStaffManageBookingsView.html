@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Bookings</title>
-    <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-bookings.css">
+    <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-bookings.css?version=4">
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 </head>
 
@@ -33,10 +33,10 @@
                 </button>
             </div>
             <div class="sign-in-out-btn">
-                <!-- <a style="font-weight:500; " href="">Sign Out </a> -->
-                {% if current_user %}
-        <a href="/logout"> Sign Out</a>
-        {% endif %}
+                <button onclick="open_popup_signout_message()"> Sign Out </button>
+                <!-- {% if current_user %}
+                             <a href="/logout"> Sign Out</a>
+                             {% endif %} -->
             </div>
         </div>
         <!-- search bar for mobile -->
@@ -65,6 +65,39 @@
         </div>
     </div>
     <!-- End Top Navigation Bar -->
+    <!-- Start OF the POP up SIGN out -->
+    <div id="popup_signout" class="sectionpop ">
+        <div class="formsection">
+    
+            <div>
+                <button class="closebutton" onclick="close_popup_signout_message()">❌</button>
+            </div>
+            <form action="/action_page.php" style="margin:20px">
+                <div style="margin:auto">
+                    <h1 style="margin:auto">
+                        Sign Out
+                    </h1>
+                    <p style="margin:auto">
+                        Do your really want to sign out now?
+                    </p>
+                </div>
+            </form>
+    
+    
+            <div style="display:flex">
+    
+                <button class="popup_delete_button">
+                    {% if current_user %}
+                    <a href="/logout"> YES</a>
+                    {% endif %}
+                </button>
+                <button onclick="close_popup_signout_message()" class="popup_button">
+                    NO
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- End OF the POP up SIGN out -->
 
     <section class="page-container">
 
@@ -176,7 +209,7 @@
                                 <th class="b-first-th">Booking ID</th>
                                 <th>Start Time</th>
                                 <th>End Time</th>
-                                <th>Amount</th>
+                                <th>Amount(LKR)</th>
                                 <th>Booked Date</th>
                                 <th>Mobile Number</th>
                                 <th>Payment Method</th>
@@ -190,11 +223,11 @@
                                 <td data-label="Booking ID :">{{book.booking_id}}</td>
                                 <td data-label="Start Time :">{{book.start_time}}</td>
                                 <td data-label="End Time :">{{book.end_time}}</td>
-                                <td data-label="Amount :">{{book.price_per_booking}}</td>
+                                <td data-label="Amount(LKR) :">{{book.price_per_booking}}</td>
                                 <td data-label="Booked Date :">{{book.booked_date}}</td>
                                 <td data-label="Mobile Number :">{{book.primary_contact}}</td>
                                 <td data-label="Payment Method :">{{book.payment_method}}</td>
-                                <td data-label="Payment Status:"> <div class="Payment-status"><a href="">{{book.payment_status}}</a></div></td>
+                                <td> <div class="Payment-status active"><a href="">{{book.payment_status}}</a></div></td>
                                 
                             </tr>
                             {% endfor %}
@@ -348,8 +381,8 @@
                                 <td data-label="Booked Date :">{{book.booked_date}}</td>
                                 <td data-label="Mobile Number :">{{book.primary_contact}}</td>
                                 
-                                <td data-label="Payment Status:"> <div class="Payment"><a href="">{{book.payment_status}}</a></div></td>
-                                <td data-label="Action :"> <a href=""><i class="fas fa-trash-alt"></i></a></td>
+                                <td> <div class="Payment-status active"><a href="">{{book.payment_status}}</a></div></td>
+                                <td class="trash-btn-padding-res"> <a href="" class="trash-btn"><i class="fas fa-trash-alt"></i></a></td>
                             </tr>
                             {% endfor %}
 
@@ -362,7 +395,7 @@
                                 <td data-label="Mobile Number :">0705614640</td>
                                 
                                 <td data-label="Payment Status:"> <div class="Payment-status"><a href="">Unpaid</a></div></td>
-                                <td data-label="Action :"> <a href=""><i class="fas fa-trash-alt"></i></a></td>
+                                <td data-label="Action :"> <a href="" class="trash-btn"><i class="fas fa-trash-alt"></i></a></td>
                             </tr>
                             
                             
