@@ -258,6 +258,104 @@ class SpArenaManagerModel extends \Core\Model
         // var_dump($result);
         return $result;
     }
+
+    public static function managerChart1($id){
+        
+        $sql = 'SELECT booking.booking_date, COUNT(DISTINCT booking.booking_id) AS No_Of_Bookings
+                FROM booking
+                INNER JOIN manager ON booking.sports_arena_id=manager.sports_arena_id
+                WHERE manager.user_id=:id
+                GROUP BY booking.booking_date ';
+
+        // $sql = 'SELECT booking.booking_date, COUNT(DISTINCT booking.booking_id) AS No_Of_Bookings
+        // FROM booking
+        // INNER JOIN manager ON booking.sports_arena_id=manager.sports_arena_id
+        // WHERE manager.user_id = "100000029"
+        // GROUP BY booking.booking_date ';
+
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        //  var_dump($result);
+        return $result;
+    }
+
+    public static function managerChart2($id){
+        
+        $sql = 'SELECT booking.payment_method, COUNT(DISTINCT booking.booking_id) AS No_Of_Bookings
+                FROM booking
+                INNER JOIN manager ON booking.sports_arena_id=manager.sports_arena_id
+                WHERE manager.user_id=:id
+                GROUP BY booking.payment_method ';
+
+        // $sql = 'SELECT booking.payment_method, COUNT(DISTINCT booking.booking_id) AS No_Of_Bookings
+        // FROM booking
+        // INNER JOIN manager ON booking.sports_arena_id=manager.sports_arena_id
+        // WHERE manager.user_id = "100000029"
+        // GROUP BY booking.payment_method ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        //  var_dump($result);
+        return $result;
+    }
+
+    public static function managerChart3($id){
+        
+        $sql = 'SELECT time_slot.start_time, COUNT(DISTINCT booking.booking_id) AS No_Of_Bookings
+        FROM booking 
+        INNER JOIN manager ON booking.sports_arena_id=manager.sports_arena_id 
+        INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id 
+        INNER JOIN time_slot ON booking_timeslot.timeslot_id=time_slot.time_slot_id 
+        WHERE manager.user_id=:id AND MONTH(booking.booking_date) = MONTH(CURRENT_DATE()) 
+        GROUP BY time_slot.start_time ORDER BY time_slot.start_time ASC ';
+
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        //  var_dump($result);
+        return $result;
+    }
+
+    public static function managerChart4($id){
+        
+        $sql = 'SELECT facility.facility_name, COUNT(DISTINCT booking.booking_id) AS No_Of_Bookings
+                FROM booking 
+                INNER JOIN manager ON booking.sports_arena_id=manager.sports_arena_id 
+                INNER JOIN facility ON booking.facility_id=facility.facility_id 
+                WHERE manager.user_id=:id AND MONTH(booking.booking_date) = MONTH(CURRENT_DATE()) 
+                GROUP BY facility.facility_name ';
+
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        //  var_dump($result);
+        return $result;
+    }
     
 
 
