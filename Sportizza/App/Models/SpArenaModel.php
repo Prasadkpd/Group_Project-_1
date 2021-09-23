@@ -190,30 +190,31 @@ class SpArenaModel extends \Core\Model
             $this->errors[] = 'Please enter one location';
         }
 
-        if (static::spArenaExists($this->arena_name, $this->location, $this->category)) {
+     
+        if (static::spArenaExists($this->arena_name, $this->location, $this->category)){
             $this->errors[] = 'An Sports arena already exists with name, location, and category';
         }
-      
+
         // Google map Link
-        if ($this->google_map_link == '') {
+        if ($this->google_map_link == ''){
             $this->errors[] = 'Google Map link is required';
         }
         if (preg_match('/^https\:\/\/goo\.gl\/maps\/\w+$/', $this->google_map_link) == 0) {
-            $this->errors[] = 'Google Map link enetered is invalid';
+            $this->errors[] = 'Google Map link entered is invalid';
         }
 
         // Description
-        if ($this->description == '') {
+        if ($this->description == ''){
             $this->errors[] = 'Description is required';
         }
       
         // Other Facilities
-        if ($this->other_facilities == '') {
+        if ($this->other_facilities == ''){
             $this->errors[] = 'Other facilities is required';
         }
 
         //Accepted Payment Method
-        if ($this->payment_method == '0') {
+        if ($this->payment_method == '0'){
             $this->errors[] = 'Select a payment method';
         }
 
