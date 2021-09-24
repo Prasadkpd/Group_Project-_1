@@ -40,7 +40,9 @@
                 <h3>OTP Verification</h3>
                 <h5>Enter the OTP code sent to your mobile number to get your account activated.</h5>
             </div>
-            <div class="time">OTP code will get expired in <span id="timer"></span></div>
+            <div class="time">
+                <!-- OTP code will get expired in <span id="timer"></span> -->
+            </div>
             <form action="">
                 <input class="otp" type="text" oninput='digitValidate(this)' onkeyup='tabChange(1)' maxlength=1>
                 <input class="otp" type="text" oninput='digitValidate(this)' onkeyup='tabChange(2)' maxlength=1>
@@ -49,14 +51,18 @@
                 <input class="otp" type="text" oninput='digitValidate(this)' onkeyup='tabChange(5)' maxlength=1>
                 <input class="otp" type="text" oninput='digitValidate(this)' onkeyup='tabChange(6)' maxlength=1>
             </form>
-<div class="msg">
-    <p class="text">Didn't recieve code?
-    <a href="">Resend OTP</a></p>
-    </div>
-    <!-- <div class="msg">
-        <p class="text">Need to change the mobile number?
-        <a href="/Signup">Go back</a></p>
-        </div> -->
+            <div class="msg">
+                <p class="text">Didn't recieve code?
+                    <a href="/otp/resendotp">Resend OTP</a>
+                </p>
+            </div>
+            <div class="msg">
+                <p class="text">Entered mobile number incorrectly?
+                    <!-- How to redirect from here to the previous page -->
+                    <a href="/">Go Back</a>
+                </p>
+            </div>
+
             <button class='btn btn-primary btn-block mt-4 mb-4 customBtn'>Verify</button>
         </div>
     </div>

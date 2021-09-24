@@ -29,12 +29,15 @@ class SpArenaModel extends \Core\Model
         foreach ($data as $key => $value) {
             $this->$key = $value;
         };
+        echo"<pre>";
+        print_r($_POST);
+        print_r($_FILES);
         $this->image_1 =  (new Image("image_1"))->getURL();
         $this->image_2 =  (new Image("image_2"))->getURL();
         $this->image_3 =  (new Image("image_3"))->getURL();
         $this->image_4 =  (new Image("image_4"))->getURL();
         $this->image_5 =  (new Image("image_5"))->getURL();
-
+        $this->image_6 =  (new Image("image_6"))->getURL();
     }
 
     /**
@@ -45,7 +48,9 @@ class SpArenaModel extends \Core\Model
     public function save()
     {
         $this->validate();
+        
         if (empty($this->errors)) {
+        // if (true){
             $db = static::getDB();
 
             $sql1 = 'INSERT INTO `sports_arena`(`sa_name`) 
@@ -54,7 +59,7 @@ class SpArenaModel extends \Core\Model
             $stmt1->bindValue(':arena_name', $this->arena_name, PDO::PARAM_STR);
             $stmt1->execute();
 
-            $sql2 = 'SELECT sports_arena_id FROM sports_arena ORDER BY sports_arena_id DESC LIMIT 1;';
+            $sql2 = 'SELECT `sports_arena_id` FROM `sports_arena` ORDER BY `sports_arena_id` DESC LIMIT 1;';
             $stmt2 = $db->prepare($sql2);
             $stmt2->execute();
 
@@ -111,8 +116,8 @@ class SpArenaModel extends \Core\Model
 
             $password = password_hash($this->password, PASSWORD_DEFAULT);
             $user_type = "Manager";
-            $sql6 =  'INSERT INTO `user`(`username`,`password`, `first_name`, `last_name`,`primary_contact`, `type`) 
-            VALUES (:username, :password, :first_name, :last_name, :mobile_number, :type)';
+            $sql6 =  'INSERT INTO `user`(`username`,`password`, `first_name`, `last_name`,`primary_contact`,`type`, `profile_pic` ) 
+            VALUES (:username, :password, :first_name, :last_name, :mobile_number, :type, :profile_pic)';
 
             $stmt6 = $db->prepare($sql6);
             $stmt6->bindValue(':first_name', $this->first_name, PDO::PARAM_STR);
@@ -121,16 +126,17 @@ class SpArenaModel extends \Core\Model
             $stmt6->bindValue(':username', $this->username, PDO::PARAM_STR);
             $stmt6->bindValue(':password', $password, PDO::PARAM_STR);
             $stmt6->bindValue(':type', $user_type, PDO::PARAM_STR);
+            $stmt6->bindValue(':profile_pic', $this->image_6, PDO::PARAM_STR);
             $stmt6->execute();
 
             //Check whether its a manager
             $sql7 = 'SELECT user_id FROM user WHERE type="Manager" ORDER BY user_id DESC LIMIT 1;';
             $stmt7 = $db->prepare($sql7);
             $stmt7->execute();
-
+            
             $result3 = $stmt7->fetch(PDO::FETCH_ASSOC);
-            //Accessing the associative array
-            $manager_user_id = $result3["user_id"];
+            // //Accessing the associative array
+             $manager_user_id = $result3["user_id"];
 
             $sql8 =  'INSERT INTO `manager`(`user_id`,`sports_arena_id`) 
             VALUES (:user_id, :sp_arena_id)';
@@ -138,8 +144,9 @@ class SpArenaModel extends \Core\Model
             $stmt8 = $db->prepare($sql8);
             $stmt8->bindValue(':user_id', $manager_user_id, PDO::PARAM_INT);
             $stmt8->bindValue(':sp_arena_id', $sp_arena_id, PDO::PARAM_INT);
-
+            
             return ($stmt8->execute());
+            
         }
 
         return false;
@@ -152,13 +159,12 @@ class SpArenaModel extends \Core\Model
      */
     public function validate()
     {
-
         // Arena Name
         if ($this->arena_name == '') {
             $this->errors[] = 'Sports Arena name is required';
         }
 
-        // //  contact number     
+        // // //  contact number     
         if ($this->contact == '') {
             $this->errors[] = 'Contact number is required';
         }
@@ -179,8 +185,8 @@ class SpArenaModel extends \Core\Model
         }
 
 
-        // // Location & Other location
-        if ($this->location == 0) {
+        // Location & Other location
+        if ($this->location == '0') {
             $this->errors[] = 'Select a location';
         }
         if ($this->location == 'Other' && $this->other_location == '') {
@@ -191,10 +197,10 @@ class SpArenaModel extends \Core\Model
         }
 
      
-        if (static::spArenaExists($this->arena_name, $this->location, $this->category)){
-            $this->errors[] = 'An Sports arena already exists with name, location, and category';
-        }
-
+         if (static::spArenaExists($this->arena_name, $this->location, $this->category)) {
+             $this->errors[] = 'An Sports arena already exists with name, location, and category';
+            }
+      
         // Google map Link
         if ($this->google_map_link == ''){
             $this->errors[] = 'Google Map link is required';
@@ -217,26 +223,6 @@ class SpArenaModel extends \Core\Model
         if ($this->payment_method == '0'){
             $this->errors[] = 'Select a payment method';
         }
-
-        // //Photos
-        //-Not working
-        
-        // if (!(is_uploaded_file($this->image_1))) {
-        //     $this->errors[] = 'Upload Image 1';
-        // }
-        // if (!(is_uploaded_file($this->image_2))) {
-        //     $this->errors[] = 'Upload Image 2';
-        // }
-        // if (!(is_uploaded_file($this->image_3))) {
-        //     $this->errors[] = 'Upload Image 3';
-        // }
-        // if (!(is_uploaded_file($this->image_4))) {
-        //     $this->errors[] = 'Upload Image 4';
-        // }
-        // if (!(is_uploaded_file($this->image_5))) {
-        //     $this->errors[] = 'Upload Image 5';
-        // }
-
 
         //Manager details
         // First Name
@@ -268,7 +254,7 @@ class SpArenaModel extends \Core\Model
             $this->errors[] = 'An account already exists with this mobile number';
         }
 
-        // username
+        //username
         if ($this->username == '') {
             $this->errors[] = 'Username is required';
         }
@@ -276,7 +262,7 @@ class SpArenaModel extends \Core\Model
             $this->errors[] = 'Username is already taken';
         }
 
-        // Password
+        //Password
         if ($this->password == '') {
             $this->errors[] = 'Password is required';
         }
@@ -346,6 +332,8 @@ class SpArenaModel extends \Core\Model
         $stmt->bindValue(':category', $category, PDO::PARAM_STR);
 
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+       
 
         $stmt->execute();
 

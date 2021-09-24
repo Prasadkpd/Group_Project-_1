@@ -38,17 +38,45 @@ class Otp extends \Core\Controller
     }
 
     //Check this again
-     public function gobackAction()
+    //  public function gobackAction()
+    // {
+    //     $user = new User($_POST);
+    //     View::renderTemplate('LoginSignup/signup.html', [
+    //     'user' => $user
+    // ]);
+    // }
+    public function resendotpAction($mobile_number)
     {
-        $user = new User($_POST);
-        View::renderTemplate('LoginSignup/signup.html', [
-        'user' => $user
-    ]);
+        
+       otp::sendSMS($mobile_number);
     }
-    public function resendotpAction()
+
+    public static function sendSMS($mobile_number)
     {
-        //Get the mobile phone from USer.php model and call the send otp function in user model
-       
+        //our mobile number
+        $user = "94765282976";
+        //our account password
+        $password = 4772;
+        //Random OTP code
+        $otp= mt_rand(100000,999999);
+        //SMS Sent
+        $text = urlencode("Enter the OTP code:". $otp ."");
+        // Replacing the initial 0 with 94
+        $to = substr_replace($mobile_number, '94', 0, 0);
+        //Base URL
+        $baseurl = "http://www.textit.biz/sendmsg";
+        // regex to create the url
+        $url = "$baseurl/?id=$user&pw=$password&to=$to&text=$text";
+
+        $ret = file($url);
+        $res = explode(":", $ret[0]);
+
+        if (trim($res[0]) == "OK") {
+            echo "Message Sent - ID : " . $res[1];
+        } else {
+            echo "Sent Failed - Error : " . $res[1];
+        }
+
     }
 
 }

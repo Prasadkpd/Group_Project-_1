@@ -5,6 +5,7 @@ namespace App\Models;
 use Core\Model;
 use PDO;
 use PDOException;
+use Core\Image;
 
 class SignupModel extends \Core\Model
 {
@@ -28,6 +29,7 @@ class SignupModel extends \Core\Model
         foreach ($data as $key => $value) {
             $this->$key = $value;
         };
+        $this->image_7 =  (new Image("image_7"))->getURL();
     }
 
     /**
@@ -40,26 +42,47 @@ class SignupModel extends \Core\Model
 
         $this->validate();
 
-
         if (empty($this->errors)) {
-
+            $db = static::getDB();
             $password = password_hash($this->password, PASSWORD_DEFAULT);
 
-            $sql = 'INSERT INTO `user`(`username`,`password`, `first_name`, `last_name`
-            ,`primary_contact`) 
-            VALUES (:username, :password, :first_name, :last_name, :mobile_number)';
+            $sql1 = 'INSERT INTO `user`(`username`,`password`, `first_name`, `last_name`
+            ,`primary_contact`,`profile_pic`) 
+            VALUES (:username, :password, :first_name, :last_name, :mobile_number, :profile_pic)';
 
+            $stmt1 = $db->prepare($sql1);
 
-            $db = static::getDB();
-            $stmt = $db->prepare($sql);
+            $stmt1->bindValue(':first_name', $this->first_name, PDO::PARAM_STR);
+            $stmt1->bindValue(':last_name', $this->last_name, PDO::PARAM_STR);
+            $stmt1->bindValue(':mobile_number', $this->mobile_number, PDO::PARAM_INT);
+            $stmt1->bindValue(':username', $this->username, PDO::PARAM_STR);
+            $stmt1->bindValue(':password', $password, PDO::PARAM_STR);
+            $stmt1->bindValue(':profile_pic', $this->image_7, PDO::PARAM_STR);
+            $stmt1->execute();
 
-            $stmt->bindValue(':first_name', $this->first_name, PDO::PARAM_STR);
-            $stmt->bindValue(':last_name', $this->last_name, PDO::PARAM_STR);
-            $stmt->bindValue(':mobile_number', $this->mobile_number, PDO::PARAM_INT);
-            $stmt->bindValue(':username', $this->username, PDO::PARAM_STR);
-            $stmt->bindValue(':password', $password, PDO::PARAM_STR);
+            $sql2 = 'SELECT `user_id` FROM `user` ORDER BY `user_id` DESC LIMIT 1;';
+            $stmt2 = $db->prepare($sql2);
+            $stmt2->execute();
 
-            return ($stmt->execute());
+            $result1 = $stmt2->fetch(PDO::FETCH_ASSOC);
+            //Accessing the associative array
+            $user_id = $result1["user_id"];
+
+            $sql3 = 'INSERT INTO `customer`
+            (`customer_user_id`) 
+            VALUES (:customer_user_id);';
+            $stmt3 = $db->prepare($sql3);
+            $stmt3->bindValue(':customer_user_id', $user_id, PDO::PARAM_INT);
+            $stmt3->execute();
+
+            $sql4 = 'INSERT INTO `customer_profile`
+            (`customer_user_id`) 
+            VALUES (:customer_user_id)';
+
+            $stmt4 = $db->prepare($sql4);
+            $stmt4->bindValue(':customer_user_id', $user_id, PDO::PARAM_INT);
+           
+            return($stmt4->execute());
         }
 
         return false;
@@ -72,7 +95,6 @@ class SignupModel extends \Core\Model
      */
     public function validate()
     {
-        // $first_name = $_POST['first_name'];
         // First Name
         if ($this->first_name == '') {
             $this->errors[] = 'First Name is required';
@@ -82,7 +104,7 @@ class SignupModel extends \Core\Model
             $this->errors[] = 'First Name should consists of only letters';
         }
 
-        // Last Name
+        // // Last Name
         if ($this->last_name == '') {
             $this->errors[] = 'Last Name is required';
         }
@@ -91,7 +113,7 @@ class SignupModel extends \Core\Model
             $this->errors[] = 'Last Name should consists of only letters';
         }
 
-        // mobile number
+        // // mobile number
         if ($this->mobile_number == '') {
             $this->errors[] = 'Mobile number is required';
         }
@@ -109,7 +131,6 @@ class SignupModel extends \Core\Model
         if (static::usernameExists($this->username)) {
             $this->errors[] = 'Username is already taken';
         }
-
 
         // Password
         if ($this->password == '') {
@@ -131,7 +152,7 @@ class SignupModel extends \Core\Model
             $this->errors[] = 'Password needs at least one number';
         }
 
-        //character match
+        // //character match
         if (preg_match('/.*[!@#$%^&*-].*/i', $this->password) == 0) {
             $this->errors[] = 'Password needs at least one character';
         }
@@ -179,7 +200,14 @@ class SignupModel extends \Core\Model
 
         return $stmt->fetch();
     }
-   
+    /**
+     * Find a user model by mobile number
+     *
+     * @param string $mobile_number to search for
+     *
+     * @return mixed User object if found, false otherwise
+     */
+
     public static function findByMobileNumber($mobile_number)
     {
         $sql = 'SELECT * FROM user WHERE primary_contact = :mobile_number AND account_status= "active"';
@@ -235,54 +263,7 @@ class SignupModel extends \Core\Model
         return $stmt->fetch();
     }
 
-    //Need to get the textiturl from createURL function
-    public static function sendSMS($textiturl)
-    {
-        // create curl resource 
-        $ch = curl_init();
-
-        // set url 
-        curl_setopt($ch, CURLOPT_URL, $textiturl);
-
-        //return the transfer as a string 
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-        // $output contains the output string 
-        $output = curl_exec($ch);
-
-        // close curl resource to free up system resources 
-        curl_close($ch);
-    }
-    
-
-    public static function createURL($mobile_number)
-    {
-        //our mobile number
-        $user = "94765282976";
-        //our account password
-        $password = 1627;
-        //Random OTP code
-        $otp= mt_rand(000000,999999);
-        //SMS Sent
-        $text = urlencode("Enter the following OTP code to activate your account:". $otp ."");
-        // Replacing the initial 0 with 94
-        $to = substr_replace($mobile_number, '94', 0, 0);
-        //Base URL
-        $baseurl = "http://www.textit.biz/sendmsg";
-        // regex to create the url
-        $url = "$baseurl/?id=$user&pw=$password&to=$to&text=$text";
-        //Don't understand from here onwards
-        $ret = file($url);
-        $res = explode(":", $ret[0]);
-
-        if (trim($res[0]) == "OK") {
-            echo "Message Sent - ID : " . $res[1];
-        } else {
-            echo "Sent Failed - Error : " . $res[1];
-        }
-
-        // need to return the finalised textiturl
-    }
+   
 
 
 }
