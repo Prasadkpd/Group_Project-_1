@@ -49,7 +49,7 @@ class Otp extends \Core\Controller
     {
         
        otp::sendSMS($mobile_number);
-    }
+    } 
 
     public static function sendSMS($mobile_number)
     {
@@ -59,6 +59,8 @@ class Otp extends \Core\Controller
         $password = 4772;
         //Random OTP code
         $otp= mt_rand(100000,999999);
+        // stores the otp into a session variable
+        $_SESSION['session_otp'] = $otp;  
         //SMS Sent
         $text = urlencode("Enter the OTP code:". $otp ."");
         // Replacing the initial 0 with 94
