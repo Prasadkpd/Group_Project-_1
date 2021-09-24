@@ -28,9 +28,11 @@ class SignupModel extends \Core\Model
     {
         foreach ($data as $key => $value) {
             $this->$key = $value;
-        };
+        }
+        
         $this->image_7 =  (new Image("image_7"))->getURL();
     }
+    
 
     /**
      * Save the user model with the current property values
@@ -84,8 +86,10 @@ class SignupModel extends \Core\Model
            
             return($stmt4->execute());
         }
-
-        return false;
+        else{
+            return false;
+        }
+        
     }
 
     /**
@@ -97,65 +101,66 @@ class SignupModel extends \Core\Model
     {
         // First Name
         if ($this->first_name == '') {
-            $this->errors[] = 'First Name is required';
+            $this->errors["first_name1"] = 'First Name is required';
         }
         // letter match
-        if (preg_match('/.*[a-z\s]+.*/i', $this->first_name) == 0) {
-            $this->errors[] = 'First Name should consists of only letters';
+        elseif (preg_match('/^[a-zA-Z ]+$/', $this->first_name) == 0) {
+            $this->errors["first_name2"] = 'First Name should consists of only letters';
         }
-
-        // // Last Name
+        
+        // Last Name
         if ($this->last_name == '') {
-            $this->errors[] = 'Last Name is required';
+            $this->errors["last_name1"] = 'Last Name is required';
         }
         //letter match
-        if (preg_match('/.*[a-z\s]+.*/i', $this->last_name) == 0) {
-            $this->errors[] = 'Last Name should consists of only letters';
+        elseif (preg_match('/^[a-zA-Z ]+$/', $this->first_name) == 0) {
+            $this->errors["last_name2"] = 'Last Name should consists of only letters';
         }
 
-        // // mobile number
+        // mobile number
         if ($this->mobile_number == '') {
-            $this->errors[] = 'Mobile number is required';
+            $this->errors["mobile_number1"] = 'Mobile number is required';
         }
-        if (preg_match('/.*07[0-9]{8}+.*/', $this->mobile_number) == 0) {
-            $this->errors[] = 'Mobile number entered is invalid';
+        elseif (preg_match('/.*07[0-9]{8}+.*/', $this->mobile_number) == 0) {
+            $this->errors["mobile_number2"] = 'Mobile number entered is invalid';
         }
-        if (static::mobileNumberExists($this->mobile_number)) {
-            $this->errors[] = 'An account already exists with this mobile number';
+        elseif (static::mobileNumberExists($this->mobile_number)) {
+            $this->errors["mobile_number3"] = 'An account already exists with this mobile number';
         }
 
         // username
         if ($this->username == '') {
-            $this->errors[] = 'Username is required';
+            $this->errors["username1"] = 'Username is required';
         }
-        if (static::usernameExists($this->username)) {
-            $this->errors[] = 'Username is already taken';
+        elseif (static::usernameExists($this->username)) {
+            $this->errors["username2"] = 'Username is already taken';
         }
 
         // Password
         if ($this->password == '') {
-            $this->errors[] = 'Password is required';
+            $this->errors["password1"] = 'Password is required';
         }
-        if (strlen($this->password) < 8) {
-            $this->errors[] = 'Please enter at least 8 characters for the password';
+        elseif (strlen($this->password) < 8) {
+            $this->errors["password2"] = 'Please enter at least 8 characters for the password';
         }
         //Letter match
-        if (preg_match('/.*[a-z]+.*/i', $this->password) == 0) {
-            $this->errors[] = 'Password needs at least one simple letter';
+        elseif (preg_match('/.*[a-z]+.*/i', $this->password) == 0) {
+            $this->errors["password3"] = 'Password needs at least one simple letter';
         }
-        if (preg_match('/.*[A-Z]+.*/i', $this->password) == 0) {
-            $this->errors[] = 'Password needs at least one capital letter';
+        elseif (preg_match('/.*[A-Z]+.*/i', $this->password) == 0) {
+            $this->errors["password4"] = 'Password needs at least one capital letter';
         }
-
         //number match
-        if (preg_match('/.*\d+.*/i', $this->password) == 0) {
-            $this->errors[] = 'Password needs at least one number';
+        elseif (preg_match('/.*\d+.*/i', $this->password) == 0) {
+            $this->errors["password5"] = 'Password needs at least one number';
         }
-
-        // //character match
-        if (preg_match('/.*[!@#$%^&*-].*/i', $this->password) == 0) {
-            $this->errors[] = 'Password needs at least one character';
+        //character match
+        elseif (preg_match('/.*[!@#$%^&*-].*/i', $this->password) == 0) {
+            $this->errors["password6"] = 'Password needs at least one character';
         }
+       
+        return $this->errors;
+    
     }
 
 
