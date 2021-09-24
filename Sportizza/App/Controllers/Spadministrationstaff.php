@@ -73,6 +73,17 @@ class Spadministrationstaff extends \Core\Controller
         'deleteTimeSlots'=>$deleteTimeSlots]);
     }
 
+    public function createtimeslotAction()
+    {
+        $current_user= Auth::getUser();
+        $mid=$current_user->manager_user_id;
+        $said=$current_user->manager_sports_arena_id;
+
+        $user=SpAdministrationStaffModel::saAdminAddFacility($_POST['stime'],$_POST['etime'],$_POST['amount'],$_POST['fname'],$mid,$said);
+
+        $this->redirect('/Spadministrationstaff/managetimeslot');
+    }
+
     public function managefacilityAction()
     {
 

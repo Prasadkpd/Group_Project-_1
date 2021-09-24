@@ -553,27 +553,35 @@
         //     doc.save('canvas.pdf');
         // }
     </script>
-
+<style>
+    @media print{
+        .container {
+            overflow-y: unset !important;
+        }
+        .sidebar,nav{
+            display: none;
+        }
+        .page-content-container{
+            width: unset !important;
+        }
+        .filters {
+            display: none;
+        }
+        .faqSubmit {
+            display: none;
+        }
+        @page { 
+            margin: 0; 
+        }
+        * {
+            -webkit-print-color-adjust: exact !important;
+            color-adjust: exact !important;
+        }
+    }
+</style>
     <script type="text/javascript">
-        var doc = new jsPDF();
-        var specialElementHandlers = {
-            '#editor': function (element, renderer) {
-                return true;
-            }
-        };
+        document.getElementById('downloadPdf').addEventListener('click',()=>window.print())
         
-        doc.text(15, 15, "One Chart");
-            document.getElementById('downloadPdf').addEventListener('click',()=>{
-            console.log("test")
-            doc.fromHTML($('#chartContainer').html(), 15, 15, {
-                'width': 700,
-                'elementHandlers': specialElementHandlers
-            });
-            doc.save('sample_file.pdf');
-        })
-        // $('#downloadPdf').click(function () {
-
-        // });
 
     </script>
 </body>

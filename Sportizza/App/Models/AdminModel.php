@@ -142,7 +142,7 @@ class AdminModel extends \Core\Model
             //$result = $stmt->fetchAll();
             // var_dump($result);
             return ($stmt->execute());
-        }
+    }
 
     public static function adminDeleteFAQ(){
         
