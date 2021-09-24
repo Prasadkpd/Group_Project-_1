@@ -115,6 +115,35 @@ class AdminModel extends \Core\Model
         return $result;
     }
 
+    public static function adminAddFAQ($type,$question,$solution,$id){
+        
+        
+            $db = static::getDB();
+
+            $sql = 'INSERT INTO `faq`(`question`,`answer`,`type`,`admin_user_id`)
+            VALUES (:question, :answer, :type, :id) ';
+
+            // if($this->type=='customer'){
+            //     $type= "customer";
+            // }
+            // if($this->type=='sports_arena'){
+            //     $type= "sports_arena";
+            // }
+
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':type', $type, PDO::PARAM_STR);
+            $stmt->bindValue(':question', $question, PDO::PARAM_STR);
+            $stmt->bindValue(':answer', $solution, PDO::PARAM_STR);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+            //$stmt2->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+            //$stmt->execute();
+            //$result = $stmt->fetchAll();
+            // var_dump($result);
+            return ($stmt->execute());
+        }
+
     public static function adminDeleteFAQ(){
         
         $sql = 'SELECT * FROM faq WHERE security_status="active" ';

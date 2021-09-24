@@ -45,7 +45,6 @@ class Admin extends \Core\Controller
 
     public function faqAction()
     {
-
         $viewFAQs=AdminModel::adminViewFAQ();
         $deleteFAQs= AdminModel::adminDeleteFAQ();
         //direct to the admin page
@@ -54,6 +53,27 @@ class Admin extends \Core\Controller
 
 
         // View::renderTemplate('Admin/adminFAQView.html');
+    }
+
+    public function createfaqAction(){
+        $current_user= Auth::getUser();
+        $id=$current_user->user_id;
+
+        // $admin = new AdminModel($_POST);
+        
+        $user=AdminModel::adminAddFAQ($_POST['type'],$_POST['question'],$_POST['solution'],$id);
+
+        // View::renderTemplate('Admin/adminFAQView.html');
+        $this->redirect('/Admin/faq');
+
+        
+        // if ($admin->adminAddFAQ($id)) {
+        //     $this->redirect('/Admin/analytics');
+        // } else {
+        //     View::renderTemplate('Admin/adminFAQView.html', [
+        //         '$admin' => $admin
+        //     ]);
+        // }
     }
 
     public function manageuserAction()
