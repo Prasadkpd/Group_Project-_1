@@ -160,7 +160,7 @@ background-color:rgba(236, 236, 236, .836);
   background-color:white;
   border-radius: 20px;
   margin-top: 1%;
-  
+  padding-bottom: 1em;
 }
 
 .formsection img{
@@ -340,7 +340,7 @@ border-radius: 30px;
     font-size: 1.2rem;
     font-weight: 600;
     margin: 10px auto;
-    text-align: center;
+    text-align: left;
   }
   .add-booking-frm-container {
     width:90%;
@@ -468,7 +468,7 @@ margin-right: 1rem;
 /* START PAGE CONTENT CONTAINER */
 /* ======================================================================== */
 .page-content-container {
-  width: 83vw;
+  width: 80vw;
   margin: 0 auto;
 }
 .page-content-container .container {
@@ -702,6 +702,7 @@ font-size:0.8rem;
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 .trash-btn{
+  cursor: pointer;
 padding: 5px 10px;
 border-radius: 50%;
 box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35)

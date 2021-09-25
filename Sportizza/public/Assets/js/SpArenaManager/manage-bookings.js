@@ -46,3 +46,13 @@ function close_popup_signout_message() {
     var form = document.getElementById("popup_signout");
     form.style.display = "none";
 }
+
+//popup delete message
+function open_popup_delete_message() {
+    var form = document.getElementById("popup_delete");
+    form.style.display = "block";
+}
+function close_popup_delete_message() {
+    var form = document.getElementById("popup_delete");
+    form.style.display = "none";
+}

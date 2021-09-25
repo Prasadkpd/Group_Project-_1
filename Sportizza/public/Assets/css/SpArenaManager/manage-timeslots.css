@@ -160,7 +160,7 @@ background-color:rgba(236, 236, 236, .836);
   background-color:white;
   border-radius: 20px;
   margin-top: 1%;
-  
+  padding-bottom: 1em;
 }
 
 .formsection img{
@@ -198,7 +198,7 @@ form label{
   font-weight: 600; 
 }
 form input[type=text],
-select {
+select,input[type=time] {
   
 width: 100%;
 padding: 12px 20px;
@@ -213,7 +213,6 @@ form input[type=submit] {
   
 display: flex;
 width:max-content;
-background-color: #fd461f ;
 font-weight: 600;
 color: #fff;
 padding: 14px 20px;
@@ -613,6 +612,7 @@ border-radius: 30px;
   font-size: 1rem;
 }
 .trash-btn{
+  cursor: pointer;
 padding: 5px 10px;
 border-radius: 50%;
 box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35)
@@ -699,6 +699,29 @@ width:5px;
 .add-booking-btn i{
   padding-right:10px;
 }
+
+.add-booking-frm-content{
+display: flex;
+flex-direction: column;
+width: 60vw;
+margin: auto;
+}
+.add-booking-frm-content .input-row{
+display: flex;
+flex-direction: row;
+justify-content: center;
+padding: 0;
+margin: 0;
+}
+.add-booking-frm-content .input-row .input-box{
+width: 48%;
+}
+.add-booking-frm-content .helper-text{
+color: #e74c3c;
+margin-left: 8px;
+font-size: .9em;
+}
+
 footer {
   box-shadow: 1px 7px 25px rgb(0 0 0 / 13%);
   background-color: #e74c3c;
@@ -894,7 +917,7 @@ nav .sign-in-out-btn a{
     font-size: 1.2rem;
     font-weight: 600;
     margin: 10px auto;
-    text-align: center;
+    text-align: left;
   }
   .add-booking-frm-container{
     width:80vw;
@@ -1017,5 +1040,39 @@ nav .sign-in-out-btn a{
   .trash-btn {
     padding: 8px 10px;
   }
+  
+ .add-booking-frm-content{
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  margin: auto;
+  height: 53vh;
+  overflow-y: scroll;
+}
+.add-booking-frm-content::-webkit-scrollbar{
+background-color: #cccccc;
+border-radius: 10px;
+width:8px;
+}
+.add-booking-frm-content::-webkit-scrollbar-thumb {
+background: #3a3a3a;
+border-radius: 8px;
+width:5px;
+}
+.add-booking-frm-content .input-row{
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+}
+.add-booking-frm-content .input-row .input-box{
+width: 100%;
+}
+
+.add-booking-frm-content input[type='submit']{
+font-size: .8em;
+padding: 5px 10px;
+}
+
+
 
 }

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Users</title>
-    <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-users.css?version=7">
+    <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-users.css?version=8">
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 </head>
 
@@ -99,6 +99,34 @@
         </div>
     </div>
     <!-- End OF the POP up SIGN out -->
+<!-- Start OF the POP up Staff Delete -->
+<div id="popup_delete" class="sectionpop ">
+    <div class="formsection">
+        <div>
+            <button class="closebutton" onclick="close_popup_delete_message()">❌</button>
+        </div>
+        <form action="/action_page.php" style="margin:20px">
+            <div style="margin:auto">
+                <h1 style="margin:auto">
+                    Remove Staff
+                </h1>
+                <p style="margin:auto">
+                    Do you really want to remove the user?
+                </p>
+            </div>
+        </form>
+        <div style="display:flex">
+
+            <button class="popup_delete_button">
+                <a href=""> YES</a>
+            </button>
+            <button onclick="close_popup_delete_message()" class="popup_button">
+                NO
+            </button>
+        </div>
+    </div>
+</div>
+<!-- End OF the POP up Staff delete -->
 
 
     <section class="page-container">
@@ -112,7 +140,7 @@
                 </div>
                 <ul class="side-menu-list">
                     <li>
-                        <a href="#" class="side-menu-li">
+                        <a href="/Sparenamanager" class="side-menu-li">
                             <i class="fas fa-home"></i>
                             <p class="side-menu-item">Arena Profile</p>
                         </a>
@@ -126,7 +154,7 @@
                         <p class="side-menu-tooltip">Bookings</p>
                     </li>
                     <li>
-                        <a href="#" class="side-menu-li">
+                        <a href="/Sparenamanager/managernotification" class="side-menu-li">
                             <i class="fas fa-bell"></i>
                             <p class="side-menu-item">Notifications</p>
                         </a>
@@ -146,7 +174,7 @@
                         </a>
                         <p class="side-menu-tooltip">Facility</p>
                     </li>
-
+                    
                     <li>
                         <a href="/Sparenamanager/manageusers" class="side-menu-li">
                             <i class="fas fa-users"></i>
@@ -263,29 +291,23 @@
                             <div class="input-row">
                                 <div class="input-box">
                                     <label for="password">Password</label>
-                                    <input id="password" type="password" name="password" onfocusout="validatePassword()"
-                                        placeholder="Enter a password" value="{{sp_arena.password}}">
+                                    <input id="password" type="password" name="password" onfocusout="validatePassword()" placeholder="Enter a password"
+                                        value="{{sp_arena.password}}">
                                     <i class="bi bi-eye-slash" id="togglePassword"></i>
                                     <div class="helper-text" id="passwordMsg"></div>
                                 </div>
                                 <div class="input-box">
-                                    <label for="password">Re Type Password</label>
-                                    <input id="password" type="password" name="password" onfocusout="validatePassword()"
-                                        placeholder="Enter a password again" value="{{sp_arena.password}}">
-                                    <i class="bi bi-eye-slash" id="togglePassword"></i>
-                                    <div class="helper-text" id="passwordMsg"></div>
+                                    <label for="photos">Profile Picture(Mandatory)</label>
+                                    <div class="img-btn-div">
+                                        <input style type="file" name="image_6" value="submit" accept="image/*"
+                                            type="submit" id="file6" onchange="change_color(this.files,event)"
+                                            value="{{sp_arena.image_6}}" class="img-button">
+                                    </div>
+                                    <div class="helper-text" id="imgMsg6"></div>
                                 </div>
+                        
                             </div>
                             <div class="input-row">
-                            <div class="input-box">
-                                <label for="photos">Profile Picture(Mandatory)</label>
-                                <div class="img-btn-div">
-                                    <input style type="file" name="image_6" value="submit" accept="image/*"
-                                        type="submit" id="file6" onchange="change_color(this.files,event)"
-                                        value="{{sp_arena.image_6}}" class="img-button">
-                                </div>
-                                <div class="helper-text" id="imgMsg6"></div>
-                            </div>
                             <div class="input-box">
                                 <label for="photos">Profile Picture(Mandatory)</label>
                                 <div class="user-type-div">
@@ -343,7 +365,7 @@
                                 <td data-label="Last Name :">{{staff.last_name}}</td>
                                 <td data-label="Username :">{{staff.username}}</td>
                                 <td data-label="Primary Contact :"> {{staff.primary_contact}}</td>
-                                <td class="trash-btn-padding-res"> <a href="" class="trash-btn"
+                                <td class="trash-btn-padding-res"> <a onclick="open_popup_delete_message()" class="trash-btn"
                                         style="margin-left: 30px;"><i class="fas fa-trash-alt"></i></a></td>
                             </tr>
                             {% endfor %}
@@ -363,8 +385,8 @@
         </div>
     </footer>
     <!-- End of Footer -->
-    <script type="text/javascript" src="/Assets/js/SpArenaManager/manage-users.js"></script>
-    <script type="text/javascript" src="/Assets/js/signup_validation.js?version=5.0"></script>
+    <script type="text/javascript" src="/Assets/js/SpArenaManager/manage-users.js?version=1"></script>
+    <script type="text/javascript" src="/Assets/js/signup_validation.js?version=8.0"></script>
 </body>
 
 </html>

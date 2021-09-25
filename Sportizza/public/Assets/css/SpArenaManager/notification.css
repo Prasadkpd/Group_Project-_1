@@ -161,7 +161,7 @@ nav .sign-in-out-btn :hover{
   background-color:white;
   border-radius: 20px;
   margin-top: 1%;
-  
+  padding-bottom: 1em;
 }
 
 .formsection img{
@@ -337,7 +337,7 @@ display: inline-block;
     font-size: 1.2rem;
     font-weight: 600;
     margin: 10px auto;
-    text-align: center;
+    text-align: left;
   }
   .add-booking-frm-container {
     width:90%;
