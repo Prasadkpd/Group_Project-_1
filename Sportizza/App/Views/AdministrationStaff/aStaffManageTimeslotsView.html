@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Timeslot</title>
-    <link rel="stylesheet" href="/Assets/css/AdministrationStaff/manage-timeslots.css">
+    <link rel="stylesheet" href="/Assets/css/AdministrationStaff/manage-timeslots.css?version=7">
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 </head>
 
@@ -33,11 +33,12 @@
                     </div>
                 </button>
             </div>
-            <div class="sign-in-out-btn">
-                {% if current_user %}
-        <a href="/logout"> Sign Out</a>
-        {% endif %}
-            </div>
+        <div class="sign-in-out-btn">
+            <button onclick="open_popup_signout_message()"> Sign Out </button>
+            <!-- {% if current_user %}
+                         <a href="/logout"> Sign Out</a>
+                         {% endif %} -->
+        </div>
         </div>
         <!-- search bar for mobile -->
         <div class="search-bar-container-mobi">
@@ -66,6 +67,40 @@
     </div>
  
      <!-- End Top Navigation Bar -->
+
+    <!-- Start OF the POP up SIGN out -->
+    <div id="popup_signout" class="sectionpop ">
+        <div class="formsection">
+    
+            <div>
+                <button class="closebutton" onclick="close_popup_signout_message()">❌</button>
+            </div>
+            <form action="/action_page.php" style="margin:20px">
+                <div style="margin:auto">
+                    <h1 style="margin:auto">
+                        Sign Out
+                    </h1>
+                    <p style="margin:auto">
+                        Do your really want to sign out now?
+                    </p>
+                </div>
+            </form>
+    
+    
+            <div style="display:flex">
+    
+                <button class="popup_delete_button">
+                    {% if current_user %}
+                    <a href="/logout"> YES</a>
+                    {% endif %}
+                </button>
+                <button onclick="close_popup_signout_message()" class="popup_button">
+                    NO
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- End OF the POP up SIGN out -->
     <section class="page-container">
 
         <!-- SIDE NAVIGATION BAR - START -->
@@ -157,8 +192,8 @@
                                 <th class="b-first-th">Timeslot ID</th>
                                 <th>Start Time</th>
                                 <th>End Time</th>
-                                <th >Amount</th>
-                                <th class="b-last-th">Facility ID</th>
+                                <th >Amount(LKR)</th>
+                                <th class="b-last-th" style="text-align: left;padding-left: 3em;">Facility ID</th>
                                 
                             </tr>
                         </thead>
@@ -168,7 +203,7 @@
                                 <td data-label="Timeslot ID :">{{timeSlot.time_slot_id}}</td>
                                 <td data-label="Start Time :">{{timeSlot.start_time}}</td>
                                 <td data-label="End Time :">{{timeSlot.end_time}}</td>
-                                <td data-label="Amount :">{{timeSlot.price}}</td>
+                                <td data-label="Amount(LKR) :">{{timeSlot.price}}</td>
                                 <td data-label="Facility ID :">{{timeSlot.facility_id}}</td>
                             </tr>
                             {% endfor %}
@@ -178,26 +213,31 @@
                 <!-- Add Timeslots Tab -->
                 <div id="add_bookings" class="booking_tab_content">
                     <div id="staff-add" class="add-booking-fm-con">
-                        <form class="add-booking-frm-content animate" action="/action_page.php" method="post">
+                        <form class="add-booking-frm-content animate" action="/SpAdministrationStaff/createtimeslot" method="post">
                             <div class="add-booking-frm-container">
                                 <div class="input-row">
                                 <label for="stime"><b>Start Time:</b></label>
-                                <input type="time" name="stime"  class="inputcls" required>
+                                <input id="stime" type="time" name="stime"  class="inputcls" required>
                             </div>
                             <div class="input-row">
                                 <label for=etime"><b>End Time:</b></label>
-                                <input type="time" name="etime" required>
+                                <input id="etime" type="time" name="etime" required>
                             </div>
                             <div class="input-row">
-                                <label for="sprice"><b>Slot Price:</b></label>
-                                <input type="float" placeholder="Enter Price" name="amount" required>
+                                <label for="amount"><b>Slot Price:</b></label>
+                                <input id="amount" type="float" placeholder="Enter Price" name="amount" required>
                               </div>  <div class="input-row">
-                                <label for="uname"><b>Facility Name:</b></label>
-                                <select>
+                                <label for="fname"><b>Facility Name:</b></label>
+                                <!-- <select id="fname" name="fname">
                                     <option value="0">Basketball Court 1</option>
                                     <option value="1">Basketball Court 2</option>
                                     <option value="2">Basketball Court 3</option>
-                                  </select>
+                                </select> -->
+                                <select id="fid" name="fid">
+                                {% for facility in viewFacilities %}
+                                    <option value={{facility.facility_id}}>{{facility.facility_name}}</option>
+                                {% endfor %}
+                                </select>
                             </div>
                             <button type="submit" class="add-booking-btn"><i class="fas fa-plus-circle"></i>Add
                                 Timeslots</button>
@@ -224,10 +264,10 @@
                                 </th>
                             </tr>
                             <tr class="booking-thead-second-tr">
-                                <th class="b-first-th">Timeslot ID</th>
+                                <th class="b-first-th ">Timeslot ID</th>
                                 <th>Start Time</th>
                                 <th>End Time</th>
-                                <th>Amount</th>
+                                <th>Amount(LKR)</th>
                                 <th>Facility ID</th>
                                 <th class="b-last-th">Action</th>
                             </tr>
@@ -238,15 +278,11 @@
                                 <td data-label="Timeslot ID :">{{timeSlot.time_slot_id}}</td>
                                 <td data-label="Start Time :">{{timeSlot.start_time}}</td>
                                 <td data-label="End Time :">{{timeSlot.end_time}}</td>
-                                <td data-label="Amount :">{{timeSlot.price}}</td>
+                                <td data-label="Amount(LKR) :">{{timeSlot.price}}</td>
                                 <td data-label="Facility ID :">{{timeSlot.facility_id}}</td>
-                                <td data-label="Action :"> <a href=""><i class="fas fa-trash-alt"></i></a></td>
+                                <td class="trash-btn-padding-res"> <a href="" class="trash-btn"><i class="fas fa-trash-alt"></i></a></td>
                             </tr>
                             {% endfor %}
-
-                                
-                                
-                        
                         </tbody>
                     </table>
                 </div>
@@ -263,6 +299,6 @@
         </div>
     </footer>
     <!-- End of Footer -->
-    <script type="text/javascript" src="/Assets/js/AdministrationStaff/manage-timeslots.js"></script>
+    <script type="text/javascript" src="/Assets/js/Administration-Staff/manage-timeslots.js?version=1"></script>
 </body>
 </html>

@@ -3,6 +3,7 @@
 
 namespace App\Controllers;
 use Core\View;
+use Core\Image;
 
 use \App\Controllers\Otp;
 
@@ -23,21 +24,18 @@ class Signup extends \Core\Controller
      */
     public function createAction()
     {
-        $user = new SignupModel($_POST);
+        $user = new SignupModel($_POST);      
+        $errors = $user->validate();
 
         if ($user->save()) {
-
-            otp::sendSMS($_POST["mobile_number"]);
-            //Have redirect instead
+            // otp::sendSMS($_POST["mobile_number"]);
             $this->redirect('/Signup/success');
             exit;
 
         } else {
-
-            View::renderTemplate('LoginSignup/signup.html', [
-                'user' => $user
-            ]);
-
+            
+            View::renderTemplate('LoginSignup/customerSignupView.html', [
+                'user' => $user, 'errors' => $errors]);
         }
     }
     /**
@@ -47,7 +45,6 @@ class Signup extends \Core\Controller
      */
     public function successAction()
     {
-        
         //direct to the message modal page
         View::renderTemplate('otp.html');
     }

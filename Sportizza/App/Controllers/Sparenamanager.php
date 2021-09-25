@@ -27,6 +27,20 @@ class Sparenamanager extends \Core\Controller
     public function indexAction()
     {
 
+        $current_user= Auth::getUser();
+        $id=$current_user->user_id;
+        $bookings= SpArenaManagerModel::managerViewBookings($id);
+        $cancelBookings= SpArenaManagerModel::managerCancelBookings($id);
+        $bookingPayments= SpArenaManagerModel::managerBookingPayment($id);
+        // var_dump($bookings);
+        //direct to the customer page
+        View::renderTemplate('Manager/mStaffProfileView.html',['bookings'=>$bookings,
+        'cancelBookings'=>$cancelBookings,'bookingPayments'=>$bookingPayments]);
+
+    }
+
+    public function managerprofileAction()
+    {
 
         $current_user= Auth::getUser();
         $id=$current_user->user_id;
@@ -35,11 +49,9 @@ class Sparenamanager extends \Core\Controller
         $bookingPayments= SpArenaManagerModel::managerBookingPayment($id);
         // var_dump($bookings);
         //direct to the customer page
-        View::renderTemplate('Manager/mStaffManageBookingsView.html',['bookings'=>$bookings,
+        View::renderTemplate('Manager/mStaffProfileView.html',['bookings'=>$bookings,
         'cancelBookings'=>$cancelBookings,'bookingPayments'=>$bookingPayments]);
 
-
-        
     }
     public function managebookingsAction()
     {

@@ -740,39 +740,12 @@ nav{
             border-radius: 5px;
             padding: 20px;
         }
-        .userTypeSelect {
-            display: block;
-            width: 200px;
-            border-radius: 25px;
-            margin: auto;
-            border: 1px solid #ecf0f1;
-            text-align: center;
-            height: 2rem;
-            background-color: #ecf0f1;
-            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-        }
-        .userTypeSelect:hover {
-            background-color: #fff;
-            border: 1px solid #ecf0f1;
-            transition: 0.3s;
-        }
-        .questionSelect{
-            display: flex;
-            width:100%;
-            border-radius: 25px;
-            margin: 0;
-            border-color: #ccc;
-            text-align: center;
-            height: 2rem;       
-            margin-top: 6px; /* Add a top margin */
-            margin-bottom: 16px;
-        }
         .faqLabel {
             font-weight: 500;
         }
         .faqInput {
             width: 100%; /* Full width */
-            height: 100px;
+            height: 50px;
             padding: 12px; /* Some padding */ 
             border: 1px solid #ccc; /* Gray border */
             border-radius: 15px; /* Rounded borders */

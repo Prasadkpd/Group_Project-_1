@@ -203,15 +203,30 @@
                 
                 <div id="add_bookings" class="booking_tab_content">
                     <div class="form-container">
-                        <form action="">
-                            <select class="userTypeSelect">
+                        <form method="POST" action="/Admin/createfaq">
+                            <!-- <select class="userTypeSelect" name="type">
                                 <option value="0">Select category</option>
-                                <option value="1">Customer</option>
-                                <option value="2">Sports Arena</option>
-                            </select>
+                                <option value="customer">Customer</option>
+                                <option value="sports_arena">Sports Arena</option>
+                            </select> -->
+
+                            <div class="input-box">
+                                <label for="type" class="faqLabel">Type</label>
+                                <div class="options-container">
+                                  <div class="custom-select">
+                                    <select id="type" name="type">
+                                      <option value="0">Select type</option>
+                                      <option value="customer">Customer</option>
+                                      <option value="sports_arena">Sports Arena</option>
+                                    </select>
+                                    <div class="helper-text" id="other-categoryMsg"></div>
+                                  </div>
+                  
+                                </div>
+                              </div>
 
                             <label for="question" class="faqLabel">Question : </label>
-                            <textarea id="question" class="faqInput" name="question" placeholder="Type the question..."></textarea>
+                            <textarea id="question" class="faqInput" name="question" placeholder="Type your question..."></textarea>
 
                             <label for="solution" class="faqLabel">Solution : </label>
                             <textarea id="solution" class="faqInput" name="solution" placeholder="Type your solution..."></textarea>
@@ -264,21 +279,27 @@
                 
                 <div id="booking_payment" class="booking_tab_content">
                     <div class="form-container">
-                        <form action="">
-                            <select class="userTypeSelect">
-                                <option value="0">Select category</option>
-                                <option value="1">Customer</option>
-                                <option value="2">Sports Arena</option>
-                            </select>
+                        <form method="post" action="Admin/createfaq">
+                            <div class="input-box">
+                                <label for="category" class="faqLabel">Category</label>
+                                <div class="options-container">
+                                  <div class="custom-select">
+                                    <select id="type" name="type">
+                                      <option value="0">Select type</option>
+                                      <option value="customer">Customer</option>
+                                      <option value="sports_arena">Sports Arena</option>
+                                    </select>
+                                    <div class="helper-text" id="other-categoryMsg"></div>
+                                  </div>
+                  
+                                </div>
+                              </div>
 
                             <label for="question" class="faqLabel">Question : </label>
-                            <select class="questionSelect">
+                            <select id="question" name="question">
                                 <option value="0">Select question</option>
-                                <option value="1">Integer pulvinar metus sit amet magna hendrerit?</option>
-                                <option value="2">Integer pulvinar metus sit amet magna hendrerit?</option>
-                                <option value="3">Integer pulvinar metus sit amet magna hendrerit?</option>
-                                <option value="4">Integer pulvinar metus sit amet magna hendrerit?</option>
-                                <option value="5">Integer pulvinar metus sit amet magna hendrerit?</option>
+                                <option value="1">Customer</option>
+                                <option value="2">Sports Arena</option>
                             </select>
 
                             <label for="solution" class="faqLabel">Solution : </label>

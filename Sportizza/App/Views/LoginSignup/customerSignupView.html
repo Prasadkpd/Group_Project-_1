@@ -9,7 +9,7 @@
     <link href="/Assets/css/sp-arena-application.css?version=2" rel="stylesheet" />
     <link href="/Assets/css/customer-signup.css?version=3" rel="stylesheet" />
 
-    <title>Sportizza Customr Signup</title>
+    <title>Sportizza - Customer Signup</title>
 </head>
 
 <body>
@@ -35,61 +35,76 @@
             <div class="title">Sign Up</div>
             <div class="content">
 
-                <form method="post" action="/signup/create" id="formCustomerSignup"
-                    onsubmit="validateCustomerSignupForm()" enctype="multipart/form-data">
+                <form method="post" action="/signup/create" id="formCustomerSignup" enctype="multipart/form-data"
+                onsubmit="validateCustomerSignupForm()">
+                   
 
                     <div class="manager-details">
                         <div class="input-box">
                             <label for="firstName">First Name</label>
                             <input id="firstName" type="text" name="first_name" onfocusout="validateFirstName()"
                                 placeholder="Enter first name" value="{{user.first_name}}">
-                            <div class="helper-text" id="firstNameMsg"></div>
+                            <div class="helper-text" id="firstNameMsg">
+                                <p>{{errors["first_name1"]}} {{errors["first_name2"]}}</p>
+                            </div>
                         </div>
-
 
                         <div class="input-box">
                             <label for="lastName">Last Name</label>
                             <input id="lastName" type="text" name="last_name" onfocusout="validateLastName()"
                                 placeholder="Enter last name" value="{{user.last_name}}">
-                            <div class="helper-text" id="lastNameMsg"></div>
+                            <div class="helper-text" id="lastNameMsg">
+                                <p>{{errors["last_name1"]}} {{errors["last_name2"]}}</p>
+                            </div>
                         </div>
-
 
                         <div class="input-box">
                             <label for="mobile">Mobile Number</label>
                             <input id="mobile" type="text" name="mobile_number" onfocusout="validateMobile()"
                                 placeholder="Ex:-) 0712345678" value="{{user.mobile_number}}">
-                            <div class="helper-text" id="mobileMsg"></div>
+                            <div class="helper-text" id="mobileMsg">
+                                <p>{{errors["mobile_number1"]}}
+                                    {{errors["mobile_number2"]}}
+                                    {{errors["mobile_number3"]}}
+                                </p>
+                            </div>
                         </div>
-
 
                         <div class="input-box">
                             <label for="username">Username</label>
                             <input id="username" type="text" name="username" onfocusout="validateUsername()"
                                 placeholder="Enter a unique Username" value="{{ user.username}}">
-                            <div class="helper-text" id="usernameMsg"></div>
+                            <div class="helper-text" id="usernameMsg">
+                                <p>{{errors["username1"]}} {{errors["username2"]}}</p>
+                            </div>
                         </div>
-
 
                         <div class="input-box">
                             <label for="password">Password</label>
                             <input id="password" type="password" name="password" onfocusout="validatePassword()"
                                 placeholder="Enter a password" value="{{ user.password}}">
                             <i class="bi bi-eye-slash" id="togglePassword"></i>
-                            <div class="helper-text" id="passwordMsg"></div>
+                            <div class="helper-text" id="passwordMsg">
+                                <p>{{errors["password1"]}} {{errors["password2"]}}
+                                    {{errors["password3"]}} {{errors["password4"]}}
+                                    {{errors["password5"]}} {{errors["password6"]}}
+                                </p>
+                            </div>
                         </div>
 
                         <div class="input-box">
                             <label for="photos">Profile Picture</label>
-                           <div class="img-btn-div"> 
-                            <input style type="file" name="image_7" value="submit" accept="image/*"
-                            type="submit" id="file1" onchange="change_color(this.files,event)"
-                            value="{{user.image_7}}" class="img-button">
-                            </div> 
-                            <div class="helper-text" id="imgMsg1"></div>
+                            <div class="img-btn-div">
+                                <input style type="file" name="image_7" accept="image/*" id="file1"
+                                    onchange="change_color(this.files,event)" class="img-button">
+                            </div>
+                            <div class="helper-text" id="imgMsg1">
+                                <p> {% for key,error in errors ["image_7"] %}{{error}}
+                                    {% endfor %}</p>
+                            </div>
                         </div>
-                   
-                </div>
+
+                    </div>
                     <div class="specialMsg">
                         ** Please note that you'll recieve an SMS to the mobile number after Registration.
                     </div>
@@ -111,8 +126,8 @@
     </footer>
     <!-- End of Footer -->
 
-    <script type="text/javascript" src="/Assets/js/signup_validation.js?v=5"></script>
-    <script type="text/javascript" src="/Assets/js/customerSignup_validation.js?v=5"></script>
+    <script type="text/javascript" src="/Assets/js/signup_validation.js?v=6"></script>
+    <script type="text/javascript" src="/Assets/js/customerSignup_validation.js?v=6"></script>
 </body>
 
 </html>

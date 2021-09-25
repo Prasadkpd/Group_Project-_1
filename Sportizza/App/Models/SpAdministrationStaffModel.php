@@ -144,6 +144,39 @@ class SpAdministrationStaffModel extends \Core\Model
         // var_dump($result);
         return $result;
     }
+    
+    public static function saAdminAddTimeSlots($stime,$etime,$amount,$fid,$id){
+        
+        $db = static::getDB();
+        
+        $sql1 = 'SELECT `manager_user_id`,`manager_sports_arena_id` FROM `administration_staff` WHERE `user_id`=:id';
+        $stmt1 = $db->prepare($sql1);
+        $stmt1->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt1->execute();
+    
+        $result1 = $stmt1->fetch(PDO::FETCH_ASSOC);
+        //Accessing the associative array
+        $mid = $result1["manager_user_id"];
+        $said = $result1["manager_sports_arena_id"];    
+    
+        $sql2 = 'INSERT INTO `time_slot`(`start_time`,`end_time`,`price`,`facility_id`,`manager_user_id`,`manager_sports_arena_id`)
+                VALUES (:stime, :etime, :amount, :fid, :mid, :said)';
+    
+        $stmt2 = $db->prepare($sql2);
+        $stmt2->bindValue(':stime', $stime, PDO::PARAM_STR);
+        $stmt2->bindValue(':etime', $etime, PDO::PARAM_STR);
+        $stmt2->bindValue(':amount', $amount, PDO::PARAM_STR);
+        $stmt2->bindValue(':fid', $fid, PDO::PARAM_INT);
+        $stmt2->bindValue(':mid', $mid, PDO::PARAM_INT);
+        $stmt2->bindValue(':said', $said, PDO::PARAM_INT);
+    
+        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+    
+        // $result = $stmt->fetchAll();
+        // var_dump($result);
+    
+        return ($stmt2->execute());
+    }
 
     public static function saAdminDeleteTimeSlots($id){
         
@@ -183,6 +216,7 @@ class SpAdministrationStaffModel extends \Core\Model
         return $result;
     }
 
+
     public static function saAdminDeleteFacility($id){
         
         $sql = 'SELECT *  FROM facility INNER JOIN administration_staff ON facility.manager_user_id=administration_staff.manager_user_id
@@ -218,6 +252,8 @@ class SpAdministrationStaffModel extends \Core\Model
         // var_dump($result);
         return $result;
     }
+
+    
     
 
 
