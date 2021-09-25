@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="/Assets/css/Customer/finalCart.css?version=3">
+  <title>Sportizza</title>
+</head>
+
+<body>
+  <!-- Top Navigation Bar -->
+  <nav>
+    <div class="nav-left">
+     <div class="logo-container">
+         <a href="#">
+             <i class="fas fa-running "></i>
+             <span class="logo-name">Sportizza</span>
+         </a>
+    </div>
+    <div class="search-bar-container">
+         <input type="search" name="search" placeholder="Search">
+         <i class="fas fa-search "></i>
+    </div>
+
+
+
+    <div  class="nav-profile">
+
+     
+
+
+    
+
+<button   class="openbutton" onclick="openpopupform()">
+
+         
+     
+<div class="profile-details">
+ <img src="/Assets/images/customer/profile-picture.jpg" alt="" class="profile-picture">
+ <div class="username">Bhashitha Ranasinghe</div>
+ 
+</div>
+
+</button>
+     </div>
+
+     
+
+
+
+    <div class="sign-in-out-btn">
+        
+         <button onclick="open_popup_signout_message()" > Sign Out </button>
+    </div> 
+    </div>
+
+
+    
+
+    <!-- search bar for mobile -->
+    <div class="search-bar-container-mobi">
+     <input type="search" name="search" placeholder="Search">
+     <i class="fas fa-search "></i>
+</div>
+ </nav>
+
+  <!-- Page content -->
+  <div class="cartPage">
+    <!-- <h1 class="page-header">Cart</h1> -->
+    <form method="post" action="" id="formSpArenaApplication" onsubmit=""
+      enctype="multipart/form-data">
+    <div class="customerDetails">
+      <div class="page">
+        <div class="container">
+          <div class="title">Customer details</div>
+          <div class="subtitle">Please fill out the details below</div>
+          <div class="content">
+
+
+              <div class="sp-details">
+                <div class="input-box">
+                  <label for="firstName">First Name</label>
+                  <input id="firstName" type="text" name="firstName" placeholder="Enter first Name">
+                  <div class="helper-text" id="firstNameMsg"></div>
+                </div>
+
+                <div class="input-box">
+                  <label for="lastName">Last Name</label>
+                  <input id="lastName" type="text" name="lastName" placeholder="Enter last Name">
+                  <div class="helper-text" id="lastNameMsg"></div>
+                </div>
+
+                <div class="input-box">
+                  <label for="email">Email</label>
+                  <input id="email" type="email" name="email" placeholder="ex: example@company.com">
+                  <div class="helper-text" id="emailMsg"></div>
+                </div>
+
+                <div class="input-box">
+                  <label for="contact">Contact</label>
+                  <input id="contact" type="text" name="contact" placeholder="ex: 0711223344">
+                  <div class="helper-text" id="contactMsg"></div>
+                </div>
+                
+                <div class="input-box-map">
+                  <label for="address">Address</label>
+                  <input id="address" type="text" name="address"
+                    placeholder="Enter your address">
+                  <div class="helper-text" id="addressMsg"></div>
+                </div>
+                
+                <div class="input-box">
+                  <label for="city">City</label>
+                  <input id="city" type="text" name="city" placeholder="Enter your city">
+                  <div class="helper-text" id="cityMsg"></div>
+                </div>
+
+                <div class="input-box">
+                  <label for="country">Country</label>
+                  <input id="country" type="text" name="country" placeholder="Enter your country" value="Sri Lanka">
+                  <div class="helper-text" id="contactMsg"></div>
+                </div>
+
+
+                <!-- <div class="input-box-descr">
+                  <label for="description">Description</label>
+                  <input id="description" type="text" name="description" placeholder="(Briefly state about sports arena)"
+                    onfocusout="validateDescription()" value="{{sp_arena.description}}">
+                  <div class="helper-text" id="descriptionMsg"></div>
+                </div>
+
+
+                <div class="input-box-map">
+                  <label for="other-facilities">Other Facilities</label>
+                  <input id="other-facilities" type="text" name="other_facilities" onfocusout="validateOtherFacilities()"
+                    placeholder="Ex: Changing Rooms, Cafeteria, Car Parking, etc." value="{{sp_arena.other_facilities}}">
+                  <div class="helper-text" id="descriptionMsg"></div>
+                </div>
+
+
+                <div class="input-box">
+                  <label for="payment">Accepted Payment Method</label>
+                  <div class="options-container">
+
+                    <div class="custom-select">
+                      <select id="payment" name="payment_method" onchange="validatePayment()"
+                        value="{{sp_arena.payment_method}}">
+                        <option value="0"> </option>
+                        <option value="1">Only card payments</option>
+                        <option value="2">Only cash payments</option>
+                        <option value="3">Both cash & card payments</option>
+                      </select>
+                      <div class="helper-text" id="paymentMsg"></div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="input-box-img">
+                  <label for="photos">Sports Arena Photos (Mandatory)</label>
+                  <div class="upload-images">
+
+                    <div class="input-box">
+                      <div class="img-btn-div">
+                        <label class="tag">Image 1:</label>
+                        <input style type="file" name="image_1" value="submit" accept="image/*" type="submit" id="file1"
+                          onchange="change_color(this.files,event)" value="{{sp_arena.image_1}}"
+                          class="img-button">
+                      </div>
+                      <div class="helper-text" id="imgMsg1"></div>
+                    </div>
+                    <div class="input-box">
+                      <div class="img-btn-div">
+                        <label class="tag">Image 2:</label>
+                        <input style type="file" name="image_2" value="submit" accept="image/*" type="submit" id="file2"
+                          onchange="change_color(this.files,event)" value="{{sp_arena.image_2}}"
+                          class="img-button">
+                      </div>
+                      <div class="helper-text" id="imgMsg2"></div>
+                    </div>
+                    <div class="input-box">
+                      <div class="img-btn-div">
+                        <label class="tag">Image 3:</label>
+                        <input style type="file" name="image_3" value="submit" accept="image/*" type="submit" id="file3"
+                          onchange="change_color(this.files,event)" value="{{sp_arena.image_3}}"
+                          class="img-button">
+                      </div>
+                      <div class="helper-text" id="imgMsg3"></div>
+                    </div>
+                    <div class="input-box">
+                      <div class="img-btn-div">
+                        <label class="tag">Image 4:</label>
+                        <input style type="file" name="image_4" value="submit" accept="image/*" type="submit" id="file4"
+                          onchange="change_color(this.files,event)" value="{{sp_arena.image_4}}"
+                          class="img-button">
+                      </div>
+                      <div class="helper-text" id="imgMsg4"></div>
+                    </div>
+                    <div class="input-box">
+                      <div class="img-btn-div">
+                        <label class="tag">Image 5:</label>
+                        <input style type="file" name="image_5" value="submit" accept="image/*" type="submit" id="file5"
+                          onchange="change_color(this.files,event)" value="{{sp_arena.image_5}}"
+                          class="img-button">
+                      </div>
+                      <div class="helper-text" id="imgMsg5"></div>
+                    </div>
+
+                  </div>
+                </div> -->
+              </div>
+
+              <!-- <div class="title">
+                <h5>Manager Details</h5>
+              </div>
+
+              <div class="manager-details">
+                <div class="input-box">
+                  <label for="firstName">First Name</label>
+                  <input id="firstName" type="text" name="first name" onfocusout="validateFirstName()"
+                    placeholder="Enter first name" value="{{sp_arena.first_name}}">
+                  <div class="helper-text" id="firstNameMsg"></div>
+                </div>
+
+
+                <div class="input-box">
+                  <label for="lastName">Last Name</label>
+                  <input id="lastName" type="text" name="last name" onfocusout="validateLastName()"
+                    placeholder="Enter last name" value="{{sp_arena.last_name}}">
+                  <div class="helper-text" id="lastNameMsg"></div>
+                </div>
+
+
+                <div class="input-box">
+                  <label for="mobile">Mobile Number</label>
+                  <input id="mobile" type="text" name="mobile number" onfocusout="validateMobile()"
+                    placeholder="Enter mobile number" value="{{sp_arena.mobile_number}}">
+                  <div class="helper-text" id="mobileMsg"></div>
+                </div>
+
+
+                <div class="input-box">
+                  <label for="username">Username</label>
+                  <input id="username" type="text" name="username" onfocusout="validateUsername()"
+                    placeholder="Enter a unique Username" value="{{sp_arena.username}}">
+                  <div class="helper-text" id="usernameMsg"></div>
+                </div>
+
+
+                <div class="input-box">
+                  <label for="password">Password</label>
+                  <input id="password" type="password" name="password" onfocusout="validatePassword()"
+                    placeholder="Enter a password" value="{{sp_arena.password}}">
+                  <i class="bi bi-eye-slash" id="togglePassword"></i>
+                  <div class="helper-text" id="passwordMsg"></div>
+                </div>
+
+                <div class="input-box">
+                  <label for="photos">Profile Picture(Mandatory)</label>
+                <div class="img-btn-div"> 
+                  <input style type="file" name="image_6" value="submit" accept="image/*"
+                  type="submit" id="file6" onchange="change_color(this.files,event)"
+                  value="{{sp_arena.image_6}}" class="img-button">
+                  </div> 
+                  <div class="helper-text" id="imgMsg6"></div>
+              </div>
+              </div>
+
+              <div class="specialMsg">
+                ** Please note that you'll recieve an SMS to the mobile number after Registration.
+              </div>
+              <div class="button">
+                <input type="submit" value="Register" class="btn solid" />
+              </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+      
+    <div class="cartDisplay">
+        <div class="page">
+          <div class="container">
+            <div class="title">Cart</div>
+            <div class="content">
+  
+  
+                <div class="cartContent">
+                  <div class="cartItem">
+                    <div class="itemHeader">
+                      <h6>Sports Arena Name</h6>
+                    </div>
+                    <div class="itemTime">
+                      20.00-22.00
+                    </div>
+                    <div class="itemOther">
+                      Category , Location
+                    </div>
+                  </div>
+                </div>
+  
+                <!-- <div class="title">
+                  <h5>Manager Details</h5>
+                </div> -->
+  
+                <!-- <div class="manager-details">
+                  <div class="input-box">
+                    <label for="firstName">First Name</label>
+                    <input id="firstName" type="text" name="first name" onfocusout="validateFirstName()"
+                      placeholder="Enter first name" value="{{sp_arena.first_name}}">
+                    <div class="helper-text" id="firstNameMsg"></div>
+                  </div>
+  
+  
+                  <div class="input-box">
+                    <label for="lastName">Last Name</label>
+                    <input id="lastName" type="text" name="last name" onfocusout="validateLastName()"
+                      placeholder="Enter last name" value="{{sp_arena.last_name}}">
+                    <div class="helper-text" id="lastNameMsg"></div>
+                  </div>
+  
+  
+                  <div class="input-box">
+                    <label for="mobile">Mobile Number</label>
+                    <input id="mobile" type="text" name="mobile number" onfocusout="validateMobile()"
+                      placeholder="Enter mobile number" value="{{sp_arena.mobile_number}}">
+                    <div class="helper-text" id="mobileMsg"></div>
+                  </div>
+  
+  
+                  <div class="input-box">
+                    <label for="username">Username</label>
+                    <input id="username" type="text" name="username" onfocusout="validateUsername()"
+                      placeholder="Enter a unique Username" value="{{sp_arena.username}}">
+                    <div class="helper-text" id="usernameMsg"></div>
+                  </div>
+  
+  
+                  <div class="input-box">
+                    <label for="password">Password</label>
+                    <input id="password" type="password" name="password" onfocusout="validatePassword()"
+                      placeholder="Enter a password" value="{{sp_arena.password}}">
+                    <i class="bi bi-eye-slash" id="togglePassword"></i>
+                    <div class="helper-text" id="passwordMsg"></div>
+                  </div>
+  
+                  <div class="input-box">
+                    <label for="photos">Profile Picture(Mandatory)</label>
+                  <div class="img-btn-div"> 
+                    <input style type="file" name="image_6" value="submit" accept="image/*"
+                    type="submit" id="file6" onchange="change_color(this.files,event)"
+                    value="{{sp_arena.image_6}}" class="img-button">
+                    </div> 
+                    <div class="helper-text" id="imgMsg6"></div>
+                </div>
+                </div> -->
+  
+                <!-- <div class="specialMsg">
+                  ** Please note that you'll recieve an SMS to the mobile number after Registration.
+                </div> -->
+                <div class="button">
+                  <input type="submit" value="Pay Now" class="btn solid" />
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    </form>
+  </div>
+
+  <!-- Start of Footer -->
+  <footer>
+    <div class="copyright">
+      <p>
+        Copyright &copy;2021 All rights reserved | Sportizza Inc.
+      </p>
+    </div>
+  </footer>
+  <!-- End of Footer -->
+
+  <!-- <script type="text/javascript" src="/Assets/js/signup_validation.js?version=7.0"></script>
+  <script type="text/javascript" src="/Assets/js/spArenaSignup_validations.js?version=7.0"></script> -->
+  <script src="/Assets/js/Customer/newCart.js"></script>
+</body> 
+
+</html>
