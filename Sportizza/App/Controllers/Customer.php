@@ -44,6 +44,7 @@ class Customer extends Authenticated
 
     public function bookingAction()
     {
+        // var_dump($id);
         View::renderTemplate('Customer/customerBookingView.html');
     }
 

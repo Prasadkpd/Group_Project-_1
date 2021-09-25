@@ -59,6 +59,10 @@ class Otp extends \Core\Controller
         $password = 4772;
         //Random OTP code
         $otp= mt_rand(100000,999999);
+
+        // save otp in the session it means it in a cached session
+        session_id(true);
+        $_SESSION["otp"]=$otp;
         //SMS Sent
         $text = urlencode("Enter the OTP code:". $otp ."");
         // Replacing the initial 0 with 94

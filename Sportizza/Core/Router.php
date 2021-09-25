@@ -59,6 +59,7 @@ class Router
     public function dispatch($url)
     {
         $url = $this->removeQueryStringVariable($url);
+        
         if ($this->match($url))
         {
             $controller = $this->params['controller'];
