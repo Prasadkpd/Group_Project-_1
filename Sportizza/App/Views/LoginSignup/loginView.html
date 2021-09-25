@@ -14,12 +14,13 @@
 <body>
     <!-- Top Navigation Bar -->
     <nav>
+
         <div class="nav-container">
             <div class="horizontal-container">
                 <div class="cell">
                     <ul class="home-nav">
                         <li>
-                            <a href="#">
+                            <a href="/">
                                 <i class="fas fa-running"></i>
                                 <span class="sportizza-logo">Sportizza</span>
                             </a>
@@ -46,9 +47,10 @@
 
                         <div class="input-field">
                             <label for="username">Username</label>
-                            <input id="username" type="text" name="username" onfocusout="validateLoginUsername()" value={{username}}
-                                >
-                            <div class="helper-text" id="usernameMsg"></div>
+                            <input id="username" type="text" name="username" onfocusout="validateLoginUsername()" value={{username}}>
+                            <div class="helper-text" id="usernameMsg">
+                                <p></p>
+                            </div>
                         </div>
 
 

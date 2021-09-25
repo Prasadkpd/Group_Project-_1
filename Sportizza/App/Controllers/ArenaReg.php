@@ -2,6 +2,7 @@
 
 
 namespace App\Controllers;
+
 use Core\View;
 use \App\Models\SpArenaModel;
 
@@ -20,22 +21,18 @@ class Arenareg extends \Core\Controller
      */
     public function createAction()
     {
-     
         $sp_arena = new SpArenaModel($_POST);
-        
+        $errors = $sp_arena->validate();
+
         if ($sp_arena->save()) {
             // otp::sendSMS($_POST["mobile_number"]);
-            
             $this->redirect('/Arenareg/success');
             exit;
-
         } else {
             View::renderTemplate('LoginSignup/spArenaSignupView.html', [
-                'sp_arena' => $sp_arena
+                'sp_arena' => $sp_arena, 'errors' => $errors
             ]);
-
         }
-    
     }
     /**
      * Show the signup success page

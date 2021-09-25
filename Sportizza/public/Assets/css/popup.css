@@ -97,3 +97,35 @@
         .formsection .popup_button {
             margin: auto;
         }
+
+
+     /* Notification    */
+    .table-td-left {
+        text-align: left;
+    }
+    .my-favourite-list {  
+        width: 70vw;
+    }
+    #notification .booking-table .notification-td-left{
+       width: 920px;
+       text-align: center;
+    }
+
+    /* Media
+     */
+      .formsection .popup_button {
+            margin: auto;
+        }
+        .my-favourite-list .popup_button{
+            width: fit-content;
+            height: fit-content;
+            font-size: .9em;
+            padding: .7em;
+            float:left;
+        }
+        #notification .booking-table .notification-td-left{
+            width: 0px;
+            width:100%;
+            padding-left:1rem;
+            text-align: left;
+         }

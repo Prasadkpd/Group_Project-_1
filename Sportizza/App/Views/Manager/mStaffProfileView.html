@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Bookings</title>
-    <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-profile.css">
+    <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-profile.css?version=3">
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 </head>
 
@@ -27,14 +27,17 @@
             <div class="nav-profile">
                 <button class="openbutton" onclick="openpopupform()">
                     <div class="profile-details">
-                        <img src="assets/profile-picture.jpg" alt="" class="profile-picture">
+                        <img src="/Assets/images/Team members/jonathan.png" alt="" class="profile-picture">
                         <div class="username">Bhashitha Ranasinghe</div>
                     </div>
                 </button>
             </div>
-            <div class="sign-in-out-btn">
-                <a style="font-weight:500; " href="">Sign Out </a>
-            </div>
+        <div class="sign-in-out-btn">
+            <button onclick="open_popup_signout_message()"> Sign Out </button>
+            <!-- {% if current_user %}
+                         <a href="/logout"> Sign Out</a>
+                         {% endif %} -->
+        </div>
         </div>
         <!-- search bar for mobile -->
         <div class="search-bar-container-mobi">
@@ -47,7 +50,7 @@
             <div>
                 <button s class="closebutton" onclick="closepopupform()">❌</button>
             </div>
-            <img class="form-profile-picture" src="assets/profile-picture.jpg" alt="">
+            <img class="form-profile-picture" src="/Assets/images/Team members/jonathan.png" alt="">
             <form action="/action_page.php" style="margin:20px">
                 <label for="fname">First Name</label>
                 <input type="text" id="fname" name="firstname" placeholder="Enter First Name" value="sadeepa">
@@ -62,6 +65,39 @@
         </div>
     </div>
     <!-- End Top Navigation Bar -->
+    <!-- Start OF the POP up SIGN out -->
+    <div id="popup_signout" class="sectionpop ">
+        <div class="formsection">
+    
+            <div>
+                <button class="closebutton" onclick="close_popup_signout_message()">❌</button>
+            </div>
+            <form action="/action_page.php" style="margin:20px">
+                <div style="margin:auto">
+                    <h1 style="margin:auto">
+                        Sign Out
+                    </h1>
+                    <p style="margin:auto">
+                        Do your really want to sign out now?
+                    </p>
+                </div>
+            </form>
+    
+    
+            <div style="display:flex">
+    
+                <button class="popup_delete_button">
+                    {% if current_user %}
+                    <a href="/logout"> YES</a>
+                    {% endif %}
+                </button>
+                <button onclick="close_popup_signout_message()" class="popup_button">
+                    NO
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- End OF the POP up SIGN out -->
 
     <section class="page-container">
 
@@ -74,43 +110,43 @@
                 </div>
                 <ul class="side-menu-list">
                     <li>
-                        <a href="#" class="side-menu-li">
+                        <a href="/Sparenamanager" class="side-menu-li">
                             <i class="fas fa-home"></i>
                             <p class="side-menu-item">Arena Profile</p>
                         </a>
                         <p class="side-menu-tooltip">Arena Profile</p>
                     </li>
                     <li>
-                        <a href="#" class="side-menu-li">
+                        <a href="/Sparenamanager/managebookings" class="side-menu-li">
                             <i class="fas fa-bookmark"></i>
                             <p class="side-menu-item">Manage Bookings</p>
                         </a>
                         <p class="side-menu-tooltip">Bookings</p>
                     </li>
                     <li>
-                        <a href="#" class="side-menu-li">
+                        <a href="/Sparenamanager/managernotification" class="side-menu-li">
                             <i class="fas fa-bell"></i>
                             <p class="side-menu-item">Notifications</p>
                         </a>
                         <p class="side-menu-tooltip">Notifications</p>
                     </li>
                     <li>
-                        <a href="#" class="side-menu-li">
+                        <a href="/Sparenamanager/managetimeslot" class="side-menu-li">
                             <i class="fas fa-clock"></i>
                             <p class="side-menu-item">Manage Timeslot</p>
                         </a>
                         <p class="side-menu-tooltip">Timeslot</p>
                     </li>
                     <li>
-                        <a href="#" class="side-menu-li">
+                        <a href="/Sparenamanager/managefacility" class="side-menu-li">
                             <i class="fas fa-building"></i>
                             <p class="side-menu-item">Manage Facility</p>
                         </a>
                         <p class="side-menu-tooltip">Facility</p>
                     </li>
-
+                    
                     <li>
-                        <a href="#" class="side-menu-li">
+                        <a href="/Sparenamanager/manageusers" class="side-menu-li">
                             <i class="fas fa-users"></i>
                             <p class="side-menu-item">Manage Users</p>
                         </a>
@@ -134,7 +170,7 @@
                 <div class="sp-arena-home">
                     <div class="sp-arena">
                         <div class="sp-arena-img">
-                            <img src="assets/cricket.jpg">
+                            <img src="Assets/images/customer/cricket.jpg">
                         </div>
                     <div class="sp-arena-details">
                         <div class="sp-name">
@@ -176,28 +212,28 @@
                             </div>
 
                             <div class="slide-container">
-                                <img id="slide-left" class="arrow" src="assets/arrow-left.png">
+                                <img id="slide-left" class="arrow" src="Assets/images/customer/arrow-left.png">
                                 <section class="slide-container" id="slider">
 
                                     <div class="thumbnail">
-                                        <img src="assets/Screenshot_1.jpg" alt="">
+                                        <img src="Assets/images/customer/Screenshot_1.jpg" alt="">
                                     </div>
                                     <div class="thumbnail">
-                                        <img src="assets/Screenshot_2.jpg" alt="">
+                                        <img src="Assets/images/customer/Screenshot_2.jpg" alt="">
                                     </div>
                                     <div class="thumbnail">
-                                        <img src="assets/Screenshot_3.jpg" alt="">
+                                        <img src="Assets/images/customer/Screenshot_3.jpg" alt="">
                                     </div>
                                     <div class="thumbnail">
-                                        <img src="assets/Screenshot_4.jpg" alt="">
+                                        <img src="Assets/images/customer/Screenshot_4.jpg" alt="">
                                     </div>
 
                                     <div class="thumbnail">
-                                        <img src="assets/Screenshot_4.jpg" alt="">
+                                        <img src="Assets/images/customer/Screenshot_10.jpg" alt="">
                                     </div>
 
                                 </section>
-                                <img id="slide-right" class="arrow" src="assets/arrow-right.png">
+                                <img id="slide-right" class="arrow" src="Assets/images/customer/arrow-right.png">
                             </div>
                         </div>
                     </div>

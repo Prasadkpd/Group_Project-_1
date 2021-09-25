@@ -121,7 +121,7 @@ function checkCharacters(field) {
         return true;
     }
 }
-function checkSLNumber(field){
+function checkSLNumber(field) {
     if (/^07[0-9]{8}/.test(field.value)) {
         setValid(field);
         return true;
@@ -318,14 +318,14 @@ function validateFirstName() {
     if (checkIfEmpty(firstName)) return;
     if (!checkIfOnlyLetters(firstName)) return;
     regEx = /^\S+$/;
-    if (!matchWithRegExSpace(regEx,firstName)) return;
+    if (!matchWithRegExSpace(regEx, firstName)) return;
     return true;
 }
 
 function validateLastName() {
     if (checkIfEmpty(lastName)) return;
     if (!checkIfOnlyLetters(lastName)) return;
-    if (!matchWithRegExSpace(regEx,lastName)) return;
+    if (!matchWithRegExSpace(regEx, lastName)) return;
     return true;
 }
 
@@ -342,7 +342,7 @@ function validateUsername() {
     if (!meetLength(username, 10, 15)) return;
     if (!checkCharacters(username)) return;
 
-    if (!matchWithRegExSpace(regEx,username)) return;
+    if (!matchWithRegExSpace(regEx, username)) return;
     return true;
 }
 

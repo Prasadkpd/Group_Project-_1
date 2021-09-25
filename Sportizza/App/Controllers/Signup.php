@@ -24,24 +24,18 @@ class Signup extends \Core\Controller
      */
     public function createAction()
     {
-        $user = new SignupModel($_POST);
+        $user = new SignupModel($_POST);      
         $errors = $user->validate();
 
-        //What should be placed here instead of string $file_name?
-        $img_errors = Image::__construct("image_7");
-
         if ($user->save()) {
-
             // otp::sendSMS($_POST["mobile_number"]);
-            //Have redirect instead
             $this->redirect('/Signup/success');
             exit;
 
         } else {
-
+            
             View::renderTemplate('LoginSignup/customerSignupView.html', [
-                'user' => $user, 'errors' => $errors, 'img_errors' => $img_errors]);
-
+                'user' => $user, 'errors' => $errors]);
         }
     }
     /**
@@ -51,7 +45,6 @@ class Signup extends \Core\Controller
      */
     public function successAction()
     {
-        
         //direct to the message modal page
         View::renderTemplate('otp.html');
     }

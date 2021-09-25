@@ -36,19 +36,6 @@ function closepopupform() {
     form.style.display = "none";
 }
 
-
-    //popup delete message for favorite list
-    function open_popup_delete_message(){
-        var form=document.getElementById("popup_delete");
-        
-        form.style.display = "block";
-    }
-    function close_popup_delete_message(){
-      var form=document.getElementById("popup_delete");
-      
-      form.style.display = "none";
-  }
-
   // popup section for update
 function openpopupform_for_update() {
     var form = document.getElementById("myForm_for_update");
@@ -56,5 +43,25 @@ function openpopupform_for_update() {
 }
 function closepopupform_for_update() {
     var form = document.getElementById("myForm_for_update");
+    form.style.display = "none";
+}
+
+
+//popup sign out message
+function open_popup_signout_message() {
+    var form = document.getElementById("popup_signout");
+    form.style.display = "block";
+}
+function close_popup_signout_message() {
+    var form = document.getElementById("popup_signout");
+    form.style.display = "none";
+}
+//popup delete message
+function open_popup_delete_message() {
+    var form = document.getElementById("popup_delete");
+    form.style.display = "block";
+}
+function close_popup_delete_message() {
+    var form = document.getElementById("popup_delete");
     form.style.display = "none";
 }
