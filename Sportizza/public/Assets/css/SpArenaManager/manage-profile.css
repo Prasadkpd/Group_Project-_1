@@ -120,16 +120,17 @@ nav .nav-profile .profile-name{
   font-size: 1rem;
   margin-right: 5px;
 }
-nav .sign-in-out-btn{
-  margin:auto 0;
-  color:black;
-  font-weight:500; 
-
+nav .sign-in-out-btn button{
+    margin-top:1rem;
+    border:none;
+    background-color:transparent;
+    font-weight:600;
+    color:#2c3e50;
+    font-size:16px;
 }
 
 nav .sign-in-out-btn :hover{
-  color:#ff2f00;
-
+    color:#ff2f00;
 }
 
 .profile-picture{
@@ -146,7 +147,7 @@ nav .sign-in-out-btn :hover{
   height:100vh;
   display: none;
   z-index: 100;
-  background-color:gray;
+background-color:rgba(236, 236, 236, .836);
   margin: 0 auto;
 }
 
@@ -159,7 +160,7 @@ nav .sign-in-out-btn :hover{
   background-color:white;
   border-radius: 20px;
   margin-top: 1%;
-  
+  padding-bottom: 1em;
 }
 
 .formsection img{
@@ -239,10 +240,83 @@ display: inline-block;
 
 /* End of Top navigation bar  */
 
+/* <!-- Start OF the POP up SIGN out --> */
+.sectionpop h1{
+    font-size:24px;
+    text-align:center;
+    margin-bottom: 20px;
+}
+.sectionpop p{
+
+text-align:center;
+margin: 20px auto;
+}
+
+.popup_button{
+background-color: #2ed573;
+color: white;
+font-weight: 600;
+font-size:16px;
+border: none;
+cursor: pointer;
+width: 30%;
+opacity: 0.9;
+margin: 5px auto;
+border-radius: 50px;
+border: none;
+width:150px;
+height: 49px;
+align-items: center;
+box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35)
+0px -2px 6px 0px inset;
+}
+
+.popup_delete_button{
+background-color: #e74c3c;
+color: white;
+font-weight: 600;
+font-size:16px;
+border: none;
+cursor: pointer;
+width: 30%;
+opacity: 0.9;
+margin: 5px auto;
+border-radius: 50px;
+border: none;
+width:150px;
+height: 49px;
+align-items: center;
+box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35)
+0px -2px 6px 0px inset;
+}
+
+.popup_button:hover{
+background-color: white;
+color: rgb(33, 219, 95);
+border:2px solid #2ecc71;
+}
+
+.popup_delete_button:hover {
+background-color: white;
+border:2px solid #e74c3c;
+color: #e74c3c;
+
+}
+.popup_delete_button:hover *{
+color: #e74c3c;
+}
+.popup_delete_button a{
+color:white;
+font-weight:600;
+padding: 1em 4em;
+border-radius: 30px;
+}
+/* <!-- End OF the POP up SIGN out --> */
+
 /* ======================================================================== */
 /* Start-Page-container */
 .page-container {
-  height: 87vh;
+  height: 85vh;
   display: flex;
 }
 /* End-Page-container */
@@ -250,7 +324,7 @@ display: inline-block;
 /* Start-Side-Bar-Container */
 /* ======================================================================== */
 .sidebar {
-  height: 86vh;
+  height: 85vh;
   width: 5vw;
   background-color: #e74c3c;
   transition: all 0.5s ease;
@@ -665,17 +739,19 @@ margin-right: 1rem;
     transition: 200ms opacity ease;
   }
   footer {
-    box-shadow: 1px 7px 25px rgb(0 0 0 / 13%);
-    background-color: #e74c3c;
-    color: #fff;
-    font-weight: 400;
-    font-size: 0.8rem;
-    position: absolute;
-    bottom: 0;
-    width: 100vw;
-    text-align: center;
-    margin-top:20px;
-  }
+  box-shadow: 1px 7px 25px rgb(0 0 0 / 13%);
+  background-color: #e74c3c;
+  opacity: 90%;
+  color: #fff;
+  font-weight: 400;
+  font-size: 0.8rem;
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  text-align: center;
+  z-index: 50;
+  height: 1.5rem;
+}
   .copyright {
     margin: 0px auto;
     padding: 2px 20px;
@@ -801,30 +877,13 @@ margin-right: 1rem;
       flex-direction: column;
       align-items: left;
     }
+    .copyright {
+      margin: 0px;
+      padding: 0px 20px;
+      
+    }
   }
   
-
-footer {
-  box-shadow: 1px 7px 25px rgb(0 0 0 / 13%);
-  background-color: #e74c3c;
-  opacity: 90%;
-  color: #fff;
-  font-weight: 400;
-  font-size: 0.8rem;
-  position: absolute;
-  bottom: 0;
-  width: 100vw;
-  text-align: center;
-  z-index: 50;
-  height: 1.5rem;
-  position: fixed;
-  bottom: 0;
-}
-.copyright {
-  margin: 0px;
-  padding: 0px 20px;
-  
-}
 
 /* ========================================================== */
 
@@ -958,6 +1017,10 @@ nav .sign-in-out-btn a{
   .sidebar {
     width: 10vw;
   }
+  .page-container{
+      height: 83vh;
+      overflow: hidden;
+    }
 
   .page-container .page-content-container {
     width: 90vw;
@@ -988,5 +1051,14 @@ nav .sign-in-out-btn a{
     height: 100%;
     width: 100%;
   } 
+  
+   .formsection {
+            width: 90vw;
+            padding-bottom:2em;
+        }
+        .formsection .popup_button {
+            margin: auto;
+    }
+
  
 }
