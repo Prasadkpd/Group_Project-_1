@@ -1,14 +1,18 @@
 <?php
+
 namespace App\Controllers;
 
 use App\Models\User;
 use Core\View;
+namespace App\Controllers;
+use \App\Auth;
+use \App\Models\LoginModel;
+use \App\Models\AdminModel;
 
 class Otp extends \Core\Controller
 {
     protected function before()
     {
-
     }
     public function indexAction()
     {
@@ -27,13 +31,11 @@ class Otp extends \Core\Controller
 
             header('Location: http://' . $_SERVER['HTTP_HOST'] . '/otp/success', true, 303);
             exit;
-
         } else {
 
             View::renderTemplate('LoginSignup/signup.html', [
                 'user' => $user
             ]);
-
         }
     }
 
@@ -47,9 +49,9 @@ class Otp extends \Core\Controller
     // }
     public function resendotpAction($mobile_number)
     {
-        
-       otp::sendSMS($mobile_number);
-    } 
+
+        otp::sendSMS($mobile_number);
+    }
 
     public static function sendSMS($mobile_number)
     {
@@ -58,11 +60,13 @@ class Otp extends \Core\Controller
         //our account password
         $password = 4772;
         //Random OTP code
-        $otp= mt_rand(100000,999999);
+        $otp = mt_rand(100000, 999999);
+        
         // stores the otp into a session variable
-        $_SESSION['session_otp'] = $otp;  
+        $_SESSION['otp'] = $otp;
+        
         //SMS Sent
-        $text = urlencode("Enter the OTP code:". $otp ."");
+        $text = urlencode("Enter the OTP code:" . $otp . "");
         // Replacing the initial 0 with 94
         $to = substr_replace($mobile_number, '94', 0, 0);
         //Base URL
@@ -72,13 +76,26 @@ class Otp extends \Core\Controller
 
         $ret = file($url);
         $res = explode(":", $ret[0]);
+        var_dump($otp);
 
         if (trim($res[0]) == "OK") {
             echo "Message Sent - ID : " . $res[1];
         } else {
             echo "Sent Failed - Error : " . $res[1];
         }
+    }
+    public  function compaireOTPAction()
+    {
+        
+        $otp=implode($_POST);
+        var_dump($otp);
+        
+        if($otp==$_SESSION['otp']){
+            $this->redirect('/Login');
+        }
+        else{
+            $this->redirect('/Signup');
+        }
 
     }
-
 }

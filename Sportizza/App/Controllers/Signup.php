@@ -28,7 +28,7 @@ class Signup extends \Core\Controller
         $errors = $user->validate();
 
         if ($user->save()) {
-            // otp::sendSMS($_POST["mobile_number"]);
+            otp::sendSMS("mobile_number");
             $this->redirect('/Signup/success');
             exit;
 
@@ -45,6 +45,7 @@ class Signup extends \Core\Controller
      */
     public function successAction()
     {
+        var_dump($_SESSION['otp']);
         //direct to the message modal page
         View::renderTemplate('otp.html');
     }
