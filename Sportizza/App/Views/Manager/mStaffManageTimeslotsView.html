@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Timeslot</title>
-    <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-timeslots.css">
+    <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-timeslots.css?version=5">
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 </head>
 
@@ -34,9 +34,10 @@
                 </button>
             </div>
             <div class="sign-in-out-btn">
-                {% if current_user %}
-        <a href="/logout"> Sign Out</a>
-        {% endif %}
+                <button onclick="open_popup_signout_message()"> Sign Out </button>
+                <!-- {% if current_user %}
+                             <a href="/logout"> Sign Out</a>
+                             {% endif %} -->
             </div>
         </div>
         <!-- search bar for mobile -->
@@ -64,9 +65,72 @@
             </form>
         </div>
     </div>
- 
      <!-- End Top Navigation Bar -->
-    <section class="page-container">
+    
+    <!-- Start OF the POP up SIGN out -->
+    <div id="popup_signout" class="sectionpop ">
+        <div class="formsection">
+    
+            <div>
+                <button class="closebutton" onclick="close_popup_signout_message()">❌</button>
+            </div>
+            <form action="/action_page.php" style="margin:20px">
+                <div style="margin:auto">
+                    <h1 style="margin:auto">
+                        Sign Out
+                    </h1>
+                    <p style="margin:auto">
+                        Do your really want to sign out now?
+                    </p>
+                </div>
+            </form>
+    
+    
+            <div style="display:flex">
+    
+                <button class="popup_delete_button">
+                    {% if current_user %}
+                    <a href="/logout"> YES</a>
+                    {% endif %}
+                </button>
+                <button onclick="close_popup_signout_message()" class="popup_button">
+                    NO
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- End OF the POP up SIGN out -->
+    <!-- Start OF the POP up Timeslot Delete -->
+    <div id="popup_delete" class="sectionpop ">
+        <div class="formsection">
+            <div>
+                <button class="closebutton" onclick="close_popup_delete_message()">❌</button>
+            </div>
+            <form action="/action_page.php" style="margin:20px">
+                <div style="margin:auto">
+                    <h1 style="margin:auto">
+                        Timeslot Deletion
+                    </h1>
+                    <p style="margin:auto">
+                        Do you really want to delete the Timeslot?
+                    </p>
+                </div>
+            </form>
+            <div style="display:flex">
+    
+                <button class="popup_delete_button">
+                    <a href=""> YES</a>
+                </button>
+                <button onclick="close_popup_delete_message()" class="popup_button">
+                    NO
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- End OF the POP up Facility delete -->
+
+    
+     <section class="page-container">
 
         <!-- SIDE NAVIGATION BAR - START -->
         <div class="sidebar">
@@ -77,7 +141,7 @@
                 </div>
                 <ul class="side-menu-list">
                     <li>
-                        <a href="#" class="side-menu-li">
+                        <a href="/Sparenamanager" class="side-menu-li">
                             <i class="fas fa-home"></i>
                             <p class="side-menu-item">Arena Profile</p>
                         </a>
@@ -98,7 +162,7 @@
                         <p class="side-menu-tooltip">Notifications</p>
                     </li>
                     <li>
-                        <a href="/Sparenamanager/managetimeslots" class="side-menu-li">
+                        <a href="/Sparenamanager/managetimeslot" class="side-menu-li">
                             <i class="fas fa-clock"></i>
                             <p class="side-menu-item">Manage Timeslot</p>
                         </a>
@@ -111,7 +175,7 @@
                         </a>
                         <p class="side-menu-tooltip">Facility</p>
                     </li>
-
+                    
                     <li>
                         <a href="/Sparenamanager/manageusers" class="side-menu-li">
                             <i class="fas fa-users"></i>
@@ -172,8 +236,8 @@
                                 <th class="b-first-th">Timeslot ID</th>
                                 <th>Start Time</th>
                                 <th>End Time</th>
-                                <th >Amount</th>
-                                <th class="b-last-th">Facility ID</th>
+                                <th >Amount(LKR)</th>
+                                <th class="b-last-th">Facility Name</th>
                                 
                             </tr>
                         </thead>
@@ -183,7 +247,7 @@
                                 <td data-label="Timeslot ID :">{{timeSlot.time_slot_id}}</td>
                                 <td data-label="Start Time :">{{timeSlot.start_time}}</td>
                                 <td data-label="End Time :">{{timeSlot.end_time}}</td>
-                                <td data-label="Amount :">{{timeSlot.price}}</td>
+                                <td data-label="Amount(LKR) :">{{timeSlot.price}}</td>
                                 <td data-label="Facility ID :">{{timeSlot.facility_id}}</td>
                             </tr>
                             {% endfor %}
@@ -195,31 +259,48 @@
                 <div id="add_bookings" class="booking_tab_content">
                     <div id="staff-add" class="add-booking-fm-con">
                         <form class="add-booking-frm-content animate" action="/action_page.php" method="post">
-                            <div class="add-booking-frm-container">
-                                <div class="input-row">
-                                <label for="stime"><b>Start Time:</b></label>
-                                <input type="time" name="stime"  class="inputcls" required>
+                            <div class="input-row">
+                                <div class="input-box">
+                                    <label for="facilityName">Start Time:</label>
+                                    <input id="firstName" type="time" name="first name" onfocusout="validateFirstName()"
+                                        placeholder="Enter Facility Name" value="{{sp_arena.first_name}}">
+                                    <div class="helper-text" id="firstNameMsg"></div>
+                                </div>
                             </div>
                             <div class="input-row">
-                                <label for=etime"><b>End Time:</b></label>
-                                <input type="time" name="etime" required>
+                                <div class="input-box">
+                                    <label for="facilityName">End Time:</label>
+                                    <input id="firstName" type="time" name="first name" onfocusout="validateFirstName()"
+                                        placeholder="Enter Facility Name" value="{{sp_arena.first_name}}">
+                                    <div class="helper-text" id="firstNameMsg"></div>
+                                </div>
                             </div>
                             <div class="input-row">
-                                <label for="sprice"><b>Slot Price:</b></label>
-                                <input type="float" placeholder="Enter Price" name="amount" required>
-                              </div>  <div class="input-row">
-                                <label for="uname"><b>Facility Name:</b></label>
-                                <select>
-                                    <option value="0">Basketball Court 1</option>
-                                    <option value="1">Basketball Court 2</option>
-                                    <option value="2">Basketball Court 3</option>
-                                  </select>
+                                <div class="input-box">
+                                    <label for="facilityName">Slot Price(LKR):</label>
+                                    <input id="firstName" type="text" name="first name" onfocusout="validateFirstName()"
+                                        placeholder="Enter Facility Name" value="{{sp_arena.first_name}}">
+                                    <div class="helper-text" id="firstNameMsg"></div>
+                                </div>
                             </div>
-                            <button type="submit" class="add-booking-btn"><i class="fas fa-plus-circle"></i>Add
-                                Timeslots</button>
+                            <div class="input-row">
+                                <div class="input-box">
+                                    <label for="photos">Facility Name</label>
+                                    <div class="user-type-div">
+                                        <select>
+                                            <option value="0">Select Facility</option>
+                                            <option value="1">Basketball Court 1</option>
+                                            <option value="2">Basketball Court 2</option>
+                                        </select>
+                                    </div>
+                                    <div class="helper-text" id="imgMsg6"></div>
+                                </div>
                             </div>
-                        </form>
-                    </div>
+
+                            <div class="button">
+                                <input type="submit" value="Add Time Slot" class="popup_button" />
+                            </div>
+                        </form>                    </div>
                 </div>
                 <!-- Delete Timeslots Tab -->
                 <div id="cancel_booking" class="booking_tab_content">
@@ -243,8 +324,8 @@
                                 <th class="b-first-th">Timeslot ID</th>
                                 <th>Start Time</th>
                                 <th>End Time</th>
-                                <th>Amount</th>
-                                <th>Facility ID</th>
+                                <th>Amount(LKR)</th>
+                                <th>Facility Name</th>
                                 <th class="b-last-th">Action</th>
                             </tr>
                         </thead>
@@ -255,9 +336,9 @@
                                 <td data-label="Timeslot ID :">{{timeSlot.time_slot_id}}</td>
                                 <td data-label="Start Time :">{{timeSlot.start_time}}</td>
                                 <td data-label="End Time :">{{timeSlot.end_time}}</td>
-                                <td data-label="Amount :">{{timeSlot.price}}</td>
+                                <td data-label="Amount(LKR) :">{{timeSlot.price}}</td>
                                 <td data-label="Facility ID :">{{timeSlot.facility_id}}</td>
-                                <td data-label="Action :"> <a href=""><i class="fas fa-trash-alt"></i></a></td>
+                                <td class="trash-btn-padding-res"> <a onclick="open_popup_delete_message()" class="trash-btn"><i class="fas fa-trash-alt"></i></a></td>
                             </tr>
                             {% endfor %}
                  
@@ -281,6 +362,6 @@
         </div>
     </footer>
     <!-- End of Footer -->
-    <script type="text/javascript" src="/Assets/js/SpArenaManager/manage-timeslots.js"></script>
+    <script type="text/javascript" src="/Assets/js/SpArenaManager/manage-timeslots.js?version=2"></script>
 </body>
 </html>

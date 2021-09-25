@@ -44,14 +44,18 @@
               <label for="spArenaName">Sports Arena Name</label>
               <input id="spArenaName" type="text" name="arena_name" placeholder="Enter Arena Name"
                 onfocusout="validateSpArenaName()" value="{{sp_arena.arena_name}}">
-              <div class="helper-text" id="spArenaNameMsg"></div>
+              <div class="helper-text" id="spArenaNameMsg">
+                <p>{{errors["arena_name1"]}} {{errors["arena_name2"]}}</p>
+              </div>
             </div>
 
             <div class="input-box">
               <label for="contact">Contact Number</label>
               <input id="contact" type="text" name="contact" placeholder="Ex: 0712345678" onfocusout="validateContact()"
                 value="{{sp_arena.contact_no}}">
-              <div class="helper-text" id="contactMsg"></div>
+              <div class="helper-text" id="contactMsg">
+                <p>{{errors["contact1"]}} {{errors["contact2"]}}</p>
+              </div>
             </div>
 
             <div class="input-box">
@@ -69,7 +73,9 @@
                     <option value="Karathe">Karathe</option>
                     <option value="Cricket">Cricket</option>
                   </select>
-                  <div class="helper-text" id="other-categoryMsg"></div>
+                  <div class="helper-text" id="other-categoryMsg">
+                    <p>{{errors["category1"]}}</p>
+                  </div>
                 </div>
 
               </div>
@@ -78,7 +84,9 @@
               <label for="other_category">Other Category</label>
               <input id="other_category" type="text" name="other_category" placeholder="Please specify only if other"
                 onfocusout="validateOtherCategory()">
-              <div class="helper-text" id="otherCategoryMsg"></div>
+              <div class="helper-text" id="otherCategoryMsg">
+                <p>{{errors["other_category1"]}} {{errors["other_category2"]}}</p>
+              </div>
             </div>
             <div class="input-box">
               <label for="location">Location</label>
@@ -101,7 +109,9 @@
                     <option value="Wattala">Wattala</option>
                     <option value="Malabe">Malabe</option>
                   </select>
-                  <div class="helper-text" id="other-locationMsg"></div>
+                  <div class="helper-text" id="other-locationMsg">
+                    <p>{{errors["location1"]}}</p>
+                  </div>
                 </div>
 
               </div>
@@ -110,7 +120,9 @@
               <label for="other_location">Other Location</label>
               <input id="other_location" type="text" name="other_location" placeholder="Please specify only if other"
                 onfocusout="validateOtherLocation()">
-              <div class="helper-text" id="otherLocationMsg"></div>
+              <div class="helper-text" id="otherLocationMsg">
+                <p>{{errors["other_location1"]}} {{errors["other_location2"]}}</p>
+              </div>
             </div>
 
             <div class="input-box-map">
@@ -118,14 +130,18 @@
               <input id="map-link" type="text" name="google_map_link"
                 placeholder="Ex: https://www.google.com/maps?q=204+C+Sandpiper+Place,+Fort+McMurray,+AB,+Canada"
                 onfocusout="validateMapLink()" value="{{sp_arena.google_map_link}}">
-              <div class="helper-text" id="map-linkMsg"></div>
+              <div class="helper-text" id="map-linkMsg">
+                <p>{{errors["google_map1"]}} {{errors["google_map2"]}}</p>
+              </div>
             </div>
 
             <div class="input-box-descr">
               <label for="description">Description</label>
               <input id="description" type="text" name="description" placeholder="(Briefly state about sports arena)"
                 onfocusout="validateDescription()" value="{{sp_arena.description}}">
-              <div class="helper-text" id="descriptionMsg"></div>
+              <div class="helper-text" id="descriptionMsg">
+                <p>{{errors["description1"]}}</p>
+              </div>
             </div>
 
 
@@ -133,7 +149,9 @@
               <label for="other-facilities">Other Facilities</label>
               <input id="other-facilities" type="text" name="other_facilities" onfocusout="validateOtherFacilities()"
                 placeholder="Ex: Changing Rooms, Cafeteria, Car Parking, etc." value="{{sp_arena.other_facilities}}">
-              <div class="helper-text" id="descriptionMsg"></div>
+              <div class="helper-text" id="descriptionMsg">
+                <p>{{errors["other_facilities1"]}}</p>
+              </div>
             </div>
 
 
@@ -149,59 +167,79 @@
                     <option value="2">Only cash payments</option>
                     <option value="3">Both cash & card payments</option>
                   </select>
-                  <div class="helper-text" id="paymentMsg"></div>
+                  <div class="helper-text" id="paymentMsg">
+                    <p>{{errors["payment_method1"]}}</p>
+                  </div>
                 </div>
 
               </div>
             </div>
             <div class="input-box-img">
-              <label for="photos">Sports Arena Photos (Mandatory)</label>
+              <label for="photos">Sports Arena Photos (Mandatory)
+
+              </label>
               <div class="upload-images">
 
                 <div class="input-box">
                   <div class="img-btn-div">
                     <label class="tag">Image 1:</label>
-                    <input style type="file" name="image_1" value="submit" accept="image/*" type="submit" id="file1"
-                      onchange="change_color(this.files,event)" value="{{sp_arena.image_1}}"
-                      class="img-button">
+                    <input style type="file" name="image_1" accept="image/*" id="file1"
+                      onchange="change_color(this.files,event)" class="img-button">
                   </div>
-                  <div class="helper-text" id="imgMsg1"></div>
+                  <div class="helper-text" id="imgMsg1">
+                    <p>
+                      {% for key,error in errors ["image_1"] %}
+                      {{error}}
+                      {% endfor %}</p>
+                  </div>
                 </div>
                 <div class="input-box">
                   <div class="img-btn-div">
                     <label class="tag">Image 2:</label>
-                    <input style type="file" name="image_2" value="submit" accept="image/*" type="submit" id="file2"
-                      onchange="change_color(this.files,event)" value="{{sp_arena.image_2}}"
-                      class="img-button">
+                    <input style type="file" name="image_2" accept="image/*" id="file2"
+                      onchange="change_color(this.files,event)" class="img-button">
                   </div>
-                  <div class="helper-text" id="imgMsg2"></div>
+                  <div class="helper-text" id="imgMsg2">
+                    {% for key,error in errors ["image_2"] %}
+                    {{error}}
+                    {% endfor %}</p>
+                  </div>
                 </div>
                 <div class="input-box">
                   <div class="img-btn-div">
                     <label class="tag">Image 3:</label>
-                    <input style type="file" name="image_3" value="submit" accept="image/*" type="submit" id="file3"
-                      onchange="change_color(this.files,event)" value="{{sp_arena.image_3}}"
-                      class="img-button">
+                    <input style type="file" name="image_3" accept="image/*" id="file3"
+                      onchange="change_color(this.files,event)" class="img-button">
                   </div>
-                  <div class="helper-text" id="imgMsg3"></div>
+                  <div class="helper-text" id="imgMsg3">
+                    {% for key,error in errors ["image_3"] %}
+                    {{error}}
+                    {% endfor %}</p>
+                  </div>
                 </div>
                 <div class="input-box">
                   <div class="img-btn-div">
                     <label class="tag">Image 4:</label>
-                    <input style type="file" name="image_4" value="submit" accept="image/*" type="submit" id="file4"
-                      onchange="change_color(this.files,event)" value="{{sp_arena.image_4}}"
-                      class="img-button">
+                    <input style type="file" name="image_4" accept="image/*" id="file4"
+                      onchange="change_color(this.files,event)" class="img-button">
                   </div>
-                  <div class="helper-text" id="imgMsg4"></div>
+                  <div class="helper-text" id="imgMsg4">
+                    {% for key,error in errors ["image_4"] %}
+                    {{error}}
+                    {% endfor %}</p>
+                  </div>
                 </div>
                 <div class="input-box">
                   <div class="img-btn-div">
                     <label class="tag">Image 5:</label>
-                    <input style type="file" name="image_5" value="submit" accept="image/*" type="submit" id="file5"
-                      onchange="change_color(this.files,event)" value="{{sp_arena.image_5}}"
-                      class="img-button">
+                    <input style type="file" name="image_5" accept="image/*" id="file5"
+                      onchange="change_color(this.files,event)" class="img-button">
                   </div>
-                  <div class="helper-text" id="imgMsg5"></div>
+                  <div class="helper-text" id="imgMsg5">
+                    {% for key,error in errors ["image_5"] %}
+                    {{error}}
+                    {% endfor %}</p>
+                  </div>
                 </div>
 
               </div>
@@ -217,7 +255,9 @@
               <label for="firstName">First Name</label>
               <input id="firstName" type="text" name="first name" onfocusout="validateFirstName()"
                 placeholder="Enter first name" value="{{sp_arena.first_name}}">
-              <div class="helper-text" id="firstNameMsg"></div>
+              <div class="helper-text" id="firstNameMsg">
+                <p>{{errors["first_name1"]}} {{errors["first_name2"]}}</p>
+              </div>
             </div>
 
 
@@ -225,7 +265,9 @@
               <label for="lastName">Last Name</label>
               <input id="lastName" type="text" name="last name" onfocusout="validateLastName()"
                 placeholder="Enter last name" value="{{sp_arena.last_name}}">
-              <div class="helper-text" id="lastNameMsg"></div>
+              <div class="helper-text" id="lastNameMsg">
+                <p>{{errors["last_name1"]}} {{errors["last_name2"]}}</p>
+              </div>
             </div>
 
 
@@ -233,7 +275,11 @@
               <label for="mobile">Mobile Number</label>
               <input id="mobile" type="text" name="mobile number" onfocusout="validateMobile()"
                 placeholder="Enter mobile number" value="{{sp_arena.mobile_number}}">
-              <div class="helper-text" id="mobileMsg"></div>
+              <div class="helper-text" id="mobileMsg">
+                <p>{{errors["mobile_number1"]}} {{errors["mobile_number2"]}}
+                  {{errors["mobile_number3"]}}
+                </p>
+              </div>
             </div>
 
 
@@ -241,7 +287,9 @@
               <label for="username">Username</label>
               <input id="username" type="text" name="username" onfocusout="validateUsername()"
                 placeholder="Enter a unique Username" value="{{sp_arena.username}}">
-              <div class="helper-text" id="usernameMsg"></div>
+              <div class="helper-text" id="usernameMsg">
+                <p>{{errors["username1"]}} {{errors["username2"]}}</p>
+              </div>
             </div>
 
 
@@ -250,18 +298,23 @@
               <input id="password" type="password" name="password" onfocusout="validatePassword()"
                 placeholder="Enter a password" value="{{sp_arena.password}}">
               <i class="bi bi-eye-slash" id="togglePassword"></i>
-              <div class="helper-text" id="passwordMsg"></div>
+              <div class="helper-text" id="passwordMsg">
+                <p>{{errors["password1"]}} {{errors["password2"]}}</p>
+              </div>
             </div>
 
             <div class="input-box">
               <label for="photos">Profile Picture(Mandatory)</label>
-             <div class="img-btn-div"> 
-              <input style type="file" name="image_6" value="submit" accept="image/*"
-              type="submit" id="file6" onchange="change_color(this.files,event)"
-              value="{{sp_arena.image_6}}" class="img-button">
-              </div> 
-              <div class="helper-text" id="imgMsg6"></div>
-          </div>
+              <div class="img-btn-div">
+                <input style type="file" name="image_6" accept="image/*" id="file6"
+                  onchange="change_color(this.files,event)" class="img-button">
+              </div>
+              <div class="helper-text" id="imgMsg6">
+                <p>{% for key,error in errors ["image_6"] %}
+                  {{error}}
+                  {% endfor %}</p>
+              </div>
+            </div>
           </div>
 
           <div class="specialMsg">
@@ -287,6 +340,6 @@
 
   <script type="text/javascript" src="/Assets/js/signup_validation.js?version=7.0"></script>
   <script type="text/javascript" src="/Assets/js/spArenaSignup_validations.js?version=7.0"></script>
-</body> 
+</body>
 
 </html>
