@@ -69,17 +69,17 @@ class Spadministrationstaff extends \Core\Controller
         $id=$current_user->user_id;
         $viewTimeSlots= SpAdministrationStaffModel::saAdminViewTimeSlots($id);
         $deleteTimeSlots= SpAdministrationStaffModel::saAdminDeleteTimeSlots($id);
+        $viewFacilities= SpAdministrationStaffModel::saAdminViewFacility($id);
         View::renderTemplate('AdministrationStaff/aStaffManageTimeslotsView.html',['timeSlots'=>$viewTimeSlots,
-        'deleteTimeSlots'=>$deleteTimeSlots]);
+        'deleteTimeSlots'=>$deleteTimeSlots,'viewFacilities'=>$viewFacilities]);
     }
 
     public function createtimeslotAction()
     {
         $current_user= Auth::getUser();
-        $mid=$current_user->manager_user_id;
-        $said=$current_user->manager_sports_arena_id;
+        $id=$current_user->user_id;
 
-        $user=SpAdministrationStaffModel::saAdminAddFacility($_POST['stime'],$_POST['etime'],$_POST['amount'],$_POST['fname'],$mid,$said);
+        $user=SpAdministrationStaffModel::saAdminAddTimeSlots($_POST['stime'],$_POST['etime'],$_POST['amount'],$_POST['fname'],$id);
 
         $this->redirect('/Spadministrationstaff/managetimeslot');
     }
