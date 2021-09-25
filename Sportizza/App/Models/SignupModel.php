@@ -29,10 +29,11 @@ class SignupModel extends \Core\Model
         foreach ($data as $key => $value) {
             $this->$key = $value;
         }
-        
-        $this->image_7 =  (new Image("image_7"))->getURL();
+        $this->image_7 =  new Image("image_7"); 
+        if (!empty($this->image_7->img_errors)) {  
+        $this->errors["image_7"] = $this->image_7->img_errors;
+        }
     }
-    
 
     /**
      * Save the user model with the current property values
@@ -59,7 +60,7 @@ class SignupModel extends \Core\Model
             $stmt1->bindValue(':mobile_number', $this->mobile_number, PDO::PARAM_INT);
             $stmt1->bindValue(':username', $this->username, PDO::PARAM_STR);
             $stmt1->bindValue(':password', $password, PDO::PARAM_STR);
-            $stmt1->bindValue(':profile_pic', $this->image_7, PDO::PARAM_STR);
+            $stmt1->bindValue(':profile_pic', $this->image_7->getURL(), PDO::PARAM_STR);
             $stmt1->execute();
 
             $sql2 = 'SELECT `user_id` FROM `user` ORDER BY `user_id` DESC LIMIT 1;';
@@ -99,7 +100,7 @@ class SignupModel extends \Core\Model
      */
     public function validate()
     {
-        // First Name
+        //First Name
         if ($this->first_name == '') {
             $this->errors["first_name1"] = 'First Name is required';
         }
@@ -198,9 +199,7 @@ class SignupModel extends \Core\Model
         $db = static::getDB();
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':username', $username, PDO::PARAM_STR);
-
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-
         $stmt->execute();
 
         return $stmt->fetch();
@@ -220,9 +219,7 @@ class SignupModel extends \Core\Model
         $db = static::getDB();
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':mobile_number', $mobile_number, PDO::PARAM_INT);
-
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-
         $stmt->execute();
         return $stmt->fetch();
     }
