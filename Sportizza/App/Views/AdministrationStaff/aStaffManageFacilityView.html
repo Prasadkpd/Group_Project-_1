@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Facility</title>
-    <link rel="stylesheet" href="/Assets/css/AdministrationStaff/manage-facility.css">
+    <link rel="stylesheet" href="/Assets/css/AdministrationStaff/manage-facility.css?version=1">
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 </head>
 
@@ -172,15 +172,15 @@
                 <!-- Add Facility Tab -->
                 <div id="add_bookings" class="booking_tab_content">
                     <div id="staff-add" class="add-booking-fm-con">
-                        <form class="add-booking-frm-content animate" action="/action_page.php" method="post">
+                        <form class="add-booking-frm-content animate" action="/Spadministrationstaff/createfacility" method="post">
                             <div class="add-booking-frm-container">
                                 <div class="input-row">
-                                <label for="uname"><b>Facility Name:</b></label>
-                                <input type="text" placeholder="Enter Facility Name" name="uname" required>
+                                <label for="fname"><b>Facility Name:</b></label>
+                                <input id="fname" type="text" placeholder="Enter Facility Name" name="fname" required>
                             </div>
                             <div class="input-row">
-                                <label for="uname"><b>User Password:</b></label>
-                                <input type="text" placeholder="Enter User Password" name="psw" required>
+                                <label for="psw"><b>User Password:</b></label>
+                                <input id="psw" type="text" placeholder="Enter User Password" name="psw" required>
                             </div>
                             <button type="submit" class="add-booking-btn"><i class="fas fa-plus-circle"></i>Add
                                 Facility</button>
@@ -213,11 +213,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for facility in deleteFacilities %}
+                            {% for facility in viewFacilities %}
                             <tr>
                                 <td data-label="Timeslot ID :">{{facility.facility_id}}</td>
                                 <td data-label="Start Time :">{{facility.facility_name}}</td>
-                                <td data-label="Action :"> <button class="icon_red" style="border:none"onclick="open_popup_delete_message()">
+                                <td data-label="Action :"> <button class="icon_red" style="border:none" onclick="open_popup_delete_message()">
                                     <i class="fas fa-trash-alt"></i>
                                 </button></td>
                             </tr>

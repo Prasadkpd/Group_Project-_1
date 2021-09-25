@@ -68,10 +68,9 @@ class Spadministrationstaff extends \Core\Controller
         $current_user= Auth::getUser();
         $id=$current_user->user_id;
         $viewTimeSlots= SpAdministrationStaffModel::saAdminViewTimeSlots($id);
-        $deleteTimeSlots= SpAdministrationStaffModel::saAdminDeleteTimeSlots($id);
+        // $deleteTimeSlots= SpAdministrationStaffModel::saAdminDeleteTimeSlots($id);
         $viewFacilities= SpAdministrationStaffModel::saAdminViewFacility($id);
-        View::renderTemplate('AdministrationStaff/aStaffManageTimeslotsView.html',['timeSlots'=>$viewTimeSlots,
-        'deleteTimeSlots'=>$deleteTimeSlots,'viewFacilities'=>$viewFacilities]);
+        View::renderTemplate('AdministrationStaff/aStaffManageTimeslotsView.html',['timeSlots'=>$viewTimeSlots,'viewFacilities'=>$viewFacilities]);
     }
 
     public function createtimeslotAction()
@@ -84,6 +83,11 @@ class Spadministrationstaff extends \Core\Controller
         $this->redirect('/Spadministrationstaff/managetimeslot');
     }
 
+    public function deletetimeslotAction()
+    {
+        $user=SpAdministrationStaffModel::saAdminDeleteTimeSlots($id);
+    }
+
     public function managefacilityAction()
     {
 
@@ -91,12 +95,29 @@ class Spadministrationstaff extends \Core\Controller
         $id=$current_user->user_id;
         $viewFacilities= SpAdministrationStaffModel::saAdminViewFacility($id);
         $deleteFacilities= SpAdministrationStaffModel::saAdminDeleteFacility($id);
-        $updateFacilities= SpAdministrationStaffModel::saAdminUpdateFacility($id);
-        View::renderTemplate('AdministrationStaff/aStaffManageFacilityView.html',['viewFacilities'=>$viewFacilities,
-        'deleteFacilities'=>$deleteFacilities,'updateFacilities'=>$updateFacilities]);
+        View::renderTemplate('AdministrationStaff/aStaffManageFacilityView.html',['viewFacilities'=>$viewFacilities]);
     }
 
+    public function createfacilityAction()
+    {
+        $current_user= Auth::getUser();
+        $id=$current_user->user_id;
+        $psw=$current_user->password;
 
+        $user=SpAdministrationStaffModel::saAdminAddFacility($_POST['fname'],$_POST['psw'],$id,$psw);
+
+        if($user){
+            $this->redirect('/Spadministrationstaff/managetimeslot');
+        } else {
+            $this->redirect('/Spadministrationstaff/saadminnotification');
+        }
+
+    }
+
+    public function deletefacilityAction()
+    {
+        $user=SpAdministrationStaffModel::saAdminDeleteFacility($id);
+    }
 
     
 }
