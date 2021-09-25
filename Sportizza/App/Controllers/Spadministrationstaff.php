@@ -79,7 +79,7 @@ class Spadministrationstaff extends \Core\Controller
         $current_user= Auth::getUser();
         $id=$current_user->user_id;
 
-        $user=SpAdministrationStaffModel::saAdminAddTimeSlots($_POST['stime'],$_POST['etime'],$_POST['amount'],$_POST['fname'],$id);
+        $user=SpAdministrationStaffModel::saAdminAddTimeSlots($_POST['stime'],$_POST['etime'],$_POST['amount'],$_POST['fid'],$id);
 
         $this->redirect('/Spadministrationstaff/managetimeslot');
     }

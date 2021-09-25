@@ -198,9 +198,9 @@
                                     <option value="1">Basketball Court 2</option>
                                     <option value="2">Basketball Court 3</option>
                                 </select> -->
-                                <select id="fname" name="fname">
+                                <select id="fid" name="fid">
                                 {% for facility in viewFacilities %}
-                                    <option value={{facility.facility_name}}>{{facility.facility_name}}</option>
+                                    <option value={{facility.facility_id}}>{{facility.facility_name}}</option>
                                 {% endfor %}
                                 </select>
                             </div>

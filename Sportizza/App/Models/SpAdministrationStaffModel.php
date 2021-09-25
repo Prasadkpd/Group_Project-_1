@@ -145,7 +145,7 @@ class SpAdministrationStaffModel extends \Core\Model
         return $result;
     }
     
-    public static function saAdminAddTimeSlots($stime,$etime,$amount,$fname,$id){
+    public static function saAdminAddTimeSlots($stime,$etime,$amount,$fid,$id){
         
         $db = static::getDB();
         
@@ -157,38 +157,25 @@ class SpAdministrationStaffModel extends \Core\Model
         $result1 = $stmt1->fetch(PDO::FETCH_ASSOC);
         //Accessing the associative array
         $mid = $result1["manager_user_id"];
-        $said = $result1["manager_sports_arena_id"];
-
-        $sql2 = 'SELECT `facility_id` FROM `facility` WHERE `facility_name`=:fname';
-        $stmt2 = $db->prepare($sql2);
-        $stmt2->bindValue(':fname', $fname, PDO::PARAM_STR);
-        $stmt2->execute();
+        $said = $result1["manager_sports_arena_id"];    
     
-        $result2 = $stmt2->fetch(PDO::FETCH_ASSOC);
-        // if(is_null($result2){
-        //     echo "Facility not retrived";
-        // }
-        //Accessing the associative array
-        $fid = $result2["facility_id"];
-    
-    
-        $sql3 = 'INSERT INTO `time_slot`(`start_time`,`end_time`,`price`,`facility_id`,`manager_user_id`,`manager_sports_arena_id`)
+        $sql2 = 'INSERT INTO `time_slot`(`start_time`,`end_time`,`price`,`facility_id`,`manager_user_id`,`manager_sports_arena_id`)
                 VALUES (:stime, :etime, :amount, :fid, :mid, :said)';
     
-        $stmt3 = $db->prepare($sql3);
-        $stmt3->bindValue(':stime', $stime, PDO::PARAM_STR);
-        $stmt3->bindValue(':etime', $etime, PDO::PARAM_STR);
-        $stmt3->bindValue(':amount', $amount, PDO::PARAM_STR);
-        $stmt3->bindValue(':fid', $fid, PDO::PARAM_INT);
-        $stmt3->bindValue(':mid', $mid, PDO::PARAM_INT);
-        $stmt3->bindValue(':said', $said, PDO::PARAM_INT);
+        $stmt2 = $db->prepare($sql2);
+        $stmt2->bindValue(':stime', $stime, PDO::PARAM_STR);
+        $stmt2->bindValue(':etime', $etime, PDO::PARAM_STR);
+        $stmt2->bindValue(':amount', $amount, PDO::PARAM_STR);
+        $stmt2->bindValue(':fid', $fid, PDO::PARAM_INT);
+        $stmt2->bindValue(':mid', $mid, PDO::PARAM_INT);
+        $stmt2->bindValue(':said', $said, PDO::PARAM_INT);
     
         // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
     
         // $result = $stmt->fetchAll();
         // var_dump($result);
     
-        return ($stmt3->execute());
+        return ($stmt2->execute());
     }
 
     public static function saAdminDeleteTimeSlots($id){
