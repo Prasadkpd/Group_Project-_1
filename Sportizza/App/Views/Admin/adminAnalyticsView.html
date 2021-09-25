@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Analytics</title>
      <!-- CSS File -->
-    <link rel="stylesheet" href="/Assets/css/Admin/admin-analytics.css">
+    <link rel="stylesheet" href="/Assets/css/Admin/admin-analytics.css?version=2">
     <!-- FontAwesome Icon -->
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -183,6 +183,8 @@
                         <button class="booking_tab tab-btn" onclick="openTab(event, 'booking_payment')"><i class="fas fa-edit"></i><p>Update FAQ</p></button>
                     </div>-->
                     <h1 class="page-header">Analytics</h1>
+                    <h2 class="doc-header">Sportizza</h2>
+                    <h3 class="doc-sub-header">Analytics for System Admin</h3>
                         <!-- <form action=""> -->
                             <div class="filters">
                                         <div class="booking-table-search-container">
@@ -553,32 +555,7 @@
         //     doc.save('canvas.pdf');
         // }
     </script>
-<style>
-    @media print{
-        .container {
-            overflow-y: unset !important;
-        }
-        .sidebar,nav{
-            display: none;
-        }
-        .page-content-container{
-            width: unset !important;
-        }
-        .filters {
-            display: none;
-        }
-        .faqSubmit {
-            display: none;
-        }
-        @page { 
-            margin: 0; 
-        }
-        * {
-            -webkit-print-color-adjust: exact !important;
-            color-adjust: exact !important;
-        }
-    }
-</style>
+
     <script type="text/javascript">
         document.getElementById('downloadPdf').addEventListener('click',()=>window.print())
         
