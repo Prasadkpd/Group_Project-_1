@@ -197,18 +197,21 @@ padding-top: 10px;
 
 form label{
 font-weight: 600;
-color: #2c3e50; 
+color:#222f3e;
+font-size:16px;
 }
 form input[type=text],
 select, input[type=password] {
-outline: none;
-width: 100%;
-padding: 12px 20px;
-margin: 8px auto;
-display: inline-block;
-border: 1px solid #ccc;
-border-radius: 140px;
-box-sizing: border-box;
+  width: 100%;
+  padding: 8px 40px 8px 20px;
+  margin: 5px auto;
+  display: inline-block;
+  border: 2px solid #ccc;
+  border-radius: 140px;
+  box-sizing: border-box;
+  text-align:center;
+  color:#222f3e;
+  font-size:14px;
 }
 
 form input[type=submit] {
@@ -217,7 +220,8 @@ width:max-content;
 font-weight: 600;
 color: #fff;
 padding: 14px 20px;
-margin: 8px auto;
+margin: 40px auto;
+margin-top:40px;
 border: none;
 border-radius: 20px;
 cursor: pointer;
@@ -236,6 +240,12 @@ text-transform: uppercase;
 display: flex;
 justify-content: center;
 
+}
+form i {
+  margin-left: -40px;
+  cursor: pointer;
+  z-index:20;
+  color:#222f3e;
 }
 /* End of Top navigation bar  */
 
@@ -611,7 +621,7 @@ font-size: 1rem;
 }
 .trash-btn{
   cursor: pointer;
-padding: 5px 10px;
+padding: 7px 10px;
 border-radius: 50%;
 box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35)
 0px -2px 6px 0px inset;
@@ -676,12 +686,20 @@ margin: 0;
 }
 .add-booking-frm-content .input-row .input-box{
 width: 48%;
+margin-bottom: 5px;
 }
 .add-booking-frm-content .helper-text{
 color: #e74c3c;
-margin-left: 8px;
-font-size: .9em;
+/* margin-left: 8px; */
+text-align: center;
+font-size: .8em;
 }
+.helper-text{
+  color: #e74c3c;
+  /* margin-left: 8px; */
+  text-align: center;
+  font-size: .8em;
+  }
 
 footer {
 box-shadow: 1px 7px 25px rgb(0 0 0 / 13%);
@@ -988,15 +1006,15 @@ width: 90vw;
 padding-bottom:2em;
 }
 .formsection .popup_button {
-margin: auto;
+margin:auto;
 }
 .trash-btn-padding-res{
-padding: 10px;
+padding: 5px;
 text-align: right;
 }
 
 .trash-btn {
-padding: 8px 10px;
+padding: 7px 10px;
 }
 
  .add-booking-frm-content{
@@ -1011,16 +1029,23 @@ padding: 8px 10px;
 display: flex;
 flex-direction: column;
 justify-content: space-between;
+
 }
 .add-booking-frm-content .input-row .input-box{
 width: 100%;
+}
+.input-row .input-box{
+  margin-bottom: 1rem;
 }
 
 .add-booking-frm-content input[type='submit']{
 font-size: .8em;
 padding: 5px 10px;
 }
+.add-booking-frm-content {
+  padding-top: 3em;
 
+}
 
 }
 

@@ -196,21 +196,26 @@ background-color:rgba(236, 236, 236, .836);
 
 form label{
   font-weight: 600; 
+  color:#222f3e;
+  font-size:14px;
 }
 form input[type=text],
-select,input[type=time] {
-  
+select,input[type=time] { 
 width: 100%;
-padding: 12px 20px;
-margin: 8px auto;
+padding: 8px 20px;
+margin: 0px auto;
 display: inline-block;
-border: 1px solid #ccc;
+border: 2px solid #ccc;
 border-radius: 140px;
 box-sizing: border-box;
+text-align:center;
+color:#222f3e;
+}
+form input[type="time" i] {
+font-size:12px;
 }
 
 form input[type=submit] {
-  
 display: flex;
 width:max-content;
 font-weight: 600;
@@ -715,11 +720,13 @@ margin: 0;
 }
 .add-booking-frm-content .input-row .input-box{
 width: 48%;
+margin-bottom: 5px;
 }
 .add-booking-frm-content .helper-text{
 color: #e74c3c;
-margin-left: 8px;
-font-size: .9em;
+text-align: center;
+/* margin-left: 8px; */
+font-size: .8em;
 }
 
 footer {

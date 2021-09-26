@@ -65,3 +65,74 @@ function close_popup_delete_message() {
     var form = document.getElementById("popup_delete");
     form.style.display = "none";
 }
+
+//Add Facility Form
+const facilityName = document.getElementById('facilityName');
+// const password = document.querySelector('#password');
+const password = document.getElementById('password');
+const togglePassword = document.querySelector('#togglePassword');
+const showPassword = document.querySelector('#password');
+//Add Facility Form
+const editfacilityname = document.getElementById('editfacilityname');
+//Show password button
+
+
+
+
+const formAddFacility = document.getElementById('formAddFacility');
+
+formAddFacility.addEventListener('submit', function (event) {
+    // Prevent default behaviour
+    event.preventDefault();
+    if (
+        //Add timeslot validations
+        validateFacilityName() &&
+        validateUserPassword()
+    ) {
+        formUpdateTimeslot.submit();
+    }
+});
+
+function validateAddFacilityForm() {
+    //Add facility validations
+    validateFacilityName();
+        validatePassword();
+}
+
+function validateFacilityName() {
+    if (checkIfEmpty(facilityName)) return;
+    if (!meetLength(facilityname, 1, 50)) return;
+    return true;
+}
+function validateUserPassword() {
+    if (checkIfEmptyNext(password)) return;
+    return true;
+}
+
+const formUpdateFacility = document.getElementById('formUpdateFacility');
+
+formUpdateFacility.addEventListener('submit', function (event) {
+    // Prevent default behaviour
+    event.preventDefault();
+    if (
+        //Add timeslot validations
+        validateUpdateFacilityName()
+    ) {
+        formUpdateFacility.submit();
+    }
+});
+
+function validateUpdateFacilityForm() {
+    //Update facility validations
+    validateUpdateFacilityName();     
+}
+function validateUpdateFacilityName() {
+    if (checkIfEmpty(editfacilityname)) return;
+    if (!meetLength(editfacilityname, 1, 50)) return;
+    return true;
+}
+
+
+
+
+
