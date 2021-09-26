@@ -39,7 +39,7 @@ class Customer extends Authenticated
     {
         
 
-        View::renderTemplate('Customer/customerCartView.html');
+        View::renderTemplate('Customer/customerCartNewView.html');
     }
 
     public function bookingAction()
