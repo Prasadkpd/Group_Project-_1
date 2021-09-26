@@ -12,6 +12,8 @@ const formUserLogin = document.getElementById('formUserLogin');
 formUserLogin.addEventListener('submit', function (event) {
     // Prevent default behaviour
     event.preventDefault();
+    console.log(validateLoginUsername());
+    console.log(validateLoginPassword());
     if (
         //Customer account validations
         validateLoginUsername() &&
@@ -31,11 +33,11 @@ function validateLoginForm() {
 
 function checkCharactersLogin(field) {
     if ((/^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/.test(field.value))) {
-        setValid(field);
-        return true;
-    } else {
         setInvalid(field, `${capitalizeFirstLetter(field.name)} entered is invalid!`);
         return false;
+    } else {
+        setValid(field);
+        return true;
     }
 }
 
@@ -89,14 +91,24 @@ function matchWithRegExPasswordLogin(regEx, field) {
 function validateLoginUsername() {
     if (checkIfEmpty(username)) return;
     if (!meetLengthLogin(username, 10, 15)) return;
-    if (checkCharactersLogin(username)) return;
+    if (!checkCharactersLogin(username)) return;
     return true;
 }
 
 function validateLoginPassword() {
     if (checkIfEmptyNext(password)) return;
-    // if (!meetLengthNextLogin(password, 8, 255)) return;
+    if (!meetLengthNextLogin(password, 8, 255)) return;
     regEx = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
-    if (matchWithRegExPasswordLogin(regEx, password)) return;
+    if (!matchWithRegExPasswordLogin(regEx, password)) return;
     return true;
+}
+
+  // popup section for update
+function openpopupform_for_mobile() {
+    var form = document.getElementById("myForm_for_mobile");
+    form.style.display = "block";
+}
+function closepopupform_for_mobile() {
+    var form = document.getElementById("myForm_for_mobile");
+    form.style.display = "none";
 }
