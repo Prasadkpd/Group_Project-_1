@@ -173,13 +173,21 @@
                             </div>
                             <div class="sp-arena-details">
                                 <div class="sp-name">
-                                    <h2>Mercantile Cricket Grounds</h2>
+                                    <h2>{{arenaDetails[0].sa_name}}</h2>
                                 </div>
                                 <div class="other">
-                                    <h4>Contact No: 0746464327</h4>
+                                    <h4>{{arenaDetails[0].contact_no}}</h4>
                                 </div>
                                 <div class="other">
-                                    <h5>Accepted Payment Methods: Card Payments & Cash Payments</h5>
+                                    <h5>Accepted Payment Methods:
+                                         {% if arenaDetails[0].card_payment=="yes" %} 
+                                         Card 
+                                         {% endif %}
+                                         {% if arenaDetails[0].cash_payment=="yes" %}
+                                         Cash
+                                         {% endif %}
+                                         <!-- Payments & Cash Payments -->
+                                        </h5>
                                 </div>
                                 <a type="" class="more-link">More Details
                                 </a>
@@ -192,23 +200,26 @@
                                     <div class="description">
                                         <h5>About Sports Arena</h5>
                                         <p>
-                                            Lorem Ipsum dolor sit amet, consectetur adipiscing elit,
-                                            sed do eiusmod tempor incididunt ut labore et dolore magna
-                                            aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                            ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                            {{arenaDetails[0].description}}
                                         </p>
                                     </div>
                                 </div>
                                 <div class="detail">
                                     <div class="Other-facilities">
                                         <h5>Other facilities</h5>
-                                        <p>Car Parking, Changing Rooms, Cafeteria.</p>
+                                        <p> 
+                                            {% for facility in arenaFacilites %}
+                                            <span>{{facility.facility_name}} &nbsp,&nbsp </span>
+                                            {% endfor %}
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="detail-grid">
                                     <div class="google-map">
+                                        <!-- src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.856271141694!2d79.86827001482301!3d6.907784420492848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25979bfbde28d%3A0xae825954d8507c7d!2sMercantile%20Cricket%20Association!5e0!3m2!1sen!2slk!4v1629887793472!5m2!1sen!2slk" -->
                                         <iframe
-                                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.856271141694!2d79.86827001482301!3d6.907784420492848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25979bfbde28d%3A0xae825954d8507c7d!2sMercantile%20Cricket%20Association!5e0!3m2!1sen!2slk!4v1629887793472!5m2!1sen!2slk"
+                                        src={{arenaDetails[0].google_map_link}}
+
                                             width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                                     </div>
                 
@@ -256,7 +267,7 @@
                                     <div class="available-bookings">
                                         <h2>Available Time Slots</h2>
                                         <ul class="events-list">
-                                            <li>
+                                            <!-- <li>
                                                 <div class="row">
                                                     <span class="s-time">10:30 - </span>
                                                     <span class="e-time">12:30 : </span>
@@ -268,8 +279,22 @@
                                                     <span class="price">LKR 2500</span>
                                                     <i class="fas fa-cart-plus"></i>
                                                 </div>
+                                            </li> -->
+                                            {% for timeSlot in timeSlots %}
+                                            <li>
+                                                <div class="row">
+                                                    <span class="s-time">{{timeSlot.start_time}}</span>
+                                                    <span class="e-time">{{timeSlot.end_time}}</span>
+                                                </div>
+                                                <div class="row">
+                                                    <span class="facility">{{timeSlot.sa_name}}</span>
+                                                </div>
+                                                <div class="row">
+                                                    <span class="price">{{timeSlot.price}}</span>
+                                                    <i class="fas fa-cart-plus"></i>
+                                                </div>
                                             </li>
-                                            
+                                            {% endfor %}
                 
                                         </ul>
                                         <a href="#" class="btn check-availability-btn"> Pay Now</a>

@@ -45,7 +45,13 @@ class Customer extends Authenticated
     public function bookingAction()
     {
         // var_dump($id);
-        View::renderTemplate('Customer/customerBookingView.html');
+        $id=100000004;
+        $timeSlots=CustomerModel::customerViewTimeSlots($id);
+        $arenaDetails=CustomerModel::customerViewArenaDetails($id);
+        $arenaFacilites=CustomerModel::customerArenaFacilities($id);
+        // var_dump($arenaDetails);
+        View::renderTemplate('Customer/customerBookingView.html',
+        ['timeSlots'=>$timeSlots,'arenaDetails'=>$arenaDetails,'arenaFacilites'=>$arenaFacilites]);
     }
 
    
