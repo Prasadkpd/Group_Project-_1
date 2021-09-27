@@ -371,7 +371,7 @@ form input[type="submit"] {
   margin-top: 15px;
   text-align: center;
   display: flex;
-  height: 60vh;
+  height: 40vh;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -450,6 +450,10 @@ form input[type="submit"] {
   color: #2c3e50;
   font-size: 1.5rem;
 }
+.container .doc-date-header{
+    display: none;
+    text-align: center;
+}
 
 .page-content-container .container .chart-container {
   height: 55vh;
@@ -488,40 +492,44 @@ form input[type="submit"] {
   outline: none;
 }
 .chart-container h5 {
-    text-align: center;
-    margin-top: 30px;
-    margin-top: 3em;
-    margin-bottom: 30px;
-    font-size: 24px;
+  text-align: center;
+  font-size: 24px;
 }
+
 .chart-row {
-  width:100%;
+  width: 100%;
+  height: 40vh;
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
+  margin: 3em;
 }
 .chart {
   margin: auto;
   display: block;
   padding: 10px;
   width: 40%;
-  height: 45vh;
 }
 .chart-pie {
-  margin: auto;  
+  margin: auto;
   display: block;
   padding: 10px;
   width: 40%;
-  height: 45vh;
+  height: 40vh;
 }
 .chart-Table {
   display: block;
-  padding: 30px;
+  padding: 10px;
   width: 40%;
+  height: 40vh;
   margin: auto;
 }
-.chart-Table .cTable td {
-  width: 27rem;
+.chart-Table .cTable{
+  width: 100%;
+}
+.chart-Table .cTable tr td {
+  width: 50%;
   margin: auto;
   padding: 5px;
 }
@@ -753,35 +761,46 @@ footer {
     outline: none;
   }
   .page-content-container .container .chart-container {
+      height: max-content;
+      overflow: visible;
+    }
+    .page-content-container .container{
+        overflow-y: scroll;
+    }
+
+  .page-content-container .container .chart-container {
     height: max-content;
-    overflow-y: scroll;
-    overflow-x: hidden;
   }
-  .chart-container .chart-row {
+  .chart-row {
+    margin: auto;
+    width: 100%;
+    height: max-content;
+    display: flex;
     flex-direction: column;
-    width: 80vw;
-    margin: auto;
+    align-items: center;
   }
-  .chart-container .chart-row .chart {
-    width: 80vw;
-    margin: auto;
-  }
-  .chart-container canvas {
+  .chart {
+    display: block;
+    padding: 10px;
+    margin-top: 3em;
     width: 100%;
   }
   .chart-pie {
-      width: 100%;
-  padding: 10px;
-  height: 30vh;
-}
-.chart-Table{
-    margin-top: 2em;
+    margin: auto;
+    display: block;
+    padding: 10px;
     width: 100%;
-}
-
-
+    height: 40vh;
   }
-
+  .chart-Table {
+  display: block;
+  padding: 10px;
+  width: 90%;
+  height: 40vh;
+  margin: auto;
+  background-color: #838388;
+}
+}
 
 @media print {
   .container {
@@ -801,11 +820,25 @@ footer {
     display: none;
   }
   .page-content-container .container .chart-container {
+    margin-top: 3em;
     height: max-content;
   }
-  .chart-pie {
-    margin-left: 12rem;
+  .page-content-container .container .chart-row{
+      width: 100%;
+      margin: auto;
+      
   }
+  .chart {
+    width: 50%;
+    height: 500px;
+}
+.chart-pie {
+    width: 50%;
+    height: 500px;
+  }
+  .page-content-container .container .chart-container::-webkit-scrollbar-thumb {
+    display: none;
+}
   @page {
     display: flex;
     justify-content: center;
@@ -821,6 +854,9 @@ footer {
   }
   .page-content-container .container h3 {
     display: block;
+  }
+  .page-content-container .container .doc-date-header{
+      display: block;
   }
   .page-content-container .container .page-header {
     display: none;

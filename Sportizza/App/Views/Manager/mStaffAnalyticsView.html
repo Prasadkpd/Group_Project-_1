@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analytics</title>
-    <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-analytics.css?version=">
+    <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-analytics.css?version=6">
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -34,9 +34,10 @@
                 </button>
             </div>
             <div class="sign-in-out-btn">
-                {% if current_user %}
-                <a href="/logout"> Sign Out</a>
-                {% endif %}
+                <button onclick="open_popup_signout_message()"> Sign Out </button>
+                <!-- {% if current_user %}
+                                     <a href="/logout"> Sign Out</a>
+                                     {% endif %} -->
             </div>
         </div>
         <!-- search bar for mobile -->
@@ -66,6 +67,39 @@
     </div>
 
     <!-- End Top Navigation Bar -->
+<!-- Start OF the POP up SIGN out -->
+<div id="popup_signout" class="sectionpop ">
+    <div class="formsection">
+
+        <div>
+            <button class="closebutton" onclick="close_popup_signout_message()">❌</button>
+        </div>
+        <form action="/action_page.php" style="margin:20px">
+            <div style="margin:auto">
+                <h1 style="margin:auto">
+                    Sign Out
+                </h1>
+                <p style="margin:auto">
+                    Do your really want to sign out now?
+                </p>
+            </div>
+        </form>
+
+
+        <div style="display:flex">
+
+            <button class="popup_delete_button">
+                {% if current_user %}
+                <a href="/logout"> YES</a>
+                {% endif %}
+            </button>
+            <button onclick="close_popup_signout_message()" class="popup_button">
+                NO
+            </button>
+        </div>
+    </div>
+</div>
+<!-- End OF the POP up SIGN out -->
 
     <section class="page-container">
 
@@ -78,7 +112,7 @@
                 </div>
                 <ul class="side-menu-list">
                     <li>
-                        <a href="#" class="side-menu-li">
+                        <a href="/Sparenamanager" class="side-menu-li">
                             <i class="fas fa-home"></i>
                             <p class="side-menu-item">Arena Profile</p>
                         </a>
@@ -92,7 +126,7 @@
                         <p class="side-menu-tooltip">Bookings</p>
                     </li>
                     <li>
-                        <a href="#" class="side-menu-li">
+                        <a href="/Sparenamanager/managernotification" class="side-menu-li">
                             <i class="fas fa-bell"></i>
                             <p class="side-menu-item">Notifications</p>
                         </a>
@@ -112,7 +146,7 @@
                         </a>
                         <p class="side-menu-tooltip">Facility</p>
                     </li>
-
+                
                     <li>
                         <a href="/Sparenamanager/manageusers" class="side-menu-li">
                             <i class="fas fa-users"></i>
@@ -121,7 +155,7 @@
                         <p class="side-menu-tooltip">Manage Users</p>
                     </li>
                     <li>
-                        <a href="#" class="side-menu-li">
+                        <a href="/Sparenamanager/manageanalytics" class="side-menu-li">
                             <i class="fas fa-chart-bar"></i>
                             <p class="side-menu-item">Analytics</p>
                         </a>
@@ -137,8 +171,7 @@
             <div class="container">
                 <h2 class="doc-header">Sportizza</h2>
                 <h3 class="doc-sub-header">Analytics for System Admin</h3>
-                <!-- <h4 class="doc-date-header">Start Date: 2018/04/08</h4>
-                <h4 class="doc-date-header">End Date: 2018/05/10</h4> -->
+                <h4 class="doc-date-header">From 2018/04/08&nbsp To &nbsp2018/05/10</h4>
                 <h1 class="page-header">Analytics</h1>
                 <div class="filters">
 
@@ -194,7 +227,7 @@
         </div>
     </footer>
     <!-- End of Footer -->
-    <script type="text/javascript" src="/Assets/js/SpArenaManager/manage-analytics.js"></script>
+    <script type="text/javascript" src="/Assets/js/SpArenaManager/manage-analytics.js?version=2"></script>
 
 
     <script>

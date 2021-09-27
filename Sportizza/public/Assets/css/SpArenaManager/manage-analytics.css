@@ -450,6 +450,10 @@ form input[type="submit"] {
   color: #2c3e50;
   font-size: 1.5rem;
 }
+.container .doc-date-header{
+    display: none;
+    text-align: center;
+}
 
 .page-content-container .container .chart-container {
   height: 55vh;
@@ -491,6 +495,7 @@ form input[type="submit"] {
   text-align: center;
   font-size: 24px;
 }
+
 .chart-row {
   width: 100%;
   height: 45vh;
@@ -810,11 +815,25 @@ footer {
     display: none;
   }
   .page-content-container .container .chart-container {
+    margin-top: 3em;
     height: max-content;
   }
-  .chart-pie {
-    margin-left: 12rem;
+  .page-content-container .container .chart-row{
+      width: 100%;
+      margin: auto;
+      
   }
+  .chart {
+    width: 50%;
+    height: 500px;
+}
+.chart-pie {
+    width: 50%;
+    height: 500px;
+  }
+  .page-content-container .container .chart-container::-webkit-scrollbar-thumb {
+    display: none;
+}
   @page {
     display: flex;
     justify-content: center;
@@ -830,6 +849,9 @@ footer {
   }
   .page-content-container .container h3 {
     display: block;
+  }
+  .page-content-container .container .doc-date-header{
+      display: block;
   }
   .page-content-container .container .page-header {
     display: none;

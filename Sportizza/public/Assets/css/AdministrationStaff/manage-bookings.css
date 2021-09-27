@@ -706,7 +706,7 @@ font-size:0.8rem;
 
 
 .booking-table tbody::-webkit-scrollbar{
-background-color: #cccccc;
+background-color: none;
 border-radius: 10px;
 width:8px;
 }
