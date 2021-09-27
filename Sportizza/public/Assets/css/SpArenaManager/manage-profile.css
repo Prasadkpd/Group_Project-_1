@@ -154,17 +154,6 @@ nav .sign-in-out-btn :hover {
   margin-top: 1%;
   padding-bottom: 1em;
 }
-.edit_formsection{
-  width: 60vw;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-color: white;
-  border-radius: 20px;
-  margin-top: 1%;
-  padding-bottom: 1em;
-}
 
 .formsection img {
   margin: 0 auto;
@@ -198,7 +187,7 @@ form label {
   color: #2c3e50;
 }
 form input[type="text"],
-select {
+select{
   width: 100%;
   padding: 12px 20px;
   margin: 8px auto;
@@ -211,7 +200,6 @@ select {
 form input[type="submit"] {
   display: flex;
   width: max-content;
-  background-color: #fd461f;
   font-weight: 600;
   color: #fff;
   padding: 14px 20px;
@@ -748,123 +736,113 @@ footer {
   padding: 2px 20px;
   display: sticky;
 }
+.edit_sectionpop {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  z-index: 10;
+  background-color: rgba(236, 236, 236, 0.836);
+  margin: 0 auto;
+}
 
-.edit_profile_btn{
+.edit_profile_btn {
   height: 40px;
 }
+
 
 .edit_profile_btn i {
   margin-right: 5px;
 }
 /* Edit Profile Form */
-/* 
-form .input-box {
-  margin-bottom: 15px;
-  width: calc(100% / 2 - 20px);
+
+.edit_formsection {
+  width: 60vw;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 20px;
+  margin-top: 1%;
+  padding-bottom: 1em;
+  height: 80vh;
+  overflow-y: scroll;
 }
-form label {
-  margin-left: 15px;
+
+
+.edit_formsection h2 {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.edit_formsection::-webkit-scrollbar {
+  background-color: none;
+  border-radius: 10px;
+  width: 8px;
+}
+.edit_formsection::-webkit-scrollbar-thumb {
+  background: #3a3a3a;
+  border-radius: 8px;
+  width: 5px;
+}
+
+.edit_formsection .input-box {
+  width: 96%;
+  margin: 0.1em auto;
+  display: flex;
+  flex-direction: column;
+}
+.edit_formsection .input-row {
+  width: 98%;
+  margin: 0.3em auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.edit_formsection .input-row .input-box {
+  width: 48%;
+}
+
+.edit_formsection label {
   font-weight: 500;
   color: #34495e;
 }
 
-
-form .input-box span.details {
-  display: block;
-
-  margin-bottom: 15px;
-  color: #34495e;
-}
-
-form .input-box span.details-other {
-  display: block;
-  font-weight: 600;
-  margin-bottom: 15px;
-  color: #34495e;
-}
-
-form .input-box-map span.details {
-  display: block;
-  font-weight: 600;
-  margin-bottom: 15px;
-  color: #34495e;
-}
-form .input-box-map span.details {
-  display: block;
-  font-weight: 600;
-  margin-bottom: 15px;
-  color: #34495e;
-}
-form .input-box-img {
-  width: 100%;
+.edit_formsection .input-box-img {
+  width: 96%;
+  margin: auto;
   display: flex;
   flex-direction: column;
 }
 
-form .input-box-img label.img-button {
+.edit_formsection .input-box-img label.img-button {
   align-content: center;
   margin: 10px auto;
 }
-
-form .input-box-descr span.detais {
-  display: block;
-  font-weight: 600;
-  margin-bottom: 15px;
-  color: #34495e;
-}
-
-.input-box input {
-  height: 45px;
-  width: 100%;
-  outline: none;
-  font-size: 16px;
-  border-radius: 25px;
-  padding-left: 20px;
-  border: 2px solid #f0f0f0;
-  transition: all 0.3s ease;
-}
-.upload-images .input-box input {
-  height: 45px;
-  width: 200px;
-  outline: none;
-  font-size: 12px;
-  border-radius: 25px;
-  margin:auto;
-  border: 2px solid #f0f0f0;
-  transition: all 0.3s ease;
-}
-
-form .input-box-map {
-  margin-bottom: 15px;
-  width: 100%;
-}
-form .input-box-descr {
-  margin-bottom: 15px;
-  width: 100%;
-}
-
-.input-box-map input {
-  height: 45px;
-  width: 100%;
-  outline: none;
-  font-size: 16px;
-  border-radius: 25px;
-  padding-left: 20px;
-  border: 2px solid #f0f0f0;
-  transition: all 0.3s ease;
-}
-
-.input-box-descr input {
-  height: 150px;
-  width: 100%;
-  outline: none;
-  font-size: 16px;
+.edit_formsection .helper-text {
+  font-size: 0.8em;
   text-align: center;
+  color: #e74c3c;
+}
+
+.edit_formsection .input-box input {
+  width: 100%;
+  outline: none;
+  font-size: 14px;
   border-radius: 25px;
-  padding-left: 20px;
+  padding: 10px 20px;
   border: 2px solid #f0f0f0;
   transition: all 0.3s ease;
 }
+.edit_formsection #description-input textarea{
+  border-radius: 20px;
+  padding: 10px 20px;
+  outline: none;
+}
+/*
+
+
+
 
 .tag{
   font-size:14px;
