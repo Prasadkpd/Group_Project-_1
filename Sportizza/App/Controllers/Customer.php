@@ -44,8 +44,9 @@ class Customer extends Authenticated
 
     public function bookingAction()
     {
+        // var_dump($_GET);
+        $id=$this->route_params['id'];
         // var_dump($id);
-        $id=100000004;
         $timeSlots=CustomerModel::customerViewTimeSlots($id);
         $arenaDetails=CustomerModel::customerViewArenaDetails($id);
         $arenaFacilites=CustomerModel::customerArenaFacilities($id);

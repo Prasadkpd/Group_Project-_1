@@ -4,13 +4,14 @@ namespace App\Controllers;
 
 use App\Models\User;
 use Core\View;
-namespace App\Controllers;
 use \App\Auth;
 use \App\Models\LoginModel;
 use \App\Models\AdminModel;
+use \App\Models\SignupModel;
 
 class Otp extends \Core\Controller
 {
+    public $url = 0;
     protected function before()
     {
     }
@@ -47,14 +48,22 @@ class Otp extends \Core\Controller
     //     'user' => $user
     // ]);
     // }
-    public function resendotpAction($mobile_number)
+    public function resendotpAction()
     {
-
-        otp::sendSMS($mobile_number);
+        otp::sendSMS($_SESSION['mobile_number']);
+        $this->redirect('/Signup/success');
+        
+    }
+    public function gobackAction(){
+        $user = new SignupModel($_POST);
+        // $this->redirect('/Otp/otpsuccess');
+        $this->redirect('/Signup/failure',['user'=>$user]);
+        
     }
 
     public static function sendSMS($mobile_number)
     {
+        // $url = $direct_url;
         //our mobile number
         $user = "94765282976";
         //our account password
@@ -64,6 +73,7 @@ class Otp extends \Core\Controller
         
         // stores the otp into a session variable
         $_SESSION['otp'] = $otp;
+        $_SESSION['mobile_number'] = $mobile_number;
         
         //SMS Sent
         $text = urlencode("Enter the OTP code:" . $otp . "");
@@ -84,17 +94,18 @@ class Otp extends \Core\Controller
             echo "Sent Failed - Error : " . $res[1];
         }
     }
-    public  function compaireOTPAction()
+    public  function compareOTPAction()
     {
-        
-        $otp=implode($_POST);
+        $temp=[$_POST['input1'],$_POST['input2'],$_POST['input3'],
+        $_POST['input4'],$_POST['input5'],$_POST['input6']];
+        $otp=implode($temp);
         var_dump($otp);
         
         if($otp==$_SESSION['otp']){
-            $this->redirect('/Login');
+            $this->redirect($_SESSION['direct_url']);
         }
         else{
-            $this->redirect('/Signup');
+            $this->redirect('/Signup/success');
         }
 
     }
