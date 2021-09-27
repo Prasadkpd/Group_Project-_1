@@ -1,303 +1,269 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Analytics</title>
-     <!-- CSS File -->
-    <link rel="stylesheet" href="/Assets/css/Admin/admin-analytics.css?version=2">
+    <!-- CSS File -->
+    <link rel="stylesheet" href="/Assets/css/Admin/admin-analytics.css?version=7">
     <!-- FontAwesome Icon -->
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
 </head>
+
 <body>
 
-    <!-- Top Navigation Bar -->
-    <nav>
-       <div class="logo-container">
-            <a href="#">
+<!-- Top Navigation Bar -->
+<nav>
+    <div class="nav-left">
+        <div class="logo-container">
+            <a href="/">
                 <i class="fas fa-running "></i>
                 <span class="logo-name">Sportizza</span>
             </a>
-       </div>
-       <div class="search-bar-container">
+        </div>
+        <div class="search-bar-container">
             <input type="search" name="search" placeholder="Search">
             <i class="fas fa-search "></i>
-       </div>
-       <div  class="nav-profile">
-            <button   class="openbutton" onclick="openpopupform()">
-            <div class="profile-details">
-                <img src="assets/profile-picture.jpg" alt="" class="profile-picture">
-                <div class="username">Bhashitha Ranasinghe</div>
-                
-            </div>
+        </div>
+        <div class="nav-profile">
+            <button class="openbutton" onclick="openpopupform()">
+                <div class="profile-details">
+                    <img src="/Assets/images/Team members/jonathan.png" alt="" class="profile-picture">
+                    <div class="username">{{current_user.first_name}} {{current_user.last_name}}</div>
+                </div>
             </button>
         </div>
-       <div class="sign-in-out-btn">
-           <button onclick="open_popup_signout_message()" > Sign Out </button>
-       </div> 
-    </nav>
-    <!-- End Top Navigation Bar -->
-    
-    <!-- popup form for edit profile -->
-    <div id="myForm" class="sectionpop ">
-
-
-    <div class="formsection">
-
-        <div>
-            <button s class="closebutton"onclick="closepopupform()">❌</button>
+        <div class="sign-in-out-btn">
+            <button onclick="open_popup_signout_message()"> Sign Out </button>
+            <!-- {% if current_user %}
+                             <a href="/logout"> Sign Out</a>
+                             {% endif %} -->
         </div>
-    <img class="form-profile-picture"  src="assets/profile-picture.jpg" alt="">
-    <form action="" style="margin:20px">
-        <label for="fname">First Name</label>
-        <input type="text" id="fname" name="firstname"
-            placeholder="Enter First Name" value="sadeepa">
-
-        <label for="lname">Last Name</label>
-        <input type="text" id="lname" name="lastname"
-            placeholder="Enter Last Names" value="bhashitha">
-
-
-        <label for="lname">Primary Number</label>
-        <input type="text" id="lname" name="lastname"
-            placeholder="Enter Primary Number" value="0705614640">
-
-        <label for="lname">Secondary Number</label>
-        <input type="text" id="userid" name="lastname"
-            placeholder="Enter Secondary Number" value="0705614640">
-
-
-
-        <input  type="submit" value="Save">
-    </form> 
-    </div>    
     </div>
-
-    <!-- start pop up sign out section -->
+    <!-- search bar for mobile -->
+    <div class="search-bar-container-mobi">
+        <input type="search" name="search" placeholder="Search">
+        <i class="fas fa-search "></i>
+    </div>
+</nav>
+<div id="myForm" class="sectionpop ">
+    <div class="formsection">
+        <div>
+            <button s class="closebutton" onclick="closepopupform()">❌</button>
+        </div>
+        <img class="form-profile-picture" src="/Assets/images/Team members/jonathan.png" alt="">
+        <form action="/action_page.php" style="margin:20px">
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" name="firstname" placeholder="Enter First Name" value="sadeepa">
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" name="lastname" placeholder="Enter Last Names" value="bhashitha">
+            <label for="lname">Primary Number</label>
+            <input type="text" id="lname" name="lastname" placeholder="Enter Primary Number" value="0705614640">
+            <label for="lname">Secondary Number</label>
+            <input type="text" id="userid" name="lastname" placeholder="Enter Secondary Number" value="0705614640">
+            <input type="submit" value="Save">
+        </form>
+    </div>
+</div>
+<!-- End Top Navigation Bar -->
+    <!-- Start OF the POP up SIGN out -->
     <div id="popup_signout" class="sectionpop ">
-    
+        <div class="formsection">
+            <div>
+                <button class="closebutton" onclick="close_popup_signout_message()">❌</button>
+            </div>
+            <form action="/action_page.php" style="margin:20px">
+                <div style="margin:auto">
+                    <h1 style="margin:auto">
+                        Sign Out
+                    </h1>
+                    <p style="margin:auto">
+                        Do your really want to sign out now?
+                    </p>
+                </div>
+            </form>
+            <div style="display:flex">
 
-    <div class="formsection">
-
-        <div>
-            <button s class="closebutton"onclick="close_popup_signout_message()">❌</button>
+                <button class="popup_delete_button">
+                    {% if current_user %}
+                    <a href="/logout"> YES</a>
+                    {% endif %}
+                </button>
+                <button onclick="close_popup_signout_message()" class="popup_button">
+                    NO
+                </button>
+            </div>
         </div>
-    <form action="/action_page.php" style="margin:20px">
-        <div style="margin:auto">
-            <h1 style="margin:auto">
-                Sign Out
-            </h1>
-            <p style="margin:auto">
-                Do your really want to sign up now?
-            </p>
-        </div>
-    </form> 
-
-
-    <div style="display:flex">
-    
-    <button style="background-color:#e74c3c    " class="popup_button">
-        YES
-    </button>
-    <button onclick="close_popup_signout_message()"  class="popup_button">
-        NO
-        </button>
     </div>
-    </div>  
-    </div>
-    <!-- end pop up sign out section -->
-
+    <!-- End OF the POP up SIGN out -->
     <section class="page-container">
-        
+
         <!-- SIDE NAVIGATION BAR - START -->
         <div class="sidebar">
-                <div class="sidebar-container">
-                    <div class="side-menu">
-                        <i class="fas fa-bars fa-2x " id="side-menu-open-btn"></i>
-                        <i class="fas fa-times fa-2x" id="side-menu-close-btn"></i>
-                    </div>
-                    <ul class="side-menu-list">
-                        <li>
-                            <a href="#" class="side-menu-li">
-                                <i class="fas fa-chart-bar"></i>
-                                <p class="side-menu-item">Analytics</p>
-                            </a>
-                            <p class="side-menu-tooltip">Analytics</p>
-                        </li>
-                        <li>
-                            <a href="#" class="side-menu-li">
-                                <i class="fas fa-users"></i>
-                                <p class="side-menu-item">Manage Users</p>
-                            </a>
-                            <p class="side-menu-tooltip">Manage Users</p>
-                        </li>
-                        <!--<li>
+            <div class="sidebar-container">
+                <div class="side-menu">
+                    <i class="fas fa-bars fa-2x " id="side-menu-open-btn"></i>
+                    <i class="fas fa-times fa-2x" id="side-menu-close-btn"></i>
+                </div>
+                <ul class="side-menu-list">
+                    <li>
+                        <a href="#" class="side-menu-li">
+                            <i class="fas fa-chart-bar"></i>
+                            <p class="side-menu-item">Analytics</p>
+                        </a>
+                        <p class="side-menu-tooltip">Analytics</p>
+                    </li>
+                    <li>
+                        <a href="#" class="side-menu-li">
+                            <i class="fas fa-users"></i>
+                            <p class="side-menu-item">Manage Users</p>
+                        </a>
+                        <p class="side-menu-tooltip">Manage Users</p>
+                    </li>
+                    <!--<li>
                             <a href="#" class="side-menu-li">
                                 <i class="fas fa-exclamation"></i>
                                 <p class="side-menu-item">Complaints</p>
                             </a>
                             <p class="side-menu-tooltip">Complaints</p>
                         </li>-->
-                        <li>
-                            <a href="#" class="side-menu-li">
-                                <i class="fas fa-question"></i>
-                                <p class="side-menu-item">FAQ</p>
-                            </a>
-                            <p class="side-menu-tooltip">FAQ</p>
-                        </li>
-                        <!--<li>
+                    <li>
+                        <a href="#" class="side-menu-li">
+                            <i class="fas fa-question"></i>
+                            <p class="side-menu-item">FAQ</p>
+                        </a>
+                        <p class="side-menu-tooltip">FAQ</p>
+                    </li>
+                    <!--<li>
                             <a href="#" class="side-menu-li">
                                 <i class="fas fa-file-alt"></i>
                                 <p class="side-menu-item">Reports</p>
                             </a>
                             <p class="side-menu-tooltip">Reports</p>
                         </li>-->
-                        <li>
-                            <a href="#" class="side-menu-li">
-                                <i class="fas fa-star"></i>
-                                <p class="side-menu-item">Ratings</p>
-                            </a>
-                            <p class="side-menu-tooltip">Ratings</p>
-                        </li>
-                        <!--<li>
+                    <li>
+                        <a href="#" class="side-menu-li">
+                            <i class="fas fa-star"></i>
+                            <p class="side-menu-item">Ratings</p>
+                        </a>
+                        <p class="side-menu-tooltip">Ratings</p>
+                    </li>
+                    <!--<li>
                             <a href="#" class="side-menu-li">
                                 <i class="fas fa-bell"></i>
                                 <p class="side-menu-item">Notifications</p>
                             </a>
                             <p class="side-menu-tooltip">Notifications</p>
                         </li>-->
-                    </ul>
-                </div>
-        </div>
-            <!-- SIDE NAVIGATION BAR - END -->
-            <div id="reportPage" class="page-content-container" >
-                <div class="container">
-                    
-                    <!--<div class="tab">
-                        <button class="booking_tab tab-btn active" onclick="openTab(event, 'view_bookings')"><i class="fas fa-search"></i><p>View FAQ</p></button>
-                        <button class="booking_tab tab-btn" onclick="openTab(event, 'add_bookings')"><i class="fas fa-plus"></i><p>Create FAQ</p></button>
-                        <button class="booking_tab tab-btn" onclick="openTab(event, 'cancel_booking')"><i class="fas fa-times"></i><p> Delete FAQ</p></button>
-                        <button class="booking_tab tab-btn" onclick="openTab(event, 'booking_payment')"><i class="fas fa-edit"></i><p>Update FAQ</p></button>
-                    </div>-->
-                    <h1 class="page-header">Analytics</h1>
-                    <h2 class="doc-header">Sportizza</h2>
-                    <h3 class="doc-sub-header">Analytics for System Admin</h3>
-                        <!-- <form action=""> -->
-                            <div class="filters">
-                                        <div class="booking-table-search-container">
-                                            <select style="font-family:'Poppins', sans-serif;text-align:center;">
-                                                <option>Select type</option>
-                                                <option>Customer data</option>
-                                                <option>Sports arena data</option>
-                                                <option>Booking data</option>
-                                                <option>All</option>
-                                            </select>
-                                        </div>
-                                        <div class="booking-table-date-picker" style="margin-top:5px;">
-                                            <label class="date-label" style="margin:5px;">Start Date  </label>
-                                            <input type="date" style="border:1px solid #d3d3d3;border-radius:25px;padding:12px 20px;">
-                                        </div>
-                                        <div class="booking-table-date-picker" style="margin-top:5px;">
-                                            <label class="date-label">End Date</label>
-                                            <input type="date" style="border:1px solid #d3d3d3;border-radius:25px;padding:12px 20px;">
-                                        </div>
-                            </div>
-                            <div id="chartContainer" class="chart-container">
-                                <div class="chart-row">
-                                    <div class="chart">
-                                        <h5>No of customers</h5>
-                                        <canvas id="myChart1"></canvas>
-                                    </div>
-                                    <div class="chart">
-                                        <h5>No of Sports arenas</h5>
-                                        <canvas id="myChart2"></canvas>
-                                    </div>
-                                    </div>
-                                    <div class="chart-row">
-                                    <div class="chart">
-                                        <h5>No of Bookings</h5>
-                                        <canvas id="myChart3"></canvas>
-                                    </div>
-                                    <div class="chart-pie">
-                                        <h5>Bookings by payment method</h5>
-                                        <canvas id="myChart4"></canvas>
-                                    </div>
-                                    </div>
-                                    <div class="chart-row">
-                                    <div class="chart-Table">
-                                        <h5 class="tableHeader1">Sports arenas by category</h5>
-                                        <table class="cTable">
-                                            <thead class="dataTableHeader1">
-                                                <tr>
-                                                    <td>Category</td>
-                                                    <td>Count</td>
-                                                </tr>
-                                            </thead>
-                                            <tbody class="dataTableRows1">
-                                                {% for chart in chart5 %}
-                                                <tr>
-                                                    <td> {{chart.category}}</td>
-                                                    <td class="countData"> {{chart.No_Of_Sports_Arenas}}</td>
-                                                </tr>
-                                                {% endfor %}
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="chart-Table">   
-                                        <h5 class="tableHeader2">Sports arenas by location</h5>
-                                        <table class="cTable">
-                                            <thead class="dataTableHeader2">
-                                                <tr>
-                                                    <td>Location</td>
-                                                    <td>Count</td>
-                                                </tr>
-                                            </thead>
-                                            <tbody class="dataTableRows2">
-                                                {% for chart in chart6 %}
-                                                <tr>
-                                                    <td> {{chart.location}}</td>
-                                                    <td class="countData"> {{chart.No_Of_Sports_Arenas}}</td>
-                                                </tr>
-                                                {% endfor %}
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div> 
-                            </div>
-                            <div id="editor">
-                                <button id="downloadPdf" class="faqSubmit">Download Report</button>
-                            </div>
-                        <!-- </form> -->
-                
-                        
-
-                
-                        
-                
-                </div>
+                </ul>
             </div>
+        </div>
+        <!-- SIDE NAVIGATION BAR - END -->
+        <div id="reportPage" class="page-content-container">
+            <div class="container">
+                <h1 class="page-header">Analytics</h1>
+                <h2 class="doc-header">Sportizza</h2>
+                <h3 class="doc-sub-header">Analytics for System Admin</h3>
+                <h4 class="doc-date-header">From 2018/04/08&nbsp To &nbsp2018/05/10</h4>
+                <!-- <form action=""> -->
+                <div class="filters">
+                    <div class="booking-table-date-picker" style="margin-top:5px;">
+                        <label class="date-label" style="margin:5px;">Start Date </label>
+                        <input type="date" style="border:1px solid #d3d3d3;border-radius:25px;padding:12px 20px;">
+                    </div>
+                    <div class="booking-table-date-picker" style="margin-top:5px;">
+                        <label class="date-label">End Date</label>
+                        <input type="date" style="border:1px solid #d3d3d3;border-radius:25px;padding:12px 20px;">
+                    </div>
+                </div>
+                <div id="chartContainer" class="chart-container">
+                    <div class="chart-row">
+                        <div class="chart">
+                            <h5>No of customers</h5>
+                            <canvas id="myChart1"></canvas>
+                        </div>
+                        <div class="chart">
+                            <h5>No of Sports arenas</h5>
+                            <canvas id="myChart2"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-row">
+                        <div class="chart">
+                            <h5>No of Bookings</h5>
+                            <canvas id="myChart3"></canvas>
+                        </div>
+                        <div class="chart-pie">
+                            <h5>Bookings by payment method</h5>
+                            <canvas id="myChart4"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-row">
+                        <div class="chart-Table">
+                            <h5 class="tableHeader1">Sports arenas by category</h5>
+                            <table class="cTable">
+                                <thead class="dataTableHeader1">
+                                    <tr>
+                                        <td>Category</td>
+                                        <td>Count</td>
+                                    </tr>
+                                </thead>
+                                <tbody class="dataTableRows1">
+                                    {% for chart in chart5 %}
+                                    <tr>
+                                        <td> {{chart.category}}</td>
+                                        <td class="countData"> {{chart.No_Of_Sports_Arenas}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="chart-Table">
+                            <h5 class="tableHeader2">Sports arenas by location</h5>
+                            <table class="cTable">
+                                <thead class="dataTableHeader2">
+                                    <tr>
+                                        <td>Location</td>
+                                        <td>Count</td>
+                                    </tr>
+                                </thead>
+                                <tbody class="dataTableRows2">
+                                    {% for chart in chart6 %}
+                                    <tr>
+                                        <td> {{chart.location}}</td>
+                                        <td class="countData"> {{chart.No_Of_Sports_Arenas}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div id="editor">
+                    <button id="downloadPdf" class="faqSubmit">Download Report</button>
+                </div>
+                <!-- </form> -->
+
+
+
+
+
+
+            </div>
+        </div>
     </section>
 
-    
 
-    <!-- Start of Footer -->
-    <!-- <footer>
-        <div class="copyright">
-            <p>
-                Copyright &copy;2021 All rights reserved | Sportizza Inc.
-            </p>
-        </div>
-    </footer> -->
-    <!-- End of Footer -->
+
     <script type="text/javascript" src="/Assets/js/Admin/adminMain.js?v=1"></script>
-    
+
     <script>
 
         var delayed;
-        
+
         var ctx1 = document.getElementById('myChart1').getContext('2d');
         var myChart1 = new Chart(ctx1, {
             type: 'bar',
@@ -307,59 +273,59 @@
                         '{{chart.Time_Registered}}', 
                     {% endfor %}
                 ],
-                datasets: [{
-                    label: 'No of Customers',
-                    data: [
-                        {% for chart in chart1 %}
-                            {{chart.No_Of_Customers}} ,
-                        {% endfor %}
-                    ],
-                    backgroundColor: [
-                        '#1dd1a1'
-                    ],
-                    borderWidth: 1
+        datasets: [{
+            label: 'No of Customers',
+            data: [
+                {% for chart in chart1 %}
+                            {{ chart.No_Of_Customers }},
+        {% endfor %}
+        ],
+            backgroundColor: [
+                '#1dd1a1'
+            ],
+                borderWidth: 1
                 }]
             },
-            options: {
-                responsive: true,
+        options: {
+            responsive: true,
                 animation: {
-                    // delay: 500, // change delay to suit your needs.
-                    onComplete: () => {
-                        delayed = true;
-                    },
+                // delay: 500, // change delay to suit your needs.
+                onComplete: () => {
+                    delayed = true;
+                },
                     delay: (context) => {
                         let delay = 0;
                         if (context.type === 'data' && context.mode === 'default' && !delayed) {
-                        delay = context.dataIndex * 300 + context.datasetIndex * 100;
+                            delay = context.dataIndex * 300 + context.datasetIndex * 100;
                         }
                         return delay;
                     },
                 },
-                scales: {
-                    y: {
-                        beginAtZero: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
                         grid: {
-                            color: '#fff'
-                        },
-                        min: 0,
-                        max: 5,
-                        ticks: {
-                            stepSize: 1
-                        }
+                        color: '#fff'
                     },
-                    x: {
-                        beginAtZero: true,
-                        grid: {
-                            color: '#fff'
-                        }
+                    min: 0,
+                        max: 5,
+                            ticks: {
+                        stepSize: 1
                     }
                 },
-                plugins: {
-                    legend: {
-                        position: 'bottom'
+                x: {
+                    beginAtZero: true,
+                        grid: {
+                        color: '#fff'
                     }
                 }
+            },
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
             }
+        }
         });
 
         var ctx2 = document.getElementById('myChart2').getContext('2d');
@@ -371,60 +337,60 @@
                         '{{chart.Time_Registered}}', 
                     {% endfor %}
                 ],
-                datasets: [{
-                    label: 'No of Sports Arenas',
-                    data: [
-                        {% for chart in chart2 %}
-                            {{chart.No_Of_Sports_Arenas}} ,
-                        {% endfor %}
-                    ],
-                    backgroundColor: [
-                        '#ffa502'
-                    ],
-                    borderWidth: 1
+        datasets: [{
+            label: 'No of Sports Arenas',
+            data: [
+                {% for chart in chart2 %}
+                            {{ chart.No_Of_Sports_Arenas }},
+        {% endfor %}
+        ],
+            backgroundColor: [
+                '#ffa502'
+            ],
+                borderWidth: 1
                 }]
             },
-            options: {
-                indexAxis: 'y',
+        options: {
+            indexAxis: 'y',
                 responsive: true,
-                animation: {
-                    // delay: 500, // change delay to suit your needs.
-                    onComplete: () => {
-                        delayed = true;
-                    },
+                    animation: {
+                // delay: 500, // change delay to suit your needs.
+                onComplete: () => {
+                    delayed = true;
+                },
                     delay: (context) => {
                         let delay = 0;
                         if (context.type === 'data' && context.mode === 'default' && !delayed) {
-                        delay = context.dataIndex * 300 + context.datasetIndex * 100;
+                            delay = context.dataIndex * 300 + context.datasetIndex * 100;
                         }
                         return delay;
                     },
                 },
-                scales: {
-                    y: {
-                        beginAtZero: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
                         grid: {
-                            color: '#fff'
-                        }
-                    },
-                    x: {
-                        beginAtZero: true,
-                        grid: {
-                            color: '#fff'
-                        },
-                        min: 0,
-                        max: 5,
-                        ticks: {
-                            stepSize: 1
-                        }
+                        color: '#fff'
                     }
                 },
-                plugins: {
-                    legend: {
-                        position: 'bottom'
+                x: {
+                    beginAtZero: true,
+                        grid: {
+                        color: '#fff'
+                    },
+                    min: 0,
+                        max: 5,
+                            ticks: {
+                        stepSize: 1
                     }
                 }
+            },
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
             }
+        }
         });
 
 
@@ -437,61 +403,61 @@
                         '{{chart.booking_date}}', 
                     {% endfor %}
                 ],
-                datasets: [{
-                    label: 'No of Bookings',
-                    data: [
-                        {% for chart in chart3 %}
-                            {{chart.No_Of_Bookings}} ,
-                        {% endfor %}
-                    ],
-                    backgroundColor: [
-                        '#ee5253'
-                    ],
-                    borderWidth: 1
+        datasets: [{
+            label: 'No of Bookings',
+            data: [
+                {% for chart in chart3 %}
+                            {{ chart.No_Of_Bookings }},
+        {% endfor %}
+        ],
+            backgroundColor: [
+                '#ee5253'
+            ],
+                borderWidth: 1
                 }]
             },
-            options: {
-                responsive: true,
+        options: {
+            responsive: true,
                 animation: {
-                    // delay: 500, // change delay to suit your needs.
-                    onComplete: () => {
-                        delayed = true;
-                    },
+                // delay: 500, // change delay to suit your needs.
+                onComplete: () => {
+                    delayed = true;
+                },
                     delay: (context) => {
                         let delay = 0;
                         if (context.type === 'data' && context.mode === 'default' && !delayed) {
-                        delay = context.dataIndex * 300 + context.datasetIndex * 100;
+                            delay = context.dataIndex * 300 + context.datasetIndex * 100;
                         }
                         return delay;
                     },
                 },
-                scales: {
-                    y: {
-                        beginAtZero: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
                         grid: {
-                            color: '#fff'
-                        },
-                        min: 0,
-                        max: 5,
-                        ticks: {
-                            stepSize: 1
-                        }
+                        color: '#fff'
                     },
-                    x: {
-                        beginAtZero: true,
-                        grid: {
-                            color: '#fff'
-                        }
+                    min: 0,
+                        max: 5,
+                            ticks: {
+                        stepSize: 1
                     }
                 },
-                plugins: {
-                    legend: {
-                        position: 'bottom'
+                x: {
+                    beginAtZero: true,
+                        grid: {
+                        color: '#fff'
                     }
                 }
             },
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        },
         });
-        
+
         var ctx4 = document.getElementById('myChart4').getContext('2d');
         var myChart4 = new Chart(ctx4, {
             type: 'doughnut',
@@ -501,49 +467,49 @@
                         '{{chart.payment_method}}', 
                     {% endfor %}
                 ],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [
-                        {% for chart in chart4 %}
-                            {{chart.No_Of_Bookings}} ,
-                        {% endfor %}
-                    ],
-                    backgroundColor: [
-                        "#55E6C1",
-                        "#273c75",
-                    ],
-                    borderWidth: 1
+        datasets: [{
+            label: '# of Votes',
+            data: [
+                {% for chart in chart4 %}
+                            {{ chart.No_Of_Bookings }},
+        {% endfor %}
+        ],
+            backgroundColor: [
+                "#55E6C1",
+                "#273c75",
+            ],
+                borderWidth: 1
                 }]
             },
-            options: {
-                responsive: true,
+        options: {
+            responsive: true,
                 maintainAspectRatio: false,
-                animation: {
-                    // delay: 500, // change delay to suit your needs.
-                    onComplete: () => {
-                        delayed = true;
-                    },
+                    animation: {
+                // delay: 500, // change delay to suit your needs.
+                onComplete: () => {
+                    delayed = true;
+                },
                     delay: (context) => {
                         let delay = 0;
                         if (context.type === 'data' && context.mode === 'default' && !delayed) {
-                        delay = context.dataIndex * 300 + context.datasetIndex * 100;
+                            delay = context.dataIndex * 300 + context.datasetIndex * 100;
                         }
                         return delay;
                     },
                 },
-                plugins: {
-                    legend: {
-                        position: 'bottom'
-                    }
+            plugins: {
+                legend: {
+                    position: 'bottom'
                 }
-            },
+            }
+        },
         });
-        
+
         /*Download report as PDF*/
-        
+
 
         // document.getElementById('downloadPdf').addEventListener("onclick", downloadPDF);
-        
+
         //donwload pdf from original canvas
         // function downloadPDF() {
         //     var canvas = document.querySelector('#myChart1');
@@ -555,11 +521,18 @@
         //     doc.save('canvas.pdf');
         // }
     </script>
-
+    <!-- Start of Footer -->
+        <footer>
+            <div class="copyright">
+                <p>
+                    Copyright &copy;2021 All rights reserved | Sportizza Inc.
+                </p>
+            </div>
+        </footer>
+    <!-- End of Footer -->
     <script type="text/javascript">
-        document.getElementById('downloadPdf').addEventListener('click',()=>window.print())
-        
-
+        document.getElementById('downloadPdf').addEventListener('click', () => window.print())
     </script>
 </body>
+
 </html>

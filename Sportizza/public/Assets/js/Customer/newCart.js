@@ -1,4 +1,23 @@
 
+const email = document.getElementById('email');
+const address = document.getElementById('address');
+const city = document.getElementById('city');
+const formCheckout = document.getElementById('formCheckout');
+
+// Validations
+// Handle form
+formCheckout.addEventListener('submit', function (event) {
+    // Prevent default behaviour
+    event.preventDefault();
+    // if (
+       
+    //     validateEmail() &&
+    //     validateAddress() &&
+    //     validateCity()
+    // ) {
+    //     formCheckout.submit();
+    // }
+});
 
 
     function openTab(evt, cityName) {
@@ -126,69 +145,58 @@
           } 
         
     
-    // set onclick button as a view booking button in the page loading process
-          window.onload=function(){
-            document.getElementById("view_booking_button").click();
-        };
+//     // set onclick button as a view booking button in the page loading process
+//           window.onload=function(){
+//             document.getElementById("view_booking_button").click();
+//         };
 
 
+// let thumbnails = document.getElementsByClassName('thumbnail');
+// let slider = document.getElementById('slider');
 
+// let buttonRight = document.getElementById('slide-right');
+// let buttonLeft = document.getElementById('slide-left');
 
+// buttonLeft.addEventListener('click', function(){
+//     slider.scrollLeft -= 280;
+// })
 
+// buttonRight.addEventListener('click', function(){
+//     slider.scrollLeft += 280;
+// })
 
+// const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
+// // alert(maxScrollLeft);
+// // alert("Left Scroll:" + slider.scrollLeft);
 
+// //AUTO PLAY THE SLIDER 
+// function autoPlay() {
+//     if (slider.scrollLeft > (maxScrollLeft - 1)) {
+//         slider.scrollLeft -= maxScrollLeft;
+//     } else {
+//         slider.scrollLeft += 1;
+//     }
+// }
+// let play = setInterval(autoPlay, 50);
 
+// // PAUSE THE SLIDE ON HOVER
+// for (var i=0; i < thumbnails.length; i++){
 
+// thumbnails[i].addEventListener('mouseover', function() {
+//     clearInterval(play);
+// });
 
-
-
-
-        let thumbnails = document.getElementsByClassName('thumbnail');
-let slider = document.getElementById('slider');
-
-let buttonRight = document.getElementById('slide-right');
-let buttonLeft = document.getElementById('slide-left');
-
-buttonLeft.addEventListener('click', function(){
-    slider.scrollLeft -= 280;
-})
-
-buttonRight.addEventListener('click', function(){
-    slider.scrollLeft += 280;
-})
-
-const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
-// alert(maxScrollLeft);
-// alert("Left Scroll:" + slider.scrollLeft);
-
-//AUTO PLAY THE SLIDER 
-function autoPlay() {
-    if (slider.scrollLeft > (maxScrollLeft - 1)) {
-        slider.scrollLeft -= maxScrollLeft;
-    } else {
-        slider.scrollLeft += 1;
-    }
-}
-let play = setInterval(autoPlay, 50);
-
-// PAUSE THE SLIDE ON HOVER
-for (var i=0; i < thumbnails.length; i++){
-
-thumbnails[i].addEventListener('mouseover', function() {
-    clearInterval(play);
-});
-
-thumbnails[i].addEventListener('mouseout', function() {
-    return play = setInterval(autoPlay, 50);
-});
-}
+// thumbnails[i].addEventListener('mouseout', function() {
+//     return play = setInterval(autoPlay, 50);
+// });
+// }
 
 
 
 
   // js for edit profile picture
-  const imgDiv = document.querySelector(".editProPic");
-  const img =document.querySelector("#form-profile-picture");
+const imgDiv = document.querySelector(".editProPic");
+const img =document.querySelector("#form-profile-picture");
 const file=document.querySelector("#file");
 const uploadBtn=document.querySelector("#uploadBtn");
 
@@ -217,3 +225,31 @@ file.addEventListener("change",function(){
 
   }
 })
+
+
+
+
+// //Function to check all the validations before getting submitted
+function validateCheckoutForm() {
+   
+    validateEmail();
+    validateAddress();
+    validateCity();
+}
+
+function validateEmail(){
+  if (checkIfEmpty(email)) return;
+  regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  if (!matchWithRegExEmail(regEx, email)) return;
+  return true;
+}
+function validateAddress(){
+  if (checkIfEmpty(address)) return;
+  if (!checkCharacters(address)) return;
+  return true;
+}
+function validateCity(){
+  if (checkIfEmpty(city)) return;
+  if (!checkCharacters(city)) return;
+  return true;
+}

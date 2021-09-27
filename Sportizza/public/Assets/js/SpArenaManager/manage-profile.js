@@ -66,3 +66,24 @@ function closepopupform() {
     var form = document.getElementById("myForm");
     form.style.display = "none";
 }
+
+
+//popup sign out message
+function open_popup_signout_message() {
+    var form = document.getElementById("popup_signout");
+    form.style.display = "block";
+}
+function close_popup_signout_message() {
+    var form = document.getElementById("popup_signout");
+    form.style.display = "none";
+}
+
+//popup Edit Profile message
+function open_popup_edit_arena_profile() {
+    var form = document.getElementById("popup_edit_form");
+    form.style.display = "block";
+}
+function close_popup_edit_arena_profile() {
+    var form = document.getElementById("popup_edit_form");
+    form.style.display = "none";
+}

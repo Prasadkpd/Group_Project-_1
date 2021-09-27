@@ -36,3 +36,111 @@ function closepopupform() {
     var form = document.getElementById("myForm");
     form.style.display = "none";
 }
+
+
+//popup sign out message
+function open_popup_signout_message() {
+    var form = document.getElementById("popup_signout");
+    form.style.display = "block";
+}
+function close_popup_signout_message() {
+    var form = document.getElementById("popup_signout");
+    form.style.display = "none";
+}
+
+//popup delete message
+function open_popup_delete_message() {
+    var form = document.getElementById("popup_delete");
+    form.style.display = "block";
+}
+function close_popup_delete_message() {
+    var form = document.getElementById("popup_delete");
+    form.style.display = "none";
+}
+
+//Add Facility Form
+const firstName = document.getElementById('addfirstName');
+const lastName =document.getElementById('addlastName');
+const mobile =document.getElementById('addmobile');
+const password = document.getElementById('addpassword');
+const username = document.getElementById('addusername');
+const staff =document.getElementById('staffType');
+const togglePassword = document.querySelector('#togglePassword');
+const showPassword = document.querySelector('#addpassword');
+//Add Facility Form
+const editfacilityname = document.getElementById('editfacilityname');
+//Show password button
+
+
+
+
+const formAddUser = document.getElementById('formAdduser');
+
+formAddUser.addEventListener('submit', function (event) {
+    // Prevent default behaviour
+    event.preventDefault();
+    if (
+        //Add timeslot validations
+        validateFirstName() &&
+        validateLastname() &&
+        validateMobile() &&
+        validateUsername() &&
+        validatePassword() &&
+        validateStaffTypeSelect()
+    ) {
+        formUpdateTimeslot.submit();
+    }
+});
+
+function validateAddUserForm() {
+    //Add facility validations
+    validateFirstName();
+    validateLastName();
+    validateMobile();
+    validateUsername();
+    validatePassword();
+    validateStaffTypeSelect();
+}
+
+function validateFirstName() {
+    if (checkIfEmpty(firstName)) return;
+    if (!checkIfOnlyLetters(firstName)) return;
+    regEx = /^\S+$/;
+    if (!matchWithRegExSpace(regEx, firstName)) return;
+    return true;
+}
+
+function validateLastName() {
+    if (checkIfEmpty(lastName)) return;
+    if (!checkIfOnlyLetters(lastName)) return;
+    if (!matchWithRegExSpace(regEx, lastName)) return;
+    return true;
+}
+
+function validateMobile() {
+    if (checkIfEmpty(mobile)) return;
+    if (!meetLength(mobile, 10, 10)) return;
+    if (!checkIfOnlyNumbers(mobile)) return;
+    if (!checkSLNumber(mobile)) return;
+    return true;
+}
+
+function validateUsername() {
+    if (checkIfEmpty(username)) return;
+    if (!meetLength(username, 10, 15)) return;
+    if (!checkCharacters(username)) return;
+    return true;
+}
+
+function validatePassword() {
+    if (checkIfEmptyNext(password)) return;
+    if (!meetLengthNext(password, 8, 255)) return;
+    regEx = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+    if (!matchWithRegExPassword(regEx, password)) return;
+    return true;
+}
+function validateStaffTypeSelect(){
+    if (!selectValidate(staff)) return;
+    return true;
+}
+
