@@ -13,12 +13,12 @@ class Login extends \Core\Controller
 {
     public function indexAction()
     {
-        View::renderTemplate('LoginSignup/loginView.html');
+        View::renderTemplate('LoginSignup/loginView.html',['message'=>$_SESSION['otp']]);
     }
 
 
     //Login for a user
-    public function loginAction(){
+    public  function loginAction(){
 
         $user=LoginModel::authenticate($_POST['username'],$_POST['password']);
         if ($user) {
@@ -50,15 +50,14 @@ class Login extends \Core\Controller
             }
            
         } else {
-            // $message="invalid username or password";
-            // View::renderTemplate('LoginSignup/loginView.html', [
-            //     'username' => $_POST['username'],'message'=>$message
-            // ]);
+            
 
-            $message="invalid username or password";
-            $this->redirect('/login', [
-                'username' => $_POST['username'],'message'=>$message
-            ]);
+            $message="Invalid username or password";
+            $_SESSION['error']=$message;
+            
+            $this->redirect('/login');
+            // View::renderTemplate('LoginSignup/loginView.html',['message'=>$message]);
+            // var_dump($message);
             
         }
 

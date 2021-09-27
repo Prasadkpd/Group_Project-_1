@@ -52,30 +52,30 @@ class HomeModel extends \Core\Model
     }
 
 
-    public static function homeSearchArenas($location=null,$category = null,$name = null){
+    public static function homeSearchArenas($location,$category,$name=''){
 
-        if(!is_null($location)){
-            if(!is_null($category)){
-                if(!is_null($name)){
+        if(!empty($location)){
+            if(!empty($category)){
+                if(!empty($name)){
                     $sql = 'SELECT * FROM sports_arena_profile 
-                WHERE sa_name=":name" AND category=":category " AND 
-                sports_arena_profile.location=":location"';
+                WHERE sa_name=:names AND category=:category AND 
+                sports_arena_profile.location=:locations';
                 }
                 else{
                     $sql = 'SELECT * FROM sports_arena_profile 
-                WHERE category=":category " AND sports_arena_profile.location=":location"';
+                WHERE category=:category AND sports_arena_profile.location=:locations';
                 }
             
             }
             else{
-                if(!is_null($name)){
+                if(!empty($name)){
                     $sql = 'SELECT * FROM sports_arena_profile 
-                WHERE sa_name=":name" AND 
-                sports_arena_profile.location=":location"';
+                WHERE sa_name=:name AND 
+                sports_arena_profile.location=:locations';
                 }
                 else{
                     $sql = 'SELECT * FROM sports_arena_profile 
-                WHERE AND sports_arena_profile.location=":location"';
+                WHERE sports_arena_profile.location=:locations';
                 };
             }
 
@@ -85,21 +85,21 @@ class HomeModel extends \Core\Model
 
 
         else{
-            if(!is_null($category)){
-                if(!is_null($name)){
+            if(!empty($category)){
+                if(!empty($name)){
                     $sql = 'SELECT * FROM sports_arena_profile 
-                WHERE sa_name=":name" AND category=":category "';
+                WHERE sa_name=:names AND category=:category';
                 }
                 else{
                     $sql = 'SELECT * FROM sports_arena_profile 
-                WHERE category=":category "';
+                WHERE category=":category';
                 }
             
             }
             else{
-                if(!is_null($name)){
+                if(!empty($name)){
                     $sql = 'SELECT * FROM sports_arena_profile 
-                WHERE sa_name=":name"';
+                WHERE sa_name=:names';
                 }
                 else{
                     $sql = 'SELECT * FROM sports_arena_profile ';
@@ -116,7 +116,7 @@ class HomeModel extends \Core\Model
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':locations', $location, PDO::PARAM_STR);
         $stmt->bindValue(':category', $category, PDO::PARAM_STR);
-        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+        $stmt->bindValue(':names', $name, PDO::PARAM_STR);
 
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
