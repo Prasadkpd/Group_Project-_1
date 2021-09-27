@@ -34,7 +34,7 @@ class Spbookstaff extends \Core\Controller
        
         // var_dump($bookings);
         //direct to the customer page
-        View::renderTemplate('BookHandlingStaff/bStaffViewBookingsView.html',['bookings'=>$bookings]);
+        View::renderTemplate('BookHandlingStaff/bStaffProfileView.html',['bookings'=>$bookings]);
 
 
         

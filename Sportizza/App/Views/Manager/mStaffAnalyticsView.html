@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analytics</title>
-    <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-analytics.css">
+    <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-analytics.css?version=">
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -29,14 +29,14 @@
                 <button class="openbutton" onclick="openpopupform()">
                     <div class="profile-details">
                         <img src="/Assets/images/Team members/jonathan.png" alt="" class="profile-picture">
-                        <div class="username">{{current_user.first_name}}  {{current_user.last_name}}</div>
+                        <div class="username">{{current_user.first_name}} {{current_user.last_name}}</div>
                     </div>
                 </button>
             </div>
             <div class="sign-in-out-btn">
                 {% if current_user %}
-        <a href="/logout"> Sign Out</a>
-        {% endif %}
+                <a href="/logout"> Sign Out</a>
+                {% endif %}
             </div>
         </div>
         <!-- search bar for mobile -->
@@ -64,7 +64,7 @@
             </form>
         </div>
     </div>
-  
+
     <!-- End Top Navigation Bar -->
 
     <section class="page-container">
@@ -133,65 +133,54 @@
         <!-- SIDE NAVIGATION BAR - END -->
 
         <!-- Analytics Page -->
-        <div class="page-content-container" >
+        <div class="page-content-container">
             <div class="container">
-                
-                <!--<div class="tab">
-                    <button class="booking_tab tab-btn active" onclick="openTab(event, 'view_bookings')"><i class="fas fa-search"></i><p>View FAQ</p></button>
-                    <button class="booking_tab tab-btn" onclick="openTab(event, 'add_bookings')"><i class="fas fa-plus"></i><p>Create FAQ</p></button>
-                    <button class="booking_tab tab-btn" onclick="openTab(event, 'cancel_booking')"><i class="fas fa-times"></i><p> Delete FAQ</p></button>
-                    <button class="booking_tab tab-btn" onclick="openTab(event, 'booking_payment')"><i class="fas fa-edit"></i><p>Update FAQ</p></button>
-                </div>-->
+                <h2 class="doc-header">Sportizza</h2>
+                <h3 class="doc-sub-header">Analytics for System Admin</h3>
+                <!-- <h4 class="doc-date-header">Start Date: 2018/04/08</h4>
+                <h4 class="doc-date-header">End Date: 2018/05/10</h4> -->
                 <h1 class="page-header">Analytics</h1>
-                        <div class="filters">
-                                    <div class="booking-table-search-container">
-                                        <select style="font-family:'Poppins', sans-serif;text-align:center;">
-                                            <option>Select type</option>
-                                            <option>Customer data</option>
-                                            <option>Sports arena data</option>
-                                            <option>Booking data</option>
-                                            <option>All</option>
-                                        </select>
-                                    </div>
-                                    <div class="booking-table-date-picker" style="margin-top:5px;">
-                                        <label class="date-label" style="margin:5px;">Start Date  </label>
-                                        <input type="date" style="border:1px solid #d3d3d3;border-radius:25px;padding:12px 20px;">
-                                    </div>
-                                    <div class="booking-table-date-picker" style="margin-top:5px;">
-                                        <label class="date-label">End Date</label>
-                                        <input type="date" style="border:1px solid #d3d3d3;border-radius:25px;padding:12px 20px;">
-                                    </div>
-                        </div>
-                        <div class="chart-container">
-                            <div class="chart-row">
-                                <div class="chart">
-                                    <h5>No of Bookings</h5>
-                                    <canvas id="myChart1"></canvas>
-                                </div>
-                                <div class="chart-pie">
-                                    <h5>Bookings by payment method</h5>
-                                    <canvas id="myChart2"></canvas>
-                                </div>
-                                </div>
-                                <div class="chart-row">
-                                <div class="chart">
-                                    <h5>Timeslots booked per month</h5>
-                                    <canvas id="myChart3"></canvas>
-                                </div>
-                                <div class="chart-pie">
-                                    <h5>Facilities booked per month</h5>
-                                    <canvas id="myChart4"></canvas>
-                                </div>
-                                </div>
-                                
-                        </div>
-            
-                    
+                <div class="filters">
 
-            
-                <input type="submit" value="Download Report" class="faqSubmit" />
-                    
-            
+                    <div class="booking-table-date-picker" style="margin-top:5px;">
+                        <label class="date-label" style="margin:5px;">Start Date </label>
+                        <input type="date" style="border:1px solid #d3d3d3;border-radius:25px;padding:12px 20px;">
+                    </div>
+                    <div class="booking-table-date-picker" style="margin-top:5px;">
+                        <label class="date-label">End Date</label>
+                        <input type="date" style="border:1px solid #d3d3d3;border-radius:25px;padding:12px 20px;">
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-row">
+                        <div class="chart">
+                            <h5>No of Bookings</h5>
+                            <canvas id="myChart1"></canvas>
+                        </div>
+                        <div class="chart-pie">
+                            <h5>Bookings by payment method</h5>
+                            <canvas id="myChart2"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-row">
+                        <div class="chart">
+                            <h5>Timeslots booked per month</h5>
+                            <canvas id="myChart3"></canvas>
+                        </div>
+                        <div class="chart-pie">
+                            <h5>Facilities booked per month</h5>
+                            <canvas id="myChart4"></canvas>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+                <button id="downloadPdf" class="faqSubmit">Download Report</button>
+
+
             </div>
         </div>
     </section>
@@ -207,11 +196,11 @@
     <!-- End of Footer -->
     <script type="text/javascript" src="/Assets/js/SpArenaManager/manage-analytics.js"></script>
 
-   
-   <script>
-       var delayed;
 
-       var ctx1 = document.getElementById('myChart1').getContext('2d');
+    <script>
+        var delayed;
+
+        var ctx1 = document.getElementById('myChart1').getContext('2d');
         var myChart1 = new Chart(ctx1, {
             type: 'bar',
             data: {
@@ -220,61 +209,61 @@
                         '{{chart.booking_date}}', 
                     {% endfor %}
                 ],
-                datasets: [{
-                    label: 'No of Bookings',
-                    data: [
-                        {% for chart in chart1 %}
-                            {{chart.No_Of_Bookings}} ,
-                        {% endfor %}
-                    ],
-                    backgroundColor: [
-                        '#ee5253'
-                    ],
-                    borderWidth: 1
+        datasets: [{
+            label: 'No of Bookings',
+            data: [
+                {% for chart in chart1 %}
+                            {{ chart.No_Of_Bookings }},
+        {% endfor %}
+        ],
+            backgroundColor: [
+                '#ee5253'
+            ],
+                borderWidth: 1
                 }]
             },
-            options: {
-                responsive: true,
+        options: {
+            responsive: true,
                 animation: {
-                    // delay: 500, // change delay to suit your needs.
-                    onComplete: () => {
-                        delayed = true;
-                    },
+                // delay: 500, // change delay to suit your needs.
+                onComplete: () => {
+                    delayed = true;
+                },
                     delay: (context) => {
                         let delay = 0;
                         if (context.type === 'data' && context.mode === 'default' && !delayed) {
-                        delay = context.dataIndex * 300 + context.datasetIndex * 100;
+                            delay = context.dataIndex * 300 + context.datasetIndex * 100;
                         }
                         return delay;
                     },
                 },
-                scales: {
-                    y: {
-                        beginAtZero: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
                         grid: {
-                            color: '#fff'
-                        },
-                        min: 0,
-                        max: 5,
-                        ticks: {
-                            stepSize: 1
-                        }
+                        color: '#fff'
                     },
-                    x: {
-                        beginAtZero: true,
-                        grid: {
-                            color: '#fff'
-                        }
+                    min: 0,
+                        max: 5,
+                            ticks: {
+                        stepSize: 1
                     }
                 },
-                plugins: {
-                    legend: {
-                        position: 'bottom'
+                x: {
+                    beginAtZero: true,
+                        grid: {
+                        color: '#fff'
                     }
                 }
             },
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        },
         });
-        
+
         var ctx2 = document.getElementById('myChart2').getContext('2d');
         var myChart2 = new Chart(ctx2, {
             type: 'doughnut',
@@ -284,42 +273,42 @@
                         '{{chart.payment_method}}', 
                     {% endfor %}
                 ],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [
-                        {% for chart in chart2 %}
-                            {{chart.No_Of_Bookings}} ,
-                        {% endfor %}
-                    ],
-                    backgroundColor: [
-                        "#55E6C1",
-                        "#273c75",
-                    ],
-                    borderWidth: 1
+        datasets: [{
+            label: '# of Votes',
+            data: [
+                {% for chart in chart2 %}
+                            {{ chart.No_Of_Bookings }},
+        {% endfor %}
+        ],
+            backgroundColor: [
+                "#55E6C1",
+                "#273c75",
+            ],
+                borderWidth: 1
                 }]
             },
-            options: {
-                responsive: true,
+        options: {
+            responsive: true,
                 maintainAspectRatio: false,
-                animation: {
-                    // delay: 500, // change delay to suit your needs.
-                    onComplete: () => {
-                        delayed = true;
-                    },
+                    animation: {
+                // delay: 500, // change delay to suit your needs.
+                onComplete: () => {
+                    delayed = true;
+                },
                     delay: (context) => {
                         let delay = 0;
                         if (context.type === 'data' && context.mode === 'default' && !delayed) {
-                        delay = context.dataIndex * 300 + context.datasetIndex * 100;
+                            delay = context.dataIndex * 300 + context.datasetIndex * 100;
                         }
                         return delay;
                     },
                 },
-                plugins: {
-                    legend: {
-                        position: 'bottom'
-                    }
+            plugins: {
+                legend: {
+                    position: 'bottom'
                 }
-            },
+            }
+        },
         });
 
         var ctx3 = document.getElementById('myChart3').getContext('2d');
@@ -331,60 +320,60 @@
                         '{{chart.start_time}}', 
                     {% endfor %}
                 ],
-                datasets: [{
-                    label: 'No of Bookings',
-                    data: [
-                        {% for chart in chart3 %}
-                            {{chart.No_Of_Bookings}} ,
-                        {% endfor %}
-                    ],
-                    backgroundColor: [
-                        '#82589F'
-                    ],
-                    borderWidth: 1
+        datasets: [{
+            label: 'No of Bookings',
+            data: [
+                {% for chart in chart3 %}
+                            {{ chart.No_Of_Bookings }},
+        {% endfor %}
+        ],
+            backgroundColor: [
+                '#82589F'
+            ],
+                borderWidth: 1
                 }]
             },
-            options: {
-                indexAxis: 'y',
+        options: {
+            indexAxis: 'y',
                 responsive: true,
-                animation: {
-                    // delay: 500, // change delay to suit your needs.
-                    onComplete: () => {
-                        delayed = true;
-                    },
+                    animation: {
+                // delay: 500, // change delay to suit your needs.
+                onComplete: () => {
+                    delayed = true;
+                },
                     delay: (context) => {
                         let delay = 0;
                         if (context.type === 'data' && context.mode === 'default' && !delayed) {
-                        delay = context.dataIndex * 300 + context.datasetIndex * 100;
+                            delay = context.dataIndex * 300 + context.datasetIndex * 100;
                         }
                         return delay;
                     },
                 },
-                scales: {
-                    y: {
-                        beginAtZero: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
                         grid: {
-                            color: '#fff'
-                        },
-                        min: 0,
-                        max: 5,
-                        ticks: {
-                            stepSize: 1
-                        }
+                        color: '#fff'
                     },
-                    x: {
-                        beginAtZero: true,
-                        grid: {
-                            color: '#fff'
-                        }
+                    min: 0,
+                        max: 5,
+                            ticks: {
+                        stepSize: 1
                     }
                 },
-                plugins: {
-                    legend: {
-                        position: 'bottom'
+                x: {
+                    beginAtZero: true,
+                        grid: {
+                        color: '#fff'
                     }
                 }
             },
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        },
         });
 
         var ctx4 = document.getElementById('myChart4').getContext('2d');
@@ -396,48 +385,50 @@
                         '{{chart.facility_name}}', 
                     {% endfor %}
                 ],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [
-                        {% for chart in chart4 %}
-                            {{chart.No_Of_Bookings}} ,
-                        {% endfor %}
-                    ],
-                    backgroundColor: [
-                        "#e58e26",
-                        "#fad390",
-                        '#fa983a',
-                    ],
-                    borderWidth: 1
+        datasets: [{
+            label: '# of Votes',
+            data: [
+                {% for chart in chart4 %}
+                            {{ chart.No_Of_Bookings }},
+        {% endfor %}
+        ],
+            backgroundColor: [
+                "#e58e26",
+                "#fad390",
+                '#fa983a',
+            ],
+                borderWidth: 1
                 }]
             },
-            options: {
-                responsive: true,
+        options: {
+            responsive: true,
                 maintainAspectRatio: false,
-                animation: {
-                    // delay: 500, // change delay to suit your needs.
-                    onComplete: () => {
-                        delayed = true;
-                    },
+                    animation: {
+                // delay: 500, // change delay to suit your needs.
+                onComplete: () => {
+                    delayed = true;
+                },
                     delay: (context) => {
                         let delay = 0;
                         if (context.type === 'data' && context.mode === 'default' && !delayed) {
-                        delay = context.dataIndex * 300 + context.datasetIndex * 100;
+                            delay = context.dataIndex * 300 + context.datasetIndex * 100;
                         }
                         return delay;
                     },
                 },
-                plugins: {
-                    legend: {
-                        position: 'bottom'
-                    }
+            plugins: {
+                legend: {
+                    position: 'bottom'
                 }
-            },
+            }
+        },
         });
-        
+
 
     </script>
-
+    <script type="text/javascript">
+        document.getElementById('downloadPdf').addEventListener('click', () => window.print())
+    </script>
 </body>
 
 </html>
