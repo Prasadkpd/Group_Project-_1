@@ -70,8 +70,7 @@
   <!-- Page content -->
   <div class="cartPage">
     <!-- <h1 class="page-header">Cart</h1> -->
-    <form method="post" action="" id="formSpArenaApplication" onsubmit=""
-      enctype="multipart/form-data">
+    <form method="post" action="https://sandbox.payhere.lk/pay/checkout" id="formSpArenaApplication" onsubmit=""      >
     <div class="customerDetails">
       <div class="page">
         <div class="container">
@@ -81,19 +80,19 @@
 
 
               <div class="sp-details">
-                <input type="hidden" name="merchant_id" value="121XXXX">    <!-- Replace your Merchant ID -->
-                <input type="hidden" name="return_url" value="http://sample.com/return">
-                <input type="hidden" name="cancel_url" value="http://sample.com/cancel">
-                <input type="hidden" name="notify_url" value="http://sample.com/notify">
+                <input type="hidden" name="merchant_id" value="1217465">    <!-- Replace your Merchant ID -->
+                <input type="hidden" name="return_url" value="http://localhost/Customer">
+                <input type="hidden" name="cancel_url" value="http://localhost/Customer/cart">
+                <input type="hidden" name="notify_url" value="http://localhost/Customer/payment">
                 <div class="input-box">
                   <label for="firstName">First Name</label>
-                  <input id="firstName" type="text" name="firstName" placeholder="Enter first Name">
+                  <input id="firstName" type="text" name="first_name" placeholder="Enter first Name">
                   <div class="helper-text" id="firstNameMsg"></div>
                 </div>
 
                 <div class="input-box">
                   <label for="lastName">Last Name</label>
-                  <input id="lastName" type="text" name="lastName" placeholder="Enter last Name">
+                  <input id="lastName" type="text" name="last_name" placeholder="Enter last Name">
                   <div class="helper-text" id="lastNameMsg"></div>
                 </div>
 
@@ -105,7 +104,7 @@
 
                 <div class="input-box">
                   <label for="contact">Contact</label>
-                  <input id="contact" type="text" name="contact" placeholder="ex: 0711223344">
+                  <input id="contact" type="text" name="phone" placeholder="ex: 0711223344">
                   <div class="helper-text" id="contactMsg"></div>
                 </div>
                 
@@ -433,14 +432,18 @@
                     <input style type="file" name="image_6" value="submit" accept="image/*"
                     type="submit" id="file6" onchange="change_color(this.files,event)"
                     value="{{sp_arena.image_6}}" class="img-button">
-                    </div> 
+                  </div> 
                     <div class="helper-text" id="imgMsg6"></div>
-                </div>
+                  </div>
                 </div> -->
-  
+                
                 <!-- <div class="specialMsg">
                   ** Please note that you'll recieve an SMS to the mobile number after Registration.
                 </div> -->
+                <input type="hidden" name="order_id" value="100000002">
+                <input type="hidden" name="items" value="Door bell wireless"><br>
+                <input type="hidden" name="currency" value="LKR">
+                <input type="hidden" name="amount" value="5000">
                 <div class="priceNPay">
                   <div class="button">
                     <input type="submit" value="Pay Now" class="btn solid" />
@@ -450,12 +453,8 @@
                     <h4 class="showAmount">LKR 5000</h4>
                   </div>
                 </div>
-                  <input type="hidden" name="order_id" value="ItemNo12345">
-                  <input type="hidden" name="items" value="Door bell wireless"><br>
-                  <input type="hidden" name="currency" value="LKR">
-                  <input type="hidden" name="amount" value="1000">
-             </div>
-          </div>
+              </div>
+            </div>
         </div>
     </div>
     </form>
