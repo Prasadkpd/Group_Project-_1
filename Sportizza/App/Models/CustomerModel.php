@@ -91,6 +91,67 @@ class CustomerModel extends \Core\Model
         // var_dump($result);
         return $result;
     }
+
+    public static function customerViewTimeSlots($arena_id){
+        
+        $sql = 'SELECT time_slot.start_time,time_slot.end_time,
+                time_slot.price,sports_arena_profile.sa_name
+                 FROM time_slot  INNER JOIN sports_arena_profile 
+                 ON time_slot.manager_sports_arena_id=sports_arena_profile.sports_arena_id
+                WHERE time_slot.manager_sports_arena_id=:arena_id';
+                // have to change this is wrong we use it for testing
+
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        // var_dump($result);
+        return $result;
+    }
+
+    public static function customerViewArenaDetails($arena_id){
+        
+        $sql = 'SELECT *
+                 FROM  sports_arena_profile 
+                WHERE s_a_profile_id=:arena_id';
+                // have to change this is wrong we use it for testing
+
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        // var_dump($result);
+        return $result;
+    }
+    public static function customerArenaFacilities($arena_id){
+        
+        $sql = 'SELECT facility.facility_name
+                 FROM  facility 
+                WHERE sports_arena_id=:arena_id';
+                // have to change this is wrong we use it for testing
+
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        // var_dump($result);
+        return $result;
+    }
     
 
 

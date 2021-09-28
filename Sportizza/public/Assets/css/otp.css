@@ -111,16 +111,20 @@ nav {
   text-align:center;
 }
 .customBtn {
-  width: 120px;
+  width: 100px;
   background: #fd461f;
   border: none;
   outline: none;
-  height: 49px;
+  height: 40px;
   border-radius: 49px;
   color: #fff;
   text-transform: uppercase;
   font-weight: 700;
-  margin-top: 1rem;
+  margin:auto;
+   display:flex;
+  align-content: center;
+  justify-content:center;
+  margin-top: 2rem;
   cursor: pointer;
   transition: 0.3s;
   font-size: 1rem;

@@ -9,14 +9,14 @@ const formCheckout = document.getElementById('formCheckout');
 formCheckout.addEventListener('submit', function (event) {
     // Prevent default behaviour
     event.preventDefault();
-    // if (
+    if (
        
-    //     validateEmail() &&
-    //     validateAddress() &&
-    //     validateCity()
-    // ) {
-    //     formCheckout.submit();
-    // }
+        validateEmail() &&
+        validateAddress() &&
+        validateCity()
+    ) {
+        formCheckout.submit();
+    }
 });
 
 

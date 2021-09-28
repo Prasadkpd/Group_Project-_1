@@ -21,6 +21,18 @@ class Home extends \Core\Controller
     }
 
 
+    public function searcharenasAction(){
+        // var_dump($_POST);
+        $feedbacks=HomeModel::homeViewfeedbacks();
+        $customerFAQs=HomeModel::homeViewCustomerfaqs();
+        $arenaFAQs=HomeModel::homeViewArenafaqs();
+        $arenas=HomeModel::homeSearchArenas($_POST['location'],
+        $_POST['category'],$_POST['name']);
+        // var_dump($arenas);
+        View::renderTemplate('Visitor/visitorView.html',['feedbacks'=>$feedbacks,'faqs'=>$customerFAQs,'arenafaqs'=>$arenaFAQs,'arenas'=>$arenas]);
+    } 
+
+
     /**
      * @throws Exception
      */
