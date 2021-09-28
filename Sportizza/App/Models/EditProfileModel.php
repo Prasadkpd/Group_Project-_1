@@ -138,6 +138,65 @@ class EditProfileModel extends \Core\Model
         // $stmt->fetch();
         // return true;
     }
+    public static function UsernameValidate($username,$newUsername)
+    {
+        $user = static::findByUsername($newUsername);
+
+        if ($user) {
+            return false;
+        }
+
+       else{
+        EditProfileModel::updateNewUsername($username,$newUsername);
+        return true;
+       }
+    }
+    public static function updateNewUsername($username,$newUsername)
+    {
+        // $sql = 'SELECT * FROM user WHERE username = :username AND account_status= "active"';
+       
+        $sql = 'UPDATE user
+        SET user.username =:newUsername
+        WHERE username=:username;';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':username', $username, PDO::PARAM_STR);
+        $stmt->bindValue(':newUsername',$newUsername, PDO::PARAM_STR);
+        
+        
+        return $stmt->execute();
+        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        
+
+        // $stmt->fetch();
+        // return true;
+    }
+    public static function updateUserDetails($username,$firstName,$lastName)
+    {
+        // $sql = 'SELECT * FROM user WHERE username = :username AND account_status= "active"';
+       
+        $sql = 'UPDATE user
+        SET user.first_name =:firstName,
+        user.last_name=:lastName
+        WHERE username=:username;';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':username', $username, PDO::PARAM_STR);
+        $stmt->bindValue(':firstName',$firstName, PDO::PARAM_STR);
+        $stmt->bindValue(':lastName',$lastName, PDO::PARAM_STR);
+        
+        
+        return $stmt->execute();
+        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        
+
+        // $stmt->fetch();
+        // return true;
+    }
 
 
 
