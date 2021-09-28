@@ -17,7 +17,10 @@ class Home extends \Core\Controller
         $arenas=HomeModel::homeViewarenas();
         // $arenas=["name"=>"janitha","age"=>21];
         $arenaFAQs=HomeModel::homeViewArenafaqs();
-       View::renderTemplate('Visitor/visitorView.html',['feedbacks'=>$feedbacks,'faqs'=>$customerFAQs,'arenafaqs'=>$arenaFAQs,'arenas'=>$arenas]);
+        $locations=HomeModel::homeSelectLocations();
+        $categories=HomeModel::homeSelectCategories();
+       View::renderTemplate('Visitor/visitorView.html',['feedbacks'=>$feedbacks,'faqs'=>$customerFAQs,
+       'arenafaqs'=>$arenaFAQs,'arenas'=>$arenas,'locations'=>$locations,'categories'=>$categories]);
     }
 
 
@@ -28,8 +31,15 @@ class Home extends \Core\Controller
         $arenaFAQs=HomeModel::homeViewArenafaqs();
         $arenas=HomeModel::homeSearchArenas($_POST['location'],
         $_POST['category'],$_POST['name']);
+        $search_result['location']=$_POST['location'];
+        $search_result['category']=$_POST['category'];
+        $locations=HomeModel::homeSelectLocations();
+        $categories=HomeModel::homeSelectCategories();
+        
         // var_dump($arenas);
-        View::renderTemplate('Visitor/visitorView.html',['feedbacks'=>$feedbacks,'faqs'=>$customerFAQs,'arenafaqs'=>$arenaFAQs,'arenas'=>$arenas]);
+        View::renderTemplate('Visitor/visitorView.html',['feedbacks'=>$feedbacks,'faqs'=>$customerFAQs,
+        'arenafaqs'=>$arenaFAQs,'arenas'=>$arenas,'search_result'=> $search_result,
+        'locations'=>$locations,'categories'=>$categories]);
     } 
 
 

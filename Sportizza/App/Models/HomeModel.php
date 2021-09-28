@@ -54,63 +54,92 @@ class HomeModel extends \Core\Model
 
     public static function homeSearchArenas($location,$category,$name=''){
 
-        if(!empty($location)){
-            if(!empty($category)){
-                if(!empty($name)){
-                    $sql = 'SELECT * FROM sports_arena_profile 
-                WHERE sa_name=:names AND category=:category AND 
-                sports_arena_profile.location=:locations';
-                }
-                else{
-                    $sql = 'SELECT * FROM sports_arena_profile 
-                WHERE category=:category AND sports_arena_profile.location=:locations';
-                }
+        // if(!empty($location)){
+        //     if(!empty($category)){
+        //         if(!empty($name)){
+        //             $sql = 'SELECT * FROM sports_arena_profile 
+        //         WHERE sa_name=:names AND category=:category AND 
+        //         sports_arena_profile.location=:locations';
+        //         }
+        //         else{
+        //             $sql = 'SELECT * FROM sports_arena_profile 
+        //         WHERE category=:category AND sports_arena_profile.location=:locations';
+        //         }
             
-            }
-            else{
-                if(!empty($name)){
-                    $sql = 'SELECT * FROM sports_arena_profile 
-                WHERE sa_name=:name AND 
-                sports_arena_profile.location=:locations';
-                }
-                else{
-                    $sql = 'SELECT * FROM sports_arena_profile 
-                WHERE sports_arena_profile.location=:locations';
-                };
-            }
+        //     }
+        //     else{
+        //         if(!empty($name)){
+        //             $sql = 'SELECT * FROM sports_arena_profile 
+        //         WHERE sa_name=:name AND 
+        //         sports_arena_profile.location=:locations';
+        //         }
+        //         else{
+        //             $sql = 'SELECT * FROM sports_arena_profile 
+        //         WHERE sports_arena_profile.location=:locations';
+        //         };
+        //     }
 
 
             
+        // }
+
+
+        // else{
+        //     if(!empty($category)){
+        //         if(!empty($name)){
+        //             $sql = 'SELECT * FROM sports_arena_profile 
+        //         WHERE sa_name=:names AND category=:category';
+        //         }
+        //         else{
+        //             $sql = 'SELECT * FROM sports_arena_profile 
+        //         WHERE category=":category';
+        //         }
+            
+        //     }
+        //     else{
+        //         if(!empty($name)){
+        //             $sql = 'SELECT * FROM sports_arena_profile 
+        //         WHERE sa_name=:names';
+        //         }
+        //         else{
+        //             $sql = 'SELECT * FROM sports_arena_profile ';
+        //         };
+        //     }
+        // }
+        
+        
+        
+        // $sql = 'SELECT * FROM sports_arena_profile 
+        //         WHERE sa_name=:names OR category=:category OR 
+        //         sports_arena_profile.location=:locations';
+
+        if($category=='Select One'){
+            $sql = 'SELECT * FROM sports_arena_profile 
+                WHERE sa_name=:names  AND
+                sports_arena_profile.location=:locations OR category=:category';
         }
-
+        if($location=='Select One'){
+            $sql = 'SELECT * FROM sports_arena_profile 
+                WHERE sa_name=:names   AND category=:category
+                OR sports_arena_profile.location=:locations';
+        }
 
         else{
-            if(!empty($category)){
-                if(!empty($name)){
-                    $sql = 'SELECT * FROM sports_arena_profile 
-                WHERE sa_name=:names AND category=:category';
-                }
-                else{
-                    $sql = 'SELECT * FROM sports_arena_profile 
-                WHERE category=":category';
-                }
-            
-            }
-            else{
-                if(!empty($name)){
-                    $sql = 'SELECT * FROM sports_arena_profile 
-                WHERE sa_name=:names';
-                }
-                else{
-                    $sql = 'SELECT * FROM sports_arena_profile ';
-                };
-            }
+            $sql = 'SELECT * FROM sports_arena_profile 
+                WHERE sa_name=:names OR category=:category OR 
+                sports_arena_profile.location=:locations';
         }
-        
-        
-        
 
-
+        // if($category==''){
+        //     $sql = 'SELECT * FROM sports_arena_profile 
+        //         WHERE sa_name=:names NOT category=:category OR 
+        //         sports_arena_profile.location=:locations';
+        // }
+        // if($location==''){
+        //     $sql = 'SELECT * FROM sports_arena_profile 
+        //         WHERE sa_name=:names OR category=:category NOT 
+        //         sports_arena_profile.location=:locations';
+        // }
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -192,9 +221,44 @@ class HomeModel extends \Core\Model
         return $result;
     }
 
- 
-    
+    public static function homeSelectLocations(){
+        
+        $sql = 'SELECT DISTINCT(sports_arena_profile.location)
+                FROM sports_arena_profile';
+        
 
 
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        // var_dump($result);
+        return $result;
+    }
+
+    public static function homeSelectCategories(){
+        
+        $sql = 'SELECT DISTINCT(sports_arena_profile.category)
+        FROM sports_arena_profile';
+        
+
+
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        // var_dump($result);
+        return $result;
+    }
 
 }

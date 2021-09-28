@@ -8,6 +8,7 @@ use \App\Auth;
 use \App\Models\LoginModel;
 use \App\Models\AdminModel;
 use \App\Models\SignupModel;
+use \App\Flash;
 
 class Otp extends \Core\Controller
 {
@@ -105,6 +106,7 @@ class Otp extends \Core\Controller
             $this->redirect($_SESSION['direct_url']);
         }
         else{
+            Flash::addMessage('OTP in Wrong',Flash::WARNING);
             $this->redirect('/Signup/success');
         }
 
