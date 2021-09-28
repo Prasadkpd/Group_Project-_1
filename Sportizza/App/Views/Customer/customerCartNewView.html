@@ -60,7 +60,7 @@
   <!-- Page content -->
   <div class="cartPage">
     <!-- <h1 class="page-header">Cart</h1> -->
-    <form method="post" action="https://sandbox.payhere.lk/pay/checkout" id="formSpArenaApplication" onsubmit="validateCheckoutForm()"      >
+    <form method="post" action="https://sandbox.payhere.lk/pay/checkout" id="formCheckout" onsubmit="validateCheckoutForm()"      >
     <div class="customerDetails">
       <div class="page">
         <div class="container">
@@ -71,18 +71,18 @@
 
               <div class="sp-details">
                 <input type="hidden" name="merchant_id" value="1217465">    <!-- Replace your Merchant ID -->
-                <input type="hidden" name="return_url" value="http://localhost/Customer">
+                <input type="hidden" name="return_url" value="http://localhost/Customer/paymentsuccess">
                 <input type="hidden" name="cancel_url" value="http://localhost/Customer/cart">
                 <input type="hidden" name="notify_url" value="http://localhost/Customer/payment">
                 <div class="input-box">
                   <label for="firstName">First Name</label>
-                  <input id="firstName" type="text" name="first_name" placeholder="Enter first Name">
+                  <input id="firstName" type="text" name="first_name" placeholder="Enter first Name" value="{{current_user.first_name}}">
                   <div class="helper-text" id="firstNameMsg"></div>
                 </div>
 
                 <div class="input-box">
                   <label for="lastName">Last Name</label>
-                  <input id="lastName" type="text" name="last_name" placeholder="Enter last Name">
+                  <input id="lastName" type="text" name="last_name" placeholder="Enter last Name" value="{{current_user.last_name}}">
                   <div class="helper-text" id="lastNameMsg"></div>
                 </div>
 
@@ -95,7 +95,7 @@
 
                 <div class="input-box">
                   <label for="contact">Contact</label>
-                  <input id="contact" type="text" name="phone" placeholder="ex: 0711223344">
+                  <input id="contact" type="text" name="phone" placeholder="ex: 0711223344" value="{{current_user.primary_contact}}">
                   <div class="helper-text" id="contactMsg"></div>
                 </div>
 
@@ -219,7 +219,7 @@
                   </div>
                 </div>
                 <input type="hidden" name="order_id" value="ItemNo12345">
-                <input type="hidden" name="items" value="Door bell wireless"><br>
+                <input type="hidden" name="items" value="Booking Timeslots"><br>
                 <input type="hidden" name="currency" value="LKR">
                 <input type="hidden" name="amount" value="1000">
               </div>
@@ -251,7 +251,7 @@
   <!-- End of Footer -->
 
   <script type="text/javascript" src="/Assets/js/signup_validation.js?version=8.0"></script>
-  <script type="text/javascript" src="/Assets/js/Customer/newCart.js?version=3"></script>
+  <script type="text/javascript" src="/Assets/js/Customer/newCart.js?version=4"></script>
 </body>
 
 </html>
