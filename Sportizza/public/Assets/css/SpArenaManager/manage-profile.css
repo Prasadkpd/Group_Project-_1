@@ -742,7 +742,7 @@ footer {
   height: 100vh;
   display: none;
   z-index: 10;
-  background-color: rgba(236, 236, 236, 0.836);
+  background-color: rgba(236, 236, 236, 0.95);
   margin: 0 auto;
 }
 
@@ -767,12 +767,15 @@ footer {
   padding-bottom: 1em;
   height: 80vh;
   overflow-y: scroll;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
 }
 
 
 .edit_formsection h2 {
   text-align: center;
   margin-bottom: 1em;
+  color: #34495e;
 }
 
 .edit_formsection::-webkit-scrollbar {

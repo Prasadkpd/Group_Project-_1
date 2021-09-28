@@ -445,9 +445,7 @@ nav .sign-in-out-btn :hover {
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
-.booking-table tbody::-webkit-scrollbar {
-  /* width: 12px; */
-}
+
 .booking-table tbody::-webkit-scrollbar-track {
   border-radius: 15px;
   /* background: rgb(233, 232, 229); 
@@ -481,124 +479,78 @@ tbody tr td .icon_red {
   width: max-content;
 }
 
-/* Set a style for popup section */
-.sectionpop h1 {
-  font-size: 24px;
-  text-align: center;
-  margin-bottom: 20px;
+/* <!-- Start OF the POP up SIGN out --> */
+.sectionpop h1{
+    font-size:24px;
+    text-align:center;
+    margin-bottom: 20px;
 }
-.sectionpop p {
-  text-align: center;
-  margin: 20px auto;
+.sectionpop p{
+
+text-align:center;
+margin: 20px auto;
 }
 
-.popup_button {
-  background-color: #2ecc71;
-  color: white;
-  font-weight: 600;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-  width: 30%;
-  opacity: 0.9;
-  margin: 5px auto;
-  border-radius: 50px;
-  border: none;
-  background-color: rgb(33, 219, 95);
-  width: 150px;
-  height: 49px;
-  align-items: center;
+.popup_button{
+background-color: #2ed573;
+color: white;
+font-weight: 600;
+font-size:16px;
+border: none;
+cursor: pointer;
+width: 30%;
+opacity: 0.9;
+margin: 5px auto;
+border-radius: 50px;
+border: none;
+width:150px;
+height: 49px;
+align-items: center;
+box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35)
+0px -2px 6px 0px inset;
 }
 
-.popup_button:hover {
-  background-color: white;
-  color: rgb(33, 219, 95);
-
-  border: 1px solid #2ecc71;
+.popup_delete_button{
+background-color: #e74c3c;
+color: white;
+font-weight: 600;
+font-size:16px;
+border: none;
+cursor: pointer;
+width: 30%;
+opacity: 0.9;
+margin: 5px auto;
+border-radius: 50px;
+border: none;
+width:150px;
+height: 49px;
+align-items: center;
+box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35)
+0px -2px 6px 0px inset;
 }
 
-.popup_delete_message button {
-  background-color: #04aa6d;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
+.popup_button:hover{
+background-color: white;
+color: rgb(33, 219, 95);
+border:2px solid #2ecc71;
 }
 
-.popup_delete_message button:hover {
-  opacity: 1;
-}
+.popup_delete_button:hover {
+background-color: white;
+border:2px solid #e74c3c;
+color: #e74c3c;
 
-/* Float cancel and delete buttons and add an equal width */
-.cancelbtn,
-.deletebtn {
-  float: left;
-  width: 50%;
 }
-
-/* Add a color to the cancel button */
-.popup_delete_message cancelbtn {
-  background-color: #ccc;
-  color: black;
+.popup_delete_button:hover *{
+color: #e74c3c;
 }
-
-/* Add a color to the delete button */
-.popup_delete_message .deletebtn {
-  background-color: #f44336;
+.popup_delete_button a{
+color:white;
+font-weight:600;
+padding: 1em 4em;
+border-radius: 30px;
 }
-
-/* Add padding and center-align text to the container */
-.popup_delete_message .container {
-  padding: 16px;
-  text-align: center;
-}
-
-/* The Modal (background) */
-.popup_delete_message .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: #474e5d;
-  padding-top: 50px;
-}
-
-/* Modal Content/Box */
-.popup_delete_message .modal-content {
-  background-color: #fefefe;
-  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-}
-
-/* Style the horizontal ruler */
-.popup_delete_message hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 25px;
-}
-
-/* The Modal Close Button (x) */
-.popup_delete_message .close {
-  position: absolute;
-  right: 35px;
-  top: 15px;
-  font-size: 40px;
-  font-weight: bold;
-  color: #f1f1f1;
-}
-
-.popup_delete_message .close:hover,
-.popup_delete_message .close:focus {
-  color: #f44336;
-  cursor: pointer;
-}
+<!-- End OF the POP up SIGN out -->
 
 /* Clear floats */
 .popup_delete_message .clearfix::after {
@@ -616,11 +568,11 @@ tbody tr td .icon_red {
 /* pop up form section */
 .sectionpop {
   position: fixed;
-  width: 100vw;
-  height: 100vh;
+  width:100vw;
+  height:100vh;
   display: none;
   z-index: 100;
-  background-color: gray;
+   background-color:rgba(236, 236, 236, .836);
   margin: 0 auto;
 }
 .editProPic {
@@ -659,15 +611,16 @@ label {
   cursor: pointer;
 }
 
-.formsection {
-  display: flex;
-  flex-direction: column;
+.formsection{
+    display: flex;
+    flex-direction:column;
   width: 25%;
-  min-width: 300px;
-  margin: 0 auto;
-  background-color: white;
+      margin: 0 auto;
+  background-color:white;
   border-radius: 20px;
   margin-top: 1%;
+    padding-bottom: 1em;
+
 }
 
 /* .editProPic img{
@@ -827,7 +780,26 @@ footer {
   padding: 2px 20px;
   display: sticky;
 }
-
+.date-picker{
+  width: 100%;
+}
+  .date-picker form{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .date-picker input[type='submit']{
+    padding: 10px;
+    color: #fd461f;
+  background-color: #fff;
+  }
+  .date-picker input[type='submit']:hover{
+    padding: 10px;
+    background-color: #fd461f;
+    color: #fff;
+  }
 /* starting media queries */
 @media screen and (max-width: 768px) {
   nav {
@@ -1140,7 +1112,7 @@ footer {
 .booking {
   display: flex;
   flex-direction: row;
-  height: 50vh;
+  height: 53vh;
   width: 100%;
   border-radius: 25px;
   /* display:none; */
@@ -1149,7 +1121,7 @@ footer {
 .left-container {
   background-color: #ff6348;
   display: flex;
-  height: 54vh;
+  height: 53vh;
   align-items: center;
   padding: 2rem;
   flex-direction: column;
@@ -1176,7 +1148,7 @@ footer {
 }
 .available-bookings {
   background-color: #f97f51;
-  height: 54vh;
+  height: 53vh;
   overflow-y: scroll;
   color: #fff;
   padding: 50px;
@@ -1233,9 +1205,9 @@ footer {
 .available-bookings i:hover {
   color: #2c3e50;
 }
-.btn.check-availability-btn {
-  background-color: #fd461f;
-  color: #fff;
+.check-availability-btn {
+  color: #fd461f;
+  background-color: #fff;
   border-radius: 2rem;
   float: right;
   font-size: 1.2rem;
@@ -1250,8 +1222,8 @@ footer {
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 .check-availability-btn:hover {
-  background-color: #fff;
-  color: #fd461f;
+  color: #fff;
+  background-color: #fd461f;
 }
 .cart {
   position: fixed;
@@ -1405,14 +1377,16 @@ footer {
     margin: 0rem auto;
     padding-right: 10px;
   }
+  
   .date-picker input[type="date"] {
-    width: 150px;
+    width: 80%;
     font-size: 0.8rem;
     border-radius: 30px;
     padding: 5px 10px;
     height: 40px;
     margin: 0px auto;
   }
+  
   .available-bookings {
     margin: 1rem auto;
     border-radius: 25px;
@@ -1475,7 +1449,9 @@ footer {
   .tab .tab-btn i {
     margin: 5px;
   }
-
+  .formsection{
+    width:90vw;
+  }
   .booking-table .booking-table-first-th .booking-table-filter-container {
     flex-direction: column;
     padding: 0 10px;
@@ -1541,5 +1517,7 @@ footer {
     font-size: .9em;
     margin-right: 2em;
   }
-
+  .available-bookings{
+    height: 40vh;
+  }
 }

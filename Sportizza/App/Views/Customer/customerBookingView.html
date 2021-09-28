@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Bookings</title>
     <!-- CSS File -->
-    <link rel="stylesheet" href="/Assets/css/Customer/newCustomerBooking.css">
+    <link rel="stylesheet" href="/Assets/css/Customer/newCustomerBooking.css?version=7">
     <!-- FontAwesome Icon -->
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 
@@ -118,15 +118,12 @@
     </div>
     <!-- end popup form for edit profile -->
 
-
-    <!-- start pop up sign out section -->
+    <!-- Start OF the POP up SIGN out -->
     <div id="popup_signout" class="sectionpop ">
-
-
         <div class="formsection">
-
+    
             <div>
-                <button s class="closebutton" onclick="close_popup_signout_message()">❌</button>
+                <button class="closebutton" onclick="close_popup_signout_message()">❌</button>
             </div>
             <form action="/action_page.php" style="margin:20px">
                 <div style="margin:auto">
@@ -134,16 +131,18 @@
                         Sign Out
                     </h1>
                     <p style="margin:auto">
-                        Do your really want to sign up now?
+                        Do your really want to sign out now?
                     </p>
                 </div>
             </form>
-
-
+    
+    
             <div style="display:flex">
-
-                <button style="background-color:#e74c3c    " class="popup_button">
-                    YES
+    
+                <button class="popup_delete_button">
+                    {% if current_user %}
+                    <a href="/logout"> YES</a>
+                    {% endif %}
                 </button>
                 <button onclick="close_popup_signout_message()" class="popup_button">
                     NO
@@ -151,9 +150,7 @@
             </div>
         </div>
     </div>
-    <!-- end pop up sign out section -->
-
-
+    <!-- End OF the POP up SIGN out -->
     <section class="page-container">
 
 
@@ -342,14 +339,15 @@
                                 </div>
 
                             </div>
+                            <div class="cart">
+                                <a href="/customer/cart">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </a>
+                            </div>
                         </div>
 
                     </div>
-                    <div class="cart">
-                        <a href="/customer/cart">
-                            <i class="fas fa-shopping-cart"></i>
-                        </a>
-                    </div>
+                   
                 </div>
 
 
