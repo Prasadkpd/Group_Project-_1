@@ -6,6 +6,8 @@ namespace App\Controllers;
 use Core\View;
 use \App\Auth;
 use App\Models\CustomerModel;
+use App\Models\EditProfileModel;
+
 class Customer extends Authenticated
 {
 
@@ -82,13 +84,42 @@ class Customer extends Authenticated
 
     // }
 
+
+
     public function paymentsuccessAction()
     {
         // Calling the notification
         
-        Notification::sendNotification($subject,$description,$p_level,$user_id);
+        // Notification::sendNotification($subject,$description,$p_level,$user_id);
         // D\Redirecting
         $this->redirect('/Customer');
+    }
+
+    public function customerupdatepasswordAction()
+    {
+        $oldPassword=$_POST['oldPassword'];
+        $newPassword=$_POST['newPassword'];
+        $username=Auth::getUser();
+
+        $result=EditProfileModel::PasswordValidate($username->username,  $oldPassword,$newPassword);
+
+        if($result){
+            $this->redirect('/Customer');
+        }
+        else{
+            
+
+        }
+
+        // var_dump($_GET);
+        // $id=$this->route_params['id'];
+        // var_dump($id);
+        // $timeSlots=CustomerModel::customerViewTimeSlots($id);
+        // $arenaDetails=CustomerModel::customerViewArenaDetails($id);
+        // $arenaFacilites=CustomerModel::customerArenaFacilities($id);
+        // var_dump($arenaDetails);
+        // View::renderTemplate('Customer/customerBookingView.html',
+        // ['timeSlots'=>$timeSlots,'arenaDetails'=>$arenaDetails,'arenaFacilites'=>$arenaFacilites]);
     }
 
    

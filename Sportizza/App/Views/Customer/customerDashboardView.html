@@ -216,11 +216,11 @@
             <div class="popup-header">
                 <h2>Password Reset</h2>
             </div>
-            <form style="margin:20px 20px 0px 20px" action="/">
+            <form style="margin:20px 20px 0px 20px" action="/Customer/customerupdatepassword" method="post">
                 <div class="input-box">
                     <label for="oldPassword">Old Password</label>
                     <div class="input-row">
-                        <input id="oldPassword" type="password" name="old_password" onfocusout="validateOldPassword()"
+                        <input id="oldPassword" type="password" name="oldPassword" onfocusout="validateOldPassword()"
                             placeholder="Enter old password">
                             <i class="bi bi-eye-slash" id="togglePassword1"></i>
                         <div class="helper-text" id="firstNameMsg">
@@ -232,7 +232,7 @@
                 <div class="input-box">
                     <label for="oldPassword">New Password</label>
                     <div class="input-row">
-                        <input id="newPassword" type="password" name="new_password" onfocusout="validateNewPassword()"
+                        <input id="newPassword" type="password" name="newPassword" onfocusout="validateNewPassword()"
                             placeholder="Enter new password">
                             <i class="bi bi-eye-slash" id="togglePassword2"></i>
                         <div class="helper-text" id="firstNameMsg">
@@ -242,8 +242,9 @@
                 </div>
 
                 <div style="display:flex" class="response_buttons">
-                    <a class="popup_button" href="/otp">
-                        YES</a>
+                    <!-- <a class="popup_button"  type="submit">
+                        YES</a> -->
+                        <input type="submit" class="popup_button" value="YaES">
                     <button id="No_EditPassword"  class="popup_button red">
                         NO
                     </button>
