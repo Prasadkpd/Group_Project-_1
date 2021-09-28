@@ -204,6 +204,7 @@ form input[type="submit"]:hover {
   margin-bottom: 2rem;
 }
 .page {
+  background-color:#fff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -260,6 +261,7 @@ form input[type="submit"]:hover {
 .cartDisplay {
   width: 30%;
   float:left;
+  background-color: #fff;
 }
 .cartPage form .sp-details {
   display: flex;
@@ -725,7 +727,6 @@ footer {
     justify-content: center;
     align-items: center;
     padding-top: 15px;
-    float: left;
   }
 
   .container .title {

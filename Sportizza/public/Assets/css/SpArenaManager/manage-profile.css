@@ -839,6 +839,7 @@ footer {
   padding: 10px 20px;
   outline: none;
 }
+
 /*
 
 
@@ -1144,5 +1145,24 @@ footer {
   }
   .formsection .popup_button {
     margin: auto;
+  }
+  .edit_formsection {
+    width: 80vw;
+  }
+  .edit_formsection .input-row{
+    flex-direction: column;
+    width: 96%;
+  }
+  .edit_formsection .input-row .input-box {
+    width: 70vw;
+    font-size: .9em;
+  }
+  .edit_formsection .popup_button{
+    padding: 5px 10px;
+    font-size: 14px;
+  }
+  .edit_profile_btn{
+    font-size: .9em;
+    padding: 5px 10px;
   }
 }
