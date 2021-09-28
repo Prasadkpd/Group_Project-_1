@@ -6,6 +6,7 @@ namespace App\Controllers;
 use Core\View;
 use \App\Auth;
 use App\Models\CustomerModel;
+use App\Models\NotificationModel;
 class Customer extends Authenticated
 {
 
@@ -84,11 +85,25 @@ class Customer extends Authenticated
 
     public function paymentsuccessAction()
     {
-        // Calling the notification
+        $current_user= Auth::getUser();
+        // $cid=$current_user->user_id;
+        $invoice_id=100000000;
+        // Defining arena staff ids
+        $mid=NotificationModel::notificationGetManagerIds($invoice_id);
+        $asid=NotificationModel::notificationGetAdminStaffIds($invoice_id);
+        $bhid=NotificationModel::notificationGetBookingStaffIds($invoice_id);
         
-        Notification::sendNotification($subject,$description,$p_level,$user_id);
+        $subject = array("customer"=>"Booking Confirmation Message","sports_arena"=>"Facility Booking Message");
+        $p_level="low";
+        // Calling the notification
+        $notify_check=NotificationModel::addNotificationBookingSuccess($current_user,$mid,$asid,$bhid,$subject,
+        $p_level,$invoice_id);
         // D\Redirecting
-        $this->redirect('/Customer');
+        if($notify_check) {
+            $this->redirect('/Customer');
+        } else {
+            $this->redirect('/Customer/cart');
+        }
     }
 
    
