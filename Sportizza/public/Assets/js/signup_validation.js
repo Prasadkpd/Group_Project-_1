@@ -111,6 +111,15 @@ function checkIfOnlyNumbers(field) {
         return false;
     }
 }
+function checkIfOnlyNumbersNext(field) {
+    if (/^[0-9]+$/.test(field.value)) {
+        setValidNext(field);
+        return true;
+    } else {
+        setInvalidNext(field, `${capitalizeFirstLetter(replaceUnderscore(field.name))} should have only numbers!`);
+        return false;
+    }
+}
 
 function checkCharacters(field) {
     if ((/^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/.test(field.value))) {
@@ -127,6 +136,15 @@ function checkSLNumber(field) {
         return true;
     } else {
         setInvalid(field, `${capitalizeFirstLetter(replaceUnderscore(field.name))} entered is invalid!`);
+        return false;
+    }
+}
+function checkSLNumberNext(field) {
+    if (/^07[0-9]{8}/.test(field.value)) {
+        setValidNext(field);
+        return true;
+    } else {
+        setInvalidNext(field, `${capitalizeFirstLetter(replaceUnderscore(field.name))} entered is invalid!`);
         return false;
     }
 }
@@ -201,6 +219,7 @@ function matchWithRegExPassword(regEx, field) {
         return false;
     }
 }
+
 
 function matchWithRegExEmail(regEx, field) {
     if (field.value.match(regEx)) {

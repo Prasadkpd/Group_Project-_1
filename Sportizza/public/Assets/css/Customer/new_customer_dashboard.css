@@ -147,6 +147,7 @@ nav .sign-in-out-btn :hover{
     margin:auto 0;
     float:left;
 }
+
 /* End of Top navigation bar  */
 /* ======================================================================== */
 /* Start-Page-container */
@@ -393,14 +394,21 @@ nav .sign-in-out-btn :hover{
        text-align: center;
     }
 
-      
+/* nav .helper-text {
+    color: #e74c3c;
+    font-size: 12px;
+    font-weight: 400;
+    margin-bottom:10px;
+    text-align: center;
+  }   */
 
 /* Set a style for popup section */
 .helper-text {
     color: #e74c3c;
-    font-size: 12px;
-    font-weight: 400;
+    font-size: 10px;
+    font-weight: 300;
     text-align: center;
+    
   }
 .formLink{
     text-decoration: underline;
@@ -418,7 +426,7 @@ nav .sign-in-out-btn :hover{
     margin: 20px auto;
 }
 
-.popup_button{
+.popup_button {
     background-color: #2ed573;
     color: white;
     font-weight: 600;
@@ -427,14 +435,39 @@ nav .sign-in-out-btn :hover{
     cursor: pointer;
     width: 30%;
     opacity: 0.9;
-    margin: 5px auto;
+    margin: auto 10px;
+    padding:5px;
     border-radius: 50px;
     border: none;
      width:150px;
-     height: 49px;
+     text-align:center;
+     height: 36px;
      align-items: center;
      box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
+.popup_button a{
+    color: white; 
+}
+.popup_button:hover{
+    color: #2ed573;
+    background-color: white;
+    border:2px solid #2ecc71;
+}
+.popup_button:hover *{
+    color: #2ed573;
+}
+button.change-password {
+    font-size:10px;
+    padding:5px 10px;
+    background:#fff;
+    color:#fd5936;
+    font-weight:500;
+    float:right;
+    margin:15px auto 10px auto;
+    border:0.5px solid #fd5936;
+    border-radius:15px;
+}
+
 
 .popup_delete_button{
     background-color: #e74c3c;
@@ -453,11 +486,16 @@ nav .sign-in-out-btn :hover{
      align-items: center;
      box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
+.popup_button.red{
+    background-color: #e74c3c;
+}
 
-.popup_button:hover{
-    background-color: white;
-    color: rgb(33, 219, 95);  
-    border:2px solid #2ecc71;
+
+
+.popup_button.red:hover{
+    border:2px solid #e74c3c;
+    color: #e74c3c;
+    background-color: #fff;
 }
 
 .popup_delete_button:hover {
@@ -671,33 +709,33 @@ nav .sign-in-out-btn :hover{
     width:25%;
     min-width: 300px;
     margin: 0 auto;    
+    padding:0px 20px 20px 20px;
     background-color:white;
     border-radius: 20px;
-    margin-top: 1%;
-   
-    
+    margin-top: 1%;  
   }
 
-
-  /* .editProPic img{
-      margin: 0 auto;
-      width: 30%;
-      border-radius: 500px;
-  } */
 
   .closebutton{
     width:20px;
     float:right;
-    margin-right: 15px;
     margin-top: 10px;
+    background-color:#fff;
+    border: none;
   }
   .openbutton{
       border: none;
       border-radius:50px;
   }
+  .opt-msg{
+      padding-top:0.5rem;
+      text-align:center;
+      font-weight:400;
+      font-size:0.7rem;
+      font-style:italic;
+  }
 
-  .nav-profile .username{
-    
+  .nav-profile .username{ 
     margin:auto;
     width:250px;
     font-weight: 600;
@@ -715,44 +753,73 @@ nav .sign-in-out-btn :hover{
     align-items: center;
     border: 1px;
 }
-
-.nav-user-edit-from label{
-    font-weight: 500;
-    font-size: 15px;
+form .input-box label {
+    margin-left: 15px;
+    font-weight: 600;
+    font-size:0.8rem;
+    color: #34495e;
+  }
+form i { 
+    cursor: pointer;
 }
-/* .nav-user-edit-from input[type=text],
-select,input[type=password] {
-  width: 100%;
-  padding:6px 20px;
-  margin: 2px auto;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 140px;
-  box-sizing: border-box;
-} */
-/* 
+form .input-box input{
+    width: 85%;
+    border:none;
+    padding:6px;
+}
+.input-row {
+    height: 36px;
+    width: 100%;
+    outline: none;
+    font-size: 16px;
+    border-radius: 25px;
+    padding-left: 20px;
+    /* padding-right:40px; */
+    border: 2px solid #f0f0f0;
+    transition: all 0.3s ease;
+    margin-bottom:10px;
+}
+.response_buttons{
+    padding-top:1rem;
+}
+.popup-header h3{
+    color:#222f3e;
+    font-weight:600;
+    font-size:0.9rem;
+    margin:1rem auto;
+    text-align:center;
+    
+}
+.popup-header h2{
+    color:#222f3e;
+    font-weight:600;
+    font-size:1rem;
+    margin:1rem auto 0rem auto;
+    text-align:center;
+    
+}
 .nav-user-edit-from input[type=submit] {
     
 display: flex;
   width:max-content;
   background-color: #fd461f ;
-  font-weight: 600;
+  font-weight: 500;
   color: #fff;
-  margin: 8px auto;
+  margin: 30px auto 3px auto;
   border: none;
   cursor: pointer;
   justify-content: center;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   display: inline-block;
-    padding: 0.65rem 2rem;    
+    padding: 0.3rem 1.5rem;    
     border-radius: 2rem;
     border-width: 0rem;
-    font-size: 1.05rem;
+    font-size: 0.8rem;
     text-transform: uppercase;
     display: flex;
     justify-content: center;
   
-} */
+} 
 
 
 /* end popup section   */

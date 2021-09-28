@@ -54,6 +54,7 @@
     }
 
 
+    //right
     //popup editPrimaryPhoneNumber section
     function open_editPrimaryPhoneNumber(){
       var form=document.getElementById("popup_editPrimaryNumber");
@@ -69,22 +70,22 @@
 }
 
    //popup editSecondaryPhoneNumber section
-   function open_editSecondaryPhoneNumber(){
-    var form=document.getElementById("popup_editSecondaryNumber");
-    var profile=document.getElementById("myForm");
-    profile.style.display="none"
-    form.style.display = "block";
-}
-function close_editSecondaryPhoneNumber(){
-  var form=document.getElementById("popup_editSecondaryNumber");
-  var profile=document.getElementById("myForm");
-  profile.style.display="block"
-  form.style.display = "none";
-}
+//    function open_editSecondaryPhoneNumber(){
+//     var form=document.getElementById("popup_editSecondaryNumber");
+//     var profile=document.getElementById("myForm");
+//     profile.style.display="none"
+//     form.style.display = "block";
+// }
+// function close_editSecondaryPhoneNumber(){
+//   var form=document.getElementById("popup_editSecondaryNumber");
+//   var profile=document.getElementById("myForm");
+//   profile.style.display="block"
+//   form.style.display = "none";
+// }
 
-
+    //wrong
    //popup edit password section
-   function open_editPassword(){
+function open_editPassword(){
     var form=document.getElementById("popup_editPassword");
     var profile=document.getElementById("myForm");
     profile.style.display="none"
@@ -96,6 +97,23 @@ function close_editPassword(){
   profile.style.display="block"
   form.style.display = "none";
 }
+
+document.getElementById("ChangePassword").addEventListener("click", function(event){
+  event.preventDefault();
+  open_editPassword();
+});
+
+document.getElementById("No_EditPassword").addEventListener("click", function(event){
+  event.preventDefault();
+  close_editPassword();
+});
+
+const oldPassword = document.getElementById('oldPassword');
+const togglePassword1 = document.querySelector('#togglePassword1');
+const showPassword1 = document.querySelector('#oldPassword');
+
+
+
 
 
 

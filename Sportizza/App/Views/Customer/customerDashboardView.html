@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer</title>
     <!-- CSS File -->
-    <link rel="stylesheet" href="/Assets/css/Customer/new_customer_dashboard.css?version=10">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="/Assets/css/Customer/new_customer_dashboard.css?version=15">
     <!-- FontAwesome Icon -->
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 
@@ -24,7 +25,7 @@
                     <i class="fas fa-running "></i>
                     <span class="logo-name">Sportizza</span>
                 </a>
-            </div> 
+            </div>
             <div class="search-bar-container">
                 <input type="search" name="search" placeholder="Search">
                 <i class="fas fa-search "></i>
@@ -66,7 +67,7 @@
         {% endif %} -->
 
             </div>
-        </div> 
+        </div>
 
 
 
@@ -95,192 +96,159 @@
                 <input type="file" id="file">
                 <label for="file" id="uploadBtn">Choose Photo</label>
             </div>
-            <form action="/action_page.php" style="margin:20px;margin-top: 0px;" class="nav-user-edit-from">
+            <form action="/login" method="post" style="margin:0px 20px 5px 20px;" class="nav-user-edit-from"
+                id="formEditUserProfile" onsubmit="validateEditUserForm()">
 
-                <label for="firstName">First Name</label>
-                <div class="form-input-contant">
-                    <input id="firstName" type="text" name="first_name" onfocusout="validateFirstName()"
-                        placeholder="Enter first name" value="{{user.first_name}}">
-                    <i class="fas fa-user-edit"></i>    
+                <div class="input-box">
+                    <label for="firstName">First Name</label>
+                    <div class="input-row">
+                        <input id="firstName" type="text" name="first_name" onfocusout="validateFirstName()"
+                            placeholder="Enter first name" value="{{current_user.first_name}}">
+
+                        <div class="helper-text" id="firstNameMsg">
+                            <p>{{errors["first_name1"]}} {{errors["first_name2"]}}</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="helper-text" id="firstNameMsg"></div>
-               
 
+                <div class="input-box">
+                    <label for="lastName">Last Name</label>
+                    <div class="input-row">
+                        <input id="lastName" type="text" name="last_name" onfocusout="validateLastName()"
+                            placeholder="Enter last name" value="{{current_user.last_name}}">
 
-                <label for="lastName">Last Name</label>
-                <div class="form-input-contant">
-                    <input id="lastName" type="text" name="last_name" onfocusout="validateLastName()"
-                        placeholder="Enter last name" value="{{user.last_name}}">
-                    <i class="fas fa-user-edit"></i>
+                        <div class="helper-text" id="lastNameMsg">
+                            <p>{{errors["last_name1"]}} {{errors["last_name2"]}}</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="helper-text" id="lastNameMsg"></div>
 
-                <label for="username">Username</label>
-                <div class="form-input-contant">
-                    <input id="username" type="text" name="username" onfocusout="validateUsername()"
-                        placeholder="Enter a unique Username" value="{{ user.username}}">
-                    <i class="fas fa-user-edit"></i>
+
+
+
+                <div class="input-box">
+                    <label for="username">Username</label>
+                    <div class="input-row">
+                        <input id="username" type="text" name="username" onfocusout="validateUsername()"
+                            placeholder="Enter a unique Username" value="{{current_user.username}}">
+                        <!-- <i class="fas fa-pen"></i> -->
+                        <div class="helper-text" id="usernameMsg">
+                            <p>{{errors["username1"]}} {{errors["username2"]}}</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="helper-text" id="usernameMsg"></div>
 
-                <label for="primaryNumber">Primary Number</label>
-                <div class="form-input-contant">
-                    <input type="text" id="primaryNumber" name="primaryNumber" placeholder="Enter Primary Number"
-                        value="0705614640">
-                    <i class="fas fa-user-edit"></i>
+                <div class="input-box">
+                    <label for="password">Password</label>
+                    
+                    <!-- wrong -->
+                    <!-- <button onclick="open_editPassword()" class="change-password"> -->
+                    <button class="change-password" id="ChangePassword">
+                        <i class="fas fa-pen" ></i>
+                        Change Password
+                    </button>
+                <!-- </div> -->
+                    <!-- <div class="input-row">
+                        <input id="password" type="password" name="password" onfocusout="validatePassword()"
+                            placeholder="Enter a password" value="{{current_user.password}}">
+                        <i class="bi bi-eye-slash" id="togglePassword"></i>
+                        <div class="helper-text" id="passwordMsg">
+                            <p>{{errors["password1"]}} {{errors["password2"]}}
+                                {{errors["password3"]}} {{errors["password4"]}}
+                                {{errors["password5"]}} {{errors["password6"]}}
+                            </p>
+                        </div>
+                    </div>  -->
                 </div>
-                <!-- <a class="formLink" onclick="open_editPrimaryPhoneNumber()">Click here to change</a> <br> -->
 
-
-
-                <label for="secondaryNumber">Secondary Number</label>
-                <div class="form-input-contant">
-                    <input type="text" id="secondaryNumber" name="lastname" placeholder="Enter Secondary Number"
-                        value="0705614640">
-                    <i class="fas fa-user-edit"></i>
+                <div class="input-box">
+                    <label for="primary_contact">Primary Contact</label>
+                    <div class="input-row">
+                        <input id="primary_contact" type="text" name="primary_contact"
+                            
+                            value="{{current_user.primary_contact}}" disabled>
+                        <i class="fas fa-pen" onclick="open_editPrimaryPhoneNumber()"></i>
+                        <div class="helper-text" id="mobileMsg">
+                            <p>{{errors["mobile_number1"]}}
+                                {{errors["mobile_number2"]}}
+                                {{errors["mobile_number3"]}}
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <!-- <a class="formLink" " onclick=" open_editSecondaryPhoneNumber()">Click here to change</a> <br> -->
-
-                <label for="password">Password</label>
-                <div class="form-input-contant">
-                    <input type="password" id="password" name="password" 
-                        value="0705614640">
-                    <i class="fas fa-user-edit"></i>
-                </div>
-                <!-- <a class="formLink" onclick="open_editPassword()">Click here to change</a> <br> -->
-
+            
                 <input type="submit" value="Save">
-
             </form>
-
-
         </div>
-
     </div>
-
-
 
 
     <!-- start edit primary number section -->
     <div id="popup_editPrimaryNumber" class="sectionpop ">
-
-
         <div class="formsection">
-
             <div>
-                <button s class="closebutton" onclick="close_editPrimaryPhoneNumber()">❌</button>
+                <button class="closebutton" onclick="close_editPrimaryPhoneNumber()">❌</button>
             </div>
-            <form action="/action_page.php" style="margin:20px">
-
-                <label for="oldNumberOTP">OTP Code From Old Mobile Number</label>
-                <input type="text" id="userid" name="oldNumberOTP" placeholder="Example-1293" value="">
-
-                <label for="mobile">Primary Number</label>
-                <input id="mobile" type="text" name="mobile_number" onfocusout="validateMobile()"
-                    placeholder="Ex:-) 0712345678" value="{{user.mobile_number}}">
-                <div class="helper-text" id="mobileMsg"></div>
-
-
-
-                <label for="newNumberOTP">OTP Code From New Mobile Number</label>
-                <input type="text" id="newNumberOTP" name="newNumberOTP" placeholder="Example-1293" value="">
-            </form>
-
-
+            <div class="popup-header">
+                <h3>Do you really want to change your primary contact?</h3>
+            </div>
             <div style="display:flex">
-
-                <button style="background-color:#e74c3c    " class="popup_button">
-                    Submit
-                </button>
-                <button onclick="close_editPrimaryPhoneNumber()" class="popup_button">
+               
+                    <a class="popup_button" href="/otp">
+                    YES</a>
+               
+                <button onclick="close_editPrimaryPhoneNumber()" class="popup_button red">
                     NO
                 </button>
             </div>
+            <div class="opt-msg">**We are going to send you an OTP code to your previous Primary Contact</div>
         </div>
     </div>
     <!--end edit primary number section -->
 
 
-    <!-- start edit secondary number section -->
-    <div id="popup_editSecondaryNumber" class="sectionpop ">
-
-
-        <div class="formsection">
-
-            <div>
-                <button s class="closebutton" onclick="close_editSecondaryPhoneNumber()">❌</button>
-            </div>
-            <form action="/action_page.php" style="margin:20px">
-
-                <label for="oldNumberOTP">OTP Code From Old Mobile Number</label>
-                <input type="text" id="userid" name="oldNumberOTP" placeholder="Example-1293" value="">
-
-                <label for="mobile">Primary Number</label>
-                <input id="mobile" type="text" name="mobile_number" onfocusout="validateMobile()"
-                    placeholder="Ex:-) 0712345678" value="{{user.mobile_number}}">
-                <div class="helper-text" id="mobileMsg"></div>
-
-
-
-                <label for="newNumberOTP">OTP Code From New Mobile Number</label>
-                <input type="text" id="newNumberOTP" name="newNumberOTP" placeholder="Example-1293" value="">
-            </form>
-
-
-            <div style="display:flex">
-
-                <button style="background-color:#e74c3c    " class="popup_button">
-                    Submit
-                </button>
-                <button onclick="close_editSecondaryPhoneNumber()" class="popup_button">
-                    NO
-                </button>
-            </div>
-        </div>
-    </div>
-    <!--end edit secondary number section -->
-
     <!-- start edit password number section -->
-    <div id="popup_editPassword" class="sectionpop ">
-
-
+    <div id="popup_editPassword" class="sectionpop">
         <div class="formsection">
-
             <div>
-                <button s class="closebutton" onclick="close_editPassword()">❌</button>
+                <button class="closebutton" onclick="close_editPassword()">❌</button>
             </div>
-            <form action="/action_page.php" style="margin:20px">
+            <div class="popup-header">
+                <h2>Password Reset</h2>
+            </div>
+            <form style="margin:20px 20px 0px 20px" action="/">
+                <div class="input-box">
+                    <label for="oldPassword">Old Password</label>
+                    <div class="input-row">
+                        <input id="oldPassword" type="password" name="old_password" onfocusout="validateOldPassword()"
+                            placeholder="Enter old password">
+                            <i class="bi bi-eye-slash" id="togglePassword1"></i>
+                        <div class="helper-text" id="firstNameMsg">
+                            <p>{{errors["first_name1"]}} {{errors["first_name2"]}}</p>
+                        </div>
+                    </div>
+                </div>
 
-                <label for="oldNumberOTP">OTP Code From Mobile Number</label>
-                <input type="text" id="userid" name="oldNumberOTP" placeholder="Example-1293" value="">
+                <div class="input-box">
+                    <label for="oldPassword">New Password</label>
+                    <div class="input-row">
+                        <input id="newPassword" type="password" name="new_password" onfocusout="validateNewPassword()"
+                            placeholder="Enter new password">
+                            <i class="bi bi-eye-slash" id="togglePassword2"></i>
+                        <div class="helper-text" id="firstNameMsg">
+                            <p>{{errors["first_name1"]}} {{errors["first_name2"]}}</p>
+                        </div>
+                    </div>
+                </div>
 
-
-                <!-- <label for="newNumberOTP">Enter Old Password</label>
-            <input type="text" id="newNumberOTP" name="newNumberOTP"
-                placeholder="" value=""> -->
-
-
-                <label for="password">New Password</label>
-                <input id="password" type="password" name="password" onfocusout="validatePassword()"
-                    placeholder="Enter a password" value="">
-                <i class="bi bi-eye-slash" id="togglePassword"></i>
-                <div class="helper-text" id="passwordMsg"></div>
-
-
-
-
+                <div style="display:flex" class="response_buttons">
+                    <a class="popup_button" href="/otp">
+                        YES</a>
+                    <button id="No_EditPassword"  class="popup_button red">
+                        NO
+                    </button>
+                </div>
             </form>
-
-
-            <div style="display:flex">
-
-                <button style="background-color:#e74c3c    " class="popup_button">
-                    Submit
-                </button>
-                <button onclick="close_editPassword()" class="popup_button">
-                    NO
-                </button>
-            </div>
         </div>
     </div>
     <!--end edit password number section -->
@@ -330,8 +298,6 @@
 
     <!-- popup share section -->
     <div id="popup_share" class="sectionpop ">
-
-
         <div class="formsection">
 
             <div>
@@ -394,7 +360,7 @@
         <div class="formsection">
 
             <div>
-                <button s class="closebutton" onclick="close_popup_rate_message()">❌</button>
+                <button  class="closebutton" onclick="close_popup_rate_message()">❌</button>
             </div>
             <form action="/action_page.php" style="margin:20px">
                 <label for="fname">Sports Arena Name</label>
@@ -594,7 +560,7 @@
 
                             {% for book in bookings %}
                             {% if book.payment_status=="paid" %}
-                            <tr >
+                            <tr>
 
 
                                 <td data-label="Booking ID :" class="table-td-left">{{book.booking_id}}</td>
@@ -602,9 +568,11 @@
                                 <td data-label="Start Time :" class="table-td-left">{{book.start_time}}</td>
                                 <td data-label="End Time :" class="table-td-left">{{book.end_time}}</td>
                                 <td data-label="Arena Name:" class="table-td-left">{{book.sa_name}}</td>
-                                <td data-label="Category:" >{{book.category}}</td>
+                                <td data-label="Category:">{{book.category}}</td>
                                 <td data-label="Payment Method :">{{book.payment_method}}</td>
-                                <td data-label="Payment Status :"><div class="Payment-status active"><a href="">{{book.payment_status}}</a></div></td>
+                                <td data-label="Payment Status :">
+                                    <div class="Payment-status active"><a href="">{{book.payment_status}}</a></div>
+                                </td>
                                 <td data-label="Amount:">{{book.price_per_booking}}</td>
 
                                 <!-- <td data-label="Booking Status">Pending</td> -->
@@ -620,47 +588,49 @@
                                                 <i class="fas fa-times"></i>
                                             </button>
                                         </div>
-                                    </td>
-                                    </div>
                                 </td>
-                                    </div>
-                                </td>
-                            </tr>
-                            {% endif %}
+                </div>
+                </td>
+            </div>
+            </td>
+            </tr>
+            {% endif %}
 
-                            {% if book.payment_status=="unpaid" %}
-                            <tr >
-                                <td data-label="Booking ID :" class="table-td-left">{{book.booking_id}}</td>
-                                <td data-label="Booking Date :" class="table-td-left">{{book.booked_date}}</td>
-                                <td data-label="Start Time :" class="table-td-left">{{book.start_time}}</td>
-                                <td data-label="End Time :" class="table-td-left">{{book.end_time}}</td>
-                                <td data-label="Arena Name:" class="table-td-left">{{book.sa_name}}</td>
-                                <td data-label="Category:" >{{book.category}}</td>
-                                <td data-label="Payment Method :">{{book.payment_method}}</td>
-                                <td data-label="Payment Status :"><div class="Payment-status"><a href="">{{book.payment_status}}</a></div></td>
-                                <td data-label="Amount:">{{book.price_per_booking}}</td>
+            {% if book.payment_status=="unpaid" %}
+            <tr>
+                <td data-label="Booking ID :" class="table-td-left">{{book.booking_id}}</td>
+                <td data-label="Booking Date :" class="table-td-left">{{book.booked_date}}</td>
+                <td data-label="Start Time :" class="table-td-left">{{book.start_time}}</td>
+                <td data-label="End Time :" class="table-td-left">{{book.end_time}}</td>
+                <td data-label="Arena Name:" class="table-td-left">{{book.sa_name}}</td>
+                <td data-label="Category:">{{book.category}}</td>
+                <td data-label="Payment Method :">{{book.payment_method}}</td>
+                <td data-label="Payment Status :">
+                    <div class="Payment-status"><a href="">{{book.payment_status}}</a></div>
+                </td>
+                <td data-label="Amount:">{{book.price_per_booking}}</td>
 
-                                <!-- <td data-label="Booking Status">Pending</td> -->
-                                <td class="btn-float-right">
-                                    <div style="display:flex; float:right; padding-right:2rem;">
-                                        <div>
-                                            <button onclick="open_popup_share()">
-                                                <i class="fas fa-share "></i>
-                                            </button>
-                                        </div>
-                                        <div>
-                                            <button class="icon_red" onclick="open_popup_cancel_message()">
-                                                <i class="fas fa-times"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            {% endif %}
-                           
-                            {% endfor %}
+                <!-- <td data-label="Booking Status">Pending</td> -->
+                <td class="btn-float-right">
+                    <div style="display:flex; float:right; padding-right:2rem;">
+                        <div>
+                            <button onclick="open_popup_share()">
+                                <i class="fas fa-share "></i>
+                            </button>
+                        </div>
+                        <div>
+                            <button class="icon_red" onclick="open_popup_cancel_message()">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            {% endif %}
 
-                            <!-- 
+            {% endfor %}
+
+            <!-- 
                             <tr>
                                 <td data-label="Booking ID :">BD1234567</td>
                                 <td data-label="Booking Date :">2021/09/30</td>
@@ -695,116 +665,116 @@
                             </tr> -->
 
 
-                        </tbody>
-                    </table>
-                </div>
-                <div id="my_favorite_list" class="booking_tab_content">
+            </tbody>
+            </table>
+        </div>
+        <div id="my_favorite_list" class="booking_tab_content">
 
 
 
-                    <table class="booking-table my-favourite-list">
-                        <thead>
-                            <tr class="booking-thead-first-tr">
-                                <th class="booking-table-first-th">
-                                    <div class="booking-table-filter-container">
-                                        <div class="booking-table-search-container">
-                                            <input type="search" name="search" placeholder="Search">
-                                            <i class="fas fa-search"></i>
-                                        </div>
+            <table class="booking-table my-favourite-list">
+                <thead>
+                    <tr class="booking-thead-first-tr">
+                        <th class="booking-table-first-th">
+                            <div class="booking-table-filter-container">
+                                <div class="booking-table-search-container">
+                                    <input type="search" name="search" placeholder="Search">
+                                    <i class="fas fa-search"></i>
+                                </div>
 
-                                    </div>
-                                </th>
-                            </tr>
-                            <tr class="booking-thead-second-tr">
-                                <th class="b-first-th" style="text-align:center;padding-left:1em;">Sports Arena Name
-                                </th>
-                                <th>Category</th>
-                                <th>Location</th>
-                                <th></th>
-                                <th class="b-last-th"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                            </div>
+                        </th>
+                    </tr>
+                    <tr class="booking-thead-second-tr">
+                        <th class="b-first-th" style="text-align:center;padding-left:1em;">Sports Arena Name
+                        </th>
+                        <th>Category</th>
+                        <th>Location</th>
+                        <th></th>
+                        <th class="b-last-th"></th>
+                    </tr>
+                </thead>
+                <tbody>
 
-                            {% for item in list %}
-                            <tr>
-                                <td data-label="Sports Arena Name:">{{item.sa_name}}</td>
-                                <td data-label="Category:">{{item.category}}</td>
-                                <td data-label="Address:">{{item.location}}</td>
-                                <td>
-                                    <button class="popup_button">
-                                        Availability
-                                    </button>
-                                </td>
-                                <td>
-                                    <button class="icon_red" onclick="open_popup_delete_message_favorite_list()"
-                                        class="delete_button">
-                                        <i class="far fa-trash-alt fa-2x"></i>
-                                    </button>
-                                </td>
+                    {% for item in list %}
+                    <tr>
+                        <td data-label="Sports Arena Name:">{{item.sa_name}}</td>
+                        <td data-label="Category:">{{item.category}}</td>
+                        <td data-label="Address:">{{item.location}}</td>
+                        <td>
+                            <button class="popup_button">
+                                Availability
+                            </button>
+                        </td>
+                        <td>
+                            <button class="icon_red" onclick="open_popup_delete_message_favorite_list()"
+                                class="delete_button">
+                                <i class="far fa-trash-alt fa-2x"></i>
+                            </button>
+                        </td>
 
-                            </tr>
+                    </tr>
 
-                            {% endfor %}
+                    {% endfor %}
 
-                        </tbody>
-                    </table>
-                </div>
+                </tbody>
+            </table>
+        </div>
 
-                <div id="notification" class="booking_tab_content">
-                    <table class="booking-table">
-                        <thead>
-                            <tr class="booking-thead-first-tr">
-                                <th class="booking-table-first-th">
-                                    <div class="booking-table-filter-container">
-                                        <div class="booking-table-search-container">
-                                            <input type="search" name="search" placeholder="Search">
-                                            <i class="fas fa-search"></i>
-                                        </div>
-                                        <div class="booking-table-date-picker">
-                                            <label class="date-label">Date</label>
-                                            <input type="date">
-                                        </div>
-                                    </div>
-                                </th>
-                            </tr>
-                            <tr class="booking-thead-second-tr" style="text-align: center;">
-                                <th class="b-first-th">Date</th>
-                                <th>Time</th>
-                                <th class="b-last-th" style="width:57%; text-align:right;">Notification</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for notification in notifications %}
-                            <tr style="cursor: pointer" onclick="open_popup_notification()">
-                                <td data-label="Date:">{{notification.date}}</td>
-                                <td data-label="Time:">{{notification.time}}</td>
-                                <td class="notification-td-left">{{notification.subject}}</td>
-                            </tr>
+        <div id="notification" class="booking_tab_content">
+            <table class="booking-table">
+                <thead>
+                    <tr class="booking-thead-first-tr">
+                        <th class="booking-table-first-th">
+                            <div class="booking-table-filter-container">
+                                <div class="booking-table-search-container">
+                                    <input type="search" name="search" placeholder="Search">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                                <div class="booking-table-date-picker">
+                                    <label class="date-label">Date</label>
+                                    <input type="date">
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
+                    <tr class="booking-thead-second-tr" style="text-align: center;">
+                        <th class="b-first-th">Date</th>
+                        <th>Time</th>
+                        <th class="b-last-th" style="width:57%; text-align:right;">Notification</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for notification in notifications %}
+                    <tr style="cursor: pointer" onclick="open_popup_notification()">
+                        <td data-label="Date:">{{notification.date}}</td>
+                        <td data-label="Time:">{{notification.time}}</td>
+                        <td class="notification-td-left">{{notification.subject}}</td>
+                    </tr>
 
-                            {% endfor %}
+                    {% endfor %}
 
-                        </tbody>
-                    </table>
-                </div>
+                </tbody>
+            </table>
+        </div>
 
 
 
-                <div id="add_bookings" class="booking_tab_content">
-                    <h3>add_bookings</h3>
-                    <p>add_bookings is the capital of France.</p>
-                </div>
+        <div id="add_bookings" class="booking_tab_content">
+            <h3>add_bookings</h3>
+            <p>add_bookings is the capital of France.</p>
+        </div>
 
-                <div id="cancel_booking" class="booking_tab_content">
-                    <h3>cancel_booking</h3>
-                    <p>cancel_booking is the capital of Japan.</p>
-                </div>
-                <div id="booking_payment" class="booking_tab_content">
-                    <h3>booking_payment</h3>
-                    <p>cancel_booking is the capital of Japan.</p>
-                </div>
+        <div id="cancel_booking" class="booking_tab_content">
+            <h3>cancel_booking</h3>
+            <p>cancel_booking is the capital of Japan.</p>
+        </div>
+        <div id="booking_payment" class="booking_tab_content">
+            <h3>booking_payment</h3>
+            <p>cancel_booking is the capital of Japan.</p>
+        </div>
 
-            </div>
+        </div>
         </div>
 
 
@@ -820,9 +790,11 @@
     </footer>
     <!-- End of Footer -->
 
-    <script type="text/javascript" src="/Assets/js/Customer/new_customer_dashbord.js?v=1"></script>
-    <script type="text/javascript" src="/Assets/js/Customer/customerEditProfileValidation.js?v=1"></script>
-    <script type="text/javascript" src="/Assets/js/Customer/editProfileValidation.js?v=1"></script>
+    <script type="text/javascript" src="/Assets/js/signup_validation.js?v=6"></script>
+    <script type="text/javascript" src="/Assets/js/Customer/editProfileValidation.js?v=6"></script>
+
+
+    <script type="text/javascript" src="/Assets/js/Customer/new_customer_dashbord.js?v=6"></script>
 
 </body>
 

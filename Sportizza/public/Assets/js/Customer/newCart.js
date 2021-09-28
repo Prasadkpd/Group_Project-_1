@@ -150,7 +150,6 @@ formCheckout.addEventListener('submit', function (event) {
 //             document.getElementById("view_booking_button").click();
 //         };
 
-
 // let thumbnails = document.getElementsByClassName('thumbnail');
 // let slider = document.getElementById('slider');
 
