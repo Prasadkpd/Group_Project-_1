@@ -7,13 +7,15 @@ use \App\Models\User;
 use \App\Auth;
 use \App\Models\LoginModel;
 use \App\Models\AdminModel;
+use \App\Flash;
 
 
 class Login extends \Core\Controller
 {
     public function indexAction()
     {
-        View::renderTemplate('LoginSignup/loginView.html',['message'=>$_SESSION['otp']]);
+        // View::renderTemplate('LoginSignup/loginView.html',['message'=>$_SESSION['otp']]);
+        View::renderTemplate('LoginSignup/loginView.html');
     }
 
 
@@ -107,6 +109,13 @@ class Login extends \Core\Controller
     {
         Auth::logout();
 
+        $this->redirect('/login/showLogoutMessage');
+        
+    }
+    public function showLogoutMessageAction(){
+        Flash::addMessage('logout successful');
         $this->redirect('/login');
     }
-    }
+
+
+}
