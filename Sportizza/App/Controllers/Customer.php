@@ -37,8 +37,6 @@ class Customer extends Authenticated
 
     public  function cartAction()
     {
-        
-
         View::renderTemplate('Customer/customerCartNewView.html');
     }
 
@@ -75,6 +73,15 @@ class Customer extends Authenticated
     //     }
 
     // }
+
+    public function paymentsuccessAction()
+    {
+        // Calling the notification
+        
+        Notification::sendNotification($subject,$description,$p_level,$user_id);
+        // D\Redirecting
+        $this->redirect('/Customer');
+    }
 
    
 }
