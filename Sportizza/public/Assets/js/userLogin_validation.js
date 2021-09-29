@@ -112,3 +112,17 @@ function closepopupform_for_mobile() {
     var form = document.getElementById("myForm_for_mobile");
     form.style.display = "none";
 }
+
+
+
+    //popup cancel message
+    function open_popup_cancel_message(){
+        var form=document.getElementById("popup_cancel");
+        
+        form.style.display = "block";
+    }
+    function close_popup_cancel_message(){
+      var form=document.getElementById("popup_cancel");
+      
+      form.style.display = "none";
+  }

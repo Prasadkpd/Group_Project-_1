@@ -440,3 +440,268 @@ footer {
   }
   
 }
+
+
+
+
+
+
+
+
+
+.sectionpop h1{
+  font-size:24px;
+  text-align:center;
+  margin-bottom: 20px;
+}
+.sectionpop p{
+
+  text-align:center;
+  margin: 20px auto;
+}
+
+.popup_button {
+  background-color: #2ed573;
+  color: white;
+  font-weight: 600;
+  font-size:16px;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+  opacity: 0.9;
+  margin: auto 10px;
+  padding:5px;
+  border-radius: 50px;
+  border: none;
+   width:150px;
+   text-align:center;
+   height: 36px;
+   align-items: center;
+   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+.popup_button a{
+  color: white; 
+}
+.popup_button:hover{
+  color: #2ed573;
+  background-color: white;
+  border:2px solid #2ecc71;
+}
+.popup_button:hover *{
+  color: #2ed573;
+}
+button.change-password {
+  font-size:10px;
+  padding:5px 10px;
+  background:#fff;
+  color:#fd5936;
+  font-weight:500;
+  float:right;
+  margin:15px auto 10px auto;
+  border:0.5px solid #fd5936;
+  border-radius:15px;
+}
+
+
+.popup_delete_button{
+  background-color: #e74c3c;
+  color: white;
+  font-weight: 600;
+  font-size:16px;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+  opacity: 0.9;
+  margin: 5px auto;
+  border-radius: 50px;
+  border: none;
+   width:150px;
+   height: 49px;
+   align-items: center;
+   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+.popup_button.red{
+  background-color: #e74c3c;
+}
+
+
+
+.popup_button.red:hover{
+  border:2px solid #e74c3c;
+  color: #e74c3c;
+  background-color: #fff;
+}
+
+.popup_delete_button:hover {
+  background-color: white;
+  border:2px solid #e74c3c;
+  color: #e74c3c;
+
+}
+.popup_delete_button:hover *{
+  color: #e74c3c;
+}
+.popup_delete_button a{
+  color:white;
+  font-weight:600;
+  padding: 1em 4em; 
+  border-radius: 30px;
+}
+
+
+/* .popup_delete_message button {
+  background-color: #e74c3c;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+} */
+
+/* .popup_delete_message button:hover {
+  opacity:1;
+  background-color: white;
+  color:#e74c3c;
+} */
+
+/* Float cancel and delete buttons and add an equal width */
+.cancelbtn, .deletebtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add a color to the cancel button */
+.popup_delete_message cancelbtn {
+  background-color: #ccc;
+  color: black;
+}
+
+/* Add a color to the delete button */
+.popup_delete_message .deletebtn {
+  background-color: #f44336;
+}
+
+/* Add padding and center-align text to the container */
+.popup_delete_message .container {
+  padding: 16px;
+  text-align: center;
+}
+
+/* The Modal (background) */
+.popup_delete_message .modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: #474e5d;
+  padding-top: 50px;
+}
+
+/* Modal Content/Box */
+.popup_delete_message .modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* Style the horizontal ruler */
+.popup_delete_message hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+ 
+/* The Modal Close Button (x) */
+.popup_delete_message .close {
+  position: absolute;
+  right: 35px;
+  top: 15px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #f1f1f1;
+}
+
+.popup_delete_message .close:hover,
+.popup_delete_message .close:focus {
+  color: #f44336;
+  cursor: pointer;
+}
+
+/* Clear floats */
+.popup_delete_message .clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+  
+/* pop up form section */
+.sectionpop {
+  position: fixed;
+  width:100vw;
+  height:100vh;
+  display: none;
+  z-index: 100;
+
+
+  background-color:rgba(238, 236, 236, 0.836);
+
+
+
+  margin: 0 auto;
+}
+
+
+
+.formsection{
+  display: flex;
+  flex-direction:column;
+  width:25%;
+  min-width: 300px;
+  margin: 0 auto;    
+  padding:0px 20px 20px 20px;
+  background-color:white;
+  border-radius: 20px;
+  margin-top: 1%;  
+}
+
+
+.closebutton{
+  width:20px;
+  float:right;
+  margin-top: 10px;
+  background-color:#fff;
+  border: none;
+}
+.openbutton{
+    border: none;
+    border-radius:50px;
+}
+.opt-msg{
+    padding-top:0.5rem;
+    text-align:center;
+    font-weight:400;
+    font-size:0.7rem;
+    font-style:italic;
+}
+
+ 
+
+.popup_delete_message{
+  display:flex;
+  position: fixed ;
+  background-color:gray;
+  width:60vw;
+  height: 40vh;
+  display:none;
+  z-index:100;
+  margin:auto;
+  justify-content: center;
+  
+}

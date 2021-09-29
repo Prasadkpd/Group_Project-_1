@@ -1183,7 +1183,7 @@ footer {
 
         nav .search-bar-container{
             display:none;
-            width:auto
+            width:auto;
         }
 
         .nav-profile .username{

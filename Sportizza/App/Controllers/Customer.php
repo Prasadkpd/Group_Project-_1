@@ -99,23 +99,53 @@ class Customer extends Authenticated
 
     public function customerupdatepasswordAction()
     {
-        
+        $Model = new EditProfileModel($_POST);      
+        // $errors = $user->validate();
+        $user=Auth::getUser();
 
-        $oldPassword=$_POST['oldPassword'];
-        $newPassword=$_POST['newPassword'];
-        $username=Auth::getUser();
+        // $_SESSION['direct_url']=$_POST['direct_url'];
+        // var_dump($_SESSION['direct_url']);
 
-        $result=EditProfileModel::PasswordValidate($username->username,  $oldPassword,$newPassword);
-
-        if($result){
-            Flash::addMessage('updated successful');
+        if ($Model->saveNewPassword($user)){
+            // otp::sendSMS("mobile_number");
+            // $this->redirect('/Signup/success',['direct_url'=>$direct_url]);
+            Flash::addMessage('successfully updated');
             $this->redirect('/Customer');
-        }
-        else{
+            exit;
+
+        } 
+        else {
+            // $this->redirect('/Signup/failure');
+            // exit;
+            // View::renderTemplate('LoginSignup/customerSignupView.html', [
+            //     'user' => $user, 'errors' => $errors]);
             Flash::addMessage('updated failed',Flash::WARNING);
             $this->redirect('/Customer');
-
         }
+
+
+
+
+
+
+
+
+
+        // $oldPassword=$_POST['oldPassword'];
+        // $newPassword=$_POST['newPassword'];
+        // $username=Auth::getUser();
+
+        // $result=EditProfileModel::PasswordValidate($username->username,  $oldPassword,$newPassword);
+
+        // if($result){
+        //     Flash::addMessage('updated successful');
+        //     $this->redirect('/Customer');
+        // }
+        // else{
+        //     Flash::addMessage('updated failed',Flash::WARNING);
+        //     $this->redirect('/Customer');
+
+        // }
 
         // var_dump($_GET);
         // $id=$this->route_params['id'];
@@ -131,31 +161,52 @@ class Customer extends Authenticated
 
     public function customerupdatedetailsAction()
     {
-        $firstName=$_POST['firstName'];
-        $lastName=$_POST['lastName'];
-        $newUsername=$_POST['username'];
+        // $firstName=$_POST['firstName'];
+        // $lastName=$_POST['lastName'];
+        // $newUsername=$_POST['username'];
 
-        $user=Auth::getUser();
+        // $user=Auth::getUser();
 
-        if($user->username==$newUsername){
-            EditProfileModel::updateUserDetails($user->username,$firstName,$lastName);
+        // if($user->username==$newUsername){
+        //     EditProfileModel::updateUserDetails($user->username,$firstName,$lastName);
+        //     Flash::addMessage('successfully updated');
+        //     $this->redirect('/Customer');
+        // }
+
+        // else{
+        //     $result=EditProfileModel::UsernameValidate($user->username,$newUsername);
+        //     if($result){
+        //         EditProfileModel::updateUserDetails($newUsername,$firstName,$lastName);
+        //         Flash::addMessage('successfully updated');
+
+        //         $this->redirect('/Customer');
+        //     }
+        //     else{
+        //         Flash::addMessage('updated failed',Flash::WARNING);
+        //         $this->redirect('/Customer');
+                
+        //     }
+        // }
+
+
+
+
+
+        // $firstName=$_POST['firstName'];
+        // $lastName=$_POST['lastName'];
+        // $newUsername=$_POST['username'];
+        $user = new EditProfileModel($_POST);
+        $oldUsername=Auth::getUser()->username;
+        if ($user->updateNewUserDetails($oldUsername)){
+            
             Flash::addMessage('successfully updated');
             $this->redirect('/Customer');
         }
-
+        
         else{
-            $result=EditProfileModel::UsernameValidate($user->username,$newUsername);
-            if($result){
-                EditProfileModel::updateUserDetails($newUsername,$firstName,$lastName);
-                Flash::addMessage('successfully updated');
-
-                $this->redirect('/Customer');
-            }
-            else{
-                Flash::addMessage('updated failed',Flash::WARNING);
-                $this->redirect('/Customer');
-                
-            }
+            Flash::addMessage('updated failed',Flash::WARNING);
+            $this->redirect('//Customer');
+            
         }
         
 

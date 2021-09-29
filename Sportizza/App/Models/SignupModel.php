@@ -87,9 +87,7 @@ class SignupModel extends \Core\Model
            
             return($stmt4->execute());
         }
-        else{
-            return false;
-        }
+        
         
     }
 
