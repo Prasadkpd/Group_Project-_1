@@ -103,6 +103,7 @@ class Otp extends \Core\Controller
         var_dump($otp);
         
         if($otp==$_SESSION['otp']){
+            Flash::addMessage('updated successfully');
             $this->redirect($_SESSION['direct_url']);
         }
         else{
