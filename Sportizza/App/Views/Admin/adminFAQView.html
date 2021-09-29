@@ -291,13 +291,13 @@
 
             <div id="booking_payment" class="booking_tab_content">
                 <div class="form-container">
-                    <form method="post" action="Admin/createfaq">
+                    <form method="post" action="">
                         <div class="input-box">
-                            <label for="category" class="faqLabel">Category</label>
+                            <label for="utype" class="faqLabel">Category</label>
                             <div class="options-container">
                                 <div class="custom-select">
-                                    <select id="type" name="type">
-                                        <option value="0">Select type</option>
+                                    <select id="utype" name="utype">
+                                        <option value="null">Select type</option>
                                         <option value="customer">Customer</option>
                                         <option value="sports_arena">Sports Arena</option>
                                     </select>
@@ -307,11 +307,9 @@
                             </div>
                         </div>
 
-                        <label for="question" class="faqLabel">Question : </label>
-                        <select id="question" name="question">
-                            <option value="0">Select question</option>
-                            <option value="1">Customer</option>
-                            <option value="2">Sports Arena</option>
+                        <label for="uquestion" class="faqLabel">Question : </label>
+                        <select id="uquestion" name="uquestion">
+                            <option value="null">Please select a category</option>
                         </select>
 
                         <label for="solution" class="faqLabel">Solution : </label>
@@ -324,11 +322,11 @@
                 </div>
             </div>
         </div>
-
-
-
+        
+        
+        
     </section>
-
+    
     <!-- Start of Footer -->
     <footer>
         <div class="copyright">
@@ -339,7 +337,13 @@
     </footer>
     <!-- End of Footer -->
 
-    <script>
+    <!-- <script type="text/javascript" src="/Assets/js/lib/jquery/janitha.js"></script> -->
+    <script type="text/javascript" src="/Assets/js/lib/jquery/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src="../vendor/components/jquery/jquery.min.js"></script> -->
+    <script type="text/javascript" src="/Assets/js/Admin/adminMain.js?v=1"></script>
+    <script type="text/javascript" src="/Assets/js/Admin/adminFAQ.js?v=7"></script>
+    
+    <!-- <script>
         let side_menu_open_btn = document.querySelector("#side-menu-open-btn");
         let sidebar = document.querySelector(".sidebar");
         let side_menu_close_btn = document.querySelector("#side-menu-close-btn");
@@ -404,7 +408,7 @@
             form.style.display = "none";
         }
 
-    </script>
+    </script> -->
 </body>
 
 </html>

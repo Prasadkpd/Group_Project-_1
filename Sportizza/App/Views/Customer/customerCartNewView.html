@@ -76,13 +76,13 @@
                 <input type="hidden" name="notify_url" value="http://localhost/Customer/payment">
                 <div class="input-box">
                   <label for="firstName">First Name</label>
-                  <input id="firstName" type="text" name="first_name" placeholder="Enter first Name" value="{{current_user.first_name}}">
+                  <input id="firstName" type="text" name="first_name" placeholder="Enter first Name" value="{{current_user.first_name}}" readonly>
                   <div class="helper-text" id="firstNameMsg"></div>
                 </div>
 
                 <div class="input-box">
                   <label for="lastName">Last Name</label>
-                  <input id="lastName" type="text" name="last_name" placeholder="Enter last Name" value="{{current_user.last_name}}">
+                  <input id="lastName" type="text" name="last_name" placeholder="Enter last Name" value="{{current_user.last_name}}" readonly>
                   <div class="helper-text" id="lastNameMsg"></div>
                 </div>
 
@@ -95,7 +95,7 @@
 
                 <div class="input-box">
                   <label for="contact">Contact</label>
-                  <input id="contact" type="text" name="phone" placeholder="ex: 0711223344" value="{{current_user.primary_contact}}">
+                  <input id="contact" type="text" name="phone" placeholder="ex: 0711223344" value="{{current_user.primary_contact}}" readonly>
                   <div class="helper-text" id="contactMsg"></div>
                 </div>
 
@@ -115,7 +115,7 @@
 
                 <div class="input-box">
                   <label for="country">Country</label>
-                  <input id="country" type="text" name="country" placeholder="Enter your country" value="Sri Lanka">
+                  <input id="country" type="text" name="country" placeholder="Enter your country" value="Sri Lanka" readonly>
                   <div class="helper-text" id="contactMsg"></div>
                 </div>
               </div>
