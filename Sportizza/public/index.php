@@ -39,6 +39,7 @@ $router->add('{controller}/',['action' => 'index']);
 $router->add('{controller}/{action}');
 $router->add('{controller}/{action}/');
 $router->add('{controller}/{action}/{id:\d+}');
+$router->add('{controller}/{action}/{arg:\w+}');
 
 
 $router->dispatch($_SERVER['QUERY_STRING']);

@@ -10,6 +10,7 @@ use App\Models\EditProfileModel;
 use App\Flash;
 use App\Models\SignupModel;
 
+use App\Models\NotificationModel;
 class Customer extends Authenticated
 {
 
@@ -90,11 +91,18 @@ class Customer extends Authenticated
 
     public function paymentsuccessAction()
     {
+        $current_user= Auth::getUser();
+        // $cid=$current_user->user_id;
+        $invoice_id=100000000;
+
         // Calling the notification
-        
-        // Notification::sendNotification($subject,$description,$p_level,$user_id);
+        $notify_check=NotificationModel::addNotificationBookingSuccess($current_user,$invoice_id);
         // D\Redirecting
-        $this->redirect('/Customer');
+        if($notify_check) {
+            $this->redirect('/Customer');
+        } else {
+            $this->redirect('/Customer/cart');
+        }
     }
 
     public function customerupdatepasswordAction()
