@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sportizza</title>
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/Assets/css/visitor.css" />
+    <link rel="stylesheet" href="/Assets/css/visitor.css?version=2" />
 
 </head>
 
@@ -170,11 +170,20 @@
 
                             <label for="cars">Location</label>
                             <select id="location" name="location">
-                                <option style="display:none">Select One</option>
-                              <option value="Colombo">Colombo</option>
+                                {% if search_result['location']==null %}
+                                <option value='Select One' style="display:none">Select One</option>
+                                {% else %}
+
+                                <option style="display:none">{{search_result['location']}}</option>
+                                {% endif %}
+
+                                {% for location in locations %}
+                                <option value={{location.location}}>{{location.location}}</option>
+                                {% endfor %}
+                              <!-- <option value="Colombo">Colombo</option>
                               <option value="saab">Saab</option>
                               <option value="fiat">Fiat</option>
-                              <option value="audi">Audi</option>
+                              <option value="audi">Audi</option> -->
                             </select>
                         </div>
                         <div class="category-filter dropdown">
@@ -195,11 +204,23 @@
 
                             <label for="cars">Category</label>
                             <select id="category"  name="category">
-                                <option style="display:none">Select One</option>
-                              <option value="Futsal">Futsal</option>
+
+                                {% if search_result['category']==null %}
+                                <option value='Select One' style="display:none">Select One</option>
+                                {% else %}
+
+                                <option style="display:none">{{search_result['category']}}</option>
+                                {% endif %}
+
+
+                                {% for category in categories %}
+                                <option value={{category.category}}>{{category.category}}</option>
+                                {% endfor %}
+
+                              <!-- <option value="Futsal">Futsal</option>
                               <option value="saab">Saab</option>
                               <option value="fiat">Fiat</option>
-                              <option value="audi">Audi</option>
+                              <option value="audi">Audi</option> -->
                             </select>
                         </div>
                         <div class="search-filter">
@@ -217,16 +238,16 @@
 
 
             </div>
-            <div class="search-results">
+            <div class="search-results" >
 
                     <h3>Search Results:</h3>
                     <div class="chip-container">  
                         <div class="chip">
-                            Nugegoda
+                            {{search_result['location']}}
                             <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
                         </div>
                         <div class="chip">
-                            Cricket Grounds
+                            {{search_result['category']}}
                             <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
                         </div>
                     </div>

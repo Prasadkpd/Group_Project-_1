@@ -410,6 +410,7 @@ nav a:hover{
   overflow-y: scroll;
   background-color: var(--pure-white);
   width: 80vw;
+  
 }
 .search-results::-webkit-scrollbar{
   width: 8px;
@@ -436,6 +437,7 @@ nav a:hover{
 
 .chip-container {
   margin-left: 10%;
+  display: none;
 }
 
 .closebtn {

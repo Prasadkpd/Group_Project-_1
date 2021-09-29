@@ -5,6 +5,7 @@
 require '../vendor/autoload.php';
 
 
+ini_set('session.cookie_lifetime','400000');
 
 Twig_Autoloader::register();
 //spl_autoload_register(function ($class)
