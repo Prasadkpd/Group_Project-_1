@@ -10,6 +10,24 @@ togglePassword.addEventListener('click', function (e) {
     this.classList.toggle('bi-eye');
 });
 
+// //Show password button
+// togglePassword1.addEventListener('click', function (e) {
+//     // toggle the type attribute
+//     const type = showPassword1.getAttribute('type') === 'password' ? 'text' : 'password';
+//     showPassword1.setAttribute('type', type);
+//     // toggle the eye / eye slash icon
+//     this.classList.toggle('bi-eye');
+// });
+
+// //Show password button
+// togglePassword2.addEventListener('click', function (e) {
+//     // toggle the type attribute
+//     const type = showPassword2.getAttribute('type') === 'password' ? 'text' : 'password';
+//     showPassword2.setAttribute('type', type);
+//     // toggle the eye / eye slash icon
+//     this.classList.toggle('bi-eye');
+// });
+
 //Change colour after submitting image files
 function change_color(files, e) {
     if (files.length > 0) {

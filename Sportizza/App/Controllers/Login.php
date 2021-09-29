@@ -13,7 +13,7 @@ class Login extends \Core\Controller
 {
     public function indexAction()
     {
-        View::renderTemplate('LoginSignup/loginView.html',['message'=>$_SESSION['otp']]);
+        View::renderTemplate('LoginSignup/loginView.html');
     }
 
 

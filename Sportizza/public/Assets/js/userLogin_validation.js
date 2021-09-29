@@ -12,8 +12,6 @@ const formUserLogin = document.getElementById('formUserLogin');
 formUserLogin.addEventListener('submit', function (event) {
     // Prevent default behaviour
     event.preventDefault();
-    console.log(validateLoginUsername());
-    console.log(validateLoginPassword());
     if (
         //Customer account validations
         validateLoginUsername() &&
