@@ -6,6 +6,10 @@ namespace App\Controllers;
 use Core\View;
 use \App\Auth;
 use App\Models\CustomerModel;
+use App\Models\EditProfileModel;
+use App\Flash;
+use App\Models\SignupModel;
+
 class Customer extends Authenticated
 {
 
@@ -82,13 +86,141 @@ class Customer extends Authenticated
 
     // }
 
+
+
     public function paymentsuccessAction()
     {
         // Calling the notification
         
-        Notification::sendNotification($subject,$description,$p_level,$user_id);
+        // Notification::sendNotification($subject,$description,$p_level,$user_id);
         // D\Redirecting
         $this->redirect('/Customer');
+    }
+
+    public function customerupdatepasswordAction()
+    {
+        $Model = new EditProfileModel($_POST);      
+        // $errors = $user->validate();
+        $user=Auth::getUser();
+
+        // $_SESSION['direct_url']=$_POST['direct_url'];
+        // var_dump($_SESSION['direct_url']);
+
+        if ($Model->saveNewPassword($user)){
+            // otp::sendSMS("mobile_number");
+            // $this->redirect('/Signup/success',['direct_url'=>$direct_url]);
+            Flash::addMessage('successfully updated');
+            $this->redirect('/Customer');
+            exit;
+
+        } 
+        else {
+            // $this->redirect('/Signup/failure');
+            // exit;
+            // View::renderTemplate('LoginSignup/customerSignupView.html', [
+            //     'user' => $user, 'errors' => $errors]);
+            Flash::addMessage('updated failed',Flash::WARNING);
+            $this->redirect('/Customer');
+        }
+
+
+
+
+
+
+
+
+
+        // $oldPassword=$_POST['oldPassword'];
+        // $newPassword=$_POST['newPassword'];
+        // $username=Auth::getUser();
+
+        // $result=EditProfileModel::PasswordValidate($username->username,  $oldPassword,$newPassword);
+
+        // if($result){
+        //     Flash::addMessage('updated successful');
+        //     $this->redirect('/Customer');
+        // }
+        // else{
+        //     Flash::addMessage('updated failed',Flash::WARNING);
+        //     $this->redirect('/Customer');
+
+        // }
+
+        // var_dump($_GET);
+        // $id=$this->route_params['id'];
+        // var_dump($id);
+        // $timeSlots=CustomerModel::customerViewTimeSlots($id);
+        // $arenaDetails=CustomerModel::customerViewArenaDetails($id);
+        // $arenaFacilites=CustomerModel::customerArenaFacilities($id);
+        // var_dump($arenaDetails);
+        // View::renderTemplate('Customer/customerBookingView.html',
+        // ['timeSlots'=>$timeSlots,'arenaDetails'=>$arenaDetails,'arenaFacilites'=>$arenaFacilites]);
+    }
+
+
+    public function customerupdatedetailsAction()
+    {
+        // $firstName=$_POST['firstName'];
+        // $lastName=$_POST['lastName'];
+        // $newUsername=$_POST['username'];
+
+        // $user=Auth::getUser();
+
+        // if($user->username==$newUsername){
+        //     EditProfileModel::updateUserDetails($user->username,$firstName,$lastName);
+        //     Flash::addMessage('successfully updated');
+        //     $this->redirect('/Customer');
+        // }
+
+        // else{
+        //     $result=EditProfileModel::UsernameValidate($user->username,$newUsername);
+        //     if($result){
+        //         EditProfileModel::updateUserDetails($newUsername,$firstName,$lastName);
+        //         Flash::addMessage('successfully updated');
+
+        //         $this->redirect('/Customer');
+        //     }
+        //     else{
+        //         Flash::addMessage('updated failed',Flash::WARNING);
+        //         $this->redirect('/Customer');
+                
+        //     }
+        // }
+
+
+
+
+
+        // $firstName=$_POST['firstName'];
+        // $lastName=$_POST['lastName'];
+        // $newUsername=$_POST['username'];
+        $user = new EditProfileModel($_POST);
+        $oldUsername=Auth::getUser()->username;
+        if ($user->updateNewUserDetails($oldUsername)){
+            
+            Flash::addMessage('successfully updated');
+            $this->redirect('/Customer');
+        }
+        
+        else{
+            Flash::addMessage('updated failed',Flash::WARNING);
+            $this->redirect('//Customer');
+            
+        }
+        
+
+        
+
+        // var_dump($_GET);
+        // $id=$this->route_params['id'];
+        // var_dump($id);
+        // $timeSlots=CustomerModel::customerViewTimeSlots($id);
+        // $arenaDetails=CustomerModel::customerViewArenaDetails($id);
+        // $arenaFacilites=CustomerModel::customerArenaFacilities($id);
+        // var_dump($arenaDetails);
+        // View::renderTemplate('Customer/customerBookingView.html',
+        // ['timeSlots'=>$timeSlots,'arenaDetails'=>$arenaDetails,'arenaFacilites'=>$arenaFacilites]);
     }
 
    

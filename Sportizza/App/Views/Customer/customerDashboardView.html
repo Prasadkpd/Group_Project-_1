@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="/Assets/css/navbar.css?version=4">
     <!-- File Specific CSS Styles -->
     <link rel="stylesheet" href="/Assets/css/Customer/new_customer_dashboard.css?version=17">
+    <link rel="stylesheet" href="/Assets/css/Customer/new_customer_dashboard.css?version=15">
+    <link rel="stylesheet" href="/Assets/css/flashMessages.css?version=1">
     <!-- FontAwesome Icon -->
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 </head>
@@ -50,43 +52,43 @@
         </div>
     </nav>
 
-    <!-- start popup form for edit profile -->
-    <div id="myForm" class="sectionpopnav">
-        <div class="formsectionprofile" id="formEditUserProfile">
-            <div>
-                <button class="closebutton" onclick="closepopupform()">❌</button>
-            </div>
+  <!-- start popup form for edit profile -->
+  <div id="myForm" class="sectionpopnav">
+    <div class="formsectionprofile" id="formEditUserProfile">
+        <div>
+            <button class="closebutton" onclick="closepopupform()">❌</button>
+        </div>
 
-            <div class="nav-user-edit-from">
-                <div class="details">
-                    <div class="input-box">
-                        <h5>Name:</h5>
-                        <p>
-                            {{current_user.first_name}} {{current_user.last_name}}
-                        </p>
-                    </div>
-                    <div class="input-box">
-                        <h5>Username:</h5>
-                        <p>
-                            {{current_user.username}}
-                        </p>
-                    </div>
-                    <div class="input-box">
-                        <h5>Mobile:</h5>
-                        <p>
-                            {{current_user.primary_contact}}</p>
-                    </div>
+        <div class="nav-user-edit-from">
+            <div class="details">
+                <div class="input-box">
+                    <h5>Name:</h5>
+                    <p>
+                        {{current_user.first_name}} {{current_user.last_name}}
+                    </p>
                 </div>
-                <div class="editProPic">
-                    <img id="form-profile-picture" src="/Assets/images/customer/profile-picture.jpg" alt="">
+                <div class="input-box">
+                    <h5>Username:</h5>
+                    <p>
+                        {{current_user.username}}
+                    </p>
+                </div>
+                <div class="input-box">
+                    <h5>Mobile:</h5>
+                    <p>
+                        {{current_user.primary_contact}}</p>
                 </div>
             </div>
-            <div class="edit-profile-link">
-                <a href="">Edit Profile</a>
+            <div class="editProPic">
+                <img id="form-profile-picture" src="/Assets/images/customer/profile-picture.jpg" alt="">
             </div>
         </div>
+        <div class="edit-profile-link">
+            <a href="">Edit Profile</a>
+        </div>
     </div>
-    <!-- end popup form for edit profile -->
+</div>
+<!-- end popup form for edit profile -->
 
     <!-- start edit primary number section -->
     <div id="popup_editPrimaryNumber" class="sectionpopnav">
@@ -118,10 +120,11 @@
                 <h2>Password Reset</h2>
             </div>
             <form style="margin:20px 20px 0px 20px" action="/" id="formPassword" onsubmit="validatePasswordForm()">
+            <!-- <form style="margin:20px 20px 0px 20px" action="/Customer/customerupdatepassword" method="post"> -->
                 <div class="input-box">
                     <label for="oldPassword">Old Password</label>
                     <div class="input-row">
-                        <input id="oldPassword" type="password" name="old_password" onfocusout="validateOldPassword()"
+                        <input id="oldPassword" type="password" name="oldPassword" onfocusout="validateOldPassword()"
                             placeholder="Enter old password">
                         <i class="bi bi-eye-slash" id="togglePassword1"></i>
                         <div class="helper-text" id="firstNameMsg">
@@ -133,7 +136,7 @@
                 <div class="input-box">
                     <label for="oldPassword">New Password</label>
                     <div class="input-row">
-                        <input id="newPassword" type="password" name="new_password" onfocusout="validateNewPassword()"
+                        <input id="newPassword" type="password" name="newPassword" onfocusout="validateNewPassword()"
                             placeholder="Enter new password">
                         <i class="bi bi-eye-slash" id="togglePassword2"></i>
                         <div class="helper-text" id="firstNameMsg">
@@ -398,6 +401,16 @@
         <div class="page-content-container">
             <div class="container">
                 <h1 class="page-header">Hi {{current_user.first_name}} {{current_user.last_name}}!</h1>
+                
+
+                <!-- Flash messages -->
+                <p>
+                    {% for message in flash_messages %}
+                <div class="alert alert-{{ message.type }}">
+                 {{ message.body }}
+                    </div>
+            {% endfor %}
+                </p>
                 <!-- <ul>
                     {% for book in bookings %}
                         <h2>{{book.booking_id}}</h2>
