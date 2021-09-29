@@ -300,7 +300,8 @@ form input[type="submit"] {
 /* ======================================================================== */
 /* Start-Page-container */
 .page-container {
-  height: 87vh;
+  height: 83vh;
+  overflow: hidden;
   display: flex;
 }
 /* End-Page-container */
@@ -751,7 +752,7 @@ form input[type="submit"] {
   border-radius: 0px 25px 25px 0px;
 }
 .available-bookings::-webkit-scrollbar {
-  background-color: #cccccc;
+  background-color: none;
   border-radius: 10px;
   width: 8px;
 }
@@ -1032,44 +1033,6 @@ footer {
     flex-direction: column;
     height: 56vh;
   }
-
-  .left-container {
-    height: 10vh;
-    padding: 5%;
-    flex-direction: row;
-    align-items: center;
-    border-radius: 25px;
-    display: none;
-  }
-  .left-container .heading h3 {
-    font-size: 1.4rem;
-    margin: 0rem auto;
-    padding-right: 10px;
-  }
-  .date-picker input[type="date"] {
-    width: 150px;
-    font-size: 0.8rem;
-    border-radius: 30px;
-    padding: 5px 10px;
-    height: 40px;
-    margin: 0px auto;
-  }
-  .available-bookings {
-    margin: 1rem auto;
-    border-radius: 25px;
-    height: 48vh;
-    padding: 20px;
-    width: 100%;
-    display: none;
-  }
-  .available-bookings h2 {
-    text-align: center;
-  }
-  .available-bookings ul li {
-    padding: 15px 0;
-    flex-direction: column;
-    align-items: left;
-  }
   .booking-table tbody tr .Payment-status a {
     font-size: 0.6rem;
     padding: 0.3rem 0.8rem;
@@ -1088,6 +1051,11 @@ footer {
   .sidebar {
     width: 10vw;
   }
+  
+  form input[type="submit"] {
+    padding: 8px 20px;
+  }
+
 
   .page-container .page-content-container {
     width: 90vw;
@@ -1173,4 +1141,104 @@ footer {
   .trash-btn {
     padding: 8px 10px;
   }
+  .booking {
+    display: flex;
+    flex-direction: column;
+    height: 56vh;
+    width: 85vw;
+    /* background-color: aqua; */
+    margin: auto;
+  }
+  .left-container {
+    /* height: 10vh; */
+    /* padding: 5%; */
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    border-radius: 25px;
+    /* display: none; */
+    padding: 10px;
+    background-color: #ffb499;
+  }
+  .left-container .heading h3 {
+    font-size: 1.2rem;
+    margin: 0rem auto;
+    /* padding-right: 10px; */
+  }
+  .date-picker input[type="date"] {
+    width: 100%;
+    font-size: 0.8rem;
+    border-radius: 30px;
+    /* padding: 5px 10px; */
+    height: 40px;
+    margin: 0px auto;
+  }
+  .right-container {
+    box-shadow: rgb(0 0 0 / 15%) 1.95px 1.95px 2.6px;
+    border-radius: 20px;
+    margin-top: 2px;
+  }
+  .available-bookings {
+    margin: 1rem auto;
+    border-radius: 25px;
+    height: 48vh;
+    padding: 20px;
+    padding-bottom:2.5rem;
+    width: 100%;
+    color: #222f3e;
+    background-color: #fff;
+    /* display: none; */
+  }
+  .available-bookings h2 {
+    text-align: center;
+    font-size: 1.2rem;
+  }
+  .row {
+    width: 100%;
+  }
+  .btn.check-availability-btn {
+    background-color: #fd461f;
+    color: #fff;
+    border-radius: 2rem;
+    float: right;
+    font-size: 1em;
+    position: relative;
+    font-weight: 600;
+    z-index: 40;
+    width: max-content;
+    text-transform: initial;
+    padding: 0.5rem 0.4rem;
+    box-shadow: rgb(50 50 93 / 25%) 0px 50px 100px -20px,
+      rgb(0 0 0 / 30%) 0px 30px 60px -30px,
+      rgb(10 37 64 / 35%) 0px -2px 6px 0px inset;
+  }
+  .available-bookings ul li {
+    width: 75vw;
+    padding: 15px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    /* text-align: left; */
+    /* justify-content: flex-start; */
+    align-items: flex-start;
+    box-shadow: rgb(0 0 0 / 15%) 1.95px 1.95px 2.6px;
+  }
+  .available-bookings ul li:hover {
+    box-shadow: rgb(50 50 93 / 25%) 0px 50px 100px -20px,
+    rgb(0 0 0 / 30%) 0px 30px 60px -30px,
+    rgb(10 37 64 / 35%) 0px -2px 6px 0px inset;
+
+  }
+  .available-bookings .facility {
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  .available-bookings ul li .price {
+    /* margin: auto 5rem; */
+    margin: 0;
+    font-weight: 500;
+    font-size: 1rem;
+    margin-right: auto;
+  }
+
 }

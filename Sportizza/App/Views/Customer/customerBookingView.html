@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Bookings</title>
-     <!-- CSS File -->
-    <link rel="stylesheet" href="/Assets/css/Customer/newCustomerBooking.css">
+    <!-- CSS File -->
+    <link rel="stylesheet" href="/Assets/css/Customer/newCustomerBooking.css?version=7">
     <!-- FontAwesome Icon -->
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 
 
 
 </head>
+
 <body>
     <!-- Top Navigation Bar -->
     <nav>
@@ -30,146 +32,167 @@
 
 
 
-       <div  class="nav-profile">
-
-        
+            <div class="nav-profile">
 
 
-       
 
-<button   class="openbutton" onclick="openpopupform()">
 
-            
-        
-<div class="profile-details">
-    <img src="/Assets/images/customer/profile-picture.jpg" alt="" class="profile-picture">
-    <div class="username">Bhashitha Ranasinghe</div>
-    
-</div>
 
-</button>
+
+                <button class="openbutton" onclick="openpopupform()">
+
+
+
+                    <div class="profile-details">
+                        <img src="/Assets/images/customer/profile-picture.jpg" alt="" class="profile-picture">
+                        <div class="username">Bhashitha Ranasinghe</div>
+
+                    </div>
+
+                </button>
+            </div>
+
+
+
+
+
+            <div class="sign-in-out-btn">
+
+                <button onclick="open_popup_signout_message()"> Sign Out </button>
+            </div>
         </div>
 
-        
 
 
 
-       <div class="sign-in-out-btn">
-           
-            <button onclick="open_popup_signout_message()" > Sign Out </button>
-       </div> 
-       </div>
-
-
-       
-
-       <!-- search bar for mobile -->
-       <div class="search-bar-container-mobi">
-        <input type="search" name="search" placeholder="Search">
-        <i class="fas fa-search "></i>
-   </div>
+        <!-- search bar for mobile -->
+        <div class="search-bar-container-mobi">
+            <input type="search" name="search" placeholder="Search">
+            <i class="fas fa-search "></i>
+        </div>
     </nav>
-   <!-- End Top Navigation Bar -->
+    <!-- End Top Navigation Bar -->
 
 
-<!-- popup form for edit profile -->
-<div id="myForm" class="sectionpop ">
+    <!-- popup form for edit profile -->
+    <div id="myForm" class="sectionpop ">
 
 
-    <div class="formsection">
+        <div class="formsection">
 
-        <div>
-            <button s class="closebutton"onclick="closepopupform()">❌</button>
+            <div>
+                <button s class="closebutton" onclick="closepopupform()">❌</button>
+            </div>
+            <div class="editProPic">
+                <img id="form-profile-picture" src="/Assets/images/customer/profile-picture.jpg" alt="">
+                <input type="file" id="file">
+                <label for="file" id="uploadBtn">Choose Photo</label>
+            </div>
+            <form action="/action_page.php" style="margin:20px;margin-top: 0px;">
+
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="firstname" placeholder="Enter First Name" value="sadeepa">
+
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lastname" placeholder="Enter Last Names" value="bhashitha">
+
+                <label for="username">User Name</label>
+                <input type="text" id="username" name="username" placeholder="Enter User Name" value="bhashitha99">
+
+                <label for="lname">Primary Number</label>
+                <input type="text" id="lname" name="lastname" placeholder="Enter Primary Number" value="0705614640">
+
+                <label for="lname">Secondary Number</label>
+                <input type="text" id="userid" name="lastname" placeholder="Enter Secondary Number" value="0705614640">
+
+                <label for="password">New Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter Password">
+
+
+
+
+
+                <input type="submit" value="Save">
+            </form>
         </div>
-    <div class="editProPic">
-        <img id="form-profile-picture"  src="/Assets/images/customer/profile-picture.jpg" alt="">
-        <input type="file" id="file">
-        <label for="file" id="uploadBtn">Choose Photo</label>
     </div>
-    <form action="/action_page.php" style="margin:20px;margin-top: 0px;">
+    <!-- end popup form for edit profile -->
 
-        <label for="fname">First Name</label>
-        <input type="text" id="fname" name="firstname"
-            placeholder="Enter First Name" value="sadeepa">
-
-        <label for="lname">Last Name</label>
-        <input type="text" id="lname" name="lastname"
-            placeholder="Enter Last Names" value="bhashitha">
-
-            <label for="username">User Name</label>
-            <input type="text" id="username" name="username"
-                placeholder="Enter User Name" value="bhashitha99">
-
-        <label for="lname">Primary Number</label>
-        <input type="text" id="lname" name="lastname"
-            placeholder="Enter Primary Number" value="0705614640">
-
-        <label for="lname">Secondary Number</label>
-        <input type="text" id="userid" name="lastname"
-            placeholder="Enter Secondary Number" value="0705614640">
-
-        <label for="password">New Password</label>
-        <input type="password" id="password" name="password"
-            placeholder="Enter Password" >
-
-
-
-
-
-        <input  type="submit" value="Save">
-    </form> 
-    </div>    
-</div>
-<!-- end popup form for edit profile -->
-
-
-<!-- start pop up sign out section -->
-<div id="popup_signout" class="sectionpop ">
-   
-
-    <div class="formsection">
-
-        <div>
-            <button s class="closebutton"onclick="close_popup_signout_message()">❌</button>
-        </div>
-    <form action="/action_page.php" style="margin:20px">
-        <div style="margin:auto">
-            <h1 style="margin:auto">
-                Sign Out
-            </h1>
-            <p style="margin:auto">
-                Do your really want to sign up now?
-            </p>
-        </div>
-    </form> 
-
- 
-<div style="display:flex">
+    <!-- Start OF the POP up SIGN out -->
+    <div id="popup_signout" class="sectionpop ">
+        <div class="formsection">
     
-    <button style="background-color:#e74c3c    " class="popup_button">
-       YES
-    </button>
-    <button onclick="close_popup_signout_message()"  class="popup_button">
-        NO
-     </button>
-</div>
-    </div>  
-</div>
-<!-- end pop up sign out section -->
-
-
+            <div>
+                <button class="closebutton" onclick="close_popup_signout_message()">❌</button>
+            </div>
+            <form action="/action_page.php" style="margin:20px">
+                <div style="margin:auto">
+                    <h1 style="margin:auto">
+                        Sign Out
+                    </h1>
+                    <p style="margin:auto">
+                        Do your really want to sign out now?
+                    </p>
+                </div>
+            </form>
+    
+    
+            <div style="display:flex">
+    
+                <button class="popup_delete_button">
+                    {% if current_user %}
+                    <a href="/logout"> YES</a>
+                    {% endif %}
+                </button>
+                <button onclick="close_popup_signout_message()" class="popup_button">
+                    NO
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- End OF the POP up SIGN out -->
     <section class="page-container">
-        
-            
-            <div class="page-content-container" >
+
+
+        <div class="page-content-container">
+            <div class="container">
+
+
                 <div class="container">
-                               
-                
-                    <div class="container">
-                        <div class="sp-arena">
-                
-                            <div class="sp-arena-img">
-                                <img src="/Assets/images/customer/cricket.jpg">
+                    <div class="sp-arena">
+
+                        <div class="sp-arena-img">
+                            <img src="/Assets/images/customer/cricket.jpg">
+                        </div>
+                        <div class="sp-arena-details">
+                            <div class="sp-name">
+                                <h2>Mercantile Cricket Grounds</h2>
+                            </div>
+                            <div class="other">
+                                <h4>Contact No: 0746464327</h4>
+                            </div>
+                            <div class="other">
+                                <h5>Accepted Payment Methods: Card Payments & Cash Payments</h5>
+                            </div>
+                            <a type="" class="more-link" id="more_details_btn" onclick="open_moredetails()">More Details
+                            </a>
+                            <a type="" class="more-link" id="goto_booking_btn" onclick="open_goto_booking()">Go to Bookings
+                            </a>
+
+                        </div>
+                    </div>
+                    <div class="container2">
+                        <div class="more-details" id="more-details">
+                            <div class="detail">
+                                <div class="description">
+                                    <h5>About Sports Arena</h5>
+                                    <p>
+                                        Lorem Ipsum dolor sit amet, consectetur adipiscing elit,
+                                        sed do eiusmod tempor incididunt ut labore et dolore magna
+                                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                        ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    </p>
+                                </div>
                             </div>
                             <div class="sp-arena-details">
                                 <div class="sp-name">
@@ -189,10 +212,8 @@
                                          <!-- Payments & Cash Payments -->
                                         </h5>
                                 </div>
-                                <a type="" class="more-link">More Details
-                                </a>
-                
                             </div>
+                            
                         </div>
                         <div class="container2">
                             <div class="more-details">
@@ -230,25 +251,55 @@
                                             <div class="thumbnail">
                                                 <img src="/Assets/images/customer/Screenshot_1.jpg" alt="">
                                             </div>
-                                            <div class="thumbnail">
-                                                <img src="/Assets/images/customer/Screenshot_2.jpg" alt="">
+                                            <div class="row">
+                                                <span class="price">LKR 2500</span>
+                                                <i class="fas fa-cart-plus"></i>
                                             </div>
-                                            <div class="thumbnail">
-                                                <img src="/Assets/images/customer/Screenshot_3.jpg" alt="">
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <span class="s-time">10:30 - </span>
+                                                <span class="e-time">12:30 : </span>
                                             </div>
-                                            <div class="thumbnail">
-                                                <img src="/Assets/images/customer/Screenshot_4.jpg" alt="">
+                                            <div class="row">
+                                                <span class="facility">Indoor Cricket Ground 1</span>
                                             </div>
-                
-                                            <div class="thumbnail">
-                                                <img src="/Assets/images/customer/Screenshot_4.jpg" alt="">
+                                            <div class="row">
+                                                <span class="price">LKR 2500</span>
+                                                <i class="fas fa-cart-plus"></i>
                                             </div>
-                
-                                        </section>
-                                        <img id="slide-right" class="arrow" src="/Assets/images/customer/arrow-right.png">
-                                    </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <span class="s-time">10:30 - </span>
+                                                <span class="e-time">12:30 : </span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="facility">Indoor Cricket Ground 1</span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="price">LKR 2500</span>
+                                                <i class="fas fa-cart-plus"></i>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <span class="s-time">10:30 - </span>
+                                                <span class="e-time">12:30 : </span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="facility">Indoor Cricket Ground 1</span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="price">LKR 2500</span>
+                                                <i class="fas fa-cart-plus"></i>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                    <a href="#" class="btn check-availability-btn"> Pay Now</a>
                                 </div>
-                                
+
                             </div>
                 
                             <div class="booking">
@@ -301,21 +352,22 @@
                                     </div>
                 
                                 </div>
+                            <div class="cart">
+                                <a href="/customer/cart">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </a>
                             </div>
-                
                         </div>
-                        <div class="cart">
-                            <a href="/customer/cart">
-                                <i class="fas fa-shopping-cart"></i>
-                            </a>
-                        </div>
+
                     </div>
-
-
-
+                   
                 </div>
+
+
+
             </div>
-                
+        </div>
+
 
     </section>
 
@@ -328,8 +380,9 @@
         </div>
     </footer>
     <!-- End of Footer -->
-    <script src="/Assets/js/Customer/newCustomerBooking.js"></script>
- 
+    <script src="/Assets/js/Customer/newCustomerBooking.js?version=3"></script>
+
 
 </body>
+
 </html>

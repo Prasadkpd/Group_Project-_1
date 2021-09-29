@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Bookings</title>
-    <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-profile.css?version=6">
+    <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-profile.css?version=17">
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 </head>
 
@@ -100,99 +100,87 @@
     <!-- End OF the POP up SIGN out -->
 
     <!-- Start OF the POP up Edit arena form -->
-    <div id="popup_edit_form" class="sectionpop">
+    <div id="popup_edit_form" class="edit_sectionpop">
         <div class="edit_formsection">
             <div>
                 <button class="closebutton" onclick="close_popup_edit_arena_profile()">❌</button>
             </div>
+            <h2>Sport Arena Profile</h2>
             <form action="">
                 <div class="sp-edit-form">
-                    <div class="input-box">
-                        <label for="spArenaName">Sports Arena Name</label>
-                        <input id="spArenaName" type="text" name="arena_name" placeholder="Enter Arena Name"
-                            onfocusout="validateSpArenaName()" value="{{sp_arena.arena_name}}">
-                        <div class="helper-text" id="spArenaNameMsg">
-                            <p>{{errors["arena_name1"]}} {{errors["arena_name2"]}}</p>
+                    <div class="input-row">
+                        <div class="input-box">
+                            <label for="spArenaName">Sports Arena Name</label>
+                            <input id="spArenaName" type="text" name="arena_name" placeholder="Enter Arena Name"
+                                onfocusout="validateSpArenaName()" value="{{sp_arena.arena_name}}">
+                            <div class="helper-text" id="spArenaNameMsg">
+                                <p>{{errors["arena_name1"]}} {{errors["arena_name2"]}}</p>
+                            </div>
+                        </div>
+
+                        <div class="input-box">
+                            <label for="contact">Contact Number</label>
+                            <input id="contact" type="text" name="contact" placeholder="Ex: 0712345678"
+                                onfocusout="validateContact()" value="{{sp_arena.contact_no}}">
+                            <div class="helper-text" id="contactMsg">
+                                <p>{{errors["contact1"]}} {{errors["contact2"]}}</p>
+                            </div>
                         </div>
                     </div>
-                
-                    <div class="input-box">
-                        <label for="contact">Contact Number</label>
-                        <input id="contact" type="text" name="contact" placeholder="Ex: 0712345678" onfocusout="validateContact()"
-                            value="{{sp_arena.contact_no}}">
-                        <div class="helper-text" id="contactMsg">
-                            <p>{{errors["contact1"]}} {{errors["contact2"]}}</p>
-                        </div>
-                    </div>
-                
-                    <div class="input-box">
-                        <label for="category">Category</label>
-                        <div class="options-container">
-                            <div class="custom-select">
-                                <select id="category" name="category" onchange="validateCategory()" value="{{sp_arena.category}}">
-                                    <option value="0"> </option>
-                                    <option value="Other">Other</option>
-                                    <option value="Football">Football</option>
-                                    <option value="Rugby">Rugby</option>
-                                    <option value="Swimming">Swimming</option>
-                                    <option value="Tennis">Tennis</option>
-                                    <option value="Volleyball">Volleyball</option>
-                                    <option value="Karathe">Karathe</option>
-                                    <option value="Cricket">Cricket</option>
-                                </select>
-                                <div class="helper-text" id="other-categoryMsg">
-                                    <p>{{errors["category1"]}}</p>
+
+                    <div class="input-row">
+                        <div class="input-box">
+                            <label for="category">Category</label>
+                            <div class="options-container">
+                                <div class="custom-select">
+                                    <select id="category" name="category" onchange="validateCategory()"
+                                        value="{{sp_arena.category}}">
+                                        <option value="0"> </option>
+                                        <option value="Other">Other</option>
+                                        <option value="Football">Football</option>
+                                        <option value="Rugby">Rugby</option>
+                                        <option value="Swimming">Swimming</option>
+                                        <option value="Tennis">Tennis</option>
+                                        <option value="Volleyball">Volleyball</option>
+                                        <option value="Karathe">Karathe</option>
+                                        <option value="Cricket">Cricket</option>
+                                    </select>
+                                    <div class="helper-text" id="other-categoryMsg">
+                                        <p>{{errors["category1"]}}</p>
+                                    </div>
                                 </div>
                             </div>
-                
                         </div>
-                    </div>
-                    <div class="input-box">
-                        <label for="other_category">Other Category</label>
-                        <input id="other_category" type="text" name="other_category" placeholder="Please specify only if other"
-                            onfocusout="validateOtherCategory()">
-                        <div class="helper-text" id="otherCategoryMsg">
-                            <p>{{errors["other_category1"]}} {{errors["other_category2"]}}</p>
-                        </div>
-                    </div>
-                    <div class="input-box">
-                        <label for="location">Location</label>
-                        <div class="options-container">
-                
-                            <div class="custom-select">
-                                <select id="location" name="location" onchange="validateLocation()" value="{{sp_arena.location}}">
-                                    <option value="0"> </option>
-                                    <option value="Other">Other</option>
-                                    <option value="Matara">Matara</option>
-                                    <option value="Galle">Galle</option>
-                                    <option value="Gampaha">Gampaha</option>
-                                    <option value="Kandy">Kandy</option>
-                                    <option value="Hmabanthota">Hambanthota</option>
-                                    <option value="Baththaramulla">Baththaramulla</option>
-                                    <option value="Nugegods">Nugegoda</option>
-                                    <option value="Maradana">Maradana</option>
-                                    <option value="Mirissa">Mirissa</option>
-                                    <option value="Weligama">Weiligama</option>
-                                    <option value="Wattala">Wattala</option>
-                                    <option value="Malabe">Malabe</option>
-                                </select>
-                                <div class="helper-text" id="other-locationMsg">
-                                    <p>{{errors["location1"]}}</p>
+                        <div class="input-box">
+                            <label for="location">Location</label>
+                            <div class="options-container">
+                                <div class="custom-select">
+                                    <select id="location" name="location" onchange="validateLocation()"
+                                        value="{{sp_arena.location}}">
+                                        <option value="0"> </option>
+                                        <option value="Other">Other</option>
+                                        <option value="Matara">Matara</option>
+                                        <option value="Galle">Galle</option>
+                                        <option value="Gampaha">Gampaha</option>
+                                        <option value="Kandy">Kandy</option>
+                                        <option value="Hmabanthota">Hambanthota</option>
+                                        <option value="Baththaramulla">Baththaramulla</option>
+                                        <option value="Nugegods">Nugegoda</option>
+                                        <option value="Maradana">Maradana</option>
+                                        <option value="Mirissa">Mirissa</option>
+                                        <option value="Weligama">Weiligama</option>
+                                        <option value="Wattala">Wattala</option>
+                                        <option value="Malabe">Malabe</option>
+                                    </select>
+                                    <div class="helper-text" id="other-locationMsg">
+                                        <p>{{errors["location1"]}}</p>
+                                    </div>
                                 </div>
+
                             </div>
-                
                         </div>
                     </div>
                     <div class="input-box">
-                        <label for="other_location">Other Location</label>
-                        <input id="other_location" type="text" name="other_location" placeholder="Please specify only if other"
-                            onfocusout="validateOtherLocation()">
-                        <div class="helper-text" id="otherLocationMsg">
-                            <p>{{errors["other_location1"]}} {{errors["other_location2"]}}</p>
-                        </div>
-                    </div>
-                
-                    <div class="input-box-map">
                         <label for="map-link">Google Map Link</label>
                         <input id="map-link" type="text" name="google_map_link"
                             placeholder="Ex: https://www.google.com/maps?q=204+C+Sandpiper+Place,+Fort+McMurray,+AB,+Canada"
@@ -201,78 +189,83 @@
                             <p>{{errors["google_map1"]}} {{errors["google_map2"]}}</p>
                         </div>
                     </div>
-                
-                    <div class="input-box-descr">
+
+                    <div class="input-box" id="description-input">
                         <label for="description">Description</label>
-                        <input id="description" type="text" name="description" placeholder="(Briefly state about sports arena)"
-                            onfocusout="validateDescription()" value="{{sp_arena.description}}">
+                        <textarea id="description" rows="5" type="text" name="description"
+                            placeholder="(Briefly state about sports arena)" onfocusout="validateDescription()"
+                            value="{{sp_arena.description}}"></textarea>
                         <div class="helper-text" id="descriptionMsg">
                             <p>{{errors["description1"]}}</p>
                         </div>
                     </div>
-                
-                
-                    <div class="input-box-map">
-                        <label for="other-facilities">Other Facilities</label>
-                        <input id="other-facilities" type="text" name="other_facilities" onfocusout="validateOtherFacilities()"
-                            placeholder="Ex: Changing Rooms, Cafeteria, Car Parking, etc." value="{{sp_arena.other_facilities}}">
-                        <div class="helper-text" id="descriptionMsg">
-                            <p>{{errors["other_facilities1"]}}</p>
-                        </div>
-                    </div>
-                
-                
-                    <div class="input-box">
-                        <label for="payment">Accepted Payment Method</label>
-                        <div class="options-container">
-                
-                            <div class="custom-select">
-                                <select id="payment" name="payment_method" onchange="validatePayment()"
-                                    value="{{sp_arena.payment_method}}">
-                                    <option value="0"> </option>
-                                    <option value="1">Only card payments</option>
-                                    <option value="2">Only cash payments</option>
-                                    <option value="3">Both cash & card payments</option>
-                                </select>
-                                <div class="helper-text" id="paymentMsg">
-                                    <p>{{errors["payment_method1"]}}</p>
-                                </div>
+
+                    <div class="input-row">
+                        <div class="input-box">
+                            <label for="other-facilities">Other Facilities</label>
+                            <input id="other-facilities" type="text" name="other_facilities"
+                                onfocusout="validateOtherFacilities()"
+                                placeholder="Ex: Changing Rooms, Cafeteria, Car Parking, etc."
+                                value="{{sp_arena.other_facilities}}">
+                            <div class="helper-text" id="descriptionMsg">
+                                <p>{{errors["other_facilities1"]}}</p>
                             </div>
-                
+                        </div>
+                        <div class="input-box">
+                            <label for="payment">Accepted Payment Method</label>
+                            <div class="options-container">
+
+                                <div class="custom-select">
+                                    <select id="payment" name="payment_method" onchange="validatePayment()"
+                                        value="{{sp_arena.payment_method}}">
+                                        <option value="0"> </option>
+                                        <option value="1">Only card payments</option>
+                                        <option value="2">Only cash payments</option>
+                                        <option value="3">Both cash & card payments</option>
+                                    </select>
+                                    <div class="helper-text" id="paymentMsg">
+                                        <p>{{errors["payment_method1"]}}</p>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                     <div class="input-box-img">
                         <label for="photos">Sports Arena Photos (Mandatory)
-                
                         </label>
                         <div class="upload-images">
-                
-                            <div class="input-box">
-                                <div class="img-btn-div">
-                                    <label class="tag">Image 1:</label>
-                                    <input style type="file" name="image_1" accept="image/*" id="file1"
-                                        onchange="change_color(this.files,event)" class="img-button">
+                            <div class="input-row">
+                                <div class="input-box">
+                                    <div class="img-btn-div">
+                                        <label class="tag">Image 1:</label>
+                                        <input style type="file" name="image_1" accept="image/*" id="file1"
+                                            onchange="change_color(this.files,event)" class="img-button">
+                                    </div>
+                                    <div class="helper-text" id="imgMsg1">
+                                        <p>
+                                            {% for key,error in errors ["image_1"] %}
+                                            {{error}}
+                                            {% endfor %}</p>
+                                    </div>
                                 </div>
-                                <div class="helper-text" id="imgMsg1">
-                                    <p>
-                                        {% for key,error in errors ["image_1"] %}
+                                <div class="input-box">
+                                    <div class="img-btn-div">
+                                        <label class="tag">Image 2:</label>
+                                        <input style type="file" name="image_2" accept="image/*" id="file2"
+                                            onchange="change_color(this.files,event)" class="img-button">
+                                    </div>
+                                    <div class="helper-text" id="imgMsg2">
+                                        {% for key,error in errors ["image_2"] %}
                                         {{error}}
                                         {% endfor %}</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="input-box">
-                                <div class="img-btn-div">
-                                    <label class="tag">Image 2:</label>
-                                    <input style type="file" name="image_2" accept="image/*" id="file2"
-                                        onchange="change_color(this.files,event)" class="img-button">
-                                </div>
-                                <div class="helper-text" id="imgMsg2">
-                                    {% for key,error in errors ["image_2"] %}
-                                    {{error}}
-                                    {% endfor %}</p>
-                                </div>
-                            </div>
-                            <div class="input-box">
+                            <div class="input-row">
+
+                                <div class="input-box">
+
                                 <div class="img-btn-div">
                                     <label class="tag">Image 3:</label>
                                     <input style type="file" name="image_3" accept="image/*" id="file3"
@@ -296,6 +289,8 @@
                                     {% endfor %}</p>
                                 </div>
                             </div>
+                            </div>
+
                             <div class="input-box">
                                 <div class="img-btn-div">
                                     <label class="tag">Image 5:</label>
@@ -311,6 +306,7 @@
                         </div>
                     </div>
                 </div>
+                <input type="submit" value="Update Profile" class="popup_button">
             </form>
         </div>
     </div>

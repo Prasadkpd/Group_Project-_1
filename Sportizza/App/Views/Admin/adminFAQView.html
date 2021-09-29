@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - FAQ</title>
     <!-- CSS File -->
-    <link rel="stylesheet" href="/Assets/css/Admin/admin-FAQ.css">
+    <link rel="stylesheet" href="/Assets/css/Admin/admin-FAQ.css?version=3">
     <!-- FontAwesome Icon -->
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 </head>
@@ -70,15 +70,11 @@
             </form>
         </div>
     </div>
-
-    <!-- start pop up sign out section -->
+    <!-- Start OF the POP up SIGN out -->
     <div id="popup_signout" class="sectionpop ">
-
-
         <div class="formsection">
-
             <div>
-                <button s class="closebutton" onclick="close_popup_signout_message()">❌</button>
+                <button class="closebutton" onclick="close_popup_signout_message()">❌</button>
             </div>
             <form action="/action_page.php" style="margin:20px">
                 <div style="margin:auto">
@@ -86,17 +82,15 @@
                         Sign Out
                     </h1>
                     <p style="margin:auto">
-                        Do your really want to sign up now?
+                        Do your really want to sign out now?
                     </p>
                 </div>
             </form>
-
-
             <div style="display:flex">
 
-                <button style="background-color:#e74c3c    " class="popup_button">
+                <button class="popup_delete_button">
                     {% if current_user %}
-                    <a href="/logout"> Yes</a>
+                    <a href="/logout"> YES</a>
                     {% endif %}
                 </button>
                 <button onclick="close_popup_signout_message()" class="popup_button">
@@ -105,7 +99,35 @@
             </div>
         </div>
     </div>
-    <!-- end pop up sign out section -->
+    <!-- End OF the POP up SIGN out -->
+    <!-- Start OF the POP up FAQ Delete -->
+    <div id="popup_delete" class="sectionpop ">
+        <div class="formsection">
+            <div>
+                <button class="closebutton" onclick="close_popup_delete_message()">❌</button>
+            </div>
+            <form action="/action_page.php" style="margin:20px">
+                <div style="margin:auto">
+                    <h1 style="margin:auto">
+                        FAQ Remove
+                    </h1>
+                    <p style="margin:auto">
+                        Do you really want to remove this FAQ?
+                    </p>
+                </div>
+            </form>
+            <div style="display:flex">
+
+                <button class="popup_delete_button">
+                    <a href=""> YES</a>
+                </button>
+                <button onclick="close_popup_delete_message()" class="popup_button">
+                    NO
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- End OF the POP up FAQ Delete -->
 
     <section class="page-container">
 
@@ -163,8 +185,8 @@
                             class="fas fa-plus"></i>
                         <p>Create FAQ</p>
                     </button>
-                    <button class="booking_tab tab-btn" onclick="openTab(event, 'cancel_booking')"><i
-                            class="fas fa-times"></i>
+                    <button class="booking_tab tab-btn" onclick="openTab(event, 'cancel_booking')">
+                        <i class="fas fa-trash-alt"></i>
                         <p> Delete FAQ</p>
                     </button>
                     <button class="booking_tab tab-btn" onclick="openTab(event, 'booking_payment')"><i
@@ -184,26 +206,23 @@
                                         <input type="search" name="search" placeholder="Search">
                                         <i class="fas fa-search"></i>
                                     </div>
-                                    <div class="booking-table-date-picker">
-                                        <label class="date-label">Date Generated</label>
-                                        <input type="date">
-                                    </div>
                                 </div>
                             </th>
                         </tr>
                         <tr class="booking-thead-second-tr">
-                            <th class="b-first-th">FAQ ID</th>
-                            <th>Question</th>
-                            <th>Solution</th>
+                            <th class="b-first-th">FAQ Type</th>
+                            <th class="quiz_td">Question</th>
+                            <th class="solution_td">Solution</th>
                             <!--<th class="b-last-th">Payment Status</th>-->
                         </tr>
                     </thead>
                     <tbody>
                         {% for FAQ in viewFAQs %}
                         <tr>
-                            <td data-label="FAQ ID :">{{FAQ.faq_id}}</td>
-                            <td data-label="Question :">{{FAQ.question}}</td>
-                            <td data-label="Solution :">{{FAQ.answer}}</td>
+                            <td data-label="FAQ Type :">{{FAQ.faq_id}}</td>
+                            <td data-label="Question :" class="quiz_td">{{FAQ.question}}</td>
+                            <td data-label="Solution :" class="solution_td" style="text-align: justify;">{{FAQ.answer}}
+                            </td>
                         </tr>
                         {% endfor %}
 
@@ -240,10 +259,10 @@
                             placeholder="Type your question..."></textarea>
 
                         <label for="solution" class="faqLabel">Solution : </label>
-                        <textarea id="solution" class="faqInput" name="solution"
+                        <textarea id="solution" class="faqInput" rows="4" name="solution"
                             placeholder="Type your solution..."></textarea>
 
-                        <input type="submit" value="Create FAQ" class="faqSubmit" />
+                        <input type="submit" value="Create" class="faqSubmit" />
 
                     </form>
                 </div>
@@ -259,17 +278,13 @@
                                         <input type="search" name="search" placeholder="Search">
                                         <i class="fas fa-search"></i>
                                     </div>
-                                    <div class="booking-table-date-picker">
-                                        <label class="date-label">Date Generated</label>
-                                        <input type="date">
-                                    </div>
                                 </div>
                             </th>
                         </tr>
                         <tr class="booking-thead-second-tr">
-                            <th class="b-first-th">FAQ ID</th>
-                            <th>Question</th>
-                            <th>Solution</th>
+                            <th class="b-first-th">FAQ Type</th>
+                            <th class="quiz_td">Question</th>
+                            <th class="solution_td">Solution</th>
                             <th class="b-last-th">Remove FAQ</th>
                         </tr>
                     </thead>
@@ -277,10 +292,12 @@
 
                         {% for FAQ in deleteFAQs %}
                         <tr>
-                            <td data-label="FAQ ID :">{{FAQ.faq_id}}</td>
-                            <td data-label="Question :">{{FAQ.question}}</td>
-                            <td data-label="Solution :">{{FAQ.answer}}</td>
-                            <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
+                            <td data-label="FAQ Type :">{{FAQ.faq_id}}</td>
+                            <td data-label="Question :" class="quiz_td">{{FAQ.question}}</td>
+                            <td data-label="Solution :" class="solution_td" style="text-align: justify;">{{FAQ.answer}}
+                            </td>
+                            <td class="trash-btn-padding-res"> <a class="trash-btn"
+                                    onclick="open_popup_delete_message()"><i class="fas fa-trash-alt"></i></a></td>
                         </tr>
                         {% endfor %}
 
@@ -315,10 +332,10 @@
                         </select>
 
                         <label for="solution" class="faqLabel">Solution : </label>
-                        <textarea id="solution" class="faqInput" name="solution"
+                        <textarea id="solution" class="faqInput" rows="4" name="solution"
                             placeholder="Type your solution..."></textarea>
 
-                        <input type="submit" value="Update FAQ" class="faqSubmit" />
+                        <input type="submit" value="Update" class="faqSubmit" />
 
                     </form>
                 </div>
@@ -339,72 +356,7 @@
     </footer>
     <!-- End of Footer -->
 
-    <script>
-        let side_menu_open_btn = document.querySelector("#side-menu-open-btn");
-        let sidebar = document.querySelector(".sidebar");
-        let side_menu_close_btn = document.querySelector("#side-menu-close-btn");
-        // let homecontent = document.querySelector(".home-content");
-
-
-        side_menu_open_btn.onclick = function () {
-            sidebar.classList.add("active");
-        }
-        side_menu_close_btn.onclick = function () {
-            sidebar.classList.remove("active");
-        }
-
-        //notification
-        function showNotifycation() {
-            document.querySelector(".pop-up").classList.toggle("show");
-            document.querySelector(".notification-container").classList.toggle("hide");
-        }
-
-        function openTab(evt, tabName) {
-            var i, booking_tab_content, booking_tab;
-
-            booking_tab_content = document.getElementsByClassName("booking_tab_content");
-
-            for (i = 0; i < booking_tab_content.length; i++) {
-                booking_tab_content[i].style.display = "none";
-            }
-
-            booking_tab = document.getElementsByClassName("booking_tab");
-            for (i = 0; i < booking_tab.length; i++) {
-                booking_tab[i].className = booking_tab[i].className.replace(" active", "");
-            }
-
-            document.getElementById(tabName).style.display = "block";
-            evt.currentTarget.className += " active";
-        }
-
-        // popup form section
-
-        function openpopupform() {
-            var form = document.getElementById("myForm");
-
-            form.style.display = "block";
-
-        }
-
-        function closepopupform() {
-            var form = document.getElementById("myForm");
-
-            form.style.display = "none";
-
-        }
-        //popup sign out message
-        function open_popup_signout_message() {
-            var form = document.getElementById("popup_signout");
-
-            form.style.display = "block";
-        }
-        function close_popup_signout_message() {
-            var form = document.getElementById("popup_signout");
-
-            form.style.display = "none";
-        }
-
-    </script>
+    <script type="text/javascript" src="/Assets/js/Admin/adminFAQ.js?version=2"></script>
 </body>
 
 </html>

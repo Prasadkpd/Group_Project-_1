@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Bookings</title>
-    <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-bookings.css?version=7">
+    <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-bookings.css?version=9">
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 </head>
 
@@ -274,7 +274,10 @@
                             </div>
 
                             <div class="date-picker">
-                                <input type="date">
+                                <form action="">
+                                    <input type="date">
+                                    <input type="submit" value="Go">
+                                </form>
                             </div>
 
                         </div>
@@ -416,20 +419,7 @@
                             </tr>
                             {% endfor %}
 
-                            <tr>
-                                <td data-label="Booking ID :">100000000</td>
-                                <td data-label="Start Time :">11.40</td>
-                                <td data-label="End Time :">1.00</td>
-
-                                <td data-label="Booked Date :">2021.10.21</td>
-                                <td data-label="Mobile Number :">0705614640</td>
-
-                                <td data-label="Payment Status:">
-                                    <div class="Payment-status"><a href="">Unpaid</a></div>
-                                </td>
-                                <td data-label="Action :"> <a href="" class="trash-btn"><i
-                                            class="fas fa-trash-alt"></i></a></td>
-                            </tr>
+                        
 
 
                         </tbody>
