@@ -50,7 +50,7 @@
         </div>
     </nav>
 
-    <!-- start popup form for edit profile -->
+    <!-- start popup for profile -->
     <div id="myForm" class="sectionpopnav">
         <div class="formsectionprofile" id="formEditUserProfile">
             <div>
@@ -86,73 +86,7 @@
             </div>
         </div>
     </div>
-    <!-- end popup form for edit profile -->
-
-    <!-- start edit primary number section -->
-    <div id="popup_editPrimaryNumber" class="sectionpopnav">
-        <div class="formsectionnav">
-            <div>
-                <button class="closebutton" onclick="close_editPrimaryPhoneNumber()">❌</button>
-            </div>
-            <div class="popup-header">
-                <h3>Do you really want to change your primary contact?</h3>
-            </div>
-            <div style="display:flex;">
-                <a class="popup_buttonnav" href="/otp">YES</a>
-                <button onclick="close_editPrimaryPhoneNumber()" class="popup_buttonnav red">
-                    NO
-                </button>
-            </div>
-            <div class="opt-msg">**We are going to send you an OTP code to your previous Primary Contact</div>
-        </div>
-    </div>
-    <!--end edit primary number section -->
-
-    <!-- start edit password number section -->
-    <div id="popup_editPassword" class="sectionpopnav">
-        <div class="formsectionnav">
-            <div>
-                <button class="closebutton" onclick="close_editPassword()">❌</button>
-            </div>
-            <div class="popup-header">
-                <h2>Password Reset</h2>
-            </div>
-            <form style="margin:20px 20px 0px 20px" action="/" id="formPassword" onsubmit="validatePasswordForm()">
-                <div class="input-box">
-                    <label for="oldPassword">Old Password</label>
-                    <div class="input-row">
-                        <input id="oldPassword" type="password" name="old_password" onfocusout="validateOldPassword()"
-                            placeholder="Enter old password">
-                        <i class="bi bi-eye-slash" id="togglePassword1"></i>
-                        <div class="helper-text" id="firstNameMsg">
-                            <p>{{errors["first_name1"]}} {{errors["first_name2"]}}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="input-box">
-                    <label for="oldPassword">New Password</label>
-                    <div class="input-row">
-                        <input id="newPassword" type="password" name="new_password" onfocusout="validateNewPassword()"
-                            placeholder="Enter new password">
-                        <i class="bi bi-eye-slash" id="togglePassword2"></i>
-                        <div class="helper-text" id="firstNameMsg">
-                            <p>{{errors["first_name1"]}} {{errors["first_name2"]}}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="display:flex" class="response_buttons">
-                    <input type=submit class="popup_buttonnav" value="CONFIRM">
-                    <button id="No_EditPassword" class="popup_buttonnav red">
-                        CANCEL
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-    <!--end edit password number section -->
-    <!-- end popup form for edit profile -->
+    <!-- end popup for profile -->
 
     <!-- start pop up sign out section -->
     <div id="popup_signout" class="sectionpopnav">

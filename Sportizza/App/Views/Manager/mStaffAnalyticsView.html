@@ -6,100 +6,114 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analytics</title>
-    <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-analytics.css?version=6">
+      <!-- Top Nav bar CSS styles -->
+      <link rel="stylesheet" href="/Assets/css/navbar.css?version=4">
+      <!-- File Specific CSS Styles -->
+    <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-analytics.css?version=8">
+    <!-- File icons -->
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
-    <!-- Top Navigation Bar -->
-    <nav>
+     <!-- Top Navigation Bar -->
+     <nav>
         <div class="nav-left">
             <div class="logo-container">
-                <a href="#">
+                <a href="/">
                     <i class="fas fa-running "></i>
                     <span class="logo-name">Sportizza</span>
                 </a>
             </div>
-            <div class="search-bar-container">
-                <input type="search" name="search" placeholder="Search">
-                <i class="fas fa-search "></i>
+
+            <div class="nav-right">
+                <!-- Profile button -->
+                <div class="nav-profile">
+                    <button class="openbutton" onclick="openpopupform()">
+                        <div class="profile-details">
+                            <img src="/Assets/images/customer/profile-picture.jpg" class="profile-picture">
+                            <div class="username">{{current_user.first_name}} {{current_user.last_name}}</div>
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Signout button -->
+                <div class="sign-in-out-btn">
+                    <button onclick="open_popup_signout_message()">Sign Out</button>
+                    <!-- {% if session.user_id %}
+                User with ID {{session.user_id}} is logged in.
+            {% endif %} -->
+                </div>
             </div>
-            <div class="nav-profile">
-                <button class="openbutton" onclick="openpopupform()">
-                    <div class="profile-details">
-                        <img src="/Assets/images/Team members/jonathan.png" alt="" class="profile-picture">
-                        <div class="username">{{current_user.first_name}} {{current_user.last_name}}</div>
-                    </div>
-                </button>
-            </div>
-            <div class="sign-in-out-btn">
-                <button onclick="open_popup_signout_message()"> Sign Out </button>
-                <!-- {% if current_user %}
-                                     <a href="/logout"> Sign Out</a>
-                                     {% endif %} -->
-            </div>
-        </div>
-        <!-- search bar for mobile -->
-        <div class="search-bar-container-mobi">
-            <input type="search" name="search" placeholder="Search">
-            <i class="fas fa-search "></i>
         </div>
     </nav>
-    <div id="myForm" class="sectionpop ">
-        <div class="formsection">
+
+    <!-- start popup for profile -->
+    <div id="myForm" class="sectionpopnav">
+        <div class="formsectionprofile" id="formEditUserProfile">
             <div>
-                <button s class="closebutton" onclick="closepopupform()">❌</button>
+                <button class="closebutton" onclick="closepopupform()">❌</button>
             </div>
-            <img class="form-profile-picture" src="/Assets/images/Team members/jonathan.png" alt="">
-            <form action="/action_page.php" style="margin:20px">
-                <label for="fname">First Name</label>
-                <input type="text" id="fname" name="firstname" placeholder="Enter First Name" value="sadeepa">
-                <label for="lname">Last Name</label>
-                <input type="text" id="lname" name="lastname" placeholder="Enter Last Names" value="bhashitha">
-                <label for="lname">Primary Number</label>
-                <input type="text" id="lname" name="lastname" placeholder="Enter Primary Number" value="0705614640">
-                <label for="lname">Secondary Number</label>
-                <input type="text" id="userid" name="lastname" placeholder="Enter Secondary Number" value="0705614640">
-                <input type="submit" value="Save">
-            </form>
+
+            <div class="nav-user-edit-from">
+                <div class="details">
+                    <div class="input-box">
+                        <h5>Name:</h5>
+                        <p>
+                            {{current_user.first_name}} {{current_user.last_name}}
+                        </p>
+                    </div>
+                    <div class="input-box">
+                        <h5>Username:</h5>
+                        <p>
+                            {{current_user.username}}
+                        </p>
+                    </div>
+                    <div class="input-box">
+                        <h5>Mobile:</h5>
+                        <p>
+                            {{current_user.primary_contact}}</p>
+                    </div>
+                </div>
+                <div class="editProPic">
+                    <img id="form-profile-picture" src="/Assets/images/customer/profile-picture.jpg" alt="">
+                </div>
+            </div>
+            <div class="edit-profile-link">
+                <a href="">Edit Profile</a>
+            </div>
         </div>
     </div>
+    <!-- end popup for profile -->
+
+    <!-- start pop up sign out section -->
+    <div id="popup_signout" class="sectionpopnav">
+        <div class="formsectionnav">
+            <div>
+                <button class="closebutton" onclick="close_popup_signout_message()">❌</button>
+            </div>
+            <form action="/action_page.php" style="margin:20px">
+                <div style="margin:auto">
+                    <h1>Sign Out</h1>
+                    <p>Do your really want to sign out now?</p>
+                </div>
+            </form>
+            <div style="display:flex">
+                <button class="popup_buttonnav">
+                    {% if current_user %}
+                    <a href="/logout"> YES</a>
+                    {% endif %}
+                </button>
+                <button onclick="close_popup_signout_message()" class="popup_delete_buttonnav">
+                    NO
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- end pop up sign out section -->
 
     <!-- End Top Navigation Bar -->
-<!-- Start OF the POP up SIGN out -->
-<div id="popup_signout" class="sectionpop ">
-    <div class="formsection">
 
-        <div>
-            <button class="closebutton" onclick="close_popup_signout_message()">❌</button>
-        </div>
-        <form action="/action_page.php" style="margin:20px">
-            <div style="margin:auto">
-                <h1 style="margin:auto">
-                    Sign Out
-                </h1>
-                <p style="margin:auto">
-                    Do your really want to sign out now?
-                </p>
-            </div>
-        </form>
-
-
-        <div style="display:flex">
-
-            <button class="popup_delete_button">
-                {% if current_user %}
-                <a href="/logout"> YES</a>
-                {% endif %}
-            </button>
-            <button onclick="close_popup_signout_message()" class="popup_button">
-                NO
-            </button>
-        </div>
-    </div>
-</div>
-<!-- End OF the POP up SIGN out -->
 
     <section class="page-container">
 
@@ -187,21 +201,21 @@
                 <div class="chart-container">
                     <div class="chart-row">
                         <div class="chart">
-                            <h5>No of Bookings</h5>
+                            <h5>Booking Analytics</h5>
                             <canvas id="myChart1"></canvas>
                         </div>
                         <div class="chart-pie">
-                            <h5>Bookings by payment method</h5>
+                            <h5>Payment Analytics</h5>
                             <canvas id="myChart2"></canvas>
                         </div>
                     </div>
                     <div class="chart-row">
                         <div class="chart">
-                            <h5>Timeslots booked per month</h5>
+                            <h5>Timeslots Analysis</h5>
                             <canvas id="myChart3"></canvas>
                         </div>
                         <div class="chart-pie">
-                            <h5>Facilities booked per month</h5>
+                            <h5>Facility Analysis</h5>
                             <canvas id="myChart4"></canvas>
                         </div>
                     </div>
@@ -211,7 +225,7 @@
 
 
 
-                <button id="downloadPdf" class="faqSubmit">Download Report</button>
+                <button id="downloadPdf" class="faqSubmit">Download</button>
 
 
             </div>
@@ -462,6 +476,9 @@
     <script type="text/javascript">
         document.getElementById('downloadPdf').addEventListener('click', () => window.print())
     </script>
+     <!-- Top navbar js -->
+     <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
+     
 </body>
 
 </html>
