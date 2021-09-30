@@ -49,8 +49,9 @@ function close_popup_share() {
 
 
 //popup cancel message
-function open_popup_cancel_message() {
+function open_popup_cancel_message(x) {
   var form = document.getElementById("popup_cancel");
+  document.getElementById("deleteForm").action = 'Customer/deletebooking/' + x;;
   form.style.display = "block";
 }
 function close_popup_cancel_message() {
