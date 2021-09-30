@@ -52,100 +52,147 @@ class HomeModel extends \Core\Model
     }
 
 
-    public static function homeSearchArenas($location,$category,$name=''){
+    public static function homeSearchArenas($location=null,$category=null,$name=null){
 
-        // if(!empty($location)){
-        //     if(!empty($category)){
-        //         if(!empty($name)){
-        //             $sql = 'SELECT * FROM sports_arena_profile 
-        //         WHERE sa_name=:names AND category=:category AND 
-        //         sports_arena_profile.location=:locations';
-        //         }
-        //         else{
-        //             $sql = 'SELECT * FROM sports_arena_profile 
-        //         WHERE category=:category AND sports_arena_profile.location=:locations';
-        //         }
+        if($location=='select location'){
+            if($category=='select category'){
+                if(!empty($name)){
+                    $sql = 'SELECT * FROM sports_arena_profile 
+                WHERE sa_name=:names';
+                }
+                else{
+                    $sql = 'SELECT * FROM sports_arena_profile ';
+                }
             
-        //     }
-        //     else{
-        //         if(!empty($name)){
-        //             $sql = 'SELECT * FROM sports_arena_profile 
-        //         WHERE sa_name=:name AND 
-        //         sports_arena_profile.location=:locations';
-        //         }
-        //         else{
-        //             $sql = 'SELECT * FROM sports_arena_profile 
-        //         WHERE sports_arena_profile.location=:locations';
-        //         };
-        //     }
+            }
+            else{
+                if(!empty($name)){
+                    $sql = 'SELECT * FROM sports_arena_profile 
+                WHERE sa_name=:name AND 
+                sports_arena_profile.category=:category';
+                }
+                else{
+                    $sql = 'SELECT * FROM sports_arena_profile 
+                WHERE sports_arena_profile.category=:category';
+                };
+            }
 
 
             
-        // }
-
-
-        // else{
-        //     if(!empty($category)){
-        //         if(!empty($name)){
-        //             $sql = 'SELECT * FROM sports_arena_profile 
-        //         WHERE sa_name=:names AND category=:category';
-        //         }
-        //         else{
-        //             $sql = 'SELECT * FROM sports_arena_profile 
-        //         WHERE category=":category';
-        //         }
-            
-        //     }
-        //     else{
-        //         if(!empty($name)){
-        //             $sql = 'SELECT * FROM sports_arena_profile 
-        //         WHERE sa_name=:names';
-        //         }
-        //         else{
-        //             $sql = 'SELECT * FROM sports_arena_profile ';
-        //         };
-        //     }
-        // }
-        
-        
-        
-        // $sql = 'SELECT * FROM sports_arena_profile 
-        //         WHERE sa_name=:names OR category=:category OR 
-        //         sports_arena_profile.location=:locations';
-
-        if($category=='Select One'){
-            $sql = 'SELECT * FROM sports_arena_profile 
-                WHERE sa_name=:names  AND
-                sports_arena_profile.location=:locations OR category=:category';
         }
-        if($location=='Select One'){
-            $sql = 'SELECT * FROM sports_arena_profile 
-                WHERE sa_name=:names   AND category=:category
-                OR sports_arena_profile.location=:locations';
-        }
+
 
         else{
-            $sql = 'SELECT * FROM sports_arena_profile 
-                WHERE sa_name=:names OR category=:category OR 
-                sports_arena_profile.location=:locations';
+            if($category=='select category'){
+                if(!empty($name)){
+                    $sql = 'SELECT * FROM sports_arena_profile 
+                WHERE sa_name=:names AND  sports_arena_profile.location=:locations';
+                }
+                else{
+                    $sql = 'SELECT * FROM sports_arena_profile 
+                WHERE sports_arena_profile.location=:locations';
+                }
+            
+            }
+            else{
+                if(!empty($name)){
+                    $sql = 'SELECT * FROM sports_arena_profile 
+                WHERE sa_name=:names AND sports_arena_profile.category=:category
+                AND  sports_arena_profile.location=:locations';
+                }
+                else{
+                    $sql = 'SELECT * FROM sports_arena_profile 
+                    WHERE sports_arena_profile.location=:locations ';
+                }
+            }
         }
-
-        // if($category==''){
+        
+        
+        // if($category=='Select One'){
         //     $sql = 'SELECT * FROM sports_arena_profile 
-        //         WHERE sa_name=:names NOT category=:category OR 
-        //         sports_arena_profile.location=:locations';
+        //         WHERE sa_name=:names  AND
+        //         sports_arena_profile.location=:locations OR category=:category';
         // }
-        // if($location==''){
+        // if($location=='Select One'){
         //     $sql = 'SELECT * FROM sports_arena_profile 
-        //         WHERE sa_name=:names OR category=:category NOT 
+        //         WHERE sa_name=:names   AND category=:category
+        //         OR sports_arena_profile.location=:locations';
+        // }
+
+        // else{
+        //     $sql = 'SELECT * FROM sports_arena_profile 
+        //         WHERE sa_name=:names OR category=:category OR 
         //         sports_arena_profile.location=:locations';
         // }
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
-        $stmt->bindValue(':locations', $location, PDO::PARAM_STR);
-        $stmt->bindValue(':category', $category, PDO::PARAM_STR);
-        $stmt->bindValue(':names', $name, PDO::PARAM_STR);
+        
+        // if($location!='select location'){
+        //     $stmt->bindValue(':locations', $location, PDO::PARAM_STR);
+        // }
+        // if($category!='select category'){
+        //     $stmt->bindValue(':category', $category, PDO::PARAM_STR);
+        // }
+        // if(!empty($name)){
+        //     $stmt->bindValue(':names', $name, PDO::PARAM_STR);
+        // }
+    
+        
+
+
+
+        if($location=='select location'){
+            if($category=='select category'){
+                if(!empty($name)){
+                    
+                    $stmt->bindValue(':names', $name, PDO::PARAM_STR);
+                }
+                else{
+                    
+                }
+            
+            }
+            else{
+                if(!empty($name)){
+                    $stmt->bindValue(':category', $category, PDO::PARAM_STR);
+                    $stmt->bindValue(':names', $name, PDO::PARAM_STR);
+                }
+                else{
+                    $stmt->bindValue(':category', $category, PDO::PARAM_STR);
+                }
+            }
+
+
+            
+        }
+
+
+        else{
+            if($category=='select category'){
+                if(!empty($name)){
+                    $stmt->bindValue(':locations', $location, PDO::PARAM_STR);
+                    $stmt->bindValue(':names', $name, PDO::PARAM_STR);
+                }
+                else{
+                    $stmt->bindValue(':locations', $location, PDO::PARAM_STR);
+                }
+            
+            }
+            else{
+                if(!empty($name)){
+                    $stmt->bindValue(':category', $category, PDO::PARAM_STR);
+                    $stmt->bindValue(':locations', $location, PDO::PARAM_STR);
+                    $stmt->bindValue(':names', $name, PDO::PARAM_STR);
+                }
+                else{
+                    $stmt->bindValue(':category', $category, PDO::PARAM_STR);
+                    $stmt->bindValue(':locations', $location, PDO::PARAM_STR);
+                }
+            }
+        }
+        
+        
 
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 

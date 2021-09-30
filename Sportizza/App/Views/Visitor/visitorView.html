@@ -171,7 +171,7 @@
                             <label for="cars">Location</label>
                             <select id="location" name="location">
                                 {% if search_result['location']==null %}
-                                <option value='Select One' style="display:none">Select One</option>
+                                <option value='select location' style="display:none">select location</option>
                                 {% else %}
 
                                 <option style="display:none">{{search_result['location']}}</option>
@@ -206,7 +206,7 @@
                             <select id="category"  name="category">
 
                                 {% if search_result['category']==null %}
-                                <option value='Select One' style="display:none">Select One</option>
+                                <option value='select category' style="display:none">select category</option>
                                 {% else %}
 
                                 <option style="display:none">{{search_result['category']}}</option>

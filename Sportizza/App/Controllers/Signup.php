@@ -30,6 +30,7 @@ class Signup extends \Core\Controller
         var_dump($_SESSION['direct_url']);
 
         if ($user->save()){
+            $_SESSION['temp_user']=$_POST['username'];
             otp::sendSMS("mobile_number");
             // $this->redirect('/Signup/success',['direct_url'=>$direct_url]);
             $this->redirect('/Signup/success');
@@ -67,5 +68,13 @@ class Signup extends \Core\Controller
     //     //     'user' => $user, 'errors' => $errors]);
     //     View::renderTemplate('LoginSignup/customerSignupView.html');
     // }
+
+    public function activeuserAction()
+    {
+ 
+        SignupModel::activeuser($_SESSION['temp_user']);
+        
+       $this->redirect('/login');
+    }
 
 }
