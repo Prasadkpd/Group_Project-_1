@@ -190,6 +190,35 @@ class AdminModel extends \Core\Model
         // echo $type;
     }
 
+    public static function adminGetSolutionDetails($question){
+        $sql = 'SELECT answer FROM faq WHERE faq_id=:question ';
+
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':question', $question, PDO::PARAM_STR);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+
+        // $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        // $question = $result["question"];
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $output = $result["answer"];
+
+        // while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        //     $output .= "<option value={$row["faq_id"]}>{$row["question"]}</option>";
+        // }
+        
+        // var_dump($result);
+        return $output;
+        // return '<option>Kiri Shawty</option>';
+        // echo $type;
+    }
+
 
     public static function adminRemoveRatings(){
         
