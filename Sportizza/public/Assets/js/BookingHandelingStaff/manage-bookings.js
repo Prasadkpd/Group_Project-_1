@@ -27,14 +27,14 @@ for (i = 0; i < booking_tab_content.length; i++) { booking_tab_content[i].style.
     document.getElementById(tabName).style.display="block" ; evt.currentTarget.className +=" active" ; }
 
 // popup section
-// function openpopupform() {
-//     var form = document.getElementById("myForm");
-//     form.style.display = "block";
-// }
-// function closepopupform() {
-//     var form = document.getElementById("myForm");
-//     form.style.display = "none";
-// }
+function openpopupform() {
+    var form = document.getElementById("myForm");
+    form.style.display = "block";
+}
+function closepopupform() {
+    var form = document.getElementById("myForm");
+    form.style.display = "none";
+}
 
 //popup sign out message
 function open_popup_signout_message() {

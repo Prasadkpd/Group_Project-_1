@@ -57,6 +57,8 @@ width:20px;
 float:right;
 /* margin-right: 15px; */
 margin-top: 10px;
+background-color: transparent;
+border: none;
 }
 .openbutton{
 border: none;
