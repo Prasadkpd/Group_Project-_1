@@ -222,10 +222,10 @@ class AdminModel extends \Core\Model
 
     public static function adminRemoveRatings(){
         
-        $sql = 'SELECT feedback.feedback_id,feedback.feedback_rating,sports_arena_profile.sa_name,DATE(feedback.posted_date) as "date",
+        $sql = 'SELECT feedback.feedback_id,feedback.feedback_rating,feedback.description,sports_arena_profile.sa_name,DATE(feedback.posted_date) as "date",
                 feedback.sports_arena_id FROM feedback
         INNER JOIN sports_arena_profile ON feedback.sports_arena_id=sports_arena_profile.sports_arena_id 
-        WHERE feedback.security_status="active" ';
+        WHERE feedback.security_status="active" AND feedback.feedback_rating<3 ';
 
 
         $db = static::getDB();
@@ -258,9 +258,9 @@ class AdminModel extends \Core\Model
                     WHEN "11" THEN "November"
                     WHEN "12" THEN "December"
                     ELSE "Not Valid"
-                END AS Time_Registered, COUNT(DISTINCT customer_user_id) AS No_Of_Customers
-                FROM customer
-                JOIN user ON customer.customer_user_id=user.user_id
+                END AS Time_Registered, COUNT(DISTINCT user_id) AS No_Of_Customers
+                FROM user
+                WHERE user.account_status="active" AND user.type="Customer"
                 GROUP BY Time_Registered
                 ORDER BY user.registered_time ASC ';
 
@@ -279,7 +279,7 @@ class AdminModel extends \Core\Model
 
     public static function adminChart2(){
         
-        $sql = 'SELECT CASE EXTRACT(MONTH FROM user.registered_time)
+        $sql = 'SELECT CASE EXTRACT(MONTH FROM sports_arena.registered_time)
                     WHEN "1" THEN "January"
                     WHEN "2" THEN "February"
                     WHEN "3" THEN "March"
@@ -293,12 +293,11 @@ class AdminModel extends \Core\Model
                     WHEN "11" THEN "November"
                     WHEN "12" THEN "December"
                     ELSE "Not Valid"
-                END AS Time_Registered, COUNT(DISTINCT manager.user_id) AS No_Of_Sports_Arenas
-                FROM manager
-                JOIN user ON manager.user_id=user.user_id
-                JOIN sports_arena ON manager.sports_arena_id=sports_arena.sports_arena_id
+                END AS Time_Registered, COUNT(DISTINCT sports_arena.sports_arena_id) AS No_Of_Sports_Arenas
+                FROM sports_arena
+                WHERE sports_arena.security_status="active"
                 GROUP BY Time_Registered
-                ORDER BY user.registered_time ASC ';
+                ORDER BY sports_arena.registered_time ASC ';
 
 
         $db = static::getDB();
@@ -317,6 +316,7 @@ class AdminModel extends \Core\Model
         
         $sql = 'SELECT booking_date, COUNT(DISTINCT booking_id) AS No_Of_Bookings
                 FROM booking
+                WHERE security_status="active"
                 GROUP BY booking_date ';
 
 
@@ -336,6 +336,7 @@ class AdminModel extends \Core\Model
         
         $sql = 'SELECT payment_method, COUNT(DISTINCT booking_id) AS No_Of_Bookings
                 FROM booking
+                WHERE security_status="active"
                 GROUP BY payment_method ';
 
 
@@ -355,7 +356,8 @@ class AdminModel extends \Core\Model
         
         $sql = 'SELECT category, COUNT(DISTINCT sports_arena_id) AS No_Of_Sports_Arenas
         FROM sports_arena_profile
-        GROUP BY category;
+        WHERE security_status="active"
+        GROUP BY category
         ORDER BY category ASC ';
 
 
@@ -375,7 +377,8 @@ class AdminModel extends \Core\Model
         
         $sql = 'SELECT location, COUNT(DISTINCT sports_arena_id) AS No_Of_Sports_Arenas
         FROM sports_arena_profile
-        GROUP BY location;
+        WHERE security_status="active"
+        GROUP BY location
         ORDER BY location ASC ';
 
 

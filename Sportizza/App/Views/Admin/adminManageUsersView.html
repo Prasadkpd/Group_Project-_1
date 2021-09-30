@@ -145,7 +145,7 @@
                     </div>
                     <ul class="side-menu-list">
                         <li>
-                            <a href="/admin/analytics" class="side-menu-li">
+                            <a href="/admin/chart" class="side-menu-li">
                                 <i class="fas fa-chart-bar"></i>
                                 <p class="side-menu-item">Analytics</p>
                             </a>
@@ -212,8 +212,8 @@
                                 <th>Last Name</th>
                                 <th>Username</th>
                                 <th>Primary Contact</th>
-                                <th>Secondary Contact</th>
-                                <th>Abided Rules</th>
+                                <!-- <th>Secondary Contact</th> -->
+                                <!-- <th>Abided Rules</th> -->
                                 <th>Remove Account</th>
                                 <!--<th class="b-last-th">Payment Status</th>-->
                             </tr>
@@ -226,8 +226,8 @@
                                 <td data-label="Last Name :">{{customer.last_name}}</td>
                                 <td data-label="Username :">{{customer.username}}</td>
                                 <td data-label="Primary Contact :">{{customer.primary_contact}}</td>
-                                <td data-label="Secondary Contact :">{{customer.secondary_contact}}</td>
-                                <td data-label="Abided Rules :">Yes</td>
+                                <!-- <td data-label="Secondary Contact :">{{customer.secondary_contact}}</td> -->
+                                <!-- <td data-label="Abided Rules :">Yes</td> -->
                                 <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
                             </tr>
                             {% endfor %}
