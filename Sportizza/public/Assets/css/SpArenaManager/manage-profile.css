@@ -333,8 +333,7 @@ form input[type="submit"] {
 }
 .sp-arena {
   display: flex;
-  margin: 2rem;
-  margin-bottom: 1rem;
+  margin: 1rem;
   height: max-content;
 }
 .sp-arena .sp-arena-img img {
