@@ -1,108 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Manage Users</title>
-     <!-- CSS File -->
-    <link rel="stylesheet" href="/Assets/css/Admin/admin-manage-users.css?version=2">
+    <!-- CSS File -->
+    <link rel="stylesheet" href="/Assets/css/Admin/admin-manage-users.css?version=4">
     <!-- FontAwesome Icon -->
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <!-- Top Navigation Bar -->
     <nav>
-        <div class="logo-container">
-            <a href="/">
-                <i class="fas fa-running "></i>
-                <span class="logo-name">Sportizza</span>
-            </a>
-        </div> 
-        <div class="search-bar-container">
-             <input type="search" name="search" placeholder="Search">
-             <i class="fas fa-search "></i>
+        <div class="nav-left">
+            <div class="logo-container">
+                <a href="/">
+                    <i class="fas fa-running "></i>
+                    <span class="logo-name">Sportizza</span>
+                </a>
+            </div>
+
+            <div class="nav-right">
+                <!-- Profile button -->
+                <div class="nav-profile">
+                    <button class="openbutton" onclick="openpopupform()">
+                        <div class="profile-details">
+                            <img src="/Assets/images/customer/profile-picture.jpg" class="profile-picture">
+                            <div class="username">{{current_user.first_name}} {{current_user.last_name}}</div>
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Signout button -->
+                <div class="sign-in-out-btn">
+                    <button onclick="open_popup_signout_message()">Sign Out</button>
+                    <!-- {% if session.user_id %}
+                            User with ID {{session.user_id}} is logged in.
+                        {% endif %} -->
+                </div>
+            </div>
         </div>
-        <div  class="nav-profile">
-             <button   class="openbutton" onclick="openpopupform()">
-             <div class="profile-details">
-                 <img src="/Assets/images/Team members/jonathan.png" alt="" class="profile-picture">
-                 <div class="username">{{current_user.first_name}}  {{current_user.last_name}}</div>
-                 
-             </div>
-             </button>
-         </div>
-        <div class="sign-in-out-btn">
-            <button onclick="open_popup_signout_message()" > Sign Out </button>
-        </div> 
-     </nav>
-     <!-- End Top Navigation Bar -->
-     
-     <!-- popup form for edit profile -->
-     <div id="myForm" class="sectionpop ">
- 
- 
-     <div class="formsection">
- 
-         <div>
-             <button s class="closebutton"onclick="closepopupform()">❌</button>
-         </div>
-     <img class="form-profile-picture"  src="/Assets/images/Team members/jonathan.png" alt="">
-     <form action="/action_page.php" style="margin:20px">
-         <label for="fname">First Name</label>
-         <input type="text" id="fname" name="firstname"
-             placeholder="Enter First Name" value="sadeepa">
- 
-         <label for="lname">Last Name</label>
-         <input type="text" id="lname" name="lastname"
-             placeholder="Enter Last Names" value="bhashitha">
- 
- 
-         <label for="lname">Primary Number</label>
-         <input type="text" id="lname" name="lastname"
-             placeholder="Enter Primary Number" value="0705614640">
- 
-         <label for="lname">Secondary Number</label>
-         <input type="text" id="userid" name="lastname"
-             placeholder="Enter Secondary Number" value="0705614640">
- 
- 
- 
-         <input  type="submit" value="Save">
-     </form> 
-     </div>    
-     </div>
- 
-    <!-- Start OF the POP up SIGN out -->
-    <div id="popup_signout" class="sectionpop ">
-        <div class="formsection">
+    </nav>
+
+    <!-- start popup form for edit profile -->
+    <div id="myForm" class="sectionpopnav">
+        <div class="formsectionprofile" id="formEditUserProfile">
+            <div>
+                <button class="closebutton" onclick="closepopupform()">❌</button>
+            </div>
+
+            <div class="nav-user-edit-from">
+                <div class="details">
+                    <div class="input-box">
+                        <h5>Name:</h5>
+                        <p>
+                            {{current_user.first_name}} {{current_user.last_name}}
+                        </p>
+                    </div>
+                    <div class="input-box">
+                        <h5>Username:</h5>
+                        <p>
+                            {{current_user.username}}
+                        </p>
+                    </div>
+                    <div class="input-box">
+                        <h5>Mobile:</h5>
+                        <p>
+                            {{current_user.primary_contact}}</p>
+                    </div>
+                </div>
+                <div class="editProPic">
+                    <img id="form-profile-picture" src="/Assets/images/customer/profile-picture.jpg" alt="">
+                </div>
+            </div>
+            <div class="edit-profile-link">
+                <a href="">Edit Profile</a>
+            </div>
+        </div>
+    </div>
+    <!-- end popup form for edit profile -->
+
+    <!-- start pop up sign out section -->
+    <div id="popup_signout" class="sectionpopnav">
+        <div class="formsectionnav">
             <div>
                 <button class="closebutton" onclick="close_popup_signout_message()">❌</button>
             </div>
             <form action="/action_page.php" style="margin:20px">
                 <div style="margin:auto">
-                    <h1 style="margin:auto">
-                        Sign Out
-                    </h1>
-                    <p style="margin:auto">
-                        Do your really want to sign out now?
-                    </p>
+                    <h1>Sign Out</h1>
+                    <p>Do your really want to sign out now?</p>
                 </div>
             </form>
             <div style="display:flex">
-    
-                <button class="popup_delete_button">
+                <button class="popup_buttonnav">
                     {% if current_user %}
                     <a href="/logout"> YES</a>
                     {% endif %}
                 </button>
-                <button onclick="close_popup_signout_message()" class="popup_button">
+                <button onclick="close_popup_signout_message()" class="popup_delete_buttonnav">
                     NO
                 </button>
             </div>
         </div>
     </div>
-    <!-- End OF the POP up SIGN out -->
+    <!-- end pop up sign out section -->
+
     <!-- Start OF the POP up Bookig Cancel -->
     <div id="popup_delete" class="sectionpop ">
         <div class="formsection">
@@ -120,7 +126,7 @@
                 </div>
             </form>
             <div style="display:flex">
-    
+
                 <button class="popup_delete_button">
                     <a href=""> YES</a>
                 </button>
@@ -135,230 +141,240 @@
 
 
     <section class="page-container">
-        
-            <!-- SIDE NAVIGATION BAR - START -->
-            <div class="sidebar">
-                <div class="sidebar-container">
-                    <div class="side-menu">
-                        <i class="fas fa-bars fa-2x " id="side-menu-open-btn"></i>
-                        <i class="fas fa-times fa-2x" id="side-menu-close-btn"></i>
-                    </div>
-                    <ul class="side-menu-list">
-                        <li>
-                            <a href="/admin/analytics" class="side-menu-li">
-                                <i class="fas fa-chart-bar"></i>
-                                <p class="side-menu-item">Analytics</p>
-                            </a>
-                            <p class="side-menu-tooltip">Analytics</p>
-                        </li>
-                        <li>
-                            <a href="/admin/manageuser" class="side-menu-li">
-                                <i class="fas fa-users"></i>
-                                <p class="side-menu-item">Manage Users</p>
-                            </a>
-                            <p class="side-menu-tooltip">Manage Users</p>
-                        </li>
-                    
-                        <li>
-                            <a href="/admin/faq" class="side-menu-li">
-                                <i class="fas fa-question"></i>
-                                <p class="side-menu-item">FAQ</p>
-                            </a>
-                            <p class="side-menu-tooltip">FAQ</p>
-                        </li>
-                    
-                        <li>
-                            <a href="/admin/ratings" class="side-menu-li">
-                                <i class="fas fa-star"></i>
-                                <p class="side-menu-item">Ratings</p>
-                            </a>
-                            <p class="side-menu-tooltip">Ratings</p>
-                        </li>
-                    </ul>
+
+        <!-- SIDE NAVIGATION BAR - START -->
+        <div class="sidebar">
+            <div class="sidebar-container">
+                <div class="side-menu">
+                    <i class="fas fa-bars fa-2x " id="side-menu-open-btn"></i>
+                    <i class="fas fa-times fa-2x" id="side-menu-close-btn"></i>
+                </div>
+                <ul class="side-menu-list">
+                    <li>
+                        <a href="/admin/analytics" class="side-menu-li">
+                            <i class="fas fa-chart-bar"></i>
+                            <p class="side-menu-item">Analytics</p>
+                        </a>
+                        <p class="side-menu-tooltip">Analytics</p>
+                    </li>
+                    <li>
+                        <a href="/admin/manageuser" class="side-menu-li">
+                            <i class="fas fa-users"></i>
+                            <p class="side-menu-item">Manage Users</p>
+                        </a>
+                        <p class="side-menu-tooltip">Manage Users</p>
+                    </li>
+
+                    <li>
+                        <a href="/admin/faq" class="side-menu-li">
+                            <i class="fas fa-question"></i>
+                            <p class="side-menu-item">FAQ</p>
+                        </a>
+                        <p class="side-menu-tooltip">FAQ</p>
+                    </li>
+
+                    <li>
+                        <a href="/admin/ratings" class="side-menu-li">
+                            <i class="fas fa-star"></i>
+                            <p class="side-menu-item">Ratings</p>
+                        </a>
+                        <p class="side-menu-tooltip">Ratings</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- SIDE NAVIGATION BAR - END -->
+        <div class="page-content-container">
+            <div class="container">
+                <h1 class="page-header">Manage Users</h1>
+                <div class="tab">
+                    <button class="booking_tab tab-btn active" onclick="openTab(event, 'view_bookings')"><i
+                            class="fas fa-user"></i>
+                        <p>Remove Customers</p>
+                    </button>
+                    <button class="booking_tab tab-btn" onclick="openTab(event, 'add_bookings')"><i
+                            class="fas fa-map-marker-alt"></i>
+                        <p>Add Sports Arenas</p>
+                    </button>
+                    <button class="booking_tab tab-btn" onclick="openTab(event, 'cancel_booking')"><i
+                            class="fas fa-map-marker-alt"></i>
+                        <p>Remove Arenas</p>
+                    </button>
+                    <!--<button class="booking_tab tab-btn" onclick="openTab(event, 'booking_payment')"><i class="fas fa-money-check-alt"></i><p> Booking Payment</p></button>-->
                 </div>
             </div>
-            <!-- SIDE NAVIGATION BAR - END -->
-            <div class="page-content-container" >
-                <div class="container">
-                    <h1 class="page-header">Manage Users</h1>
-                    <div class="tab">
-                        <button class="booking_tab tab-btn active" onclick="openTab(event, 'view_bookings')"><i class="fas fa-user"></i><p>Remove Customers</p></button>
-                        <button class="booking_tab tab-btn" onclick="openTab(event, 'add_bookings')"><i class="fas fa-map-marker-alt"></i><p>Add Sports Arenas</p></button>
-                        <button class="booking_tab tab-btn" onclick="openTab(event, 'cancel_booking')"><i class="fas fa-map-marker-alt"></i><p>Remove Arenas</p></button>
-                        <!--<button class="booking_tab tab-btn" onclick="openTab(event, 'booking_payment')"><i class="fas fa-money-check-alt"></i><p> Booking Payment</p></button>-->
-                    </div>
-                </div>
 
-                <div id="view_bookings" class="booking_tab_content active"  style="display: block;">
-                    <table class="booking-table">
-                        <thead>
-                            <tr class="booking-thead-first-tr">
-                                <th class="booking-table-first-th">
-                                    <div class="booking-table-filter-container">
-                                        <div class="booking-table-search-container">
-                                            <input type="search" name="search" placeholder="Search">
-                                            <i class="fas fa-search"></i>
-                                        </div>
-                                        <!--<div class="booking-table-date-picker">
+            <div id="view_bookings" class="booking_tab_content active" style="display: block;">
+                <table class="booking-table">
+                    <thead>
+                        <tr class="booking-thead-first-tr">
+                            <th class="booking-table-first-th">
+                                <div class="booking-table-filter-container">
+                                    <div class="booking-table-search-container">
+                                        <input type="search" name="search" placeholder="Search">
+                                        <i class="fas fa-search"></i>
+                                    </div>
+                                    <!--<div class="booking-table-date-picker">
                                             <label class="date-label">Booking Date</label>
                                             <input type="date">
                                         </div>-->
+                                </div>
+                            </th>
+                        </tr>
+                        <tr class="booking-thead-second-tr">
+                            <th class="b-first-th">User ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Username</th>
+                            <th>Primary Contact</th>
+                            <th>Secondary Contact</th>
+                            <th>Abided Rules</th>
+                            <th>Remove Account</th>
+                            <!--<th class="b-last-th">Payment Status</th>-->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for customer in customers %}
+                        <tr>
+                            <td data-label="User ID :">{{customer.user_id}}</td>
+                            <td data-label="First Name :">{{customer.first_name}}</td>
+                            <td data-label="Last Name :">{{customer.last_name}}</td>
+                            <td data-label="Username :">{{customer.username}}</td>
+                            <td data-label="Primary Contact :">{{customer.primary_contact}}</td>
+                            <td data-label="Secondary Contact :">{{customer.secondary_contact}}</td>
+                            <td data-label="Abided Rules :">Yes</td>
+                            <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="add_bookings" class="booking_tab_content">
+                <table class="booking-table">
+                    <thead>
+                        <tr class="booking-thead-first-tr">
+                            <th class="booking-table-first-th">
+                                <div class="booking-table-filter-container">
+                                    <div class="booking-table-search-container">
+                                        <input type="search" name="search" placeholder="Search">
+                                        <i class="fas fa-search"></i>
                                     </div>
-                                </th>
-                            </tr>
-                            <tr class="booking-thead-second-tr">
-                                <th class="b-first-th">User ID</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
-                                <th>Primary Contact</th>
-                                <th>Secondary Contact</th>
-                                <th>Abided Rules</th>
-                                <th>Remove Account</th>
-                                <!--<th class="b-last-th">Payment Status</th>-->
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for customer in customers %}
-                            <tr>
-                                <td data-label="User ID :">{{customer.user_id}}</td>
-                                <td data-label="First Name :">{{customer.first_name}}</td>
-                                <td data-label="Last Name :">{{customer.last_name}}</td>
-                                <td data-label="Username :">{{customer.username}}</td>
-                                <td data-label="Primary Contact :">{{customer.primary_contact}}</td>
-                                <td data-label="Secondary Contact :">{{customer.secondary_contact}}</td>
-                                <td data-label="Abided Rules :">Yes</td>
-                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-                
-                <div id="add_bookings" class="booking_tab_content">
-                    <table class="booking-table">
-                        <thead>
-                            <tr class="booking-thead-first-tr">
-                                <th class="booking-table-first-th">
-                                    <div class="booking-table-filter-container">
-                                        <div class="booking-table-search-container">
-                                            <input type="search" name="search" placeholder="Search">
-                                            <i class="fas fa-search"></i>
-                                        </div>
-                                        <!--<div class="booking-table-date-picker">
+                                    <!--<div class="booking-table-date-picker">
                         <label class="date-label">Booking Date</label>
                         <input type="date">
                     </div>-->
-                                    </div>
-                                </th>
-                            </tr>
-                            <tr class="booking-thead-second-tr">
-                                <th class="b-first-th">Sports Arena Name</th>
-                                <th>Registered Date</th>
-                                <th>Contact Number</th>
-                                <th class="b-last-th">Request Status</th>
-                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                            
+                                </div>
+                            </th>
+                        </tr>
+                        <tr class="booking-thead-second-tr">
+                            <th class="b-first-th">Sports Arena Name</th>
+                            <th>Registered Date</th>
+                            <th>Contact Number</th>
+                            <th class="b-last-th">Request Status</th>
 
-                            {% for arenas in inactiveArenas %}
-                            <tr class="popup" onclick="sportsArenaPopup()">
-                                <td data-label="Sports Arena Name :">{{arenas.sa_name}}</td>
-                                <td data-label="Registered Date :">{{arenas.date}}</td>
-                                <td data-label="Contact Number :">{{arenas.contact_no}}</td>
-                                <td data-label="Accept Request :" class="acceptAcc"><i class="fas fa-check"></i></td>
-                                
-                            </tr>
-                            {% endfor %}
-                            
-                        </tbody>
-                    </table>  
-                    <div class="form-container">
-                        <h6>Sports Arena Name : </h6>
-                        <p>Michael Sports Academy</p>
-
-                        <h6>Registered Date : </h6>
-                        <p>2021-08-05</p>
+                        </tr>
+                    </thead>
+                    <tbody>
 
 
-                        <h6>Contact Number : </h6>
-                        <p>77 119 9384</p>
+                        {% for arenas in inactiveArenas %}
+                        <tr class="popup" onclick="sportsArenaPopup()">
+                            <td data-label="Sports Arena Name :">{{arenas.sa_name}}</td>
+                            <td data-label="Registered Date :">{{arenas.date}}</td>
+                            <td data-label="Contact Number :">{{arenas.contact_no}}</td>
+                            <td data-label="Accept Request :" class="acceptAcc"><i class="fas fa-check"></i></td>
+
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+                <div class="form-container">
+                    <h6>Sports Arena Name : </h6>
+                    <p>Michael Sports Academy</p>
+
+                    <h6>Registered Date : </h6>
+                    <p>2021-08-05</p>
 
 
-                        <h6>Location : </h6>
-                        <p>Colombo 07</p>
+                    <h6>Contact Number : </h6>
+                    <p>77 119 9384</p>
 
 
-                        <h6>Google Map Link : </h6>
-                        <p>https://goo.gl/maps/SjbY7wowaqSR1J929</p>
+                    <h6>Location : </h6>
+                    <p>Colombo 07</p>
 
 
-                        <h6>Description : </h6>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
-
-                        <h6>Category : </h6>
-                        <p>Futsal</p>
-                    </div>
-                </div>
-
-                <div id="cancel_booking" class="booking_tab_content">
-                    <table class="booking-table">
-                        <thead>
-                            <tr class="booking-thead-first-tr">
-                                <th class="booking-table-first-th">
-                                    <div class="booking-table-filter-container">
-                                        <div class="booking-table-search-container">
-                                            <input type="search" name="search" placeholder="Search">
-                                            <i class="fas fa-search"></i>
-                                        </div>
-                                        <!--<div class="booking-table-date-picker">
-                        <label class="date-label">Booking Date</label>
-                        <input type="date">
-                    </div>-->
-                                    </div>
-                                </th>
-                            </tr>
-                            <tr class="booking-thead-second-tr">
-                                <!-- <th class="b-first-th">User ID</th> -->
-                                <!-- <th>Customer Name</th> -->
-                                <th>Sports Arena ID</th>
-                                <th>Sports Arena Name</th>
-                                <th>Complain count</th>
-                                <th>Account Status</th>
-                                <th>Blacklist Sports Arena</th>
-                                <th>Remove Account</th>
-                                <!--<th class="b-last-th">Payment Status</th>-->
-                            </tr>
-                        </thead>
-                        <tbody>
+                    <h6>Google Map Link : </h6>
+                    <p>https://goo.gl/maps/SjbY7wowaqSR1J929</p>
 
 
+                    <h6>Description : </h6>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
 
-                            {% for arenas in activeArenas %}
-                            <tr>
-                
-                                <td data-label="Sports Arena ID :">{{arenas.s_a_profile_id}}</td>
-                                <td data-label="Sports Arena name :">{{arenas.sa_name}}</td>
-                                <td data-label="Complaint :">{{arenas.count}}</td>
-                                <td data-label="Account Status :">{{arenas.account_status}}</td>
-                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
-                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
-                            </tr>
-                            {% endfor %}
-                            
-                            
-                        </tbody>
-                    </table>
-                </div>
-                <div id="booking_payment" class="booking_tab_content">
-                <h3>booking_payment</h3>
-                <p>cancel_booking is the capital of Japan.</p>
-                </div>
+                    <h6>Category : </h6>
+                    <p>Futsal</p>
                 </div>
             </div>
-                
+
+            <div id="cancel_booking" class="booking_tab_content">
+                <table class="booking-table">
+                    <thead>
+                        <tr class="booking-thead-first-tr">
+                            <th class="booking-table-first-th">
+                                <div class="booking-table-filter-container">
+                                    <div class="booking-table-search-container">
+                                        <input type="search" name="search" placeholder="Search">
+                                        <i class="fas fa-search"></i>
+                                    </div>
+                                    <!--<div class="booking-table-date-picker">
+                        <label class="date-label">Booking Date</label>
+                        <input type="date">
+                    </div>-->
+                                </div>
+                            </th>
+                        </tr>
+                        <tr class="booking-thead-second-tr">
+                            <!-- <th class="b-first-th">User ID</th> -->
+                            <!-- <th>Customer Name</th> -->
+                            <th>Sports Arena ID</th>
+                            <th>Sports Arena Name</th>
+                            <th>Complain count</th>
+                            <th>Account Status</th>
+                            <th>Blacklist Sports Arena</th>
+                            <th>Remove Account</th>
+                            <!--<th class="b-last-th">Payment Status</th>-->
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+
+                        {% for arenas in activeArenas %}
+                        <tr>
+
+                            <td data-label="Sports Arena ID :">{{arenas.s_a_profile_id}}</td>
+                            <td data-label="Sports Arena name :">{{arenas.sa_name}}</td>
+                            <td data-label="Complaint :">{{arenas.count}}</td>
+                            <td data-label="Account Status :">{{arenas.account_status}}</td>
+                            <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i
+                                    class="fa fa-user-times"></i></td>
+                            <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
+                        </tr>
+                        {% endfor %}
+
+
+                    </tbody>
+                </table>
+            </div>
+            <div id="booking_payment" class="booking_tab_content">
+                <h3>booking_payment</h3>
+                <p>cancel_booking is the capital of Japan.</p>
+            </div>
+        </div>
+        </div>
+
 
     </section>
 
@@ -374,4 +390,5 @@
 
     <script type="text/javascript" src="/Assets/js/Admin/adminManageuser.js?version=1"></script>
 </body>
+
 </html>

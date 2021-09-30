@@ -31,3 +31,17 @@ function close_popup_signout_message() {
 
   form.style.display = "none";
 }
+
+// popup form section
+
+function openpopupform() {
+  var form = document.getElementById("myForm");
+
+  form.style.display = "block";
+}
+
+function closepopupform() {
+  var form = document.getElementById("myForm");
+
+  form.style.display = "none";
+}
