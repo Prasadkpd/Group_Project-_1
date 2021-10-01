@@ -219,10 +219,10 @@
                     <tbody>
                         {% for FAQ in viewFAQs %}
                         <tr>
-                            <td data-label="FAQ Type :">{{FAQ.faq_id}}</td>
+                            <!-- <td data-label="FAQ Type :">{{FAQ.faq_id}}</td> -->
+                            <td data-label="Solution :" class="solution_td">{{FAQ.type}}</td>
                             <td data-label="Question :" class="quiz_td">{{FAQ.question}}</td>
                             <td data-label="Solution :" class="solution_td" style="text-align: justify;">{{FAQ.answer}}</td>
-                            <!-- <td data-label="Solution :" class="solution_td">{{FAQ.type}}</td> -->
                             
                         </tr>
                         {% endfor %}
@@ -293,7 +293,7 @@
 
                         {% for FAQ in deleteFAQs %}
                         <tr>
-                            <td data-label="FAQ Type :">{{FAQ.faq_id}}</td>
+                            <td data-label="FAQ Type :">{{FAQ.type}}</td>
                             <td data-label="Question :" class="quiz_td">{{FAQ.question}}</td>
                             <td data-label="Solution :" class="solution_td" style="text-align: justify;">{{FAQ.answer}}
                             </td>
