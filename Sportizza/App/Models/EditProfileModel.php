@@ -127,7 +127,7 @@ class EditProfileModel extends \Core\Model
     {
         
         if($oldUsername==$this->username){
-            $this->validateDetails();
+            // $this->validateDetails();
 
             if (empty($this->errors)) {
                 $sql = 'UPDATE user
@@ -181,6 +181,11 @@ class EditProfileModel extends \Core\Model
         }
 
 
+
+
+        
+
+
        
         
         // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
@@ -190,6 +195,52 @@ class EditProfileModel extends \Core\Model
         // $stmt->fetch();
         // return true;
     }
+
+
+
+    public static  function updateNewMobileNumber($username,$mobile_number)
+    {
+        
+            // $this->validateMobileNumber();
+
+            // if (empty($this->errors)) {
+            //     $sql = 'UPDATE user
+            // SET user.primary_contact =:mobile_number
+            // WHERE username=:username;';
+    
+            // $db = static::getDB();
+            // $stmt = $db->prepare($sql);
+            // $stmt->bindValue(':username', $username, PDO::PARAM_STR);
+            // $stmt->bindValue(':mobile_number',$mobile_number, PDO::PARAM_STR);
+            
+            
+            // return $stmt->execute();
+            // }
+    
+            // else{
+            //     return false;
+            // }
+
+
+            
+            $sql = 'UPDATE user
+            SET user.primary_contact =:mobile_number
+            WHERE username=:username;';
+    
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':username', $username, PDO::PARAM_STR);
+            $stmt->bindValue(':mobile_number',$mobile_number, PDO::PARAM_STR);
+            
+            
+            return $stmt->execute();
+            
+        
+
+
+    }
+
+
     // public static function UsernameValidate($username,$newUsername)
     // {
     //     $user = static::findByUsername($newUsername);
@@ -372,6 +423,24 @@ class EditProfileModel extends \Core\Model
             $this->errors["username2"] = 'Username is already taken';
         }
         return $this->errors;
+    
+    }
+
+    public function validateMobileNumber()
+    {
+ 
+
+        // mobile number
+        if ($this->mobile_number == '') {
+            $this->errors["mobile_number1"] = 'Mobile number is required';
+        }
+        elseif (preg_match('/.*07[0-9]{8}+.*/', $this->mobile_number) == 0) {
+            $this->errors["mobile_number2"] = 'Mobile number entered is invalid';
+        }
+        elseif (static::mobileNumberExists($this->mobile_number)) {
+            $this->errors["mobile_number3"] = 'An account already exists with this mobile number';
+        }
+
     
     }
 

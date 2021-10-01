@@ -101,9 +101,9 @@ function close_popup_delete_message_favorite_list() {
 
 
 //popup notification section
-function open_popup_notification() {
+function open_popup_notification(description) {
   var form = document.getElementById("popup_notification");
-
+  form.querySelector("#popup_notification").innerHTML=description;
   form.style.display = "block";
 }
 function close_popup_notification() {
