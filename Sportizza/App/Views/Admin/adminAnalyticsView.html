@@ -16,8 +16,8 @@
 
 <body>
 
-<!-- Top Navigation Bar -->
-<nav>
+ <!-- Top Navigation Bar -->
+ <nav>
     <div class="nav-left">
         <div class="logo-container">
             <a href="/">
@@ -41,50 +41,50 @@
             <div class="sign-in-out-btn">
                 <button onclick="open_popup_signout_message()">Sign Out</button>
                 <!-- {% if session.user_id %}
-                User with ID {{session.user_id}} is logged in.
-            {% endif %} -->
+            User with ID {{session.user_id}} is logged in.
+        {% endif %} -->
             </div>
         </div>
     </div>
 </nav>
-<!-- End Top Navigation Bar -->
+
 <!-- start popup form for edit profile -->
 <div id="myForm" class="sectionpopnav">
-    <div class="formsectionprofile" id="formEditUserProfile">
-        <div>
-            <button class="closebutton" onclick="closepopupform()">❌</button>
-        </div>
+<div class="formsectionprofile" id="formEditUserProfile">
+    <div>
+        <button class="closebutton" onclick="closepopupform()">❌</button>
+    </div>
 
-        <div class="nav-user-edit-from">
-            <div class="details">
-                <div class="input-box">
-                    <h5>Name:</h5>
-                    <p>
-                        {{current_user.first_name}} {{current_user.last_name}}
-                    </p>
-                </div>
-                <div class="input-box">
-                    <h5>Username:</h5>
-                    <p>
-                        {{current_user.username}}
-                    </p>
-                </div>
-                <div class="input-box">
-                    <h5>Mobile:</h5>
-                    <p>
-                        {{current_user.primary_contact}}</p>
-                </div>
+    <div class="nav-user-edit-from">
+        <div class="details">
+            <div class="input-box">
+                <h5>Name:</h5>
+                <p>
+                    {{current_user.first_name}} {{current_user.last_name}}
+                </p>
             </div>
-            <div class="editProPic">
-                <img id="form-profile-picture" src="/Assets/images/customer/profile-picture.jpg" alt="">
+            <div class="input-box">
+                <h5>Username:</h5>
+                <p>
+                    {{current_user.username}}
+                </p>
+            </div>
+            <div class="input-box">
+                <h5>Mobile:</h5>
+                <p>
+                    {{current_user.primary_contact}}</p>
             </div>
         </div>
-        <div class="edit-profile-link">
-            <a href="">Edit Profile</a>
+        <div class="editProPic">
+            <img id="form-profile-picture" src="/Assets/images/customer/profile-picture.jpg" alt="">
         </div>
     </div>
+    <div class="edit-profile-link">
+        <a href="">Edit Profile</a>
+    </div>
 </div>
-<!-- end popup form for edit profile -->
+</div>
+<!-- end popup for profile -->
 
 <!-- start pop up sign out section -->
 <div id="popup_signout" class="sectionpopnav">
@@ -111,6 +111,11 @@
     </div>
 </div>
 <!-- end pop up sign out section -->
+
+<!-- End Top Navigation Bar -->
+
+
+
 
     <section class="page-container">
 

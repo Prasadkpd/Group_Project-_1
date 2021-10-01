@@ -1,4 +1,30 @@
 // Input fields
+//Validation for mobile number entering page
+const mobile = document.getElementById('mobile');
+const forgotpasswordform = document.getElementById('forgotpasswordform');
+
+forgotpasswordform.addEventListener('submit', function (event) {
+    // Prevent default behaviour
+    event.preventDefault();
+    if (
+        validateMobile()
+    ) {
+        forgotpasswordform.submit();
+    }
+});
+function validateMobilePasswordForm() {
+    //Customer account validations
+    validateMobile();
+}
+function validateMobile() {
+    if (checkIfEmpty(mobile)) return;
+    if (!meetLength(mobile, 10, 10)) return;
+    if (!checkIfOnlyNumbers(mobile)) return;
+    if (!checkSLNumber(mobile)) return;
+    return true;
+}
+
+
 
 // User details
 const username = document.getElementById('username');
@@ -83,6 +109,7 @@ function matchWithRegExPasswordLogin(regEx, field) {
         return false;
     }
 }
+
 
 //Specific validations
 
