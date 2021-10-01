@@ -35,11 +35,12 @@ class Home extends \Core\Controller
         $search_result['category']=$_POST['category'];
         $locations=HomeModel::homeSelectLocations();
         $categories=HomeModel::homeSelectCategories();
+        $result="Search Results:";
         
         // var_dump($arenas);
         View::renderTemplate('Visitor/visitorView.html',['feedbacks'=>$feedbacks,'faqs'=>$customerFAQs,
         'arenafaqs'=>$arenaFAQs,'arenas'=>$arenas,'search_result'=> $search_result,
-        'locations'=>$locations,'categories'=>$categories]);
+        'locations'=>$locations,'categories'=>$categories,'result'=>$result]);
     } 
 
 

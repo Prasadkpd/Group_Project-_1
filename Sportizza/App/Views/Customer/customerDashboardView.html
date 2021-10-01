@@ -365,18 +365,19 @@
                 </div>
 
                 <div id="my_bookings" class="booking_tab_content">
-                    <table class="booking-table">
+                    <table class="booking-table" id="mybooking-table">
                         <thead>
                             <tr class="booking-thead-first-tr">
                                 <th class="booking-table-first-th">
                                     <div class="booking-table-filter-container">
                                         <div class="booking-table-search-container">
-                                            <input type="search" name="search" placeholder="Search">
+                                            <input type="search" id= "search-arena-booking" name="search" placeholder="Search by Sports arena name"
+                                            onkeyup="SearchArenaBooking()">
                                             <i class="fas fa-search"></i>
                                         </div>
                                         <div class="booking-table-date-picker">
                                             <label class="date-label">Date</label>
-                                            <input type="date">
+                                            <input type="date" id="date-picker" onchange="Datepicker()">
                                         </div>
                                     </div>
                                 </th>
@@ -404,7 +405,7 @@
 
 
                                 <td data-label="Booking ID :" class="table-td-left">{{book.booking_id}}</td>
-                                <td data-label="Booking Date :" class="table-td-left">{{book.booked_date}}</td>
+                                <td data-label="Booking Date :" class="table-td-left">{{book.booking_date}}</td>
                                 <td data-label="Start Time :" class="table-td-left">{{book.start_time}}</td>
                                 <td data-label="End Time :" class="table-td-left">{{book.end_time}}</td>
                                 <td data-label="Arena Name:" class="table-td-left">{{book.sa_name}}</td>
@@ -439,7 +440,7 @@
             {% if book.payment_status=="unpaid" %}
             <tr>
                 <td data-label="Booking ID :" class="table-td-left">{{book.booking_id}}</td>
-                <td data-label="Booking Date :" class="table-td-left">{{book.booked_date}}</td>
+                <td data-label="Booking Date :" class="table-td-left">{{book.booking_date}}</td>
                 <td data-label="Start Time :" class="table-td-left">{{book.start_time}}</td>
                 <td data-label="End Time :" class="table-td-left">{{book.end_time}}</td>
                 <td data-label="Arena Name:" class="table-td-left">{{book.sa_name}}</td>
@@ -512,13 +513,14 @@
 
 
 
-            <table class="booking-table my-favourite-list">
+            <table class="booking-table my-favourite-list" id="my_favorite_list">
                 <thead>
                     <tr class="booking-thead-first-tr">
                         <th class="booking-table-first-th">
                             <div class="booking-table-filter-container">
                                 <div class="booking-table-search-container">
-                                    <input type="search" name="search" placeholder="Search">
+                                    <input type="search" name="search" placeholder="Search"
+                                    id="search-arena-favourite" onkeyup = "SearchArenaFavorite()">
                                     <i class="fas fa-search"></i>
                                 </div>
 
@@ -562,13 +564,14 @@
         </div>
 
         <div id="notification" class="booking_tab_content">
-            <table class="booking-table">
+            <table class="booking-table" id="notifications_list">
                 <thead>
                     <tr class="booking-thead-first-tr">
                         <th class="booking-table-first-th">
                             <div class="booking-table-filter-container">
                                 <div class="booking-table-search-container">
-                                    <input type="search" name="search" placeholder="Search">
+                                    <input type="search" name="search" placeholder="Search"
+                                    id="search-notifications" onkeyup="SearchNotifications()">
                                     <i class="fas fa-search"></i>
                                 </div>
                                 <div class="booking-table-date-picker">
@@ -634,7 +637,7 @@
     <!-- Top navbar js -->
     <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
     <!-- File specific js -->
-    <script type="text/javascript" src="/Assets/js/Customer/new_customer_dashbord.js?v=8"></script>
+    <script type="text/javascript" src="/Assets/js/Customer/new_customer_dashbord.js?v=13"></script>
 </body>
 
 </html>

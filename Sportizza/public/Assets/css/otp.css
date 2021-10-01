@@ -210,8 +210,6 @@ footer {
   .horizontal-container ul li i {
     font-size: 2.8rem;
   }
-
-
   footer {
     font-size: 0.8rem;
   }
@@ -237,7 +235,6 @@ footer {
 .title h5 {
   font-size: 0.8rem;
   text-align: center;
-
 }
 form input {
   display: inline-block;
@@ -262,12 +259,8 @@ form input {
   margin-top: 2rem;
   cursor: pointer;
   transition: 0.3s;
-  font-size: 0.8rem;
-  
-  
+  font-size: 0.8rem; 
 }
-
-
   footer {
     font-size: 0.8rem;
   }
