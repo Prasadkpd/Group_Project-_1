@@ -58,6 +58,24 @@ class Customer extends Authenticated
         ['timeSlots'=>$timeSlots,'arenaDetails'=>$arenaDetails,'arenaFacilites'=>$arenaFacilites]);
     }
 
+    public function deletebookingAction()
+    {
+        $current_user= Auth::getUser();
+        $booking_id=$this->route_params['id'];
+        $booked_date = CustomerModel::customerSelectBookingDate($booking_id);
+        $booked_time = strtotime($booked_date);
+        $current_time=time();
+        if($current_time - $booked_time <= 259200) {
+            $deletebooking = CustomerModel::customerDeleteBooking($booking_id);
+            $notify_check=NotificationModel::cancelNotificationBookingSuccess($current_user,$booking_id);
+            if($deletebooking) {
+                if($notify_check) {
+                    $this->redirect('/Customer');
+                }
+            }
+        }
+    }
+
     // public function paymentAction()
     // {
         

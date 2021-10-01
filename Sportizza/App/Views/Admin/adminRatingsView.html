@@ -150,7 +150,7 @@
                 </div>
                 <ul class="side-menu-list">
                     <li>
-                        <a href="/admin/analytics" class="side-menu-li">
+                        <a href="/admin/chart" class="side-menu-li">
                             <i class="fas fa-chart-bar"></i>
                             <p class="side-menu-item">Analytics</p>
                         </a>
@@ -206,9 +206,10 @@
                             </th>
                         </tr>
                         <tr class="booking-thead-second-tr">
-                            <th class="b-first-th">Sports Arena ID</th>
-                            <th>Sports Arena Name</th>
+                            <!-- <th>Sports Arena ID</th> -->
+                            <th class="b-first-th">Sports Arena Name</th>
                             <th>Feedback ID</th>
+                            <th>Description</th>
                             <th>Ratings</th>
                             <th>Date Posted</th>
                             <th class="b-last-th">Remove</th>
@@ -217,9 +218,10 @@
                     <tbody>
                         {% for rating in ratings %}
                         <tr>
-                            <td data-label="Sports Arena ID :">{{rating.sports_arena_id}}</td>
+                            <!-- <td data-label="Sports Arena ID :">{{rating.sports_arena_id}}</td> -->
                             <td data-label="Sports Arena Name :">{{rating.sa_name}}</td>
                             <td data-label="Feedback ID :">{{rating.feedback_id}}</td>
+                            <td data-label="Description :">{{rating.description}}</td>
                             <td data-label="Rating :">{{rating.feedback_rating}}</td>
                             <td data-label="Date Posted :">{{rating.date}}</td>
                             <td class="trash-btn-padding-res"> <a class="trash-btn"

@@ -149,7 +149,7 @@
                 </div>
                 <ul class="side-menu-list">
                     <li>
-                        <a href="/admin/analytics" class="side-menu-li">
+                        <a href="/admin/chart" class="side-menu-li">
                             <i class="fas fa-chart-bar"></i>
                             <p class="side-menu-item">Analytics</p>
                         </a>
@@ -222,16 +222,17 @@
                             <th class="b-first-th">FAQ Type</th>
                             <th class="quiz_td">Question</th>
                             <th class="solution_td">Solution</th>
-                            <!--<th class="b-last-th">Payment Status</th>-->
+                            <!-- <th class="b-last-th">Type</th> -->
                         </tr>
                     </thead>
                     <tbody>
                         {% for FAQ in viewFAQs %}
                         <tr>
-                            <td data-label="FAQ Type :">{{FAQ.faq_id}}</td>
+                            <!-- <td data-label="FAQ Type :">{{FAQ.faq_id}}</td> -->
+                            <td data-label="Solution :" class="solution_td">{{FAQ.type}}</td>
                             <td data-label="Question :" class="quiz_td">{{FAQ.question}}</td>
-                            <td data-label="Solution :" class="solution_td" style="text-align: justify;">{{FAQ.answer}}
-                            </td>
+                            <td data-label="Solution :" class="solution_td" style="text-align: justify;">{{FAQ.answer}}</td>
+                            
                         </tr>
                         {% endfor %}
 
@@ -301,7 +302,7 @@
 
                         {% for FAQ in deleteFAQs %}
                         <tr>
-                            <td data-label="FAQ Type :">{{FAQ.faq_id}}</td>
+                            <td data-label="FAQ Type :">{{FAQ.type}}</td>
                             <td data-label="Question :" class="quiz_td">{{FAQ.question}}</td>
                             <td data-label="Solution :" class="solution_td" style="text-align: justify;">{{FAQ.answer}}
                             </td>
@@ -319,7 +320,7 @@
                 <div class="form-container">
                     <form method="post" action="">
                         <div class="input-box">
-                            <label for="utype" class="faqLabel">Category</label>
+                            <label for="utype" class="faqLabel">Type</label>
                             <div class="options-container">
                                 <div class="custom-select">
                                     <select id="utype" name="utype">
@@ -338,8 +339,8 @@
                             <option value="null">Please select a category</option>
                         </select>
 
-                        <label for="solution" class="faqLabel">Solution : </label>
-                        <textarea id="solution" class="faqInput" rows="4" name="solution"
+                        <label for="usolution" class="faqLabel">Solution : </label>
+                        <textarea id="usolution" class="faqInput" rows="4" name="usolution"
                             placeholder="Type your solution..."></textarea>
 
                         <input type="submit" value="Update" class="faqSubmit" />
@@ -365,7 +366,8 @@
 
     <script type="text/javascript" src="/Assets/js/lib/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/Assets/js/Admin/adminFAQ.js?version=3"></script>
-    <script type="text/javascript" src="/Assets/js/Admin/adminFAQupdate.js?v=8"></script>
+    <script type="text/javascript" src="/Assets/js/Admin/adminFAQupdateQuestion.js?v=8"></script>
+    <script type="text/javascript" src="/Assets/js/Admin/adminFAQupdateSolution.js"></script>
     
     
 </body>

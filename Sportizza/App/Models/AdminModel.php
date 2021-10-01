@@ -190,13 +190,42 @@ class AdminModel extends \Core\Model
         // echo $type;
     }
 
+    public static function adminGetSolutionDetails($question){
+        $sql = 'SELECT answer FROM faq WHERE faq_id=:question ';
+
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':question', $question, PDO::PARAM_STR);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+
+        // $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        // $question = $result["question"];
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $output = $result["answer"];
+
+        // while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        //     $output .= "<option value={$row["faq_id"]}>{$row["question"]}</option>";
+        // }
+        
+        // var_dump($result);
+        return $output;
+        // return '<option>Kiri Shawty</option>';
+        // echo $type;
+    }
+
 
     public static function adminRemoveRatings(){
         
-        $sql = 'SELECT feedback.feedback_id,feedback.feedback_rating,sports_arena_profile.sa_name,DATE(feedback.posted_date) as "date",
+        $sql = 'SELECT feedback.feedback_id,feedback.feedback_rating,feedback.description,sports_arena_profile.sa_name,DATE(feedback.posted_date) as "date",
                 feedback.sports_arena_id FROM feedback
         INNER JOIN sports_arena_profile ON feedback.sports_arena_id=sports_arena_profile.sports_arena_id 
-        WHERE feedback.security_status="active" ';
+        WHERE feedback.security_status="active" AND feedback.feedback_rating<3 ';
 
 
         $db = static::getDB();
@@ -248,47 +277,47 @@ class AdminModel extends \Core\Model
         return $result;
     }
 
-    // public static function adminChart2(){
+    public static function adminChart2(){
         
-    //     $sql = 'SELECT CASE EXTRACT(MONTH FROM user.registered_time)
-    //                 WHEN "1" THEN "January"
-    //                 WHEN "2" THEN "February"
-    //                 WHEN "3" THEN "March"
-    //                 WHEN "4" THEN "April"
-    //                 WHEN "5" THEN "May"
-    //                 WHEN "6" THEN "June"
-    //                 WHEN "7" THEN "July"
-    //                 WHEN "8" THEN "August"
-    //                 WHEN "9" THEN "September"
-    //                 WHEN "10" THEN "October"
-    //                 WHEN "11" THEN "November"
-    //                 WHEN "12" THEN "December"
-    //                 ELSE "Not Valid"
-    //             END AS Time_Registered, COUNT(DISTINCT manager.user_id) AS No_Of_Sports_Arenas
-    //             FROM manager
-    //             JOIN user ON manager.user_id=user.user_id
-    //             JOIN sports_arena ON manager.sports_arena_id=sports_arena.sports_arena_id
-    //             GROUP BY Time_Registered
-    //             ORDER BY user.registered_time ASC ';
+        $sql = 'SELECT CASE EXTRACT(MONTH FROM sports_arena.registered_time)
+                    WHEN "1" THEN "January"
+                    WHEN "2" THEN "February"
+                    WHEN "3" THEN "March"
+                    WHEN "4" THEN "April"
+                    WHEN "5" THEN "May"
+                    WHEN "6" THEN "June"
+                    WHEN "7" THEN "July"
+                    WHEN "8" THEN "August"
+                    WHEN "9" THEN "September"
+                    WHEN "10" THEN "October"
+                    WHEN "11" THEN "November"
+                    WHEN "12" THEN "December"
+                    ELSE "Not Valid"
+                END AS Time_Registered, COUNT(DISTINCT sports_arena.sports_arena_id) AS No_Of_Sports_Arenas
+                FROM sports_arena
+                WHERE sports_arena.security_status="active"
+                GROUP BY Time_Registered
+                ORDER BY sports_arena.registered_time ASC ';
 
 
-    //     $db = static::getDB();
-    //     $stmt = $db->prepare($sql);
-    //     // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
-    //     $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
-    //     $stmt->execute();
-    //     $result = $stmt->fetchAll();
-    //     //  var_dump($result);
-    //     return $result;
-    // }
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        //  var_dump($result);
+        return $result;
+    }
 
-    // public static function adminChart3(){
+    public static function adminChart3(){
         
-    //     $sql = 'SELECT booking_date, COUNT(DISTINCT booking_id) AS No_Of_Bookings
-    //             FROM booking
-    //             GROUP BY booking_date ';
+        $sql = 'SELECT booking_date, COUNT(DISTINCT booking_id) AS No_Of_Bookings
+                FROM booking
+                WHERE security_status="active"
+                GROUP BY booking_date ';
 
 
     //     $db = static::getDB();
@@ -305,9 +334,10 @@ class AdminModel extends \Core\Model
 
     // public static function adminChart4(){
         
-    //     $sql = 'SELECT payment_method, COUNT(DISTINCT booking_id) AS No_Of_Bookings
-    //             FROM booking
-    //             GROUP BY payment_method ';
+        $sql = 'SELECT payment_method, COUNT(DISTINCT booking_id) AS No_Of_Bookings
+                FROM booking
+                WHERE security_status="active"
+                GROUP BY payment_method ';
 
 
     //     $db = static::getDB();
@@ -324,16 +354,17 @@ class AdminModel extends \Core\Model
 
     // public static function adminChart5(){
         
+
     //     $sql = 'SELECT category, COUNT(DISTINCT sports_arena_id) AS No_Of_Sports_Arenas
     //     FROM sports_arena_profile
     //     GROUP BY category;
     //     ORDER BY category ASC ';
 
 
+
     //     $db = static::getDB();
     //     $stmt = $db->prepare($sql);
     //     // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-
     //     $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
     //     $stmt->execute();
@@ -344,10 +375,12 @@ class AdminModel extends \Core\Model
 
     // public static function adminChart6(){
         
-    //     $sql = 'SELECT location, COUNT(DISTINCT sports_arena_id) AS No_Of_Sports_Arenas
-    //     FROM sports_arena_profile
-    //     GROUP BY location;
-    //     ORDER BY location ASC ';
+        $sql = 'SELECT location, COUNT(DISTINCT sports_arena_id) AS No_Of_Sports_Arenas
+        FROM sports_arena_profile
+        WHERE security_status="active"
+        GROUP BY location
+        ORDER BY location ASC ';
+
 
 
     //     $db = static::getDB();
@@ -365,4 +398,5 @@ class AdminModel extends \Core\Model
 
 
 
+}
 }
