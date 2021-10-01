@@ -78,16 +78,14 @@ class Admin extends \Core\Controller
 
     public function getquestionsAction()
     {
-        // echo '<option>Kiri Shawty</option>';
-        // if ($type=='1') {
-        //     $type='customer';
-        // } else if ($type=='2') {
-        //     $type='sports_arena';
-        // }
-
-        // echo AdminModel::adminGetQuestionDetails($type);
         $type = $this->route_params['arg'];
         echo AdminModel::adminGetQuestionDetails($type);
+    }
+
+    public function getsolutionsAction()
+    {
+        $question = $this->route_params['id'];
+        echo AdminModel::adminGetSolutionDetails($question);
     }
 
     public function manageuserAction()

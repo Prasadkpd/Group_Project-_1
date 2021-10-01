@@ -159,7 +159,7 @@
             <div>
                 <button s class="closebutton" onclick="close_popup_cancel_message()">❌</button>
             </div>
-            <form action="/action_page.php" style="margin:20px">
+            <form id="deleteForm" action="/action_page.php" style="margin:20px">
                 <div style="margin:auto">
                     <h1 style="margin:auto">
                         Booking Cancellation
@@ -168,18 +168,18 @@
                         Are you sure to cancel the booking?
                     </p>
                 </div>
+                <div style="display:flex">
+    
+                    <button class="popup_delete_button">
+                        YES
+                    </button>
+                    <button onclick="close_popup_cancel_message()" class="popup_button">
+                        NO
+                    </button>
+                </div>
             </form>
 
 
-            <div style="display:flex">
-
-                <button class="popup_delete_button">
-                    YES
-                </button>
-                <button onclick="close_popup_cancel_message()" class="popup_button">
-                    NO
-                </button>
-            </div>
         </div>
     </div>
     <!-- end pop up cancel section -->
@@ -238,7 +238,7 @@
             <div>
                 <button s class="closebutton" onclick="close_popup_delete_message()">❌</button>
             </div>
-            <form action="/action_page.php" style="margin:20px">
+            <form id="" action="" style="margin:20px">
                 <div style="margin:auto">
                     <h1 style="margin:auto">
                         Booking deletion
@@ -424,7 +424,7 @@
                                             </button>
                                         </div>
                                         <div>
-                                            <button class="icon_red" onclick="open_popup_cancel_message()">
+                                            <button class="icon_red" onclick="open_popup_cancel_message({{book.booking_id}})">
                                                 <i class="fas fa-times"></i>
                                             </button>
                                         </div>
