@@ -448,17 +448,18 @@ footer {
 
 
 
-
-
 .sectionpop h1{
-  font-size:24px;
+  font-size:1.2rem;
   text-align:center;
-  margin-bottom: 20px;
+  color:#2c3e50;
+  margin-bottom: 1rem;
 }
 .sectionpop p{
-
   text-align:center;
-  margin: 20px auto;
+  font-size:16px;
+  /* font-wieght */
+  margin:20px auto;
+  
 }
 
 .popup_button {
@@ -474,7 +475,7 @@ footer {
   padding:5px;
   border-radius: 50px;
   border: none;
-   width:150px;
+   width:120px;
    text-align:center;
    height: 36px;
    align-items: center;
@@ -516,8 +517,8 @@ button.change-password {
   margin: 5px auto;
   border-radius: 50px;
   border: none;
-   width:150px;
-   height: 49px;
+   width:120px;
+   height: 36px;
    align-items: center;
    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
@@ -706,3 +707,33 @@ button.change-password {
   justify-content: center;
   
 }
+  .sectionpop form .input-box label {
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: #34495e;
+   display:block;
+   text-align:center;
+  }
+
+  .sectionpop form .input-box input {
+    width: 85%;
+    border: none;
+    padding: 6px;
+  }
+  .sectionpop .input-row {
+    height: 36px;
+    width: 100%;
+    outline: none;
+    font-size: 16px;
+    border-radius: 25px;
+    padding-left: 20px;
+    border: 2px solid #f0f0f0;
+    transition: all 0.3s ease;
+    margin-bottom: 16px;
+  }
+  .sectionpop .helper-text {
+    color: #e74c3c;
+    font-size: 10px;
+    font-weight: 300;
+    text-align: center;
+  }
