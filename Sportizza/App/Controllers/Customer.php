@@ -97,6 +97,13 @@ class Customer extends Authenticated
         $this->redirect('/Customer');
     }
 
+    public function addtofavoritelistAction()
+    {
+        $customer_id=Auth::getUser()->user_id;
+        CustomerModel::customerAddFavoriteList($_POST['arena_id'],$customer_id);
+        $this->redirect('/Customer');
+    }
+
 
     // public function customerEditProfileAction(){
     //     View::renderTemplate('Customer\editprofileView.html');

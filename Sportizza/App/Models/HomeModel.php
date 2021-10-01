@@ -52,8 +52,34 @@ class HomeModel extends \Core\Model
     }
 
 
-    public static function homeSearchArenas($location=null,$category=null,$name=null){
+    public static function homeSearchArenas($location = null,$category=null,$name=""){
 
+        var_dump($location,$category,$name);
+        $qu = "SELECT * FROM sports_arena_profile WHERE sa_name LIKE :name ";
+        $params = [ "name" => "%$name%" ];
+        if($location != "select location"){
+            $qu = $qu . "AND  sports_arena_profile.location = :location ";
+            $params['location'] = $location;
+        }
+
+        if($category != "select category"){
+            $qu = $qu . "AND  sports_arena_profile.category = :category ";
+            $params['category'] = $category;
+        }
+        // var_dump($qu,)
+        $db = static::getDB();
+        $stmt = $db->prepare($qu);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute($params);
+        $result = $stmt->fetchAll();
+        // var_dump($result);
+        return $result;
+
+
+
+        /*
         if($location=='select location'){
             if($category=='select category'){
                 if(!empty($name)){
@@ -85,7 +111,7 @@ class HomeModel extends \Core\Model
         else{
             if($category=='select category'){
                 if(!empty($name)){
-                    $sql = 'SELECT * FROM sports_arena_profile 
+                    $sql = 'SELECT * FROM sports_arena_profile
                 WHERE sa_name=:names AND  sports_arena_profile.location=:locations';
                 }
                 else{
@@ -106,7 +132,7 @@ class HomeModel extends \Core\Model
                 }
             }
         }
-        
+      
         
         // if($category=='Select One'){
         //     $sql = 'SELECT * FROM sports_arena_profile 
@@ -200,6 +226,7 @@ class HomeModel extends \Core\Model
         $result = $stmt->fetchAll();
         // var_dump($result);
         return $result;
+          */
     }
 
     

@@ -380,12 +380,16 @@
                 <h1>Notification</h1>
 
 
-                {% for notification in notifications %}
+                <!-- {% for notification in notifications %}
                 <div>
                     <p>{{notification.description}}</p>
                 </div>
 
-                {% endfor %}
+                {% endfor %} -->
+
+                <div id="popup_notification">
+                    
+                </div>
 
             </form>
             <!-- <button onclick="close_popup_share()" class="popup_button">
@@ -654,7 +658,7 @@
                 </thead>
                 <tbody>
                     {% for notification in notifications %}
-                    <tr style="cursor: pointer" onclick="open_popup_notification()">
+                    <tr style="cursor: pointer" onclick="open_popup_notification(`{{notification.description}}`)">
                         <td data-label="Date:">{{notification.date}}</td>
                         <td data-label="Time:">{{notification.time}}</td>
                         <td class="notification-td-left">{{notification.subject}}</td>
@@ -702,7 +706,7 @@
     <!-- Top navbar js -->
     <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
     <!-- File specific js -->
-    <script type="text/javascript" src="/Assets/js/Customer/new_customer_dashbord.js?v=8"></script>
+    <script type="text/javascript" src="/Assets/js/Customer/new_customer_dashbord.js?v=9"></script>
 </body>
 
 </html>

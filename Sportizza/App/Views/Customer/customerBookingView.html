@@ -191,8 +191,18 @@
                                 </div>
                                 <a type="" class="more-link">More Details
                                 </a>
-                
+
+                                
                             </div>
+                            
+
+                            <div>
+                                <form action="/customer/addtofavoritelist" method="POST">
+                                    <input  id="arena_id" name="arena_id"  type="hidden" value={{arenaDetails[0].sports_arena_id}}>
+                                    <input type="submit" value="add to favorite list">
+                                </form>
+                            </div>
+                            
                         </div>
                         <div class="container2">
                             <div class="more-details">
