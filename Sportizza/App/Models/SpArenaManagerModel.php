@@ -109,10 +109,21 @@ class SpArenaManagerModel extends \Core\Model
         return $result;
     }
 
+    public static function updateBookingPayment($booking_id){
+
+        $sql = 'UPDATE `booking` SET `payment_status`="paid" WHERE `booking_id`=:booking_id';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+        return ($stmt->execute());
+    }
+
     public static function managerNotification($id){
         
         $sql = 'SELECT subject,description, DATE(date) as date , TIME(date) as time 
-        FROM notification WHERE user_id=:id';
+        FROM notification WHERE user_id=:id
+        ORDER BY date DESC,time DESC';
 
 
         $db = static::getDB();

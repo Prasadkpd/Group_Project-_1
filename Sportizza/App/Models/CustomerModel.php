@@ -37,12 +37,8 @@ class CustomerModel extends \Core\Model
                 sports_arena_profile.category,time_slot.start_time,time_slot.end_time 
                 FROM booking INNER JOIN booking_timeslot ON booking.booking_id = booking_timeslot.booking_id 
                 INNER JOIN time_slot ON booking_timeslot.timeslot_id = time_slot.time_slot_id INNER JOIN sports_arena_profile 
-<<<<<<< HEAD
-                ON booking.sports_arena_id = sports_arena_profile.sports_arena_id WHERE booking.customer_user_id=:id
+                ON booking.sports_arena_id = sports_arena_profile.sports_arena_id WHERE booking.customer_user_id=:id AND `booking`.`security_status`="active"
                 ORDER BY booking.booking_date DESC';
-=======
-                ON booking.sports_arena_id = sports_arena_profile.sports_arena_id WHERE booking.customer_user_id=:id AND `booking`.`security_status`="active"';
->>>>>>> 8eaf293f41469561618c0ff09d2ad2d098f94a64
         
 
 
@@ -82,7 +78,8 @@ class CustomerModel extends \Core\Model
     public static function customerNotification($id){
         
         $sql = 'SELECT subject,description, DATE(date) as date , TIME(date) as time 
-        FROM notification WHERE user_id=:id';
+        FROM notification WHERE user_id=:id
+        ORDER BY date DESC,time DESC';
 
 
         $db = static::getDB();

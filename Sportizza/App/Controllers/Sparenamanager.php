@@ -7,6 +7,7 @@ namespace App\Controllers;
 use Core\View;
 use App\Auth;
 use App\Models\SpArenaManagerModel;
+use App\Models\NotificationModel;
 
 class Sparenamanager extends \Core\Controller
 {
@@ -65,6 +66,31 @@ class Sparenamanager extends \Core\Controller
         View::renderTemplate('Manager/mStaffManageBookingsView.html',['bookings'=>$bookings,
         'cancelBookings'=>$cancelBookings,'bookingPayments'=>$bookingPayments]);
        
+    }
+
+    public function getpaymentAction()
+    {
+        $current_user= Auth::getUser();
+        $booking_id=$this->route_params['id'];
+        $cash_update=SpArenaManagerModel::updateBookingPayment($booking_id);
+        $notify_check=NotificationModel::managerNotificationBookingSuccess($current_user,$booking_id);
+
+        if($cash_update) {
+            if($notify_check) {
+                $this->redirect('/Sparenamanager/managernotification');
+            }
+        }
+
+        // if($current_user->type=="manager"){
+        //     $notify_check=NotificationModel::cancelNotificationGetAdminStaffIds($booking_id);
+        //     $notify_check=NotificationModel::cancelNotificationGetBookingStaffIds($booking_id);
+        // } elseif($current_user->type=="administration_staff"){
+        //     $notify_check=NotificationModel::cancelNotificationGetManagerIds($booking_id);
+        //     $notify_check=NotificationModel::cancelNotificationGetBookingStaffIds($booking_id);
+        // } elseif($current_user->type=="booking_handling_staff"){
+        //     $notify_check=NotificationModel::cancelNotificationGetManagerIds($booking_id);
+        //     $notify_check=NotificationModel::cancelNotificationGetAdminStaffIds($booking_id);
+        // }
     }
 
     public  function managernotificationAction()

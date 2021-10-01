@@ -88,6 +88,23 @@ class NotificationModel extends \Core\Model
         return $bhid;
     }
 
+    public static function cancelNotificationGetCustomerIds($booking_id)
+    {
+        
+        $sql = 'SELECT `user_id`, `first_name`, `last_name` FROM `user`
+                INNER JOIN `booking`ON `user`.`user_id`=`booking`.`customer_user_id`
+                WHERE `user`.`type`="customer" AND `booking`.`booking_id`=:booking_id';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        // $cid = $result["customer_user_id"];
+        
+        return $result;
+    }
 
     public static function cancelNotificationGetManagerIds($booking_id)
     {
@@ -337,6 +354,101 @@ class NotificationModel extends \Core\Model
 
     }
     // END OF CANCEL BOOKING SEND NOTIFICATIONS
+    // =====================================
+
+    // =====================================
+    // SEND CASH BOOKING PAYMENT NOTIFICATIONS
+    public static function managerNotificationBookingSuccess($current_user,$booking_id)
+    {
+         // Defining arena staff ids
+        $customer=self::cancelNotificationGetCustomerIds($booking_id);
+        $first_name=$customer["first_name"];
+        $last_name=$customer["last_name"];
+        
+        $subject = array("customer"=>"Payment Confirmation Message","sports_arena"=>"Cash Payment Confirmation Message");
+        $p_level="high";
+
+        $db = static::getDB();
+
+        // Dividing subject to variables
+        $custsubj = $subject["customer"];
+        $sparsubj = $subject["sports_arena"];
+
+        $data_query = "SELECT
+             `booking`.`booking_date`,
+             `facility`.`facility_name`,
+             `sports_arena_profile`.`sa_name`,
+             `time_slot`.`start_time`,
+             `time_slot`.`end_time`
+        FROM `booking` 
+        INNER JOIN `facility` ON `facility`.facility_id = booking.facility_id
+        INNER JOIN `sports_arena_profile` ON `sports_arena_profile`.sports_arena_id = `booking`.sports_arena_id
+        INNER JOIN `booking_timeslot` ON `booking_timeslot`.`booking_id`= `booking`.`booking_id`
+        INNER JOIN `time_slot` ON `time_slot`.`time_slot_id`=`booking_timeslot`.`timeslot_id`
+        WHERE `booking`.`booking_id` = :booking_id ";
+      
+        $data_stmt = $db->prepare($data_query);
+        $data_stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+        $data_stmt->execute();
+      
+        // **********************************
+        // CUSTOMER NOTIFICATION REQUIREMENTS
+
+        $data = $data_stmt->fetch(PDO::FETCH_ASSOC);
+        
+        // Select facility name 
+        $facname = $data["facility_name"];
+        
+        // Select sports arena name
+        $saname = $data["sa_name"];
+        
+        // Select time slot duration
+        $stime = $data["start_time"];
+        $etime = $data["end_time"];
+
+        // **************************************
+        // SPORTS ARENA NOTIFICATION REQUIREMENTS
+
+        // Initialize customer id, first name and last name
+        $staff_id = $current_user->user_id;
+        // $fname = $current_user->first_name;
+        // $lname = $current_user->last_name;
+        
+        // Select booking date
+        $bdate = $data["booking_date"];
+
+        
+        // Initialize descriptions
+        $custdesc = "Your payment in cash for the booking to ".$facname." of ".$saname." on ".$bdate." scheduled from ".$stime." to ".$etime." has been confirmed by ".$saname.". Thank you for choosing Sportizza. Please do visit us again!";
+        $spardesc = "You have approved the payment in cash for the booking to ".$facname." on ".$bdate." scheduled from ".$stime." to ".$etime." by ".$first_name." ".$last_name.".";
+        
+        // if($paymethod=="card"){
+        //     $custdesc .= "Refund details will be sent to you later.";
+        // }
+
+        // **************************************
+        // INSERT QUERIES TO USERS
+        
+   
+        $sql5 = 'INSERT INTO `notification`(`user_id`, `subject`, `priority`, `description`) VALUES (:uid,:subject,:p_level,:desc)';
+        $stmt5 = $db->prepare($sql5);
+        
+        // for customer
+        $stmt5->execute(['uid'=> $customer["user_id"], 'subject'=> $custsubj, 'p_level'=> $p_level, 'desc'=> $custdesc]);
+
+        // for staff
+        return ($stmt5->execute(['uid'=> $staff_id, 'subject'=> $sparsubj, 'p_level'=> $p_level, 'desc'=>$spardesc]));
+
+
+        // // for administartion staff
+        // $stmt5->execute(['uid'=> $adminstaff_id, 'subject'=> $sparsubj, 'p_level'=> $p_level, 'desc'=>$spardesc]);
+
+
+        // // for booking handling staff
+        // return ($stmt5->execute(['uid'=> $bookhandlestaff_id, 'subject'=> $sparsubj, 'p_level'=> $p_level, 'desc'=>$spardesc]));
+
+    }
+    // END OF CASH BOOKING PAYMENT NOTIFICATIONS
     // =====================================
 }
 
