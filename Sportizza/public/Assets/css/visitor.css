@@ -329,11 +329,40 @@ nav a:hover{
     width:100%;
 }
 .location-filter{
-    width: 20%;
+    width: 200px;
+    display:flex;
+}
+.location-filter label{
+  padding-right:10px;
+  font-weight:500;
+  color:#333333;
+}
+.location-filter select{
+color:#fd461f;
+background-color:#fff;
+font-weight:600;
+border:none;
+width:150px;
+border-radius:10px;
 }
 .category-filter{
-    width: 20%;
+  width: 200px;
+    display:flex;
 }
+.category-filter label{
+  padding-right:10px;
+  font-weight:500;
+  color:#333333;
+}
+.category-filter select{
+  color:#fd461f;
+  background-color:#fff;
+  font-weight:600;
+  border:none;
+  width:150px;
+  border-radius:10px;
+  }
+
 
 .dropdown {
   float: left;
@@ -392,7 +421,8 @@ nav a:hover{
     background-color: inherit;
     outline: none;
     border: none;
-    width: 83%;
+    /* width: 83%; */
+    width:500px;
     font-size: larger;
 }
 .search-filter button{
@@ -1306,6 +1336,7 @@ footer .social-media i{
 .location-filter, .category-filter{
   width: 100%;
   text-align:center;
+  display:block;
 }
 
 .dropdown-content {
@@ -1314,7 +1345,7 @@ footer .social-media i{
 }
 .search-filter {
   margin-top: .5em;
-  width: 90%;
+  width: 55%;
 }
 
 .chip {
