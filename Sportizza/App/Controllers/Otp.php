@@ -106,7 +106,7 @@ class Otp extends \Core\Controller
             $this->redirect($_SESSION['direct_url']);
         }
         else{
-            Flash::addMessage('OTP in Wrong',Flash::WARNING);
+            Flash::addMessage('OTP is wrong',Flash::WARNING);
             $this->redirect('/Signup/success');
         }
 

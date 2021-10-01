@@ -240,8 +240,8 @@
             </div>
             <div class="search-results" >
 
-                    <h3>Search Results:</h3>
-                    <div class="chip-container">  
+                   
+                    <!-- <div class="chip-container">  
                         <div class="chip">
                             {{search_result['location']}}
                             <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
@@ -250,9 +250,9 @@
                             {{search_result['category']}}
                             <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
                         </div>
-                    </div>
+                    </div> -->
                         
-
+                    <h3>{{result}}</h3>
                 {% for arena in arenas %}
                 <div class="result-details">
                     <h4><a href="">{{arena.sa_name}}</a></h4>

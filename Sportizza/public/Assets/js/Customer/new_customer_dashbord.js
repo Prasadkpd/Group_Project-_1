@@ -117,5 +117,93 @@ window.onload = function () {
   document.getElementById("view_booking_button").click();
 };
 
+//Function to search sports arena in my bookings page
+function SearchArenaBooking() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("search-arena-booking");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("mybooking-table");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[4];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+
+//Function to search sports arena in my favourite list
+function SearchArenaFavorite() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("search-arena-favourite");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("my_favorite_list");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+
+//Function to search notifications
+function SearchNotifications() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("search-notifications");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("notifications_list");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+
+
+
+
+
+
+
+ function Datepicker() {
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            var pass = document.getElementById("myInput").value;
+            var date = new Date(pass);
+            var year = String(date.getFullYear());
+            var month = String(date.getMonth() + 1).padStart(2, '0');
+            var todayDate = String(date.getDate()).padStart(2, '0');
+            alert("Hello");
+            var datePattern = year + '-' + month + '-' + todayDate;
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[2];
+                if (td) {
+                    txtValue = td.innerText;
+                    if (txtValue == datePattern) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
 
 

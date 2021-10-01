@@ -10,24 +10,6 @@ togglePassword.addEventListener('click', function (e) {
     this.classList.toggle('bi-eye');
 });
 
-// //Show password button
-// togglePassword1.addEventListener('click', function (e) {
-//     // toggle the type attribute
-//     const type = showPassword1.getAttribute('type') === 'password' ? 'text' : 'password';
-//     showPassword1.setAttribute('type', type);
-//     // toggle the eye / eye slash icon
-//     this.classList.toggle('bi-eye');
-// });
-
-// //Show password button
-// togglePassword2.addEventListener('click', function (e) {
-//     // toggle the type attribute
-//     const type = showPassword2.getAttribute('type') === 'password' ? 'text' : 'password';
-//     showPassword2.setAttribute('type', type);
-//     // toggle the eye / eye slash icon
-//     this.classList.toggle('bi-eye');
-// });
-
 //Change colour after submitting image files
 function change_color(files, e) {
     if (files.length > 0) {
@@ -86,6 +68,7 @@ function isEmpty(value) {
 }
 
 function checkIfEmpty(field) {
+    // console.log(field.value.trim());
     if (isEmpty(field.value.trim())) {
         // set field invalid
         setInvalid(field, `${capitalizeFirstLetter(replaceUnderscore(field.name))} should be filled!`);
@@ -262,8 +245,8 @@ function selectValidate(field) {
     }
 }
 
-function selectOtherCategoryValidate(field) {
-    if (category.options[category.selectedIndex].value == "1") {
+function selectOtherCategoryValidate(field) { 
+    if (category.options[category.selectedIndex].value == "Other") {
         if (checkIfEmpty(other_category)) {
             selectInvalid(field, `Please state the ${capitalizeFirstLetter(replaceUnderscore(field.name))}`);
             return false;
@@ -273,10 +256,11 @@ function selectOtherCategoryValidate(field) {
             return true;
         }
     }
+    return true;
 }
 
 function selectOtherLocationValidate(field) {
-    if (spLocation.options[spLocation.selectedIndex].value == "1") {
+    if (spLocation.options[spLocation.selectedIndex].value == "Other") {
         if (checkIfEmpty(other_location)) {
             selectInvalid(field, `Please state the ${capitalizeFirstLetter(replaceUnderscore(field.name))}`);
             return false;
@@ -286,14 +270,8 @@ function selectOtherLocationValidate(field) {
             return true;
         }
     }
+    return true;
 }
-
-// function validateImgFiles() {
-//     if( document.getElementById("").files.length == 0 ){
-//     // return true;
-// }
-
-
 
 //Sports Arena Validations
 function validateSpArenaName() {
@@ -378,8 +356,6 @@ function validateUsername() {
     if (checkIfEmpty(username)) return;
     if (!meetLength(username, 10, 15)) return;
     if (!checkCharacters(username)) return;
-
-    if (!matchWithRegExSpace(regEx, username)) return;
     return true;
 }
 

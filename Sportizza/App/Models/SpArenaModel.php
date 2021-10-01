@@ -34,6 +34,7 @@ class SpArenaModel extends \Core\Model
         $this->image_3 =  new Image("image_3");
         $this->image_4 =  new Image("image_4");
         $this->image_5 =  new Image("image_5");
+        $this->image_6 =  new Image("image_6");
 
         if (!empty($this->image_1->img_errors)) {
             $this->errors["image_1"] = $this->image_1->img_errors;
@@ -49,6 +50,9 @@ class SpArenaModel extends \Core\Model
         }
         if (!empty($this->image_5->img_errors)) {
             $this->errors["image_5"] = $this->image_5->img_errors;
+        }
+        if (!empty($this->image_6->img_errors)) {
+            $this->errors["image_6"] = $this->image_6->img_errors;
         }
     }
 
