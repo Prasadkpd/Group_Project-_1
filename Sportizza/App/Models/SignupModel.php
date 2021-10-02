@@ -262,6 +262,22 @@ class SignupModel extends \Core\Model
 
         return $stmt->fetch();
     }
+    public static  function activeuser($username)
+    {
+       
+        $sql = 'UPDATE user
+        SET user.account_status ="active"
+        WHERE username=:username;';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':username', $username, PDO::PARAM_STR);
+        
+        
+        
+        return $stmt->execute();
+        
+    }
 
    
 

@@ -31,7 +31,7 @@ class SpArenaManagerModel extends \Core\Model
     }
 
     public static function managerViewBookings($id){
-        
+        //correct
         $sql = 'SELECT booking.booking_id,booking.price_per_booking,booking.booked_date,
                 booking.payment_method,booking.payment_status,time_slot.start_time,time_slot.end_time
                 ,user.primary_contact FROM  booking

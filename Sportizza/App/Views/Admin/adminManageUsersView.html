@@ -204,7 +204,7 @@
                 </div>
             </div>
 
-            <div id="view_bookings" class="booking_tab_content active" style="display: block;">
+            <!-- <div id="view_bookings" class="booking_tab_content active" style="display: block;">
                 <table class="booking-table">
                     <thead>
                         <tr class="booking-thead-first-tr">
@@ -214,10 +214,7 @@
                                         <input type="search" name="search" placeholder="Search">
                                         <i class="fas fa-search"></i>
                                     </div>
-                                    <!--<div class="booking-table-date-picker">
-                                            <label class="date-label">Booking Date</label>
-                                            <input type="date">
-                                        </div>-->
+                                    
                                 </div>
                             </th>
                         </tr>
@@ -230,7 +227,7 @@
                             <th>Secondary Contact</th>
                             <th>Abided Rules</th>
                             <th>Remove Account</th>
-                            <!--<th class="b-last-th">Payment Status</th>-->
+                           
                         </tr>
                     </thead>
                     <tbody>
@@ -248,9 +245,9 @@
                         {% endfor %}
                     </tbody>
                 </table>
-            </div>
+            </div> -->
 
-            <div id="add_bookings" class="booking_tab_content">
+             <div id="view_bookings" class="booking_tab_content">
                 <table class="booking-table">
                     <thead>
                         <tr class="booking-thead-first-tr">
@@ -268,10 +265,9 @@
                                 <th>Last Name</th>
                                 <th>Username</th>
                                 <th>Primary Contact</th>
-                                <!-- <th>Secondary Contact</th> -->
-                                <!-- <th>Abided Rules</th> -->
+                            
                                 <th>Remove Account</th>
-                                <!--<th class="b-last-th">Payment Status</th>-->
+                               
                             </tr>
                         </thead>
                         <tbody>
@@ -282,15 +278,14 @@
                                 <td data-label="Last Name :">{{customer.last_name}}</td>
                                 <td data-label="Username :">{{customer.username}}</td>
                                 <td data-label="Primary Contact :">{{customer.primary_contact}}</td>
-                                <!-- <td data-label="Secondary Contact :">{{customer.secondary_contact}}</td> -->
-                                <!-- <td data-label="Abided Rules :">Yes</td> -->
+                               
                                 <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
                             </tr>
                             {% endfor %}
                         </tbody>
                     </table>
                 </div>
-                
+
                 <div id="add_bookings" class="booking_tab_content">
                     <table class="booking-table">
                         <thead>
@@ -301,10 +296,7 @@
                                             <input type="search" name="search" placeholder="Search">
                                             <i class="fas fa-search"></i>
                                         </div>
-                                        <!--<div class="booking-table-date-picker">
-                        <label class="date-label">Booking Date</label>
-                        <input type="date">
-                    </div>-->
+                                       
                                 </div>
                             </th>
                         </tr>
@@ -317,8 +309,6 @@
                         </tr>
                     </thead>
                     <tbody>
-
-
                         {% for arenas in inactiveArenas %}
                         <tr class="popup" onclick="sportsArenaPopup()">
                             <td data-label="Sports Arena Name :">{{arenas.sa_name}}</td>

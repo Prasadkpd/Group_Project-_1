@@ -30,9 +30,11 @@ class CustomerModel extends \Core\Model
         };
     }
 
+
+    
     public static function customerBookings($id){
-        
-        $sql = 'SELECT booking.booking_id,booking.customer_user_id, booking.booking_date,
+        //correct
+        $sql = 'SELECT booking.booking_id,booking.customer_user_id, booking.booked_date,
                 booking.payment_status,booking.payment_method, booking.price_per_booking,sports_arena_profile.sa_name,
                 sports_arena_profile.category,time_slot.start_time,time_slot.end_time 
                 FROM booking INNER JOIN booking_timeslot ON booking.booking_id = booking_timeslot.booking_id 
@@ -57,10 +59,13 @@ class CustomerModel extends \Core\Model
 
     public static function customerFavouriteList($id){
         
+
+        //correct 
         $sql = 'SELECT sports_arena_profile.sa_name, sports_arena_profile.category, sports_arena_profile.location
         FROM favourite_list INNER JOIN favourite_list_sports_arena ON favourite_list.fav_list_id = favourite_list_sports_arena.fav_list_id 
         INNER JOIN sports_arena_profile ON favourite_list_sports_arena.sports_arena_id = sports_arena_profile.sports_arena_id 
-        WHERE favourite_list.customer_profile_id=:id';
+        WHERE favourite_list.customer_profile_id=:id AND favourite_list_sports_arena.security_status="active"
+        AND sports_arena_profile.security_status="active"';
 
 
         $db = static::getDB();
@@ -78,7 +83,8 @@ class CustomerModel extends \Core\Model
     public static function customerNotification($id){
         
         $sql = 'SELECT subject,description, DATE(date) as date , TIME(date) as time 
-        FROM notification WHERE user_id=:id';
+        FROM notification WHERE user_id=:id
+        AND notification.security_status="active"';
 
 
         $db = static::getDB();
@@ -154,40 +160,46 @@ class CustomerModel extends \Core\Model
         return $result;
     }
 
-    public static function customerSelectBookingDate($booking_id){
+    public static function customerAddFavoriteList($arena_id,$customer_id){
 
-        $sql = 'SELECT `booking`.`booked_date` FROM `booking` WHERE `booking`.`booking_id`=:booking_id';
+        $sql = 'SELECT fav_list_id
+                 FROM  favourite_list 
+                WHERE customer_profile_id=:id';
+                // have to change this is wrong we use it for testing
+
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
-        $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+        $stmt->bindValue(':id', $customer_id, PDO::PARAM_INT);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
         $stmt->execute();
+        $result = $stmt->fetchAll();
+    
+        $favorite_list_id=$result;
 
-        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $booked_date = $result["booked_date"];
-        // var_dump($result);
-        return $booked_date;
-    }
 
-    public static function customerDeleteBooking($booking_id){
 
-        $sql = 'UPDATE `booking` SET `booking`.`security_status`="inactive" 
-            WHERE `booking`.`booking_id`=:booking_id ';
+
+
+        
+        $sql = 'INSERT INTO favourite_list_sports_arena (fav_list_id,sports_arena_id )
+        VALUES (:favorite_list_id,:arena_id);';
+                
+
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
-        $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
-        // $stmt->execute();
+        $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+        $stmt->bindValue(':favorite_list_id', $favorite_list_id, PDO::PARAM_INT);
 
         // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
-        // $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        // $booked_date = $result["booked_date"];
-        // var_dump($result);
-        return ($stmt->execute());
-        ;
+        $stmt->execute();
+        // $result = $stmt->fetchAll();
+        // return $result;
     }
     
 

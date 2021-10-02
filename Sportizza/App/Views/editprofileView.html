@@ -6,73 +6,111 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer</title>
-    <!-- CSS Files -->
-    <!-- Toggle Password Icon -->
+    <!-- CSS File -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
-    <!-- Top Nav bar CSS styles -->
-    <link rel="stylesheet" href="/Assets/css/navbar.css?version=2">
-<!-- File Specific CSS Styles -->
-    <link rel="stylesheet" href="/Assets/css/profileedit.css?version=2">
-    
-    <!-- <link rel="stylesheet" href="/Assets/css/Customer/new_customer_dashboard.css?version=17"> -->
+    <link rel="stylesheet" href="/Assets/css/editprofile.css?version=15">
+    <link rel="stylesheet" href="/Assets/css/flashMessages.css?version=1">
     <!-- FontAwesome Icon -->
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
+
+
+
 </head>
 
 <body>
     <!-- Top Navigation Bar -->
-    <nav>
-        <div class="nav-left">
+    <nav style="display:hidden">
+        <!-- Flash messages -->
+ <p>
+    {% for message in flash_messages %}
+<div class="alert alert-{{ message.type }}">
+ {{ message.body }}
+    </div>
+{% endfor %}
+</p>
+        <div style="display:none" class="nav-left">
             <div class="logo-container">
                 <a href="/">
                     <i class="fas fa-running "></i>
                     <span class="logo-name">Sportizza</span>
                 </a>
             </div>
+            <div class="search-bar-container">
+                <input type="search" name="search" placeholder="Search">
+                <i class="fas fa-search "></i>
+            </div>
 
-            <div class="nav-right">
-                <!-- Profile button -->
-                <div class="nav-profile">
-                    <button class="openbutton" onclick="openpopupform()">
-                        <div class="profile-details">
-                            <img src="/Assets/images/customer/profile-picture.jpg" class="profile-picture">
-                            <div class="username">{{current_user.first_name}} {{current_user.last_name}}</div>
-                        </div>
-                    </button>
-                </div>
 
-                <!-- Signout button -->
-                <div class="sign-in-out-btn">
-                    <button onclick="open_popup_signout_message()">Sign Out</button>
-                    <!-- {% if session.user_id %}
-                User with ID {{session.user_id}} is logged in.
-            {% endif %} -->
-                </div>
+
+            <div class="nav-profile">
+
+
+
+
+
+
+                <button class="openbutton" onclick="openpopupform()">
+
+
+
+                    <div class="profile-details">
+                        <img src="/Assets/images/customer/profile-picture.jpg" alt="" class="profile-picture">
+                        <div class="username">{{current_user.first_name}} {{current_user.last_name}}</div>
+
+                    </div>
+
+                </button>
+            </div>
+
+
+
+
+
+            <div class="sign-in-out-btn">
+
+                <button onclick="open_popup_signout_message()"> Sign Out </button>
+
+                
+
             </div>
         </div>
+
+
+
+
+        <!-- search bar for mobile -->
+        <div class="search-bar-container-mobi">
+            <input type="search" name="search" placeholder="Search">
+            <i class="fas fa-search "></i>
+        </div>
     </nav>
+    <!-- End Top Navigation Bar -->
 
-    <!-- start popup form for edit profile -->
-    <div id="myForm" class="sectionpopnav">
-        <div class="formsectionprofile">
+
+
+    <!-- popup form for edit profile -->
+    <div style="display:block" id="myForm" class="sectionpop ">
+
+
+        <div class="formsection">
+
             <div>
-                <button class="closebutton" onclick="closepopupform()">❌</button>
+                <button s class="closebutton" onclick="closepopupform()">❌</button>
             </div>
-
-            <form action="/customer" method="post" style="margin:0px 20px 5px 20px;" class="nav-user-edit-from"
-                id="formEditUserProfile" onsubmit="validateEditUserForm()" enctype="multipart/form-data">
-
-                <div class="editProPic">
-                    <img id="form-profile-picture" src="/Assets/images/customer/profile-picture.jpg" alt="">
-                    <input type="file" id="file" accept="image/*">
-                    <label for="file" id="uploadBtn">Choose Photo</label>
-                </div>
+            <div class="editProPic">
+                <img id="form-profile-picture" src="/Assets/images/customer/profile-picture.jpg" alt="">
+                <input type="file" id="file">
+                <label for="file" id="uploadBtn">Choose Photo</label>
+            </div>
+            <form action="/Edituserdetails/updatedetails" method="post" style="margin:0px 20px 5px 20px;" class="nav-user-edit-from"
+                id="formEditUserProfile" onsubmit="validateEditUserForm()">
 
                 <div class="input-box">
                     <label for="firstName">First Name</label>
                     <div class="input-row">
-                        <input id="firstName" type="text" name="first_name" onfocusout="validateFirstName()"
+                        <input id="firstName" type="text" name="firstName" onfocusout="validateFirstName()"
                             placeholder="Enter first name" value="{{current_user.first_name}}">
+
                         <div class="helper-text" id="firstNameMsg">
                             <p>{{errors["first_name1"]}} {{errors["first_name2"]}}</p>
                         </div>
@@ -82,19 +120,24 @@
                 <div class="input-box">
                     <label for="lastName">Last Name</label>
                     <div class="input-row">
-                        <input id="lastName" type="text" name="last_name" onfocusout="validateLastName()"
+                        <input id="lastName" type="text" name="lastName" onfocusout="validateLastName()"
                             placeholder="Enter last name" value="{{current_user.last_name}}">
+
                         <div class="helper-text" id="lastNameMsg">
                             <p>{{errors["last_name1"]}} {{errors["last_name2"]}}</p>
                         </div>
                     </div>
                 </div>
 
+
+
+
                 <div class="input-box">
                     <label for="username">Username</label>
                     <div class="input-row">
                         <input id="username" type="text" name="username" onfocusout="validateUsername()"
-                            placeholder="Enter Username" value="{{current_user.username}}">
+                            placeholder="Enter a unique Username" value="{{current_user.username}}">
+                        <!-- <i class="fas fa-pen"></i> -->
                         <div class="helper-text" id="usernameMsg">
                             <p>{{errors["username1"]}} {{errors["username2"]}}</p>
                         </div>
@@ -103,16 +146,21 @@
 
                 <div class="input-box">
                     <label for="password">Password</label>
+                    
+                    <!-- wrong -->
+                    <!-- <button onclick="open_editPassword()" class="change-password"> -->
                     <button class="change-password" id="ChangePassword">
-                        <i class="fas fa-pen"></i>
+                        <i class="fas fa-pen" ></i>
                         Change Password
                     </button>
+                
                 </div>
 
                 <div class="input-box">
                     <label for="primary_contact">Primary Contact</label>
                     <div class="input-row">
                         <input id="primary_contact" type="text" name="primary_contact"
+                            
                             value="{{current_user.primary_contact}}" disabled>
                         <i class="fas fa-pen" onclick="open_editPrimaryPhoneNumber()"></i>
                         <div class="helper-text" id="mobileMsg">
@@ -123,25 +171,28 @@
                         </div>
                     </div>
                 </div>
-
+            
                 <input type="submit" value="Save">
             </form>
         </div>
     </div>
-    <!-- end popup form for edit profile -->
+
 
     <!-- start edit primary number section -->
-    <div id="popup_editPrimaryNumber" class="sectionpopnav">
-        <div class="formsectionnav">
+    <div id="popup_editPrimaryNumber" class="sectionpop ">
+        <div class="formsection">
             <div>
                 <button class="closebutton" onclick="close_editPrimaryPhoneNumber()">❌</button>
             </div>
             <div class="popup-header">
                 <h3>Do you really want to change your primary contact?</h3>
             </div>
-            <div style="display:flex;">
-                <a class="popup_buttonnav" href="/otp">YES</a>
-                <button onclick="close_editPrimaryPhoneNumber()" class="popup_buttonnav red">
+            <div style="display:flex">
+               
+                    <a class="popup_button" href="/Edituserdetails/updatemobile">
+                    YES</a>
+               
+                <button onclick="close_editPrimaryPhoneNumber()" class="popup_button red">
                     NO
                 </button>
             </div>
@@ -150,22 +201,23 @@
     </div>
     <!--end edit primary number section -->
 
+
     <!-- start edit password number section -->
-    <div id="popup_editPassword" class="sectionpopnav">
-        <div class="formsectionnav">
+    <div id="popup_editPassword" class="sectionpop">
+        <div class="formsection">
             <div>
                 <button class="closebutton" onclick="close_editPassword()">❌</button>
             </div>
             <div class="popup-header">
                 <h2>Password Reset</h2>
             </div>
-            <form style="margin:20px 20px 0px 20px" action="/" id="formPassword" onsubmit="validatePasswordForm()">
+            <form style="margin:20px 20px 0px 20px" action="/Edituserdetails/updatepassword" method="post">
                 <div class="input-box">
                     <label for="oldPassword">Old Password</label>
                     <div class="input-row">
-                        <input id="oldPassword" type="password" name="old_password" onfocusout="validateOldPassword()"
+                        <input id="oldPassword" type="password" name="oldPassword" onfocusout="validateOldPassword()"
                             placeholder="Enter old password">
-                        <i class="bi bi-eye-slash" id="togglePassword1"></i>
+                            <i class="bi bi-eye-slash" id="togglePassword1"></i>
                         <div class="helper-text" id="firstNameMsg">
                             <p>{{errors["first_name1"]}} {{errors["first_name2"]}}</p>
                         </div>
@@ -175,9 +227,9 @@
                 <div class="input-box">
                     <label for="oldPassword">New Password</label>
                     <div class="input-row">
-                        <input id="newPassword" type="password" name="new_password" onfocusout="validateNewPassword()"
+                        <input id="newPassword" type="password" name="newPassword" onfocusout="validateNewPassword()"
                             placeholder="Enter new password">
-                        <i class="bi bi-eye-slash" id="togglePassword2"></i>
+                            <i class="bi bi-eye-slash" id="togglePassword2"></i>
                         <div class="helper-text" id="firstNameMsg">
                             <p>{{errors["first_name1"]}} {{errors["first_name2"]}}</p>
                         </div>
@@ -185,36 +237,50 @@
                 </div>
 
                 <div style="display:flex" class="response_buttons">
-                    <input type=submit class="popup_buttonnav" value="CONFIRM">
-                    <button id="No_EditPassword" class="popup_buttonnav red">
-                        CANCEL
+                    <!-- <a class="popup_button"  type="submit">
+                        YES</a> -->
+                        <input type="submit" class="popup_button" value="YaES">
+                    <button id="No_EditPassword"  class="popup_button red">
+                        NO
                     </button>
                 </div>
             </form>
         </div>
     </div>
     <!--end edit password number section -->
+
     <!-- end popup form for edit profile -->
 
+
     <!-- start pop up sign out section -->
-    <div id="popup_signout" class="sectionpopnav">
-        <div class="formsectionnav">
+    <div id="popup_signout" class="sectionpop ">
+
+
+        <div class="formsection">
+
             <div>
                 <button class="closebutton" onclick="close_popup_signout_message()">❌</button>
             </div>
             <form action="/action_page.php" style="margin:20px">
                 <div style="margin:auto">
-                    <h1>Sign Out</h1>
-                    <p>Do your really want to sign out now?</p>
+                    <h1 style="margin:auto">
+                        Sign Out
+                    </h1>
+                    <p style="margin:auto">
+                        Do your really want to sign out now?
+                    </p>
                 </div>
             </form>
+
+
             <div style="display:flex">
-                <button class="popup_buttonnav">
+
+                <button class="popup_delete_button">
                     {% if current_user %}
                     <a href="/logout"> YES</a>
                     {% endif %}
                 </button>
-                <button onclick="close_popup_signout_message()" class="popup_delete_buttonnav">
+                <button onclick="close_popup_signout_message()" class="popup_button">
                     NO
                 </button>
             </div>
@@ -222,7 +288,25 @@
     </div>
     <!-- end pop up sign out section -->
 
-    <!-- End Top Navigation Bar -->
+
+
+
+
+
+ 
+
+
+
+
+
+
+    <section class="page-container">
+
+
+
+
+
+    </section>
 
     <!-- Start of Footer -->
     <footer>
@@ -234,14 +318,12 @@
     </footer>
     <!-- End of Footer -->
 
-    <!-- Validation js -->
-    <script type="text/javascript" src="/Assets/js/signup_validation.js?v=8"></script>
-    <!-- Top navbar js -->
-    <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
-    <!-- File specific js -->
-    <script type="text/javascript" src="/Assets/js/editUser.js?v=8"></script>
+    <script type="text/javascript" src="/Assets/js/signup_validation.js?v=6"></script>
+    <script type="text/javascript" src="/Assets/js/Customer/editProfileValidation.js?v=6"></script>
 
-    <!-- <script type="text/javascript" src="/Assets/js/Customer/new_customer_dashbord.js?v=8"></script>  -->
+
+    <script type="text/javascript" src="/Assets/js/editprofile.js?v=6"></script>
+
 </body>
 
 </html>

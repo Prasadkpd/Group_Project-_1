@@ -6,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Bookings</title>
-    <!-- CSS File -->
+     <!-- Top Nav bar CSS styles -->
+     <link rel="stylesheet" href="/Assets/css/navbar.css?version=4">
+     <!-- File Specific CSS Styles -->
     <link rel="stylesheet" href="/Assets/css/Customer/newCustomerBooking.css?version=7">
     <!-- FontAwesome Icon -->
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
@@ -71,7 +73,7 @@
             <i class="fas fa-search "></i>
         </div>
     </nav>
-    <!-- End Top Navigation Bar -->
+   
 
 
     <!-- popup form for edit profile -->
@@ -151,6 +153,8 @@
         </div>
     </div>
     <!-- End OF the POP up SIGN out -->
+     <!-- End Top Navigation Bar -->
+    
     <section class="page-container">
 
 
@@ -212,6 +216,18 @@
                                          <!-- Payments & Cash Payments -->
                                         </h5>
                                 </div>
+                                <a type="" class="more-link">More Details
+                                </a>
+
+                                
+                            </div>
+                            
+
+                            <div>
+                                <form action="/customer/addtofavoritelist" method="POST">
+                                    <input  id="arena_id" name="arena_id"  type="hidden" value={{arenaDetails[0].sports_arena_id}}>
+                                    <input type="submit" value="add to favorite list">
+                                </form>
                             </div>
                             
                         </div>

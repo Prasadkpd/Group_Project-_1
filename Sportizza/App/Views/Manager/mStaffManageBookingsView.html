@@ -260,6 +260,7 @@
                         <tbody>
 
                             {% for book in bookings %}
+                            {% if book.payment_status=="paid" %}
                             <tr>
                                 <td data-label="Booking ID :">{{book.booking_id}}</td>
                                 <td data-label="Start Time :">{{book.start_time}}</td>
@@ -273,6 +274,24 @@
                                 </td>
 
                             </tr>
+                            {% endif %}
+
+
+                            {% if book.payment_status=="unpaid" %}
+                            <tr>
+                                <td data-label="Booking ID :">{{book.booking_id}}</td>
+                                <td data-label="Start Time :">{{book.start_time}}</td>
+                                <td data-label="End Time :">{{book.end_time}}</td>
+                                <td data-label="Amount(LKR) :">{{book.price_per_booking}}</td>
+                                <td data-label="Booked Date :">{{book.booked_date}}</td>
+                                <td data-label="Mobile Number :">{{book.primary_contact}}</td>
+                                <td data-label="Payment Method :">{{book.payment_method}}</td>
+                                <td>
+                                    <div class="Payment-status "><a href="">{{book.payment_status}}</a></div>
+                                </td>
+
+                            </tr>
+                            {% endif %}
                             {% endfor %}
 
 
@@ -419,6 +438,7 @@
                         <tbody>
 
                             {% for book in cancelBookings %}
+                            {% if book.payment_status=="paid" %}
                             <tr>
                                 <td data-label="Booking ID :">{{book.booking_id}}</td>
                                 <td data-label="Start Time :">{{book.start_time}}</td>
@@ -433,10 +453,27 @@
                                 <td class="trash-btn-padding-res"> <a class="trash-btn"
                                         onclick="open_popup_delete_message()"><i class="fas fa-trash-alt"></i></a></td>
                             </tr>
+                            {% endif %}
+
+                            {% if book.payment_status=="unpaid" %}
+                            <tr>
+                                <td data-label="Booking ID :">{{book.booking_id}}</td>
+                                <td data-label="Start Time :">{{book.start_time}}</td>
+                                <td data-label="End Time :">{{book.end_time}}</td>
+
+                                <td data-label="Booked Date :">{{book.booked_date}}</td>
+                                <td data-label="Mobile Number :">{{book.primary_contact}}</td>
+
+                                <td>
+                                    <div class="Payment-status"><a href="">{{book.payment_status}}</a></div>
+                                </td>
+                                <td class="trash-btn-padding-res"> <a class="trash-btn"
+                                        onclick="open_popup_delete_message()"><i class="fas fa-trash-alt"></i></a></td>
+                            </tr>
+                            {% endif %}
                             {% endfor %}
 
-                        
-
+                           
 
                         </tbody>
                     </table>
@@ -508,6 +545,7 @@
      <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
      <!-- File Specific js -->
     <script type="text/javascript" src="/Assets/js/SpArenaManager/manage-bookings.js?version=3"></script>
+    <script type="text/javascript" src="/Assets/js/Customer/newCart.js?version=4"></script>
 </body>
 
 </html>
