@@ -12,8 +12,8 @@
     <!-- Top Nav bar CSS styles -->
     <link rel="stylesheet" href="/Assets/css/navbar.css?version=4">
     <!-- File Specific CSS Styles -->
-    <link rel="stylesheet" href="/Assets/css/Customer/new_customer_dashboard.css?version=17">
-    <link rel="stylesheet" href="/Assets/css/Customer/new_customer_dashboard.css?version=15">
+    <link rel="stylesheet" href="/Assets/css/Customer/new_customer_dashboard.css?version=19">
+    <!-- <link rel="stylesheet" href="/Assets/css/Customer/new_customer_dashboard.css?version=15"> -->
     <link rel="stylesheet" href="/Assets/css/flashMessages.css?version=1">
     <!-- FontAwesome Icon -->
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
@@ -135,14 +135,23 @@
                 <button s class="closebutton" onclick="close_popup_share()">❌</button>
             </div>
 
-            <form action="/action_page.php" style="margin:20px">
+            <form action="" style="margin:20px">
                 <h1>Copy this link and share</h1>
                 <div>
-                    <p>https://ugvle.ucsc.cmb.ac.lk/course/<br>?id=125</p>
+                    <input type="text" id="bdetail1" readonly>
+                    <input type="text" id="bdetail2" readonly>
+                    <div class="timeslotDisplay">
+                    <input type="text" id="bdetail3" readonly>-
+                    <input type="text" id="bdetail4" readonly>
+                    </div>
+                    <input type="text" id="bdetail5" readonly>
+                    <input type="text" id="bdetail6" readonly>
+                    <input type="text" id="bdetail7" readonly>
+                    <!-- <input class="shareDetails" type="text" value="https://ugvle.ucsc.cmb.ac.lk/course/view.php?id=111" id="displayDetails" readonly /> -->
                 </div>
 
             </form>
-            <button onclick="close_popup_share()" class="popup_button">
+            <button onclick="copyToClipboard()" id="sharePopup" class="popup_button">
                 Copy
             </button>
         </div>
@@ -421,7 +430,8 @@
                                 <td class="btn-float-right">
                                     <div style="display:flex; float:right; padding-right:2rem;">
                                         <div>
-                                            <button onclick="open_popup_share()">
+                                            <button onclick="open_popup_share({{book.booking_id}},'{{book.booking_date}}','{{book.start_time}}','{{book.end_time}}',
+                                                '{{book.sa_name}}','{{book.category}}','{{book.google_map_link}}')">
                                                 <i class="fas fa-share "></i>
                                             </button>
                                         </div>
@@ -456,7 +466,7 @@
                 <td class="btn-float-right">
                     <div style="display:flex; float:right; padding-right:2rem;">
                         <div>
-                            <button onclick="open_popup_share()">
+                            <button onclick="open_popup_share({{book.booking_id}})">
                                 <i class="fas fa-share "></i>
                             </button>
                         </div>
@@ -638,7 +648,7 @@
     <!-- Top navbar js -->
     <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
     <!-- File specific js -->
-    <script type="text/javascript" src="/Assets/js/Customer/new_customer_dashbord.js?v=13"></script>
+    <script type="text/javascript" src="/Assets/js/Customer/new_customer_dashbord.js?v=15"></script>
 </body>
 
 </html>

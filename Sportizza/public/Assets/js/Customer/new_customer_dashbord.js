@@ -36,15 +36,70 @@ function openTab(evt, cityName) {
 
 
 //popup share section
-function open_popup_share() {
+function open_popup_share(id,bdate,stime,etime,saname,category,gmap) {
   var form = document.getElementById("popup_share");
+  // document.getElementById("copyDetails").innerHTML += '{% set temp = x %}';
+  document.querySelector("#bdetail1").value = id;
+  document.querySelector("#bdetail2").value = bdate;
+  document.querySelector("#bdetail3").value = stime;
+  document.querySelector("#bdetail4").value = etime;
+  document.querySelector("#bdetail5").value = saname;
+  document.querySelector("#bdetail6").value = category;
+  document.querySelector("#bdetail7").value = gmap;
 
   form.style.display = "block";
+  console.log(id);
+  console.log(bdate);
+  console.log(stime);
+  console.log(etime);
+  console.log(saname);
+  console.log(category);
+  console.log(gmap);
 }
 function close_popup_share() {
   var form = document.getElementById("popup_share");
 
   form.style.display = "none";
+}
+function copyToClipboard() {
+  /* Get the text fields */
+  var copyText1 = document.getElementById("bdetail1");
+  var copyText2 = document.getElementById("bdetail2");
+  var copyText3 = document.getElementById("bdetail3");
+  var copyText4 = document.getElementById("bdetail4");
+  var copyText5 = document.getElementById("bdetail5");
+  var copyText6 = document.getElementById("bdetail6");
+  var copyText7 = document.getElementById("bdetail7");
+
+  /* Select the text fields */
+  copyText1.select();
+  copyText1.setSelectionRange(0, 99999); /* For mobile devices */
+  
+  copyText2.select();
+  copyText2.setSelectionRange(0, 99999); 
+
+  copyText3.select();
+  copyText3.setSelectionRange(0, 99999); 
+
+  copyText4.select();
+  copyText4.setSelectionRange(0, 99999); 
+
+  copyText5.select();
+  copyText5.setSelectionRange(0, 99999); 
+
+  copyText6.select();
+  copyText6.setSelectionRange(0, 99999); 
+
+  copyText7.select();
+  copyText7.setSelectionRange(0, 99999); 
+
+  /* Copy the text inside the text field */
+  navigator.clipboard.writeText("Booking ID => " + copyText1.value + "\nBooking Date: " + copyText2.value + "\nTime Duration: " + copyText3.value + "-" + copyText4.value
+      + "\nSports Arena Name: " + copyText5.value + "\nSport played: " + copyText6.value + "\nGoogle map link: " + copyText7.value);
+//  navigator.clipboard.writeText(copyText2.value);
+
+  /* Alert the copied text */
+  alert("Press OK to copy the booking details...");
 }
 
 
