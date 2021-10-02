@@ -310,6 +310,18 @@ tbody tr td .icon_red:hover {
   text-align: center;
   margin: 20px auto;
 }
+.sectionpop input[type="text"] {
+  width: 225px;
+  border: none;
+  /* border-radius: 15px; */
+}
+.sectionpop .timeslotDisplay {
+  display: flex; 
+  flex-direction: row;
+}
+.sectionpop .timeslotDisplay input[type="text"] {
+  width: 53px;
+}
 
 .popup_button {
   background-color: #2ed573;
