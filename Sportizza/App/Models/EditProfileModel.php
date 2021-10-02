@@ -123,6 +123,39 @@ class EditProfileModel extends \Core\Model
     }
 
 
+
+    public  function saveForgotPassword($mobile)
+    {
+        $this->validatePassword();
+        if (empty($this->errors)) {
+
+            $passwords = password_hash($this->newPassword, PASSWORD_DEFAULT);
+             $sql = 'UPDATE user
+             SET user.password =:passwords
+            WHERE primary_contact=:mobile';
+
+            $db = static::getDB();
+             $stmt = $db->prepare($sql);
+            $stmt->bindValue(':mobile', $mobile, PDO::PARAM_STR);
+            $stmt->bindValue(':passwords',$passwords, PDO::PARAM_STR);
+        
+        
+            return $stmt->execute();
+            
+        }     
+          
+        
+        
+        else{
+            return false;
+        }
+    }
+
+
+
+
+
+
     public  function updateNewUserDetails($oldUsername)
     {
         
