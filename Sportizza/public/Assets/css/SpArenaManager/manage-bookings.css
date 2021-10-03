@@ -56,6 +56,8 @@ ul {
   float: right;
   /* margin-right: 15px; */
   margin-top: 10px;
+  background-color: transparent;
+border: none;
 }
 .openbutton {
   border: none;
@@ -179,7 +181,7 @@ form input[type="submit"] {
 /* ======================================================================== */
 /* Start-Page-container */
 .page-container {
-  height: 83vh;
+  height: 85vh;
   overflow: hidden;
   display: flex;
 }
@@ -1035,6 +1037,9 @@ footer {
     font-weight: 500;
     font-size: 1rem;
     margin-right: auto;
+  }
+  .formsection{
+    width: 90vw;
   }
 
 }

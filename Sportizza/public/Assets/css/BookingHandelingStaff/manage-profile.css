@@ -169,26 +169,12 @@ width: 30%;
 border-radius: 500px;
 }
 
-.closebutton{
-width:20px;
-float:right;
-margin-right: 15px;
-margin-top: 10px;
-}
+
 .openbutton{
 border: none;
 border-radius:50px;
 }
 
-.nav-profile .username{
-
-margin:auto;
-width:250px;
-font-weight: 600;
-font-size:15px;
-padding-top: 10px;
-
-}
 
 
 /* end popup section   */
@@ -888,9 +874,7 @@ padding: 0px 20px;
 /* ========================================================== */
 
 @media screen and (max-width: 768px) {
-nav {
-display: none;
-}
+
 .sidebar {
 width: 7vw;
 }
@@ -913,94 +897,6 @@ display: none;
 
 @media screen and (max-width: 576px) {
 
-nav{
-display: flex;
-flex-direction: column;
-height: 100%;
-}
-
-nav .search-bar-container-mobi {
-display: contents;
-display: flex;
-/* padding: 8px 20px; */
-border-radius: 40px;
-width: 90%;
-box-shadow: #00000026 0px 5px 15px 0px;
-margin-bottom: 10px
-}
-nav .search-bar-container-mobi input[type="search"]{
-width: 100%;
-font-size: medium;
-font-weight: 600;
-height:20px;
-
-
-}
-nav .search-bar-container-mobi i{
-
-color: #fd461f;
-
-}
-
-
-
-nav .search-bar-container{
-display:none;
-width:auto
-}
-
-.nav-profile .username{
-display:none;
-}
-.logo-container{
-display: flex;
-margin-left: 10px;
-
-
-}
-nav .nav-left{
-display: flex;
-
-margin-top:20px;
-}
-nav .logo-container a{
-font-size: 25px;
-margin-right: 5px;
-}
-nav .profile-details{
-margin-left: 30px;
-}
-nav .modal-label{
-background-color:red;
-}
-
-nav .nav-profile{
-background-color:white;
-margin-right: 0px;
-
-}
-.sign-in-out-btn{
-margin-right: 10px;
-}
-.profile-picture{
-width:50px;
-height:50px;
-margin-right: 5px;
-margin-bottom: 10px;
-
-}
-nav .sign-in-out-btn a{
-margin-left: 10px;
-
-}
-
-.nav-profile .username{
-
-margin: auto;  
-font-weight: 600;
-font-size:15px;
-
-}
 .openbutton{
 background-color:white;
 }
@@ -1018,7 +914,7 @@ align-items: center;
 width: 10vw;
 }
 .page-container{
-height: 83vh;
+height: 85vh;
 overflow: hidden;
 }
 
