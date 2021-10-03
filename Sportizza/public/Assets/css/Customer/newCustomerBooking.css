@@ -1028,6 +1028,9 @@ footer {
 .available-bookings i:hover {
   color: #2c3e50;
 }
+.hide {
+  display: none;
+}
 .check-availability-btn {
   color: #fd461f;
   background-color: #fff;
