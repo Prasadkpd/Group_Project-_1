@@ -58,6 +58,14 @@ class Customer extends Authenticated
         ['timeSlots'=>$timeSlots,'arenaDetails'=>$arenaDetails,'arenaFacilites'=>$arenaFacilites]);
     }
 
+    public function hidebookingAction()
+    {
+        $current_user= Auth::getUser();
+        $timeslot_id=$this->route_params['id'];
+        $addCart = CustomerModel::customerAddToCart($timeslot_id,$current_user);
+        
+    }
+
     public function deletebookingAction()
     {
         $current_user= Auth::getUser();

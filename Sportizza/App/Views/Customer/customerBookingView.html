@@ -348,7 +348,7 @@
                                                 </div>
                                             </li> -->
                                             {% for timeSlot in timeSlots %}
-                                            <li>
+                                            <li id="{{timeSlot.time_slot_id}}">
                                                 <div class="row">
                                                     <span class="s-time">{{timeSlot.start_time}}</span>
                                                     <span class="e-time">{{timeSlot.end_time}}</span>
@@ -358,7 +358,7 @@
                                                 </div>
                                                 <div class="row">
                                                     <span class="price">{{timeSlot.price}}</span>
-                                                    <i class="fas fa-cart-plus"></i>
+                                                    <button id="removeItem" value={{timeSlot.time_slot_id}}><i class="fas fa-cart-plus"></i></button>
                                                 </div>
                                             </li>
                                             {% endfor %}
@@ -396,7 +396,9 @@
         </div>
     </footer>
     <!-- End of Footer -->
+    <script type="text/javascript" src="/Assets/js/lib/jquery/jquery.min.js"></script>
     <script src="/Assets/js/Customer/newCustomerBooking.js?version=3"></script>
+    <script src="/Assets/js/Customer/bookingItemRemove.js"></script>
 
 
 </body>

@@ -34,7 +34,7 @@ class CustomerModel extends \Core\Model
     
     public static function customerBookings($id){
         //correct
-        $sql = 'SELECT booking.booking_id,booking.customer_user_id, booking.booked_date,
+        $sql = 'SELECT booking.booking_id,booking.customer_user_id, booking.booking_date,
                 booking.payment_status,booking.payment_method, booking.price_per_booking,sports_arena_profile.sa_name,
                 sports_arena_profile.category,sports_arena_profile.google_map_link,
                 time_slot.start_time,time_slot.end_time 
@@ -103,7 +103,7 @@ class CustomerModel extends \Core\Model
 
     public static function customerViewTimeSlots($arena_id){
         
-        $sql = 'SELECT time_slot.start_time,time_slot.end_time,
+        $sql = 'SELECT time_slot.time_slot_id,time_slot.start_time,time_slot.end_time,
                 time_slot.price,sports_arena_profile.sa_name
                  FROM time_slot  INNER JOIN sports_arena_profile 
                  ON time_slot.manager_sports_arena_id=sports_arena_profile.sports_arena_id
@@ -203,6 +203,31 @@ class CustomerModel extends \Core\Model
         // $result = $stmt->fetchAll();
         // return $result;
     }
+
+    // public static function customerAddToCart($timeslot_id,$current_user){
+        
+    //     $db = static::getDB();
+        
+    //     $sql1 = 'UPDATE `time_slot` SET `security_status`="inactive" 
+    //             WHERE `time_slot_id`=:timeslot_id';
+    //             // have to change this is wrong we use it for testing
+
+
+    //     $stmt1 = $db->prepare($sql);
+    //     $stmt1->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
+    //     $stmt1->execute();
+
+    //     $sql2 = 'UPDATE `time_slot` SET `security_status`="inactive" 
+    //             WHERE `time_slot_id`=:timeslot_id';
+    //             // have to change this is wrong we use it for testing
+
+
+    //     $stmt2 = $db->prepare($sql2);
+    //     $stmt2->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
+    //     $stmt2->execute();
+
+    //     return ($stmt->execute());
+    // }
     
 
 
