@@ -2,9 +2,11 @@ $(document).ready(function(){
     $("#removeItem").click(function(event){
         event.preventDefault();
         let temp = $("#removeItem").val();
-        // $(".available-bookings .row").addClass("hide");
+        // $(".available-bookings ."+temp+" .row").addClass("hide");
         // $(".available-bookings .hideDetails[value="+temp+"]").addClass("hide");
-        $("#"+temp).hide();
+        $("#"+temp).toggle();
+        // $('#'+temp).next("li").toggle();
+        // $('li[id='+temp+'').hide();
         // temp = parseInt(temp);
         console.log(temp);
 

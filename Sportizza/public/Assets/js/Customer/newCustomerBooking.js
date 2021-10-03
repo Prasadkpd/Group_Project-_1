@@ -235,3 +235,10 @@ function open_goto_booking() {
   moredetailsbtn.style.display="block";  
 }
 
+// function hideItem(id){
+//   // document.getElementById("#"+id).hide();
+//   var x = document.getElementById("#"+id);
+//   x.style.display = "none";
+//   console.log(id);
+// }
+

@@ -216,7 +216,7 @@
                                 <h2>Available Time Slots</h2>
                                 <ul class="events-list">
                                     {% for timeSlot in timeSlots %}
-                                    <li id="{{timeSlot.time_slot_id}}">
+                                    <li id={{timeSlot.time_slot_id}} class={{timeSlot.time_slot_id}}>
                                         <div class="row">
                                             <span class="s-time">{{timeSlot.start_time}}</span>
                                             <span class="e-time">{{timeSlot.end_time}}</span>
