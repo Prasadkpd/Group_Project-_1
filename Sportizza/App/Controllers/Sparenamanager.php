@@ -123,6 +123,13 @@ class Sparenamanager extends \Core\Controller
         View::renderTemplate('Manager/mStaffAnalyticsView.html',
         ['chart1'=>$chart1, 'chart2'=>$chart2, 'chart3'=>$chart3, 'chart4'=>$chart4]);
     }
+
+    public  function managereditarenaprofileAction()
+    {
+        $current_user= Auth::getUser();
+        // $id=$current_user->user_id;
+        View::renderTemplate('Manager/mStaffEditArenaProfile.html');
+    }
  
 
 
