@@ -550,7 +550,7 @@ font-weight:600;
 padding: 1em 4em;
 border-radius: 30px;
 }
-<!-- End OF the POP up SIGN out -->
+/* End OF the POP up SIGN out */
 
 /* Clear floats */
 .popup_delete_message .clearfix::after {
@@ -1204,6 +1204,9 @@ footer {
 }
 .available-bookings i:hover {
   color: #2c3e50;
+}
+.hide {
+  display: none;
 }
 .check-availability-btn {
   color: #fd461f;
