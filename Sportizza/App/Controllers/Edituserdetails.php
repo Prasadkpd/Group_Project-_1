@@ -58,7 +58,7 @@ class Edituserdetails extends Authenticated
         if ($Model->saveNewPassword($user)){
             // otp::sendSMS("mobile_number");
             // $this->redirect('/Signup/success',['direct_url'=>$direct_url]);
-            Flash::addMessage('successfully updated');
+            Flash::addMessage('successfully updated password');
             $this->redirect('/Edituserdetails/EditProfile');
             exit;
 
@@ -68,7 +68,7 @@ class Edituserdetails extends Authenticated
             // exit;
             // View::renderTemplate('LoginSignup/customerSignupView.html', [
             //     'user' => $user, 'errors' => $errors]);
-            Flash::addMessage('updated failed',Flash::WARNING);
+            Flash::addMessage('failed to update password',Flash::WARNING);
             $this->redirect('/Edituserdetails/EditProfile');
         }
     }
@@ -79,14 +79,19 @@ class Edituserdetails extends Authenticated
 
         $user = new EditProfileModel($_POST);
         $oldUsername=Auth::getUser()->username;
+        if(EditProfileModel::findByUsername($user->username)&&$oldUsername!=$user->username){
+            Flash::addMessage(' failed to update user name is exists',Flash::WARNING);
+            $this->redirect('/Edituserdetails/EditProfile');
+            exit;
+        }
         if ($user->updateNewUserDetails($oldUsername)){
             
-            Flash::addMessage('successfully updated');
+            Flash::addMessage('successfully updated details');
             $this->redirect('/Edituserdetails/EditProfile');
         }
         
         else{
-            Flash::addMessage('updated failed',Flash::WARNING);
+            Flash::addMessage(' failed to update details',Flash::WARNING);
             $this->redirect('/Edituserdetails/EditProfile');
             
         }
@@ -111,12 +116,21 @@ class Edituserdetails extends Authenticated
         View::renderTemplate('EnterMobile.html');
     }
     public function redirectotppageAction(){
-        $_SESSION['direct_url']=('/Edituserdetails/updateMobileNumber');
-        $_SESSION['number']=$_POST['mobile_number'];
-        // Flash::addMessage('updated failed');
+
         
-        otp::sendSMS("mobile_number");
-        View::renderTemplate('otp.html');
+        // Flash::addMessage('updated failed');
+        if(EditProfileModel::findByMobileNumber($_POST['mobile_number'])){
+            Flash::addMessage('number in used for another account 
+            enter another number',Flash::WARNING);
+            $this->redirect('/Edituserdetails/directtoenternumber');
+        }
+        else{
+            $_SESSION['direct_url']=('/Edituserdetails/updateMobileNumber');
+            $_SESSION['number']=$_POST['mobile_number'];
+            otp::sendSMS("mobile_number");
+            View::renderTemplate('otp.html');
+        }
+        
     }
     public function updateMobileNumber(){
 
@@ -125,12 +139,12 @@ class Edituserdetails extends Authenticated
         $username=Auth::getUser()->username;
         if (EditProfileModel::updateNewMobileNumber($username,$_SESSION['number'])){
             
-            Flash::addMessage('successfully updated');
+            Flash::addMessage('successfully updated mobile number');
             $this->redirect('/Edituserdetails/EditProfile');
         }
         
         else{
-            Flash::addMessage('updated failed',Flash::WARNING);
+            Flash::addMessage('mobile number update failed try again',Flash::WARNING);
             $this->redirect('/Edituserdetails/EditProfile');
             
         }

@@ -8,7 +8,7 @@ use \App\Auth;
 use \App\Models\LoginModel;
 use \App\Models\AdminModel;
 use \App\Flash;
-
+use App\Models\EditProfileModel;
 
 class Login extends \Core\Controller
 {
@@ -102,6 +102,66 @@ class Login extends \Core\Controller
     //     //direct to the customer page
     //     View::renderTemplate('Manager/mStaffManageBookingsView.html');
     // }
+
+
+
+    //forget password
+    public  function forgotpasswordAction(){
+
+        if(EditProfileModel::findByMobileNumber($_POST['mobile'])){
+            $_SESSION['direct_url']=('/login/enternewpassword');
+        $_SESSION['temp_mobile']=$_POST['mobile'];
+        otp::sendSMS("mobile_number");
+        View::renderTemplate('otp.html');
+        }
+        else{
+            Flash::addMessage('not registered account for that number',Flash::WARNING);
+            $this->redirect('/login');
+        }
+        
+
+        
+    }
+
+
+    public  function enternewpasswordAction(){
+
+        
+        View::renderTemplate('passwordResetView.html');
+
+        
+    }
+
+    public  function savenewpasswordAction(){
+
+        
+        $Model = new EditProfileModel($_POST);      
+        // $errors = $user->validate();
+        $mobile_number=$_SESSION['temp_mobile'];
+
+        // $_SESSION['direct_url']=$_POST['direct_url'];
+        // var_dump($_SESSION['direct_url']);
+
+        if ($Model->saveForgotPassword($mobile_number)){
+            // otp::sendSMS("mobile_number");
+            // $this->redirect('/Signup/success',['direct_url'=>$direct_url]);
+            Flash::addMessage('successfully updated Password');
+            $this->redirect('/login');
+            exit;
+
+        } 
+        else {
+            // $this->redirect('/Signup/failure');
+            // exit;
+            // View::renderTemplate('LoginSignup/customerSignupView.html', [
+            //     'user' => $user, 'errors' => $errors]);
+            Flash::addMessage('update password is  failed try again',Flash::WARNING);
+            $this->redirect('/login');
+        }
+
+        
+    }
+
 
      //Logout for a user
     public function destroyAction()

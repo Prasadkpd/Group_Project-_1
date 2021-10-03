@@ -4,9 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Assets/css/flashMessages.css?version=1">
+
     <title>Document</title>
 </head>
 <body>
+
+    {% for message in flash_messages %}
+<div class="alert alert-{{ message.type }}">
+ {{ message.body }}
+    </div>
+{% endfor %}
     <form action="/Edituserdetails/redirectotppage" method="post">
         <label for="mobile">Mobile Number</label>
         <input id="mobile_number" type="text" name="mobile_number" 
