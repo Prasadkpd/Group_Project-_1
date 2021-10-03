@@ -232,7 +232,6 @@ function open_goto_booking() {
   booking.style.display="flex";
   moredetails.style.display= "none";
   gotobookingbtn.style.display="none";
-  moredetailsbtn.style.display="block";
-  
+  moredetailsbtn.style.display="block";  
 }
 

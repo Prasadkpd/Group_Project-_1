@@ -9,7 +9,7 @@
     <!-- Top Nav bar CSS styles -->
     <link rel="stylesheet" href="/Assets/css/navbar.css?version=4">
     <!-- File Specific CSS Styles -->
-    <link rel="stylesheet" href="/Assets/css/Customer/newCustomerBooking.css?version=7">
+    <link rel="stylesheet" href="/Assets/css/Customer/newCustomerBooking.css">
     <!-- FontAwesome Icon -->
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 
@@ -144,7 +144,7 @@
                     </div>
                 </div>
                 <div class="container2">
-                    <div class="more-details">
+                    <div class="more-details" id="more-details">
                         <div class="detail">
                             <div class="description">
                                 <h5>About Sports Arena</h5>
@@ -177,115 +177,85 @@
                                     <div class="thumbnail">
                                         <img src="/Assets/images/customer/Screenshot_1.jpg" alt="">
                                     </div>
+                                    <div class="thumbnail">
+                                        <img src="/Assets/images/customer/Screenshot_1.jpg" alt="">
+                                    </div>
+                                    <div class="thumbnail">
+                                        <img src="/Assets/images/customer/Screenshot_1.jpg" alt="">
+                                    </div>
+                                    <div class="thumbnail">
+                                        <img src="/Assets/images/customer/Screenshot_1.jpg" alt="">
+                                    </div>
+                                    <div class="thumbnail">
+                                        <img src="/Assets/images/customer/Screenshot_1.jpg" alt="">
+                                    </div>
+                                </section>
+                                <img id="slide-right" class="arrow" src="/Assets/images/customer/arrow-right.png">
+
                             </div>
                         </div>
-
-
                     </div>
-                    <div class="container2">
-                        <div class="more-details" id="more-details">
-                            <div class="detail">
-                                <div class="description">
-                                    <h5>About Sports Arena</h5>
-                                    <p>
-                                        Lorem Ipsum dolor sit amet, consectetur adipiscing elit,
-                                        sed do eiusmod tempor incididunt ut labore et dolore magna
-                                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                        ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="sp-arena-details">
-                                <div class="sp-name">
-                                    <h2>{{arenaDetails[0].sa_name}}</h2>
-                                </div>
-                                <div class="other">
-                                    <h4>{{arenaDetails[0].contact_no}}</h4>
-                                </div>
-                                <div class="other">
-                                    <h5>Accepted Payment Methods:
-                                         {% if arenaDetails[0].card_payment=="yes" %} 
-                                         Card 
-                                         {% endif %}
-                                         {% if arenaDetails[0].cash_payment=="yes" %}
-                                         Cash
-                                         {% endif %}
-                                         <!-- Payments & Cash Payments -->
-                                        </h5>
-                                </div>
-                                <a type="" class="more-link">More Details
-                                </a>
 
-                                
+                    <div class="booking" id="booking">
+                        <div class="left-container">
+                            <div class="heading">
+                                <h3>Booking Date</h3>
                             </div>
-                            
 
-                            <div>
-                                <form action="/customer/addtofavoritelist" method="POST">
-                                    <input  id="arena_id" name="arena_id"  type="hidden" value={{arenaDetails[0].sports_arena_id}}>
-                                    <input type="submit" value="add to favorite list">
+                            <div class="date-picker">
+                                <form>
+                                    <input type="date">
+                                    <input type="submit" value="Go">
                                 </form>
                             </div>
-                            
 
+                        </div>
+
+                        <div class="right-container">
+                            <div class="available-bookings">
+                                <h2>Available Time Slots</h2>
+                                <ul class="events-list">
+                                    {% for timeSlot in timeSlots %}
+                                    <li id="{{timeSlot.time_slot_id}}">
+                                        <div class="row">
+                                            <span class="s-time">{{timeSlot.start_time}}</span>
+                                            <span class="e-time">{{timeSlot.end_time}}</span>
+                                        </div>
+                                        <div class="row">
+                                            <span class="facility">{{timeSlot.sa_name}}</span>
+                                        </div>
+                                        <div class="row">
+                                            <span class="price">{{timeSlot.price}}</span>
+                                            <button id="removeItem" value={{timeSlot.time_slot_id}}>
+                                                <i class="fas fa-cart-plus"></i></button>
+                                        </div>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                                <a href="#" class="btn check-availability-btn"> Pay Now</a>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
 
-                <div class="booking">
-                    <div class="left-container">
-                        <div class="heading">
-                            <h3>Booking Date</h3>
-                        </div>
 
-                        <div class="date-picker">
-                            <input type="date">
-                        </div>
-
-                    </div>
-
-                    <div class="right-container">
-                        <div class="available-bookings">
-                            <h2>Available Time Slots</h2>
-                            <ul class="events-list">
-                              
-                                {% for timeSlot in timeSlots %}
-                                <li>
-                                    <div class="row">
-                                        <span class="s-time">{{timeSlot.start_time}}</span>
-                                        <span class="e-time">{{timeSlot.end_time}}</span>
-                                    </div>
-                                    <div class="row">
-                                        <span class="facility">{{timeSlot.sa_name}}</span>
-                                    </div>
-                                    <div class="row">
-                                        <span class="price">{{timeSlot.price}}</span>
-                                        <i class="fas fa-cart-plus"></i>
-                                    </div>
-                                </li>
-                                {% endfor %}
-
-                            </ul>
-                            <a href="#" class="btn check-availability-btn"> Pay Now</a>
-                        </div>
-
-                    </div>
-                    <div class="cart">
-                        <a href="/customer/cart">
-                            <i class="fas fa-shopping-cart"></i>
-                        </a>
-                    </div>
+                <div class="cart">
+                    <a href="/customer/cart">
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>
                 </div>
+
 
             </div>
-
         </div>
-
-
-
-        </div>
-        </div>
-
-
     </section>
+
+
+
+
+
+
 
     <!-- Start of Footer -->
     <footer>
@@ -296,7 +266,7 @@
         </div>
     </footer>
     <!-- End of Footer -->
-    <script src="/Assets/js/Customer/newCustomerBooking.js?version=3"></script>
+    <script src="/Assets/js/Customer/newCustomerBooking.js"></script>
 
 
 </body>
