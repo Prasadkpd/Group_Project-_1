@@ -94,7 +94,7 @@ function copyToClipboard() {
   copyText7.setSelectionRange(0, 99999); 
 
   /* Copy the text inside the text field */
-  navigator.clipboard.writeText("Booking ID => " + copyText1.value + "\nBooking Date: " + copyText2.value + "\nTime Duration: " + copyText3.value + "-" + copyText4.value
+  navigator.clipboard.writeText("Booking ID: " + copyText1.value + "\nBooking Date: " + copyText2.value + "\nTime Duration: " + copyText3.value + "-" + copyText4.value
       + "\nSports Arena Name: " + copyText5.value + "\nSport played: " + copyText6.value + "\nGoogle map link: " + copyText7.value);
 //  navigator.clipboard.writeText(copyText2.value);
 

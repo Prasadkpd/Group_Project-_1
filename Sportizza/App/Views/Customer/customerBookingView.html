@@ -128,13 +128,21 @@
                     </div>
                     <div class="sp-arena-details">
                         <div class="sp-name">
-                            <h2>Mercantile Cricket Grounds</h2>
+                            <h2>{{arenaDetails[0].sa_name}}</h2>
                         </div>
                         <div class="other">
-                            <h4>Contact No: 0746464327</h4>
+                            <h4>Contact No: {{arenaDetails[0].contact_no}}</h4>
                         </div>
                         <div class="other">
-                            <h5>Accepted Payment Methods: Card Payments & Cash Payments</h5>
+                            <h5>Accepted Payment Methods: 
+                                {% if arenaDetails[0].payment_method=='card' %}
+                                    Card Payments
+                                {% elseif arenaDetails[0].payment_method=='cash' %}
+                                    Cash Payments
+                                {% elseif arenaDetails[0].payment_method=='both' %}
+                                    Card Payments & Cash Payments
+                                {% endif %}
+                            </h5>
                         </div>
                         <a type="" class="more-link" id="more_details_btn" onclick="open_moredetails()">More Details
                         </a>
@@ -216,17 +224,17 @@
                                 <h2>Available Time Slots</h2>
                                 <ul class="events-list">
                                     {% for timeSlot in timeSlots %}
-                                    <li id={{timeSlot.time_slot_id}} class={{timeSlot.time_slot_id}}>
+                                    <li id={{timeSlot.time_slot_id}} class="hideDetails">
                                         <div class="row">
-                                            <span class="s-time">{{timeSlot.start_time}}</span>
-                                            <span class="e-time">{{timeSlot.end_time}}</span>
+                                            <span class="s-time">{{timeSlot.startTime}}</span>&nbsp;-
+                                            <span class="e-time">{{timeSlot.endTime}}</span>
                                         </div>
                                         <div class="row">
-                                            <span class="facility">{{timeSlot.sa_name}}</span>
+                                            <span class="facility">{{timeSlot.facility_name}}</span>
                                         </div>
                                         <div class="row">
                                             <span class="price">{{timeSlot.price}}</span>
-                                            <button id="removeItem" value={{timeSlot.time_slot_id}}>
+                                            <button class="removeItem" value={{timeSlot.time_slot_id}} onclick="hidefunction({{timeSlot.time_slot_id}})">
                                                 <i class="fas fa-cart-plus"></i></button>
                                         </div>
                                     </li>
@@ -268,7 +276,6 @@
     <!-- End of Footer -->
     <script type="text/javascript" src="/Assets/js/lib/jquery/jquery.min.js"></script>
     <script src="/Assets/js/Customer/newCustomerBooking.js?version=3"></script>
-    <script src="/Assets/js/Customer/bookingItemRemove.js"></script>
     <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
 
 

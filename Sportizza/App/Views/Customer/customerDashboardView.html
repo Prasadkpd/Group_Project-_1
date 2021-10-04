@@ -130,14 +130,14 @@
     <!-- popup share section -->
     <div id="popup_share" class="sectionpop ">
         <div class="formsection">
-
             <div>
                 <button s class="closebutton" onclick="close_popup_share()">❌</button>
             </div>
 
+            <div class="displayDetails">
             <form action="" style="margin:20px">
-                <h1>Copy this link and share</h1>
-                <div>
+                <h1>Share booking details</h1>
+                <div class="shareDetails">
                     <input type="text" id="bdetail1" readonly>
                     <input type="text" id="bdetail2" readonly>
                     <div class="timeslotDisplay">
@@ -147,13 +147,14 @@
                     <input type="text" id="bdetail5" readonly>
                     <input type="text" id="bdetail6" readonly>
                     <input type="text" id="bdetail7" readonly>
-                    <!-- <input class="shareDetails" type="text" value="https://ugvle.ucsc.cmb.ac.lk/course/view.php?id=111" id="displayDetails" readonly /> -->
+                    
                 </div>
-
+                
             </form>
             <button onclick="copyToClipboard()" id="sharePopup" class="popup_button">
                 Copy
             </button>
+            </div>
         </div>
     </div>
     <!-- End popup share section -->
@@ -174,7 +175,7 @@
                     <h1 style="margin:auto">
                         Booking Cancellation
                     </h1>
-                    <p style="margin:auto">
+                    <p>
                         Are you sure to cancel the booking?
                     </p>
                 </div>

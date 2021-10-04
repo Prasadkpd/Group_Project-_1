@@ -242,3 +242,10 @@ function open_goto_booking() {
 //   console.log(id);
 // }
 
+function hidefunction(x)
+{
+    // $(".")
+    $("#"+x).hide();
+    console.log(x);
+}
+
