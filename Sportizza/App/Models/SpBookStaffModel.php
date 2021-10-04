@@ -62,7 +62,9 @@ class SpBookStaffModel extends \Core\Model
     public static function saBookNotification($id){
         
         $sql = 'SELECT subject,description, DATE(date) as date , TIME(date) as time 
-        FROM notification WHERE user_id=:id';
+        FROM notification WHERE user_id=:id
+        AND notification.security_status="active"
+        ORDER BY date DESC,time DESC';
 
 
         $db = static::getDB();

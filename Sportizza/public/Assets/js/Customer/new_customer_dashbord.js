@@ -156,9 +156,9 @@ function close_popup_delete_message_favorite_list() {
 
 
 //popup notification section
-function open_popup_notification(description) {
+function open_popup_notification(subject,description) {
   var form = document.getElementById("popup_notification");
-  form.querySelector("#popup_notification").innerHTML=description;
+  form.querySelector("#popup_notification").innerHTML="<h1>"+subject+"</h1>"+"<p>"+description+"</p>";
   form.style.display = "block";
 }
 function close_popup_notification() {
