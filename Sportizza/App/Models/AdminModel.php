@@ -320,19 +320,19 @@ class AdminModel extends \Core\Model
                 GROUP BY booking_date ';
 
 
-    //     $db = static::getDB();
-    //     $stmt = $db->prepare($sql);
-    //     // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
-    //     $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
-    //     $stmt->execute();
-    //     $result = $stmt->fetchAll();
-    //     //  var_dump($result);
-    //     return $result;
-    // }
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        //  var_dump($result);
+        return $result;
+    }
 
-    // public static function adminChart4(){
+    public static function adminChart4(){
         
         $sql = 'SELECT payment_method, COUNT(DISTINCT booking_id) AS No_Of_Bookings
                 FROM booking
@@ -340,40 +340,40 @@ class AdminModel extends \Core\Model
                 GROUP BY payment_method ';
 
 
-    //     $db = static::getDB();
-    //     $stmt = $db->prepare($sql);
-    //     // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
-    //     $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
-    //     $stmt->execute();
-    //     $result = $stmt->fetchAll();
-    //     //  var_dump($result);
-    //     return $result;
-    // }
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        //  var_dump($result);
+        return $result;
+    }
 
-    // public static function adminChart5(){
+    public static function adminChart5(){
         
 
-    //     $sql = 'SELECT category, COUNT(DISTINCT sports_arena_id) AS No_Of_Sports_Arenas
-    //     FROM sports_arena_profile
-    //     GROUP BY category;
-    //     ORDER BY category ASC ';
+        $sql = 'SELECT category, COUNT(DISTINCT sports_arena_id) AS No_Of_Sports_Arenas
+        FROM sports_arena_profile
+        GROUP BY category;
+        ORDER BY category ASC ';
 
 
 
-    //     $db = static::getDB();
-    //     $stmt = $db->prepare($sql);
-    //     // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-    //     $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
-    //     $stmt->execute();
-    //     $result = $stmt->fetchAll();
-    //     //  var_dump($result);
-    //     return $result;
-    // }
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        //  var_dump($result);
+        return $result;
+    }
 
-    // public static function adminChart6(){
+    public static function adminChart6(){
         
         $sql = 'SELECT location, COUNT(DISTINCT sports_arena_id) AS No_Of_Sports_Arenas
         FROM sports_arena_profile
@@ -383,20 +383,20 @@ class AdminModel extends \Core\Model
 
 
 
-    //     $db = static::getDB();
-    //     $stmt = $db->prepare($sql);
-    //     // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
-    //     $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
-    //     $stmt->execute();
-    //     $result = $stmt->fetchAll();
-    //     //  var_dump($result);
-    //     return $result;
-    // }
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        //  var_dump($result);
+        return $result;
+    }
     
 
 
 
 }
-}
+

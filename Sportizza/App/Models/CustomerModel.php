@@ -103,10 +103,10 @@ class CustomerModel extends \Core\Model
 
     public static function customerViewTimeSlots($arena_id){
         
-        $sql = 'SELECT time_slot.time_slot_id,time_slot.start_time,time_slot.end_time,
-                time_slot.price,sports_arena_profile.sa_name
-                 FROM time_slot  INNER JOIN sports_arena_profile 
-                 ON time_slot.manager_sports_arena_id=sports_arena_profile.sports_arena_id
+        $sql = 'SELECT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i") AS startTime,TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,
+                time_slot.price,facility.facility_name
+                FROM time_slot  
+                INNER JOIN facility ON time_slot.facility_id=facility.facility_id
                 WHERE time_slot.manager_sports_arena_id=:arena_id';
                 // have to change this is wrong we use it for testing
 
