@@ -123,6 +123,7 @@ class SpArenaManagerModel extends \Core\Model
         
         $sql = 'SELECT subject,description, DATE(date) as date , TIME(date) as time 
         FROM notification WHERE user_id=:id
+        AND notification.security_status="active"
         ORDER BY date DESC,time DESC';
 
 
@@ -237,8 +238,8 @@ class SpArenaManagerModel extends \Core\Model
 
     public static function managerViewStaff($id){
         
-        $sql = 'SELECT user.first_name, user.last_name ,user.username,user.primary_contact,
-        user.secondary_contact FROM administration_staff
+        $sql = 'SELECT user.first_name, user.last_name ,user.username,user.primary_contact
+        FROM administration_staff
         INNER JOIN booking_handling_staff ON
         administration_staff.manager_user_id =booking_handling_staff.manager_user_id
         INNER JOIN user    ON administration_staff.user_id=user.user_id OR booking_handling_staff.user_id=user.user_id
@@ -260,8 +261,8 @@ class SpArenaManagerModel extends \Core\Model
 
     public static function managerRemoveStaff($id){
         
-        $sql = 'SELECT user.first_name, user.last_name ,user.username,user.primary_contact,
-        user.secondary_contact FROM administration_staff
+        $sql = 'SELECT user.first_name, user.last_name ,user.username,user.primary_contact 
+        FROM administration_staff
         INNER JOIN booking_handling_staff ON
         administration_staff.manager_user_id =booking_handling_staff.manager_user_id
         INNER JOIN user    ON administration_staff.user_id=user.user_id OR booking_handling_staff.user_id=user.user_id

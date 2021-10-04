@@ -84,7 +84,7 @@
             </div>
         </div>
         <div class="edit-profile-link">
-            <a href="Edituserdetails\EditProfileAction">Edit Profile</a>
+            <a href="\Edituserdetails\EditProfileAction">Edit Profile</a>
         </div>
     </div>
     </div>
@@ -320,24 +320,13 @@
             </div>
 
             <form action="/action_page.php" style="margin:20px">
-                <h1>Notification</h1>
-
-
-                <!-- {% for notification in notifications %}
-                <div>
-                    <p>{{notification.description}}</p>
-                </div>
-
-                {% endfor %} -->
-
+                
                 <div id="popup_notification">
                     
                 </div>
 
             </form>
-            <!-- <button onclick="close_popup_share()" class="popup_button">
-        OK
-    </button> -->
+            
         </div>
     </div>
     <!-- End popup notification section -->
@@ -605,7 +594,7 @@
                 </thead>
                 <tbody>
                     {% for notification in notifications %}
-                    <tr style="cursor: pointer" onclick="open_popup_notification(`{{notification.description}}`)">
+                    <tr style="cursor: pointer" onclick="open_popup_notification(`{{notification.subject}}`,`{{notification.description}}`)">
                         <td data-label="Date:">{{notification.date}}</td>
                         <td data-label="Time:">{{notification.time}}</td>
                         <td class="notification-td-left">{{notification.subject}}</td>

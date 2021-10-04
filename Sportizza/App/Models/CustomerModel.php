@@ -84,7 +84,7 @@ class CustomerModel extends \Core\Model
         
         $sql = 'SELECT subject,description, DATE(date) as date , TIME(date) as time 
         FROM notification WHERE user_id=:id
-        AND notification.security_status="active";
+        AND notification.security_status="active"
         ORDER BY date DESC,time DESC';
 
 

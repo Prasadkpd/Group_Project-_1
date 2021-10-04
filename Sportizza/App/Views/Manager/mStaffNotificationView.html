@@ -79,7 +79,7 @@
                 </div>
             </div>
             <div class="edit-profile-link">
-                <a href="">Edit Profile</a>
+                <a href="\Edituserdetails\EditProfileAction">Edit Profile</a>
             </div>
         </div>
     </div>
@@ -126,15 +126,10 @@
             </div>
 
             <form action="/action_page.php" style="margin:20px">
-                <h1>Notification</h1>
 
-
-                {% for notification in notifications %}
-                <div>
-                    <p>{{notification.description}}</p>
+                <div id="popup_notification">
+                    
                 </div>
-
-                {% endfor %}
 
             </form>
         </div>
@@ -237,7 +232,7 @@
                         </thead>
                         <tbody>
                             {% for notification in notifications %}
-                            <tr style="cursor: pointer" onclick="open_popup_notification()">
+                            <tr style="cursor: pointer" onclick="open_popup_notification('{{notification.subject}}','{{notification.description}}')">
                                 <td data-label="Date:">{{notification.date}}</td>
                                 <td data-label="Time:">{{notification.time}}</td>
                                 <td class="notification-td-left">{{notification.subject}}</td>
@@ -263,7 +258,7 @@
      <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
      <!-- File specific JS -->
     <script type="text/javascript" src="/Assets/js/SpArenaManager/manage-bookings.js?version=1"></script>
-    <script type="text/javascript" src="/Assets/js/SpArenaManager/notification.js?version=1"></script>
+    <script type="text/javascript" src="/Assets/js/SpArenaManager/notification.js"></script>
 
 
 </body>
