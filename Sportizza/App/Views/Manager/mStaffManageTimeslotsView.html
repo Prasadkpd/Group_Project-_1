@@ -256,10 +256,10 @@
                             {% for timeSlot in timeSlots %}
                             <tr>
                                 <td data-label="Timeslot ID :">{{timeSlot.time_slot_id}}</td>
-                                <td data-label="Start Time :">{{timeSlot.start_time}}</td>
-                                <td data-label="End Time :">{{timeSlot.end_time}}</td>
+                                <td data-label="Start Time :">{{timeSlot.startTime}}</td>
+                                <td data-label="End Time :">{{timeSlot.endTime}}</td>
                                 <td data-label="Amount(LKR) :">{{timeSlot.price}}</td>
-                                <td data-label="Facility ID :">{{timeSlot.facility_id}}</td>
+                                <td data-label="Facility Name :">{{timeSlot.facility_name}}</td>
                             </tr>
                             {% endfor %}
 
@@ -349,10 +349,10 @@
                             {% for timeSlot in deleteTimeSlots %}
                             <tr>
                                 <td data-label="Timeslot ID :">{{timeSlot.time_slot_id}}</td>
-                                <td data-label="Start Time :">{{timeSlot.start_time}}</td>
-                                <td data-label="End Time :">{{timeSlot.end_time}}</td>
+                                <td data-label="Start Time :">{{timeSlot.startTime}}</td>
+                                <td data-label="End Time :">{{timeSlot.endTime}}</td>
                                 <td data-label="Amount(LKR) :">{{timeSlot.price}}</td>
-                                <td data-label="Facility ID :">{{timeSlot.facility_id}}</td>
+                                <td data-label="Facility Name :">{{timeSlot.facility_name}}</td>
                                 <td class="trash-btn-padding-res"> <a onclick="open_popup_delete_message()"
                                         class="trash-btn"><i class="fas fa-trash-alt"></i></a></td>
                             </tr>

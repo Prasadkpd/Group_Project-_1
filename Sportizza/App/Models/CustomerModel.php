@@ -36,8 +36,9 @@ class CustomerModel extends \Core\Model
         //correct
         $sql = 'SELECT booking.booking_id,booking.customer_user_id, booking.booking_date,
                 booking.payment_status,booking.payment_method, booking.price_per_booking,sports_arena_profile.sa_name,
-                sports_arena_profile.category,sports_arena_profile.google_map_link,
-                time_slot.start_time,time_slot.end_time 
+                sports_arena_profile.category,sports_arena_profile.google_map_link,         
+                TIME_FORMAT(time_slot.start_time, "%H" ":" "%i") AS startTime, 
+                TIME_FORMAT(time_slot.end_time, "%H" ":" "%i") AS endTime
                 FROM booking INNER JOIN booking_timeslot ON booking.booking_id = booking_timeslot.booking_id 
                 INNER JOIN time_slot ON booking_timeslot.timeslot_id = time_slot.time_slot_id INNER JOIN sports_arena_profile 
                 ON booking.sports_arena_id = sports_arena_profile.sports_arena_id WHERE booking.customer_user_id=:id AND `booking`.`security_status`="active"
@@ -59,8 +60,6 @@ class CustomerModel extends \Core\Model
     }
 
     public static function customerFavouriteList($id){
-        
-
         //correct 
         $sql = 'SELECT sports_arena_profile.sa_name, sports_arena_profile.category, sports_arena_profile.location
         FROM favourite_list INNER JOIN favourite_list_sports_arena ON favourite_list.fav_list_id = favourite_list_sports_arena.fav_list_id 
