@@ -140,7 +140,13 @@ class SpArenaManagerModel extends \Core\Model
 
     public static function managerViewTimeSlots($id){
         
-        $sql = 'SELECT *  FROM time_slot WHERE manager_user_id=:id';
+        $sql = 'SELECT time_slot.time_slot_id, 
+         TIME_FORMAT(time_slot.start_time, "%H" ":" "%i") AS startTime, 
+        TIME_FORMAT(time_slot.end_time, "%H" ":" "%i") AS endTime,
+        time_slot.price, facility.facility_name 
+        FROM time_slot 
+        INNER JOIN facility ON time_slot.facility_id = facility.facility_id
+        WHERE time_slot.manager_user_id=:id';
 
 
         $db = static::getDB();
@@ -157,8 +163,13 @@ class SpArenaManagerModel extends \Core\Model
 
     public static function managerDeleteTimeSlots($id){
         
-        $sql = 'SELECT *  FROM time_slot WHERE manager_user_id=:id';
-
+        $sql = 'SELECT time_slot.time_slot_id, 
+        TIME_FORMAT(time_slot.start_time, "%H" ":" "%i") AS startTime, 
+        TIME_FORMAT(time_slot.end_time, "%H" ":" "%i") AS endTime,
+        time_slot.price, facility.facility_name 
+        FROM time_slot 
+        INNER JOIN facility ON time_slot.facility_id = facility.facility_id
+        WHERE time_slot.manager_user_id=:id';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);

@@ -26,6 +26,7 @@ z-index: 50;
 background-color: #fff;
 overflow: hidden;
 box-shadow: 1px 7px 25px rgb(0 0 0 / 13%);
+
 }
 .nav-container {
 display: flex;
@@ -35,6 +36,10 @@ align-items: center;
 position: relative;
 padding: 0 4rem;
 margin: 0 auto;
+}
+nav .nav-left{
+  justify-content: start;
+  padding-left:5rem;
 }
 .horizontal-container {
 height: 6rem;
@@ -438,6 +443,12 @@ footer {
   .container:before {
     bottom: 72%;
     left: 50%;
+  }
+  nav{
+    height:13vh;
+  }
+  nav .nav-left{
+    padding-left: 2rem;
   }
   
 }
