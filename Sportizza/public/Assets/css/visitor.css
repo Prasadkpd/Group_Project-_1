@@ -333,7 +333,7 @@ nav a:hover{
     display:flex;
 }
 .location-filter label{
-  padding-right:10px;
+  padding-right:5px;
   font-weight:500;
   color:#333333;
 }
@@ -342,7 +342,7 @@ color:#fd461f;
 background-color:#fff;
 font-weight:600;
 border:none;
-width:150px;
+width:120px;
 border-radius:10px;
 }
 .category-filter{
@@ -350,7 +350,7 @@ border-radius:10px;
     display:flex;
 }
 .category-filter label{
-  padding-right:10px;
+  padding-right:5px;
   font-weight:500;
   color:#333333;
 }
@@ -359,7 +359,7 @@ border-radius:10px;
   background-color:#fff;
   font-weight:600;
   border:none;
-  width:150px;
+  width:120px;
   border-radius:10px;
   }
 
