@@ -694,6 +694,12 @@ footer {
     background-color: #fd461f;
     color: #fff;
   }
+
+
+  .add_favorite_button{
+    margin:auto;
+    margin-top: 100px;
+  }
 /* starting media queries */
 @media screen and (max-width: 768px) {
   
@@ -1233,6 +1239,11 @@ footer {
 }
 
 @media screen and (max-width: 420px) {
+
+  .add_favorite_button{
+    margin:auto;
+    margin-top: 100px;
+  }
   .sidebar {
     width: 10vw;
   }
@@ -1350,3 +1361,151 @@ footer {
     height: 48vh;
   }
 }
+
+
+
+
+
+
+
+
+/* css for cash card toggle button */
+#app-cover
+{
+    display: table;
+    width: 600px;
+    margin: 80px auto;
+    counter-reset: button-counter;
+}
+
+.row
+{
+    display: table-row;
+}
+
+.toggle-button-cover
+{
+    display: table-cell;
+    position: relative;
+    width: 200px;
+    height:30px;
+    box-sizing: border-box;
+}
+
+/* .button-cover
+{
+    height: 100px;
+    margin: 20px;
+    background-color: #fff;
+    box-shadow: 0 10px 20px -8px #c5d6d6;
+    border-radius: 4px;
+} */
+
+/* .button-cover:before
+{
+    counter-increment: button-counter;
+    content: counter(button-counter);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    color: #d7e3e3;
+    font-size: 12px;
+    line-height: 1;
+    padding: 5px;
+} */
+
+.button-cover, .knobs, .layer
+{
+    position: absolute;
+    top: 0;
+    right: 200px;
+    bottom: 0;
+    left: 0;
+}
+
+.button
+{
+    position: relative;
+
+    width: 92px;
+    height: 24px;
+    
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+.button.r, .button.r .layer
+{
+    border-radius: 100px;
+}
+
+.button.b2
+{
+    border-radius: 2px;
+}
+
+.checkbox
+{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.knobs
+{
+    z-index: 2;
+}
+
+.layer
+{
+    width: 100%;
+    background-color: #ebf7fc;
+    transition: 0.3s ease all;
+    z-index: 1;
+}
+
+/* Button 1 */
+#button-1 .knobs:before
+{
+    content: 'Cash';
+    position: absolute;
+    /* top: 4px;
+    left: 4px; */
+    width: 50px;
+    height: 100%;
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    /* padding: 10px 20px; */
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    background-color: #03A9F4;
+    border-radius:20px;
+    transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
+}
+
+#button-1 .checkbox:checked + .knobs:before
+{
+    content: 'Card';
+    left: 42px;
+    background-color: #f44336;
+}
+
+#button-1 .checkbox:checked ~ .layer
+{
+    background-color: #fcebeb;
+}
+
+#button-1 .knobs, #button-1 .knobs:before, #button-1 .layer
+{
+    transition: 0.3s ease all;
+}
+
