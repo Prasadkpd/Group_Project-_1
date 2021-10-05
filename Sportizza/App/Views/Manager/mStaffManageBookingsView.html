@@ -139,6 +139,34 @@
         </div>
     </div>
     <!-- End OF the POP up Booking Cancel -->
+    <!-- Start Of the Popup of Bookig Cancellation  -->
+    <div id="popup_payment" class="sectionpop ">
+        <div class="formsection">
+            <div>
+                <button class="closebutton" onclick="close_popup_payment_message()">❌</button>
+            </div>
+            <form action="/action_page.php" style="margin:20px">
+                <div style="margin:auto">
+                    <h1 style="margin:auto">
+                        Get Payment
+                    </h1>
+                    <p style="margin:auto">
+                        Are you sure that you collect cash payment from customer?
+                    </p>
+                </div>
+            </form>
+            <div style="display:flex">
+
+                <button class="popup_delete_button">
+                    <a href=""> YES</a>
+                </button>
+                <button onclick="close_popup_payment_message()" class="popup_button">
+                    NO
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- End OF the POP up Booking Cancel -->
 
     <section class="page-container">
 
@@ -401,11 +429,11 @@
                                     </li>
 
                                 </ul>
-                                <a href="#" class="btn check-availability-btn">Get Payment </a>
                             </div>
 
                         </div>
                     </div>
+                    <a onclick="open_popup_payment_message()" class="btn check-availability-btn">Get Payment </a>
                 </div>
                 <!-- Cancel Bookings Tab -->
                 <div id="cancel_booking" class="booking_tab_content">
@@ -519,7 +547,7 @@
                                 <td data-label="Payment Status:">
                                     <div class="Payment-status"><a href="">{{book.payment_status}}</a></div>
                                 </td>
-                                <td data-label="Action :">
+                                <td data-label="">
                                     <div class="Payment"><a href="/Sparenamanager/getpayment/{{book.booking_id}}">Get Payment</a></div>
                                 </td>
                                 <!-- <a href="Sparenamanager/getpayment/{{book.booking_id}}"></a> -->

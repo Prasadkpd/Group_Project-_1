@@ -56,6 +56,15 @@ function close_popup_delete_message() {
     var form = document.getElementById("popup_delete");
     form.style.display = "none";
 }
+//popup delete message
+function open_popup_payment_message() {
+    var form = document.getElementById("popup_payment");
+    form.style.display = "block";
+}
+function close_popup_payment_message() {
+    var form = document.getElementById("popup_payment");
+    form.style.display = "none";
+}
 
 function searchViewTable() {
   var input, filter, table, tr, td, i, txtValue;
