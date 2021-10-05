@@ -19,69 +19,16 @@
 
 <body>
     <!-- Top Navigation Bar -->
-    <nav style="display:hidden">
-        <!-- Flash messages -->
- <p>
-    {% for message in flash_messages %}
-<div class="alert alert-{{ message.type }}">
- {{ message.body }}
-    </div>
-{% endfor %}
-</p>
-        <div style="display:none" class="nav-left">
+    <nav>
+        <div class="nav-left">
             <div class="logo-container">
                 <a href="/">
                     <i class="fas fa-running "></i>
                     <span class="logo-name">Sportizza</span>
                 </a>
             </div>
-            <div class="search-bar-container">
-                <input type="search" name="search" placeholder="Search">
-                <i class="fas fa-search "></i>
-            </div>
 
-
-
-            <div class="nav-profile">
-
-
-
-
-
-
-                <button class="openbutton" onclick="openpopupform()">
-
-
-
-                    <div class="profile-details">
-                        <img src="/Assets/images/customer/profile-picture.jpg" alt="" class="profile-picture">
-                        <div class="username">{{current_user.first_name}} {{current_user.last_name}}</div>
-
-                    </div>
-
-                </button>
-            </div>
-
-
-
-
-
-            <div class="sign-in-out-btn">
-
-                <button onclick="open_popup_signout_message()"> Sign Out </button>
-
-                
-
-            </div>
-        </div>
-
-
-
-
-        <!-- search bar for mobile -->
-        <div class="search-bar-container-mobi">
-            <input type="search" name="search" placeholder="Search">
-            <i class="fas fa-search "></i>
+           
         </div>
     </nav>
     <!-- End Top Navigation Bar -->
