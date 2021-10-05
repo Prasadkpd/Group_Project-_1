@@ -51,6 +51,10 @@ ul {
   padding-bottom: 1em;
 }
 
+.sectionpop .formsection .closebutton {
+  margin-right: 15px;
+}
+
 .closebutton{
   width:20px;
   float:right;

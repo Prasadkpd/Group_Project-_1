@@ -346,6 +346,10 @@ nav .nav-profile img {
   border: none;
 }
 
+.sectionpop .formsection .closebutton {
+  margin-right: 15px;
+}
+
 /* end popup section   */
 
 
