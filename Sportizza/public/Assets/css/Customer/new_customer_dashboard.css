@@ -663,13 +663,34 @@ form .input-box input {
   color: #fd461f;
 }
 
+
+.cart {
+  position: fixed;
+  bottom: 40px;
+  right: 20px;
+  height: 56px;
+  width: 56px;
+  border-radius: 50%;
+  background-color: #fd461f;
+  color: #fff;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: 200ms opacity ease;
+  margin-left: 20px;
+}
+
 footer {
   box-shadow: 1px 7px 25px rgb(0 0 0 / 13%);
   background-color: #e74c3c;
   color: #fff;
   font-weight: 400;
   font-size: 0.8rem;
-  position: static;
+  position: fixed;
   bottom: 0;
   width: 100%;
   text-align: center;
@@ -876,7 +897,7 @@ footer {
     margin: 10px auto;
   }
   .booking-table tbody {
-    height: 50vh;
+    height: 47vh;
   }
   .booking-table td {
     font-size: 0.75rem;
@@ -917,6 +938,12 @@ footer {
     font-size: 1rem;
     font-weight: 600;
     margin: 10px 90px;
+  }
+  .cart {
+    bottom: 30px;
+    right: 10px;
+    height: 35px;
+    width: 35px;
   }
 
 

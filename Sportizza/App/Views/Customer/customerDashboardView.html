@@ -414,6 +414,7 @@
 
 
                             {% for book in bookings %}
+                            {% if date(book.booking_date)|date('Y/m/d')  >= 'now'|date('Y/m/d')%}
                             {% if book.payment_status=="paid" %}
                             <tr>
 
@@ -452,7 +453,7 @@
             </tr>
             {% endif %}
 
-            {% if book.payment_status=="unpaid" %}
+            {% if book.payment_status=="unpaid"  %}
             <tr>
                 <td data-label="Booking ID :" class="table-td-left">{{book.booking_id}}</td>
                 <td data-label="Booking Date :" class="table-td-left">{{book.booking_date}}</td>
@@ -483,11 +484,85 @@
                 </td>
             </tr>
             {% endif %}
+            {% endif %}
 
+
+            {% if date(book.booking_date)|date('Y/m/d')  < 'now'|date('Y/m/d') %}
+
+            {% if book.payment_status=="paid" %}
+            <tr>
+
+
+                <td data-label="Booking ID :" class="table-td-left">{{book.booking_id}}</td>
+                <td data-label="Booking Date :" class="table-td-left">{{book.booking_date}}</td>
+                <td data-label="Start Time :" class="table-td-left">{{book.start_time}}</td>
+                <td data-label="End Time :" class="table-td-left">{{book.end_time}}</td>
+                <td data-label="Arena Name:" class="table-td-left">{{book.sa_name}}</td>
+                <td data-label="Category:">{{book.category}}</td>
+                <td data-label="Payment Method :">{{book.payment_method}}</td>
+                <td data-label="Payment Status :">
+                    <div class="Payment-status active"><a href="">{{book.payment_status}}</a></div>
+                </td>
+                <td data-label="Amount:">{{book.price_per_booking}}</td>
+
+                <!-- <td data-label="Booking Status">Pending</td> -->
+                <td class="btn-float-right">
+                    <div style="display:flex; float:right; padding-right:2rem;">
+                        <div>
+                            <button onclick="open_popup_rate_message({{book.booking_id}})" >
+                                <i class="fas fa-star-half-alt"></i>
+                            </button>
+                        </div>
+                        <div>
+                            <button class="icon_red" onclick="open_popup_delete_message()">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </div>
+                </td>
+</div>
+</td>
+</div>
+</td>
+</tr>
+{% endif %}
+
+{% if book.payment_status=="unpaid"  %}
+<tr>
+<td data-label="Booking ID :" class="table-td-left">{{book.booking_id}}</td>
+<td data-label="Booking Date :" class="table-td-left">{{book.booking_date}}</td>
+<td data-label="Start Time :" class="table-td-left">{{book.start_time}}</td>
+<td data-label="End Time :" class="table-td-left">{{book.end_time}}</td>
+<td data-label="Arena Name:" class="table-td-left">{{book.sa_name}}</td>
+<td data-label="Category:">{{book.category}}</td>
+<td data-label="Payment Method :">{{book.payment_method}}</td>
+<td data-label="Payment Status :">
+    <div class="Payment-status"><a href="">{{book.payment_status}}</a></div>
+</td>
+<td data-label="Amount:">{{book.price_per_booking}}</td>
+
+<!-- <td data-label="Booking Status">Pending</td> -->
+<td class="btn-float-right">
+    <div style="display:flex; float:right; padding-right:2rem;">
+        <!-- <div>
+            <button onclick="open_popup_rate_message({{book.booking_id}})" >
+                <i class="fas fa-star-half-alt"></i>
+            </button>
+        </div> -->
+        <div>
+            <button class="icon_red" onclick="open_popup_delete_message()">
+                <i class="fas fa-trash-alt"></i>
+            </button>
+        </div>
+    </div>
+</td>
+</tr>
+{% endif %}
+
+            {% endif %}
             {% endfor %}
 
-            <!-- 
-                            <tr>
+            
+                            <!-- <tr>
                                 <td data-label="Booking ID :">BD1234567</td>
                                 <td data-label="Booking Date :">2021/09/30</td>
                                 <td data-label="Start Time :">1530h</td>
@@ -632,11 +707,18 @@
             <p>cancel_booking is the capital of Japan.</p>
         </div>
 
+        
         </div>
        
-
+        
+        
     </section>
 
+    <div class="cart">
+        <a href="/customer/cart">
+            <i class="fas fa-shopping-cart"></i>
+        </a>
+    </div>
     <!-- Start of Footer -->
     <footer>
         <div class="copyright">

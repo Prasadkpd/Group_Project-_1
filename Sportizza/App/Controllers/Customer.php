@@ -16,6 +16,9 @@ class Customer extends Authenticated
 
     protected function before()
     {
+        if(Auth::getUser()==null){
+            $this->redirect('/login');
+        }
         if(Auth::getUser()->type=='Customer'){
             
             return true;
