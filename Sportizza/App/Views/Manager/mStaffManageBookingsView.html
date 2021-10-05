@@ -119,10 +119,10 @@
             </div>
             <form action="/action_page.php" style="margin:20px">
                 <div style="margin:auto">
-                    <h1 style="margin:auto">
+                    <h1>
                         Booking Cancellation
                     </h1>
-                    <p style="margin:auto">
+                    <p >
                         Do you really want to cancel the booking?
                     </p>
                 </div>
@@ -251,7 +251,7 @@
                                 <th>Start Time</th>
                                 <th>End Time</th>
                                 <th>Amount(LKR)</th>
-                                <th>Booked Date</th>
+                                <th>Booking Date</th>
                                 <th>Mobile Number</th>
                                 <th>Payment Method</th>
                                 <th class="b-last-th">Payment Status</th>
@@ -266,7 +266,7 @@
                                 <td data-label="Start Time :">{{book.start_time}}</td>
                                 <td data-label="End Time :">{{book.end_time}}</td>
                                 <td data-label="Amount(LKR) :">{{book.price_per_booking}}</td>
-                                <td data-label="Booked Date :">{{book.booked_date}}</td>
+                                <td data-label="Booking Date :">{{book.booking_date}}</td>
                                 <td data-label="Mobile Number :">{{book.primary_contact}}</td>
                                 <td data-label="Payment Method :">{{book.payment_method}}</td>
                                 <td>
@@ -283,7 +283,7 @@
                                 <td data-label="Start Time :">{{book.start_time}}</td>
                                 <td data-label="End Time :">{{book.end_time}}</td>
                                 <td data-label="Amount(LKR) :">{{book.price_per_booking}}</td>
-                                <td data-label="Booked Date :">{{book.booked_date}}</td>
+                                <td data-label="Booking Date :">{{book.booking_date}}</td>
                                 <td data-label="Mobile Number :">{{book.primary_contact}}</td>
                                 <td data-label="Payment Method :">{{book.payment_method}}</td>
                                 <td>
@@ -426,7 +426,7 @@
                                 </th>
                             </tr>
                             <tr class="booking-thead-second-tr">
-                                <th class="b-first-th">Booking ID</th>
+                                <th class="b-first-th">Booking Date</th>
                                 <th>Start Time</th>
                                 <th>End Time</th>
                                 <th>Booked Date</th>
@@ -440,7 +440,7 @@
                             {% for book in cancelBookings %}
                             {% if book.payment_status=="paid" %}
                             <tr>
-                                <td data-label="Booking ID :">{{book.booking_id}}</td>
+                                <td data-label="Booking Date :">{{book.booking_date}}</td>
                                 <td data-label="Start Time :">{{book.start_time}}</td>
                                 <td data-label="End Time :">{{book.end_time}}</td>
 
@@ -457,7 +457,7 @@
 
                             {% if book.payment_status=="unpaid" %}
                             <tr>
-                                <td data-label="Booking ID :">{{book.booking_id}}</td>
+                                <td data-label="Booking Date :">{{book.booking_date}}</td>
                                 <td data-label="Start Time :">{{book.start_time}}</td>
                                 <td data-label="End Time :">{{book.end_time}}</td>
 
@@ -497,10 +497,10 @@
                                 </th>
                             </tr>
                             <tr class="booking-thead-second-tr">
-                                <th class="b-first-th">Booking ID</th>
+                                <th class="b-first-th">Booking Date</th>
                                 <th>Start Time</th>
                                 <th>End Time</th>
-                                <th>Booked Date</th>
+                                <th>Booking Date</th>
                                 <th>Amount(LKR)</th>
                                 <th>Payment Status</th>
                                 <th class="b-last-th">Action</th>
@@ -514,7 +514,7 @@
                                 <td data-label="Booking ID :">{{book.booking_id}}</td>
                                 <td data-label="Start Time :">{{book.start_time}}</td>
                                 <td data-label="End Time :">{{book.end_time}}</td>
-                                <td data-label="Booked Date :">{{book.booked_date}}</td>
+                                <td data-label="Booking Date :">{{book.booking_date}}</td>
                                 <td data-label="Amount(LKR) :">{{book.price}}</td>
                                 <td data-label="Payment Status:">
                                     <div class="Payment-status"><a href="">{{book.payment_status}}</a></div>
