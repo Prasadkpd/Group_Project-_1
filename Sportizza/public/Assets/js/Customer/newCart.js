@@ -225,6 +225,14 @@ file.addEventListener("change",function(){
   }
 })
 
+//hide items from cart
+function hideItem(x)
+{
+    // $(".")
+    $("#cartItem"+x).hide();
+    console.log(x);
+}
+
 
 
 
