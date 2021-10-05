@@ -52,10 +52,12 @@ class Customer extends Authenticated
         // var_dump($id);
         $timeSlots=CustomerModel::customerViewTimeSlots($id);
         $arenaDetails=CustomerModel::customerViewArenaDetails($id);
-        $arenaFacilites=CustomerModel::customerArenaFacilities($id);
+        // $arenaFacilites=CustomerModel::customerArenaFacilities($id);
         // var_dump($arenaDetails);
         View::renderTemplate('Customer/customerBookingView.html',
-        ['timeSlots'=>$timeSlots,'arenaDetails'=>$arenaDetails,'arenaFacilites'=>$arenaFacilites]);
+        ['timeSlots'=>$timeSlots,'arenaDetails'=>$arenaDetails]);
+        // View::renderTemplate('Customer/customerBookingView.html',
+        // ['timeSlots'=>$timeSlots,'arenaDetails'=>$arenaDetails,'arenaFacilites'=>$arenaFacilites]);
     }
 
     public function hidebookingAction()

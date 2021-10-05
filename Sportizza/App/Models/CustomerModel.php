@@ -141,25 +141,25 @@ class CustomerModel extends \Core\Model
         // var_dump($result);
         return $result;
     }
-    public static function customerArenaFacilities($arena_id){
+    // public static function customerArenaFacilities($arena_id){
         
-        $sql = 'SELECT facility.facility_name
-                 FROM  facility 
-                WHERE sports_arena_id=:arena_id';
-                // have to change this is wrong we use it for testing
+    //     $sql = 'SELECT facility.facility_name
+    //              FROM  facility 
+    //             WHERE sports_arena_id=:arena_id';
+    //             // have to change this is wrong we use it for testing
 
 
-        $db = static::getDB();
-        $stmt = $db->prepare($sql);
-        $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+    //     $db = static::getDB();
+    //     $stmt = $db->prepare($sql);
+    //     $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
 
-        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+    //     $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
-        $stmt->execute();
-        $result = $stmt->fetchAll();
-        // var_dump($result);
-        return $result;
-    }
+    //     $stmt->execute();
+    //     $result = $stmt->fetchAll();
+    //     // var_dump($result);
+    //     return $result;
+    // }
 
     public static function customerAddFavoriteList($arena_id,$customer_id){
 
