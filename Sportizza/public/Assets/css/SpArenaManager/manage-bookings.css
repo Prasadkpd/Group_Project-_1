@@ -107,13 +107,14 @@ form input[type="submit"] {
 /* End of Top navigation bar  */
 /* <!-- Start OF the POP up SIGN out --> */
 .sectionpop h1 {
-  font-size: 24px;
+  font-size: 20px;
   text-align: center;
-  margin-bottom: 20px;
+  color:#222f3e;
 }
 .sectionpop p {
   text-align: center;
-  margin: 20px auto;
+  margin: 10px auto;
+  color:#2c3e50;
 }
 
 .popup_button {

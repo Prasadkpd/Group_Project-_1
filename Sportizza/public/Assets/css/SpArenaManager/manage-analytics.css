@@ -191,7 +191,7 @@ ul {
   font-size: 3rem;
   font-weight: 600;
   margin: 0.5rem 0rem;
-  text-align: left;
+
 }
 .page-content-container .container h2 {
   display: none;
@@ -212,7 +212,7 @@ ul {
 }
 
 .page-content-container .container .chart-container {
-  height: 53vh;
+  height: 49vh;
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -275,7 +275,7 @@ input[type="date"] {
   cursor: pointer;
   width: 30%;
   opacity: 0.9;
-  
+  text-transform: uppercase;
   border-radius: 50px;
   border: none;
   width: 120px;
@@ -287,8 +287,8 @@ input[type="date"] {
 }
 .filters .booking-table-date-picker input[type='submit']:hover {
   background-color: white;
-  color: rgb(33, 219, 95);
-  border: 2px solid #2ecc71;
+  color: #2ed573;
+  border: 2px solid #2ed573;
 }
 .chart-container h5 {
   text-align: center;
@@ -363,6 +363,7 @@ input[type="date"] {
   border: none;
   border-radius: 25px;
   cursor: pointer;
+  text-transform:uppercase;
   margin: 1rem 1rem 3rem 0;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
@@ -370,8 +371,8 @@ input[type="date"] {
 }
 .faqSubmit:hover {
   background-color: white;
-  color: rgb(33, 219, 95);
-  border: 2px solid #2ecc71;
+  color: #2ed573;
+  border: 2px solid #2ed573;
 }
 
 footer {
@@ -451,6 +452,16 @@ footer {
     flex-direction: column;
     justify-content: center;
   }
+ 
+  .filters .booking-table-date-picker input[type='submit'] {
+    margin:auto;
+    height:36px;
+    padding:0;
+    
+  }
+  .filters{
+    margin-left:0;
+  }
   .filters .booking-table-date-picker {
     width: 90%;
     display: flex;
@@ -466,7 +477,7 @@ footer {
   }
 
   .filters .booking-table-date-picker input {
-    width: 70%;
+    width: 85%;
     outline: none;
   }
   .page-content-container .container .chart-container {
