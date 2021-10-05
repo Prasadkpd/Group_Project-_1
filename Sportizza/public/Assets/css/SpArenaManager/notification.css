@@ -54,7 +54,7 @@ ul {
 .closebutton{
   width:20px;
   float:right;
-  /* margin-right: 15px; */
+  margin-right: 10px;
   margin-top: 10px;
   background-color: transparent;
 border: none;

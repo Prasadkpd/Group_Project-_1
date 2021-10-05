@@ -196,8 +196,8 @@
                             class="fas fa-map-marker-alt"></i>
                         <p>Add Sports Arenas</p>
                     </button>
-                    <button class="booking_tab tab-btn" onclick="openTab(event, 'cancel_booking')"><i
-                            class="fas fa-map-marker-alt"></i>
+                    <button class="booking_tab tab-btn" onclick="openTab(event, 'cancel_booking')">
+                        <i class="fas fa-trash-alt"></i>
                         <p>Remove Arenas</p>
                     </button>
                     <!--<button class="booking_tab tab-btn" onclick="openTab(event, 'booking_payment')"><i class="fas fa-money-check-alt"></i><p> Booking Payment</p></button>-->
@@ -247,7 +247,7 @@
                 </table>
             </div> -->
 
-             <div id="view_bookings" class="booking_tab_content">
+             <div id="view_bookings" class="booking_tab_content active" style="display: block;">
                 <table class="booking-table">
                     <thead>
                         <tr class="booking-thead-first-tr">
@@ -279,7 +279,8 @@
                                 <td data-label="Username :">{{customer.username}}</td>
                                 <td data-label="Primary Contact :">{{customer.primary_contact}}</td>
                                
-                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
+                                <td class="trash-btn-padding-res"> <a class="trash-btn" onclick="open_popup_delete_message()"><i
+                                            class="fas fa-trash-alt"></i></a></td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -390,7 +391,8 @@
                                 <td data-label="Complaint :">{{arenas.count}}</td>
                                 <td data-label="Account Status :">{{arenas.account_status}}</td>
                                 <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
-                                <td data-label="Remove Account :" class="removeAcc"><i class="fa fa-trash"></i></td>
+                                <td class="trash-btn-padding-res"> <a class="trash-btn" onclick="open_popup_delete_message()"><i
+                                            class="fas fa-trash-alt"></i></a></td>
                             </tr>
                             {% endfor %}
                             

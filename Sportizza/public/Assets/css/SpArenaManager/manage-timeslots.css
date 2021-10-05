@@ -821,7 +821,6 @@ footer {
     width: 80vw;
     margin: auto;
     height: 53vh;
-    overflow-y: scroll;
   }
   .add-booking-frm-content::-webkit-scrollbar {
     background-color: #cccccc;

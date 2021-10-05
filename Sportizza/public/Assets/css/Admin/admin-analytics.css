@@ -577,9 +577,9 @@ form input[type="submit"] {
   color: #2c3e50;
   font-size: 1.5rem;
 }
-.container .doc-date-header{
-    display: none;
-    text-align: center;
+.container .doc-date-header {
+  display: none;
+  text-align: center;
 }
 
 .page-content-container .container .chart-container {
@@ -602,7 +602,10 @@ form input[type="submit"] {
 .filters {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  align-items: center;
+  width: 80vw;
+  margin-left: auto;
 }
 .filters .booking-table-date-picker {
   padding: 0.2em;
@@ -617,6 +620,33 @@ form input[type="submit"] {
 .filters .booking-table-date-picker input {
   width: 60%;
   outline: none;
+}
+.filters .booking-table-date-picker input[type='submit'] {
+  outline: none;
+  width: 30%;
+  padding: 10px;
+  background-color: #2ed573;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+  opacity: 0.9;
+  
+  border-radius: 50px;
+  border: none;
+  width: 120px;
+  height: 49px;
+  align-items: center;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+  rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+  rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+.filters .booking-table-date-picker input[type='submit']:hover {
+  background-color: white;
+  color: rgb(33, 219, 95);
+  border: 2px solid #2ecc71;
 }
 .chart-container h5 {
   text-align: center;
@@ -652,7 +682,7 @@ form input[type="submit"] {
   height: 40vh;
   margin: auto;
 }
-.chart-Table .cTable{
+.chart-Table .cTable {
   width: 100%;
 }
 .chart-Table .cTable tr td {
@@ -889,6 +919,7 @@ footer {
   .page-container .filters {
     flex-direction: column;
     justify-content: center;
+    width: 90vw;
   }
   .filters .booking-table-date-picker {
     width: 90%;
@@ -909,12 +940,12 @@ footer {
     outline: none;
   }
   .page-content-container .container .chart-container {
-      height: max-content;
-      overflow: visible;
-    }
-    .page-content-container .container{
-        overflow-y: scroll;
-    }
+    height: max-content;
+    overflow: visible;
+  }
+  .page-content-container .container {
+    overflow-y: scroll;
+  }
 
   .page-content-container .container .chart-container {
     height: max-content;
@@ -936,18 +967,20 @@ footer {
   .chart-pie {
     margin: auto;
     display: block;
-    padding: 10px;
+    padding: 30px;
     width: 100%;
     height: 40vh;
   }
   .chart-Table {
-  display: block;
-  padding: 10px;
-  width: 90%;
-  height: 40vh;
-  margin: auto;
-  background-color: #838388;
-}
+    display: block;
+    padding: 20px;
+    width: 90%;
+    height: 20vh;
+    margin: auto;
+  }
+  .page-content-container .container .page-header {
+    font-size: 1.2rem;
+  }
 }
 
 @media print {
@@ -971,22 +1004,21 @@ footer {
     margin-top: 3em;
     height: max-content;
   }
-  .page-content-container .container .chart-row{
-      width: 100%;
-      margin: auto;
-      
+  .page-content-container .container .chart-row {
+    width: 100%;
+    margin: auto;
   }
   .chart {
     width: 50%;
     height: 500px;
-}
-.chart-pie {
+  }
+  .chart-pie {
     width: 50%;
     height: 500px;
   }
   .page-content-container .container .chart-container::-webkit-scrollbar-thumb {
     display: none;
-}
+  }
   @page {
     display: flex;
     justify-content: center;
@@ -1003,8 +1035,8 @@ footer {
   .page-content-container .container h3 {
     display: block;
   }
-  .page-content-container .container .doc-date-header{
-      display: block;
+  .page-content-container .container .doc-date-header {
+    display: block;
   }
   .page-content-container .container .page-header {
     display: none;

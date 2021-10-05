@@ -694,21 +694,14 @@ form input[type="submit"] {
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 .booking-table tbody::-webkit-scrollbar {
-  width: 12px;
+  background-color: none;
+  border-radius: 10px;
+  width: 8px;
 }
-.booking-table tbody::-webkit-scrollbar-track {
-  border-radius: 15px;
-  background: rgb(233, 232, 229);
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-}
-
 .booking-table tbody::-webkit-scrollbar-thumb {
-  background-color: rgb(228, 228, 230);
-  border-radius: 20px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
-    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  background: #3a3a3a;
+  border-radius: 8px;
+  width: 5px;
 }
 .removeAcc {
   cursor: pointer;
@@ -881,6 +874,14 @@ footer {
   font-weight: 600;
   padding: 1em 4em;
   border-radius: 30px;
+}
+.trash-btn {
+  padding: 5px 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 /* <!-- End OF the POP up SIGN out --> */
 
@@ -1082,7 +1083,7 @@ footer {
     display: none;
   }
   .page-content-container .container .page-header {
-    font-size: 2rem;
+    font-size: 1.2rem;
   }
   .tab {
     width: 100%;
@@ -1145,5 +1146,9 @@ footer {
   .booking-table td::before {
     content: attr(data-label);
     font-size: 0.75rem;
+  }
+  .trash-btn-padding-res {
+    padding: 10px;
+    margin-top: 5px;
   }
 }
