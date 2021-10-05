@@ -144,3 +144,39 @@ function validateStaffTypeSelect(){
     return true;
 }
 
+function searchViewTable() {
+  var input, filter, table, tr, td, i, txtValue;
+  table = document.getElementById("view-staff");
+  input = document.getElementById("search-view-staff");
+  filter = input.value.toUpperCase();
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+function searchRemoveTable() {
+  var input, filter, table, tr, td, i, txtValue;
+  table = document.getElementById("remove-staff");
+  input = document.getElementById("search-remove-staff");
+  filter = input.value.toUpperCase();
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}

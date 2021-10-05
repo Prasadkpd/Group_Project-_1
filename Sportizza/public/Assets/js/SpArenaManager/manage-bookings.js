@@ -56,3 +56,169 @@ function close_popup_delete_message() {
     var form = document.getElementById("popup_delete");
     form.style.display = "none";
 }
+
+function searchViewTable() {
+  var input, filter, table, tr, td, i, txtValue;
+  table = document.getElementById("view-booking");
+  input = document.getElementById("search-view-booking");
+  filter = input.value.toUpperCase();
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+function ViewDatepicker() {
+  table = document.getElementById("view-booking");
+  var pass = document.getElementById("view-date-picker").value;
+  tr = table.getElementsByTagName("tr");
+  var date = new Date(pass);
+  var year = String(date.getFullYear());
+  var month = String(date.getMonth() + 1).padStart(2, "0");
+  var todayDate = String(date.getDate()).padStart(2, "0");
+  console.log(datePattern);
+  var datePattern = year + "-" + month + "-" + todayDate;
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[4];
+    if (td) {
+      txtValue = td.innerText;
+      if (txtValue == datePattern) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+function searchViewTable() {
+  var input, filter, table, tr, td, i, txtValue;
+  table = document.getElementById("view-booking");
+  input = document.getElementById("search-view-booking");
+  filter = input.value.toUpperCase();
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+function ViewDatepicker() {
+  table = document.getElementById("view-booking");
+  var pass = document.getElementById("view-date-picker").value;
+  tr = table.getElementsByTagName("tr");
+  var date = new Date(pass);
+  var year = String(date.getFullYear());
+  var month = String(date.getMonth() + 1).padStart(2, "0");
+  var todayDate = String(date.getDate()).padStart(2, "0");
+  console.log(datePattern);
+  var datePattern = year + "-" + month + "-" + todayDate;
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[4];
+    if (td) {
+      txtValue = td.innerText;
+      if (txtValue == datePattern) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+function searchDeleteTable() {
+  var input, filter, table, tr, td, i, txtValue;
+  table = document.getElementById("delete-booking");
+  input = document.getElementById("search-delete-booking");
+  filter = input.value.toUpperCase();
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+function DeleteDatepicker() {
+  table = document.getElementById("delete-booking");
+  var pass = document.getElementById("delete-date-picker").value;
+  tr = table.getElementsByTagName("tr");
+  var date = new Date(pass);
+  var year = String(date.getFullYear());
+  var month = String(date.getMonth() + 1).padStart(2, "0");
+  var todayDate = String(date.getDate()).padStart(2, "0");
+  console.log(datePattern);
+  var datePattern = year + "-" + month + "-" + todayDate;
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[3];
+    if (td) {
+      txtValue = td.innerText;
+      if (txtValue == datePattern) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+function searchPaymentTable() {
+  var input, filter, table, tr, td, i, txtValue;
+  table = document.getElementById("payment-booking");
+  input = document.getElementById("search-payment-booking");
+  filter = input.value.toUpperCase();
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+function PaymentDatepicker() {
+  table = document.getElementById("payment-booking");
+  var pass = document.getElementById("payment-date-picker").value;
+  tr = table.getElementsByTagName("tr");
+  var date = new Date(pass);
+  var year = String(date.getFullYear());
+  var month = String(date.getMonth() + 1).padStart(2, "0");
+  var todayDate = String(date.getDate()).padStart(2, "0");
+  console.log(datePattern);
+  var datePattern = year + "-" + month + "-" + todayDate;
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[3];
+    if (td) {
+      txtValue = td.innerText;
+      if (txtValue == datePattern) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}

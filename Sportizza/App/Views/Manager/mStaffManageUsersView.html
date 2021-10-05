@@ -229,15 +229,15 @@
                     </button>
                 </div>
 
-                <!-- View Facility Tab -->
+                <!-- View Staff Tab -->
                 <div id="view_bookings" class="booking_tab_content active" style="display: block;">
-                    <table class="booking-table">
+                    <table class="booking-table" id="view-staff">
                         <thead>
                             <tr class="booking-thead-first-tr">
                                 <th class="booking-table-first-th">
                                     <div class="booking-table-filter-container">
                                         <div class="booking-table-search-container">
-                                            <input type="search" name="search" placeholder="Search">
+                                            <input type="search" name="search" placeholder="Search By First Name" id="search-view-staff" onkeyup="searchViewTable()">
                                             <i class="fas fa-search"></i>
                                         </div>
 
@@ -259,7 +259,6 @@
                                 <td data-label="Last Name :">{{staff.last_name}}</td>
                                 <td data-label="Username :">{{staff.username}}</td>
                                 <td data-label="Primary Contact :"> {{staff.primary_contact}}</td>
-                                <td data-label="Secondary Contact :">{{staff.secondary_contact}}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -350,13 +349,13 @@
                 </div>
                 <!-- Remove User Tab -->
                 <div id="cancel_booking" class="booking_tab_content">
-                    <table class="booking-table">
+                    <table class="booking-table" id="remove-staff">
                         <thead>
                             <tr class="booking-thead-first-tr">
                                 <th class="booking-table-first-th">
                                     <div class="booking-table-filter-container">
                                         <div class="booking-table-search-container">
-                                            <input type="search" name="search" placeholder="Search">
+                                            <input type="search" name="search" placeholder="Search By First Name" id="search-remove-staff" onkeyup="searchRemoveTable()">
                                             <i class="fas fa-search"></i>
                                         </div>
                                         <!-- <div class="booking-table-date-picker">
@@ -383,8 +382,7 @@
                                 <td data-label="Last Name :">{{staff.last_name}}</td>
                                 <td data-label="Username :">{{staff.username}}</td>
                                 <td data-label="Primary Contact :"> {{staff.primary_contact}}</td>
-                                <td class="trash-btn-padding-res"> <a onclick="open_popup_delete_message()" class="trash-btn"
-                                        style="margin-left: 30px;"><i class="fas fa-trash-alt"></i></a></td>
+                                <td class="trash-btn-padding-res"> <a onclick="open_popup_delete_message()" class="trash-btn"><i class="fas fa-trash-alt"></i></a></td>
                             </tr>
                             {% endfor %}
                         </tbody>

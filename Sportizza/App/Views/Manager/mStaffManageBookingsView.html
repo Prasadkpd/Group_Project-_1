@@ -230,18 +230,18 @@
 
                 <!-- View Bookings Tab -->
                 <div id="view_bookings" class="booking_tab_content active" style="display: block;">
-                    <table class="booking-table">
+                    <table class="booking-table" id="view-booking">
                         <thead>
                             <tr class="booking-thead-first-tr">
                                 <th class="booking-table-first-th">
                                     <div class="booking-table-filter-container">
                                         <div class="booking-table-search-container">
-                                            <input type="search" name="search" placeholder="Search">
+                                            <input type="search" name="search" placeholder="Search By Booking ID" id="search-view-booking" onkeyup="searchViewTable()">
                                             <i class="fas fa-search"></i>
                                         </div>
                                         <div class="booking-table-date-picker">
                                             <label class="date-label">Booking Date</label>
-                                            <input type="date">
+                                            <input type="date" id="view-date-picker" onchange="ViewDatepicker()">
                                         </div>
                                     </div>
                                 </th>
@@ -409,18 +409,18 @@
                 </div>
                 <!-- Cancel Bookings Tab -->
                 <div id="cancel_booking" class="booking_tab_content">
-                    <table class="booking-table">
+                    <table class="booking-table" id="delete-booking">
                         <thead>
                             <tr class="booking-thead-first-tr">
                                 <th class="booking-table-first-th">
                                     <div class="booking-table-filter-container">
                                         <div class="booking-table-search-container">
-                                            <input type="search" name="search" placeholder="Search">
+                                            <input type="search" name="search" placeholder="Search By Bookin ID" id="search-delete-booking" onkeyup="searchDeleteTable()">
                                             <i class="fas fa-search"></i>
                                         </div>
                                         <div class="booking-table-date-picker">
                                             <label class="date-label">Booking Date</label>
-                                            <input type="date">
+                                            <input type="date" id="delete-date-picker" onchange="DeleteDatepicker()">
                                         </div>
                                     </div>
                                 </th>
@@ -480,18 +480,18 @@
                 </div>
                 <!-- Booking Payment Tab -->
                 <div id="booking_payment" class="booking_tab_content">
-                    <table class="booking-table">
+                    <table class="booking-table" id="payment-booking">
                         <thead>
                             <tr class="booking-thead-first-tr">
                                 <th class="booking-table-first-th">
                                     <div class="booking-table-filter-container">
                                         <div class="booking-table-search-container">
-                                            <input type="search" name="search" placeholder="Search">
+                                            <input type="search" name="search" placeholder="Search By Booking ID" id="search-payment-booking" onkeyup="searchPaymentTable()">
                                             <i class="fas fa-search"></i>
                                         </div>
                                         <div class="booking-table-date-picker">
                                             <label class="date-label">Booking Date</label>
-                                            <input type="date">
+                                            <input type="date" id="payment-date-picker" onchange="PaymentDatepicker()">
                                         </div>
                                     </div>
                                 </th>
