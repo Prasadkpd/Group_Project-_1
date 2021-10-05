@@ -32,8 +32,11 @@ class SpArenaManagerModel extends \Core\Model
 
     public static function managerViewBookings($id){
         //correct
-        $sql = 'SELECT booking.booking_id,booking.price_per_booking,booking.booked_date,
-                booking.payment_method,booking.payment_status,time_slot.start_time,time_slot.end_time
+        $sql = 'SELECT booking.booking_id,booking.price_per_booking,
+        DATE(booking.booked_date),
+                booking.payment_method,booking.payment_status,
+                TIME_FORMAT(time_slot.start_time, "%H" ":" "%i") AS start_time, 
+                TIME_FORMAT(time_slot.end_time, "%H" ":" "%i") AS end_time,
                 ,user.primary_contact FROM  booking
                 INNER JOIN booking_timeslot ON booking.booking_id = booking_timeslot.booking_id
                 INNER JOIN time_slot ON booking_timeslot.timeslot_id=time_slot.time_slot_id
@@ -58,8 +61,11 @@ class SpArenaManagerModel extends \Core\Model
 
     public static function managerCancelBookings($id){
         
-        $sql = 'SELECT booking.booking_id,booking.price_per_booking,booking.booked_date,
-                booking.payment_method,booking.payment_status,time_slot.start_time,time_slot.end_time
+        $sql = 'SELECT booking.booking_id,booking.price_per_booking,
+       DATE(booking.booked_date),
+                booking.payment_method,booking.payment_status,
+                TIME_FORMAT(time_slot.start_time, "%H" ":" "%i") AS start_time, 
+                TIME_FORMAT(time_slot.end_time, "%H" ":" "%i") AS end_time,
                 ,user.primary_contact FROM  booking
                 INNER JOIN booking_timeslot ON booking.booking_id = booking_timeslot.booking_id
                 INNER JOIN time_slot ON booking_timeslot.timeslot_id=time_slot.time_slot_id
@@ -84,9 +90,12 @@ class SpArenaManagerModel extends \Core\Model
 
     public static function managerBookingPayment($id){
         
-        $sql = 'SELECT booking.booking_id,booking.price_per_booking,booking.booked_date,
-                booking.payment_method,booking.payment_status,time_slot.start_time,time_slot.end_time
-                ,user.primary_contact FROM  booking
+        $sql = 'SELECT booking.booking_id,booking.price_per_booking,
+                DATE(booking.booked_date),
+                booking.payment_method,booking.payment_status,
+                TIME_FORMAT(time_slot.start_time, "%H" ":" "%i") AS startTime, 
+                TIME_FORMAT(time_slot.end_time, "%H" ":" "%i") AS endTime,
+                ,time_slot.price FROM  booking
                 INNER JOIN booking_timeslot ON booking.booking_id = booking_timeslot.booking_id
                 INNER JOIN time_slot ON booking_timeslot.timeslot_id=time_slot.time_slot_id
                 INNER JOIN user ON user.user_id=booking.customer_user_id
@@ -121,7 +130,8 @@ class SpArenaManagerModel extends \Core\Model
 
     public static function managerNotification($id){
         
-        $sql = 'SELECT subject,description, DATE(date) as date , TIME(date) as time 
+        $sql = 'SELECT subject,description, DATE(date) as date , 
+        TIME_FORMAT( TIME(date) ,"%H" ":" "%i") as time 
         FROM notification WHERE user_id=:id
         ORDER BY date DESC,time DESC';
 
