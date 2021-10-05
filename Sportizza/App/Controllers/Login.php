@@ -110,12 +110,12 @@ class Login extends \Core\Controller
 
         if(EditProfileModel::findByMobileNumber($_POST['mobile'])){
             $_SESSION['direct_url']=('/login/enternewpassword');
-        $_SESSION['temp_mobile']=$_POST['mobile'];
+            $_SESSION['temp_mobile']=$_POST['mobile'];
         otp::sendSMS("mobile_number");
         View::renderTemplate('otp.html');
         }
         else{
-            Flash::addMessage('not registered account for that number',Flash::WARNING);
+            Flash::addMessage('There is no registered account for that number!',Flash::WARNING);
             $this->redirect('/login');
         }
         
@@ -145,7 +145,7 @@ class Login extends \Core\Controller
         if ($Model->saveForgotPassword($mobile_number)){
             // otp::sendSMS("mobile_number");
             // $this->redirect('/Signup/success',['direct_url'=>$direct_url]);
-            Flash::addMessage('successfully updated Password');
+            Flash::addMessage('Your password has been successfully updated.');
             $this->redirect('/login');
             exit;
 
@@ -173,7 +173,7 @@ class Login extends \Core\Controller
     }
     public function showLogoutMessageAction(){
         // Flash::addMessage('logout successful');
-        $this->redirect('/');
+        $this->redirect('/login');
     }
 
 

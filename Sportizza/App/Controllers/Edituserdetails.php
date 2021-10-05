@@ -58,7 +58,7 @@ class Edituserdetails extends Authenticated
         if ($Model->saveNewPassword($user)){
             // otp::sendSMS("mobile_number");
             // $this->redirect('/Signup/success',['direct_url'=>$direct_url]);
-            Flash::addMessage('successfully updated password');
+            Flash::addMessage('Your password has been successfully updated.');
             $this->redirect('/Edituserdetails/EditProfile');
             exit;
 
@@ -68,7 +68,7 @@ class Edituserdetails extends Authenticated
             // exit;
             // View::renderTemplate('LoginSignup/customerSignupView.html', [
             //     'user' => $user, 'errors' => $errors]);
-            Flash::addMessage('failed to update password',Flash::WARNING);
+            Flash::addMessage('Entered old password in incorrect!',Flash::WARNING);
             $this->redirect('/Edituserdetails/EditProfile');
         }
     }
