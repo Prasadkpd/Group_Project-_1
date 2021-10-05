@@ -206,13 +206,13 @@
             </div>
 
             <div id="view_bookings" class="booking_tab_content active" style="display: block;">
-                <table class="booking-table">
+                <table class="booking-table" id="faq-table">
                     <thead>
                         <tr class="booking-thead-first-tr">
                             <th class="booking-table-first-th">
                                 <div class="booking-table-filter-container">
                                     <div class="booking-table-search-container">
-                                        <input type="search" name="search" placeholder="Search">
+                                        <input type="search" name="search" placeholder="Search" onkeyup="searchTable()" id="search-faq">
                                         <i class="fas fa-search"></i>
                                     </div>
                                 </div>
@@ -229,7 +229,7 @@
                         {% for FAQ in viewFAQs %}
                         <tr>
                             <!-- <td data-label="FAQ Type :">{{FAQ.faq_id}}</td> -->
-                            <td data-label="Solution :" class="solution_td">{{FAQ.type}}</td>
+                            <td data-label="FAQ Type :">{{FAQ.type}}</td>
                             <td data-label="Question :" class="quiz_td">{{FAQ.question}}</td>
                             <td data-label="Solution :" class="solution_td" style="text-align: justify;">{{FAQ.answer}}</td>
                             
@@ -266,7 +266,7 @@
 
                         <label for="question" class="faqLabel">Question : </label>
                         <textarea id="question" class="faqInput" name="question"
-                            placeholder="Type your question..."></textarea>
+                            placeholder="Type your question..." rows="1"></textarea>
 
                         <label for="solution" class="faqLabel">Solution : </label>
                         <textarea id="solution" class="faqInput" rows="4" name="solution"
@@ -279,13 +279,13 @@
             </div>
 
             <div id="cancel_booking" class="booking_tab_content">
-                <table class="booking-table">
+                <table class="booking-table" id="faq-delete-table">
                     <thead>
                         <tr class="booking-thead-first-tr">
                             <th class="booking-table-first-th">
                                 <div class="booking-table-filter-container">
                                     <div class="booking-table-search-container">
-                                        <input type="search" name="search" placeholder="Search">
+                                        <input type="search" name="search" placeholder="Search" onkeyup="searchdeleteFaqTable()" id="search-faq-delete">
                                         <i class="fas fa-search"></i>
                                     </div>
                                 </div>

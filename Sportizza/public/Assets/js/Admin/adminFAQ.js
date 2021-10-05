@@ -62,3 +62,40 @@ function close_popup_delete_message() {
     var form = document.getElementById("popup_delete");
     form.style.display = "none";
 }
+
+function searchTable() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("search-faq");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("faq-table");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+function searchdeleteFaqTable() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("search-faq-delete");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("faq-delete-table");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
