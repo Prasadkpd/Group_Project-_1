@@ -519,6 +519,7 @@ form i {
   text-align: right;
 }
 .cartDisplay .content .priceNPay {
+  width: 400px;
   margin-top: 1.5rem;
   padding: 10px 15px;
   border-radius: 15px;
@@ -677,6 +678,11 @@ footer {
     padding: 10px 15px;
     border-radius: 15px;
     box-shadow: rgb(0 0 0 / 15%) 0px 2px 8px;
+  }
+  .cartDisplay .content .priceNPay {
+    width: 300px;
+    margin: auto;
+    /* padding: 10px 15px; */
   }
 
   footer {

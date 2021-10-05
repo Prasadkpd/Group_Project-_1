@@ -188,8 +188,12 @@
 
 
               <div class="cartContent">
-                <div class="cartItem">
-                  <div class="itemDelete">
+                <!-- {% set count=1  %}
+                {% for item in items  %} -->
+                <!-- {% set count=count+1  %}
+                {% endfor %} -->
+                <div id="cartItem1" class="cartItem">
+                  <div id="itemDelete1" class="itemDelete" onclick="hideItem(1)">
                     <i class="far fa-times-circle"></i>
                   </div>
                   <div class="itemHeader">
@@ -204,13 +208,12 @@
                   <div class="itemPrice">
                     LKR 1000
                   </div>
-                  <!-- hidden inputs -->
 
                 </div>
 
                 
-                <div class="cartItem">
-                  <div class="itemDelete">
+                <div id="cartItem2" class="cartItem">
+                  <div id="itemDelete2" class="itemDelete" onclick="hideItem(2)">
                     <i class="far fa-times-circle"></i>
                   </div>
                   <div class="itemHeader">
@@ -226,8 +229,8 @@
                     LKR 1000
                   </div>
                 </div>
-                <div class="cartItem">
-                  <div class="itemDelete">
+                <div id="cartItem3" class="cartItem">
+                  <div id="itemDelete3" class="itemDelete" onclick="hideItem(3)">
                     <i class="far fa-times-circle"></i>
                   </div>
                   <div class="itemHeader">
@@ -243,8 +246,8 @@
                     LKR 1000
                   </div>
                 </div>
-                <div class="cartItem">
-                  <div class="itemDelete">
+                <div id="cartItem4" class="cartItem">
+                  <div id="itemDelete4" class="itemDelete" onclick="hideItem(4)">
                     <i class="far fa-times-circle"></i>
                   </div>
                   <div class="itemHeader">
@@ -260,8 +263,8 @@
                     LKR 1000
                   </div>
                 </div>
-                <div class="cartItem">
-                  <div class="itemDelete">
+                <div id="cartItem5" class="cartItem">
+                  <div id="itemDelete5" class="itemDelete" onclick="hideItem(5)">
                     <i class="far fa-times-circle"></i>
                   </div>
                   <div class="itemHeader">
@@ -313,6 +316,7 @@
   </footer>
   <!-- End of Footer -->
 
+  <script type="text/javascript" src="/Assets/js/lib/jquery/jquery.min.js"></script>
   <script type="text/javascript" src="/Assets/js/signup_validation.js?version=8.0"></script>
   <script type="text/javascript" src="/Assets/js/Customer/newCart.js?version=4"></script>
   <!-- Top navbar js -->
