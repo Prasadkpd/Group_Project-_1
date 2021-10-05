@@ -54,10 +54,10 @@ ul {
 .closebutton {
   width: 20px;
   float: right;
-  /* margin-right: 15px; */
+  margin-right: 15px;
   margin-top: 10px;
   background-color: transparent;
-border: none;
+  border: none;
 }
 .openbutton {
   border: none;
@@ -589,7 +589,7 @@ form input[type="submit"] {
   display: grid;
   grid-template-columns: 1fr 2fr;
   flex-direction: row;
-  height: 54vh;
+  height: 50vh;
   width: 100%;
   border-radius: 25px;
   /* display:none; */
@@ -600,7 +600,7 @@ form input[type="submit"] {
 .left-container {
   background-color: #ff6348;
   display: flex;
-  height: 55vh;
+  height: 50vh;
   align-items: center;
   padding: 20% 2rem;
   flex-direction: column;
@@ -627,7 +627,7 @@ form input[type="submit"] {
 }
 .available-bookings {
   background-color: #f97f51;
-  height: 55vh;
+  height: 50vh;
   overflow-y: scroll;
   color: #fff;
   padding: 20px;
@@ -687,7 +687,9 @@ form input[type="submit"] {
 }
 .btn.check-availability-btn {
   background-color: #fd461f;
+  cursor: pointer;
   color: #fff;
+  margin-top: 1em;
   border-radius: 2rem;
   float: right;
   font-size: 1.2rem;
@@ -801,10 +803,10 @@ footer {
 @media screen and (max-width: 576px) {
   .page-content-container .container .page-header {
     width: 80%;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 600;
     margin: 10px auto;
-    text-align: center;
+    text-align: left;
   }
 
   .add-booking-frm-container {
@@ -945,7 +947,6 @@ footer {
     flex-direction: column;
     height: 56vh;
     width: 85vw;
-    /* background-color: aqua; */
     margin: auto;
   }
   .left-container {
@@ -957,7 +958,6 @@ footer {
     border-radius: 25px;
     /* display: none; */
     padding: 10px;
-    background-color: #ffb499;
   }
   .left-container .heading h3 {
     font-size: 1.2rem;
@@ -970,7 +970,6 @@ footer {
     border-radius: 30px;
     /* padding: 5px 10px; */
     height: 40px;
-    margin: 0px auto;
   }
   .right-container {
     box-shadow: rgb(0 0 0 / 15%) 1.95px 1.95px 2.6px;
@@ -980,7 +979,7 @@ footer {
   .available-bookings {
     margin: 1rem auto;
     border-radius: 25px;
-    height: 48vh;
+    height: 38vh;
     padding: 20px;
     padding-bottom:2.5rem;
     width: 100%;
@@ -1000,7 +999,9 @@ footer {
     color: #fff;
     border-radius: 2rem;
     float: right;
-    font-size: 1em;
+    margin-top: 2.5em;
+    font-size: .9em;
+    margin-right: 1em;
     position: relative;
     font-weight: 600;
     z-index: 40;
@@ -1041,6 +1042,17 @@ footer {
   }
   .formsection{
     width: 90vw;
+  }
+  .date-picker form{
+    display: flex;
+  }
+  .date-picker form input[type='submit']{
+    margin-left: 10px;
+    margin-top: 0;
+  }
+  
+  .booking-table .booking-table-first-th{
+    width: 89vw;
   }
 
 }

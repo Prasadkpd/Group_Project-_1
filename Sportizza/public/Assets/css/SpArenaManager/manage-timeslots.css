@@ -742,8 +742,7 @@ footer {
     display: none;
   }
   .page-content-container .container .page-header {
-    font-size: 1.5rem;
-    text-align:center;
+    font-size: 1.2rem;
   }
   .tab {
     width: 100%;
@@ -847,5 +846,8 @@ footer {
   .add-booking-frm-content input[type="submit"] {
     font-size: 0.8em;
     padding: 5px 10px;
+  }
+  .booking-table .booking-table-first-th{
+    width: 89vw;
   }
 }

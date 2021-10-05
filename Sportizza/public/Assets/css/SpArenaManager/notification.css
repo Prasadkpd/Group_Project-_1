@@ -682,10 +682,10 @@ footer {
  
   .page-content-container .container .page-header {
     width: 80%;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 600;
     margin: 10px auto;
-    text-align: center;
+    text-align: left;
   }
  
   .add-booking-frm-container {
@@ -860,5 +860,9 @@ margin-right: 1rem;
             width:100%;
             padding-left:1rem;
             text-align: left;
+  }
+  
+  .booking-table .booking-table-first-th{
+    width: 89vw;
   }
 }
