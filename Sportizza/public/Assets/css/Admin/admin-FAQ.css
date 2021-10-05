@@ -217,6 +217,7 @@ nav .nav-profile img {
   width: 20px;
   float: right;
   margin-top: 10px;
+  margin-right: 10px;
   background-color: #fff;
   border: none;
 }
@@ -1091,7 +1092,7 @@ footer {
     display: none;
   }
   .page-content-container .container .page-header {
-    font-size: 2rem;
+    font-size: 1.2rem;
   }
   .tab {
     width: 100%;

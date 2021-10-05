@@ -240,12 +240,15 @@ input[type="date"] {
   height: 50px;
   margin: 10px auto;
 }
-
 .filters {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  align-items: center;
+  width: 80vw;
+  margin-left: auto;
 }
+
 .filters .booking-table-date-picker {
   padding: 0.2em;
   width: 40%;
@@ -259,6 +262,33 @@ input[type="date"] {
 .filters .booking-table-date-picker input {
   width: 60%;
   outline: none;
+}
+.filters .booking-table-date-picker input[type='submit'] {
+  outline: none;
+  width: 30%;
+  padding: 10px;
+  background-color: #2ed573;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+  opacity: 0.9;
+  
+  border-radius: 50px;
+  border: none;
+  width: 120px;
+  height: 49px;
+  align-items: center;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+  rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+  rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+.filters .booking-table-date-picker input[type='submit']:hover {
+  background-color: white;
+  color: rgb(33, 219, 95);
+  border: 2px solid #2ecc71;
 }
 .chart-container h5 {
   text-align: center;

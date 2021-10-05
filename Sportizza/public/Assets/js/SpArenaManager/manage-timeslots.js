@@ -108,3 +108,39 @@ function validateFacilitySelect() {
     return true;
 }
 
+function searchViewTable() {
+  var input, filter, table, tr, td, i, txtValue;
+  table = document.getElementById("view-timeslot");
+  input = document.getElementById("search-view-timeslot");
+  filter = input.value.toUpperCase();
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[4];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+function searchDeleteTable() {
+  var input, filter, table, tr, td, i, txtValue;
+  table = document.getElementById("delete-timeslot");
+  input = document.getElementById("search-delete-timeslot");
+  filter = input.value.toUpperCase();
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[4];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
