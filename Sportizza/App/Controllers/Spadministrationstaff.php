@@ -35,7 +35,7 @@ class Spadministrationstaff extends \Core\Controller
         $bookingPayments= SpAdministrationStaffModel::saAdminBookingPayment($id);
         // var_dump($bookings);
         //direct to the customer page
-        View::renderTemplate('AdministrationStaff/aStaffManageBookingsView.html',['bookings'=>$bookings,
+        View::renderTemplate('AdministrationStaff/aStaffProfileView.html',['bookings'=>$bookings,
         'cancelBookings'=>$cancelBookings,'bookingPayments'=>$bookingPayments]);
 
 
@@ -118,6 +118,19 @@ class Spadministrationstaff extends \Core\Controller
     {
         $user=SpAdministrationStaffModel::saAdminDeleteFacility($id);
     }
-
+    public  function managereditarenaprofileAction()
+    {
+        $current_user= Auth::getUser();
+        // $id=$current_user->user_id;
+       
+    }
+    public  function saAdmineditarenaprofileAction()
+    {
+        $current_user= Auth::getUser();
+        // $id=$current_user->user_id;
+        View::renderTemplate('AdministrationStaff/aStaffEditArenaProfile.html');
+    }
+ 
+ 
     
 }

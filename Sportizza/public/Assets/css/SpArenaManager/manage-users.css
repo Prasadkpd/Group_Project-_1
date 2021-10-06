@@ -108,7 +108,7 @@ form input[type="submit"] {
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   display: inline-block;
-  padding: 0.65rem 2rem;
+  padding: 0rem 2rem;
   border-radius: 2rem;
   border-width: 0rem;
   font-size: 1.05rem;
@@ -122,11 +122,13 @@ form input[type="submit"] {
 .sectionpop h1 {
   font-size: 24px;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  color: #2c3350;
 }
 .sectionpop p {
   text-align: center;
-  margin: 20px auto;
+  margin: 10px auto;
+  color: #34495e;
 }
 form i {
   margin-left: -40px;
@@ -153,7 +155,7 @@ form i {
     border-radius: 50px;
     border: none;
     width: 150px;
-    height: 49px;
+    height: 36px;
     align-items: center;
     box-shadow: rgb(50 50 93 / 25%) 0px 50px 100px -20px, rgb(0 0 0 / 30%) 0px 30px 60px -30px, rgb(10 37 64 / 35%) 0px -2px 6px 0px inset;
 }
@@ -170,7 +172,7 @@ form i {
   border-radius: 50px;
   border: none;
   width: 150px;
-  height: 49px;
+  height: 36px;
   align-items: center;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
@@ -722,7 +724,8 @@ footer {
   }
 
   .booking-table tbody {
-    height: 52vh;
+    height: 57vh;
+    width: 85vw;
   }
   .booking-table td {
     font-size: 0.75rem;

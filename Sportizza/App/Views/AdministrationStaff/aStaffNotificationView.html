@@ -6,7 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Bookings</title>
-    <link rel="stylesheet" href="/Assets/css/AdministrationStaff/notification.css?version=2">
+     <!-- Top Nav bar CSS styles -->
+     <link rel="stylesheet" href="/Assets/css/navbar.css?version=4">
+     <!-- File Specific CSS Styles -->
+    <link rel="stylesheet" href="/Assets/css/SpArenaManager/notification.css?version=3">
+    <!-- <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-booking.css?version=2"> -->
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 </head>
 
@@ -15,266 +19,101 @@
     <nav>
         <div class="nav-left">
             <div class="logo-container">
-                <a href="#">
+                <a href="/">
                     <i class="fas fa-running "></i>
                     <span class="logo-name">Sportizza</span>
                 </a>
             </div>
-            <div class="search-bar-container">
-                <input type="search" name="search" placeholder="Search">
-                <i class="fas fa-search "></i>
+
+            <div class="nav-right">
+                <!-- Profile button -->
+                <div class="nav-profile">
+                    <button class="openbutton" onclick="openpopupform()">
+                        <div class="profile-details">
+                            <img src="/Assets/images/customer/profile-picture.jpg" class="profile-picture">
+                            <div class="username">{{current_user.first_name}} {{current_user.last_name}}</div>
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Signout button -->
+                <div class="sign-in-out-btn">
+                    <button onclick="open_popup_signout_message()">Sign Out</button>
+                    <!-- {% if session.user_id %}
+                User with ID {{session.user_id}} is logged in.
+            {% endif %} -->
+                </div>
             </div>
-            <div class="nav-profile">
-                <button class="openbutton" onclick="openpopupform()">
-                    <div class="profile-details">
-                        <img src="/Assets/images/Team members/jonathan.png" alt="" class="profile-picture">
-                        <div class="username">{{current_user.first_name}} {{current_user.last_name}}</div>
-                    </div>
-                </button>
-            </div>
-            <div class="sign-in-out-btn">
-                <button onclick="open_popup_signout_message()"> Sign Out </button>
-                <!-- {% if current_user %}
-        <a href="/logout"> Sign Out</a>
-        {% endif %} -->
-            </div>
-        </div>
-        <!-- search bar for mobile -->
-        <div class="search-bar-container-mobi">
-            <input type="search" name="search" placeholder="Search">
-            <i class="fas fa-search "></i>
         </div>
     </nav>
-    <div id="popup_signout" class="sectionpop ">
-        <div class="formsection">
 
+    <!-- start popup for profile -->
+    <div id="myForm" class="sectionpopnav">
+        <div class="formsectionprofile" id="formEditUserProfile">
+            <div>
+                <button class="closebutton" onclick="closepopupform()">❌</button>
+            </div>
+
+            <div class="nav-user-edit-from">
+                <div class="details">
+                    <div class="input-box">
+                        <h5>Name:</h5>
+                        <p>
+                            {{current_user.first_name}} {{current_user.last_name}}
+                        </p>
+                    </div>
+                    <div class="input-box">
+                        <h5>Username:</h5>
+                        <p>
+                            {{current_user.username}}
+                        </p>
+                    </div>
+                    <div class="input-box">
+                        <h5>Mobile:</h5>
+                        <p>
+                            {{current_user.primary_contact}}</p>
+                    </div>
+                </div>
+                <div class="editProPic">
+                    <img id="form-profile-picture" src="/Assets/images/customer/profile-picture.jpg" alt="">
+                </div>
+            </div>
+            <div class="edit-profile-link">
+                <a href="\Edituserdetails\EditProfileAction">Edit Profile</a>
+            </div>
+        </div>
+    </div>
+    <!-- end popup for profile -->
+
+    <!-- start pop up sign out section -->
+    <div id="popup_signout" class="sectionpopnav">
+        <div class="formsectionnav">
             <div>
                 <button class="closebutton" onclick="close_popup_signout_message()">❌</button>
             </div>
             <form action="/action_page.php" style="margin:20px">
                 <div style="margin:auto">
-                    <h1 style="margin:auto">
-                        Sign Out
-                    </h1>
-                    <p style="margin:auto">
-                        Do your really want to sign out now?
-                    </p>
+                    <h1>Sign Out</h1>
+                    <p>Do your really want to sign out now?</p>
                 </div>
             </form>
-
-
             <div style="display:flex">
-
-                <button class="popup_delete_button">
+                <button class="popup_buttonnav">
                     {% if current_user %}
                     <a href="/logout"> YES</a>
                     {% endif %}
                 </button>
-                <button onclick="close_popup_signout_message()" class="popup_button">
+                <button onclick="close_popup_signout_message()" class="popup_delete_buttonnav">
                     NO
                 </button>
             </div>
         </div>
     </div>
+    <!-- end pop up sign out section -->
 
     <!-- End Top Navigation Bar -->
-    <!-- popup form for edit profile -->
-    <div id="myForm" class="sectionpop ">
 
 
-        <div class="formsection">
-
-            <div>
-                <button s class="closebutton" onclick="closepopupform()">❌</button>
-            </div>
-            <div class="editProPic">
-                <img id="form-profile-picture" src="/Assets/images/customer/profile-picture.jpg" alt="">
-                <input type="file" id="file">
-                <label for="file" id="uploadBtn">Choose Photo</label>
-            </div>
-            <form action="/action_page.php" style="margin:20px;margin-top: 0px;" class="nav-user-edit-from">
-
-                <label for="firstName">First Name</label>
-                <div class="form-input-contant">
-                    <input id="firstName" type="text" name="first_name" onfocusout="validateFirstName()"
-                        placeholder="Enter first name" value="{{user.first_name}}">
-                    <i class="fas fa-user-edit"></i>
-                </div>
-                <div class="helper-text" id="firstNameMsg"></div>
-
-
-
-                <label for="lastName">Last Name</label>
-                <div class="form-input-contant">
-                    <input id="lastName" type="text" name="last_name" onfocusout="validateLastName()"
-                        placeholder="Enter last name" value="{{user.last_name}}">
-                    <i class="fas fa-user-edit"></i>
-                </div>
-                <div class="helper-text" id="lastNameMsg"></div>
-
-                <label for="username">Username</label>
-                <div class="form-input-contant">
-                    <input id="username" type="text" name="username" onfocusout="validateUsername()"
-                        placeholder="Enter a unique Username" value="{{ user.username}}">
-                    <i class="fas fa-user-edit"></i>
-                </div>
-                <div class="helper-text" id="usernameMsg"></div>
-
-                <label for="primaryNumber">Primary Number</label>
-                <div class="form-input-contant">
-                    <input type="text" id="primaryNumber" name="primaryNumber" placeholder="Enter Primary Number"
-                        value="0705614640">
-                    <i class="fas fa-user-edit"></i>
-                </div>
-                <!-- <a class="formLink" onclick="open_editPrimaryPhoneNumber()">Click here to change</a> <br> -->
-
-
-
-                <label for="secondaryNumber">Secondary Number</label>
-                <div class="form-input-contant">
-                    <input type="text" id="secondaryNumber" name="lastname" placeholder="Enter Secondary Number"
-                        value="0705614640">
-                    <i class="fas fa-user-edit"></i>
-                </div>
-                <!-- <a class="formLink" " onclick=" open_editSecondaryPhoneNumber()">Click here to change</a> <br> -->
-
-                <label for="password">Password</label>
-                <div class="form-input-contant">
-                    <input type="password" id="password" name="password" value="0705614640">
-                    <i class="fas fa-user-edit"></i>
-                </div>
-                <!-- <a class="formLink" onclick="open_editPassword()">Click here to change</a> <br> -->
-
-                <input type="submit" value="Save">
-
-            </form>
-
-
-        </div>
-
-    </div>
-    <!-- start edit primary number section -->
-    <div id="popup_editPrimaryNumber" class="sectionpop ">
-
-
-        <div class="formsection">
-
-            <div>
-                <button s class="closebutton" onclick="close_editPrimaryPhoneNumber()">❌</button>
-            </div>
-            <form action="/action_page.php" style="margin:20px">
-
-                <label for="oldNumberOTP">OTP Code From Old Mobile Number</label>
-                <input type="text" id="userid" name="oldNumberOTP" placeholder="Example-1293" value="">
-
-                <label for="mobile">Primary Number</label>
-                <input id="mobile" type="text" name="mobile_number" onfocusout="validateMobile()"
-                    placeholder="Ex:-) 0712345678" value="{{user.mobile_number}}">
-                <div class="helper-text" id="mobileMsg"></div>
-
-
-
-                <label for="newNumberOTP">OTP Code From New Mobile Number</label>
-                <input type="text" id="newNumberOTP" name="newNumberOTP" placeholder="Example-1293" value="">
-            </form>
-
-
-            <div style="display:flex">
-
-                <button style="background-color:#e74c3c    " class="popup_button">
-                    Submit
-                </button>
-                <button onclick="close_editPrimaryPhoneNumber()" class="popup_button">
-                    NO
-                </button>
-            </div>
-        </div>
-    </div>
-    <!--end edit primary number section -->
-    <!-- start edit secondary number section -->
-    <div id="popup_editSecondaryNumber" class="sectionpop ">
-
-
-        <div class="formsection">
-
-            <div>
-                <button s class="closebutton" onclick="close_editSecondaryPhoneNumber()">❌</button>
-            </div>
-            <form action="/action_page.php" style="margin:20px">
-
-                <label for="oldNumberOTP">OTP Code From Old Mobile Number</label>
-                <input type="text" id="userid" name="oldNumberOTP" placeholder="Example-1293" value="">
-
-                <label for="mobile">Primary Number</label>
-                <input id="mobile" type="text" name="mobile_number" onfocusout="validateMobile()"
-                    placeholder="Ex:-) 0712345678" value="{{user.mobile_number}}">
-                <div class="helper-text" id="mobileMsg"></div>
-
-
-
-                <label for="newNumberOTP">OTP Code From New Mobile Number</label>
-                <input type="text" id="newNumberOTP" name="newNumberOTP" placeholder="Example-1293" value="">
-            </form>
-
-
-            <div style="display:flex">
-
-                <button style="background-color:#e74c3c    " class="popup_button">
-                    Submit
-                </button>
-                <button onclick="close_editSecondaryPhoneNumber()" class="popup_button">
-                    NO
-                </button>
-            </div>
-        </div>
-    </div>
-    <!--end edit secondary number section -->
-
-    <!-- start edit password number section -->
-    <div id="popup_editPassword" class="sectionpop ">
-
-
-        <div class="formsection">
-
-            <div>
-                <button s class="closebutton" onclick="close_editPassword()">❌</button>
-            </div>
-            <form action="/action_page.php" style="margin:20px">
-
-                <label for="oldNumberOTP">OTP Code From Mobile Number</label>
-                <input type="text" id="userid" name="oldNumberOTP" placeholder="Example-1293" value="">
-
-
-                <!-- <label for="newNumberOTP">Enter Old Password</label>
-            <input type="text" id="newNumberOTP" name="newNumberOTP"
-                placeholder="" value=""> -->
-
-
-                <label for="password">New Password</label>
-                <input id="password" type="password" name="password" onfocusout="validatePassword()"
-                    placeholder="Enter a password" value="">
-                <i class="bi bi-eye-slash" id="togglePassword"></i>
-                <div class="helper-text" id="passwordMsg"></div>
-
-
-
-
-            </form>
-
-
-            <div style="display:flex">
-
-                <button style="background-color:#e74c3c    " class="popup_button">
-                    Submit
-                </button>
-                <button onclick="close_editPassword()" class="popup_button">
-                    NO
-                </button>
-            </div>
-        </div>
-    </div>
-    <!--end edit password number section -->
-    <!-- end popup form for edit profile -->
 
     <!-- popup notification section -->
     <div id="popup_notification" class="sectionpop ">
@@ -287,15 +126,10 @@
             </div>
 
             <form action="/action_page.php" style="margin:20px">
-                <h1>Notification</h1>
 
-
-                {% for notification in notifications %}
-                <div>
-                    <p>{{notification.description}}</p>
+                <div id="popup_notification">
+                    
                 </div>
-
-                {% endfor %}
 
             </form>
         </div>
@@ -313,7 +147,7 @@
                 </div>
                 <ul class="side-menu-list">
                     <li>
-                        <a href="#" class="side-menu-li">
+                        <a href="/Spadministrationstaff" class="side-menu-li">
                             <i class="fas fa-home"></i>
                             <p class="side-menu-item">Arena Profile</p>
                         </a>
@@ -352,39 +186,38 @@
         </div>
         <!-- SIDE NAVIGATION BAR - END -->
 
-
         <!-- Manage Bookings Page -->
         <div class="page-content-container">
             <div class="container">
-                <h1 class="page-header">View Notification</h1>
+                <h1 class="page-header">Notification</h1>
 
                 <!-- View Notifications Tab -->
                 <div id="notification" class="booking_tab_content" style="display: block;">
-                    <table class="booking-table">
+                    <table class="booking-table" id="notification">
                         <thead>
                             <tr class="booking-thead-first-tr">
                                 <th class="booking-table-first-th">
                                     <div class="booking-table-filter-container">
                                         <div class="booking-table-search-container">
-                                            <input type="search" name="search" placeholder="Search">
+                                            <input type="search" name="search" id="search-notification" onkeyup="searchTable()" placeholder="Search By Notification">
                                             <i class="fas fa-search"></i>
                                         </div>
                                         <div class="booking-table-date-picker">
                                             <label class="date-label">Date</label>
-                                            <input type="date">
+                                            <input type="date" id="date-picker" onchange="Datepicker()">
                                         </div>
                                     </div>
                                 </th>
                             </tr>
                             <tr class="booking-thead-second-tr" style="text-align: center;">
                                 <th class="b-first-th">Date</th>
-                                <th>Time</th>
+                                <th class="time-header">Time</th>
                                 <th class="b-last-th" style="width:55%; text-align:right;">Notification</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for notification in notifications %}
-                            <tr style="cursor: pointer" onclick="open_popup_notification()">
+                            <tr style="cursor: pointer" onclick="open_popup_notification('{{notification.subject}}','{{notification.description}}')">
                                 <td data-label="Date:">{{notification.date}}</td>
                                 <td data-label="Time:">{{notification.time}}</td>
                                 <td class="notification-td-left">{{notification.subject}}</td>
@@ -405,8 +238,14 @@
         </div>
     </footer>
     <!-- End of Footer -->
-    <script type="text/javascript" src="/Assets/js/Administration-Staff/notification.js?version=1"></script>
-    <script type="text/javascript" src="/Assets/js/Administration-Staff/manage-bookings.js?version=1"></script>
+
+     <!-- Top navbar js -->
+     <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
+     <!-- File specific JS -->
+    <script type="text/javascript" src="/Assets/js/SpArenaManager/manage-bookings.js?version=1"></script>
+    <script type="text/javascript" src="/Assets/js/SpArenaManager/notification.js"></script>
+
+
 </body>
 
 </html>

@@ -303,7 +303,7 @@ class SpArenaManagerModel extends \Core\Model
                 FROM booking
                 INNER JOIN manager ON booking.sports_arena_id=manager.sports_arena_id
                 WHERE manager.user_id=:id
-                GROUP BY booking.booking_date ';
+                GROUP BY booking.booking_date DESC LIMIT 7';
 
         // $sql = 'SELECT booking.booking_date, COUNT(DISTINCT booking.booking_id) AS No_Of_Bookings
         // FROM booking

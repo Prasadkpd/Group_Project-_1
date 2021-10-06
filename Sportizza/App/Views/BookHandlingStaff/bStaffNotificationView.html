@@ -6,9 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Bookings</title>
-    <link rel="stylesheet" href="/Assets/css/BookingHandelingStaff/notification.css?version=11">
-    <link rel="stylesheet" href="/Assets/css/navbar.css?version=4">
-
+     <!-- Top Nav bar CSS styles -->
+     <link rel="stylesheet" href="/Assets/css/navbar.css?version=4">
+     <!-- File Specific CSS Styles -->
+    <link rel="stylesheet" href="/Assets/css/SpArenaManager/notification.css?version=3">
+    <link rel="stylesheet" href="/Assets/css/BookingHandelingStaff/sidebar.css?version=10">
+    <!-- <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-booking.css?version=2"> -->
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 </head>
 
@@ -38,14 +41,14 @@
                 <div class="sign-in-out-btn">
                     <button onclick="open_popup_signout_message()">Sign Out</button>
                     <!-- {% if session.user_id %}
-                    User with ID {{session.user_id}} is logged in.
-                {% endif %} -->
+                User with ID {{session.user_id}} is logged in.
+            {% endif %} -->
                 </div>
             </div>
         </div>
     </nav>
-    <!-- End Top Navigation Bar -->
-    <!-- start popup form for edit profile -->
+
+    <!-- start popup for profile -->
     <div id="myForm" class="sectionpopnav">
         <div class="formsectionprofile" id="formEditUserProfile">
             <div>
@@ -81,7 +84,7 @@
             </div>
         </div>
     </div>
-    <!-- end popup form for edit profile -->
+    <!-- end popup for profile -->
 
     <!-- start pop up sign out section -->
     <div id="popup_signout" class="sectionpopnav">
@@ -109,6 +112,10 @@
     </div>
     <!-- end pop up sign out section -->
 
+    <!-- End Top Navigation Bar -->
+
+
+
     <!-- popup notification section -->
     <div id="popup_notification" class="sectionpop ">
 
@@ -120,7 +127,7 @@
             </div>
 
             <form action="/action_page.php" style="margin:20px">
-                
+
                 <div id="popup_notification">
                     
                 </div>
@@ -169,35 +176,35 @@
         <!-- Manage Bookings Page -->
         <div class="page-content-container">
             <div class="container">
-                <h1 class="page-header">View Notification</h1>
+                <h1 class="page-header">Notification</h1>
 
                 <!-- View Notifications Tab -->
                 <div id="notification" class="booking_tab_content" style="display: block;">
-                    <table class="booking-table">
+                    <table class="booking-table" id="notification">
                         <thead>
                             <tr class="booking-thead-first-tr">
                                 <th class="booking-table-first-th">
                                     <div class="booking-table-filter-container">
                                         <div class="booking-table-search-container">
-                                            <input type="search" name="search" placeholder="Search">
+                                            <input type="search" name="search" id="search-notification" onkeyup="searchTable()" placeholder="Search By Notification">
                                             <i class="fas fa-search"></i>
                                         </div>
                                         <div class="booking-table-date-picker">
                                             <label class="date-label">Date</label>
-                                            <input type="date">
+                                            <input type="date" id="date-picker" onchange="Datepicker()">
                                         </div>
                                     </div>
                                 </th>
                             </tr>
                             <tr class="booking-thead-second-tr" style="text-align: center;">
                                 <th class="b-first-th">Date</th>
-                                <th>Time</th>
+                                <th class="time-header">Time</th>
                                 <th class="b-last-th" style="width:55%; text-align:right;">Notification</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for notification in notifications %}
-                            <tr style="cursor: pointer" onclick="open_popup_notification(`{{notification.subject}}`,`{{notification.description}}`)">
+                            <tr style="cursor: pointer" onclick="open_popup_notification('{{notification.subject}}','{{notification.description}}')">
                                 <td data-label="Date:">{{notification.date}}</td>
                                 <td data-label="Time:">{{notification.time}}</td>
                                 <td class="notification-td-left">{{notification.subject}}</td>
@@ -218,7 +225,14 @@
         </div>
     </footer>
     <!-- End of Footer -->
-    <script type="text/javascript" src="/Assets/js/BookingHandelingStaff/notification.js?version=2"></script>
+
+     <!-- Top navbar js -->
+     <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
+     <!-- File specific JS -->
+    <script type="text/javascript" src="/Assets/js/SpArenaManager/manage-bookings.js?version=1"></script>
+    <script type="text/javascript" src="/Assets/js/SpArenaManager/notification.js"></script>
+
+
 </body>
 
 </html>
