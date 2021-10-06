@@ -249,6 +249,7 @@
                                 <th>Last Name</th>
                                 <th>Username</th>
                                 <th class="b-last-th">Primary Contact</th>
+                                <th>Staff Category</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -259,6 +260,7 @@
                                 <td data-label="Last Name :">{{staff.last_name}}</td>
                                 <td data-label="Username :">{{staff.username}}</td>
                                 <td data-label="Primary Contact :"> {{staff.primary_contact}}</td>
+                                <td data-label="Staff Category :"> {{staff.type}}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -371,6 +373,7 @@
                                 <th>Last Name</th>
                                 <th>Username</th>
                                 <th>Primary Contact</th>
+                                <th>Staff Category</th>
                                 <th class="b-last-th">Action</th>
                             </tr>
                         </thead>
@@ -382,6 +385,7 @@
                                 <td data-label="Last Name :">{{staff.last_name}}</td>
                                 <td data-label="Username :">{{staff.username}}</td>
                                 <td data-label="Primary Contact :"> {{staff.primary_contact}}</td>
+                                <td data-label="Staff Category :"> {{staff.type}}</td>
                                 <td class="trash-btn-padding-res"> <a onclick="open_popup_delete_message()" class="trash-btn"><i class="fas fa-trash-alt"></i></a></td>
                             </tr>
                             {% endfor %}
