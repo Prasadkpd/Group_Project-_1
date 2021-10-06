@@ -6,105 +6,175 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Facility</title>
-    <link rel="stylesheet" href="/Assets/css/AdministrationStaff/manage-facility.css?version=3">
+     <!-- Top Nav bar CSS styles -->
+     <link rel="stylesheet" href="/Assets/css/navbar.css?version=4">
+     <!-- File Specific CSS Styles -->
+     <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-facility.css?version=15">
+     <!-- Icon files -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <!-- Top Navigation Bar -->
-    <nav>
+     <!-- Top Navigation Bar -->
+     <nav>
         <div class="nav-left">
             <div class="logo-container">
-                <a href="#">
+                <a href="/">
                     <i class="fas fa-running "></i>
                     <span class="logo-name">Sportizza</span>
                 </a>
             </div>
-            <div class="search-bar-container">
-                <input type="search" name="search" placeholder="Search">
-                <i class="fas fa-search "></i>
+
+            <div class="nav-right">
+                <!-- Profile button -->
+                <div class="nav-profile">
+                    <button class="openbutton" onclick="openpopupform()">
+                        <div class="profile-details">
+                            <img src="/Assets/images/customer/profile-picture.jpg" class="profile-picture">
+                            <div class="username">{{current_user.first_name}} {{current_user.last_name}}</div>
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Signout button -->
+                <div class="sign-in-out-btn">
+                    <button onclick="open_popup_signout_message()">Sign Out</button>
+                    <!-- {% if session.user_id %}
+                User with ID {{session.user_id}} is logged in.
+            {% endif %} -->
+                </div>
             </div>
-            <div class="nav-profile">
-                <button class="openbutton" onclick="openpopupform()">
-                    <div class="profile-details">
-                        <img src="/Assets/images/Team members/jonathan.png" alt="" class="profile-picture">
-                        <div class="username">{{current_user.first_name}}  {{current_user.last_name}}</div>
-                    </div>
-                </button>
-            </div>
-            <div class="sign-in-out-btn">
-                <button onclick="open_popup_signout_message()"> Sign Out </button>
-                <!-- {% if current_user %}
-                             <a href="/logout"> Sign Out</a>
-                             {% endif %} -->
-            </div>
-        </div>
-        <!-- search bar for mobile -->
-        <div class="search-bar-container-mobi">
-            <input type="search" name="search" placeholder="Search">
-            <i class="fas fa-search "></i>
         </div>
     </nav>
-    <div id="myForm" class="sectionpop ">
-        <div class="formsection">
+
+    <!-- start popup for profile -->
+    <div id="myForm" class="sectionpopnav">
+        <div class="formsectionprofile" id="formEditUserProfile">
             <div>
-                <button s class="closebutton" onclick="closepopupform()">❌</button>
+                <button class="closebutton" onclick="closepopupform()">❌</button>
             </div>
-            <img class="form-profile-picture" src="assets/profile-picture.jpg" alt="">
-            <form action="/action_page.php" style="margin:20px">
-                <label for="fname">First Name</label>
-                <input type="text" id="fname" name="firstname" placeholder="Enter First Name" value="sadeepa">
-                <label for="lname">Last Name</label>
-                <input type="text" id="lname" name="lastname" placeholder="Enter Last Names" value="bhashitha">
-                <label for="lname">Primary Number</label>
-                <input type="text" id="lname" name="lastname" placeholder="Enter Primary Number" value="0705614640">
-                <label for="lname">Secondary Number</label>
-                <input type="text" id="userid" name="lastname" placeholder="Enter Secondary Number" value="0705614640">
-                <input type="submit" value="Save">
-            </form>
+
+            <div class="nav-user-edit-from">
+                <div class="details">
+                    <div class="input-box">
+                        <h5>Name:</h5>
+                        <p>
+                            {{current_user.first_name}} {{current_user.last_name}}
+                        </p>
+                    </div>
+                    <div class="input-box">
+                        <h5>Username:</h5>
+                        <p>
+                            {{current_user.username}}
+                        </p>
+                    </div>
+                    <div class="input-box">
+                        <h5>Mobile:</h5>
+                        <p>
+                            {{current_user.primary_contact}}</p>
+                    </div>
+                </div>
+                <div class="editProPic">
+                    <img id="form-profile-picture" src="/Assets/images/customer/profile-picture.jpg" alt="">
+                </div>
+            </div>
+            <div class="edit-profile-link">
+                <a href="\Edituserdetails\EditProfileAction">Edit Profile</a>
+            </div>
         </div>
     </div>
-   
-    <!-- End Top Navigation Bar -->
+    <!-- end popup for profile -->
 
-    <!-- Start OF the POP up SIGN out -->
-    <div id="popup_signout" class="sectionpop ">
-        <div class="formsection">
-    
+    <!-- start pop up sign out section -->
+    <div id="popup_signout" class="sectionpopnav">
+        <div class="formsectionnav">
             <div>
                 <button class="closebutton" onclick="close_popup_signout_message()">❌</button>
             </div>
             <form action="/action_page.php" style="margin:20px">
                 <div style="margin:auto">
-                    <h1 style="margin:auto">
-                        Sign Out
-                    </h1>
-                    <p style="margin:auto">
-                        Do your really want to sign out now?
-                    </p>
+                    <h1>Sign Out</h1>
+                    <p>Do your really want to sign out now?</p>
                 </div>
             </form>
-    
-    
             <div style="display:flex">
-    
-                <button class="popup_delete_button">
+                <button class="popup_buttonnav">
                     {% if current_user %}
                     <a href="/logout"> YES</a>
                     {% endif %}
                 </button>
-                <button onclick="close_popup_signout_message()" class="popup_button">
+                <button onclick="close_popup_signout_message()" class="popup_delete_buttonnav">
                     NO
                 </button>
             </div>
         </div>
     </div>
-    <!-- End OF the POP up SIGN out -->
+    <!-- end pop up sign out section -->
+
+    <!-- End Top Navigation Bar -->
+
+
+
+
+<!-- Start OF the POP up Facility Delete -->
+<div id="popup_delete" class="sectionpop ">
+    <div class="formsection">
+        <div>
+            <button class="closebutton" onclick="close_popup_delete_message()">❌</button>
+        </div>
+        <form action="/action_page.php" style="margin:20px">
+            <div >
+                <h1>
+                    Facility Deletion
+                </h1>
+                <p>
+                    Do you really want to delete the Facility?
+                </p>
+            </div>
+        </form>
+        <div style="display:flex">
+
+            <button class="popup_delete_button">
+                <a href=""> YES</a>
+            </button>
+            <button onclick="close_popup_delete_message()" class="popup_button">
+                NO
+            </button>
+        </div>
+    </div>
+</div>
+<!-- End OF the POP up Facility delete -->
+
+<!-- update popup form -->
+<div id="myForm_for_update" class="sectionpop ">
+    <div class="formsection">
+        <div>
+            <button s class="closebutton" onclick="closepopupform_for_update()">❌</button>
+        </div>
+        <img class="form-profile-picture" src="assets/profile-picture.jpg" alt="">
+        <form action="/action_page.php" style="margin:20px" 
+        onsubmit="validateUpdateFacilityForm()" id="formUpdateFacility">
+            <div class="input-row">
+                <div class="input-box">
+                    <label for="editfacilityname">Facility Name:</label>
+                    <input id="editfacilityname" type="text" name="Facility_name" 
+                    onfocusout="validateUpdateFacilityName()"
+                        placeholder="Enter new facility name" value="{{sp_arena.Facility_name}}">
+                    <div class="helper-text" id="firstNameMsg"></div>
+                </div>
+                </div>
+            <input type="submit" class="popup_button" value="Save">
+        </form>
+    </div>
+</div>
+
+<!--end update popup form -->
 
     <section class="page-container">
 
-         <!-- SIDE NAVIGATION BAR - START -->
-         <div class="sidebar">
+        <!-- SIDE NAVIGATION BAR - START -->
+        <div class="sidebar">
             <div class="sidebar-container">
                 <div class="side-menu">
                     <i class="fas fa-bars fa-2x " id="side-menu-open-btn"></i>
@@ -112,7 +182,7 @@
                 </div>
                 <ul class="side-menu-list">
                     <li>
-                        <a href="#" class="side-menu-li">
+                        <a href="/Spadministrationstaff" class="side-menu-li">
                             <i class="fas fa-home"></i>
                             <p class="side-menu-item">Arena Profile</p>
                         </a>
@@ -168,17 +238,22 @@
                             class="fas fa-trash-alt"></i>
                         <p>Delete Facility</p>
                     </button>
+
+                    <button class="booking_tab tab-btn" onclick="openTab(event, 'update_booking')">
+                        <i class="fas fa-edit"></i>
+                    <p>Update Facility</p>
+                </button>
                 </div>
 
                 <!-- View Facility Tab -->
                 <div id="view_bookings" class="booking_tab_content active" style="display: block;">
-                    <table class="booking-table">
+                    <table class="booking-table" id="view-facility">
                         <thead>
                             <tr class="booking-thead-first-tr">
                                 <th class="booking-table-first-th">
                                     <div class="booking-table-filter-container">
                                         <div class="booking-table-search-container">
-                                            <input type="search" name="search" placeholder="Search">
+                                            <input type="search" name="search" placeholder="Search By Facility Name" id="search-view-facility" onkeyup="searchViewTable()">
                                             <i class="fas fa-search"></i>
                                         </div>
                                         <!-- <div class="booking-table-date-picker">
@@ -194,10 +269,11 @@
                             </tr>
                         </thead>
                         <tbody>
+                            
                             {% for facility in viewFacilities %}
                             <tr>
-                                <td data-label="Timeslot ID :">{{facility.facility_id}}</td>
-                                <td data-label="Start Time :">{{facility.facility_name}}</td>
+                                <td data-label="Facility ID :">{{facility.facility_id}}</td>
+                                <td data-label="Facility Name :">{{facility.facility_name}}</td>
                             </tr>
                             {% endfor %}
 
@@ -207,31 +283,49 @@
                 <!-- Add Facility Tab -->
                 <div id="add_bookings" class="booking_tab_content">
                     <div id="staff-add" class="add-booking-fm-con">
-                        <form class="add-booking-frm-content animate" action="/Spadministrationstaff/createfacility" method="post">
-                            <div class="add-booking-frm-container">
-                                <div class="input-row">
-                                <label for="fname"><b>Facility Name:</b></label>
-                                <input id="fname" type="text" placeholder="Enter Facility Name" name="fname" required>
+                        <form class="add-booking-frm-content animate" action="/action_page.php" method="post"
+                        onsubmit="validateAddFacilityForm()" id="formAddFacility">
+                        <div class="input-row">
+                            <div class="input-box">
+                                <label for="facilityName">Facility Name</label>
+                                <input id="facilityName" type="text" name="Facility_name" onfocusout="validateFacilityName()"
+                                    placeholder="Enter facility name" value="{{sp_arena.Facility_name}}">
+                                <div class="helper-text" id="firstNameMsg"></div>
                             </div>
+                            </div>
+                            <!-- <div class="input-box">
+                                <label for="password">Password</label>
+                                <input id="password" type="text" name="password" onfocusout="validatePassword()" placeholder="Enter a password" value="">
+                                <i class="bi bi-eye-slash bi-eye" id="togglePassword"></i>
+                                <div class="helper-text" id="passwordMsg">
+                                    <p>    
+                                    </p>
+                                </div>
+                            </div> -->
                             <div class="input-row">
-                                <label for="psw"><b>User Password:</b></label>
-                                <input id="psw" type="text" placeholder="Enter User Password" name="psw" required>
-                            </div>
-                            <button type="submit" class="add-booking-btn"><i class="fas fa-plus-circle"></i>Add
-                                Facility</button>
+                                <div class="input-box">
+                                    <label for="password">User Password</label>
+                                    <input id="password" type="password" name="User_password" onfocusout="validateUserPassword()"
+                                        placeholder="Enter user password" value="{{sp_arena.password}}">
+                                    <i class="bi bi-eye-slash" id="togglePassword"></i>
+                                    <div class="helper-text" id="passwordMsg"></div>
+                                </div>
+                            </div> 
+                            <div class="button">
+                                <input type="submit" value="Add Facilty" class="popup_button" />
                             </div>
                         </form>
                     </div>
                 </div>
                 <!-- Remove Facility Tab -->
                 <div id="cancel_booking" class="booking_tab_content">
-                    <table class="booking-table">
+                    <table class="booking-table" id="delete-facility">
                         <thead>
                             <tr class="booking-thead-first-tr">
                                 <th class="booking-table-first-th">
                                     <div class="booking-table-filter-container">
                                         <div class="booking-table-search-container">
-                                            <input type="search" name="search" placeholder="Search">
+                                            <input type="search" name="search" placeholder="Search By Facility Name" id="search-delete-facility" onkeyup="searchDeleteTable()">
                                             <i class="fas fa-search"></i>
                                         </div>
                                         <!-- <div class="booking-table-date-picker">
@@ -248,12 +342,51 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for facility in viewFacilities %}
+                            {% for facility in deleteFacilities %}
                             <tr>
-                                <td data-label="Timeslot ID :">{{facility.facility_id}}</td>
-                                <td data-label="Start Time :">{{facility.facility_name}}</td>
-                                <td class="trash-btn-padding-res"> <button class="icon_red" style="border:none"onclick="open_popup_delete_message()">
-                                    <i class="fas fa-trash-alt trash-btn"></i>
+                                <td data-label="Facility ID :">{{facility.facility_id}}</td>
+                                <td data-label="Facility Name :">{{facility.facility_name}}</td>
+                                <td class="trash-btn-padding-res"> <button class="icon_red trash-btn" style="border:none"onclick="open_popup_delete_message()">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button></td>
+                            </tr>
+                            {% endfor %}
+                            
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+                <!-- Update Facility Tab -->
+                <div id="update_booking" class="booking_tab_content">
+                    <table class="booking-table" id="update-facility">
+                        <thead>
+                            <tr class="booking-thead-first-tr">
+                                <th class="booking-table-first-th">
+                                    <div class="booking-table-filter-container">
+                                        <div class="booking-table-search-container">
+                                            <input type="search" name="search" placeholder="Search By Facility Name" id="search-update-facility" onkeyup="searchUpdateTable()">
+                                            <i class="fas fa-search"></i>
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                            <tr class="booking-thead-second-tr">
+                                <th class="b-first-th">Facility ID</th>
+                                <th>Facility Name</th>
+                                <th class="b-last-th"> Action</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            {% for facility in updateFacilities %}
+                            <tr>
+                                <td data-label="Facility ID :">{{facility.facility_id}}</td>
+                                <td data-label="Facility Name :">{{facility.facility_name}}</td>
+                                <td> <button class="icon_red trash-btn" style="border:none"onclick="openpopupform_for_update()">
+                                <i class="fas fa-pencil-alt"></i>
                                 </button></td>
                             </tr>
                             {% endfor %}
@@ -273,7 +406,12 @@
         </div>
     </footer>
     <!-- End of Footer -->
-    <script type="text/javascript" src="/Assets/js/Administration-Staff/manage-facility.js?version=1"></script>
+    <!-- Validation JS -->
+    <script type="text/javascript" src="/Assets/js/signup_validation.js?version=6.0"></script>
+     <!-- Top navbar js -->
+     <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
+     <!-- File Specific JS -->
+    <script type="text/javascript" src="/Assets/js/SpArenaManager/manage-facility.js?version=6"></script>
 </body>
 
 </html>

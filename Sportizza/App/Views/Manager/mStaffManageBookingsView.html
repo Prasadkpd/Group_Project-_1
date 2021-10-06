@@ -442,10 +442,7 @@
                             <tr class="booking-thead-first-tr">
                                 <th class="booking-table-first-th">
                                     <div class="booking-table-filter-container">
-                                        <div class="booking-table-search-container">
-                                            <input type="search" name="search" placeholder="Search By Bookin ID" id="search-delete-booking" onkeyup="searchDeleteTable()">
-                                            <i class="fas fa-search"></i>
-                                        </div>
+                                        <span>Booking Date</span>
                                         <div class="booking-table-date-picker">
                                             <label class="date-label">Booking Date</label>
                                             <input type="date" id="delete-date-picker" onchange="DeleteDatepicker()">
@@ -531,7 +528,7 @@
                                 <th>Booking Date</th>
                                 <th>Amount(LKR)</th>
                                 <th>Payment Status</th>
-                                <th class="b-last-th">Action</th>
+                                <th class="b-last-th" >Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -548,7 +545,7 @@
                                     <div class="Payment-status"><a href="">{{book.payment_status}}</a></div>
                                 </td>
                                 <td data-label="">
-                                    <div class="Payment"><a href="/Sparenamanager/getpayment/{{book.booking_id}}">Get Payment</a></div>
+                                    <div class="Payment"><a onclick="open_popup_payment_message()">Get Payment</a></div>
                                 </td>
                                 <!-- <a href="Sparenamanager/getpayment/{{book.booking_id}}"></a> -->
                             </tr>

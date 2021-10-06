@@ -6,8 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Bookings</title>
-    <link rel="stylesheet" href="/Assets/css/BookingHandelingStaff/manage-bookings.css?version=10">
+    <!-- Top Nav bar CSS styles -->
     <link rel="stylesheet" href="/Assets/css/navbar.css?version=4">
+    <!-- File Specific CSS Styles -->
+    <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-bookings.css?version=8">
+    <link rel="stylesheet" href="/Assets/css/BookingHandelingStaff/sidebar.css?version=10">
+
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 </head>
 
@@ -37,14 +41,14 @@
                 <div class="sign-in-out-btn">
                     <button onclick="open_popup_signout_message()">Sign Out</button>
                     <!-- {% if session.user_id %}
-                    User with ID {{session.user_id}} is logged in.
-                {% endif %} -->
+                User with ID {{session.user_id}} is logged in.
+            {% endif %} -->
                 </div>
             </div>
         </div>
     </nav>
-    <!-- End Top Navigation Bar -->
-    <!-- start popup form for edit profile -->
+
+    <!-- start popup for profile -->
     <div id="myForm" class="sectionpopnav">
         <div class="formsectionprofile" id="formEditUserProfile">
             <div>
@@ -80,7 +84,7 @@
             </div>
         </div>
     </div>
-    <!-- end popup form for edit profile -->
+    <!-- end popup for profile -->
 
     <!-- start pop up sign out section -->
     <div id="popup_signout" class="sectionpopnav">
@@ -107,6 +111,64 @@
         </div>
     </div>
     <!-- end pop up sign out section -->
+    <!-- End Top Navigation Bar -->
+
+    <!-- Start Of the Popup of Bookig Cancellation  -->
+    <div id="popup_delete" class="sectionpop ">
+        <div class="formsection">
+            <div>
+                <button class="closebutton" onclick="close_popup_delete_message()">❌</button>
+            </div>
+            <form action="/action_page.php" style="margin:20px">
+                <div style="margin:auto">
+                    <h1>
+                        Booking Cancellation
+                    </h1>
+                    <p>
+                        Do you really want to cancel the booking?
+                    </p>
+                </div>
+            </form>
+            <div style="display:flex">
+
+                <button class="popup_delete_button">
+                    <a href=""> YES</a>
+                </button>
+                <button onclick="close_popup_delete_message()" class="popup_button">
+                    NO
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- End OF the POP up Booking Cancel -->
+    <!-- Start Of the Popup of Bookig Cancellation  -->
+    <div id="popup_payment" class="sectionpop ">
+        <div class="formsection">
+            <div>
+                <button class="closebutton" onclick="close_popup_payment_message()">❌</button>
+            </div>
+            <form action="/action_page.php" style="margin:20px">
+                <div style="margin:auto">
+                    <h1 style="margin:auto">
+                        Get Payment
+                    </h1>
+                    <p style="margin:auto">
+                        Are you sure that you collect cash payment from customer?
+                    </p>
+                </div>
+            </form>
+            <div style="display:flex">
+
+                <button class="popup_delete_button">
+                    <a href=""> YES</a>
+                </button>
+                <button onclick="close_popup_payment_message()" class="popup_button">
+                    NO
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- End OF the POP up Booking Cancel -->
 
     <section class="page-container">
 
@@ -148,39 +210,22 @@
         <div class="page-content-container">
             <div class="container">
                 <h1 class="page-header">View Bookings</h1>
-                <!-- <div class="tab">
-                    <button class="booking_tab tab-btn active" onclick="openTab(event, 'view_bookings')"><i
-                            class="fas fa-eye"></i>
-                        <p>View Bookings</p>
-                    </button>
-                    <button class="booking_tab tab-btn" onclick="openTab(event, 'add_bookings')"><i
-                            class="fas fa-plus-circle"></i>
-                        <p>Add Bookings</p>
-                    </button>
-                    <button class="booking_tab tab-btn" onclick="openTab(event, 'cancel_booking')"><i
-                            class="fas fa-trash-alt"></i>
-                        <p>Cancel Bookings</p>
-                    </button>
-                    <button class="booking_tab tab-btn" onclick="openTab(event, 'booking_payment')"><i
-                            class="fas fa-money-check-alt"></i>
-                        <p> Booking Payment</p>
-                    </button>
-                </div> -->
-
+                
                 <!-- View Bookings Tab -->
                 <div id="view_bookings" class="booking_tab_content active" style="display: block;">
-                    <table class="booking-table">
+                    <table class="booking-table" id="view-booking">
                         <thead>
                             <tr class="booking-thead-first-tr">
                                 <th class="booking-table-first-th">
                                     <div class="booking-table-filter-container">
                                         <div class="booking-table-search-container">
-                                            <input type="search" name="search" placeholder="Search">
+                                            <input type="search" name="search" placeholder="Search By Booking ID"
+                                                id="search-view-booking" onkeyup="searchViewTable()">
                                             <i class="fas fa-search"></i>
                                         </div>
                                         <div class="booking-table-date-picker">
                                             <label class="date-label">Booking Date</label>
-                                            <input type="date">
+                                            <input type="date" id="view-date-picker" onchange="ViewDatepicker()">
                                         </div>
                                     </div>
                                 </th>
@@ -190,41 +235,43 @@
                                 <th>Start Time</th>
                                 <th>End Time</th>
                                 <th>Amount(LKR)</th>
-                                <th>Booked Date</th>
+                                <th>Booking Date</th>
                                 <th>Mobile Number</th>
                                 <th>Payment Method</th>
                                 <th class="b-last-th">Payment Status</th>
                             </tr>
                         </thead>
                         <tbody>
+
                             {% for book in bookings %}
                             {% if book.payment_status=="paid" %}
                             <tr>
                                 <td data-label="Booking ID :">{{book.booking_id}}</td>
                                 <td data-label="Start Time :">{{book.start_time}}</td>
                                 <td data-label="End Time :">{{book.end_time}}</td>
-                                <td data-label="Amount :">{{book.price_per_booking}}</td>
-                                <td data-label="Booked Date :">{{book.booked_date}}</td>
+                                <td data-label="Amount(LKR) :">{{book.price_per_booking}}</td>
+                                <td data-label="Booking Date :">{{book.booking_date}}</td>
                                 <td data-label="Mobile Number :">{{book.primary_contact}}</td>
                                 <td data-label="Payment Method :">{{book.payment_method}}</td>
-                                <td data-label="Payment Status:">
+                                <td>
                                     <div class="Payment-status active"><a href="">{{book.payment_status}}</a></div>
                                 </td>
 
                             </tr>
                             {% endif %}
 
+
                             {% if book.payment_status=="unpaid" %}
                             <tr>
                                 <td data-label="Booking ID :">{{book.booking_id}}</td>
                                 <td data-label="Start Time :">{{book.start_time}}</td>
                                 <td data-label="End Time :">{{book.end_time}}</td>
-                                <td data-label="Amount :">{{book.price_per_booking}}</td>
-                                <td data-label="Booked Date :">{{book.booked_date}}</td>
+                                <td data-label="Amount(LKR) :">{{book.price_per_booking}}</td>
+                                <td data-label="Booking Date :">{{book.booking_date}}</td>
                                 <td data-label="Mobile Number :">{{book.primary_contact}}</td>
                                 <td data-label="Payment Method :">{{book.payment_method}}</td>
-                                <td data-label="Payment Status:">
-                                    <div class="Payment-status"><a href="">{{book.payment_status}}</a></div>
+                                <td>
+                                    <div class="Payment-status "><a href="">{{book.payment_status}}</a></div>
                                 </td>
 
                             </tr>
@@ -232,17 +279,16 @@
                             {% endfor %}
 
 
+
+
                         </tbody>
                     </table>
                 </div>
-
-
             </div>
         </div>
-
     </section>
     <!-- Start of Footer -->
-    <footer style="position:fixed;">
+    <footer>
         <div class="copyright">
             <p>
                 Copyright &copy;2021 All rights reserved | Sportizza Inc.
@@ -250,7 +296,11 @@
         </div>
     </footer>
     <!-- End of Footer -->
-    <script type="text/javascript" src="/Assets/js/BookingHandelingStaff/manage-bookings.js?version=2"></script>
+    <!-- Top navbar js -->
+    <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
+    <!-- File Specific js -->
+    <script type="text/javascript" src="/Assets/js/SpArenaManager/manage-bookings.js?version=3"></script>
+    <script type="text/javascript" src="/Assets/js/Customer/newCart.js?version=4"></script>
 </body>
 
 </html>

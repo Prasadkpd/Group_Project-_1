@@ -253,7 +253,7 @@ class SpArenaManagerModel extends \Core\Model
 
     public static function managerViewStaff($id){
         
-        $sql = 'SELECT user.first_name, user.last_name ,user.username,user.primary_contact
+        $sql = 'SELECT user.first_name, user.last_name ,user.username,user.primary_contact,user.type
         FROM administration_staff
         INNER JOIN booking_handling_staff ON
         administration_staff.manager_user_id =booking_handling_staff.manager_user_id
@@ -303,7 +303,7 @@ class SpArenaManagerModel extends \Core\Model
                 FROM booking
                 INNER JOIN manager ON booking.sports_arena_id=manager.sports_arena_id
                 WHERE manager.user_id=:id
-                GROUP BY booking.booking_date ';
+                GROUP BY booking.booking_date DESC LIMIT 7';
 
         // $sql = 'SELECT booking.booking_date, COUNT(DISTINCT booking.booking_id) AS No_Of_Bookings
         // FROM booking

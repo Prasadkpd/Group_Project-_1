@@ -5,20 +5,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Bookings</title>
-     <!-- Top Nav bar CSS styles -->
-     <link rel="stylesheet" href="/Assets/css/navbar.css?version=5">
-     <!-- File Specific CSS Styles -->
-    <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-profile.css?version=8">
-    <link rel="stylesheet" href="/Assets/css/BookingHandelingStaff/sidebar.css?version=10">
-
+    <title>Edit Sports Arena Profile</title>
+    <!-- Top Nav bar CSS styles -->
+    <link rel="stylesheet" href="/Assets/css/navbar.css?version=5">
+    <!-- File Specific CSS Styles -->
+ <link rel="stylesheet" href="/Assets/css/SpArenaManager/editArenaProfile.css">  
     <!-- Font Styles -->
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-     <!-- Top Navigation Bar -->
-     <nav>
+    <!-- Top Navigation Bar -->
+    <nav>
         <div class="nav-left">
             <div class="logo-container">
                 <a href="/">
@@ -42,8 +40,8 @@
                 <div class="sign-in-out-btn">
                     <button onclick="open_popup_signout_message()">Sign Out</button>
                     <!-- {% if session.user_id %}
-                User with ID {{session.user_id}} is logged in.
-            {% endif %} -->
+               User with ID {{session.user_id}} is logged in.
+           {% endif %} -->
                 </div>
             </div>
         </div>
@@ -117,17 +115,17 @@
 
 
 
-
-
-
+<div class="page-container">
     <!-- Start OF the POP up Edit arena form -->
-    <!-- <div id="popup_edit_form" class="edit_sectionpop">
+    <div id="popup_edit_form" class="edit_sectionpop">
         <div class="edit_formsection">
             <div>
-                <button class="closebutton" onclick="close_popup_edit_arena_profile()">❌</button>
+                <a href="/Spadministrationstaff">
+                <button class="closebutton">❌</button>
+            </a>
             </div>
             <h2>Sport Arena Profile</h2>
-            <form action="">
+            <form action="" >
                 <div class="sp-edit-form">
                     <div class="input-row">
                         <div class="input-box">
@@ -205,7 +203,8 @@
                         <label for="map-link">Google Map Link</label>
                         <input id="map-link" type="text" name="google_map_link"
                             placeholder="Ex: https://www.google.com/maps?q=204+C+Sandpiper+Place,+Fort+McMurray,+AB,+Canada"
-                            onfocusout="validateMapLink()" value="{{sp_arena.google_map_link}}">
+                            onfocusout="validateMapLink()" value="{{sp_arena.google_map_link}}" 
+                            >
                         <div class="helper-text" id="map-linkMsg">
                             <p>{{errors["google_map1"]}} {{errors["google_map2"]}}</p>
                         </div>
@@ -287,29 +286,29 @@
 
                                 <div class="input-box">
 
-                                <div class="img-btn-div">
-                                    <label class="tag">Image 3:</label>
-                                    <input style type="file" name="image_3" accept="image/*" id="file3"
-                                        onchange="change_color(this.files,event)" class="img-button">
+                                    <div class="img-btn-div">
+                                        <label class="tag">Image 3:</label>
+                                        <input style type="file" name="image_3" accept="image/*" id="file3"
+                                            onchange="change_color(this.files,event)" class="img-button">
+                                    </div>
+                                    <div class="helper-text" id="imgMsg3">
+                                        {% for key,error in errors ["image_3"] %}
+                                        {{error}}
+                                        {% endfor %}</p>
+                                    </div>
                                 </div>
-                                <div class="helper-text" id="imgMsg3">
-                                    {% for key,error in errors ["image_3"] %}
-                                    {{error}}
-                                    {% endfor %}</p>
+                                <div class="input-box">
+                                    <div class="img-btn-div">
+                                        <label class="tag">Image 4:</label>
+                                        <input style type="file" name="image_4" accept="image/*" id="file4"
+                                            onchange="change_color(this.files,event)" class="img-button">
+                                    </div>
+                                    <div class="helper-text" id="imgMsg4">
+                                        {% for key,error in errors ["image_4"] %}
+                                        {{error}}
+                                        {% endfor %}</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="input-box">
-                                <div class="img-btn-div">
-                                    <label class="tag">Image 4:</label>
-                                    <input style type="file" name="image_4" accept="image/*" id="file4"
-                                        onchange="change_color(this.files,event)" class="img-button">
-                                </div>
-                                <div class="helper-text" id="imgMsg4">
-                                    {% for key,error in errors ["image_4"] %}
-                                    {{error}}
-                                    {% endfor %}</p>
-                                </div>
-                            </div>
                             </div>
 
                             <div class="input-box">
@@ -330,126 +329,9 @@
                 <input type="submit" value="Update Profile" class="popup_button">
             </form>
         </div>
-    </div> -->
+    </div>
+</div>
 
-
-
-    <section class="page-container">
-
-        <!-- SIDE NAVIGATION BAR - START -->
-        <div class="sidebar">
-            <div class="sidebar-container">
-                <div class="side-menu">
-                    <i class="fas fa-bars fa-2x " id="side-menu-open-btn"></i>
-                    <i class="fas fa-times fa-2x" id="side-menu-close-btn"></i>
-                </div>
-                <ul class="side-menu-list">
-                    <li>
-                        <a href="/Spbookstaff" class="side-menu-li">
-                            <i class="fas fa-home"></i>
-                            <p class="side-menu-item">Arena Profile</p>
-                        </a>
-                        <p class="side-menu-tooltip">Arena Profile</p>
-                    </li>
-                    <li>
-                        <a href="/Spbookstaff/managebookings" class="side-menu-li">
-                            <i class="fas fa-bookmark"></i>
-                            <p class="side-menu-item">Manage Bookings</p>
-                        </a>
-                        <p class="side-menu-tooltip">Bookings</p>
-                    </li>
-                    <li>
-                        <a href="/Spbookstaff/sabookstaffnotification" class="side-menu-li">
-                            <i class="fas fa-bell"></i>
-                            <p class="side-menu-item">Notifications</p>
-                        </a>
-                        <p class="side-menu-tooltip">Notifications</p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <!-- SIDE NAVIGATION BAR - END -->
-
-        <!-- Manage Bookings Page -->
-        <div class="page-content-container">
-            <div class="container">
-                <div class="sp-arena-home">
-                    <div class="sp-arena">
-                        <div class="sp-arena-img">
-                            <img src="Assets/images/customer/cricket.jpg">
-                        </div>
-                        <div class="sp-arena-details">
-                            <div class="sp-name">
-                                <h2>Mercantile Cricket Grounds</h2>
-                            </div>
-                            <div class="other">
-                                <h4>Contact No: 0746464327</h4>
-                            </div>
-                            <div class="other">
-                                <h5>Accepted Payment Methods: Card Payments & Cash Payments</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="about-sp-arena" style="display: block;">
-                        <div class="more-details">
-                            <div class="detail">
-                                <div class="description">
-                                    <h5>About Sports Arena</h5>
-                                    <p>
-                                        Lorem Ipsum dolor sit amet, consectetur adipiscing elit,
-                                        sed do eiusmod tempor incididunt ut labore et dolore magna
-                                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                        ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="detail">
-                                <div class="Other-facilities">
-                                    <h5>Other facilities</h5>
-                                    <p>Car Parking, Changing Rooms, Cafeteria.</p>
-                                </div>
-                            </div>
-                            <div class="detail-grid">
-                                <div class="google-map">
-                                    <iframe
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.856271141694!2d79.86827001482301!3d6.907784420492848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25979bfbde28d%3A0xae825954d8507c7d!2sMercantile%20Cricket%20Association!5e0!3m2!1sen!2slk!4v1629887793472!5m2!1sen!2slk"
-                                        width="400" height="300" style="border:0;" allowfullscreen=""
-                                        loading="lazy"></iframe>
-                                </div>
-
-                                <div class="slide-container">
-                                    <img id="slide-left" class="arrow" src="Assets/images/customer/arrow-left.png">
-                                    <section class="slide-container" id="slider">
-
-                                        <div class="thumbnail">
-                                            <img src="Assets/images/customer/Screenshot_1.jpg" alt="">
-                                        </div>
-                                        <div class="thumbnail">
-                                            <img src="Assets/images/customer/Screenshot_2.jpg" alt="">
-                                        </div>
-                                        <div class="thumbnail">
-                                            <img src="Assets/images/customer/Screenshot_3.jpg" alt="">
-                                        </div>
-                                        <div class="thumbnail">
-                                            <img src="Assets/images/customer/Screenshot_4.jpg" alt="">
-                                        </div>
-
-                                        <div class="thumbnail">
-                                            <img src="Assets/images/customer/Screenshot_10.jpg" alt="">
-                                        </div>
-
-                                    </section>
-                                    <img id="slide-right" class="arrow" src="Assets/images/customer/arrow-right.png">
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <!-- Start of Footer -->
     <footer>
         <div class="copyright">
@@ -461,11 +343,11 @@
     <!-- End of Footer -->
     <!-- Validation JS -->
     <script type="text/javascript" src="/Assets/js/signup_validation.js?version=7.0"></script>
-     <!-- Top navbar js -->
-     <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
-     <!-- File specific JS -->
-    <script type="text/javascript" src="/Assets/js/SpArenaManager/manage-profile.js?version=1"></script>
-  
+    <!-- Top navbar js -->
+    <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
+    <!-- File specific JS -->
+    <script type="text/javascript" src="/Assets/js/SpArenaManager/edit-profile.js?version=1"></script>
+
 </body>
 
 </html>
