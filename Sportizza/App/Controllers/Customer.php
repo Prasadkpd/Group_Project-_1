@@ -140,7 +140,7 @@ class Customer extends Authenticated
     {
         $customer_id=Auth::getUser()->user_id;
         CustomerModel::customerAddFavoriteList($_POST['arena_id'],$customer_id);
-        $this->redirect('/Customer');
+        $this->redirect('/Customer/booking/'.$_POST['arena_id']);
     }
 
 

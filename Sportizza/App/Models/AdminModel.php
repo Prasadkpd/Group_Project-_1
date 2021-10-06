@@ -71,12 +71,12 @@ class AdminModel extends \Core\Model
 
     public static function adminRemoveSportsArenas(){
         
-        // $sql = 'SELECT DISTINCT(sports_arena_profile.s_a_profile_id),
-        // sports_arena_profile.sa_name, COUNT(feedback.sports_arena_id) as "count",
-        // sports_arena_profile.account_status FROM feedback
-        // INNER JOIN sports_arena_profile ON feedback.sports_arena_id=sports_arena_profile.sports_arena_id 
-        // WHERE feedback.feedback_rating<3 AND sports_arena_profile.account_status!="inactive" 
-        // GROUP BY (feedback.sports_arena_id)';
+        $sql = 'SELECT DISTINCT(sports_arena_profile.s_a_profile_id),
+        sports_arena_profile.sa_name, COUNT(feedback.sports_arena_id) as "count",
+        sports_arena_profile.account_status FROM feedback
+        INNER JOIN sports_arena_profile ON feedback.sports_arena_id=sports_arena_profile.sports_arena_id 
+        WHERE feedback.feedback_rating<3 AND sports_arena_profile.account_status!="inactive" 
+        GROUP BY (feedback.sports_arena_id)';
 
 
 
@@ -86,16 +86,16 @@ class AdminModel extends \Core\Model
 //                 FROM feedback INNER JOIN sports_arena_profile ON feedback.sports_arena_id= sports_arena_profile.sports_arena_id
 //                 WHERE feedback.feedback_rating<3 AND sports_arena_id = 100000000';
 
-        // $db = static::getDB();
-        // $stmt = $db->prepare($sql);
-        // // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
-        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
-        // $stmt->execute();
-        // $result = $stmt->fetchAll();
-        // //  var_dump($result);
-        // return $result;
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        //  var_dump($result);
+        return $result;
     }
 
     public static function adminViewFAQ(){

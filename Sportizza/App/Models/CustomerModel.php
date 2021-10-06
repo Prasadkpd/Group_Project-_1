@@ -62,9 +62,12 @@ class CustomerModel extends \Core\Model
     public static function customerFavouriteList($id){
         //correct 
         $sql = 'SELECT sports_arena_profile.sa_name, sports_arena_profile.category, sports_arena_profile.location
-        FROM favourite_list INNER JOIN favourite_list_sports_arena ON favourite_list.fav_list_id = favourite_list_sports_arena.fav_list_id 
+        FROM favourite_list
+        INNER JOIN customer_profile ON  favourite_list.customer_profile_id=customer_profile.customer_profile_id
+        INNER JOIN favourite_list_sports_arena ON favourite_list.fav_list_id = favourite_list_sports_arena.fav_list_id 
         INNER JOIN sports_arena_profile ON favourite_list_sports_arena.sports_arena_id = sports_arena_profile.sports_arena_id 
-        WHERE favourite_list.customer_profile_id=:id AND favourite_list_sports_arena.security_status="active"
+        
+        WHERE customer_profile.customer_user_id=:id AND favourite_list_sports_arena.security_status="active"
         AND sports_arena_profile.security_status="active"';
 
 
@@ -163,10 +166,17 @@ class CustomerModel extends \Core\Model
 
     public static function customerAddFavoriteList($arena_id,$customer_id){
 
-        $sql = 'SELECT fav_list_id
-                 FROM  favourite_list 
-                WHERE customer_profile_id=:id';
-                // have to change this is wrong we use it for testing
+    
+        // select fav_list_id for customer
+        // $sql = 'SELECT fav_list_id
+        //          FROM  favourite_list
+        //         WHERE customer_profile_id=:id';
+                
+
+        $sql = 'SELECT favourite_list.fav_list_id
+                FROM  customer_profile
+                INNER JOIN favourite_list ON customer_profile.customer_profile_id=favourite_list.customer_profile_id
+                WHERE customer_profile.customer_user_id=:id';
 
 
         $db = static::getDB();
@@ -178,15 +188,26 @@ class CustomerModel extends \Core\Model
         $stmt->execute();
         $result = $stmt->fetchAll();
     
-        $favorite_list_id=$result;
+        $favorite_list_id=$result[0]->fav_list_id;
+        var_dump($favorite_list_id);
+
+        //select query for arena exists in favorite list
+        $sql = 'SELECT sports_arena_id
+        FROM  favourite_list_sports_arena
+        WHERE fav_list_id=:favorite_list_id AND sports_arena_id=:arena_id';
+   
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':favorite_list_id', $favorite_list_id, PDO::PARAM_STR);
+        $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+        $spArenaExists = $stmt->fetchAll();
 
 
-
-
-
-
-        
-        $sql = 'INSERT INTO favourite_list_sports_arena (fav_list_id,sports_arena_id )
+        if(!$spArenaExists){
+            $sql = 'INSERT INTO favourite_list_sports_arena (fav_list_id,sports_arena_id)
         VALUES (:favorite_list_id,:arena_id);';
                 
 
@@ -194,11 +215,14 @@ class CustomerModel extends \Core\Model
         $db = static::getDB();
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
-        $stmt->bindValue(':favorite_list_id', $favorite_list_id, PDO::PARAM_INT);
+        $stmt->bindValue(':favorite_list_id', $favorite_list_id, PDO::PARAM_STR);
 
-        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
         $stmt->execute();
+        }
+        
+        
         // $result = $stmt->fetchAll();
         // return $result;
     }
