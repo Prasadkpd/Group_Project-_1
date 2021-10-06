@@ -74,7 +74,9 @@ class SpArenaManagerModel extends \Core\Model
                 INNER JOIN user ON user.user_id=booking.customer_user_id
                 INNER JOIN manager ON booking.sports_arena_id =manager.sports_arena_id
                  WHERE booking.security_status="active"AND manager.user_id=:id
-                 ORDER BY booking.booking_date DESC';
+                 AND CURDATE() <= booking_date
+                 ORDER BY booking.booking_date DESC
+                 ';
         
 
 
