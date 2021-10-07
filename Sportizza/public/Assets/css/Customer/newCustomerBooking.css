@@ -698,7 +698,15 @@ footer {
 
   .add_favorite_button{
     margin:auto;
-    margin-top: 100px;
+  }
+  .other{
+    width: 68vw;
+  }
+  .other .favorite-deltails{
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+
   }
 /* starting media queries */
 @media screen and (max-width: 768px) {
@@ -941,9 +949,9 @@ footer {
   display: flex;
   flex-direction: row;
   height: 53vh;
-  width: 100%;
+  width: 95vw;
   border-radius: 25px;
-  margin-left: 5vw;
+  margin-left: 2vw;
   /* display:none; */
 }
 
@@ -1234,16 +1242,19 @@ footer {
   .available-bookings ul li {
     padding: 15px 0;
     flex-direction: column;
-    align-items: left;
+    align-items: center;
+  }
+  .toggle-button-cover{
+    width: 100px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
   }
 }
 
 @media screen and (max-width: 420px) {
 
-  .add_favorite_button{
-    margin:auto;
-    margin-top: 100px;
-  }
+  
   .sidebar {
     width: 10vw;
   }
@@ -1360,6 +1371,19 @@ footer {
   .available-bookings{
     height: 48vh;
   }
+  .add_favorite_button{
+    margin:0;
+  }
+  .other .favorite-deltails {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column-reverse;
+  }
+  .other .favorite-deltails form input[type="submit"]{
+    height: 36px;
+    padding: 0 10px;
+    font-size: small;
+  }
 }
 
 
@@ -1464,7 +1488,7 @@ footer {
 .layer
 {
     width: 100%;
-    background-color: #ebf7fc;
+    background-color: #FEA47F;
     transition: 0.3s ease all;
     z-index: 1;
 }
@@ -1487,7 +1511,7 @@ footer {
     display:flex;
     justify-content:center;
     align-items: center;
-    background-color: #03A9F4;
+    background-color: #1e272e;
     border-radius:20px;
     transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
 }
@@ -1496,12 +1520,13 @@ footer {
 {
     content: 'Card';
     left: 42px;
-    background-color: #f44336;
+    background-color: #fff;
+    color: #1e272e;
 }
 
 #button-1 .checkbox:checked ~ .layer
 {
-    background-color: #fcebeb;
+    background-color: #FEA47F;
 }
 
 #button-1 .knobs, #button-1 .knobs:before, #button-1 .layer

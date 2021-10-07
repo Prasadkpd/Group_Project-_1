@@ -143,25 +143,22 @@
                                     Card Payments & Cash Payments
                                 {% endif %}
                             </h5>
+                            <div class="favorite-deltails">
+                                <div class="add_favorite_button">
+                                    <form action="/customer/addtofavoritelist" method="POST">
+                                        <input id="arena_id" name="arena_id" type="hidden" value={{arenaDetails[0].sports_arena_id}}>
+                                        <input type="submit" value="add to favorites">
+                                    </form>
+                                </div>
+                                <a type="" class="more-link" id="more_details_btn" onclick="open_moredetails()">More Details
+                                </a>
+                                <a type="" class="more-link" id="goto_booking_btn" onclick="open_goto_booking()">Go to Bookings
+                                </a>
+                            </div>
                         </div>
-                        <a type="" class="more-link" id="more_details_btn" onclick="open_moredetails()">More Details
-                        </a>
-                        <a type="" class="more-link" id="goto_booking_btn" onclick="open_goto_booking()">Go to Bookings
-                        </a>
 
 
-                    </div>
-
-
-                    <div class="add_favorite_button">
-                        <form action="/customer/addtofavoritelist" method="POST">
-                            <input  id="arena_id" name="arena_id"  type="hidden" value={{arenaDetails[0].sports_arena_id}}>
-                            <input type="submit" value="add to favorites">
-                        </form>
-                    </div>
-
-
-                    
+                    </div>                    
                 </div>
                 <div class="container2">
                     <div class="more-details" id="more-details">
