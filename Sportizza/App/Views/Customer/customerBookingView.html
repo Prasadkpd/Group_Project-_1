@@ -143,25 +143,22 @@
                                     Card Payments & Cash Payments
                                 {% endif %}
                             </h5>
+                            <div class="favorite-deltails">
+                                <div class="add_favorite_button">
+                                    <form action="/customer/addtofavoritelist" method="POST">
+                                        <input id="arena_id" name="arena_id" type="hidden" value={{arenaDetails[0].sports_arena_id}}>
+                                        <input type="submit" value="add to favorites">
+                                    </form>
+                                </div>
+                                <a type="" class="more-link" id="more_details_btn" onclick="open_moredetails()">More Details
+                                </a>
+                                <a type="" class="more-link" id="goto_booking_btn" onclick="open_goto_booking()">Go to Bookings
+                                </a>
+                            </div>
                         </div>
-                        <a type="" class="more-link" id="more_details_btn" onclick="open_moredetails()">More Details
-                        </a>
-                        <a type="" class="more-link" id="goto_booking_btn" onclick="open_goto_booking()">Go to Bookings
-                        </a>
 
 
-                    </div>
-
-
-                    <div class="add_favorite_button">
-                        <form action="/customer/addtofavoritelist" method="POST">
-                            <input  id="arena_id" name="arena_id"  type="hidden" value={{arenaDetails[0].sports_arena_id}}>
-                            <input type="submit" value="add to favorites">
-                        </form>
-                    </div>
-
-
-                    
+                    </div>                    
                 </div>
                 <div class="container2">
                     <div class="more-details" id="more-details">
@@ -245,27 +242,28 @@
                                             <span class="facility">{{timeSlot.facility_name}}</span>
                                         </div>
                                         <div class="row">
-                                            <span class="price">{{timeSlot.price}}</span>
+                                            <span class="price">LKR {{timeSlot.price}}</span>
                                             
                                         
                                         </div>
 
                                         <!-- toggle button -->
                                             
-                                                
-                                        <div class="toggle-button-cover">
-                                            <div class="button-cover">
-                                              <div class="button r" id="button-1">
-                                                <input type="checkbox" class="checkbox">
-                                                <div class="knobs"></div>
-                                                <div class="layer"></div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                  
-                                        <div>
-                                            <button class="removeItem" value={{timeSlot.time_slot_id}} onclick="hidefunction({{timeSlot.time_slot_id}})">
-                                                <i class="fas fa-cart-plus"></i></button>
+                                        <div class="payment_cart">
+                                                    <div class="toggle-button-cover">
+                                                        <div class="button-cover">
+                                                            <div class="button r" id="button-1">
+                                                                <input type="checkbox" class="checkbox">
+                                                                <div class="knobs"></div>
+                                                                <div class="layer"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div>
+                                                        <button class="removeItem" value={{timeSlot.time_slot_id}} onclick="hidefunction({{timeSlot.time_slot_id}})">
+                                                            <i class="fas fa-cart-plus"></i></button>
+                                                    </div>
                                         </div>
                                     </li>
                                     {% endfor %}

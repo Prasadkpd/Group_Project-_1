@@ -10,6 +10,7 @@
      <link rel="stylesheet" href="/Assets/css/navbar.css?version=4">
      <!-- File Specific CSS Styles -->
     <link rel="stylesheet" href="/Assets/css/SpArenaManager/notification.css?version=3">
+    <link rel="stylesheet" href="/Assets/css/SpAdministartionStaff/sidebar.css?version=10">
     <!-- <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-booking.css?version=2"> -->
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 </head>
@@ -216,6 +217,24 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <tr style="cursor: pointer"
+                                onclick="open_popup_notification('{{notification.subject}}','{{notification.description}}')">
+                                <td data-label="Date:">2021-10-05</td>
+                                <td data-label="Time:">18:45</td>
+                                <td class="notification-td-left">Cash Payment Confirmation Message</td>
+                            </tr>
+                            <tr style="cursor: pointer"
+                                onclick="open_popup_notification('{{notification.subject}}','{{notification.description}}')">
+                                <td data-label="Date:">2021-10-06</td>
+                                <td data-label="Time:">15:39</td>
+                                <td class="notification-td-left">Cash Payment Confirmation Message</td>
+                            </tr>
+                            <tr style="cursor: pointer"
+                                onclick="open_popup_notification('{{notification.subject}}','{{notification.description}}')">
+                                <td data-label="Date:">2021-10-08</td>
+                                <td data-label="Time:">16:45</td>
+                                <td class="notification-td-left">Cash Payment Confirmation Message</td>
+                            </tr>
                             {% for notification in notifications %}
                             <tr style="cursor: pointer" onclick="open_popup_notification('{{notification.subject}}','{{notification.description}}')">
                                 <td data-label="Date:">{{notification.date}}</td>
@@ -224,7 +243,7 @@
                             </tr>
 
                             {% endfor %}
-
+                            
                         </tbody>
                     </table>
                 </div>

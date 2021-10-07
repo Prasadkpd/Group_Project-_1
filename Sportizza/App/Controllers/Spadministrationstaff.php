@@ -30,13 +30,9 @@ class Spadministrationstaff extends \Core\Controller
 
         $current_user= Auth::getUser();
         $id=$current_user->user_id;
-        $bookings= SpAdministrationStaffModel::saAdminViewBookings($id);
-        $cancelBookings= SpAdministrationStaffModel::saAdminCancelBookings($id);
-        $bookingPayments= SpAdministrationStaffModel::saAdminBookingPayment($id);
         // var_dump($bookings);
         //direct to the customer page
-        View::renderTemplate('AdministrationStaff/aStaffProfileView.html',['bookings'=>$bookings,
-        'cancelBookings'=>$cancelBookings,'bookingPayments'=>$bookingPayments]);
+        View::renderTemplate('AdministrationStaff/aStaffProfileView.html');
 
 
         
@@ -68,9 +64,8 @@ class Spadministrationstaff extends \Core\Controller
         $current_user= Auth::getUser();
         $id=$current_user->user_id;
         $viewTimeSlots= SpAdministrationStaffModel::saAdminViewTimeSlots($id);
-        // $deleteTimeSlots= SpAdministrationStaffModel::saAdminDeleteTimeSlots($id);
-        $viewFacilities= SpAdministrationStaffModel::saAdminViewFacility($id);
-        View::renderTemplate('AdministrationStaff/aStaffManageTimeslotsView.html',['timeSlots'=>$viewTimeSlots,'viewFacilities'=>$viewFacilities]);
+        $deleteTimeSlots= SpAdministrationStaffModel::saAdminDeleteTimeSlots($id);
+        View::renderTemplate('AdministrationStaff/aStaffManageTimeslotsView.html',['timeSlots'=>$viewTimeSlots,'deleteTimeSlots'=>$deleteTimeSlots]);
     }
 
     public function createtimeslotAction()
@@ -94,8 +89,10 @@ class Spadministrationstaff extends \Core\Controller
         $current_user= Auth::getUser();
         $id=$current_user->user_id;
         $viewFacilities= SpAdministrationStaffModel::saAdminViewFacility($id);
-        $deleteFacilities= SpAdministrationStaffModel::saAdminDeleteFacility($id);
-        View::renderTemplate('AdministrationStaff/aStaffManageFacilityView.html',['viewFacilities'=>$viewFacilities]);
+        $deleteFacilities=SpAdministrationStaffModel::saAdminDeleteFacility($id);
+        $updateFacilities = SpAdministrationStaffModel::saAdminUpdateFacility($id);
+
+        View::renderTemplate('AdministrationStaff/aStaffManageFacilityView.html',['viewFacilities'=>$viewFacilities,'deleteFacilities'=>$deleteFacilities,'updateFacilities' => $updateFacilities]);
     }
 
     public function createfacilityAction()

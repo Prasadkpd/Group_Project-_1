@@ -32,14 +32,18 @@ class SpAdministrationStaffModel extends \Core\Model
 
     public static function saAdminViewBookings($id){
         
-        $sql = 'SELECT booking.booking_id,booking.price_per_booking,booking.booked_date,
-                booking.payment_method,booking.payment_status,time_slot.start_time,time_slot.end_time
-                ,user.primary_contact FROM  booking
+        $sql = 'SELECT booking.booking_id,booking.price_per_booking,
+        DATE(booking.booking_date) AS booking_date,
+                booking.payment_method,booking.payment_status,
+                TIME_FORMAT(time_slot.start_time, "%H" ":" "%i") AS start_time, 
+                TIME_FORMAT(time_slot.end_time, "%H" ":" "%i") AS end_time,
+                user.primary_contact FROM  booking
                 INNER JOIN booking_timeslot ON booking.booking_id = booking_timeslot.booking_id
                 INNER JOIN time_slot ON booking_timeslot.timeslot_id=time_slot.time_slot_id
                 INNER JOIN user ON user.user_id=booking.customer_user_id
                 INNER JOIN administration_staff ON booking.sports_arena_id =administration_staff.sports_arena_id
-                 WHERE booking.security_status="active" AND administration_staff.user_id=:id';
+                 WHERE booking.security_status="active" AND administration_staff.user_id=:id
+                 ORDER BY booking.booking_date DESC';
         
 
 
@@ -58,14 +62,21 @@ class SpAdministrationStaffModel extends \Core\Model
 
     public static function saAdminCancelBookings($id){
         
-        $sql = 'SELECT booking.booking_id,booking.price_per_booking,booking.booked_date,
-                booking.payment_method,booking.payment_status,time_slot.start_time,time_slot.end_time
-                ,user.primary_contact FROM  booking
+        $sql = 'SELECT booking.booking_id,booking.price_per_booking,
+       DATE(booking.booked_date) AS booked_date,
+       DATE(booking.booking_date) AS booking_date,
+                booking.payment_method,booking.payment_status,
+                TIME_FORMAT(time_slot.start_time, "%H" ":" "%i") AS start_time, 
+                TIME_FORMAT(time_slot.end_time, "%H" ":" "%i") AS end_time,
+                user.primary_contact FROM  booking
                 INNER JOIN booking_timeslot ON booking.booking_id = booking_timeslot.booking_id
                 INNER JOIN time_slot ON booking_timeslot.timeslot_id=time_slot.time_slot_id
                 INNER JOIN user ON user.user_id=booking.customer_user_id
                 INNER JOIN administration_staff ON booking.sports_arena_id =administration_staff.sports_arena_id
-                 WHERE booking.security_status="active"AND administration_staff.user_id=:id';
+                 WHERE booking.security_status="active"AND administration_staff.user_id=:id
+                 AND CURDATE() <= booking_date
+                 ORDER BY booking.booking_date DESC
+                ';
         
 
 
@@ -84,9 +95,12 @@ class SpAdministrationStaffModel extends \Core\Model
 
     public static function saAdminBookingPayment($id){
         
-        $sql = 'SELECT booking.booking_id,booking.price_per_booking,booking.booked_date,
-                booking.payment_method,booking.payment_status,time_slot.start_time,time_slot.end_time
-                ,user.primary_contact FROM  booking
+        $sql = 'SELECT booking.booking_id,booking.price_per_booking,
+                DATE(booking.booking_date) AS booking_date,
+                booking.payment_method,booking.payment_status,
+                TIME_FORMAT(time_slot.start_time, "%H" ":" "%i") AS start_time,
+                TIME_FORMAT(time_slot.end_time, "%H" ":" "%i") AS end_time,
+                time_slot.price FROM  booking
                 INNER JOIN booking_timeslot ON booking.booking_id = booking_timeslot.booking_id
                 INNER JOIN time_slot ON booking_timeslot.timeslot_id=time_slot.time_slot_id
                 INNER JOIN user ON user.user_id=booking.customer_user_id
@@ -111,7 +125,7 @@ class SpAdministrationStaffModel extends \Core\Model
 
     public static function saAdminNotification($id){
         
-        $sql = 'SELECT subject,description, DATE(date) as date , TIME(date) as time 
+        $sql = 'SELECT subject,description, DATE(date) as date , TIME_FORMAT( TIME(date) ,"%H" ":" "%i") as time 
         FROM notification WHERE user_id=:id';
 
 
@@ -129,10 +143,17 @@ class SpAdministrationStaffModel extends \Core\Model
 
     public static function saAdminViewTimeSlots($id){
         
-        $sql = 'SELECT *  FROM time_slot INNER JOIN administration_staff ON time_slot.manager_user_id=administration_staff.manager_user_id
-                 WHERE  administration_staff.user_id=:id';
+        $sql = 'SELECT time_slot.time_slot_id, 
+         TIME_FORMAT(time_slot.start_time, "%H" ":" "%i") AS startTime, 
+        TIME_FORMAT(time_slot.end_time, "%H" ":" "%i") AS endTime,
+        time_slot.price, facility.facility_name 
+        FROM time_slot 
+        INNER JOIN facility ON time_slot.facility_id = facility.facility_id
+        INNER JOIN administration_staff ON time_slot.manager_user_id=administration_staff.manager_user_id
+        WHERE administration_staff.user_id=:id
+        ORDER BY  startTime ASC'; 
 
-
+        
         $db = static::getDB();
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
@@ -180,19 +201,28 @@ class SpAdministrationStaffModel extends \Core\Model
 
     public static function saAdminDeleteTimeSlots($id){
         
-        $db = static::getDB();
         
-        $sql = 'DELETE FROM `time_slot` WHERE `time_slot_id`=:id';
+        $sql = 'SELECT time_slot.time_slot_id, 
+         TIME_FORMAT(time_slot.start_time, "%H" ":" "%i") AS startTime, 
+        TIME_FORMAT(time_slot.end_time, "%H" ":" "%i") AS endTime,
+        time_slot.price, facility.facility_name 
+        FROM time_slot 
+        INNER JOIN facility ON time_slot.facility_id = facility.facility_id
+        INNER JOIN administration_staff ON time_slot.manager_user_id=administration_staff.manager_user_id
+        WHERE administration_staff.user_id=:id
+        ORDER BY  startTime ASC';
 
+
+        $db = static::getDB();
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-        // $stmt1->execute();
-        // $result1 = $stmt1->fetchAll();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
-        // $stmt1->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-
+        $stmt->execute();
+        $result = $stmt->fetchAll();
         // var_dump($result);
-        return ($stmt->execute());
+        return $result;
+
     }
 
     public static function saAdminViewFacility($id){
@@ -220,17 +250,28 @@ class SpAdministrationStaffModel extends \Core\Model
         
         $db = static::getDB();
         
-        $sql = 'DELETE FROM `facility` WHERE `facility_id`=:id';
+        // $sql = 'DELETE FROM `facility` WHERE `facility_id`=:id';
 
+        $sql = 'SELECT *  FROM facility INNER JOIN administration_staff ON facility.manager_user_id=administration_staff.manager_user_id
+                 WHERE  administration_staff.user_id=:id';
+
+        // $stmt = $db->prepare($sql);
+        // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        // // $stmt1->execute();
+        // $result1 = $stmt1->fetchAll();
+        // $stmt1->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        // var_dump($result);
+        // return ($stmt->execute());
+        $db = static::getDB();
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-        // $stmt1->execute();
-        // $result1 = $stmt1->fetchAll();
 
-        // $stmt1->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
+        $stmt->execute();
+        $result = $stmt->fetchAll();
         // var_dump($result);
-        return ($stmt->execute());
+        return $result;
     }
 
     public static function saAdminAddFacility($fname,$ipsw,$id,$rpsw){

@@ -30,13 +30,9 @@ class Sparenamanager extends \Core\Controller
 
         $current_user= Auth::getUser();
         $id=$current_user->user_id;
-        $bookings= SpArenaManagerModel::managerViewBookings($id);
-        $cancelBookings= SpArenaManagerModel::managerCancelBookings($id);
-        $bookingPayments= SpArenaManagerModel::managerBookingPayment($id);
         // var_dump($bookings);
         //direct to the customer page
-        View::renderTemplate('Manager/mStaffProfileView.html',['bookings'=>$bookings,
-        'cancelBookings'=>$cancelBookings,'bookingPayments'=>$bookingPayments]);
+        View::renderTemplate('Manager/mStaffProfileView.html');
 
     }
 

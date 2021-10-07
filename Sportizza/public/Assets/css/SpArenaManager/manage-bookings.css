@@ -975,19 +975,18 @@ footer {
     height: 40px;
   }
   .right-container {
-    box-shadow: rgb(0 0 0 / 15%) 1.95px 1.95px 2.6px;
     border-radius: 20px;
     margin-top: 2px;
   }
   .available-bookings {
     margin: 1rem auto;
     border-radius: 25px;
-    height: 38vh;
+    height: 44vh;
     padding: 20px;
     padding-bottom:2.5rem;
     width: 100%;
-    color: #222f3e;
-    background-color: #fff;
+    color: #fff;
+    background-color: #f97f51;
     /* display: none; */
   }
   .available-bookings h2 {

@@ -349,7 +349,7 @@ margin-right: 1rem;
   margin: 0 auto;
 }
 .page-content-container .container {
-  width: 88vw;
+  width: 80vw;
   margin:auto;
 }
 .page-content-container .container .page-header {
@@ -862,6 +862,6 @@ margin-right: 1rem;
   }
   
   .booking-table .booking-table-first-th{
-    width: 89vw;
+    width: 88vw;
   }
 }
