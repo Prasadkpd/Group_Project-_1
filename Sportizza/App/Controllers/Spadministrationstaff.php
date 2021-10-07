@@ -89,8 +89,10 @@ class Spadministrationstaff extends \Core\Controller
         $current_user= Auth::getUser();
         $id=$current_user->user_id;
         $viewFacilities= SpAdministrationStaffModel::saAdminViewFacility($id);
-        $deleteFacilities= SpAdministrationStaffModel::saAdminDeleteFacility($id);
-        View::renderTemplate('AdministrationStaff/aStaffManageFacilityView.html',['viewFacilities'=>$viewFacilities]);
+        $deleteFacilities=SpAdministrationStaffModel::saAdminDeleteFacility($id);
+        $updateFacilities = SpAdministrationStaffModel::saAdminUpdateFacility($id);
+
+        View::renderTemplate('AdministrationStaff/aStaffManageFacilityView.html',['viewFacilities'=>$viewFacilities,'deleteFacilities'=>$deleteFacilities,'updateFacilities' => $updateFacilities]);
     }
 
     public function createfacilityAction()

@@ -250,17 +250,28 @@ class SpAdministrationStaffModel extends \Core\Model
         
         $db = static::getDB();
         
-        $sql = 'DELETE FROM `facility` WHERE `facility_id`=:id';
+        // $sql = 'DELETE FROM `facility` WHERE `facility_id`=:id';
 
+        $sql = 'SELECT *  FROM facility INNER JOIN administration_staff ON facility.manager_user_id=administration_staff.manager_user_id
+                 WHERE  administration_staff.user_id=:id';
+
+        // $stmt = $db->prepare($sql);
+        // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        // // $stmt1->execute();
+        // $result1 = $stmt1->fetchAll();
+        // $stmt1->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        // var_dump($result);
+        // return ($stmt->execute());
+        $db = static::getDB();
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-        // $stmt1->execute();
-        // $result1 = $stmt1->fetchAll();
 
-        // $stmt1->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
+        $stmt->execute();
+        $result = $stmt->fetchAll();
         // var_dump($result);
-        return ($stmt->execute());
+        return $result;
     }
 
     public static function saAdminAddFacility($fname,$ipsw,$id,$rpsw){

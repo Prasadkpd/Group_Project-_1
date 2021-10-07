@@ -1357,6 +1357,10 @@ footer {
     padding: 10px;
     font-size: .9em;
   }
+  .right-container {
+    width: 90vw;
+    padding: 5px;
+  }
   .right-container h2{
     font-size: 1.2em;
   }
