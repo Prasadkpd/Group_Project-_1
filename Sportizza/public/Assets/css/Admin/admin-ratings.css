@@ -912,21 +912,24 @@ footer {
   flex-direction: column;
   width: 25%;
   min-width: 300px;
-  margin: 0 auto;
+  margin: auto;
+  padding: 0px 20px 20px 20px;
   background-color: white;
   border-radius: 20px;
-  margin-top: 1%;
-  padding-bottom: 1em;
+  margin-top: 100px;
 }
 /* <!-- Start OF the POP up SIGN out --> */
 .sectionpop h1 {
-  font-size: 24px;
+  font-size: 20px;
   text-align: center;
-  margin-bottom: 20px;
+  color: #34495e;
+  margin-bottom: 1rem;
 }
 .sectionpop p {
   text-align: center;
-  margin: 20px auto;
+  font-size: 16px;
+  font-weight: 500;
+  color: #2c3e50;
 }
 
 .popup_button {
@@ -1179,6 +1182,13 @@ footer {
     padding-bottom: 2em;
   }
   .formsectionnav .popup_buttonnav {
+    margin: auto;
+  }
+  .formsection {
+    width: 80vw;
+    padding-bottom: 2em;
+  }
+  .formsection .popup_button {
     margin: auto;
   }
   .openbutton {

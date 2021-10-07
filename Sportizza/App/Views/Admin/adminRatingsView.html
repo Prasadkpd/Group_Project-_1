@@ -118,7 +118,7 @@
             </div>
             <form action="/action_page.php" style="margin:20px">
                 <div style="margin:auto">
-                    <h1 style="margin:auto">
+                    <h1>
                         Remove Rating
                     </h1>
                     <p style="margin:auto">
@@ -220,7 +220,6 @@
                     <tbody>
                         {% for rating in ratings %}
                         <tr>
-                            <!-- <td data-label="Sports Arena ID :">{{rating.sports_arena_id}}</td> -->
                             <td data-label="Sports Arena Name :">{{rating.sa_name}}</td>
                             <td data-label="Feedback ID :">{{rating.feedback_id}}</td>
                             <td data-label="Description :" class="description">{{rating.description}}</td>
@@ -230,6 +229,47 @@
                                     onclick="open_popup_delete_message()"><i class="fas fa-trash-alt"></i></a></td>
                         </tr>
                         {% endfor %}
+
+                        <tr>
+                            <td data-label="Sports Arena Name :">Herald Sports Academy</td>
+                            <td data-label="Feedback ID :">100000009</td>
+                            <td data-label="Description :" class="description">The turf was not conditioned properly. One of my friends got injured as well.</td>
+                            <td data-label="Rating :" class="rating">1</td>
+                            <td data-label="Date Posted :">2021-09-13</td>
+                            <td class="trash-btn-padding-res"> <a class="trash-btn"
+                                    onclick="open_popup_delete_message()"><i class="fas fa-trash-alt"></i></a></td>
+                        </tr>
+
+                        <tr>
+                            <td data-label="Sports Arena Name :">Roshen Sports Club</td>
+                            <td data-label="Feedback ID :">100000013</td>
+                            <td data-label="Description :" class="description">No refreshments available as stated in the app</td>
+                            <td data-label="Rating :" class="rating">2</td>
+                            <td data-label="Date Posted :">2021-09-08</td>
+                            <td class="trash-btn-padding-res"> <a class="trash-btn"
+                                    onclick="open_popup_delete_message()"><i class="fas fa-trash-alt"></i></a></td>
+                        </tr>
+
+                        <tr>
+                            <td data-label="Sports Arena Name :">Negombo Futsal Arena</td>
+                            <td data-label="Feedback ID :">100000016</td>
+                            <td data-label="Description :" class="description">The arena didn't open on time.</td>
+                            <td data-label="Rating :" class="rating">1</td>
+                            <td data-label="Date Posted :">2021-09-01</td>
+                            <td class="trash-btn-padding-res"> <a class="trash-btn"
+                                    onclick="open_popup_delete_message()"><i class="fas fa-trash-alt"></i></a></td>
+                        </tr>
+
+                        <tr>
+                            <td data-label="Sports Arena Name :">Negombo Futsal Arena</td>
+                            <td data-label="Feedback ID :">100000017</td>
+                            <td data-label="Description :" class="description">Grass was in poor condition</td>
+                            <td data-label="Rating :" class="rating">2</td>
+                            <td data-label="Date Posted :">2021-09-01</td>
+                            <td class="trash-btn-padding-res"> <a class="trash-btn"
+                                    onclick="open_popup_delete_message()"><i class="fas fa-trash-alt"></i></a></td>
+                        </tr>
+                        
 
 
                     </tbody>

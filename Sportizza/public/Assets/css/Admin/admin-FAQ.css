@@ -601,8 +601,8 @@ form input[type="submit"] {
     width: 300px;
 }
 .booking-table .solution_td{
-    width: 500px;
-    padding-left: 15px;
+  width: 300px;
+  text-align: justify;
 }
 .booking-table .booking-table-first-th {
   width: 100%;
@@ -803,22 +803,33 @@ footer {
   flex-direction: column;
   width: 25%;
   min-width: 300px;
-  margin: 0 auto;
+  margin: auto;
+  padding: 0px 20px 20px 20px;
   background-color: white;
   border-radius: 20px;
-  margin-top: 1%;
-  padding-bottom: 1em;
+  margin-top: 100px;
 }
 /* <!-- Start OF the POP up SIGN out --> */
 .sectionpop h1 {
-  font-size: 24px;
+  font-size: 20px;
   text-align: center;
-  margin-bottom: 20px;
+  color: #34495e;
+  margin-bottom: 1rem;
 }
 .sectionpop p {
   text-align: center;
-  margin: 20px auto;
+  font-size: 16px;
+  font-weight: 500;
+  color: #2c3e50;
 }
+
+/* .sectionpop .closebutton {
+  width: 20px;
+  float: right;
+  margin-top: 10px;
+  background-color: #fff;
+  border: none;
+} */
 
 .popup_button {
   background-color: #2ed573;
@@ -1067,6 +1078,13 @@ footer {
   .formsectionnav .popup_buttonnav {
     margin: auto;
   }
+  .formsection {
+    width: 80vw;
+    padding-bottom: 2em;
+  }
+  .formsection .popup_button {
+    margin: auto;
+  }
   .openbutton {
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -1175,7 +1193,7 @@ footer {
     text-align: left;
 }
 .booking-table .solution_td {
-    width: 300px;
+    width: 100%;
     /* padding-left: 15px; */
 }
 .formsection{

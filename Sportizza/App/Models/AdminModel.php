@@ -80,13 +80,6 @@ class AdminModel extends \Core\Model
         GROUP BY (feedback.sports_arena_id)';
 
 
-
-    // OLD ONE
-// 'SELECT sports_arena_profile.sa_name,sports_arena_profile.s_a_profile_id,
-//                 sports_arena_profile.account_status,  COUNT(feedback.sports_arena_id) as "count",
-//                 FROM feedback INNER JOIN sports_arena_profile ON feedback.sports_arena_id= sports_arena_profile.sports_arena_id
-//                 WHERE feedback.feedback_rating<3 AND sports_arena_id = 100000000';
-
         $db = static::getDB();
         $stmt = $db->prepare($sql);
         // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
@@ -318,7 +311,9 @@ class AdminModel extends \Core\Model
         $sql = 'SELECT booking_date, COUNT(DISTINCT booking_id) AS No_Of_Bookings
                 FROM booking
                 WHERE security_status="active"
-                GROUP BY booking_date ';
+                GROUP BY booking_date 
+                ORDER BY booking_date DESC
+                LIMIT 7';
 
 
         $db = static::getDB();

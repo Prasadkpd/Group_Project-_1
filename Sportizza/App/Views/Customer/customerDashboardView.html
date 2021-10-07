@@ -461,7 +461,8 @@
                 <td class="btn-float-right">
                     <div style="display:flex; float:right; padding-right:2rem;">
                         <div>
-                            <button onclick="open_popup_share({{book.booking_id}})">
+                            <button onclick="open_popup_share('{{book.booking_id}}','{{book.booking_date}}','{{book.startTime}}','{{book.endTime}}',
+                                    '{{book.sa_name}}','{{book.category}}','{{book.google_map_link}}')">
                                 <i class="fas fa-share "></i>
                             </button>
                         </div>
@@ -499,7 +500,7 @@
                 <td class="btn-float-right">
                     <div style="display:flex; float:right; padding-right:2rem;">
                         <div>
-                            <button onclick="open_popup_rate_message({{book.booking_id}})" >
+                            <button onclick="open_popup_rate_message('{{book.booking_id}}')" >
                                 <i class="fas fa-star-half-alt"></i>
                             </button>
                         </div>
@@ -533,11 +534,12 @@
 <!-- <td data-label="Booking Status">Pending</td> -->
 <td class="btn-float-right">
     <div style="display:flex; float:right; padding-right:2rem;">
-        <!-- <div>
-            <button onclick="open_popup_rate_message({{book.booking_id}})" >
+        <div>
+            <button onclick="open_popup_share('{{book.booking_id}}','{{book.booking_date}}','{{book.startTime}}','{{book.endTime}}',
+            '{{book.sa_name}}','{{book.category}}','{{book.google_map_link}}')" >
                 <i class="fas fa-star-half-alt"></i>
             </button>
-        </div> -->
+        </div>
         <div>
             <button class="icon_red" onclick="open_popup_delete_message()">
                 <i class="fas fa-trash-alt"></i>

@@ -110,7 +110,7 @@
     <!-- end pop up sign out section -->
 
     <!-- Start OF the POP up Bookig Cancel -->
-    <div id="popup_delete" class="sectionpop ">
+    <div id="popup_delete" class="sectionpop">
         <div class="formsection">
             <div>
                 <button class="closebutton" onclick="close_popup_delete_message()">❌</button>
@@ -118,7 +118,7 @@
             <form action="/action_page.php" style="margin:20px">
                 <div style="margin:auto">
                     <h1 style="margin:auto">
-                        Ratinng Remove
+                        Rating Remove
                     </h1>
                     <p style="margin:auto">
                         Do you really want to remove this rating?
@@ -138,6 +138,130 @@
     </div>
     <!-- End OF the POP up Booking Cancel -->
 
+
+    <!-- start pop up remove customer section -->
+    <div id="popup_rmve_customers" class="sectionpop">
+        <div class="formsection">
+            <div>
+                <button class="closebutton" onclick="close_popup_rmve_customers_message()">❌</button>
+            </div>
+            <form action="/action_page.php" style="margin:20px">
+                <div style="margin:auto">
+                    <h1>Remove Customer</h1>
+                    <p>Do your really want to remove this customer?</p>
+                </div>
+            </form>
+            <div style="display:flex">
+                <button class="popup_button">
+                    YES
+                </button>
+                <button onclick="close_popup_rmve_customers_message()" class="popup_delete_button">
+                    NO
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- end pop up remove customer section -->
+
+    <!-- start pop up add sports arena section -->
+    <div id="popup_add_arenas" class="sectionpop">
+        <div class="formsection">
+            <div>
+                <button class="closebutton" onclick="close_popup_add_arenas_message()">❌</button>
+            </div>
+            <form action="/action_page.php" style="margin:20px">
+                <div style="margin:auto">
+                    <h1>Add Sports Arena</h1>
+                    <p>Are you sure you have checked the validity of this sports arena?</p>
+                </div>
+            </form>
+            <div style="display:flex">
+                <button class="popup_button">
+                    YES
+                </button>
+                <button onclick="close_popup_add_arenas_message()" class="popup_delete_button">
+                    NO
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- end pop up add sports arena section -->
+
+    <!-- start pop up remove sports arena section -->
+    <div id="popup_rmve_arenas" class="sectionpop">
+        <div class="formsection">
+            <div>
+                <button class="closebutton" onclick="close_popup_rmv_arenas_message()">❌</button>
+            </div>
+            <form action="/action_page.php" style="margin:20px">
+                <div style="margin:auto">
+                    <h1>Remove Sports Arena</h1>
+                    <p>Are you sure you want to remove this sports arena?</p>
+                </div>
+            </form>
+            <div style="display:flex">
+                <button class="popup_button">
+                    YES
+                </button>
+                <button onclick="close_popup_rmv_arenas_message()" class="popup_delete_button">
+                    NO
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- end pop up remove sports arena section -->
+
+    <!-- start pop up blacklist sports arena section -->
+    <div id="popup_blck_arenas" class="sectionpop">
+        <div class="formsection">
+            <div>
+                <button class="closebutton" onclick="close_popup_blck_arenas_message()">❌</button>
+            </div>
+            <form action="/action_page.php" style="margin:20px">
+                <div style="margin:auto">
+                    <h1>Blacklist Sports Arena</h1>
+                    <p>Are you sure want to blacklist this sports arena?</p>
+                </div>
+            </form>
+            <div style="display:flex">
+                <button class="popup_button">
+                    YES
+                </button>
+                <button onclick="close_popup_blck_arenas_message()" class="popup_delete_button">
+                    NO
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- end pop up blacklist sports arena section -->
+
+    <!-- start pop up view complaints section -->
+    <div id="popup_blck_arenas" class="sectionpop">
+        <div class="formsection">
+            <div>
+                <button class="closebutton" onclick="close_popup_blck_arenas_message()">❌</button>
+            </div>
+            <form action="/action_page.php" style="margin:20px">
+                <div style="margin:auto">
+                    <!-- <h1>Blacklist Sports Arena</h1> -->
+                    <p>Are you sure want to blacklist this sports arena?</p>
+                </div>
+            </form>
+            <!-- <div style="display:flex">
+                <button class="popup_button">
+                    YES
+                </button>
+                <button onclick="close_popup_blck_arenas_message()" class="popup_delete_button">
+                    NO
+                </button>
+            </div> -->
+        </div>
+    </div>
+    <!-- end pop up view complaints section -->
+
+
+
+<!-- MAIN BODY CONTENT -->
 
 
     <section class="page-container">
@@ -248,13 +372,13 @@
             </div> -->
 
              <div id="view_bookings" class="booking_tab_content active" style="display: block;">
-                <table class="booking-table">
+                <table class="booking-table" id="customer-table">
                     <thead>
                         <tr class="booking-thead-first-tr">
                             <th class="booking-table-first-th">
                                 <div class="booking-table-filter-container">
                                     <div class="booking-table-search-container">
-                                        <input type="search" name="search" placeholder="Search">
+                                        <input type="search" name="search" placeholder="Search by username" onkeyup="searchCustomersTable()" id="search-customers">
                                         <i class="fas fa-search"></i>
                                     </div>
                                 </th>
@@ -279,7 +403,7 @@
                                 <td data-label="Username :">{{customer.username}}</td>
                                 <td data-label="Primary Contact :">{{customer.primary_contact}}</td>
                                
-                                <td class="trash-btn-padding-res"> <a class="trash-btn" onclick="open_popup_delete_message()"><i
+                                <td class="trash-btn-padding-res"> <a class="trash-btn" onclick="open_popup_rmve_customers_message()"><i
                                             class="fas fa-trash-alt"></i></a></td>
                             </tr>
                             {% endfor %}
@@ -288,13 +412,13 @@
                 </div>
 
                 <div id="add_bookings" class="booking_tab_content">
-                    <table class="booking-table">
+                    <table class="booking-table" id="inactive-arenas-table">
                         <thead>
                             <tr class="booking-thead-first-tr">
                                 <th class="booking-table-first-th">
                                     <div class="booking-table-filter-container">
                                         <div class="booking-table-search-container">
-                                            <input type="search" name="search" placeholder="Search">
+                                            <input type="search" name="search" placeholder="Search by sports arena name" onkeyup="searchInactiveArenasTable()" id="search-inactive-arenas">
                                             <i class="fas fa-search"></i>
                                         </div>
                                        
@@ -302,23 +426,51 @@
                             </th>
                         </tr>
                         <tr class="booking-thead-second-tr">
-                            <th class="b-first-th">Sports Arena Name</th>
-                            <th>Registered Date</th>
-                            <th>Contact Number</th>
-                            <th class="b-last-th">Request Status</th>
+                            <th class="expandHeader">Sports Arena Name</th>
+                            <th class="expandHeader">Registered Date</th>
+                            <th class="expandHeader">Contact Number</th>
+                            <th class="expandHeader">Request Status</th>
 
                         </tr>
                     </thead>
                     <tbody>
                         {% for arenas in inactiveArenas %}
                         <tr class="popup" onclick="sportsArenaPopup()">
-                            <td data-label="Sports Arena Name :">{{arenas.sa_name}}</td>
-                            <td data-label="Registered Date :">{{arenas.date}}</td>
-                            <td data-label="Contact Number :">{{arenas.contact_no}}</td>
-                            <td data-label="Accept Request :" class="acceptAcc"><i class="fas fa-check"></i></td>
+                            <td data-label="Sports Arena Name :" class="expandHeader">{{arenas.sa_name}}</td>
+                            <td data-label="Registered Date :" class="expandHeader">{{arenas.date}}</td>
+                            <td data-label="Contact Number :" class="expandHeader">{{arenas.contact_no}}</td>
+                            <td data-label="Accept Request :" class="acceptAcc expandHeader"><a class="tick-btn" onclick="open_popup_add_arenas_message()">
+                                <i class="fas fa-check"></i></a></td>
 
                         </tr>
                         {% endfor %}
+                        
+                        <tr class="popup" onclick="sportsArenaPopup()">
+                            <td data-label="Sports Arena Name :" class="expandHeader">PKI Basketball Court</td>
+                            <td data-label="Registered Date :" class="expandHeader">2021-10-04</td>
+                            <td data-label="Contact Number :" class="expandHeader">112498336</td>
+                            <td data-label="Accept Request :" class="acceptAcc expandHeader"><a class="tick-btn" onclick="open_popup_add_arenas_message()">
+                                <i class="fas fa-check"></i></a></td>
+
+                        </tr>
+
+                        <tr class="popup" onclick="sportsArenaPopup()">
+                            <td data-label="Sports Arena Name :" class="expandHeader">ABC College Volleyball</td>
+                            <td data-label="Registered Date :" class="expandHeader">2021-10-01</td>
+                            <td data-label="Contact Number :" class="expandHeader">112395926</td>
+                            <td data-label="Accept Request :" class="acceptAcc expandHeader"><a class="tick-btn" onclick="open_popup_add_arenas_message()">
+                                <i class="fas fa-check"></i></a></td>
+
+                        </tr>
+
+                        <tr class="popup" onclick="sportsArenaPopup()">
+                            <td data-label="Sports Arena Name :" class="expandHeader">Milton Badminton Center</td>
+                            <td data-label="Registered Date :" class="expandHeader">2021-09-30</td>
+                            <td data-label="Contact Number :" class="expandHeader">112595844</td>
+                            <td data-label="Accept Request :" class="acceptAcc expandHeader"><a class="tick-btn" onclick="open_popup_add_arenas_message()">
+                                <i class="fas fa-check"></i></a></td>
+
+                        </tr>
 
                     </tbody>
                 </table>
@@ -351,13 +503,13 @@
             </div>
 
             <div id="cancel_booking" class="booking_tab_content">
-                <table class="booking-table">
+                <table class="booking-table" id="active-arenas-table">
                     <thead>
                         <tr class="booking-thead-first-tr">
                             <th class="booking-table-first-th">
                                 <div class="booking-table-filter-container">
                                     <div class="booking-table-search-container">
-                                        <input type="search" name="search" placeholder="Search">
+                                        <input type="search" name="search" placeholder="Search by sports arena name" onkeyup="searchActiveArenasTable()" id="search-active-arenas">
                                         <i class="fas fa-search"></i>
                                     </div>
                                     <!--<div class="booking-table-date-picker">
@@ -388,14 +540,62 @@
                 
                                 <td data-label="Sports Arena ID :">{{arenas.s_a_profile_id}}</td>
                                 <td data-label="Sports Arena name :">{{arenas.sa_name}}</td>
-                                <td data-label="Complaint :">{{arenas.count}}</td>
+                                <td data-label="Complaint :">{{arenas.count}}<button class="popup_cmp_button" onclick="">View Complaints</button></td>
                                 <td data-label="Account Status :">{{arenas.account_status}}</td>
-                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><i class="fa fa-user-times"></i></td>
-                                <td class="trash-btn-padding-res"> <a class="trash-btn" onclick="open_popup_delete_message()"><i
+                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><a class="blck-btn" onclick="open_popup_blck_arenas_message()">
+                                    <i class="fas fa-exclamation"></i></a></td>
+                                <td data-label="Remove Sports Arena :" class="trash-btn-padding-res"> <a class="trash-btn" onclick="open_popup_rmv_arenas_message()"><i
                                             class="fas fa-trash-alt"></i></a></td>
                             </tr>
                             {% endfor %}
                             
+                            <tr>
+                
+                                <td data-label="Sports Arena ID :">100000014</td>
+                                <td data-label="Sports Arena name :">Herald Sports Academy</td>
+                                <td data-label="Complaint :">1<button class="popup_cmp_button" onclick="">View Complaints</button></td>
+                                <td data-label="Account Status :">active</td>
+                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><a class="blck-btn" onclick="open_popup_blck_arenas_message()">
+                                    <i class="fas fa-exclamation"></i></a></td>
+                                <td data-label="Remove Sports Arena :" class="trash-btn-padding-res"> <a class="trash-btn" onclick="open_popup_rmv_arenas_message()"><i
+                                            class="fas fa-trash-alt"></i></a></td>
+                            </tr>
+
+                            <tr>
+                
+                                <td data-label="Sports Arena ID :">100000012</td>
+                                <td data-label="Sports Arena name :">Cricket World</td>
+                                <td data-label="Complaint :">5<button class="popup_cmp_button" onclick="">View Complaints</button></td>
+                                <td data-label="Account Status :">blacklisted</td>
+                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><a class="blck-btn" onclick="open_popup_blck_arenas_message()">
+                                    <i class="fas fa-exclamation"></i></a></td>
+                                <td data-label="Remove Sports Arena :" class="trash-btn-padding-res"> <a class="trash-btn" onclick="open_popup_rmv_arenas_message()">
+                                    <i class="fas fa-trash-alt"></i></a></td>
+                            </tr>
+
+                            <tr>
+                
+                                <td data-label="Sports Arena ID :">100000015</td>
+                                <td data-label="Sports Arena name :">Roshen Sports Club</td>
+                                <td data-label="Complaint :">1<button class="popup_cmp_button" onclick="">View Complaints</button></td>
+                                <td data-label="Account Status :">active</td>
+                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><a class="blck-btn" onclick="open_popup_blck_arenas_message()">
+                                    <i class="fas fa-exclamation"></i></a></td>
+                                <td data-label="Remove Sports Arena :" class="trash-btn-padding-res"> <a class="trash-btn" onclick="open_popup_rmv_arenas_message()"><i
+                                            class="fas fa-trash-alt"></i></a></td>
+                            </tr>
+
+                            <tr>
+                
+                                <td data-label="Sports Arena ID :">100000019</td>
+                                <td data-label="Sports Arena name :">Negombo Futsal Arena</td>
+                                <td data-label="Complaint :">2<button class="popup_cmp_button" onclick="">View Complaints</button></td>
+                                <td data-label="Account Status :">active</td>
+                                <td data-label="Blacklist Sports Arena :" class="blacklistAcc"><a class="blck-btn" onclick="open_popup_blck_arenas_message()">
+                                    <i class="fas fa-exclamation"></i></a></td>
+                                <td data-label="Remove Sports Arena :" class="trash-btn-padding-res"> <a class="trash-btn" onclick="open_popup_rmv_arenas_message()"><i
+                                            class="fas fa-trash-alt"></i></a></td>
+                            </tr>
                             
                         </tbody>
                     </table>
