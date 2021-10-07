@@ -32,17 +32,18 @@ class SpBookStaffModel extends \Core\Model
 
     public static function saBookViewBookings($id){
         
-        $sql = 'SELECT booking.booking_id,booking.price_per_booking,booking.booked_date,
-                booking.payment_method,booking.payment_status,time_slot.start_time,time_slot.end_time
-                ,user.primary_contact FROM  booking
+        $sql = 'SELECT booking.booking_id,booking.price_per_booking,
+                DATE(booking.booking_date) AS booking_date,
+                booking.payment_method,booking.payment_status,
+                TIME_FORMAT(time_slot.start_time, "%H" ":" "%i") AS start_time, 
+                TIME_FORMAT(time_slot.end_time, "%H" ":" "%i") AS end_time,
+                user.primary_contact FROM  booking
                 INNER JOIN booking_timeslot ON booking.booking_id = booking_timeslot.booking_id
                 INNER JOIN time_slot ON booking_timeslot.timeslot_id=time_slot.time_slot_id
                 INNER JOIN user ON user.user_id=booking.customer_user_id
                 INNER JOIN booking_handling_staff ON booking.sports_arena_id =booking_handling_staff.sports_arena_id
-                 WHERE booking.security_status="active" AND booking_handling_staff.user_id=:id';
-        
-
-
+                 WHERE booking.security_status="active" AND booking_handling_staff.user_id=:id
+                 ORDER BY booking.booking_date DESC';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);

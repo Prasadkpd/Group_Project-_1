@@ -1,3 +1,11 @@
 .sidebar .sidebar-container .side-menu-list {
   height: 30vh;
 }  
+
+@media screen and (max-width: 420px){
+
+.booking-table tbody {
+    height: 58vh;
+}
+
+}

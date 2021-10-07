@@ -30,11 +30,11 @@ class Spbookstaff extends \Core\Controller
 
         $current_user= Auth::getUser();
         $id=$current_user->user_id;
-        $bookings= SpBookStaffModel::saBookViewBookings($id);
+        // $bookings= SpBookStaffModel::saBookViewBookings($id);
        
         // var_dump($bookings);
         //direct to the customer page
-        View::renderTemplate('BookHandlingStaff/bStaffProfileView.html',['bookings'=>$bookings]);
+        View::renderTemplate('BookHandlingStaff/bStaffProfileView.html');
 
 
         
