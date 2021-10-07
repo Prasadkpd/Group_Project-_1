@@ -52,41 +52,41 @@
         </div>
     </nav>
 
-  <!-- start popup form for edit profile -->
-  <div id="myForm" class="sectionpopnav">
-    <div class="formsectionprofile" id="formEditUserProfile">
-        <div>
-            <button class="closebutton" onclick="closepopupform()">❌</button>
-        </div>
+    <!-- start popup form for edit profile -->
+    <div id="myForm" class="sectionpopnav">
+        <div class="formsectionprofile" id="formEditUserProfile">
+            <div>
+                <button class="closebutton" onclick="closepopupform()">❌</button>
+            </div>
 
-        <div class="nav-user-edit-from">
-            <div class="details">
-                <div class="input-box">
-                    <h5>Name:</h5>
-                    <p>
-                        {{current_user.first_name}} {{current_user.last_name}}
-                    </p>
+            <div class="nav-user-edit-from">
+                <div class="details">
+                    <div class="input-box">
+                        <h5>Name:</h5>
+                        <p>
+                            {{current_user.first_name}} {{current_user.last_name}}
+                        </p>
+                    </div>
+                    <div class="input-box">
+                        <h5>Username:</h5>
+                        <p>
+                            {{current_user.username}}
+                        </p>
+                    </div>
+                    <div class="input-box">
+                        <h5>Mobile:</h5>
+                        <p>
+                            {{current_user.primary_contact}}</p>
+                    </div>
                 </div>
-                <div class="input-box">
-                    <h5>Username:</h5>
-                    <p>
-                        {{current_user.username}}
-                    </p>
-                </div>
-                <div class="input-box">
-                    <h5>Mobile:</h5>
-                    <p>
-                        {{current_user.primary_contact}}</p>
+                <div class="editProPic">
+                    <img id="form-profile-picture" src="/Assets/images/customer/profile-picture.jpg" alt="">
                 </div>
             </div>
-            <div class="editProPic">
-                <img id="form-profile-picture" src="/Assets/images/customer/profile-picture.jpg" alt="">
+            <div class="edit-profile-link">
+                <a href="\Edituserdetails\EditProfileAction">Edit Profile</a>
             </div>
         </div>
-        <div class="edit-profile-link">
-            <a href="\Edituserdetails\EditProfileAction">Edit Profile</a>
-        </div>
-    </div>
     </div>
     <!-- end popup for profile -->
 
@@ -120,13 +120,6 @@
 
 
 
-
-
-
-
-
-
-
     <!-- popup share section -->
     <div id="popup_share" class="sectionpop ">
         <div class="formsection">
@@ -135,25 +128,25 @@
             </div>
 
             <div class="displayDetails">
-            <form action="" style="margin:20px">
-                <h1>Share booking details</h1>
-                <div class="shareDetails">
-                    <input type="text" id="bdetail1" readonly>
-                    <input type="text" id="bdetail2" readonly>
-                    <div class="timeslotDisplay">
-                    <input type="text" id="bdetail3" readonly>-
-                    <input type="text" id="bdetail4" readonly>
+                <form action="" style="margin:20px">
+                    <h1>Share booking details</h1>
+                    <div class="shareDetails">
+                        <input type="text" id="bdetail1" readonly>
+                        <input type="text" id="bdetail2" readonly>
+                        <div class="timeslotDisplay">
+                            <input type="text" id="bdetail3" readonly>-
+                            <input type="text" id="bdetail4" readonly>
+                        </div>
+                        <input type="text" id="bdetail5" readonly>
+                        <input type="text" id="bdetail6" readonly>
+                        <input type="text" id="bdetail7" readonly>
+
                     </div>
-                    <input type="text" id="bdetail5" readonly>
-                    <input type="text" id="bdetail6" readonly>
-                    <input type="text" id="bdetail7" readonly>
-                    
-                </div>
-                
-            </form>
-            <button onclick="copyToClipboard()" id="sharePopup" class="popup_button">
-                Copy
-            </button>
+
+                </form>
+                <button onclick="copyToClipboard()" id="sharePopup" class="popup_button">
+                    Copy
+                </button>
             </div>
         </div>
     </div>
@@ -180,7 +173,7 @@
                     </p>
                 </div>
                 <div style="display:flex">
-    
+
                     <button class="popup_delete_button">
                         YES
                     </button>
@@ -197,42 +190,53 @@
 
 
     <!-- start pop up rate section -->
-    <div id="popup_rate" class="sectionpop ">
+    <div id="popup_rate" class="sectionpop">
         <div class="formsection">
 
             <div>
                 <button class="closebutton" onclick="close_popup_rate_message()">❌</button>
             </div>
+            <div>
+                <h1>Rate Sports Arena</h1>
+            </div>
+
             <form action="/action_page.php" style="margin:20px">
-                <label for="fname">Sports Arena Name</label>
-                <input type="text" id="fname" name="firstname" placeholder="Enter First Name" value="sadeepa" readonly>
+                <div class="rating-row">
+                    <div class="input-box">
+                        <label for="arena_name">Sports Arena Name</label>
+                        <input type="text" id="arena_name" name="arena_name" value="ACC Sports Arena" readonly>
+                    </div>
+                </div>
 
-                <label for="lname">Booking Id</label>
-                <input type="text" id="lname" name="lastname" placeholder="Enter Last Names" value="bhashitha" readonly>
+                <input type="text" id="booking_id" name="booking_id" value="100000015" hidden>
 
+                <div class="rating-row">
+                    <div class="input-box">
+                        <label for="lname">Rate your experience</label>
+                        <div class="rate">
+                            <input type="radio" id="star5" name="rate" value="5" />
+                            <label for="star5" title="text">5 stars</label>
+                            <input type="radio" id="star4" name="rate" value="4" />
+                            <label for="star4" title="text">4 stars</label>
+                            <input type="radio" id="star3" name="rate" value="3" />
+                            <label for="star3" title="text">3 stars</label>
+                            <input type="radio" id="star2" name="rate" value="2" />
+                            <label for="star2" title="text">2 stars</label>
+                            <input type="radio" id="star1" name="rate" value="1" />
+                            <label for="star1" title="text">1 star</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="rating-row">
+                    <div class="input-box">
+                        <label for="lname">Feedback</label>
+                        <textarea rows=5> </textarea>
+                    </div>
+                </div>
 
-                <label for="lname">Stars</label><br>
-                <div class="rate">
-                    <input type="radio" id="star5" name="rate" value="5" />
-                    <label for="star5" title="text">5 stars</label>
-                    <input type="radio" id="star4" name="rate" value="4" />
-                    <label for="star4" title="text">4 stars</label>
-                    <input type="radio" id="star3" name="rate" value="3" />
-                    <label for="star3" title="text">3 stars</label>
-                    <input type="radio" id="star2" name="rate" value="2" />
-                    <label for="star2" title="text">2 stars</label>
-                    <input type="radio" id="star1" name="rate" value="1" />
-                    <label for="star1" title="text">1 star</label>
-                </div><br><br>
-
-                <label for="lname">Feedback</label>
-                <textarea style="width:90%; border-radius:100px">
-
-        </textarea>
-
-
-
-                <input style="background-color:#2ecc71" type="submit" value="Save">
+                <div class="popup_button_submit">
+                    <a href="">Submit</a>
+                </div>
             </form>
         </div>
     </div>
@@ -242,31 +246,26 @@
 
     <!-- start pop up delete section -->
     <div id="popup_delete" class="sectionpop ">
-
-
         <div class="formsection">
 
             <div>
                 <button s class="closebutton" onclick="close_popup_delete_message()">❌</button>
             </div>
             <form id="" action="" style="margin:20px">
-                <div style="margin:auto">
-                    <h1 style="margin:auto">
+                <div>
+                    <h1>
                         Booking deletion
                     </h1>
-                    <p style="margin:auto">
-                        Are sure to delete booking
-                    </p>
+                    <p>Are you sure to delete this booking?</p>
                 </div>
             </form>
 
-
             <div style="display:flex">
+                <button class="popup_delete_button">
+                    YES
+                </button>
                 <button onclick="close_popup_delete_message()" class="popup_button">
                     NO
-                </button>
-                <button style="background-color:red" class="popup_button">
-                    YES
                 </button>
             </div>
         </div>
@@ -287,7 +286,7 @@
             <form action="/action_page.php" style="margin:20px">
                 <div style="margin:auto">
                     <h1 style="margin:auto">
-                        Favorite Sports Arena Deletion
+                        Remove Favourite Arena 
                     </h1>
                     <p style="margin:auto">
                         Are you sure to delete sports Arena?
@@ -320,13 +319,13 @@
             </div>
 
             <form action="/action_page.php" style="margin:20px">
-                
+
                 <div id="popup_notification">
-                    
+
                 </div>
 
             </form>
-            
+
         </div>
     </div>
     <!-- End popup notification section -->
@@ -337,15 +336,15 @@
         <div class="page-content-container">
             <div class="container">
                 <h1 class="page-header">Hi {{current_user.first_name}} {{current_user.last_name}}!</h1>
-                
+
 
                 <!-- Flash messages -->
                 <p>
                     {% for message in flash_messages %}
                 <div class="alert alert-{{ message.type }}">
-                 {{ message.body }}
-                    </div>
-            {% endfor %}
+                    {{ message.body }}
+                </div>
+                {% endfor %}
                 </p>
                 <!-- <ul>
                     {% for book in bookings %}
@@ -375,8 +374,9 @@
                                 <th class="booking-table-first-th">
                                     <div class="booking-table-filter-container">
                                         <div class="booking-table-search-container">
-                                            <input type="search" id= "search-arena-booking" name="search" placeholder="Search by Sports arena name"
-                                            onkeyup="SearchArenaBooking()">
+                                            <input type="search" id="search-arena-booking" name="search"
+                                                placeholder="Search by Sports arena name"
+                                                onkeyup="SearchArenaBooking()">
                                             <i class="fas fa-search"></i>
                                         </div>
                                         <div class="booking-table-date-picker">
@@ -404,7 +404,7 @@
 
 
                             {% for book in bookings %}
-                            {% if date(book.booking_date)|date('Y/m/d')  >= 'now'|date('Y/m/d')%}
+                            {% if date(book.booking_date)|date('Y/m/d') >= 'now'|date('Y/m/d')%}
                             {% if book.payment_status=="paid" %}
                             <tr>
 
@@ -431,7 +431,8 @@
                                             </button>
                                         </div>
                                         <div>
-                                            <button class="icon_red" onclick="open_popup_cancel_message({{book.booking_id}})">
+                                            <button class="icon_red"
+                                                onclick="open_popup_cancel_message({{book.booking_id}})">
                                                 <i class="fas fa-times"></i>
                                             </button>
                                         </div>
@@ -443,7 +444,7 @@
             </tr>
             {% endif %}
 
-            {% if book.payment_status=="unpaid"  %}
+            {% if book.payment_status=="unpaid" %}
             <tr>
                 <td data-label="Booking ID :" class="table-td-left">{{book.booking_id}}</td>
                 <td data-label="Booking Date :" class="table-td-left">{{book.booking_date}}</td>
@@ -477,10 +478,8 @@
             {% endif %}
 
 
-            {% if date(book.booking_date)|date('Y/m/d')  < 'now'|date('Y/m/d') %}
-
-            {% if book.payment_status=="paid" %}
-            <tr>
+            {% if date(book.booking_date)|date('Y/m/d') < 'now' |date('Y/m/d') %} {% if book.payment_status=="paid" %}
+                <tr>
 
 
                 <td data-label="Booking ID :" class="table-td-left">{{book.booking_id}}</td>
@@ -499,60 +498,61 @@
                 <td class="btn-float-right">
                     <div style="display:flex; float:right; padding-right:2rem;">
                         <div>
-                            <button onclick="open_popup_rate_message({{book.booking_id}})" >
+                            <button onclick="open_popup_rate_message({{book.booking_id}})">
                                 <i class="fas fa-star-half-alt"></i>
                             </button>
                         </div>
                         <div>
                             <button class="icon_red" onclick="open_popup_delete_message()">
                                 <i class="fas fa-trash-alt"></i>
+                                <!-- <i class="fas fa-trash-alt"></i> -->
                             </button>
                         </div>
                 </td>
-</div>
-</td>
-</div>
-</td>
-</tr>
-{% endif %}
+        </div>
+        </td>
+        </div>
+        </td>
+        </tr>
+        {% endif %}
 
-{% if book.payment_status=="unpaid"  %}
-<tr>
-<td data-label="Booking ID :" class="table-td-left">{{book.booking_id}}</td>
-<td data-label="Booking Date :" class="table-td-left">{{book.booking_date}}</td>
-<td data-label="Start Time :" class="table-td-left">{{book.start_time}}</td>
-<td data-label="End Time :" class="table-td-left">{{book.end_time}}</td>
-<td data-label="Arena Name:" class="table-td-left">{{book.sa_name}}</td>
-<td data-label="Category:">{{book.category}}</td>
-<td data-label="Payment Method :">{{book.payment_method}}</td>
-<td data-label="Payment Status :">
-    <div class="Payment-status"><a href="">{{book.payment_status}}</a></div>
-</td>
-<td data-label="Amount:">{{book.price_per_booking}}</td>
+        {% if book.payment_status=="unpaid" %}
+        <tr>
+            <td data-label="Booking ID :" class="table-td-left">{{book.booking_id}}</td>
+            <td data-label="Booking Date :" class="table-td-left">{{book.booking_date}}</td>
+            <td data-label="Start Time :" class="table-td-left">{{book.start_time}}</td>
+            <td data-label="End Time :" class="table-td-left">{{book.end_time}}</td>
+            <td data-label="Arena Name:" class="table-td-left">{{book.sa_name}}</td>
+            <td data-label="Category:">{{book.category}}</td>
+            <td data-label="Payment Method :">{{book.payment_method}}</td>
+            <td data-label="Payment Status :">
+                <div class="Payment-status"><a href="">{{book.payment_status}}</a></div>
+            </td>
+            <td data-label="Amount:">{{book.price_per_booking}}</td>
 
-<!-- <td data-label="Booking Status">Pending</td> -->
-<td class="btn-float-right">
-    <div style="display:flex; float:right; padding-right:2rem;">
-        <!-- <div>
+            <!-- <td data-label="Booking Status">Pending</td> -->
+            <td class="btn-float-right">
+                <div style="display:flex; float:right; padding-right:2rem;">
+                    <!-- <div>
             <button onclick="open_popup_rate_message({{book.booking_id}})" >
                 <i class="fas fa-star-half-alt"></i>
             </button>
         </div> -->
-        <div>
-            <button class="icon_red" onclick="open_popup_delete_message()">
-                <i class="fas fa-trash-alt"></i>
-            </button>
-        </div>
-    </div>
-</td>
-</tr>
-{% endif %}
+                    <div>
+                        <button class="icon_red" onclick="open_popup_delete_message()">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        {% endif %}
 
-            {% endif %}
-            {% endfor %}
+        {% endif %}
+        {% endfor %}
 
-            
-                            <!-- <tr>
+
+        <!-- <tr>
                                 <td data-label="Booking ID :">BD1234567</td>
                                 <td data-label="Booking Date :">2021/09/30</td>
                                 <td data-label="Start Time :">1530h</td>
@@ -586,8 +586,8 @@
                             </tr> -->
 
 
-            </tbody>
-            </table>
+        </tbody>
+        </table>
         </div>
         <div id="my_favorite_list" class="booking_tab_content">
 
@@ -599,8 +599,8 @@
                         <th class="booking-table-first-th">
                             <div class="booking-table-filter-container">
                                 <div class="booking-table-search-container">
-                                    <input type="search" name="search" placeholder="Search"
-                                    id="search-arena-favourite" onkeyup = "SearchArenaFavorite()">
+                                    <input type="search" name="search" placeholder="Search" id="search-arena-favourite"
+                                        onkeyup="SearchArenaFavorite()">
                                     <i class="fas fa-search"></i>
                                 </div>
 
@@ -624,14 +624,14 @@
                         <td data-label="Category:">{{item.category}}</td>
                         <td data-label="Address:">{{item.location}}</td>
                         <td>
-                            <button class="popup_button">
+                            <button class="avail_button">
                                 Availability
                             </button>
                         </td>
                         <td>
                             <button class="icon_red" onclick="open_popup_delete_message_favorite_list()"
                                 class="delete_button">
-                                <i class="far fa-trash-alt fa-2x"></i>
+                                <i class="fas fa-trash-alt"></i>
                             </button>
                         </td>
 
@@ -650,8 +650,8 @@
                         <th class="booking-table-first-th">
                             <div class="booking-table-filter-container">
                                 <div class="booking-table-search-container">
-                                    <input type="search" name="search" placeholder="Search"
-                                    id="search-notifications" onkeyup="SearchNotifications()">
+                                    <input type="search" name="search" placeholder="Search" id="search-notifications"
+                                        onkeyup="SearchNotifications()">
                                     <i class="fas fa-search"></i>
                                 </div>
                                 <div class="booking-table-date-picker">
@@ -669,7 +669,8 @@
                 </thead>
                 <tbody>
                     {% for notification in notifications %}
-                    <tr style="cursor: pointer" onclick="open_popup_notification(`{{notification.subject}}`,`{{notification.description}}`)">
+                    <tr style="cursor: pointer"
+                        onclick="open_popup_notification(`{{notification.subject}}`,`{{notification.description}}`)">
                         <td data-label="Date:">{{notification.date}}</td>
                         <td data-label="Time:">{{notification.time}}</td>
                         <td class="notification-td-left">{{notification.subject}}</td>
@@ -697,11 +698,11 @@
             <p>cancel_booking is the capital of Japan.</p>
         </div>
 
-        
+
         </div>
-       
-        
-        
+
+
+
     </section>
 
     <div class="cart">

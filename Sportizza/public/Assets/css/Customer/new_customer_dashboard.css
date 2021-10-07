@@ -242,13 +242,13 @@ ul {
 }
 
 .booking-table button i {
-  font-size: 20px;
+  font-size:1rem;
 }
 
 tbody tr td button {
   width: 30px;
   height: 30px;
-  color: #04aa6d;
+  color: #2ecc71;
   border-radius: 500px;
   border: none;
   margin: 5px;
@@ -258,20 +258,21 @@ tbody tr td button {
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
-tbody tr td button:hover {
+/* tbody tr td button:hover {
   background-color: #04aa6d;
   color: white;
-}
+} */
 tbody tr td .icon_red {
   color: #e74c3c;
+ 
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
-tbody tr td .icon_red:hover {
+/* tbody tr td .icon_red:hover {
   background-color: #e74c3c;
   color: white;
-}
+} */
 
 .table-td-left {
   text-align: left;
@@ -304,8 +305,13 @@ tbody tr td .icon_red:hover {
 .sectionpop h1 {
   font-size: 20px;
   text-align: center;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   color:#2c3e50;
+}
+.sectionpop textarea{
+  width:100%;
+  border-radius:20px;
+  border:1px solid #ccc;
 }
 .sectionpop p {
   text-align: center;
@@ -345,18 +351,73 @@ tbody tr td .icon_red:hover {
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
-.popup_button a {
+
+.popup_button_submit{
+  background-color: #2ed573;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+  opacity: 0.9;
+  margin: auto;
+  padding: 5px;
+  border-radius: 50px;
+  border: none;
+  width: 150px;
+  text-align: center;
+  height: 36px;
+  align-items: center;
+  margin:auto;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+.avail_button{
+  background-color:white; 
+  color: #2ed573;;
+  font-weight: 400;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+  opacity: 0.9;
+  margin: auto;
+  padding: 5px;
+  border-radius: 50px;
+  border: none;
+  width: 150px;
+  text-align: center;
+  height: 36px;
+  align-items: center;
+  margin:auto;
+  border: 1px solid #2ecc71;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+.avail_button:hover{
+  background:#2ecc71;
+  color:#fff;
+}
+
+.popup_button a,
+.popup_button_submit a{
   color: white;
 }
-.popup_button:hover {
+.popup_button:hover,.popup_button_submit:hover  {
   color: #2ed573;
   background-color: white;
   border: 2px solid #2ecc71;
 }
-.popup_button:hover * {
+.popup_button:hover *,.popup_button_submit:hover *  {
   color: #2ed573;
 }
-
+/* .fas.fa-shopping-cart{
+  color:#fd461f;
+  font-size:1.2rem;
+} */
 .popup_delete_button {
   background-color: #e74c3c;
   color: white;
@@ -372,9 +433,10 @@ tbody tr td .icon_red:hover {
   width: 150px;
   height: 36px;
   align-items: center;
+  
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
-    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+  rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
 .popup_delete_button:hover {
@@ -591,6 +653,18 @@ form .input-box input {
   transition: all 0.3s ease;
   margin-bottom: 10px;
 }
+.formsection form .input-box input {
+  border: none;
+  border: 1px solid #ccc;
+  width: 100%;
+  border-radius:25px;
+  padding: 6px;
+  padding-left:20px;
+ 
+} 
+.rating-row{
+  margin-bottom:0.8rem;
+}
 
 
 
@@ -645,50 +719,59 @@ form .input-box input {
 }
 .rate:not(:checked) > label {
   float: right;
-  width: 1em;
+  width: 1.1em;
   overflow: hidden;
   white-space: nowrap;
   cursor: pointer;
-  font-size: 30px;
-  color: #ccc;
+  font-size: 24px;
+  color: #f0f0f0;
+  /* border:1px solid #2ecc71; */
 }
 .rate:not(:checked) > label:before {
   content: "★ ";
 }
 .rate > input:checked ~ label {
-  color: #fd461f;
+  color: #2ecc71;
 }
 .rate:not(:checked) > label:hover,
 .rate:not(:checked) > label:hover ~ label {
-  color: #fd461f;
+  color: #2ecc71;
 }
 .rate > input:checked + label:hover,
 .rate > input:checked + label:hover ~ label,
 .rate > input:checked ~ label:hover,
 .rate > input:checked ~ label:hover ~ label,
 .rate > label:hover ~ input:checked ~ label {
-  color: #fd461f;
+  color: #2ecc71;
 }
 
 
-.cart {
+.cart *{
   position: fixed;
   bottom: 40px;
   right: 20px;
-  height: 56px;
-  width: 56px;
+  height: 55px;
+  width: 55px;
   border-radius: 50%;
   background-color: #fd461f;
-  color: #fff;
+  color:#fff;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-
   cursor: pointer;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  padding:17.5px;
   transition: 200ms opacity ease;
   margin-left: 20px;
+  border: 1px solid #fff;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+.cart:hover *{
+  background-color: #fff;
+  border: 1px solid #fd461f;
+  color:#fd461f;
 }
 
 footer {
