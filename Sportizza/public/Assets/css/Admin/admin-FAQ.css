@@ -601,11 +601,16 @@ form input[type="submit"] {
     width: 300px;
 }
 .booking-table .solution_td{
-  width: 300px;
+  width: 500px;
   text-align: justify;
 }
+.booking-table .solution_th{
+  width: 500px;
+  padding:auto 20px;
+  text-align: center;
+}
 .booking-table .booking-table-first-th {
-  width: 100%;
+  width: 75vw;
   padding: 10px;
   display: flex;
 }
@@ -1083,7 +1088,7 @@ footer {
     padding-bottom: 2em;
   }
   .formsection .popup_button {
-    margin: auto;
+    margin: auto 5px;
   }
   .openbutton {
     background-color: white;
@@ -1208,5 +1213,8 @@ footer {
   form input[type="submit"]{
     padding: 12px 20px;
     font-size: .9em;
+  }
+  .trash-btn{
+    float:right;
   }
 }
