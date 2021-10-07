@@ -278,7 +278,7 @@ class SpArenaManagerModel extends \Core\Model
 
     public static function managerRemoveStaff($id){
         
-        $sql = 'SELECT user.first_name, user.last_name ,user.username,user.primary_contact 
+        $sql = 'SELECT user.first_name, user.last_name ,user.username,user.primary_contact,user.type 
         FROM administration_staff
         INNER JOIN booking_handling_staff ON
         administration_staff.manager_user_id =booking_handling_staff.manager_user_id
