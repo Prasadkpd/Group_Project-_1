@@ -203,6 +203,24 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <tr style="cursor: pointer"
+                                onclick="open_popup_notification('{{notification.subject}}','{{notification.description}}')">
+                                <td data-label="Date:">2021-10-05</td>
+                                <td data-label="Time:">18:45</td>
+                                <td class="notification-td-left">Cash Payment Confirmation Message</td>
+                            </tr>
+                            <tr style="cursor: pointer"
+                                onclick="open_popup_notification('{{notification.subject}}','{{notification.description}}')">
+                                <td data-label="Date:">2021-10-06</td>
+                                <td data-label="Time:">15:39</td>
+                                <td class="notification-td-left">Cash Payment Confirmation Message</td>
+                            </tr>
+                            <tr style="cursor: pointer"
+                                onclick="open_popup_notification('{{notification.subject}}','{{notification.description}}')">
+                                <td data-label="Date:">2021-10-08</td>
+                                <td data-label="Time:">16:45</td>
+                                <td class="notification-td-left">Cash Payment Confirmation Message</td>
+                            </tr>
                             {% for notification in notifications %}
                             <tr style="cursor: pointer" onclick="open_popup_notification('{{notification.subject}}','{{notification.description}}')">
                                 <td data-label="Date:">{{notification.date}}</td>

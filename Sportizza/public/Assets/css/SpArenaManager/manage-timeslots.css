@@ -791,7 +791,7 @@ footer {
   }
 
   .booking-table tbody {
-    height: 45vh;
+    height: 55vh;
   }
   .booking-table td {
     font-size: 0.75rem;
@@ -809,7 +809,7 @@ footer {
     margin: auto;
   }
   .trash-btn-padding-res {
-    padding: 10px;
+    padding-top: 10px;
     text-align: right;
   }
 

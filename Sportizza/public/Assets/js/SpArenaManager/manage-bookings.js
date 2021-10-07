@@ -178,7 +178,7 @@ function DeleteDatepicker() {
   console.log(datePattern);
   var datePattern = year + "-" + month + "-" + todayDate;
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[3];
+    td = tr[i].getElementsByTagName("td")[0];
     if (td) {
       txtValue = td.innerText;
       if (txtValue == datePattern) {

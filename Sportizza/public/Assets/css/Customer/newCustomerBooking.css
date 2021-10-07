@@ -30,7 +30,6 @@ ul {
 }
 /* ======================================================================== */
 
-
 /* End of Top navigation bar  */
 /* ======================================================================== */
 /* Start-Page-container */
@@ -374,75 +373,75 @@ tbody tr td .icon_red {
 }
 
 /* <!-- Start OF the POP up SIGN out --> */
-.sectionpop h1{
-    font-size:24px;
-    text-align:center;
-    margin-bottom: 20px;
+.sectionpop h1 {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
 }
-.sectionpop p{
-
-text-align:center;
-margin: 20px auto;
-}
-
-.popup_button{
-background-color: #2ed573;
-color: white;
-font-weight: 600;
-font-size:16px;
-border: none;
-cursor: pointer;
-width: 30%;
-opacity: 0.9;
-margin: 5px auto;
-border-radius: 50px;
-border: none;
-width:150px;
-height: 49px;
-align-items: center;
-box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35)
-0px -2px 6px 0px inset;
+.sectionpop p {
+  text-align: center;
+  margin: 20px auto;
 }
 
-.popup_delete_button{
-background-color: #e74c3c;
-color: white;
-font-weight: 600;
-font-size:16px;
-border: none;
-cursor: pointer;
-width: 30%;
-opacity: 0.9;
-margin: 5px auto;
-border-radius: 50px;
-border: none;
-width:150px;
-height: 49px;
-align-items: center;
-box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35)
-0px -2px 6px 0px inset;
+.popup_button {
+  background-color: #2ed573;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+  opacity: 0.9;
+  margin: 5px auto;
+  border-radius: 50px;
+  border: none;
+  width: 150px;
+  height: 49px;
+  align-items: center;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
-.popup_button:hover{
-background-color: white;
-color: rgb(33, 219, 95);
-border:2px solid #2ecc71;
+.popup_delete_button {
+  background-color: #e74c3c;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+  opacity: 0.9;
+  margin: 5px auto;
+  border-radius: 50px;
+  border: none;
+  width: 150px;
+  height: 49px;
+  align-items: center;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+.popup_button:hover {
+  background-color: white;
+  color: rgb(33, 219, 95);
+  border: 2px solid #2ecc71;
 }
 
 .popup_delete_button:hover {
-background-color: white;
-border:2px solid #e74c3c;
-color: #e74c3c;
-
+  background-color: white;
+  border: 2px solid #e74c3c;
+  color: #e74c3c;
 }
-.popup_delete_button:hover *{
-color: #e74c3c;
+.popup_delete_button:hover * {
+  color: #e74c3c;
 }
-.popup_delete_button a{
-color:white;
-font-weight:600;
-padding: 1em 4em;
-border-radius: 30px;
+.popup_delete_button a {
+  color: white;
+  font-weight: 600;
+  padding: 1em 4em;
+  border-radius: 30px;
 }
 /* End OF the POP up SIGN out  */
 
@@ -462,11 +461,11 @@ border-radius: 30px;
 /* pop up form section */
 .sectionpop {
   position: fixed;
-  width:100vw;
-  height:100vh;
+  width: 100vw;
+  height: 100vh;
   display: none;
   z-index: 100;
-   background-color:rgba(236, 236, 236, .836);
+  background-color: rgba(236, 236, 236, 0.836);
   margin: 0 auto;
 }
 .editProPic {
@@ -505,16 +504,15 @@ label {
   cursor: pointer;
 }
 
-.formsection{
-    display: flex;
-    flex-direction:column;
+.formsection {
+  display: flex;
+  flex-direction: column;
   width: 25%;
-      margin: 0 auto;
-  background-color:white;
+  margin: 0 auto;
+  background-color: white;
   border-radius: 20px;
   margin-top: 1%;
-    padding-bottom: 1em;
-
+  padding-bottom: 1em;
 }
 
 /* .editProPic img{
@@ -674,43 +672,40 @@ footer {
   padding: 2px 20px;
   display: sticky;
 }
-.date-picker{
+.date-picker {
   width: 100%;
 }
-  .date-picker form{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .date-picker input[type='submit']{
-    padding: 10px;
-    color: #fd461f;
+.date-picker form {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.date-picker input[type="submit"] {
+  padding: 10px;
+  color: #fd461f;
   background-color: #fff;
-  }
-  .date-picker input[type='submit']:hover{
-    padding: 10px;
-    background-color: #fd461f;
-    color: #fff;
-  }
+}
+.date-picker input[type="submit"]:hover {
+  padding: 10px;
+  background-color: #fd461f;
+  color: #fff;
+}
 
-
-  .add_favorite_button{
-    margin:auto;
-  }
-  .other{
-    width: 68vw;
-  }
-  .other .favorite-deltails{
-    display: flex;
-    align-items: center;
-    flex-direction: row-reverse;
-
-  }
+.add_favorite_button {
+  margin: auto;
+}
+.other {
+  width: 68vw;
+}
+.other .favorite-deltails {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+}
 /* starting media queries */
 @media screen and (max-width: 768px) {
-  
   .sidebar {
     width: 7vw;
   }
@@ -779,8 +774,7 @@ footer {
   }
 }
 
-@media screen and (max-width: 576px) { 
-
+@media screen and (max-width: 576px) {
   .page-content-container .container .page-header {
     width: 80%;
     font-size: 1rem;
@@ -986,6 +980,7 @@ footer {
 .available-bookings {
   background-color: #f97f51;
   height: 53vh;
+  width: 60vw;
   overflow-y: scroll;
   color: #fff;
   padding: 50px;
@@ -1032,7 +1027,6 @@ footer {
   font-size: 20px;
 }
 .available-bookings ul li .price {
-  margin: auto 5rem;
   font-weight: 500;
   font-size: 18px;
 }
@@ -1103,6 +1097,148 @@ footer {
   padding: 2px 20px;
   display: sticky;
 }
+.payment_cart {
+  display: flex;
+  align-items: baseline;
+}
+
+/* css for cash card toggle button */
+#app-cover {
+  display: table;
+  width: 600px;
+  margin: 80px auto;
+  counter-reset: button-counter;
+}
+
+.row {
+  display: table-row;
+}
+
+.toggle-button-cover {
+  display: table-cell;
+  position: relative;
+  width: 150px;
+  height: 30px;
+  box-sizing: border-box;
+}
+
+/* .button-cover
+{
+    height: 100px;
+    margin: 20px;
+    background-color: #fff;
+    box-shadow: 0 10px 20px -8px #c5d6d6;
+    border-radius: 4px;
+} */
+
+/* .button-cover:before
+{
+    counter-increment: button-counter;
+    content: counter(button-counter);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    color: #d7e3e3;
+    font-size: 12px;
+    line-height: 1;
+    padding: 5px;
+} */
+
+.button-cover,
+.knobs,
+.layer {
+  position: absolute;
+  top: 0;
+  right: 200px;
+  bottom: 0;
+  left: 0;
+}
+
+.button {
+  position: relative;
+
+  width: 92px;
+  height: 24px;
+
+  overflow: hidden;
+  margin-top: 5px;
+}
+
+.button.r,
+.button.r .layer {
+  border-radius: 100px;
+}
+
+.button.b2 {
+  border-radius: 2px;
+}
+
+.checkbox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.knobs {
+  z-index: 2;
+}
+
+.layer {
+  width: 100%;
+  background-color: #fea47f;
+  transition: 0.3s ease all;
+  z-index: 1;
+}
+
+/* Button 1 */
+#button-1 .knobs:before {
+  content: "Cash";
+  position: absolute;
+  /* top: 4px;
+    left: 4px; */
+  width: 50px;
+  height: 100%;
+  color: #fd461f;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1;
+  /* padding: 10px 20px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #353b48;
+  border-radius: 20px;
+  transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
+}
+
+.payment_cart .removeItem .fa-cart-plus {
+  color: #353b48;
+}
+
+#button-1 .checkbox:checked + .knobs:before {
+  content: "Card";
+  left: 42px;
+  background-color: #fff;
+  color: #fd461f;
+}
+
+#button-1 .checkbox:checked ~ .layer {
+  background-color: #fea47f;
+}
+
+#button-1 .knobs,
+#button-1 .knobs:before,
+#button-1 .layer {
+  transition: 0.3s ease all;
+}
+
 @media (max-width: 1400px) {
   header {
     width: 100px;
@@ -1123,7 +1259,6 @@ footer {
   .calendar-layout {
     width: 500px;
   }
- 
 }
 @media (max-width: 576px) {
   .container {
@@ -1219,7 +1354,7 @@ footer {
     margin: 0rem auto;
     padding-right: 10px;
   }
-  
+
   .date-picker input[type="date"] {
     width: 80%;
     font-size: 0.8rem;
@@ -1228,9 +1363,8 @@ footer {
     height: 40px;
     margin: 0px auto;
   }
-  
+
   .available-bookings {
-    margin: 1rem auto;
     border-radius: 25px;
     height: 48vh;
     padding: 20px;
@@ -1242,19 +1376,49 @@ footer {
   .available-bookings ul li {
     padding: 15px 0;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    padding-left: 15px;
   }
-  .toggle-button-cover{
-    width: 100px;
+  .available-bookings .facility {
+    margin-left: 0;
+  }
+  .available-bookings ul li .price {
+    margin-left: 0;
+  }
+  .toggle-button-cover {
+    width: 160px;
     padding: 0;
     display: flex;
     justify-content: center;
   }
+  .payment_cart {
+    margin: auto;
+    align-self: flex-end;
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+  }
+
+  .payment_cart .removeItem .fa-cart-plus {
+    font-size: 25px;
+    color: #353b48;
+  }
+  input[type="submit"] {
+    margin: 0;
+  }
+
+  .sp-arena {
+    width: 100%;
+    margin: 0;
+    margin-top: 1rem;
+  }
+  .available-bookings .events-list{
+    padding-top: 5px;
+  }
+  
 }
 
 @media screen and (max-width: 420px) {
-
-  
   .sidebar {
     width: 10vw;
   }
@@ -1265,7 +1429,7 @@ footer {
   .page-content-container .container {
     padding-bottom: 4em;
     width: 90vw;
-    overflow-y: scroll;
+    height: 80vh;
   }
   .page-container .page-content-container {
     width: 100vw;
@@ -1299,8 +1463,8 @@ footer {
   .tab .tab-btn i {
     margin: 5px;
   }
-  .formsection{
-    width:90vw;
+  .formsection {
+    width: 90vw;
   }
   .booking-table .booking-table-first-th .booking-table-filter-container {
     flex-direction: column;
@@ -1341,200 +1505,51 @@ footer {
     content: attr(data-label);
     font-size: 0.75rem;
   }
-  .left-container{
+  .left-container {
     flex-direction: column;
     height: max-content;
     padding: 10px;
     width: 90vw;
   }
-  .left-container input[type="date"]{
+  .left-container input[type="date"] {
     width: 50vw;
   }
-  .booking .left-container h3{
+  .booking .left-container h3 {
     font-size: 1.2rem;
   }
-  .left-container input[type="submit"]{
+  .left-container input[type="submit"] {
     padding: 10px;
-    font-size: .9em;
+    font-size: 0.9em;
   }
   .right-container {
     width: 90vw;
     padding: 5px;
   }
-  .right-container h2{
+  .right-container h2 {
     font-size: 1.2em;
   }
-  .right-container .events-list li *{
+  .right-container .events-list li * {
     font-size: 1em;
   }
-  .right-container .check-availability-btn{
+  .right-container .check-availability-btn {
     padding: 10px;
-    font-size: .9em;
+    font-size: 0.9em;
     margin-right: 2em;
   }
-  .available-bookings{
-    height: 48vh;
+  .available-bookings {
+    height: 43vh;
   }
-  .add_favorite_button{
-    margin:0;
+  .add_favorite_button {
+    margin: 0;
   }
   .other .favorite-deltails {
     display: flex;
     align-items: flex-start;
     flex-direction: column-reverse;
   }
-  .other .favorite-deltails form input[type="submit"]{
+  .other .favorite-deltails form input[type="submit"] {
     height: 36px;
     padding: 0 10px;
     font-size: small;
   }
 }
-
-
-
-
-
-
-
-
-/* css for cash card toggle button */
-#app-cover
-{
-    display: table;
-    width: 600px;
-    margin: 80px auto;
-    counter-reset: button-counter;
-}
-
-.row
-{
-    display: table-row;
-}
-
-.toggle-button-cover
-{
-    display: table-cell;
-    position: relative;
-    width: 200px;
-    height:30px;
-    box-sizing: border-box;
-}
-
-/* .button-cover
-{
-    height: 100px;
-    margin: 20px;
-    background-color: #fff;
-    box-shadow: 0 10px 20px -8px #c5d6d6;
-    border-radius: 4px;
-} */
-
-/* .button-cover:before
-{
-    counter-increment: button-counter;
-    content: counter(button-counter);
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    color: #d7e3e3;
-    font-size: 12px;
-    line-height: 1;
-    padding: 5px;
-} */
-
-.button-cover, .knobs, .layer
-{
-    position: absolute;
-    top: 0;
-    right: 200px;
-    bottom: 0;
-    left: 0;
-}
-
-.button
-{
-    position: relative;
-
-    width: 92px;
-    height: 24px;
-    
-    overflow: hidden;
-    margin-top: 5px;
-}
-
-.button.r, .button.r .layer
-{
-    border-radius: 100px;
-}
-
-.button.b2
-{
-    border-radius: 2px;
-}
-
-.checkbox
-{
-    position: relative;
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    margin: 0;
-    opacity: 0;
-    cursor: pointer;
-    z-index: 3;
-}
-
-.knobs
-{
-    z-index: 2;
-}
-
-.layer
-{
-    width: 100%;
-    background-color: #FEA47F;
-    transition: 0.3s ease all;
-    z-index: 1;
-}
-
-/* Button 1 */
-#button-1 .knobs:before
-{
-    content: 'Cash';
-    position: absolute;
-    /* top: 4px;
-    left: 4px; */
-    width: 50px;
-    height: 100%;
-    color: #fff;
-    font-size: 10px;
-    font-weight: bold;
-    text-align: center;
-    line-height: 1;
-    /* padding: 10px 20px; */
-    display:flex;
-    justify-content:center;
-    align-items: center;
-    background-color: #1e272e;
-    border-radius:20px;
-    transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
-}
-
-#button-1 .checkbox:checked + .knobs:before
-{
-    content: 'Card';
-    left: 42px;
-    background-color: #fff;
-    color: #1e272e;
-}
-
-#button-1 .checkbox:checked ~ .layer
-{
-    background-color: #FEA47F;
-}
-
-#button-1 .knobs, #button-1 .knobs:before, #button-1 .layer
-{
-    transition: 0.3s ease all;
-}
-

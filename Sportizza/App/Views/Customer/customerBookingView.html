@@ -242,27 +242,28 @@
                                             <span class="facility">{{timeSlot.facility_name}}</span>
                                         </div>
                                         <div class="row">
-                                            <span class="price">{{timeSlot.price}}</span>
+                                            <span class="price">LKR {{timeSlot.price}}</span>
                                             
                                         
                                         </div>
 
                                         <!-- toggle button -->
                                             
-                                                
-                                        <div class="toggle-button-cover">
-                                            <div class="button-cover">
-                                              <div class="button r" id="button-1">
-                                                <input type="checkbox" class="checkbox">
-                                                <div class="knobs"></div>
-                                                <div class="layer"></div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                  
-                                        <div>
-                                            <button class="removeItem" value={{timeSlot.time_slot_id}} onclick="hidefunction({{timeSlot.time_slot_id}})">
-                                                <i class="fas fa-cart-plus"></i></button>
+                                        <div class="payment_cart">
+                                                    <div class="toggle-button-cover">
+                                                        <div class="button-cover">
+                                                            <div class="button r" id="button-1">
+                                                                <input type="checkbox" class="checkbox">
+                                                                <div class="knobs"></div>
+                                                                <div class="layer"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div>
+                                                        <button class="removeItem" value={{timeSlot.time_slot_id}} onclick="hidefunction({{timeSlot.time_slot_id}})">
+                                                            <i class="fas fa-cart-plus"></i></button>
+                                                    </div>
                                         </div>
                                     </li>
                                     {% endfor %}
