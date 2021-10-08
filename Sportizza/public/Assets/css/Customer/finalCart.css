@@ -27,8 +27,6 @@ a {
 ul {
   list-style: none;
 }
-
-
 nav .nav-profile {
   width:60%;
 }
@@ -81,6 +79,13 @@ form input[type="submit"]:hover {
 }
 .btn:hover {
   color: #fd461f;
+}
+.page-container{
+  height:84vh;
+  margin-bottom:3px;
+  overflow:hidden;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, 
+  rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 .page-content {
   display: flex;
@@ -463,7 +468,7 @@ form i {
 .cartContent {
   overflow-y: scroll;
   margin:auto;
-  height: 250px;
+  height: 355px;
 }
 
 .cartContent::-webkit-scrollbar {
@@ -519,7 +524,8 @@ form i {
   text-align: right;
 }
 .cartDisplay .content .priceNPay {
-  width: 400px;
+  width: 350px;
+  margin:auto 5px;
   margin-top: 1.5rem;
   padding: 10px 15px;
   border-radius: 15px;
