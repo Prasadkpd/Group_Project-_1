@@ -257,10 +257,16 @@
                 <div class="result-details">
                     <h4><a href="">{{arena.sa_name}}</a></h4>
                     <div class="sp-arena-summary-items">
-                        <h5>City:<h6> {{arena.location}}</h6>
-                        </h5>
-                        <h5>Category: <h6>{{arena.category}}</h6>
-                        </h5>
+                       <div class="arena-details">
+                            <div class="arena-detail">
+                                <h5>City:<h6> {{arena.location}}</h6>
+                                </h5>
+                            </div>
+                            <div class="arena-detail">
+                                <h5>Category: <h6>{{arena.category}}</h6>
+                                </h5>
+                            </div>
+                       </div>
                     <a href="/customer/booking/{{arena.sports_arena_id}}" class="btn check-availability-btn"> Availability</a>
                     <!-- <a href="/customer/booking?sports_arena_id={{arena.sports_arena_id}}" class="btn check-availability-btn"> Availability</a> -->
                     </div>
