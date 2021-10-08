@@ -749,7 +749,7 @@ form input[type="submit"] {
 }
 .booking-table .description{
   width: 300px;
-  text-align: justify;
+  text-align: center;
 }
 .booking-table .description_th{
   width: 300px;
@@ -1138,6 +1138,7 @@ footer {
   }
   .booking-table .description{
     width: 100%;
+    text-align: right;
   }
   .booking-table .rating{
     width: 100%;
