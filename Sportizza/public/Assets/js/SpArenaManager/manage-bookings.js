@@ -85,7 +85,7 @@ function searchViewTable() {
   }
 }
 
-function ViewDatepicker() {
+window.onload =function ViewDatepicker() {
   table = document.getElementById("view-booking");
   var pass = document.getElementById("view-date-picker").value;
   tr = table.getElementsByTagName("tr");
