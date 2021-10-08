@@ -218,7 +218,7 @@ function SearchNotifications() {
   var input, filter, table, tr, td, i, txtValue;
   input = document.getElementById("search-notifications");
   filter = input.value.toUpperCase();
-  table = document.getElementById("notifications_list");
+  table = document.getElementById("notifications_table");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
     td = tr[i].getElementsByTagName("td")[2];
