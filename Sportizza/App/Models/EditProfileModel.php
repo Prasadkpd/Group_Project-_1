@@ -126,6 +126,7 @@ class EditProfileModel extends \Core\Model
 
     public  function saveForgotPassword($mobile)
     {
+        // $mobile_number=ltrim($mobile);
         $this->validatePassword();
         if (empty($this->errors)) {
 
@@ -136,7 +137,7 @@ class EditProfileModel extends \Core\Model
 
             $db = static::getDB();
              $stmt = $db->prepare($sql);
-            $stmt->bindValue(':mobile', $mobile, PDO::PARAM_STR);
+            $stmt->bindValue(':mobile', $mobile, PDO::PARAM_INT);
             $stmt->bindValue(':passwords',$passwords, PDO::PARAM_STR);
         
         

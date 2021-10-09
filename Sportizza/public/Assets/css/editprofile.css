@@ -36,7 +36,8 @@ nav {
     width: 100vw;
   }
   nav .nav-left {
-    width: 100%;
+    width: 60%;
+    /* background-color: #04AA6D; */
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -44,6 +45,18 @@ nav {
     padding-left: 4.8rem;
     /* justify-content: space-around; */
   }
+
+  nav .nav-right {
+    width: 100%;
+    display: flex;
+    /* background-color: red; */
+    flex-direction: row;
+    align-items: center;
+    height: 50px;
+    padding-left: 4.8rem;
+    justify-content: left;
+  }
+  
   nav .logo-container {
     width: 50%;
   }
@@ -1068,6 +1081,7 @@ footer {
             justify-content: space-between;
             height: 13vh;
             padding-left: 0.7rem;
+            width: 100%;
           }
           nav .logo-container a {
             font-size: 25px;

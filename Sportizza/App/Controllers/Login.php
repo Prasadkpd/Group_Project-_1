@@ -53,8 +53,11 @@ class Login extends \Core\Controller
         } else {
             
 
-            $message="Invalid username or password";
-            $_SESSION['error']=$message;
+            // $message="Invalid username or password";
+            // $_SESSION['error']=$message;
+
+            Flash::addMessage('Invalid username or password',Flash::WARNING);
+            
             
             $this->redirect('/login');
             // View::renderTemplate('LoginSignup/loginView.html',['message'=>$message]);
@@ -138,7 +141,7 @@ class Login extends \Core\Controller
         $Model = new EditProfileModel($_POST);      
         // $errors = $user->validate();
         $mobile_number=$_SESSION['temp_mobile'];
-
+        var_dump($_POST);
         // $_SESSION['direct_url']=$_POST['direct_url'];
         // var_dump($_SESSION['direct_url']);
 
