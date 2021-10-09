@@ -15,11 +15,34 @@
  {{ message.body }}
     </div>
 {% endfor %}
-    <form action="/Edituserdetails/redirectotppage" method="post">
-        <label for="mobile">Mobile Number</label>
+    <form id="mobileForm" action="/Edituserdetails/redirectotppage" method="post"
+    onSubmit="validateMobileResetForm()">
+        <!-- <label for="mobile">Mobile Number</label>
         <input id="mobile_number" type="text" name="mobile_number" 
          placeholder="Ex:-) 0712345678" >
-        <input type="submit" value="submit">
+        <input type="submit" value="submit"> -->
+
+
+
+
+        <div class="input-box">
+            <label for="mobile">Mobile Number</label>
+            <input id="mobile_number" type="text" name="mobile number" onfocusout="validateMobile()"
+              placeholder="Enter mobile number" >
+            <div class="helper-text" id="mobileMsg">
+              <!-- <p>{{errors["mobile_number1"]}} {{errors["mobile_number2"]}}
+                {{errors["mobile_number3"]}}
+              </p> -->
+            </div>
+          </div>
+
+          <input type="submit" value="submit">
     </form>
+
+
+    
+    <script type="text/javascript" src="/Assets/js/signup_validation.js?version=16.0"></script>
+    <script type="text/javascript" src="/Assets/js/enterMobile.js?version=16.0"></script>
+
 </body>
 </html>

@@ -11,7 +11,7 @@ formUserPasswordReset.addEventListener('submit', function (event) {
     if (
         validateNewPassword()
     ) {
-        formUpdateTimeslot.submit();
+        formUserPasswordReset.submit();
     }
 });
 
