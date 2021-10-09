@@ -242,7 +242,7 @@
 
             <div id="add_bookings" class="booking_tab_content">
                 <div class="form-container">
-                    <form method="POST" action="/Admin/createfaq">
+                    <form id="createFAQForm" method="POST" action="/Admin/createfaq" onsubmit="validateCreateFAQForm()">
                         <!-- <select class="userTypeSelect" name="type">
                                 <option value="0">Select category</option>
                                 <option value="customer">Customer</option>
@@ -253,7 +253,7 @@
                             <label for="type" class="faqLabel">Type</label>
                             <div class="options-container">
                                 <div class="custom-select">
-                                    <select id="type" name="type">
+                                    <select id="type" name="type" onchange="validateType()">
                                         <option value="0">Select type</option>
                                         <option value="customer">Customer</option>
                                         <option value="sports_arena">Sports Arena</option>
@@ -266,11 +266,13 @@
 
                         <label for="question" class="faqLabel">Question : </label>
                         <textarea id="question" class="faqInput" name="question"
-                            placeholder="Type your question..." rows="1"></textarea>
+                            placeholder="Type your question..." rows="1" onfocusout="validateQuestion()"></textarea>
+                            <div class="helper-text" id="questionMsg"></div>
 
                         <label for="solution" class="faqLabel">Solution : </label>
                         <textarea id="solution" class="faqInput" rows="4" name="solution"
-                            placeholder="Type your solution..."></textarea>
+                            placeholder="Type your solution..." onfocusout="validateSolution()"></textarea>
+                            <div class="helper-text" id="solutionMsg"></div>
 
                         <input type="submit" value="Create" class="faqSubmit" />
 
@@ -318,7 +320,7 @@
 
             <div id="booking_payment" class="booking_tab_content">
                 <div class="form-container">
-                    <form method="post" action="">
+                    <form id="updateFAQForm" method="post" action="" onsubmit="validateUpdateFAQForm()">
                         <div class="input-box">
                             <label for="utype" class="faqLabel">Type</label>
                             <div class="options-container">
@@ -340,8 +342,9 @@
                         </select>
 
                         <label for="usolution" class="faqLabel">Solution : </label>
-                        <textarea id="usolution" class="faqInput" rows="4" name="usolution"
-                            placeholder="Type your solution..."></textarea>
+                        <textarea id="usolution" class="faqInput" rows="4" name="solution"
+                            placeholder="Type your solution..." onfocusout="validateUSolution()"></textarea>
+                        <div class="helper-text" id="solutionMsg"></div>
 
                         <input type="submit" value="Update" class="faqSubmit" />
 
@@ -365,6 +368,7 @@
     <!-- End of Footer -->
 
     <script type="text/javascript" src="/Assets/js/lib/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/Assets/js/signup_validation.js?version=8.0"></script>
     <script type="text/javascript" src="/Assets/js/Admin/adminFAQ.js?version=3"></script>
     <script type="text/javascript" src="/Assets/js/Admin/adminFAQupdateQuestion.js?v=8"></script>
     <script type="text/javascript" src="/Assets/js/Admin/adminFAQupdateSolution.js"></script>
