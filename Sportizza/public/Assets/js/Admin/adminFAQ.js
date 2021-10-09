@@ -117,6 +117,12 @@ createFAQForm.addEventListener('submit', function (event) {
   }
 });
 
+function validateCreateFAQForm() {
+  validateType();
+  validateQuestion();
+  validateSolution();
+}
+
 const updateFAQForm = document.getElementById('updateFAQForm');
 
 updateFAQForm.addEventListener('submit', function (event) {
@@ -128,6 +134,7 @@ updateFAQForm.addEventListener('submit', function (event) {
       updateFAQForm.submit();
   }
 });
+
 
 function validateUpdateFAQForm() {
   validateUSolution();
