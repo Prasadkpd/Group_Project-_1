@@ -30,18 +30,20 @@ class Admin extends \Core\Controller
         // View::renderTemplate('Admin/adminManageUsersView.html');
 
 
-        $customers=AdminModel::adminRemoveCustomers();
-        $inactiveSportsArenas= AdminModel::adminAddSportsArenas();
-        $activeSportsArenas= AdminModel::adminRemoveSportsArenas();
-        //direct to the admin page
-        View::renderTemplate('Admin/adminManageUsersView.html',
-        ['customers'=>$customers,'inactiveArenas'=>$inactiveSportsArenas,'activeArenas'=>$activeSportsArenas]);
+        // $customers=AdminModel::adminRemoveCustomers();
+        // $inactiveSportsArenas= AdminModel::adminAddSportsArenas();
+        // $activeSportsArenas= AdminModel::adminRemoveSportsArenas();
+        // //direct to the admin page
+        // View::renderTemplate('Admin/adminManageUsersView.html',
+        // ['customers'=>$customers,'inactiveArenas'=>$inactiveSportsArenas,'activeArenas'=>$activeSportsArenas]);
+
+        $this->redirect('/Admin/chart');
     }
 
-    public function analyticsAction()
-    {
-        View::renderTemplate('Admin/adminAnalyticsView.html');
-    }
+    // public function analyticsAction()
+    // {
+    //     View::renderTemplate('Admin/adminAnalyticsView.html');
+    // }
 
     public function faqAction()
     {
