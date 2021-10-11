@@ -28,8 +28,22 @@
                 </a>
             </div>
 
-           
+            
+        
+            
         </div>
+        
+        <div class="nav-right">
+            {% for message in flash_messages %}
+            
+                <div class="alert alert-{{ message.type }}">
+                    {{ message.body }}
+                </div>
+            
+            {% endfor %}
+        </div>
+        
+
     </nav>
     <!-- End Top Navigation Bar -->
 
@@ -266,7 +280,7 @@
     <!-- End of Footer -->
 
     <script type="text/javascript" src="/Assets/js/signup_validation.js?v=6"></script>
-    <script type="text/javascript" src="/Assets/js/Customer/editProfileValidation.js?v=6"></script>
+    <!-- <script type="text/javascript" src="/Assets/js/Customer/editProfileValidation.js?v=6"></script> -->
 
 
     <script type="text/javascript" src="/Assets/js/editprofile.js?v=6"></script>
