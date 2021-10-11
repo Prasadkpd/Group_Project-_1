@@ -141,12 +141,31 @@ class SpAdministrationStaffModel extends \Core\Model
         return $result;
     }
 
+    public static function saAdminGetFacilityName($id){
+        $sql = 'SELECT facility.facility_id, facility.facility_name
+        FROM facility
+        INNER JOIN administration_staff ON facility.manager_sports_arena_id=administration_staff.manager_sports_arena_id
+        WHERE administration_staff.user_id=:id'; 
+
+        
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        // var_dump($result);
+        return $result;
+    }
+
     public static function saAdminViewTimeSlots($id){
         
         $sql = 'SELECT time_slot.time_slot_id, 
          TIME_FORMAT(time_slot.start_time, "%H" ":" "%i") AS startTime, 
         TIME_FORMAT(time_slot.end_time, "%H" ":" "%i") AS endTime,
-        time_slot.price, facility.facility_name 
+        time_slot.price, facility.facility_id, facility.facility_name 
         FROM time_slot 
         INNER JOIN facility ON time_slot.facility_id = facility.facility_id
         INNER JOIN administration_staff ON time_slot.manager_user_id=administration_staff.manager_user_id

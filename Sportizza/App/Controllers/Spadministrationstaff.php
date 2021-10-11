@@ -65,7 +65,9 @@ class Spadministrationstaff extends \Core\Controller
         $id=$current_user->user_id;
         $viewTimeSlots= SpAdministrationStaffModel::saAdminViewTimeSlots($id);
         $deleteTimeSlots= SpAdministrationStaffModel::saAdminDeleteTimeSlots($id);
-        View::renderTemplate('AdministrationStaff/aStaffManageTimeslotsView.html',['timeSlots'=>$viewTimeSlots,'deleteTimeSlots'=>$deleteTimeSlots]);
+        $selectFacility= SpAdministrationStaffModel::saAdminGetFacilityName($id);
+        
+        View::renderTemplate('AdministrationStaff/aStaffManageTimeslotsView.html',['timeSlots'=>$viewTimeSlots,'deleteTimeSlots'=>$deleteTimeSlots,'selectFacility'=>$selectFacility]);
     }
 
     public function createtimeslotAction()

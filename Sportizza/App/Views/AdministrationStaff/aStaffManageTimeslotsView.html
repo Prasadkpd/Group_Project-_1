@@ -287,9 +287,10 @@
                                     <div class="user-type-div">
                                         <select id="facilityName" name="Facility"
                                             onchange="validateFacilitySelect()" value="{{sp_arena.facility}}">
-                                            <option value="0"></option>
-                                            <option value="1">Basketball Court 1</option>
-                                            <option value="2">Basketball Court 2</option>
+                                            <option value="0">Please select a facility</option>
+                                            {% for facility in selectFacility %}
+                                            <option value="{{facility.facility_id}}">{{facility.facility_name}}</option>
+                                            {% endfor %}
                                         </select>
                                         <div class="helper-text" id="imgMsg6"></div>
                                     </div>

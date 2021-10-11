@@ -103,8 +103,9 @@ class Sparenamanager extends \Core\Controller
         $id=$current_user->user_id;
         $viewTimeSlots= SpArenaManagerModel::managerViewTimeSlots($id);
         $deleteTimeSlots= SpArenaManagerModel::managerDeleteTimeSlots($id);
+        $selectFacility= SpArenaManagerModel::managerGetFacilityName($id);
         View::renderTemplate('Manager/mStaffManageTimeslotsView.html',['timeSlots'=>$viewTimeSlots,
-        'deleteTimeSlots'=>$deleteTimeSlots]);
+        'deleteTimeSlots'=>$deleteTimeSlots,'selectFacility'=>$selectFacility]);
     }
 
     public function managefacilityAction()

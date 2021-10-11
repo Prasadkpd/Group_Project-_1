@@ -154,6 +154,25 @@ class SpArenaManagerModel extends \Core\Model
         return $result;
     }
 
+    public static function managerGetFacilityName($id){
+        $sql = 'SELECT facility.facility_id, facility.facility_name
+        FROM facility
+        INNER JOIN manager ON facility.manager_sports_arena_id=manager.sports_arena_id
+        WHERE manager.user_id=:id'; 
+
+        
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        // var_dump($result);
+        return $result;
+    }
+
     public static function managerViewTimeSlots($id){
         
         $sql = 'SELECT time_slot.time_slot_id, 

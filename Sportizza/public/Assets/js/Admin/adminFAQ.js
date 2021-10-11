@@ -129,6 +129,8 @@ updateFAQForm.addEventListener('submit', function (event) {
   event.preventDefault();
 
   if (
+      validateUType() &&
+      validateUQuestion() &&
       validateUSolution()
   ) {
       updateFAQForm.submit();
@@ -137,6 +139,8 @@ updateFAQForm.addEventListener('submit', function (event) {
 
 
 function validateUpdateFAQForm() {
+  validateUType();
+  validateUQuestion();
   validateUSolution();
 }
 
@@ -154,6 +158,17 @@ function validateQuestion(){
 function validateSolution(){
   if (checkIfEmpty(solution)) return;
   if (!checkCharacters(solution)) return;
+  return true;
+}
+
+function validateUType() {
+  if (!selectValidate(utype)) return;
+  return true;
+}
+
+function validateUQuestion(){
+  if (!selectValidate(uquestion)) return;
+  return true;
   return true;
 }
 
