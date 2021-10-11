@@ -980,7 +980,7 @@ footer {
 .available-bookings {
   background-color: #f97f51;
   height: 53vh;
-  width: 60vw;
+  width: 53vw;
   overflow-y: scroll;
   color: #fff;
   padding: 50px;
@@ -1053,10 +1053,14 @@ footer {
   z-index: 40;
   width: max-content;
   text-transform: initial;
-  padding: 0.75rem 2.2rem;
+  padding: 0.75rem 1.2rem;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
-    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+  rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  margin-bottom: 100px;
+  height:50px;
+  margin-left: 10px;
+  margin-top: 335px;
 }
 .check-availability-btn:hover {
   color: #fff;
@@ -1075,11 +1079,56 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-
+  
   cursor: pointer;
   border: 1px solid rgba(0, 0, 0, 0.05);
   transition: 200ms opacity ease;
 }
+.cart i{
+  color:white;
+  padding:28px
+}
+.cart i:hover{
+  color:#fd461f;
+}
+
+.cart:hover {
+  background-color:white;
+  border: 2px solid #fd461f;
+}
+
+.addToFav{
+  display:content;
+ height:36px;
+ padding: 0.3rem 0.8rem;
+ border:none;
+ border-radius: 25px;
+ 
+ background-color: #fd461f;
+ text-transform: uppercase;
+ font-weight:600;
+ color: #fff;
+ box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+
+}
+.addToFav:hover{
+
+  border: 2px solid #fd461f;
+  color: #fd461f;
+  background-color: #fff;
+  cursor: pointer;
+}
+.addToFavIcon{
+  display: none;
+  /* position:absolute; */
+  margin-left:20px;
+  border: none;
+  background: none;
+  
+
+     
+}
+
 footer {
   box-shadow: 1px 7px 25px rgb(0 0 0 / 13%);
   background-color: #e74c3c;
@@ -1261,6 +1310,32 @@ footer {
   }
 }
 @media (max-width: 576px) {
+  .addToFavIcon i{
+    margin-top: 10px;
+    border: none;
+    background: none;
+    color: #fd461f;
+    font-size: 1.2rem;
+
+    background-color: white;
+    padding: 5px;
+    border-radius:20px;
+    border-color: #fd461f;
+    border: 2px solid #fd461f;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+
+    
+    
+  }
+  .addToFav{
+    display: none;
+  }
+  .addToFavIcon{
+    
+    display:block;
+    
+    
+  }
   .container {
     width: 95%;
     margin: auto;
@@ -1429,7 +1504,7 @@ footer {
   .page-content-container .container {
     padding-bottom: 4em;
     width: 90vw;
-    height: 80vh;
+    height: 84vh;
   }
   .page-container .page-content-container {
     width: 100vw;
@@ -1531,10 +1606,19 @@ footer {
   .right-container .events-list li * {
     font-size: 1em;
   }
-  .right-container .check-availability-btn {
-    padding: 10px;
+  .check-availability-btn {
+    
+    position: relative;
+    padding: 10px 20px;
     font-size: 0.9em;
-    margin-right: 2em;
+    margin:0;
+    /* display:flex;
+    justify-content: center; */
+    bottom: 0;
+    
+    margin:auto;
+    /* right:130px; */
+    margin-bottom:0;
   }
   .available-bookings {
     height: 43vh;
@@ -1544,8 +1628,12 @@ footer {
   }
   .other .favorite-deltails {
     display: flex;
-    align-items: flex-start;
-    flex-direction: column-reverse;
+    /* background-color: red; */
+    flex-direction: row-reverse;
+    /* align-items: flex-start;
+    justify-content: flex-start; */
+    width: 60%;
+    margin-bottom: 10px;
   }
   .other .favorite-deltails form input[type="submit"] {
     height: 36px;

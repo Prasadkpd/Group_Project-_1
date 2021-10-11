@@ -601,11 +601,16 @@ form input[type="submit"] {
     width: 300px;
 }
 .booking-table .solution_td{
-  width: 300px;
+  width: 500px;
   text-align: justify;
 }
+.booking-table .solution_th{
+  width: 500px;
+  padding:auto 20px;
+  text-align: center;
+}
 .booking-table .booking-table-first-th {
-  width: 100%;
+  width: 75vw;
   padding: 10px;
   display: flex;
 }
@@ -743,8 +748,13 @@ form input[type="submit"] {
   border-radius: 15px; /* Rounded borders */
   box-sizing: border-box; /* Make sure that padding and width stays in place */
   margin-top: 6px; /* Add a top margin */
-  margin-bottom: 16px; /* Bottom margin */
   resize: vertical; /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+.helper-text {
+  color: #e74c3c;
+  font-size: 12px;
+  font-weight: 400;
+  text-align: center;
 }
 .faqSubmit {
   float: right;
@@ -1083,7 +1093,7 @@ footer {
     padding-bottom: 2em;
   }
   .formsection .popup_button {
-    margin: auto;
+    margin: auto 5px;
   }
   .openbutton {
     background-color: white;
@@ -1208,5 +1218,8 @@ footer {
   form input[type="submit"]{
     padding: 12px 20px;
     font-size: .9em;
+  }
+  .trash-btn{
+    float:right;
   }
 }

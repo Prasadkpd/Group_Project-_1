@@ -147,9 +147,11 @@
                                 <div class="add_favorite_button">
                                     <form action="/customer/addtofavoritelist" method="POST">
                                         <input id="arena_id" name="arena_id" type="hidden" value={{arenaDetails[0].sports_arena_id}}>
-                                        <input type="submit" value="add to favorites">
-                                        <!-- <button type="submit">ADD TO FAVOURITES </button>
-                                        <button type="submit"><i class="far fa-heart"></i></button> -->
+                                        <!-- <input type="submit" value="add to favorites"> -->
+
+                                        <button class="addToFav btn" type="submit">add to favorites </button>
+                                        <button class="addToFavIcon more-link" type="submit"><i class="fas fa-heart"></i>
+                                        </button>
                                     </form>
                                 </div>
                                 <a type="" class="more-link" id="more_details_btn" onclick="open_moredetails()">More Details
@@ -270,13 +272,19 @@
                                     </li>
                                     {% endfor %}
                                 </ul>
-                                <a href="#" class="btn check-availability-btn"> Pay Now</a>
+                                <!-- <a href="#" class="btn check-availability-btn"> Pay Now</a> -->
                             </div>
-                        </div>
+                            
 
+                        </div>
+                        
+                            <a href="#" class="btn check-availability-btn"> Pay Now</a>
+                        
                     </div>
+                    
                 </div>
 
+                
 
                 <div class="cart">
                     <a href="/customer/cart">

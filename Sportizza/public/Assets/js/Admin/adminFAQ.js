@@ -99,3 +99,66 @@ function searchdeleteFaqTable() {
     }
   }
 }
+
+//Function to check all the validations before getting submitted
+const createFAQForm = document.getElementById('createFAQForm');
+
+createFAQForm.addEventListener('submit', function (event) {
+  // Prevent default behaviour
+  event.preventDefault();
+
+  if (
+      //FAQ validations
+      validateType() &&
+      validateQuestion() &&
+      validateSolution()
+  ) {
+      createFAQForm.submit();
+  }
+});
+
+function validateCreateFAQForm() {
+  validateType();
+  validateQuestion();
+  validateSolution();
+}
+
+const updateFAQForm = document.getElementById('updateFAQForm');
+
+updateFAQForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  if (
+      validateUSolution()
+  ) {
+      updateFAQForm.submit();
+  }
+});
+
+
+function validateUpdateFAQForm() {
+  validateUSolution();
+}
+
+function validateType() {
+  if (!selectValidate(type)) return;
+  return true;
+}
+
+function validateQuestion(){
+  if (checkIfEmpty(question)) return;
+  if (!checkCharacters(question)) return;
+  return true;
+}
+
+function validateSolution(){
+  if (checkIfEmpty(solution)) return;
+  if (!checkCharacters(solution)) return;
+  return true;
+}
+
+function validateUSolution(){
+  if (checkIfEmpty(usolution)) return;
+  if (!checkCharacters(usolution)) return;
+  return true;
+}

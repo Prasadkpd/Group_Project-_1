@@ -533,7 +533,7 @@ form input[type="submit"] {
   font-size: 1.2rem;
   padding: 8px;
   border-radius: 25px;
-  width: 20%;
+  width: 25%;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   display: flex;
@@ -561,7 +561,10 @@ form input[type="submit"] {
 .booking_tab_content {
   display: none;
   width: 100%;
+  overflow:hidden;
+  height:59vh;
   margin: 1.5rem auto;
+  margin-bottom:0rem;
 }
 
 /* start booking-table */
@@ -622,7 +625,7 @@ form input[type="submit"] {
   font-weight: 600;
   font-size: 1rem;
   outline: none;
-  width: 90%;
+  width: 100%;
   border: none;
 }
 .booking-table
@@ -665,7 +668,7 @@ form input[type="submit"] {
   display: block;
   overflow-y: scroll;
   width: 100%;
-  height: 40vh;
+  height: 44vh;
   margin: 10px auto;
   text-align: center;
   overflow-x: hidden;
@@ -747,8 +750,19 @@ form input[type="submit"] {
 .booking-table .tick-btn i {
   color: white;
 }
+.booking-table .eye-btn {
+  margin: 0 5px;
+  padding: 7px 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+/* .booking-table .eye-btn i {
+  
+} */
 .popup_cmp_button {
-  /* float: right; */
   background-color: transparent;
   color: #e74c3c;
   font-weight: 600;
@@ -757,7 +771,6 @@ form input[type="submit"] {
   opacity: 0.9;
   margin-left: 7px;
   border-radius: 25px;
-  border: none;
   border: 2px solid #e74c3c;
   width: 130px;
   height: 30px;
@@ -877,7 +890,7 @@ footer {
   cursor: pointer;
   width: 30%;
   opacity: 0.9;
-  margin: 5px auto;
+  margin: 5px;
   border-radius: 50px;
   border: none;
   width: 150px;
@@ -929,12 +942,15 @@ footer {
   border-radius: 30px;
 }
 .trash-btn {
-  padding: 5px 10px;
+  padding: 7px 10px;
   border-radius: 50%;
   cursor: pointer;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+.booking-table .tick-btn{
+  padding:7px 10px;
 }
 .blck-btn {
   padding: 5px 13px;
@@ -1125,7 +1141,7 @@ footer {
     padding-bottom: 2em;
   }
   .formsection .popup_button {
-    margin: auto;
+    margin: auto 5px;
   }
   .openbutton {
     background-color: white;
@@ -1182,6 +1198,13 @@ footer {
     align-items: center;
     margin: auto;
   }
+  .booking-table .booking-table-first-th {
+    width: 75vw;
+    padding: 10px;
+    display: flex;
+    justify-content:center;
+    margin:auto;
+  }
   .booking-table
     .booking-table-filter-container
     .booking-table-date-picker
@@ -1206,7 +1229,7 @@ footer {
     margin-left: 20px;
   }
   .booking-table tbody {
-    height: 37vh;
+    height: 57vh;
   }
   .booking-table td {
     font-size: 0.75rem;
@@ -1218,5 +1241,35 @@ footer {
   .trash-btn-padding-res {
     padding: 10px;
     margin-top: 5px;
+  }
+  .booking-table .acceptAcc.expandHeader {
+    padding-top:10px;
+  }
+  .booking_tab_content{
+    height:64vh;
+  }
+  .blacklistAcc {
+    padding-top:10px;
+  }
+  .blck-btn {
+    padding: 7px 13px;
+  }
+  .booking-table .trash-btn-padding-res{
+    padding-right: 0;
+  }
+  .booking-table .tick-btn {
+    padding: 7px 7px;
+  }
+  .booking-table .eye-btn {
+    padding: 7px 7px;
+  }
+  .booking-table .popup_cmp_button {
+    border: none;
+    width: auto;
+  }
+  .booking-table .popup_cmp_button:hover {
+    background-color: transparent;
+    color: #e74c3c;
+    box-shadow: none;
   }
 }

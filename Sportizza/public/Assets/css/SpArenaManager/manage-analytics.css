@@ -29,7 +29,6 @@ ul {
   list-style: none;
 }
 
-
 .closebutton {
   width: 20px;
   float: right;
@@ -191,7 +190,6 @@ ul {
   font-size: 3rem;
   font-weight: 600;
   margin: 0.5rem 0rem;
-
 }
 .page-content-container .container h2 {
   display: none;
@@ -206,9 +204,9 @@ ul {
   color: #2c3e50;
   font-size: 1.5rem;
 }
-.container .doc-date-header{
-    display: none;
-    text-align: center;
+.container .doc-date-header {
+  display: none;
+  text-align: center;
 }
 
 .page-content-container .container .chart-container {
@@ -228,7 +226,7 @@ ul {
   width: 5px;
 }
 input[type="date"] {
-  background-color: #FEA47F;
+  background-color: #fea47f;
   color: #34495e;
   font-size: 1rem;
   font-weight: 600;
@@ -263,7 +261,7 @@ input[type="date"] {
   width: 60%;
   outline: none;
 }
-.filters .booking-table-date-picker input[type='submit'] {
+.filters .booking-table-date-picker input[type="submit"] {
   outline: none;
   width: 30%;
   padding: 10px;
@@ -282,10 +280,10 @@ input[type="date"] {
   height: 49px;
   align-items: center;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-  rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
-  rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
-.filters .booking-table-date-picker input[type='submit']:hover {
+.filters .booking-table-date-picker input[type="submit"]:hover {
   background-color: white;
   color: #2ed573;
   border: 2px solid #2ed573;
@@ -293,7 +291,7 @@ input[type="date"] {
 .chart-container h5 {
   text-align: center;
   font-size: 20px;
-  color:#071013;
+  color: #071013;
 }
 
 .chart-row {
@@ -363,7 +361,7 @@ input[type="date"] {
   border: none;
   border-radius: 25px;
   cursor: pointer;
-  text-transform:uppercase;
+  text-transform: uppercase;
   margin: 1rem 1rem 3rem 0;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
@@ -405,7 +403,6 @@ footer {
 /* ========================================================== */
 
 @media screen and (max-width: 768px) {
- 
   .sidebar {
     width: 7vw;
   }
@@ -416,7 +413,6 @@ footer {
 }
 
 @media screen and (max-width: 576px) {
-  
   .detail-grid {
     display: flex;
     align-items: center;
@@ -452,18 +448,19 @@ footer {
     flex-direction: column;
     justify-content: center;
   }
- 
-  .filters .booking-table-date-picker input[type='submit'] {
-    margin:auto;
-    height:36px;
-    padding:0;
-    
+
+  .filters .booking-table-date-picker input[type="submit"] {
+    margin: auto;
+    height: 36px;
+    padding: 0;
+    margin-top: 5px;
   }
-  .filters{
-    margin-left:0;
+  .filters {
+    margin-left: 0;
   }
   .filters .booking-table-date-picker {
     width: 100%;
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -481,16 +478,17 @@ footer {
     outline: none;
   }
   .page-content-container .container .chart-container {
-      height: max-content;
-      padding-bottom: 4em;
-      overflow: visible;
-    }
-    .page-content-container .container{
-        overflow-y: scroll;
-    }
+    height: max-content;
+    padding-bottom: 4em;
+    overflow: visible;
+  }
+  .page-content-container .container {
+    overflow-y: hidden;
+  }
 
   .page-content-container .container .chart-container {
-    height: max-content;
+    overflow-y: scroll;
+    height: 54vh;
   }
   .chart-row {
     margin: auto;
@@ -520,13 +518,17 @@ footer {
     margin: auto;
   }
   input[type="date"] {
-    font-size:0.8rem;
+    font-size: 0.8rem;
+    height: 36px;
+    margin: 0px auto;
   }
-  .page-content-container .container .page-header{
-    font-size:1.2rem;
+  .page-content-container .container .page-header {
+    font-size: 1.2rem;
     margin: 10px auto;
   }
-
+  .faqSubmit{
+    margin:0.2rem 0.2rem 0.3rem 0;
+  }
 }
 
 @media print {
@@ -550,22 +552,21 @@ footer {
     margin-top: 3em;
     height: max-content;
   }
-  .page-content-container .container .chart-row{
-      width: 100%;
-      margin: auto;
-      
+  .page-content-container .container .chart-row {
+    width: 100%;
+    margin: auto;
   }
   .chart {
     width: 50%;
     height: 500px;
-}
-.chart-pie {
+  }
+  .chart-pie {
     width: 50%;
     height: 500px;
   }
   .page-content-container .container .chart-container::-webkit-scrollbar-thumb {
     display: none;
-}
+  }
   @page {
     display: flex;
     justify-content: center;
@@ -582,8 +583,8 @@ footer {
   .page-content-container .container h3 {
     display: block;
   }
-  .page-content-container .container .doc-date-header{
-      display: block;
+  .page-content-container .container .doc-date-header {
+    display: block;
   }
   .page-content-container .container .page-header {
     display: none;

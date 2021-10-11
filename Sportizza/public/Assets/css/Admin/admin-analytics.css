@@ -583,7 +583,7 @@ form input[type="submit"] {
 }
 
 .page-content-container .container .chart-container {
-  height: 55vh;
+  height: 50vh;
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -620,6 +620,11 @@ form input[type="submit"] {
 .filters .booking-table-date-picker input {
   width: 60%;
   outline: none;
+}
+.filters .booking-table-date-picker input[type="date"] {
+  border:1px solid #d3d3d3;
+  border-radius:25px;
+  padding:12px 20px;
 }
 .filters .booking-table-date-picker input[type='submit'] {
   outline: none;
@@ -926,6 +931,11 @@ footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 0;
+  }
+  .filters .booking-table-date-picker.submit {
+    display: flex;
+    justify-content: center;
   }
   .filters .booking-table-date-picker label {
     width: 30vw;
@@ -939,16 +949,33 @@ footer {
     width: 70%;
     outline: none;
   }
+  .filters .booking-table-date-picker input[type='date'] {
+    height: 36px;
+    /* padding-top: 7px; */
+  }
+  .filters .booking-table-date-picker input[type='submit'] {
+    float: right;
+    align-self: flex-end;
+    height: 36px;
+    padding-top: 7px;
+    margin-top: 10px;
+  }
   .page-content-container .container .chart-container {
     height: max-content;
     overflow: visible;
   }
   .page-content-container .container {
-    overflow-y: scroll;
+    overflow-y: hidden;
+    height: 84vh;
   }
 
   .page-content-container .container .chart-container {
-    height: max-content;
+    height: 53vh;
+    overflow: scroll;
+    margin-top: 13px;
+  }
+  .chart-container h5 {
+    font-size: 18px;
   }
   .chart-row {
     margin: auto;
@@ -975,11 +1002,16 @@ footer {
     display: block;
     padding: 20px;
     width: 90%;
-    height: 20vh;
+    height: max-content;
     margin: auto;
   }
   .page-content-container .container .page-header {
     font-size: 1.2rem;
+  }
+  .faqSubmit {
+    height: 36px;
+    padding-top: 7px;
+    margin: 0.6rem 1rem 1rem 0;
   }
 }
 
