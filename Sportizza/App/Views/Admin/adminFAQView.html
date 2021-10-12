@@ -325,7 +325,7 @@
                             <label for="utype" class="faqLabel">Type</label>
                             <div class="options-container">
                                 <div class="custom-select">
-                                    <select id="utype" name="type">
+                                    <select id="utype" name="type" onchange="validateUType()">
                                         <option value="0">Select type</option>
                                         <option value="customer">Customer</option>
                                         <option value="sports_arena">Sports Arena</option>
@@ -337,15 +337,15 @@
                         </div>
 
                         <label for="uquestion" class="faqLabel">Question : </label>
-                        <select id="uquestion" name="question">
+                        <select id="uquestion" name="question" onchange="validateUQuestion()">
                             <option value="0">Please select a category</option>
                         </select>
-                        <div class="helper-text" id="questionMsg"></div>
+                        <div class="helper-text" id="uquestionMsg"></div>
 
                         <label for="usolution" class="faqLabel">Solution : </label>
                         <textarea id="usolution" class="faqInput" rows="4" name="solution"
                             placeholder="Type your solution..." onfocusout="validateUSolution()"></textarea>
-                        <div class="helper-text" id="solutionMsg"></div>
+                        <div class="helper-text" id="usolutionMsg"></div>
 
                         <input type="submit" value="Update" class="faqSubmit" />
 

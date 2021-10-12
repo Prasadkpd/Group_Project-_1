@@ -169,7 +169,6 @@ function validateUType() {
 function validateUQuestion(){
   if (!selectValidate(uquestion)) return;
   return true;
-  return true;
 }
 
 function validateUSolution(){
