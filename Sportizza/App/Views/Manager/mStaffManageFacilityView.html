@@ -298,12 +298,15 @@
                 <!-- Add Facility Tab -->
                 <div id="add_bookings" class="booking_tab_content">
                     <div id="staff-add" class="add-booking-fm-con">
-                        <form class="add-booking-frm-content animate" action="/action_page.php" method="post"
+                        <form class="add-booking-frm-content animate" action="/Sparenamanager/manageraddfacility" method="post"
                         onsubmit="validateAddFacilityForm()" id="formAddFacility">
+                        <!-- <form class="add-booking-frm-content animate" action="/Sparenamanager/manageraddfacility" method="post"
+                         > -->
+                        
                         <div class="input-row">
                             <div class="input-box">
                                 <label for="facilityName">Facility Name</label>
-                                <input id="facilityName" type="text" name="Facility_name" onfocusout="validateFacilityName()"
+                                <input id="facilityName" type="text" name="facilityName" onfocusout="validateFacilityName()"
                                     placeholder="Enter facility name" value="{{sp_arena.Facility_name}}">
                                 <div class="helper-text" id="firstNameMsg"></div>
                             </div>
@@ -320,7 +323,7 @@
                             <div class="input-row">
                                 <div class="input-box">
                                     <label for="password">User Password</label>
-                                    <input id="password" type="password" name="User_password" onfocusout="validateUserPassword()"
+                                    <input id="password" type="password" name="password" onfocusout="validateUserPassword()"
                                         placeholder="Enter user password" value="{{sp_arena.password}}">
                                     <i class="bi bi-eye-slash" id="togglePassword"></i>
                                     <div class="helper-text" id="passwordMsg"></div>
