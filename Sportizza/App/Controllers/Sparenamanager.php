@@ -8,6 +8,7 @@ use Core\View;
 use App\Auth;
 use App\Models\SpArenaManagerModel;
 use App\Models\NotificationModel;
+use App\Models\LoginModel;
 
 class Sparenamanager extends \Core\Controller
 {
@@ -103,8 +104,9 @@ class Sparenamanager extends \Core\Controller
         $id=$current_user->user_id;
         $viewTimeSlots= SpArenaManagerModel::managerViewTimeSlots($id);
         $deleteTimeSlots= SpArenaManagerModel::managerDeleteTimeSlots($id);
+        $viewFacilities= SpArenaManagerModel::managerViewFacility($id);
         View::renderTemplate('Manager/mStaffManageTimeslotsView.html',['timeSlots'=>$viewTimeSlots,
-        'deleteTimeSlots'=>$deleteTimeSlots]);
+        'deleteTimeSlots'=>$deleteTimeSlots,'facilities'=>$viewFacilities]);
     }
 
     public function managefacilityAction()
@@ -153,8 +155,31 @@ class Sparenamanager extends \Core\Controller
         View::renderTemplate('Manager/mStaffEditArenaProfile.html');
     }
  
+    
+    public function manageraddtimeslotsAction(){
+
+        $current_user= Auth::getUser();
+        $id=$current_user->user_id;
+        SpArenaManagerModel::managerAddTimeSlots($id,$_POST['startTime'],$_POST['endTime'],$_POST['slotPrice'],$_POST['facilityName']);
+        $this->redirect('/Sparenamanager/managetimeslot');
+    }
 
 
+    public function manageraddfacilityAction(){
+
+        $current_user= Auth::getUser();
+        $username=$current_user->username;
+        $id=$current_user->user_id;
+
+        $user=LoginModel::authenticate($username,$_POST['password']);
+
+        if($user){
+            SpArenaManagerModel::managerAddFacility($id,$_POST['facilityName']);
+        
+        }
+
+        $this->redirect('/Sparenamanager/managefacility');
+    }
 
 
 
