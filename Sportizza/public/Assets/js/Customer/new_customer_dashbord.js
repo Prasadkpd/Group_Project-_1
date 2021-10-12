@@ -218,7 +218,7 @@ function SearchNotifications() {
   var input, filter, table, tr, td, i, txtValue;
   input = document.getElementById("search-notifications");
   filter = input.value.toUpperCase();
-  table = document.getElementById("notifications_list");
+  table = document.getElementById("notifications_table");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
     td = tr[i].getElementsByTagName("td")[2];
@@ -233,24 +233,17 @@ function SearchNotifications() {
   }
 }
 
-
-
-
-
-
-
  function Datepicker() {
-            table = document.getElementById("myTable");
+            table = document.getElementById("mybooking-table");
             tr = table.getElementsByTagName("tr");
-            var pass = document.getElementById("myInput").value;
+            var pass = document.getElementById("date-picker").value;
             var date = new Date(pass);
             var year = String(date.getFullYear());
             var month = String(date.getMonth() + 1).padStart(2, '0');
             var todayDate = String(date.getDate()).padStart(2, '0');
-            alert("Hello");
             var datePattern = year + '-' + month + '-' + todayDate;
             for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[2];
+                td = tr[i].getElementsByTagName("td")[1];
                 if (td) {
                     txtValue = td.innerText;
                     if (txtValue == datePattern) {
@@ -260,6 +253,27 @@ function SearchNotifications() {
                     }
                 }
             }
-        }
+}
+ function NotificationDatepicker() {
+            table = document.getElementById("notifications_table");
+            tr = table.getElementsByTagName("tr");
+            var pass = document.getElementById("notification-date-picker").value;
+            var date = new Date(pass);
+            var year = String(date.getFullYear());
+            var month = String(date.getMonth() + 1).padStart(2, '0');
+            var todayDate = String(date.getDate()).padStart(2, '0');
+            var datePattern = year + '-' + month + '-' + todayDate;
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.innerText;
+                    if (txtValue == datePattern) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+}
 
 

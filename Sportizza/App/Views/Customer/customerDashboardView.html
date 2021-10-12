@@ -286,7 +286,7 @@
             <form action="/action_page.php" style="margin:20px">
                 <div style="margin:auto">
                     <h1 style="margin:auto">
-                        Remove Favourite Arena 
+                        Remove Favourite Arena
                     </h1>
                     <p style="margin:auto">
                         Are you sure to delete sports Arena?
@@ -296,11 +296,11 @@
 
 
             <div style="display:flex">
-                <button onclick="close_popup_delete_message_favorite_list()" class="popup_button">
-                    NO
-                </button>
                 <button class="popup_delete_button">
                     YES
+                </button>
+                <button onclick="close_popup_delete_message_favorite_list()" class="popup_button">
+                    NO
                 </button>
             </div>
         </div>
@@ -380,7 +380,7 @@
                                             <i class="fas fa-search"></i>
                                         </div>
                                         <div class="booking-table-date-picker">
-                                            <label class="date-label">Date</label>
+                                            <label class="date-label">Booking Date</label>
                                             <input type="date" id="date-picker" onchange="Datepicker()">
                                         </div>
                                     </div>
@@ -499,7 +499,7 @@
                 <td class="btn-float-right">
                     <div style="display:flex; float:right; padding-right:2rem;">
                         <div>
-                            <button onclick="open_popup_rate_message('{{book.booking_id}}')" >
+                            <button onclick="open_popup_rate_message('{{book.booking_id}}')">
                                 <i class="fas fa-star-half-alt"></i>
                             </button>
                         </div>
@@ -510,45 +510,45 @@
                             </button>
                         </div>
                 </td>
-</div>
-</td>
-</div>
-</td>
-</tr>
-{% endif %}
-
-{% if book.payment_status=="unpaid"  %}
-<tr>
-<td data-label="Booking ID :" class="table-td-left">{{book.booking_id}}</td>
-<td data-label="Booking Date :" class="table-td-left">{{book.booking_date}}</td>
-<td data-label="Start Time :" class="table-td-left">{{book.start_time}}</td>
-<td data-label="End Time :" class="table-td-left">{{book.end_time}}</td>
-<td data-label="Arena Name:" class="table-td-left">{{book.sa_name}}</td>
-<td data-label="Category:">{{book.category}}</td>
-<td data-label="Payment Method :">{{book.payment_method}}</td>
-<td data-label="Payment Status :">
-    <div class="Payment-status"><a href="">{{book.payment_status}}</a></div>
-</td>
-<td data-label="Amount:">{{book.price_per_booking}}</td>
-
-<!-- <td data-label="Booking Status">Pending</td> -->
-<td class="btn-float-right">
-    <div style="display:flex; float:right; padding-right:2rem;">
-        <div>
-            <button onclick="open_popup_share('{{book.booking_id}}','{{book.booking_date}}','{{book.startTime}}','{{book.endTime}}',
-            '{{book.sa_name}}','{{book.category}}','{{book.google_map_link}}')" >
-                <i class="fas fa-star-half-alt"></i>
-            </button>
         </div>
-        <div>
-            <button class="icon_red" onclick="open_popup_delete_message()">
-                <i class="fas fa-trash-alt"></i>
-            </button>
+        </td>
         </div>
-    </div>
-</td>
-</tr>
-{% endif %}
+        </td>
+        </tr>
+        {% endif %}
+
+        {% if book.payment_status=="unpaid" %}
+        <tr>
+            <td data-label="Booking ID :" class="table-td-left">{{book.booking_id}}</td>
+            <td data-label="Booking Date :" class="table-td-left">{{book.booking_date}}</td>
+            <td data-label="Start Time :" class="table-td-left">{{book.start_time}}</td>
+            <td data-label="End Time :" class="table-td-left">{{book.end_time}}</td>
+            <td data-label="Arena Name:" class="table-td-left">{{book.sa_name}}</td>
+            <td data-label="Category:">{{book.category}}</td>
+            <td data-label="Payment Method :">{{book.payment_method}}</td>
+            <td data-label="Payment Status :">
+                <div class="Payment-status"><a href="">{{book.payment_status}}</a></div>
+            </td>
+            <td data-label="Amount:">{{book.price_per_booking}}</td>
+
+            <!-- <td data-label="Booking Status">Pending</td> -->
+            <td class="btn-float-right">
+                <div style="display:flex; float:right; padding-right:2rem;">
+                    <div>
+                        <button onclick="open_popup_share('{{book.booking_id}}','{{book.booking_date}}','{{book.startTime}}','{{book.endTime}}',
+            '{{book.sa_name}}','{{book.category}}','{{book.google_map_link}}')">
+                            <i class="fas fa-star-half-alt"></i>
+                        </button>
+                    </div>
+                    <div>
+                        <button class="icon_red" onclick="open_popup_delete_message()">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        {% endif %}
 
         {% endif %}
         {% endfor %}
@@ -601,7 +601,7 @@
                         <th class="booking-table-first-th">
                             <div class="booking-table-filter-container">
                                 <div class="booking-table-search-container">
-                                    <input type="search" name="search" placeholder="Search" id="search-arena-favourite"
+                                    <input type="search" name="search" placeholder="Search By Sport Arena" id="search-arena-favourite"
                                         onkeyup="SearchArenaFavorite()">
                                     <i class="fas fa-search"></i>
                                 </div>
@@ -646,19 +646,19 @@
         </div>
 
         <div id="notification" class="booking_tab_content">
-            <table class="booking-table" id="notifications_list">
+            <table class="booking-table" id="notifications_table">
                 <thead>
                     <tr class="booking-thead-first-tr">
                         <th class="booking-table-first-th">
                             <div class="booking-table-filter-container">
                                 <div class="booking-table-search-container">
-                                    <input type="search" name="search" placeholder="Search" id="search-notifications"
+                                    <input type="search" name="search" placeholder="Search By Notification" id="search-notifications"
                                         onkeyup="SearchNotifications()">
                                     <i class="fas fa-search"></i>
                                 </div>
                                 <div class="booking-table-date-picker">
                                     <label class="date-label">Date</label>
-                                    <input type="date">
+                                    <input type="date" id="notification-date-picker" onchange="NotificationDatepicker()">
                                 </div>
                             </div>
                         </th>

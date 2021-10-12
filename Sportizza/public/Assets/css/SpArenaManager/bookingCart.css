@@ -1,0 +1,27 @@
+.cartDisplay{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.closebtn a{
+    position: relative;
+    float: right;
+    bottom: 50px;
+    font-size: 20px;
+}
+
+.closebtn a:hover {
+    color: ;
+}
+
+@media screen and (max-width: 576px)
+.cartDisplay .content .priceNPay {
+    width: 90vw;
+    margin: auto;
+    /* padding: 10px 15px; */
+}
+
+.copyright {
+   padding: 0;
+}

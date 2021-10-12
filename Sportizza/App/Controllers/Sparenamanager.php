@@ -153,6 +153,10 @@ class Sparenamanager extends \Core\Controller
         // $id=$current_user->user_id;
         View::renderTemplate('Manager/mStaffEditArenaProfile.html');
     }
+    public  function cartAction()
+    {
+        View::renderTemplate('Manager/mStaffCartNewView.html');
+    }
  
 
 

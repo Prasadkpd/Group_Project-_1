@@ -129,7 +129,10 @@ class Spadministrationstaff extends \Core\Controller
         // $id=$current_user->user_id;
         View::renderTemplate('AdministrationStaff/aStaffEditArenaProfile.html');
     }
- 
+    public  function cartAction()
+    {
+        View::renderTemplate('AdministrationStaff/aStaffCartNewView.html');
+    }
  
     
 }

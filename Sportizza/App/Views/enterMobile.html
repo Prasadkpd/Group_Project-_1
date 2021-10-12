@@ -1,48 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/Assets/css/flashMessages.css?version=1">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/Assets/css/flashMessages.css?version=1">
+  <link rel="stylesheet" href="/Assets/css/editprofile.css?version=15">
+  <link rel="stylesheet" href="/Assets/css/editMobile.css?version=15">
+  <link rel="stylesheet" href="/Assets/css/flashMessages.css?version=1">
+  <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 
-    <title>Document</title>
+  <title>Moble Number Reset</title>
 </head>
+
 <body>
+  <!-- Top Navigation Bar -->
+  <nav>
+    <div class="nav-left">
+      <div class="logo-container">
+        <a href="/">
+          <i class="fas fa-running"></i>
+          <span class="logo-name">Sportizza</span>
+        </a>
+      </div>
 
-    {% for message in flash_messages %}
-<div class="alert alert-{{ message.type }}">
- {{ message.body }}
+
+
+
     </div>
-{% endfor %}
-    <form id="mobileForm" action="/Edituserdetails/redirectotppage" method="post"
-    onSubmit="validateMobileResetForm()">
-        <!-- <label for="mobile">Mobile Number</label>
-        <input id="mobile_number" type="text" name="mobile_number" 
-         placeholder="Ex:-) 0712345678" >
-        <input type="submit" value="submit"> -->
+
+    <div class="nav-right">
+      {% for message in flash_messages %}
+
+      <div class="alert alert-{{ message.type }}">
+        {{ message.body }}
+      </div>
+
+      {% endfor %}
+    </div>
 
 
-
-
-        <div class="input-box">
+  </nav>
+  <!-- End Top Navigation Bar -->
+  <section class="page-container">
+  <!-- start mobile number section -->
+  <div class="sectionpop">
+    <div class="formsection" >
+      <div>
+        <a href="/Edituserdetails/EditProfileAction" class="closebutton">❌</a>
+      </div>
+      <div class="popup-header">
+        <h2>Mobile Number Reset</h2>
+      </div>
+      <form style="margin:20px 20px 0px 20px" action="/Edituserdetails/updatepassword" method="post">
+        {% for message in flash_messages %}
+        <div class="alert alert-{{ message.type }}">
+          {{ message.body }}
+        </div>
+        {% endfor %}
+        <form id="mobileForm" action="/Edituserdetails/redirectotppage" method="post"
+          onSubmit="validateMobileResetForm()">
+          <!-- <label for="mobile">Mobile Number</label>
+                <input id="mobile_number" type="text" name="mobile_number" 
+                 placeholder="Ex:-) 0712345678" >
+                <input type="submit" value="submit"> -->
+          <div class="input-box">
             <label for="mobile">Mobile Number</label>
             <input id="mobile_number" type="text" name="mobile number" onfocusout="validateMobile()"
-              placeholder="Enter mobile number" >
+              placeholder="Enter mobile number">
             <div class="helper-text" id="mobileMsg">
               <!-- <p>{{errors["mobile_number1"]}} {{errors["mobile_number2"]}}
-                {{errors["mobile_number3"]}}
-              </p> -->
+                        {{errors["mobile_number3"]}}
+                      </p> -->
             </div>
           </div>
+          <div style="display:flex" class="response_buttons">
+            <!-- <a class="popup_button"  type="submit">
+                          YES</a> -->
+            <input type="submit" class="popup_button" value="YES">
+            <a href="/Edituserdetails/EditProfileAction" class="popup_button red">
+              NO
+            </a>
+          </div>
+        </form>
+    </div>
+  </div>
+  <!--end edit mobile number section -->
+  </section>
+  <!-- Start of Footer -->
+  <footer>
+    <div class="copyright">
+      <p>
+        Copyright &copy;2021 All rights reserved | Sportizza Inc.
+      </p>
+    </div>
+  </footer>
+  <!-- End of Footer -->
 
-          <input type="submit" value="submit">
-    </form>
-
-
-    
-    <script type="text/javascript" src="/Assets/js/signup_validation.js?version=16.0"></script>
-    <script type="text/javascript" src="/Assets/js/enterMobile.js?version=16.0"></script>
+  <script type="text/javascript" src="/Assets/js/signup_validation.js?version=16.0"></script>
+  <script type="text/javascript" src="/Assets/js/enterMobile.js?version=16.0"></script>
 
 </body>
+
 </html>

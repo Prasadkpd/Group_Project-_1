@@ -575,6 +575,10 @@ border-radius:10px;
   border-radius: 25px;
   border: 1px solid var(--light-ash-dull);
 }
+.visitor-sport-arenas .arena-details {
+    display: flex;
+    align-items: center;
+}
 
 .sp-arena-summary-items h6:nth-of-type(1)::after{
     content: '';
@@ -1377,10 +1381,11 @@ footer .social-media i{
 
 .search-results .check-availability-btn{
   padding: .1em 1em;
-  position: relative;
   margin-top: .5em;
   font-weight: 600;
   font-size: .8em;
+  position: absolute;
+  bottom: 18px;
 }
 
 .customer-reviews{
@@ -1597,5 +1602,13 @@ footer .social-media i {
 
 .footer-copy {
   margin-top: 1em;
+}
+.visitor-sport-arenas .arena-details {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+.sp-arena-summary-items h6:nth-of-type(1)::after{
+    display: none;
 }
 }

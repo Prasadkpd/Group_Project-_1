@@ -1,0 +1,15 @@
+.sectionpop{
+    display: flex;
+    height: 83vh;
+}
+.formsection{
+    height: max-content;
+}
+
+form .input-box input {
+    width: 100%;
+    border: none;
+    border: 1px solid #f0f0f0;
+    padding: 6px;
+    border-radius: 20px;
+}
