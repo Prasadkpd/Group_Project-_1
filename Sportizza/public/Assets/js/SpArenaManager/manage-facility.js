@@ -89,7 +89,7 @@ formAddFacility.addEventListener('submit', function (event) {
         validateFacilityName() &&
         validateUserPassword()
     ) {
-        formUpdateTimeslot.submit();
+        formAddFacility.submit();
     }
 });
 
@@ -101,7 +101,7 @@ function validateAddFacilityForm() {
 
 function validateFacilityName() {
     if (checkIfEmpty(facilityName)) return;
-    if (!meetLength(facilityname, 1, 50)) return;
+    if (!meetLength(facilityName, 1, 50)) return;
     return true;
 }
 function validateUserPassword() {
