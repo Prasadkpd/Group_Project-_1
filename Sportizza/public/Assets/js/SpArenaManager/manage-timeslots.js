@@ -60,6 +60,7 @@ function close_popup_delete_message() {
     form.style.display = "none";
 }
 const startTime = document.getElementById('startTime');
+// startTime.step="1800";
 const endTime = document.getElementById('endTime');
 const slotPrice = document.getElementById('slotPrice');
 const facilityName = document.getElementById('facilityName');
@@ -72,7 +73,7 @@ formAddTimeslot.addEventListener('submit', function (event) {
     if (
         //Add timeslot validations
         validateStartTime() &&
-        validateEndTime() &&
+        // validateEndTime() &&
         validatePrice() &&
         validateFacilitySelect()
     ) {
@@ -83,7 +84,7 @@ formAddTimeslot.addEventListener('submit', function (event) {
 function validateAddTimeslotForm() {
     //Add timeslot validations
     validateStartTime();
-    validateEndTime();
+    // validateEndTime();
     validatePrice();
     validateFacilitySelect();
 }
