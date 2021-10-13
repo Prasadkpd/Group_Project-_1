@@ -1,6 +1,4 @@
-
-const mobile=document.getElementById("mobile_number");
-
+const mobile = document.getElementById("mobile");
 
 const formMobileReset = document.getElementById('mobileForm');
 
@@ -17,10 +15,6 @@ formMobileReset.addEventListener('submit', function (event) {
 function validateMobileResetForm() {
     validateMobile()
 }
-
-
-
-
 
 function validateMobile() {
     if (checkIfEmpty(mobile)) return;

@@ -80,13 +80,13 @@ class Edituserdetails extends Authenticated
         $user = new EditProfileModel($_POST);
         $oldUsername=Auth::getUser()->username;
         if(EditProfileModel::findByUsername($user->username)&&$oldUsername!=$user->username){
-            Flash::addMessage(' failed to update user name is exists',Flash::WARNING);
+            Flash::addMessage('Failed to update, username already exists',Flash::WARNING);
             $this->redirect('/Edituserdetails/EditProfile');
             exit;
         }
         if ($user->updateNewUserDetails($oldUsername)){
             
-            Flash::addMessage('successfully updated details');
+            Flash::addMessage('Successfully updated details');
             $this->redirect('/Edituserdetails/EditProfile');
 
 
@@ -113,7 +113,7 @@ class Edituserdetails extends Authenticated
         }
         
         else{
-            Flash::addMessage(' failed to update details',Flash::WARNING);
+            Flash::addMessage('Failed to update details',Flash::WARNING);
             $this->redirect('/Edituserdetails/EditProfile');
             
         }
@@ -127,7 +127,9 @@ class Edituserdetails extends Authenticated
     {
         
         $_SESSION['direct_url']=('/Edituserdetails/directtoenternumber');
-        otp::sendSMS("mobile_number");
+        $current_user= Auth::getUser();
+        otp::sendSMS($current_user->primary_contact);
+       
         View::renderTemplate('otp.html');
     }
 
@@ -142,14 +144,14 @@ class Edituserdetails extends Authenticated
         
         // Flash::addMessage('updated failed');
         if(EditProfileModel::findByMobileNumber($_POST['mobile_number'])){
-            Flash::addMessage('number in used for another account 
+            Flash::addMessage('Number is currently used for another account, 
             enter another number',Flash::WARNING);
             $this->redirect('/Edituserdetails/directtoenternumber');
         }
         else{
             $_SESSION['direct_url']=('/Edituserdetails/updateMobileNumber');
             $_SESSION['number']=$_POST['mobile_number'];
-            otp::sendSMS("mobile_number");
+            otp::sendSMS($_POST['mobile_number']);
             View::renderTemplate('otp.html');
         }
         

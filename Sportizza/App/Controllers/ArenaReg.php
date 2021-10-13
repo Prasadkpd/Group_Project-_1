@@ -25,7 +25,7 @@ class Arenareg extends \Core\Controller
         $errors = $sp_arena->validate();
 
         if ($sp_arena->save()) {
-            // otp::sendSMS($_POST["mobile_number"]);
+            otp::sendSMS($_POST["mobile_number"]);
             $this->redirect('/Arenareg/success');
             exit;
         } else {
@@ -41,7 +41,9 @@ class Arenareg extends \Core\Controller
      */
     public function successAction()
     {
+        $_SESSION['direct_url']=('/');
         //direct to the message modal page
         View::renderTemplate('otp.html');
+
     }
 }

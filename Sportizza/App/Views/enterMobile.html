@@ -31,13 +31,13 @@
     </div>
 
     <div class="nav-right">
-      {% for message in flash_messages %}
+     
 
-      <div class="alert alert-{{ message.type }}">
-        {{ message.body }}
+      <div class="alert" style="display:none">
+        
       </div>
 
-      {% endfor %}
+     
     </div>
 
 
@@ -53,12 +53,13 @@
       <div class="popup-header">
         <h2>Mobile Number Reset</h2>
       </div>
-      <form style="margin:20px 20px 0px 20px" action="/Edituserdetails/updatepassword" method="post">
+      <!-- Edituserdetails/updatepassword -->
+      <!-- <form style="margin:20px 20px 0px 20px" action="/" method="post">
         {% for message in flash_messages %}
         <div class="alert alert-{{ message.type }}">
           {{ message.body }}
         </div>
-        {% endfor %}
+        {% endfor %} -->
         <form id="mobileForm" action="/Edituserdetails/redirectotppage" method="post"
           onSubmit="validateMobileResetForm()">
           <!-- <label for="mobile">Mobile Number</label>
@@ -67,9 +68,14 @@
                 <input type="submit" value="submit"> -->
           <div class="input-box">
             <label for="mobile">Mobile Number</label>
-            <input id="mobile_number" type="text" name="mobile number" onfocusout="validateMobile()"
-              placeholder="Enter mobile number">
+            <input id="mobile" type="text" name="mobile_number" onfocusout="validateMobile()"
+              placeholder="Enter new mobile number">
             <div class="helper-text" id="mobileMsg">
+              {% for message in flash_messages %}
+              <div class="alert alert-{{ message.type }}">
+                {{ message.body }}
+              </div>
+              {% endfor %}
               <!-- <p>{{errors["mobile_number1"]}} {{errors["mobile_number2"]}}
                         {{errors["mobile_number3"]}}
                       </p> -->
@@ -98,8 +104,8 @@
   </footer>
   <!-- End of Footer -->
 
-  <script type="text/javascript" src="/Assets/js/signup_validation.js?version=16.0"></script>
-  <script type="text/javascript" src="/Assets/js/enterMobile.js?version=16.0"></script>
+  <!-- <script type="text/javascript" src="/Assets/js/signup_validation.js?version=16.0"></script>
+  <script type="text/javascript" src="/Assets/js/enterMobile.js?version=16.0"></script> -->
 
 </body>
 
