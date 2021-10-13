@@ -418,5 +418,87 @@ class SpArenaManagerModel extends \Core\Model
     
 
 
+    public static function managerAddTimeSlots($user_id,$start_time,$end_time,$price,$facility){
+        
+        //have to add condition for check timeslot is available
+
+
+        $db = static::getDB();
+
+        // select query for select sports arena from  user id
+        $sql = 'SELECT sports_arena_id FROM manager
+                WHERE manager.user_id=:user_id';
+
+
+        
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+        $arena_id = $stmt->fetchAll();
+        //  var_dump($result);
+        // return $result;
+
+
+        // insert query for add time slots
+        $sql = 'INSERT INTO `time_slot`(`start_time`,`end_time`,`price`,`facility_id`,
+                `manager_user_id`,`manager_sports_arena_id`)
+                VALUES (:start_time,:end_time,:price,:facility,:user_id,:arena_id)';
+
+
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+            $stmt->bindValue(':start_time', $start_time, PDO::PARAM_STR);
+            $stmt->bindValue(':end_time', $end_time, PDO::PARAM_STR);
+            $stmt->bindValue(':price', $price, PDO::PARAM_STR);
+            $stmt->bindValue(':facility', $facility, PDO::PARAM_STR);
+            $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+        
+            return ($stmt->execute());
+    }
+
+
+
+
+
+
+    public static function managerAddFacility($user_id,$facility){
+        
+        
+
+
+        $db = static::getDB();
+
+        // select query for select sports arena from  user id
+        $sql = 'SELECT sports_arena_id FROM manager
+                WHERE manager.user_id=:user_id';
+
+
+        
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+        $arena_id = $stmt->fetchAll();
+        //  var_dump($result);
+        // return $result;
+
+
+        // insert query for add time slots
+        $sql = 'INSERT INTO `facility`(`facility_name`,`sports_arena_id`,`manager_user_id`,`manager_sports_arena_id`)
+                VALUES (:facility,:arena_id,:user_id,:arena_id)';
+
+
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':facility', $facility, PDO::PARAM_STR);
+            $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+            $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+            return ($stmt->execute());
+    }
+
 
 }
