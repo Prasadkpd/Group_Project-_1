@@ -168,7 +168,7 @@ class Sparenamanager extends \Core\Controller
 
         $current_user= Auth::getUser();
         $id=$current_user->user_id;
-        SpArenaManagerModel::managerAddTimeSlots($id,$_POST['startTime'],$_POST['endTime'],$_POST['slotPrice'],$_POST['facilityName']);
+        SpArenaManagerModel::managerAddTimeSlots($id,$_POST['startTime'],$_POST['timeSlotDuration'],$_POST['slotPrice'],$_POST['facilityName']);
         $this->redirect('/Sparenamanager/managetimeslot');
     }
 

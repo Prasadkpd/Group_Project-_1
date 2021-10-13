@@ -61,7 +61,7 @@ class CustomerModel extends \Core\Model
 
     public static function customerFavouriteList($id){
         //correct 
-        $sql = 'SELECT sports_arena_profile.sa_name, sports_arena_profile.category, sports_arena_profile.location
+        $sql = 'SELECT sports_arena_profile.sa_name, sports_arena_profile.category, sports_arena_profile.location,sports_arena_profile.sports_arena_id
         FROM favourite_list
         INNER JOIN customer_profile ON  favourite_list.customer_profile_id=customer_profile.customer_profile_id
         INNER JOIN favourite_list_sports_arena ON favourite_list.fav_list_id = favourite_list_sports_arena.fav_list_id 
