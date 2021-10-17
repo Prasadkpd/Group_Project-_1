@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use Core\Model;
 use PDO;
 use PDOException;
@@ -8,30 +9,22 @@ use App\Auth;
 
 class NotificationModel extends \Core\Model
 {
-    /**
-     * Error messages
-     *
-     * @var array
-     */
+     // Array of Error messages
     public $errors = [];
 
-    /**
-     * Class constructor
-     *
-     * @param array $data  Initial property values (optional)
-     *
-     * @return void
-     */
+    //Start of Class constructor  
     public function __construct($data = [])
     {
+         // Change the format of the key value pairs sent 
+        // from the controller use in the model
         foreach ($data as $key => $value) {
             $this->$key = $value;
         };
     }
-
+     //End of Class constructor  
+//Start of 
     public static function notificationGetManagerIds($invoice_id)
-    {
-        
+    {   
         $sql = 'SELECT `manager`.`user_id` 
                 FROM `manager` 
                 INNER JOIN `booking` ON `manager`.`sports_arena_id`= `booking`.`sports_arena_id`

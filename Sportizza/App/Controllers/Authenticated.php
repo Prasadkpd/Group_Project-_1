@@ -2,18 +2,13 @@
 
 namespace App\Controllers;
 
-/**
- * Authenticated base controller
- *
- * PHP version 7.0
- */
+use \App\Auth;
+
+// Authenticated base controller
 abstract class Authenticated extends \Core\Controller
 {
-    /**
-     * Require the user to be authenticated before giving access to all methods in the controller
-     *
-     * @return void
-     */
+    // Require the user to be authenticated before giving access to 
+    // all methods with respected to that user in the controller
     protected function before()
     {
         $this->requireLogin();

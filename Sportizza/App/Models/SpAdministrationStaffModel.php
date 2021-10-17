@@ -8,30 +8,24 @@ use App\Auth;
 
 class SpAdministrationStaffModel extends \Core\Model
 {
-    
-    /**
-     * Error messages
-     *
-     * @var array
-     */
+    // Array of Error messages
     public $errors = [];
 
-    /**
-     * Class constructor
-     *
-     * @param array $data  Initial property values (optional)
-     *
-     * @return void
-     */
+    //Start of Class constructor 
     public function __construct($data = [])
     {
+        // Change the format of the key value pairs sent 
+        // from the controller use in the model
         foreach ($data as $key => $value) {
             $this->$key = $value;
         };
     }
+     //End of Class constructor 
 
+    //Start of Displaying sports arena bookings
     public static function saAdminViewBookings($id){
         
+        //Retrieving bookings from the database
         $sql = 'SELECT booking.booking_id,booking.price_per_booking,
         DATE(booking.booking_date) AS booking_date,
                 booking.payment_method,booking.payment_status,
@@ -45,21 +39,21 @@ class SpAdministrationStaffModel extends \Core\Model
                  WHERE booking.security_status="active" AND administration_staff.user_id=:id
                  ORDER BY booking.booking_date DESC';
         
-
-
-
         $db = static::getDB();
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
+        //Converting retrieved data from database into PDOs
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-
         $stmt->execute();
+
+        //Assigning the fetched PDOs to result
         $result = $stmt->fetchAll();
-        // var_dump($result);
         return $result;
     }
+    //End of Displaying sports arena bookings
 
+    
     public static function saAdminCancelBookings($id){
         
         $sql = 'SELECT booking.booking_id,booking.price_per_booking,
@@ -108,9 +102,6 @@ class SpAdministrationStaffModel extends \Core\Model
                  WHERE (booking.security_status="active" AND booking.payment_method="cash") AND
                   booking.payment_status="unpaid" AND administration_staff.user_id=:id';
         
-
-
-
         $db = static::getDB();
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
@@ -293,40 +284,75 @@ class SpAdministrationStaffModel extends \Core\Model
         return $result;
     }
 
-    public static function saAdminAddFacility($fname,$ipsw,$id,$rpsw){
+    // public static function saAdminAddFacility($fname,$ipsw,$id,$rpsw){
         
-        // $sql = 'SELECT *  FROM facility WHERE manager_user_id=:id';
-        $password = password_hash($ipsw, PASSWORD_DEFAULT);
+    //     // $sql = 'SELECT *  FROM facility WHERE manager_user_id=:id';
+    //     $password = password_hash($ipsw, PASSWORD_DEFAULT);
 
-        if($password!=$rpsw){
-            return false;
-        }
+    //     if($password!=$rpsw){
+    //         return false;
+    //     }
+
+    //     $db = static::getDB();
+        
+    //     $sql1 = 'SELECT `manager_user_id`,`manager_sports_arena_id` FROM `administration_staff` WHERE `user_id`=:id';
+    //     $stmt1 = $db->prepare($sql1);
+    //     $stmt1->bindValue(':id', $id, PDO::PARAM_INT);
+    //     $stmt1->execute();
+    
+    //     $result1 = $stmt1->fetch(PDO::FETCH_ASSOC);
+    //     //Accessing the associative array
+    //     $mid = $result1["manager_user_id"];
+    //     $said = $result1["manager_sports_arena_id"];
+
+    //     $sql2 = 'INSERT INTO `facility`(`facility_name`,`sports_arena_id`,`manager_user_id`,`manager_sports_arena_id`)
+    //             VALUES (:fname, :said, :mid, :said)';
+    
+    //     $stmt2 = $db->prepare($sql2);
+    //     $stmt2->bindValue(':fname', $stime, PDO::PARAM_STR);
+    //     $stmt2->bindValue(':said', $said, PDO::PARAM_INT);
+    //     $stmt2->bindValue(':mid', $mid, PDO::PARAM_INT);
+
+
+    //     // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+    //     // $result = $stmt->fetchAll();
+    //     // var_dump($result);
+    //     return ($stmt2->execute());
+    // }
+    public static function saAdminAddFacility($user_id,$facility){
+        
+        
+//Check the query
 
         $db = static::getDB();
+
+        // select query for select sports arena from  user id
+        $sql = 'SELECT sports_arena_id FROM manager
+                WHERE manager.user_id=:user_id';
+
+
         
-        $sql1 = 'SELECT `manager_user_id`,`manager_sports_arena_id` FROM `administration_staff` WHERE `user_id`=:id';
-        $stmt1 = $db->prepare($sql1);
-        $stmt1->bindValue(':id', $id, PDO::PARAM_INT);
-        $stmt1->execute();
-    
-        $result1 = $stmt1->fetch(PDO::FETCH_ASSOC);
-        //Accessing the associative array
-        $mid = $result1["manager_user_id"];
-        $said = $result1["manager_sports_arena_id"];
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
 
-        $sql2 = 'INSERT INTO `facility`(`facility_name`,`sports_arena_id`,`manager_user_id`,`manager_sports_arena_id`)
-                VALUES (:fname, :said, :mid, :said)';
-    
-        $stmt2 = $db->prepare($sql2);
-        $stmt2->bindValue(':fname', $stime, PDO::PARAM_STR);
-        $stmt2->bindValue(':said', $said, PDO::PARAM_INT);
-        $stmt2->bindValue(':mid', $mid, PDO::PARAM_INT);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+        $arena_id = $stmt->fetchAll();
+        //  var_dump($result);
+        // return $result;
 
 
-        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-        // $result = $stmt->fetchAll();
-        // var_dump($result);
-        return ($stmt2->execute());
+        // insert query for add time slots
+        $sql = 'INSERT INTO `facility`(`facility_name`,`sports_arena_id`,`manager_user_id`,`manager_sports_arena_id`)
+                VALUES (:facility,:arena_id,:user_id,:arena_id)';
+
+
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':facility', $facility, PDO::PARAM_STR);
+            $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+            $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+            return ($stmt->execute());
     }
 
     public static function saAdminUpdateFacility($id){

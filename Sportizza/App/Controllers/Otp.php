@@ -12,6 +12,7 @@ use \App\Flash;
 
 class Otp extends \Core\Controller
 {
+
     public $url = 0;
     protected function before()
     {
@@ -25,58 +26,46 @@ class Otp extends \Core\Controller
     }
 
     //check this again
-    public function mobileverificationAction()
-    {
-        $user = new User($_POST);
-
-        if ($user->save()) {
-
-            header('Location: http://' . $_SERVER['HTTP_HOST'] . '/otp/success', true, 303);
-            exit;
-        } else {
-
-            View::renderTemplate('LoginSignup/signup.html', [
-                'user' => $user
-            ]);
-        }
-    }
-
-    //Check this again
-    //  public function gobackAction()
+    // public function mobileverificationAction()
     // {
     //     $user = new User($_POST);
-    //     View::renderTemplate('LoginSignup/signup.html', [
-    //     'user' => $user
-    // ]);
+
+    //     if ($user->save()) {
+
+    //         header('Location: http://' . $_SERVER['HTTP_HOST'] . '/otp/success', true, 303);
+    //         exit;
+    //     } else {
+
+    //         View::renderTemplate('LoginSignup/signup.html', [
+    //             'user' => $user
+    //         ]);
+    //     }
     // }
+
+    //Start of resend OTP
     public function resendotpAction()
     {
+        //Resend OTP to the mobile number 
         otp::sendSMS($_SESSION['mobile_number']);
-        $this->redirect('/Signup/success');
-        
+        $this->redirect('/otp');
     }
-    public function gobackAction(){
-        $user = new SignupModel($_POST);
-        // $this->redirect('/Otp/otpsuccess');
-        $this->redirect('/Signup/failure',['user'=>$user]);
-        
-    }
+    //End of resend OTP
 
+    //Function to send an SMS
     public static function sendSMS($mobile_number)
     {
-        // $url = $direct_url;
         //our mobile number
         $user = "94765282976";
         //our account password
         $password = 4772;
         //Random OTP code
         $otp = mt_rand(100000, 999999);
-        
-        // stores the otp into a session variable
+
+        // stores the otp code and mobile number into session
         $_SESSION['otp'] = $otp;
         $_SESSION['mobile_number'] = $mobile_number;
-        
-        //SMS Sent
+
+        //Message to be sent
         $text = urlencode("Enter the OTP code:" . $otp . "");
         // Replacing the initial 0 with 94
         $to = substr_replace($mobile_number, '94', 0, 0);
@@ -87,7 +76,7 @@ class Otp extends \Core\Controller
 
         $ret = file($url);
         $res = explode(":", $ret[0]);
-        var_dump($otp);
+        // var_dump($otp);
 
         if (trim($res[0]) == "OK") {
             echo "Message Sent - ID : " . $res[1];
@@ -95,21 +84,28 @@ class Otp extends \Core\Controller
             echo "Sent Failed - Error : " . $res[1];
         }
     }
+
+    //Function to compare the sent OTP and the user entered input OTP
     public  function compareOTPAction()
     {
-        $temp=[$_POST['input1'],$_POST['input2'],$_POST['input3'],
-        $_POST['input4'],$_POST['input5'],$_POST['input6']];
-        $otp=implode($temp);
-        var_dump($otp);
-        
-        if($otp==$_SESSION['otp']){
-            // Flash::addMessage('updated successfully');
-            $this->redirect($_SESSION['direct_url']);
-        }
-        else{
-            Flash::addMessage('OTP is wrong',Flash::WARNING);
-            $this->redirect('/Signup/success');
-        }
+        //Obtaining the user entered OTP
+        $temp = [
+            $_POST['input1'], $_POST['input2'], $_POST['input3'],
+            $_POST['input4'], $_POST['input5'], $_POST['input6']
+        ];
 
+        //Concatinating the integers user entered
+        $otp = implode($temp);
+        // var_dump($otp);
+
+        //If 2 OTPs match
+        if ($otp == $_SESSION['otp']) {
+            //Redirected to the direct url saved in the session
+            $this->redirect($_SESSION['direct_url']);
+        } else {
+            //Redirected to the OTP view with the error messages
+            Flash::addMessage('OTP is wrong', Flash::WARNING);
+            $this->redirect('/otp');
+        }
     }
 }

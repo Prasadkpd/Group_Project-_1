@@ -1,7 +1,7 @@
 <?php
 
-
 namespace App\Controllers;
+
 use Core\View;
 use \App\Models\User;
 use \App\Auth;
@@ -12,172 +12,104 @@ use App\Models\EditProfileModel;
 
 class Login extends \Core\Controller
 {
+    //Before action to return true
+    protected function before()
+    {
+    }
+    //Rendering the login view
     public function indexAction()
     {
         View::renderTemplate('LoginSignup/loginView.html');
     }
 
+    //Start of Login of a user
+    public function loginAction()
+    {
+        //Assigning the username and password entered in login form
+        $user = LoginModel::authenticate($_POST['username'], $_POST['password']);
 
-    //Login for a user
-    public  function loginAction(){
-
-        $user=LoginModel::authenticate($_POST['username'],$_POST['password']);
+        //If a user is available with a username and a password
         if ($user) {
 
-            // Auth::login($user);
+            // Adding user details to the session
             Auth::login($user);
 
-            //Redirects to customised home page of each user)
-
-            if($user->type=='Admin'){
+            //Redirects to customised home page of each user
+            if ($user->type == 'Admin') {
                 $this->redirect('/Admin');
-            }
-
-            elseif($user->type=='Customer'){
-                
-                // $this->redirect('/login/customerlogin');
+            } elseif ($user->type == 'Customer') {
                 $this->redirect('/Customer');
-                // $this->redirect(Auth::getReturnToPage());
-            }
-            elseif($user->type=='Manager'){
+            } elseif ($user->type == 'Manager') {
                 $this->redirect('/Sparenamanager');
-            }
-            elseif($user->type=='AdministrationStaff'){
+            } elseif ($user->type == 'AdministrationStaff') {
                 $this->redirect('/Spadministrationstaff');
-            }
-
-            elseif($user->type=='BookingHandlingStaff'){
+            } elseif ($user->type == 'BookingHandlingStaff') {
                 $this->redirect('/Spbookstaff');
             }
-           
-        } else {
-            
-
-            // $message="Invalid username or password";
-            // $_SESSION['error']=$message;
-
-            Flash::addMessage('Invalid username or password',Flash::WARNING);
-            
-            
-            $this->redirect('/login');
-            // View::renderTemplate('LoginSignup/loginView.html',['message'=>$message]);
-            // var_dump($message);
-            
         }
-
-        
-    }
-
-
-    // public function adminloginAction()
-    // {
-
-        
-    //     // $customers= AdminModel::adminRemoveCustomers();
-    //     // $inactiveSportsArenas= AdminModel::adminAddSportsArenas();
-    //     // $activeSportsArenas= AdminModel::adminRemoveSportsArenas();
-    //     // //direct to the admin page
-    //     // View::renderTemplate('Admin/adminManageUsersView.html',
-    //     // ['customers'=>$customers,'inactiveArenas'=>$inactiveSportsArenas,'activeArenas'=>$activeSportsArenas]);
-    // }
-
-    // public function customerloginAction()
-    // {
-        
-        
-        
-    // }
- 
-    // public function bookinghandlingstaffloginAction()
-    // {
-    //     //direct to the customer page
-    //     View::renderTemplate('BookHandelStaff/aStaffManageBookingsView.html');
-    // }
-    
-    // public function administrationstaffloginAction()
-    // {
-    //     //direct to the customer page
-    //     View::renderTemplate('AdministrationStaff/aStaffManageFacilityView.html');
-    // }
-
-    // public function managerloginAction()
-    // {
-    //     //direct to the customer page
-    //     View::renderTemplate('Manager/mStaffManageBookingsView.html');
-    // }
-
-
-
-    //forget password
-    public  function forgotpasswordAction(){
-
-        if(EditProfileModel::findByMobileNumber($_POST['mobile'])){
-            $_SESSION['direct_url']=('/login/enternewpassword');
-            $_SESSION['temp_mobile']=$_POST['mobile'];
-        otp::sendSMS("mobile_number");
-        View::renderTemplate('otp.html');
-        }
-        else{
-            Flash::addMessage('There is no registered account for that number!',Flash::WARNING);
+        //If the entered details are not valid, redirect to login with errors
+        else {
+            Flash::addMessage('Invalid username or password', Flash::WARNING);
             $this->redirect('/login');
         }
-        
+    }
+    //End of Login of a user
 
-        
+    //Start of Forget password of a user
+    public function forgotpasswordAction()
+    {
+        //Checking whether a user exists with this mobile number
+        if (EditProfileModel::findByMobileNumber($_POST['mobile'])) {
+            //Saving the url to be directed and the mobile number in the session
+            $_SESSION['direct_url'] = ('/login/enternewpassword');
+            $_SESSION['temp_mobile'] = $_POST['mobile'];
+
+            //Sending the OTP to the mobile number
+            otp::sendSMS("mobile_number");
+            $this->redirect('/otp');
+        }
+        //If there's no user with that mobile number, redirect to login with errors
+        else {
+            Flash::addMessage('There is no registered account for that number!', Flash::WARNING);
+            $this->redirect('/login');
+        }
     }
 
-
-    public  function enternewpasswordAction(){
-
-        
+    //Rendering the new password form
+    public  function enternewpasswordAction()
+    {
         View::renderTemplate('passwordResetView.html');
-
-        
     }
 
-    public  function savenewpasswordAction(){
+    //Start of forget password action
+    public function savenewpasswordAction()
+    {
+        //Assigning the old password and new password entered from the form
+        $Model = new EditProfileModel($_POST);
+        //Accessing the user entered mobile number
+        $mobile_number = $_SESSION['temp_mobile'];
 
-        
-        $Model = new EditProfileModel($_POST);      
-        // $errors = $user->validate();
-        $mobile_number=$_SESSION['temp_mobile'];
-        var_dump($_POST);
-        // $_SESSION['direct_url']=$_POST['direct_url'];
-        // var_dump($_SESSION['direct_url']);
-
-        if ($Model->saveForgotPassword($mobile_number)){
-            // otp::sendSMS("mobile_number");
-            // $this->redirect('/Signup/success',['direct_url'=>$direct_url]);
+        //Saving the new password after validation from model
+        if ($Model->saveForgotPassword($mobile_number)) {
+            //Direct to login page with the success message
             Flash::addMessage('Your password has been successfully updated.');
             $this->redirect('/login');
             exit;
-
-        } 
-        else {
-            // $this->redirect('/Signup/failure');
-            // exit;
-            // View::renderTemplate('LoginSignup/customerSignupView.html', [
-            //     'user' => $user, 'errors' => $errors]);
-            Flash::addMessage('update password is  failed try again',Flash::WARNING);
-            $this->redirect('/login');
         }
-
-        
+        //Failure of Saving the new password after validation from model
+        else {
+            Flash::addMessage('Password reset is failed, please try again', Flash::WARNING);
+            $this->redirect('/login/enternewpassword');
+        }
     }
+    //End of forget password action
 
-
-     //Logout for a user
+    //Start of Logout for a user
     public function destroyAction()
     {
         Auth::logout();
-
-        $this->redirect('/login/showLogoutMessage');
-        
-    }
-    public function showLogoutMessageAction(){
-        // Flash::addMessage('logout successful');
+        //Redirect to home page after logout
         $this->redirect('/login');
     }
-
-
+    //End of Logout for a user
 }

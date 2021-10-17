@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use Core\Model;
 use PDO;
 use PDOException;
@@ -8,70 +9,67 @@ use App\Auth;
 
 class AdminModel extends \Core\Model
 {
-    
-    /**
-     * Error messages
-     *
-     * @var array
-     */
+    // Array of Error messages
     public $errors = [];
 
-    /**
-     * Class constructor
-     *
-     * @param array $data  Initial property values (optional)
-     *
-     * @return void
-     */
+    //Start of Class constructor  
     public function __construct($data = [])
     {
+        // Change the format of the key value pairs sent 
+        // from the controller use in the model
         foreach ($data as $key => $value) {
             $this->$key = $value;
         };
     }
+    //End of Class constructor  
 
-    public static function adminRemoveCustomers(){
-        
+    //Start of Displaying remove customers
+    public static function adminDisplayRemoveCustomers()
+    {
+        //Retrieving customers from the database
         $sql = 'SELECT * FROM user WHERE type="customer" AND
         security_status="active"';
-        
-
-
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
-        // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
+        //Converting retrieved data from database into PDOs
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-
         $stmt->execute();
+        
+        //Assigning the fetched PDOs to result
         $result = $stmt->fetchAll();
-        // var_dump($result);
         return $result;
     }
+    //End of Displaying remove customers
 
-    public static function adminAddSportsArenas(){
-        
-        $sql = 'SELECT sports_arena_profile.sa_name,sports_arena_profile.contact_no, DATE(user.registered_time) as "date" FROM sports_arena_profile
-               INNER  JOIN manager  ON sports_arena_profile.sports_arena_id =manager.sports_arena_id 
+    //Start of Displaying pending requests of sports arenas
+    public static function adminDisplayAddSportsArenas()
+    {
+        //Retrieving pending requests of sports arenas from the database
+        $sql = 'SELECT sports_arena_profile.sa_name,sports_arena_profile.contact_no, 
+                DATE(user.registered_time) as "date" FROM sports_arena_profile
+               INNER  JOIN manager ON sports_arena_profile.sports_arena_id =manager.sports_arena_id 
                INNER JOIN user ON user.user_id = manager.user_id
                WHERE sports_arena_profile.account_status="inactive"';
 
-
         $db = static::getDB();
         $stmt = $db->prepare($sql);
-        // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
+        //Converting retrieved data from database into PDOs
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-
         $stmt->execute();
+
+        //Assigning the fetched PDOs to result
         $result = $stmt->fetchAll();
-        //  var_dump($result);
         return $result;
     }
+    //End of Displaying pending requests of sports arenas
 
-    public static function adminRemoveSportsArenas(){
-        
+    //Start of Displaying of sports arenas with negative feedbacks
+    public static function adminDisplayRemoveSportsArenas()
+    {
+        //Retrieving of sports arenas with negative ratings from the database
         $sql = 'SELECT DISTINCT(sports_arena_profile.s_a_profile_id),
         sports_arena_profile.sa_name, COUNT(feedback.sports_arena_id) as "count",
         sports_arena_profile.account_status FROM feedback
@@ -79,165 +77,157 @@ class AdminModel extends \Core\Model
         WHERE feedback.feedback_rating < 3 AND sports_arena_profile.account_status!="inactive" 
         GROUP BY (feedback.sports_arena_id)';
 
-
         $db = static::getDB();
         $stmt = $db->prepare($sql);
-        // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
+        //Converting retrieved data from database into PDOs
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-
         $stmt->execute();
+
+        //Assigning the fetched PDOs to result
         $result = $stmt->fetchAll();
-        //  var_dump($result);
         return $result;
     }
+    //End of Displaying sports arenas with negative feedbacks
 
-    public static function adminViewFAQ(){
-        
+    //Start of Displaying of FAQs
+    public static function adminViewFAQ()
+    {
+        //Retrieving of FAQs from the database
         $sql = 'SELECT * FROM faq WHERE security_status="active" ';
 
-
         $db = static::getDB();
         $stmt = $db->prepare($sql);
-        // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
+        //Converting retrieved data from database into PDOs
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-
         $stmt->execute();
+
+        //Assigning the fetched PDOs to result
         $result = $stmt->fetchAll();
-        // var_dump($result);
         return $result;
     }
+    //End of Displaying of FAQs
 
-    public static function adminAddFAQ($type,$question,$solution,$id){
-        
-        
-            $db = static::getDB();
-
-            $sql = 'INSERT INTO `faq`(`question`,`answer`,`type`,`admin_user_id`)
+    //Start of Inserting of FAQs
+    public static function adminAddFAQ($type, $question, $solution, $id)
+    {
+        //Insert FAQs into FAQ table in database
+        $sql = 'INSERT INTO `faq`(`question`,`answer`,`type`,`admin_user_id`)
             VALUES (:question, :answer, :type, :id) ';
 
-            // if($this->type=='customer'){
-            //     $type= "customer";
-            // }
-            // if($this->type=='sports_arena'){
-            //     $type= "sports_arena";
-            // }
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
 
-            $stmt = $db->prepare($sql);
-            $stmt->bindValue(':type', $type, PDO::PARAM_STR);
-            $stmt->bindValue(':question', $question, PDO::PARAM_STR);
-            $stmt->bindValue(':answer', $solution, PDO::PARAM_STR);
-            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-
-            //$stmt2->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-
-            //$stmt->execute();
-            //$result = $stmt->fetchAll();
-            // var_dump($result);
-            return ($stmt->execute());
+        //Binding input data into database query variables
+        $stmt->bindValue(':type', $type, PDO::PARAM_STR);
+        $stmt->bindValue(':question', $question, PDO::PARAM_STR);
+        $stmt->bindValue(':answer', $solution, PDO::PARAM_STR);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        return ($stmt->execute());
     }
+    //End of Inserting of FAQs
 
-    public static function adminDeleteFAQ(){
-        
+    //Start of Displaying Delete FAQs
+    public static function adminDisplayDeleteFAQ()
+    {
+        //Retrieving of FAQs from the database
         $sql = 'SELECT * FROM faq WHERE security_status="active" ';
 
-
         $db = static::getDB();
         $stmt = $db->prepare($sql);
-        // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
+        //Converting retrieved data from database into PDOs
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-
         $stmt->execute();
+
+        //Assigning the fetched PDOs to result
         $result = $stmt->fetchAll();
-        // var_dump($result);
         return $result;
     }
+    //End of Displaying Delete FAQs
 
-    public static function adminGetQuestionDetails($type){
+    //Start of Displaying of Update FAQ questions
+    public static function adminGetQuestionDetails($type)
+    {
+        //Retrieving of FAQs from the database
         $sql = 'SELECT faq_id,question FROM faq WHERE type=:qtype ';
-
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
         $stmt->bindValue(':qtype', $type, PDO::PARAM_STR);
 
+        //Converting retrieved data from database into PDOs
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-
         $stmt->execute();
 
-        // $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        // $question = $result["question"];
-
-        // $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
+        //Converting PDOs to HTML data
         $output = '<option value="0" selected>Select the question</option>';
-
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $output .= "<option value={$row["faq_id"]}>{$row["question"]}</option>";
         }
-        
-        // var_dump($result);
-        return $output;
-        // return '<option>Kiri Shawty</option>';
-        // echo $type;
-    }
 
-    public static function adminGetSolutionDetails($question){
+        //Returning HTML tags formed above
+        return $output;
+    }
+    //End of Displaying of Update FAQ questions
+
+    //Start of Displaying of Update FAQ answer
+    public static function adminGetSolutionDetails($question)
+    {
+        //Retrieving of FAQs from the database
         $sql = 'SELECT answer FROM faq WHERE faq_id=:question ';
 
-
         $db = static::getDB();
         $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
         $stmt->bindValue(':question', $question, PDO::PARAM_STR);
-
-        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-
         $stmt->execute();
 
-        // $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        // $question = $result["question"];
+        //Converting retrieved data from database into PDOs
+        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
+
+        //Retrieving of answer with respected to the question selected
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
         $output = $result["answer"];
 
-        // while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        //     $output .= "<option value={$row["faq_id"]}>{$row["question"]}</option>";
-        // }
-        
-        // var_dump($result);
         return $output;
-        // return '<option>Kiri Shawty</option>';
-        // echo $type;
     }
+    //End of Displaying of Update FAQ answer
 
-
-    public static function adminRemoveRatings(){
-        
-        $sql = 'SELECT feedback.feedback_id,feedback.feedback_rating,feedback.description,sports_arena_profile.sa_name,DATE(feedback.posted_date) as "date",
-                feedback.sports_arena_id FROM feedback
-        INNER JOIN sports_arena_profile ON feedback.sports_arena_id=sports_arena_profile.sports_arena_id 
+    //Start of Displaying of Remove ratings
+    public static function adminDisplayRemoveRatings()
+    {
+        //Retrieving of negative Customer ratings from the database
+        $sql = 'SELECT feedback.feedback_id,feedback.feedback_rating,
+        feedback.description,sports_arena_profile.sa_name,
+        DATE(feedback.posted_date) as "date",
+        feedback.sports_arena_id FROM feedback
+        INNER JOIN sports_arena_profile ON feedback.sports_arena_id=
+        sports_arena_profile.sports_arena_id 
         WHERE feedback.security_status="active" AND feedback.feedback_rating<3 ';
-
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
-        // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
+        //Binding input data into database query variables
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-
         $stmt->execute();
+
+        //Assigning the fetched PDOs to result
         $result = $stmt->fetchAll();
-        //  var_dump($result);
         return $result;
     }
+    //End of Displaying of Remove ratings
 
-    // Models for displaying charts
-
-    public static function adminChart1(){
-        
+    //Start of Displaying of admin's chart 1
+    public static function adminChart1()
+    {
+        //Retrieving of chart data from the database
         $sql = 'SELECT CASE EXTRACT(MONTH FROM user.registered_time)
                     WHEN "1" THEN "January"
                     WHEN "2" THEN "February"
@@ -258,21 +248,22 @@ class AdminModel extends \Core\Model
                 GROUP BY Time_Registered
                 ORDER BY user.registered_time ASC ';
 
-
         $db = static::getDB();
         $stmt = $db->prepare($sql);
-        // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
+        //Converting retrieved data from database into PDOs
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-
         $stmt->execute();
+
+        //Assigning the fetched PDOs to result
         $result = $stmt->fetchAll();
-        //  var_dump($result);
         return $result;
     }
-
-    public static function adminChart2(){
-        
+    //End of Displaying of admin's chart 1
+    //Start of Displaying of admin's chart 2
+    public static function adminChart2()
+    {
+        //Retrieving of chart data from the database
         $sql = 'SELECT CASE EXTRACT(MONTH FROM sports_arena.registered_time)
                     WHEN "1" THEN "January"
                     WHEN "2" THEN "February"
@@ -293,21 +284,23 @@ class AdminModel extends \Core\Model
                 GROUP BY Time_Registered
                 ORDER BY sports_arena.registered_time ASC ';
 
-
         $db = static::getDB();
         $stmt = $db->prepare($sql);
-        // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
+        //Converting retrieved data from database into PDOs
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-
         $stmt->execute();
+
+        //Assigning the fetched PDOs to result
         $result = $stmt->fetchAll();
-        //  var_dump($result);
         return $result;
     }
+    //End of Displaying of admin's chart 2
 
-    public static function adminChart3(){
-        
+    //Start of Displaying of admin's chart 3
+    public static function adminChart3()
+    {
+        //Retrieving of chart data from the database
         $sql = 'SELECT booking_date, COUNT(DISTINCT booking_id) AS No_Of_Bookings
                 FROM booking
                 WHERE security_status="active"
@@ -315,84 +308,84 @@ class AdminModel extends \Core\Model
                 ORDER BY booking_date DESC
                 LIMIT 7';
 
-
         $db = static::getDB();
         $stmt = $db->prepare($sql);
-        // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
+        //Converting retrieved data from database into PDOs
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-
         $stmt->execute();
+
+        //Assigning the fetched PDOs to result
         $result = $stmt->fetchAll();
-        //  var_dump($result);
         return $result;
     }
+    //End of Displaying of admin's chart 3
 
-    public static function adminChart4(){
-        
+    //Start of Displaying of admin's chart 4
+    public static function adminChart4()
+    {
+        //Retrieving of chart data from the database
         $sql = 'SELECT payment_method, COUNT(DISTINCT booking_id) AS No_Of_Bookings
                 FROM booking
                 WHERE security_status="active"
                 GROUP BY payment_method ';
 
-
         $db = static::getDB();
         $stmt = $db->prepare($sql);
-        // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
+        //Converting retrieved data from database into PDOs
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-
         $stmt->execute();
+
+        //Assigning the fetched PDOs to result
         $result = $stmt->fetchAll();
-        //  var_dump($result);
         return $result;
     }
+    //End of Displaying of admin's chart 4
 
-    public static function adminChart5(){
-        
-
+    //Start of Displaying of admin's chart 5
+    public static function adminChart5()
+    {
+        //Retrieving of chart data from the database
         $sql = 'SELECT category, COUNT(DISTINCT sports_arena_id) AS No_Of_Sports_Arenas
         FROM sports_arena_profile
         GROUP BY category;
         ORDER BY category ASC ';
 
-
-
         $db = static::getDB();
         $stmt = $db->prepare($sql);
-        // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        
+        //Converting retrieved data from database into PDOs
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-
         $stmt->execute();
+
+        //Assigning the fetched PDOs to result
         $result = $stmt->fetchAll();
-        //  var_dump($result);
         return $result;
     }
+    //End of Displaying of admin's chart 5
 
-    public static function adminChart6(){
-        
+    //Start of Displaying of admin's chart 6
+    public static function adminChart6()
+    {
+        //Retrieving of chart data from the database
         $sql = 'SELECT location, COUNT(DISTINCT sports_arena_id) AS No_Of_Sports_Arenas
         FROM sports_arena_profile
         WHERE security_status="active"
         GROUP BY location
         ORDER BY location ASC ';
 
-
-
         $db = static::getDB();
         $stmt = $db->prepare($sql);
-        // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
+        //Converting retrieved data from database into PDOs
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-
         $stmt->execute();
+
+        //Assigning the fetched PDOs to result
         $result = $stmt->fetchAll();
-        //  var_dump($result);
         return $result;
     }
+    //End of Displaying of admin's chart 6
     
-
-
-
 }
-

@@ -1,80 +1,60 @@
 <?php
 
-
 namespace App\Controllers;
+
 use Core\View;
 use Core\Image;
-
 use \App\Controllers\Otp;
-
 use \App\Models\SignupModel;
 
 
 class Signup extends \Core\Controller
 {
+    //Rendering Customer's signup view
     public function indexAction()
     {
         View::renderTemplate('LoginSignup/customerSignupView.html');
     }
 
-    /**
-     * Sign up a new user
-     *
-     * @return void
-     */
+    // Start of Sign up a new user
     public function createAction()
     {
-        $user = new SignupModel($_POST);      
+        //Assigning the data enetered by user in signup form to user variable
+        $user = new SignupModel($_POST);
+        //Assigning the errors (back end validation) to error variable
         $errors = $user->validate();
-        $_SESSION['direct_url']=$_POST['direct_url'];
-        var_dump($_SESSION['direct_url']);
+        //Save URL to be directed after OTP in the session with the hidden input
+        $_SESSION['direct_url'] = $_POST['direct_url'];
 
-        if ($user->save()){
-            $_SESSION['temp_user']=$_POST['username'];
+        //If the user is succesfully saved
+        if ($user->save()) {
+            //Save user's username and mobile number in the session temporarily
+            $_SESSION['temp_user'] = $_POST['username'];
+            $_SESSION['mobile_number'] = $_POST['mobile_number'];
+
+            //Send SMS to the User
             otp::sendSMS("mobile_number");
-            // $this->redirect('/Signup/success',['direct_url'=>$direct_url]);
-            $this->redirect('/Signup/success');
+            //Redirect to Otp page
+            $this->redirect('/Otp');
             exit;
+        }
 
-        } 
+        //If the user is having errors in his inputs
         else {
-            // $this->redirect('/Signup/failure');
-            // exit;
+            //Render Signup form with the errors
             View::renderTemplate('LoginSignup/customerSignupView.html', [
-                'user' => $user, 'errors' => $errors]);
-
+                'user' => $user, 'errors' => $errors
+            ]);
         }
     }
-    /**
-     * Show the signup success page
-     *
-     * @return void
-     */
-    public function successAction()
-    {
-        // $id=$this->route_params['id'];
-        // var_dump($id);
-        var_dump($_SESSION['otp']);
-        
-        
-        //direct to the message modal page
-        View::renderTemplate('otp.html');
-    }
-    // public function failureAction()
-    // {
-    //     // var_dump($_SESSION['otp']);
-    //     //direct to the message modal page
-    //     // View::renderTemplate('LoginSignup/customerSignupView.html', [
-    //     //     'user' => $user, 'errors' => $errors]);
-    //     View::renderTemplate('LoginSignup/customerSignupView.html');
-    // }
-
+    
+    //Making the customer active after mobile verification and 
+    // sending to login page(Called from view)
     public function activeuserAction()
     {
- 
+        //Obtaining the session's user and making him active
         SignupModel::activeuser($_SESSION['temp_user']);
-        
-       $this->redirect('/login');
+        $this->redirect('/login');
     }
-
+    // End of Sign up a new user
 }

@@ -28,15 +28,15 @@ abstract class Controller
         }
     }
 
-    protected function  before()
-    {
+    // protected function  before()
+    // {
 
-    }
+    // }
 
-    protected function  after()
-    {
+    // protected function  after()
+    // {
 
-    }
+    // }
 
     public function redirect($url){
         header('Location: http://' . $_SERVER['HTTP_HOST'] . $url , true ,303);

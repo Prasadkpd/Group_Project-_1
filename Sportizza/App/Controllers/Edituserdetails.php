@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Controllers;
 
 use Core\View;
@@ -12,170 +11,123 @@ use App\Models\SignupModel;
 
 class Edituserdetails extends Authenticated
 {
-
-    // protected function before()
-    // {
-    //     if(Auth::getUser()->type=='Customer'){
-            
-    //         return true;
-    //     }
-    //     else{
-    //         View::renderTemplate('500.html');
-    //         return false;
-    //     }
-    // }
-  
-    
-
-    // public function indexAction()
-    // {
-    //    $current_user= Auth::getUser();
-    //     $id=$current_user->user_id;
-    //     $bookings= CustomerModel::customerBookings($id);
-    //     $favourie_list= CustomerModel::customerFavouriteList($id);
-    //     $notifications= CustomerModel::customerNotification($id);
-    //     // var_dump($bookings);
-    //     //direct to the customer page
-    //     View::renderTemplate('Customer/customerDashboardView.html',['bookings'=>$bookings,'list'=>$favourie_list,'notifications'=>$notifications]);
-    // }
-
-
-
-
-    public function EditProfileAction(){
+    // Start of Rendering Edit profile view
+    public function EditProfileAction()
+    {
         View::renderTemplate('editprofileView.html');
     }
+    // End of Rendering Edit profile view
 
+    //Start of updating user's password
     public function updatepasswordAction()
     {
-        $Model = new EditProfileModel($_POST);      
-        // $errors = $user->validate();
-        $user=Auth::getUser();
+        //Assigning the edited profile details to Model variable
+        $Model = new EditProfileModel($_POST);
 
-        // $_SESSION['direct_url']=$_POST['direct_url'];
-        // var_dump($_SESSION['direct_url']);
+        //Authenticating the user
+        $user = Auth::getUser();
 
-        if ($Model->saveNewPassword($user)){
-            // otp::sendSMS("mobile_number");
-            // $this->redirect('/Signup/success',['direct_url'=>$direct_url]);
+        //If the password is successfully updated
+        if ($Model->saveNewPassword($user)) {
             Flash::addMessage('Your password has been successfully updated.');
             $this->redirect('/Edituserdetails/EditProfile');
             exit;
-
-        } 
+        }
+        // If the password update is failed
         else {
-            // $this->redirect('/Signup/failure');
-            // exit;
-            // View::renderTemplate('LoginSignup/customerSignupView.html', [
-            //     'user' => $user, 'errors' => $errors]);
-            Flash::addMessage('Entered old password in incorrect!',Flash::WARNING);
+            Flash::addMessage('Entered old password is incorrect!', Flash::WARNING);
             $this->redirect('/Edituserdetails/EditProfile');
         }
     }
+    //End of updating user's password
 
-
+    //Start of updating user's username
+    //Check the function name
     public function updatedetailsAction()
     {
-
+        //Assigning the edited username to user variable
         $user = new EditProfileModel($_POST);
-        $oldUsername=Auth::getUser()->username;
-        if(EditProfileModel::findByUsername($user->username)&&$oldUsername!=$user->username){
-            Flash::addMessage('Failed to update, username already exists',Flash::WARNING);
+        //Obtaining old username from Auth via session
+        $oldUsername = Auth::getUser()->username;
+
+        //Checking whether the new username already exists and whether the new username==old username
+        if (EditProfileModel::findByUsername($user->username) && $oldUsername != $user->username) {
+            Flash::addMessage('Failed to update, username already exists', Flash::WARNING);
             $this->redirect('/Edituserdetails/EditProfile');
             exit;
         }
-        if ($user->updateNewUserDetails($oldUsername)){
-            
+        //If the username is successfully updated, redirect
+        if ($user->updateNewUserDetails($oldUsername)) {
             Flash::addMessage('Successfully updated details');
             $this->redirect('/Edituserdetails/EditProfile');
-
-
-            // if($user->type=='Admin'){
-            //     $this->redirect('/Admin');
-            // }
-
-            // elseif($user->type=='Customer'){
-                
-            //     // $this->redirect('/login/customerlogin');
-            //     $this->redirect('/Customer');
-            //     // $this->redirect(Auth::getReturnToPage());
-            // }
-            // elseif($user->type=='Manager'){
-            //     $this->redirect('/Sparenamanager');
-            // }
-            // elseif($user->type=='AdministrationStaff'){
-            //     $this->redirect('/Spadministrationstaff');
-            // }
-
-            // elseif($user->type=='BookingHandlingStaff'){
-            //     $this->redirect('/Spbookstaff');
-            // }
         }
-        
-        else{
-            Flash::addMessage('Failed to update details',Flash::WARNING);
+        //If the username update is failed, redirect with errors
+        else {
+            Flash::addMessage('Failed to update details', Flash::WARNING);
             $this->redirect('/Edituserdetails/EditProfile');
-            
         }
-        
-
     }
+    //End of updating user's username
 
-
-
+    //Start of updating user's mobile
+    //Rendering the OTP page after clicking edit mobile
     public function updatemobileAction()
     {
-        
-        $_SESSION['direct_url']=('/Edituserdetails/directtoenternumber');
-        $current_user= Auth::getUser();
+        //Saving the URL to be directed after OTP page in the session
+        $_SESSION['direct_url'] = ('/Edituserdetails/directtoenternumber');
+        //Obtaining the current user's mobile number from Auth via Session
+        $current_user = Auth::getUser();
+        //Send SMS to the user's old primary contact
         otp::sendSMS($current_user->primary_contact);
-       
-        View::renderTemplate('otp.html');
+        //Redirect to OTP view
+        $this->redirect('/otp');
     }
-
+    //Rendering the new mobile number form 
     public function directtoenternumberAction()
     {
-        
-        
+        //Rendering view to enter the new mobile number
         View::renderTemplate('EnterMobile.html');
     }
-    public function redirectotppageAction(){
-
-        
-        // Flash::addMessage('updated failed');
-        if(EditProfileModel::findByMobileNumber($_POST['mobile_number'])){
+    //Rendering the new mobile number form with errors or the success action
+    public function redirectotppageAction()
+    {
+        //Checking whether the new mobile number already exists and redirect with errors
+        if (EditProfileModel::findByMobileNumber($_POST['mobile_number'])) {
             Flash::addMessage('Number is currently used for another account, 
-            enter another number',Flash::WARNING);
+            enter another number', Flash::WARNING);
             $this->redirect('/Edituserdetails/directtoenternumber');
         }
-        else{
-            $_SESSION['direct_url']=('/Edituserdetails/updateMobileNumber');
-            $_SESSION['number']=$_POST['mobile_number'];
+        //Check whether the new mobile number is valid
+
+
+        //If new mobile number is not already exist,
+        else {
+            //Change the direct_url saved in session to this URL
+            $_SESSION['direct_url'] = ('/Edituserdetails/updateMobileNumber');
+            //update the session's user's mobile number with new mobile number
+            $_SESSION['number'] = $_POST['mobile_number'];
+            //Send an SMS to the new mobile number with Auth via session
             otp::sendSMS($_POST['mobile_number']);
-            View::renderTemplate('otp.html');
+            //Redirect to OTP view
+            $this->redirect('/otp');
         }
-        
     }
-    public function updateMobileNumber(){
-
-        
-        // $user = new EditProfileModel($_SESSION);
-        $username=Auth::getUser()->username;
-        if (EditProfileModel::updateNewMobileNumber($username,$_SESSION['number'])){
-            
-            Flash::addMessage('successfully updated mobile number');
+    //Updating the newly entered mobile number 
+    public function updateMobileNumber()
+    {
+        //Obtaining the username from the Auth via session
+        $username = Auth::getUser()->username;
+        //If the user's mobile number is successfully updated in the database
+        if (EditProfileModel::updateNewMobileNumber($username, $_SESSION['number'])) {
+            //Display the success message and redirect
+            Flash::addMessage('Mobile number is successfully updated');
             $this->redirect('/Edituserdetails/EditProfile');
         }
-        
-        else{
-            Flash::addMessage('mobile number update failed try again',Flash::WARNING);
+        //If the user's mobile number is failed to update in the database
+        else {
+            Flash::addMessage('Failed to update mobile number. Please try again', Flash::WARNING);
             $this->redirect('/Edituserdetails/EditProfile');
-            
         }
-        
     }
-
-
-
-   
+    //End of updating user's mobile 
 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+
 use \Core\View;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -9,71 +10,88 @@ use App\Models\HomeModel;
 
 class Home extends \Core\Controller
 {
-   
+    //Before action to return true
+    protected function before()
+    {
+    }
+    //Start of rendering the visitor's view (Landing page)
     public function indexAction()
     {
-        $feedbacks=HomeModel::homeViewfeedbacks();
-        $customerFAQs=HomeModel::homeViewCustomerfaqs();
-        $arenas=HomeModel::homeViewarenas();
-        // $arenas=["name"=>"janitha","age"=>21];
-        $arenaFAQs=HomeModel::homeViewArenafaqs();
-        $locations=HomeModel::homeSelectLocations();
-        $categories=HomeModel::homeSelectCategories();
-       View::renderTemplate('Visitor/visitorView.html',['feedbacks'=>$feedbacks,'faqs'=>$customerFAQs,
-       'arenafaqs'=>$arenaFAQs,'arenas'=>$arenas,'locations'=>$locations,'categories'=>$categories]);
+        //Displaying the feedbacks, FAQs, arenas, etc in the view
+        $feedbacks = HomeModel::homeViewfeedbacks();
+        $customerFAQs = HomeModel::homeViewCustomerfaqs();
+        $arenas = HomeModel::homeViewarenas();
+        $arenaFAQs = HomeModel::homeViewArenafaqs();
+        $locations = HomeModel::homeSelectLocations();
+        $categories = HomeModel::homeSelectCategories();
+        //Rendering the visitor view
+        View::renderTemplate('Visitor/visitorView.html', [
+            'feedbacks' => $feedbacks, 'faqs' => $customerFAQs,
+            'arenafaqs' => $arenaFAQs, 'arenas' => $arenas, 'locations' => $locations, 'categories' => $categories
+        ]);
     }
+    //End of rendering the visitor's view (Landing page)
 
-
-    public function searcharenasAction(){
-        // var_dump($_POST);
-        $feedbacks=HomeModel::homeViewfeedbacks();
-        $customerFAQs=HomeModel::homeViewCustomerfaqs();
-        $arenaFAQs=HomeModel::homeViewArenafaqs();
-        $arenas=HomeModel::homeSearchArenas($_POST['location'],
-        $_POST['category'],$_POST['name']);
-        $search_result['location']=$_POST['location'];
-        $search_result['category']=$_POST['category'];
-        $locations=HomeModel::homeSelectLocations();
-        $categories=HomeModel::homeSelectCategories();
-        $result="Search Results:";
-        
-        // var_dump($arenas);
-        View::renderTemplate('Visitor/visitorView.html',['feedbacks'=>$feedbacks,'faqs'=>$customerFAQs,
-        'arenafaqs'=>$arenaFAQs,'arenas'=>$arenas,'search_result'=> $search_result,
-        'locations'=>$locations,'categories'=>$categories,'result'=>$result]);
-    } 
-
+    //Start of searching sports arenas in visitor's view
+    public function searcharenasAction()
+    {
+        //Displaying the feedbacks, FAQs, arenas, etc in the view
+        $feedbacks = HomeModel::homeViewfeedbacks();
+        $customerFAQs = HomeModel::homeViewCustomerfaqs();
+        $arenaFAQs = HomeModel::homeViewArenafaqs();
+        $arenas = HomeModel::homeSearchArenas($_POST['location'], $_POST['category'], $_POST['name']);
+        $search_result['location'] = $_POST['location'];
+        $search_result['category'] = $_POST['category'];
+        $locations = HomeModel::homeSelectLocations();
+        $categories = HomeModel::homeSelectCategories();
+        $result = "Search Results:";
+        //Rendering the visitor view with search results
+        View::renderTemplate('Visitor/visitorView.html', [
+            'feedbacks' => $feedbacks, 'faqs' => $customerFAQs,
+            'arenafaqs' => $arenaFAQs, 'arenas' => $arenas, 'search_result' => $search_result,
+            'locations' => $locations, 'categories' => $categories, 'result' => $result
+        ]);
+    }
 
     /**
      * @throws Exception
      */
+    //Start of contact us form's mail
     public function contactAction()
     {
-            $firstname = $_POST['firstname'];
-            $lastname = $_POST['lastname'];
-            $fullname = $firstname. " " . $lastname;
-            $email = $_POST['email'];
-            $subject = $_POST['subject'];
-            $message = $_POST['message'];
+        //Assigning the inputs entered by the user to our variables
+        $firstname = $_POST['firstname'];
+        $lastname = $_POST['lastname'];
+        $fullname = $firstname . " " . $lastname;
+        $email = $_POST['email'];
+        $subject = $_POST['subject'];
+        $message = $_POST['message'];
 
-            $mail = new PHPMailer(false);
+        //Disabling exceptions in PHPMailer (Not displaying the log page)
+        $mail = new PHPMailer(false);
 
-            $mail->isSMTP();
-            $mail->Host = "smtp.gmail.com";
-            $mail->SMTPAuth = true;
-            $mail->Username = "contact.sportizza@gmail.com";
-            $mail->Password = "sportizza123@";
-            $mail->Port = 465;
-            $mail->SMTPSecure = "ssl";
+        //Using SMTP to send an email with localhost
+        $mail->isSMTP();
+        $mail->Host = "smtp.gmail.com";
+        $mail->SMTPAuth = true;
+        $mail->Username = "contact.sportizza@gmail.com";
+        $mail->Password = "sportizza123@";
+        $mail->Port = 465; //Default port of google
+        $mail->SMTPSecure = "ssl";
 
-            $mail->isHTML(true);
-            $mail->setFrom("contact.sportizza@gmail.com", $fullname);
-            $mail->addAddress("contact.sportizza@gmail.com");
-            $mail->Subject = 'Message from Sportizza Contact Form';
-            $mail->Body = '<b>Mailed-By:</b><br>' . $email . '<br><b>Subject:</b>' . $subject. '<br><b>Message:</b><br>' . nl2br(strip_tags($message));
+        //Format of the mail body made using HTML
+        $mail->isHTML(true);
+        //Sender's email is our email used in the contact form
+        $mail->setFrom("contact.sportizza@gmail.com", $fullname);
+        //Reciever's email is our email used in the contact form
+        $mail->addAddress("contact.sportizza@gmail.com");
+        //Subject of the email
+        $mail->Subject = 'Message from Sportizza Contact Form';
+        //Mail body
+        $mail->Body = '<b>Mailed-By:</b><br>' . $email . '<br><b>Subject:</b>' . $subject . '<br><b>Message:</b><br>' . nl2br(strip_tags($message));
 
-            $mail->send();
-            $this->redirect("/#contact/success");
+        $mail->send();
+        //After mail is successfully sent, redirect to visitor view's contact us page
+        $this->redirect("/#contact");
     }
-
 }
