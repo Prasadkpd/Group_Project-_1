@@ -281,9 +281,18 @@
                             </div>
                             <div class="input-row">
                                 <div class="input-box">
-                                    <label for="endTime">End Time:</label>
-                                    <input id="endTime" type="time" name="endTime" onfocusout="validateEndTime()"
-                                        value="{{sp_arena.end_time}}">
+                                    <label for="endTime">Duration:</label>
+                                    <!-- <input id="endTime" type="time" name="endTime" onfocusout="validateEndTime()"
+                                        value="{{sp_arena.end_time}}"> -->
+
+                                        <select id="timeSlotDuration" name="timeSlotDuration"  >
+                                            <option value="0">Please Select Time Duration</option>
+
+                                            <option value=1>One hours</option>
+
+                                            <option value=2>Two hours</option>
+                                            
+                                        </select>
                                     <div class="helper-text" id="firstNameMsg"></div>
                                 </div>
                             </div>
