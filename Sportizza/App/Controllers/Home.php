@@ -14,6 +14,10 @@ class Home extends \Core\Controller
     protected function before()
     {
     }
+     //After action to return true
+     protected function after()
+     {
+     }
     //Start of rendering the visitor's view (Landing page)
     public function indexAction()
     {

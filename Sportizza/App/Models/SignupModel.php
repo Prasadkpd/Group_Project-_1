@@ -51,7 +51,7 @@ class SignupModel extends \Core\Model
             //Binding input data into database query variables
             $stmt1->bindValue(':first_name', $this->first_name, PDO::PARAM_STR);
             $stmt1->bindValue(':last_name', $this->last_name, PDO::PARAM_STR);
-            $stmt1->bindValue(':mobile_number', $this->mobile_number, PDO::PARAM_INT);
+            $stmt1->bindValue(':mobile_number', $this->mobile_number, PDO::PARAM_STR);
             $stmt1->bindValue(':username', $this->username, PDO::PARAM_STR);
             $stmt1->bindValue(':password', $password, PDO::PARAM_STR);
             $stmt1->bindValue(':profile_pic', $this->image_7->getURL(), PDO::PARAM_STR);

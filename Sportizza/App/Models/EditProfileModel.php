@@ -237,7 +237,7 @@ class EditProfileModel extends \Core\Model
         $stmt = $db->prepare($sql);
         
         // Binding user id and Converting retrieved data from database into PDO
-        $stmt->bindValue(':mobile_number', $mobile_number, PDO::PARAM_INT);
+        $stmt->bindValue(':mobile_number', $mobile_number, PDO::PARAM_STR);
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $stmt->execute();
 
