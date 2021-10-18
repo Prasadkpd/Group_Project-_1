@@ -112,8 +112,8 @@ $(document).ready(function () {
 
     function loadData(search) {
         let locationValue = $("#location option:selected").text().replace('-', '_');
-        let categoryValue = $("#category option:selected").text();
-        let searchValue = search.trim().replace('_', '');
+        let categoryValue = $("#category option:selected").text().replace('-', '_');
+        let searchValue = search.trim().replace(' ', '_');
 
         if(locationValue == "select location"){
             locationValue = "0";
@@ -123,7 +123,7 @@ $(document).ready(function () {
             categoryValue = "0";
         }
 
-        let argument = `${searchValue}_${categoryValue}_${locationValue}`;
+        let argument = `${searchValue}__${categoryValue}__${locationValue}`;
 
         $.ajax({
             type: "POST",

@@ -63,14 +63,11 @@ class Home extends \Core\Controller
     public function searcharenasajaxAction(){
         $combined = $this->route_params['arg'];
 
-        $temp = explode("_",$combined);
+        $temp = explode("__",$combined);
 
-        $searchValue = $temp[0];
-        $categoryValue = $temp[1];
-        $locationValue = $temp[2];
-        if(isset($temp[3])){
-            $locationValue = $locationValue . "-" . $temp[3];
-        }
+        $searchValue = str_replace("_", " ", $temp[0]);
+        $categoryValue = str_replace("_", "-", $temp[1]);;
+        $locationValue = str_replace("_", "-", $temp[2]);;
 
         if($locationValue === "0")
         {
