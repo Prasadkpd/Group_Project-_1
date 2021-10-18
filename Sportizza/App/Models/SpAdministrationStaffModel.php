@@ -53,9 +53,9 @@ class SpAdministrationStaffModel extends \Core\Model
     }
     //End of Displaying sports arena bookings
 
-    
+    //Start of displaying sports arena's cancel bookings
     public static function saAdminCancelBookings($id){
-        
+        //Retrieving sports arena bookings
         $sql = 'SELECT booking.booking_id,booking.price_per_booking,
        DATE(booking.booked_date) AS booked_date,
        DATE(booking.booking_date) AS booking_date,
@@ -79,16 +79,19 @@ class SpAdministrationStaffModel extends \Core\Model
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
+        //Converting retrieved data from database into PDOs
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-
         $stmt->execute();
+        //Assigning the fetched PDOs to result
         $result = $stmt->fetchAll();
-        // var_dump($result);
         return $result;
     }
+    //End of displaying sports arena's cancel bookings
 
-    public static function saAdminBookingPayment($id){
-        
+    //Start of displaying sports arena's booking payment
+    public static function saAdminBookingPayment($id)
+    {
+        //Retrieving bookings from the database
         $sql = 'SELECT booking.booking_id,booking.price_per_booking,
                 DATE(booking.booking_date) AS booking_date,
                 booking.payment_method,booking.payment_status,
@@ -105,34 +108,55 @@ class SpAdministrationStaffModel extends \Core\Model
         $db = static::getDB();
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-
+        
+        //Converting retrieved data from database into PDOs
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-
         $stmt->execute();
+
+        //Assigning the fetched PDOs to result
         $result = $stmt->fetchAll();
-        // var_dump($result);
         return $result;
     }
+    //End of displaying sports arena's booking payment
 
+    //Start of displaying sports arena's updating bookings
+    public static function updateBookingPayment($booking_id)
+    {
+        //Updating status of the bookings in the database
+        $sql = 'UPDATE `booking` SET `payment_status`="paid" WHERE `booking_id`=:booking_id';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);   
+        return ($stmt->execute());
+    }
+    //End of displaying sports arena's updating bookings
+
+    //Start of displaying notifications for manager
     public static function saAdminNotification($id){
         
+        //Retrieving manager's notifications from the database
         $sql = 'SELECT subject,description, DATE(date) as date , TIME_FORMAT( TIME(date) ,"%H" ":" "%i") as time 
         FROM notification WHERE user_id=:id';
-
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
+        //Converting retrieved data from database into PDOs
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-
         $stmt->execute();
+
+        //Assigning the fetched PDOs to result
         $result = $stmt->fetchAll();
-        // var_dump($result);
         return $result;
     }
+    //End of displaying notifications for manager
 
-    public static function saAdminGetFacilityName($id){
+    //Start of displaying sports arenas facilities for manager
+    public static function saAdminGetFacilityName($id)
+    {
+        //Retrieving manager's facility from the database
         $sql = 'SELECT facility.facility_id, facility.facility_name
         FROM facility
         INNER JOIN administration_staff ON facility.manager_sports_arena_id=administration_staff.manager_sports_arena_id
@@ -142,17 +166,21 @@ class SpAdministrationStaffModel extends \Core\Model
         $db = static::getDB();
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-
+        
+        //Converting retrieved data from database into PDOs
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-
         $stmt->execute();
+
+        //Assigning the fetched PDOs to result
         $result = $stmt->fetchAll();
-        // var_dump($result);
         return $result;
     }
+    //End of displaying sports arenas facilities for manager
 
-    public static function saAdminViewTimeSlots($id){
-        
+    //Start of displaying sports arenas timeslots for manager
+    public static function saAdminViewTimeSlots($id)
+    {
+        //Retrieving manager's timeslots to view from the database
         $sql = 'SELECT time_slot.time_slot_id, 
          TIME_FORMAT(time_slot.start_time, "%H" ":" "%i") AS startTime, 
         TIME_FORMAT(time_slot.end_time, "%H" ":" "%i") AS endTime,
@@ -167,29 +195,34 @@ class SpAdministrationStaffModel extends \Core\Model
         $db = static::getDB();
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-
+        
+        //Converting retrieved data from database into PDOs
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
         $stmt->execute();
+        //Assigning the fetched PDOs to result
         $result = $stmt->fetchAll();
-        // var_dump($result);
         return $result;
     }
-    
-    public static function saAdminAddTimeSlots($stime,$etime,$amount,$fid,$id){
+    //End of displaying sports arenas timeslots for manager
+
+    //Start of adding timeslot to a sports arena for manager for administration staff
+    public static function saAdminAddTimeSlots($stime,$etime,$amount,$fid,$id)
+    {   
+        //have to add condition for check timeslot is available
+        // select query for select sports arena from  user id 
+        $sql1 = 'SELECT `manager_user_id`,`manager_sports_arena_id` FROM `administration_staff` WHERE `user_id`=:id';
         
         $db = static::getDB();
-        
-        $sql1 = 'SELECT `manager_user_id`,`manager_sports_arena_id` FROM `administration_staff` WHERE `user_id`=:id';
         $stmt1 = $db->prepare($sql1);
         $stmt1->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt1->execute();
     
         $result1 = $stmt1->fetch(PDO::FETCH_ASSOC);
-        //Accessing the associative array
         $mid = $result1["manager_user_id"];
         $said = $result1["manager_sports_arena_id"];    
-    
+
+        // insert query for add time slots
         $sql2 = 'INSERT INTO `time_slot`(`start_time`,`end_time`,`price`,`facility_id`,`manager_user_id`,`manager_sports_arena_id`)
                 VALUES (:stime, :etime, :amount, :fid, :mid, :said)';
     
@@ -201,17 +234,15 @@ class SpAdministrationStaffModel extends \Core\Model
         $stmt2->bindValue(':mid', $mid, PDO::PARAM_INT);
         $stmt2->bindValue(':said', $said, PDO::PARAM_INT);
     
-        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-    
-        // $result = $stmt->fetchAll();
-        // var_dump($result);
-    
         return ($stmt2->execute());
     }
+    //End of adding timeslot to a sports arena for manager
 
-    public static function saAdminDeleteTimeSlots($id){
+    //Start of displaying sports arenas deleting the timeslots for manager
+    public static function saAdminDeleteTimeSlots($id)
+    {
         
-        
+         //Retrieving manager's timeslots to view for delete from the database
         $sql = 'SELECT time_slot.time_slot_id, 
          TIME_FORMAT(time_slot.start_time, "%H" ":" "%i") AS startTime, 
         TIME_FORMAT(time_slot.end_time, "%H" ":" "%i") AS endTime,
@@ -226,19 +257,23 @@ class SpAdministrationStaffModel extends \Core\Model
         $db = static::getDB();
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $stmt->execute();
+
+        //Assigning the fetched PDOs to result
         $result = $stmt->fetchAll();
-        // var_dump($result);
         return $result;
 
     }
+    //End of displaying sports arenas deleting the timeslots for administrationstaff
 
+    //Start of displaying sports arenas facilities for administrationstaff
     public static function saAdminViewFacility($id){
         
         // $sql = 'SELECT *  FROM facility WHERE manager_user_id=:id';
-
+        
         $sql = 'SELECT *  FROM facility INNER JOIN administration_staff ON facility.manager_user_id=administration_staff.manager_user_id
                  WHERE  administration_staff.user_id=:id';
 
@@ -246,14 +281,16 @@ class SpAdministrationStaffModel extends \Core\Model
         $db = static::getDB();
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-
+        
+        //Converting retrieved data from database into PDOs
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-
         $stmt->execute();
+
+        //Assigning the fetched PDOs to result
         $result = $stmt->fetchAll();
-        // var_dump($result);
         return $result;
     }
+    //End of displaying sports arenas facilities for administrationstaff
 
 
     public static function saAdminDeleteFacility($id){
@@ -261,7 +298,7 @@ class SpAdministrationStaffModel extends \Core\Model
         $db = static::getDB();
         
         // $sql = 'DELETE FROM `facility` WHERE `facility_id`=:id';
-
+        //Retrieving manager's facility to view for delete from the database
         $sql = 'SELECT *  FROM facility INNER JOIN administration_staff ON facility.manager_user_id=administration_staff.manager_user_id
                  WHERE  administration_staff.user_id=:id';
 
@@ -319,63 +356,63 @@ class SpAdministrationStaffModel extends \Core\Model
     //     // var_dump($result);
     //     return ($stmt2->execute());
     // }
+    //Start of adding facility to a sports arena for administartion staff
     public static function saAdminAddFacility($user_id,$facility){
         
         
-//Check the query
-
+        //Check the query
+        
         $db = static::getDB();
-
+        
         // select query for select sports arena from  user id
         $sql = 'SELECT sports_arena_id FROM manager
                 WHERE manager.user_id=:user_id';
 
 
-        
+
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
-
+        
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-
+        
         $stmt->execute();
         $arena_id = $stmt->fetchAll();
         //  var_dump($result);
         // return $result;
-
-
+        
+        
         // insert query for add time slots
         $sql = 'INSERT INTO `facility`(`facility_name`,`sports_arena_id`,`manager_user_id`,`manager_sports_arena_id`)
                 VALUES (:facility,:arena_id,:user_id,:arena_id)';
 
 
-            $stmt = $db->prepare($sql);
-            $stmt->bindValue(':facility', $facility, PDO::PARAM_STR);
-            $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
-            $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
-            return ($stmt->execute());
-    }
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':facility', $facility, PDO::PARAM_STR);
+        $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+        return ($stmt->execute());
+}
+//End of adding facility to a sports arena for administartion staff
 
-    public static function saAdminUpdateFacility($id){
-        
-        $sql = 'SELECT *  FROM facility INNER JOIN administration_staff ON facility.manager_user_id=administration_staff.manager_user_id
+//Start of displaying sports arenas facilities update for administration staff
+public static function saAdminUpdateFacility($id)
+{
+    //Retrieving administrationstaff's facility to view for update from the database    
+    $sql = 'SELECT *  FROM facility INNER JOIN administration_staff ON facility.manager_user_id=administration_staff.manager_user_id
                  WHERE  administration_staff.user_id=:id';
 
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-
+        
+        //Converting retrieved data from database into PDOs
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
         $stmt->execute();
+        //Assigning the fetched PDOs to result
         $result = $stmt->fetchAll();
-        // var_dump($result);
         return $result;
     }
-
-    
-    
-
-
 
 }
