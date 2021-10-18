@@ -281,7 +281,7 @@
                             </div>
                             <div class="input-row">
                                 <div class="input-box">
-                                    <label for="endTime">Duration:</label>
+                                    <label for="timeSlotDuration">Duration:</label>
                                     <!-- <input id="endTime" type="time" name="endTime" onfocusout="validateEndTime()"
                                         value="{{sp_arena.end_time}}"> -->
 
@@ -307,7 +307,7 @@
                             <div class="input-row">
                                 <div class="input-box">
                                     <label for="facilityName">Facility:</label>
-                                    <div class="user-type-div">
+                                    <div id="facility-name-display" class="user-type-div">
                                         <select id="facilityName" name="facilityName"
                                             onchange="validateFacilitySelect()" value="{{sp_arena.facility}}">
                                             <option value="0">Please select a facility</option>
@@ -388,12 +388,16 @@
         </div>
     </footer>
     <!-- End of Footer -->
+    <!-- JQuery Library -->
+    <script type="text/javascript" src="/Assets/js/lib/jquery/jquery.min.js"></script>
     <!-- Validation JS -->
     <script type="text/javascript" src="/Assets/js/signup_validation.js?version=9.0"></script>
      <!-- Top navbar js -->
      <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
      <!-- File specific JS -->
     <script type="text/javascript" src="/Assets/js/SpArenaManager/manage-timeslots.js?version=9"></script>
+     <!-- Validate timeslot insertion -->
+    <script type="text/javascript" src="/Assets/js/SpArenaManager/validateTimeslot.js"></script>
 </body>
 
 </html>

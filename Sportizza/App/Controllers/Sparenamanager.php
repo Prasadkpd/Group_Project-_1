@@ -211,6 +211,27 @@ class Sparenamanager extends \Core\Controller
 
         //Redirected to manage timeslot
         $this->redirect('/Sparenamanager/managetimeslot');
+        
+    }
+
+    public function managervalidatetimeslotsAction(){
+        $current_user= Auth::getUser();
+        $id=$current_user->user_id;
+        
+        $combined = $this->route_params['id'];
+
+        $iTime = substr($combined,0,4);
+        $sTime = substr_replace($iTime, ":", 2, 0);
+        $duration = substr($combined,4,1);
+        $fac = substr($combined,5,9);
+        $price = substr($combined,14);
+        
+        $timeslot_check = SpArenaManagerModel::managerCheckExistingTimeslots($id,$sTime,$duration,$price,$fac);
+
+        if(!$timeslot_check){
+            echo "Timeslot cannot be added to the selected facility";
+        }
+
     }
     //End of Add Timeslot of manager
 
