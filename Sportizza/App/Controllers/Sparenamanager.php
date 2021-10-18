@@ -204,7 +204,7 @@ class Sparenamanager extends \Core\Controller
         SpArenaManagerModel::managerAddTimeSlots(
             $id,
             $_POST['startTime'],
-            $_POST['endTime'],
+            $_POST['timeSlotDuration'],
             $_POST['slotPrice'],
             $_POST['facilityName']
         );

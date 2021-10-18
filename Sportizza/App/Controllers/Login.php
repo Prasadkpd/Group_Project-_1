@@ -16,6 +16,10 @@ class Login extends \Core\Controller
     protected function before()
     {
     }
+    //After action to return true
+    protected function after()
+    {
+    }
     //Rendering the login view
     public function indexAction()
     {
@@ -65,7 +69,7 @@ class Login extends \Core\Controller
             $_SESSION['temp_mobile'] = $_POST['mobile'];
 
             //Sending the OTP to the mobile number
-            otp::sendSMS("mobile_number");
+            otp::sendSMS($_POST['mobile']);
             $this->redirect('/otp');
         }
         //If there's no user with that mobile number, redirect to login with errors

@@ -105,7 +105,7 @@ class SpArenaModel extends \Core\Model
             $stmt3->bindValue(':category', $this->category, PDO::PARAM_STR);
             $stmt3->bindValue(':payment_method', $this->payment_method, PDO::PARAM_STR);
             $stmt3->bindValue(':other_facilities', $this->other_facilities, PDO::PARAM_STR);
-            $stmt3->bindValue(':contact', $this->contact, PDO::PARAM_INT);
+            $stmt3->bindValue(':contact', $this->contact, PDO::PARAM_STR);
             $stmt3->execute();
 
             // Retrieve inserted sports arena profile id from database
@@ -150,7 +150,7 @@ class SpArenaModel extends \Core\Model
             $stmt6 = $db->prepare($sql6);
             $stmt6->bindValue(':first_name', $this->first_name, PDO::PARAM_STR);
             $stmt6->bindValue(':last_name', $this->last_name, PDO::PARAM_STR);
-            $stmt6->bindValue(':mobile_number', $this->mobile_number, PDO::PARAM_INT);
+            $stmt6->bindValue(':mobile_number', $this->mobile_number, PDO::PARAM_STR);
             $stmt6->bindValue(':username', $this->username, PDO::PARAM_STR);
             $stmt6->bindValue(':password', $password, PDO::PARAM_STR);
             $stmt6->bindValue(':type', $user_type, PDO::PARAM_STR);
