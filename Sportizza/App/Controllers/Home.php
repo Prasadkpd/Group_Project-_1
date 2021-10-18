@@ -43,6 +43,9 @@ class Home extends \Core\Controller
         $feedbacks = HomeModel::homeViewfeedbacks();
         $customerFAQs = HomeModel::homeViewCustomerfaqs();
         $arenaFAQs = HomeModel::homeViewArenafaqs();
+
+        
+
         $arenas = HomeModel::homeSearchArenas($_POST['location'], $_POST['category'], $_POST['name']);
         $search_result['location'] = $_POST['location'];
         $search_result['category'] = $_POST['category'];
@@ -56,6 +59,32 @@ class Home extends \Core\Controller
             'locations' => $locations, 'categories' => $categories, 'result' => $result
         ]);
     }
+
+    public function searcharenasajaxAction(){
+        $combined = $this->route_params['arg'];
+
+        $temp = explode("_",$combined);
+
+        $searchValue = $temp[0];
+        $categoryValue = $temp[1];
+        $locationValue = $temp[2];
+        if(isset($temp[3])){
+            $locationValue = $locationValue . "-" . $temp[3];
+        }
+
+        if($locationValue === "0")
+        {
+            $locationValue = "select location";
+        }
+
+        if($categoryValue === "0")
+        {
+            $categoryValue = "select category";
+        }
+
+        echo HomeModel::homeSearchArenas($locationValue, $categoryValue, $searchValue);
+    }
+    
 
     /**
      * @throws Exception

@@ -467,19 +467,24 @@ class SpArenaManagerModel extends \Core\Model
 //End of displaying sports arenas chart 4 for manager
 
 //Start of adding timeslot to a sports arena for manager
-    public static function managerAddTimeSlots($user_id, $start_time, $end_time, $price, $facility)
+    public static function managerAddTimeSlots($user_id, $start_time, $duration, $price, $facility)
     {
 
         //have to add condition for check timeslot is available
 
+        $hours=(int)substr($start_time, 0,2);
+        $minutes=(int)substr($start_time, 3,5);
+        
+        $end_time=$hours+$duration;
+        $end_time=(string)($end_time.":".$minutes);
 
+        $db = static::getDB();
         
 
         // select query for select sports arena from  user id
         $sql = 'SELECT sports_arena_id FROM manager
                 WHERE manager.user_id=:user_id';
 
-$db = static::getDB();
 
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
@@ -492,9 +497,12 @@ $db = static::getDB();
 
 
         //query for check timeslot is availability
+        // $sql = 'SELECT * FROM  time_slot
+        //         WHERE (manager_sports_arena_id=:arena_id AND facility_id=:facility) 
+        //         AND (start_time=:start_time OR end_time=:end_time)';
         $sql = 'SELECT * FROM  time_slot
                 WHERE (manager_sports_arena_id=:arena_id AND facility_id=:facility) 
-                AND (start_time=:start_time OR end_time=:end_time)';
+                AND (start_time BETWEEN :start_time AND :end_time)';
 
 
         
@@ -564,11 +572,10 @@ $db = static::getDB();
         //  var_dump($result);
         // return $result;
 
-
         //query for check timeslot is availability
         $sql = 'SELECT * FROM  time_slot
                 WHERE (manager_sports_arena_id=:arena_id AND facility_id=:facility) 
-                AND (start_time=:start_time OR end_time=:end_time)';
+                AND (start_time BETWEEN :start_time AND :end_time)';
 
 
         
@@ -612,7 +619,13 @@ $db = static::getDB();
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
         $stmt->execute();
-        $arena_id = $stmt->fetchAll();
+        
+        // Assign retrieved value to variable
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        //Accessing the associative array
+        $arena_id = $result["sports_arena_id"];
+
         //  var_dump($result);
         // return $result;
 

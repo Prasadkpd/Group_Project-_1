@@ -106,3 +106,53 @@ function validateVisitorContactForm() {
     validateSubject();
     validateMessage();
 }
+
+$(document).ready(function () {
+    loadData("");
+
+    function loadData(search) {
+        let locationValue = $("#location option:selected").text().replace('-', '_');
+        let categoryValue = $("#category option:selected").text();
+        let searchValue = search.trim().replace('_', '');
+
+        if(locationValue == "select location"){
+            locationValue = "0";
+        }
+
+        if(categoryValue == "select category"){
+            categoryValue = "0";
+        }
+
+        let argument = `${searchValue}_${categoryValue}_${locationValue}`;
+
+        $.ajax({
+            type: "POST",
+
+            url: "http://localhost/Home/searcharenasajax/"+argument,
+            dataType: "html",
+            
+            success: function (response) {
+                // console.log(response);
+                $(".search-results").html(response);
+            }
+        
+        })
+    }
+    
+    $("#name").keyup(function () {
+        let search = $(this).val();
+
+        if (search !== "") {
+            // $(".result-details").hide();
+            loadData(search);
+        }
+    });
+
+    $('#location').change(function () {
+        loadData("");
+    });
+
+    $('#category').change(function () {
+        loadData("");
+    });
+})

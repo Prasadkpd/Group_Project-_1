@@ -43,9 +43,8 @@ class HomeModel extends \Core\Model
     //End of showing the sports arenas by default in visitor's view
 
     //Start of showing the sports arenas after searched in visitor's view
-    public static function homeSearchArenas($location = null, $category = null, $name = "")
+    public static function homeSearchArenas($location, $category, $name = "")
     {
-
         // var_dump($location,$category,$name);
         //Retrieving the sports arenas from the database with/without name
         $qu = "SELECT * FROM sports_arena_profile WHERE sa_name LIKE :name ";
@@ -68,9 +67,34 @@ class HomeModel extends \Core\Model
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $stmt->execute($params);
 
-        //Assigning the fetched PDOs to result
-        $result = $stmt->fetchAll();
-        return $result;
+        if($location === "select location" && $category === "select category" &&
+        $name === "")
+        {
+            $output = "";
+        }
+        else{
+            $output = "<h3 id='search-heading'>Search Results:</h3>";
+        }
+
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $output .= "<div class='result-details'><h4><a>{$row["sa_name"]}</a></h4>
+                        <div class='sp-arena-summary-items'>
+                        <div class='arena-details'>
+                                <div class='arena-detail'>
+                                    <h5>City:<h6>{$row["location"]}</h6>
+                                    </h5>
+                                </div>
+                                <div class='arena-detail'>
+                                    <h5>Category: <h6>{$row["category"]}</h6>
+                                    </h5>
+                                </div>
+                        </div>
+                        <a href='/customer/booking/{$row["sports_arena_id"]}' class='btn check-availability-btn'> Availability</a>
+                        </div></div>";
+        }
+
+
+        return $output;
     }
     //End of showing the sports arenas after searched in visitor's view
 

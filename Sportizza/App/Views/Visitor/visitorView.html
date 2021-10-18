@@ -240,60 +240,8 @@
             </div>
             <div class="search-results" >
 
-                   
-                    <!-- <div class="chip-container">  
-                        <div class="chip">
-                            {{search_result['location']}}
-                            <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
-                        </div>
-                        <div class="chip">
-                            {{search_result['category']}}
-                            <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
-                        </div>
-                    </div> -->
-                        
-                    <h3>{{result}}</h3>
-
-                    
-                {% for arena in arenas %}
-                <div class="result-details">
-                    <h4><a href="">{{arena.sa_name}}</a></h4>
-                    <div class="sp-arena-summary-items">
-                       <div class="arena-details">
-                            <div class="arena-detail">
-                                <h5>City:<h6> {{arena.location}}</h6>
-                                </h5>
-                            </div>
-                            <div class="arena-detail">
-                                <h5>Category: <h6>{{arena.category}}</h6>
-                                </h5>
-                            </div>
-                       </div>
-                    <a href="/customer/booking/{{arena.sports_arena_id}}" class="btn check-availability-btn"> Availability</a>
-                    <!-- <a href="/customer/booking?sports_arena_id={{arena.sports_arena_id}}" class="btn check-availability-btn"> Availability</a> -->
-                    </div>
-
-                </div>
-                {% endfor %}
-
-
-                
-                <!-- <div class="result-details">
-                    <h4><a href="">{{arenas["name"]}}</a></h4>
-                    <div class="sp-arena-summary-items">
-                        <h5>City:<h6> {{arenas["age"]}}</h6>
-                        </h5>
-                        
-                        <a href="/customer/booking" class="btn check-availability-btn"> Availability</a>
-
-                    </div>
-
-                </div> -->
-               
-
-
-
-
+            </div>
+            
             </div>
         </div>
     </section>
@@ -814,6 +762,7 @@
     </footer>
 
 
+    <script type="text/javascript" src="/Assets/js/lib/jquery/jquery.min.js"></script>
     <script src="/Assets/js/signup_validation.js?version=4"></script>
     <script src="/Assets/js/visitor.js?version=4"></script>
 </body>

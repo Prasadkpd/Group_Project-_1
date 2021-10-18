@@ -22,6 +22,10 @@ class Admin extends Authenticated
             return false;
         }
     }
+    protected function after()
+    {
+        
+    }
     //End of blocking a user after login
 
     //Start of Landing page of admin
