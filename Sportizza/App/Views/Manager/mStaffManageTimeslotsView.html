@@ -273,9 +273,32 @@
                             onsubmit="validateAddTimeslotForm()" id="formAddTimeslot">
                             <div class="input-row">
                                 <div class="input-box">
+
+                                    
                                     <label for="startTime">Start Time:</label>
-                                    <input id="startTime" type="time" name="startTime" onfocusout="validateStartTime()"
-                                         value="{{sp_arena.start_time}}">
+
+                                    <select id="startTime" name="timeSlotDuration"  >
+                                        <option value="0">Please Select Start Time</option>
+                                    {% set hours = ["05","06","07","08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]  %}
+                                    {% set minutes = ["00","30"]%}
+                                    {% for hour in hours %}
+                                    {% for mins in minutes %}
+                                        <option value="{{ hour }}:{{ mins }}">{{hour}}:{{ mins }}</option>
+                                        {% endfor %} 
+                                    {% endfor %}
+
+                                    </select>
+                                    <!-- <select id="startTime" name="timeSlotDuration"  >
+                                        <option value="0">Please Select Start Time</option>
+
+                                        <option value=1>08:00</option>
+                                        <option value=2>08:30</option>
+                                        <option value=3>09:00</option>
+                                        <option value=4>09:30</option>
+                                        
+                                    </select> -->
+                                    <!-- <input id="startTime" type="time" name="startTime" onfocusout="validateStartTime()"
+                                         value="{{sp_arena.start_time}}"> -->
                                     <div class="helper-text" id="firstNameMsg"></div>
                                 </div>
                             </div>
@@ -322,7 +345,7 @@
                             </div>
 
                             <div class="button">
-                                <input type="submit" value="Add Time slot" class="popup_button" />
+                                <input id ="timeSlotbutton"type="submit" value="Add Time slot" class="popup_button" />
                             </div>
                         </form>
                     </div>

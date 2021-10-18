@@ -91,6 +91,9 @@ function validateAddTimeslotForm() {
 
 function validateStartTime() {
     if (checkIfEmpty(startTime)) return;
+
+    document.getElementById("imgMsg6").innerHTML = "";
+    document.querySelector('#timeSlotbutton').disabled = false;
     return true;
 }
 function validateEndTime() {
@@ -101,11 +104,17 @@ function validateEndTime() {
 function validatePrice() {
     if (checkIfEmpty(slotPrice)) return;
     if (!checkIfOnlyNumbers(slotPrice)) return;
+
+    document.getElementById("imgMsg6").innerHTML = "";
+    document.querySelector('#timeSlotbutton').disabled = false;
     return true;
 }
 
 function validateFacilitySelect() {
     if (!selectValidate(facilityName)) return;
+
+    document.getElementById("imgMsg6").innerHTML = "";
+    document.querySelector('#timeSlotbutton').disabled = false;
     return true;
 }
 

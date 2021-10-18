@@ -229,7 +229,7 @@ class Sparenamanager extends \Core\Controller
         $timeslot_check = SpArenaManagerModel::managerCheckExistingTimeslots($id,$sTime,$duration,$price,$fac);
 
         if(!$timeslot_check){
-            echo "Timeslot cannot be added to the selected facility";
+           echo true;
         }
 
     }

@@ -17,12 +17,12 @@ $(document).ready(function () {
             dataType: "text",
             
             success: function (response) {
-                $("#imgMsg6").text(response);
+                if (response){
+                $("#imgMsg6").text("Timeslot cannot be added to the selected facility");
                 $("#facilityName").css("border-color", "#e74c3c");
-                $("#formAddTimeslot").click(function( event ) {
-                    event.preventDefault();
-                });
+                document.querySelector('#timeSlotbutton').disabled = true;
             }
+        }
         })
     })
 })
