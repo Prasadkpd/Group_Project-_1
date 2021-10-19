@@ -201,6 +201,9 @@ class Spadministrationstaff extends Authenticated
     //Start of validate Facility name of administration staff
     public function validatefacilitynameAction()
     {
+        //Get the current user's details with session using Auth
+        $current_user= Auth::getUser();
+        $id=$current_user->user_id;
 
         $combined = $this->route_params['arg'];
 
@@ -210,7 +213,7 @@ class Spadministrationstaff extends Authenticated
         
         
         //Call the function in model and echo the resturn result
-        $result= SpAdministrationStaffModel::findFacilityByName($facility_name);
+        $result= SpAdministrationStaffModel::findFacilityByName($id,$facility_name);
 
         if(!$result){
             echo true;
