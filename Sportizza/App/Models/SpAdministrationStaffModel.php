@@ -450,20 +450,34 @@ class SpAdministrationStaffModel extends \Core\Model
     public static function findFacilityByName($fname)
     {
 
-        $sql = 'SELECT facility_name  FROM facility 
-        INNER JOIN administration_staff ON facility.sports_arena_id=administration_staff.sports_arena_id
-                 WHERE LOWER(facility.facility_name) = LOWER(:fname)';
+        // $sql = 'SELECT sports_arena_id FROM administrations_staff WHERE administration_staff.user_id=:id';
+
+        // $db = static::getDB();
+        // $stmt = $db->prepare($sql);
+        // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        // //Converting retrieved data from database into PDOs
+        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        // $stmt->execute();
+
+        // $result1 = $stmt->fetch(PDO::FETCH_ASSOC);
+        // $arena_id = $result1["sports_arena_id"];
+
+        $sql = 'SELECT facility_name  FROM facility
+                WHERE LOWER(facility.facility_name) = LOWER(:fname)';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':fname', $fname, PDO::PARAM_STR);
+        // $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
 
         //Converting retrieved data from database into PDOs
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
         $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $facility_name = $result['facility_name'];
+        $result2 = $stmt->fetch(PDO::FETCH_ASSOC);
+        $facility_name = $result2['facility_name'];
         //Assigning the fetched PDOs to result
        
         if(empty($facility_name)){

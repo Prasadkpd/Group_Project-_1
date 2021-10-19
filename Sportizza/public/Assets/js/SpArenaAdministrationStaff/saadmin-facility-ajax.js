@@ -2,7 +2,7 @@
 $(document).ready(function () {
 
     //When the cursor is on
-      $("#facilityName").keyup(function () {
+      $("#facilityName").bind("keyup focusout", function () {
         $("#btn-add-facility").prop("disabled", false);
         $("#facilityNameMsg").text("");
         $("#facilityName").css("border-color", "#26de81");
