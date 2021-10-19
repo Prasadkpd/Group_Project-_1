@@ -375,6 +375,9 @@ tbody tr td .icon_red {
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 .avail_button{
+  width:120px;
+}
+.avail_button a{
   background-color:white; 
   color: #2ed573;;
   font-weight: 400;
@@ -384,7 +387,7 @@ tbody tr td .icon_red {
   width: 30%;
   opacity: 0.9;
   margin: auto;
-  padding: 5px;
+  padding: 5px 20px;
   border-radius: 50px;
   border: none;
   width: 150px;
@@ -397,7 +400,7 @@ tbody tr td .icon_red {
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
-.avail_button:hover{
+.avail_button a:hover{
   background:#2ecc71;
   color:#fff;
 }
@@ -791,6 +794,8 @@ footer {
   display: sticky;
 }
 
+
+
 /* starting media queries */
 @media screen and (max-width: 768px) {
   /* nav{
@@ -941,6 +946,7 @@ footer {
     height: 100vh;
     overflow: hidden;
   }
+  
   .page-content-container .container .page-header {
     font-size: 1rem;
   }
