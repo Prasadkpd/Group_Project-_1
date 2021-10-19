@@ -286,34 +286,25 @@
                     <div id="staff-add" class="add-booking-fm-con">
                         <form class="add-booking-frm-content animate" action="/Spadministrationstaff/createfacility" method="post"
                         onsubmit="validateAddFacilityForm()" id="formAddFacility">
-                        <div class="input-row">
-                            <div class="input-box">
-                                <label for="facilityName">Facility Name</label>
-                                <input id="facilityName" type="text" name="fname" onfocusout="validateFacilityName()"
-                                    placeholder="Enter facility name" value="{{sp_arena.Facility_name}}">
-                                <div class="helper-text" id="firstNameMsg"></div>
-                            </div>
-                            </div>
-                            <!-- <div class="input-box">
-                                <label for="password">Password</label>
-                                <input id="password" type="text" name="password" onfocusout="validatePassword()" placeholder="Enter a password" value="">
-                                <i class="bi bi-eye-slash bi-eye" id="togglePassword"></i>
-                                <div class="helper-text" id="passwordMsg">
-                                    <p>    
-                                    </p>
-                                </div>
-                            </div> -->
                             <div class="input-row">
                                 <div class="input-box">
                                     <label for="password">User Password</label>
-                                    <input id="password" type="password" name="User_password" onfocusout="validateUserPassword()"
+                                    <input id="password" type="password" name="Userpassword" onfocusout="validateUserPassword()"
                                         placeholder="Enter user password" value="{{sp_arena.password}}">
                                     <i class="bi bi-eye-slash" id="togglePassword"></i>
                                     <div class="helper-text" id="passwordMsg"></div>
                                 </div>
                             </div> 
+                            <div class="input-row">
+                                <div class="input-box">
+                                    <label for="facilityName">Facility Name</label>
+                                    <input id="facilityName" type="text" name="fname" onfocusout="validateFacilityName()"
+                                        placeholder="Enter facility name" value="{{sp_arena.Facility_name}}">
+                                    <div class="helper-text" id="facilityNameMsg"></div>
+                                </div>
+                                </div>
                             <div class="button">
-                                <input type="submit" value="Add Facilty" class="popup_button" />
+                                <input type="submit" id ="btn-add-facility"value="Add Facilty" class="popup_button" />
                             </div>
                         </form>
                     </div>
@@ -407,12 +398,18 @@
         </div>
     </footer>
     <!-- End of Footer -->
+    <!-- Jquery library -->
+    <script type="text/javascript" src="/Assets/js/lib/jquery/jquery.min.js"></script>
+     <!-- AJAX file -->
+     <script type="text/javascript" src="/Assets/js/SpArenaAdministrationStaff/saadmin-facility-ajax.js?version=6"></script>
     <!-- Validation JS -->
     <script type="text/javascript" src="/Assets/js/signup_validation.js?version=6.0"></script>
      <!-- Top navbar js -->
      <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
      <!-- File Specific JS -->
     <script type="text/javascript" src="/Assets/js/SpArenaManager/manage-facility.js?version=6"></script>
+
+   
 </body>
 
 </html>

@@ -179,20 +179,48 @@ class Spadministrationstaff extends Authenticated
         //Get the current user's details with session using Auth
         $current_user= Auth::getUser();
         $id=$current_user->user_id;
-        $psw=$current_user->password;
+        $username=$current_user->username;
+        
 
         $facility=LoginModel::authenticate(
-            $_POST['User_password"'],
-            $id
+            $username,
+            $_POST['Userpassword']
         );
-
+  
         if($facility){
+            echo("efefefef");
             //Send the notification to the sports arena's staff
             SpAdministrationStaffModel::saAdminAddFacility($id,$_POST['fname']);
+            
         }
-        $this->redirect('/Sparenamanager/managefacility');
+
+        // $this->redirect('/Spadministrationstaff/managefacility');
     }
     //End of Add Facility of administration staff
+
+    //Start of validate Facility name of administration staff
+    public function validatefacilitynameAction()
+    {
+
+        $combined = $this->route_params['arg'];
+
+        // echo("combined");
+
+        $facility_name = str_replace("_", " ", $combined);
+        
+        
+        //Call the function in model and echo the resturn result
+        $result= SpAdministrationStaffModel::findFacilityByName($facility_name);
+
+        if(!$result){
+            echo true;
+        }
+    }
+    //End of validate Facility name of administration staff
+
+
+
+
 
     //Start of Delete Facility of administration staff
     public function deletefacilityAction()

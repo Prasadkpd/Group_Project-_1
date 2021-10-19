@@ -254,6 +254,7 @@ class Sparenamanager extends \Core\Controller
             // Add the facility of the sports arena to the database
             SpArenaManagerModel::managerAddFacility($id, $_POST['facilityName']);
         }
+        
         // Redirected to manage facility
         $this->redirect('/Sparenamanager/managefacility');
     }

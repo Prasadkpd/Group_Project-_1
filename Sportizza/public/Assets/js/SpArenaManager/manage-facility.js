@@ -129,6 +129,8 @@ function validateUpdateFacilityForm() {
 function validateUpdateFacilityName() {
     if (checkIfEmpty(editfacilityname)) return;
     if (!meetLength(editfacilityname, 1, 50)) return;
+    // document.getElementById("facilityNameMsg").innerHTML = "";
+    // document.querySelector('#btn-add-facility').disabled = false;
     return true;
 }
 
@@ -186,6 +188,7 @@ function searchUpdateTable() {
     }
   }
 }
+
 
 
 
