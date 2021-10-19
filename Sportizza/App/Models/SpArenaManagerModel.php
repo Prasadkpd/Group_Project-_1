@@ -738,7 +738,6 @@ class SpArenaManagerModel extends \Core\Model
         $sql = 'INSERT INTO `facility`(`facility_name`,`sports_arena_id`,`manager_user_id`,`manager_sports_arena_id`)
                 VALUES (:facility,:arena_id,:user_id,:arena_id)';
 
-
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':facility', $facility, PDO::PARAM_STR);
         $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
@@ -746,4 +745,29 @@ class SpArenaManagerModel extends \Core\Model
         return ($stmt->execute());
     }
     //End of adding facility to a sports arena for manager
+    public static function findFacilityByName($id,$fname)
+    {
+
+        $sql = 'SELECT facility_name  FROM facility
+                WHERE LOWER(facility.facility_name) = LOWER(:fname) AND facility.manager_user_id=:manager_id';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':fname', $fname, PDO::PARAM_STR);
+        $stmt->bindValue(':manager_id', $id, PDO::PARAM_INT);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+        $result2 = $stmt->fetch(PDO::FETCH_ASSOC);
+        $facility_name = $result2['facility_name'];
+        //Assigning the fetched PDOs to result
+       
+        if(empty($facility_name)){
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
