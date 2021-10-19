@@ -235,30 +235,53 @@ class Sparenamanager extends \Core\Controller
     }
     //End of Add Timeslot of manager
 
-    //Start of Add Facility of manager
-    public function manageraddfacilityAction()
+    // //Start of Add Facility of administration staff
+    public function createfacilityAction()
     {
         //Get the current user's details with session using Auth
-        $current_user = Auth::getUser();
-        $username = $current_user->username;
-        $id = $current_user->user_id;
-
-        // Authenticate the credentials
-        $facility = LoginModel::authenticate(
-            $username,
-            $_POST['password']
-        );
-
-        // If authentication is valid
-        if ($facility) {
-            // Add the facility of the sports arena to the database
-            SpArenaManagerModel::managerAddFacility($id, $_POST['facilityName']);
-        }
+        $current_user= Auth::getUser();
+        $id=$current_user->user_id;
+        $username=$current_user->username;
         
-        // Redirected to manage facility
-        $this->redirect('/Sparenamanager/managefacility');
+
+        $facility=LoginModel::authenticate(
+            $username,
+            $_POST['Userpassword']
+        );
+  
+        if($facility){
+            //Send the notification to the sports arena's staff
+            SpArenaManagerModel::managerAddFacility($id,$_POST['fname']);
+            
+            $this->redirect('/Sparenamanager/managefacility');
+        }
+
     }
-    //End of Add Facility of manager
+    //End of Add Facility of administration staff
+    
+    //Start of validate Facility name of administration staff
+    public function validatefacilitynameAction()
+    {
+        //Get the current user's details with session using Auth
+        $current_user= Auth::getUser();
+        $id=$current_user->user_id;
+
+        $combined = $this->route_params['arg'];
+
+        // echo("combined");
+
+        $facility_name = str_replace("_", " ", $combined);
+        
+        
+        //Call the function in model and echo the resturn result
+        $result= SpArenaManagerModel::findFacilityByName($id,$facility_name);
+
+        if(!$result){
+            echo true;
+        }
+    }
+    //End of validate Facility name of administration staff
+
 
 
 

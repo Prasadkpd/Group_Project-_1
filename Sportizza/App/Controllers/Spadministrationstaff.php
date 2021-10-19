@@ -188,13 +188,12 @@ class Spadministrationstaff extends Authenticated
         );
   
         if($facility){
-            echo("efefefef");
             //Send the notification to the sports arena's staff
             SpAdministrationStaffModel::saAdminAddFacility($id,$_POST['fname']);
             
+            $this->redirect('/Spadministrationstaff/managefacility');
         }
 
-        // $this->redirect('/Spadministrationstaff/managefacility');
     }
     //End of Add Facility of administration staff
 
