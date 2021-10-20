@@ -7,6 +7,7 @@ use App\Auth;
 use App\Models\SpAdministrationStaffModel;
 use App\Models\NotificationModel;
 use App\Models\LoginModel;
+
 class Spadministrationstaff extends Authenticated
 {
     //Start of blocking a user after login
@@ -16,13 +17,13 @@ class Spadministrationstaff extends Authenticated
         //Checking whether the user type is administration staff
         if (Auth::getUser()->type == 'AdministrationStaff') {
             return true;
-        }
-        //Return to error page
+        } //Return to error page
         else {
             View::renderTemplate('500.html');
             return false;
         }
     }
+
     protected function after()
     {
     }
@@ -65,22 +66,22 @@ class Spadministrationstaff extends Authenticated
     public function getpaymentAction()
     {
         //Get the current user's details with session using Auth
-        $current_user= Auth::getUser();
-        $booking_id=$this->route_params['id'];
+        $current_user = Auth::getUser();
+        $booking_id = $this->route_params['id'];
         //Update the booking's payment status
-        $cash_update=SpAdministrationStaffModel::updateBookingPayment($booking_id);
-        
+        $cash_update = SpAdministrationStaffModel::updateBookingPayment($booking_id);
+
         //If the cash payment is successful
-        if($cash_update) {
-        //Send payment successfull notification
-        NotificationModel::managerNotificationBookingSuccess($current_user,$booking_id);
-        $this->redirect('/Sparenamanager/managernotification'); 
+        if ($cash_update) {
+            //Send payment successfull notification
+            NotificationModel::managerNotificationBookingSuccess($current_user, $booking_id);
+            $this->redirect('/Sparenamanager/managernotification');
         }
     }
     //End of getting cash payments from customers
 
     //Start of Notification of administration staff
-    public  function saadminnotificationAction()
+    public function saadminnotificationAction()
     {
         //Get the current user's details with session using Auth
         $current_user = Auth::getUser();
@@ -97,7 +98,7 @@ class Spadministrationstaff extends Authenticated
     //End of Notification of administration staff
 
     //Start of Manage Timeslot of administration staff view
-    public  function managetimeslotAction()
+    public function managetimeslotAction()
     {
         //Get the current user's details with session using Auth
         $current_user = Auth::getUser();
@@ -121,7 +122,7 @@ class Spadministrationstaff extends Authenticated
     //End of Manage Timeslot of administration staff
 
     //Start of Add Timeslot of administration staff
-    public function createtimeslotAction()
+    public function AddTimeslotAction()
     {
         //Get the current user's details with session using Auth
         $current_user = Auth::getUser();
@@ -129,17 +130,39 @@ class Spadministrationstaff extends Authenticated
 
         //Adding timeslot to the sports arena 
         $user = SpAdministrationStaffModel::saAdminAddTimeSlots(
-            $_POST['stime'],
-            $_POST['etime'],
-            $_POST['amount'],
-            $_POST['fid'],
-            $id
+            $id,
+            $_POST['startTime'],
+            $_POST['timeSlotDuration'],
+            $_POST['slotPrice'],
+            $_POST['facilityName']
         );
 
         //Redirected to manage timeslot
         $this->redirect('/Spadministrationstaff/managetimeslot');
     }
+
     //End of Add Timeslot of administration staff
+    public function validatetimeslotsAction()
+    {
+        $current_user = Auth::getUser();
+        $id = $current_user->user_id;
+
+        $combined = $this->route_params['id'];
+
+        $iTime = substr($combined, 0, 4);
+        $sTime = substr_replace($iTime, ":", 2, 0);
+        $duration = substr($combined, 4, 1);
+        $fac = substr($combined, 5, 9);
+        $price = substr($combined, 14);
+
+        $timeslot_check = SpAdministrationStaffModel::CheckExistingTimeslots($id, $sTime, $duration, $price, $fac);
+
+        if (!$timeslot_check) {
+            echo true;
+        }
+
+    }
+    //End of Add Timeslot of manager
 
     //Start of Delete Timeslot of administration staff
     public function deletetimeslotAction()
@@ -177,20 +200,20 @@ class Spadministrationstaff extends Authenticated
     public function createfacilityAction()
     {
         //Get the current user's details with session using Auth
-        $current_user= Auth::getUser();
-        $id=$current_user->user_id;
-        $username=$current_user->username;
-        
+        $current_user = Auth::getUser();
+        $id = $current_user->user_id;
+        $username = $current_user->username;
 
-        $facility=LoginModel::authenticate(
+
+        $facility = LoginModel::authenticate(
             $username,
             $_POST['Userpassword']
         );
-  
-        if($facility){
+
+        if ($facility) {
             //Send the notification to the sports arena's staff
-            SpAdministrationStaffModel::saAdminAddFacility($id,$_POST['fname']);
-            
+            SpAdministrationStaffModel::saAdminAddFacility($id, $_POST['fname']);
+
             $this->redirect('/Spadministrationstaff/managefacility');
         }
 
@@ -201,27 +224,24 @@ class Spadministrationstaff extends Authenticated
     public function validatefacilitynameAction()
     {
         //Get the current user's details with session using Auth
-        $current_user= Auth::getUser();
-        $id=$current_user->user_id;
+        $current_user = Auth::getUser();
+        $id = $current_user->user_id;
 
         $combined = $this->route_params['arg'];
 
         // echo("combined");
 
         $facility_name = str_replace("_", " ", $combined);
-        
-        
-        //Call the function in model and echo the resturn result
-        $result= SpAdministrationStaffModel::findFacilityByName($id,$facility_name);
 
-        if(!$result){
+
+        //Call the function in model and echo the resturn result
+        $result = SpAdministrationStaffModel::findFacilityByName($id, $facility_name);
+
+        if (!$result) {
             echo true;
         }
     }
     //End of validate Facility name of administration staff
-
-
-
 
 
     //Start of Delete Facility of administration staff
@@ -239,9 +259,10 @@ class Spadministrationstaff extends Authenticated
         //Rendering the administration staff's edit profile arena view
         View::renderTemplate('AdministrationStaff/aStaffEditArenaProfile.html');
     }
+
     //End of Edit Arena profile of administration staff
 
-    public  function cartAction()
+    public function cartAction()
     {
         View::renderTemplate('AdministrationStaff/aStaffCartNewView.html');
     }
