@@ -76,8 +76,6 @@ class SpAdministrationStaffModel extends \Core\Model
                 ';
 
 
-
-
         $db = static::getDB();
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
@@ -211,36 +209,137 @@ class SpAdministrationStaffModel extends \Core\Model
     //End of displaying sports arenas timeslots for manager
 
     //Start of adding timeslot to a sports arena for manager for administration staff
-    public static function saAdminAddTimeSlots($stime, $etime, $amount, $fid, $id)
+    public static function saAdminAddTimeSlots($id, $start_time, $duration, $amount, $fid)
     {
+        $hours=(int)substr($start_time, 0,2);
+        $minutes=(int)substr($start_time, 3,5);
+
+        $end_time=$hours+$duration;
+        $end_time=(string)($end_time.":".$minutes);
         //have to add condition for check timeslot is available
         // select query for select sports arena from  user id 
-        $sql1 = 'SELECT `manager_user_id`,`manager_sports_arena_id` FROM `administration_staff` WHERE `user_id`=:id';
+        $sql1 = 'SELECT manager_user_id, manager_sports_arena_id FROM administration_staff WHERE user_id = :id';
 
         $db = static::getDB();
         $stmt1 = $db->prepare($sql1);
         $stmt1->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt1->execute();
-
         $result1 = $stmt1->fetch(PDO::FETCH_ASSOC);
         $mid = $result1["manager_user_id"];
-        $said = $result1["manager_sports_arena_id"];
+        $arena_id = $result1["manager_sports_arena_id"];
 
         // insert query for add time slots
         $sql2 = 'INSERT INTO `time_slot`(`start_time`,`end_time`,`price`,`facility_id`,`manager_user_id`,`manager_sports_arena_id`)
-                VALUES (:stime, :etime, :amount, :fid, :mid, :said)';
+                VALUES (:stime, :etime, :amount, :fid, :mid, :arena_id)';
 
         $stmt2 = $db->prepare($sql2);
-        $stmt2->bindValue(':stime', $stime, PDO::PARAM_STR);
-        $stmt2->bindValue(':etime', $etime, PDO::PARAM_STR);
+        $stmt2->bindValue(':stime', $start_time, PDO::PARAM_STR);
+        $stmt2->bindValue(':etime', $end_time, PDO::PARAM_STR);
         $stmt2->bindValue(':amount', $amount, PDO::PARAM_STR);
         $stmt2->bindValue(':fid', $fid, PDO::PARAM_INT);
         $stmt2->bindValue(':mid', $mid, PDO::PARAM_INT);
-        $stmt2->bindValue(':said', $said, PDO::PARAM_INT);
+        $stmt2->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
 
-        return ($stmt2->execute());
+        $stmt2->execute();
+
+       $sql3 = 'SELECT time_slot_id FROM time_slot ORDER BY time_slot_id DESC LIMIT 1';
+
+       $stmt3 = $db->prepare($sql3);
+       $stmt3->execute();
+       $result3 = $stmt3->fetch(PDO::FETCH_ASSOC);
+       $time_slot_id = $result3['time_slot_id'];
+
+
+       $sql3 = 'INSERT INTO administration_staff_manages_time_slot (`time_slot_id`,
+       `administration_staff_user_id`,`administration_staff_sports_arena_id`)
+       VALUES (:time_slot_id,:user_id,:arena_id)';
+
+       $stmt3 = $db->prepare($sql3);
+       $stmt3->bindValue(':time_slot_id', $time_slot_id, PDO::PARAM_INT);
+       $stmt3->bindValue(':user_id', $id, PDO::PARAM_INT);
+       $stmt3->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+
+       return($stmt3->execute());
     }
+
     //End of adding timeslot to a sports arena for manager
+    public static function CheckExistingTimeslots($user_id, $start_time, $duration, $price, $facility)
+    {
+
+        $hours = (int)substr($start_time, 0, 2);
+        $minutes = (int)substr($start_time, 3, 5);
+
+        $end_time = $hours + $duration;
+        $end_time = (string)($end_time . ":" . $minutes);
+
+        if ($minutes == 30) {
+            $temp = $hours + 1;
+
+            $start_max = (string)($temp . ":" . "00");
+            $start_min = (string)($hours . ":" . "00");
+
+            $temp = $hours + $duration;
+            $end_max = (string)($temp . ":" . "00");
+            $end_min = (string)($hours . ":" . "00");
+
+
+        } elseif ($minutes == 0) {
+            if ($duration == 2) {
+                $end_middle = $end_time - 1;
+                $end_middle = (string)($end_middle . ":" . "00");
+            }
+            $start_max = null;
+            $start_min = $start_time;
+            $end_max = $end_time;
+            $end_min = $end_time;
+        }
+
+
+        $db = static::getDB();
+
+
+        //have to add condition for check timeslot is available
+
+        // select query for select sports arena from  user id
+        $sql = 'SELECT sports_arena_id FROM administration_staff
+                WHERE administration_staff.user_id=:user_id';
+
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $arena_id = $result['sports_arena_id'];
+
+        //query for check timeslot is availability
+
+        $sql = 'SELECT * FROM  time_slot
+                WHERE (manager_sports_arena_id=:arena_id AND facility_id=:facility) 
+                AND (TIME(start_time)=TIME(:start_time) OR TIME(end_time)=TIME(:end_time)
+                OR TIME(start_time)=TIME(:start_max) OR TIME(start_time)=TIME(:start_min)
+                OR TIME(end_time)=TIME(:start_max) )';
+
+
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':facility', $facility, PDO::PARAM_STR);
+        $stmt->bindValue(':start_time', $start_time, PDO::PARAM_STR);
+        $stmt->bindValue(':end_time', $end_time, PDO::PARAM_STR);
+        $stmt->bindValue(':start_max', $start_max, PDO::PARAM_STR);
+        $stmt->bindValue(':start_min', $start_min, PDO::PARAM_STR);
+        $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+        $timeSlots = $stmt->fetchAll();
+
+        if (empty($timeSlots)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     //Start of displaying sports arenas deleting the timeslots for manager
     public static function saAdminDeleteTimeSlots($id)
@@ -294,6 +393,7 @@ class SpAdministrationStaffModel extends \Core\Model
         $result = $stmt->fetchAll();
         return $result;
     }
+
     //End of displaying sports arenas facilities for administrationstaff
 
 
@@ -447,7 +547,7 @@ class SpAdministrationStaffModel extends \Core\Model
         return $result;
     }
 
-    public static function findFacilityByName($id,$fname)
+    public static function findFacilityByName($id, $fname)
     {
 
         $sql = 'SELECT sports_arena_id FROM administration_staff WHERE administration_staff.user_id=:id';
@@ -479,8 +579,8 @@ class SpAdministrationStaffModel extends \Core\Model
         $result2 = $stmt->fetch(PDO::FETCH_ASSOC);
         $facility_name = $result2['facility_name'];
         //Assigning the fetched PDOs to result
-       
-        if(empty($facility_name)){
+
+        if (empty($facility_name)) {
             return true;
         } else {
             return false;

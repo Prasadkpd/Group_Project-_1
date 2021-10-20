@@ -419,11 +419,11 @@ border-radius:10px;
     align-items: center;
 }
 .search-filter input[type=search]{
-    margin-left: .5em;
+    border-radius: 20px;
+    padding:0px 10px ;
     background-color: inherit;
     outline: none;
     border: none;
-    /* width: 83%; */
     width:500px;
     font-size: larger;
 }
