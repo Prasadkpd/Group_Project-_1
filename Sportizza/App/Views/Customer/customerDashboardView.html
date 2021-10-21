@@ -163,7 +163,7 @@
             <div>
                 <button s class="closebutton" onclick="close_popup_cancel_message()">❌</button>
             </div>
-            <form id="deleteForm" action="/action_page.php" style="margin:20px">
+            <form id="cancelForm" action="Customer/customercancelbooking/" style="margin:20px" method="post">
                 <div style="margin:auto">
                     <h1 style="margin:auto">
                         Booking Cancellation
@@ -174,7 +174,7 @@
                 </div>
                 <div style="display:flex">
 
-                    <button class="popup_delete_button">
+                    <button type="submit" class="popup_delete_button">
                         YES
                     </button>
                     <button onclick="close_popup_cancel_message()" class="popup_button">
@@ -187,6 +187,42 @@
         </div>
     </div>
     <!-- end pop up cancel section -->
+
+
+
+    <!-- start pop up cannot cancel section -->
+    <div id="popup_cannot_cancel" class="sectionpop ">
+
+
+        <div class="formsection">
+
+            <div>
+                <button s class="closebutton" onclick="close_popup_cannot_cancel_message()">❌</button>
+            </div>
+            <form id="cancelForm" style="margin:20px" method="post">
+                <div style="margin:auto">
+                    <h1 style="margin:auto">
+                        Booking Cancellation
+                    </h1>
+                    <p>
+                        you can not cancel booking because you has only 3 days for booking date
+                    </p>
+                </div>
+                <div style="display:flex">
+<!-- 
+                    <button type="submit" class="popup_delete_button">
+                        YES
+                    </button> -->
+                    <button type="button" onclick="close_popup_cannot_cancel_message()" class="popup_button">
+                        OK
+                    </button>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+    <!-- end pop up cannot cancel section -->
 
 
     <!-- start pop up rate section -->
@@ -251,23 +287,24 @@
             <div>
                 <button s class="closebutton" onclick="close_popup_delete_message()">❌</button>
             </div>
-            <form id="" action="" style="margin:20px">
+            <form id="deleteForm" action="customer/customerdeletebooking/" style="margin:20px" method="post">
                 <div>
                     <h1>
                         Booking deletion
                     </h1>
                     <p>Are you sure to delete this booking?</p>
                 </div>
-            </form>
+            
 
             <div style="display:flex">
-                <button class="popup_delete_button">
+                <button type="submit" class="popup_delete_button">
                     YES
                 </button>
                 <button onclick="close_popup_delete_message()" class="popup_button">
                     NO
                 </button>
             </div>
+        </form>
         </div>
     </div>
     <!-- end pop up delete section -->
@@ -283,7 +320,8 @@
             <div>
                 <button s class="closebutton" onclick="close_popup_delete_message_favorite_list()">❌</button>
             </div>
-            <form action="/action_page.php" style="margin:20px">
+            <form id="form_delete_arena" action="customer/customerdeletefavoritearena/" style="margin:20px" method="post">
+                <input type="hidden" name="fav_list_id_input" id="fav_list_id_input">
                 <div style="margin:auto">
                     <h1 style="margin:auto">
                         Remove Favourite Arena
@@ -292,17 +330,19 @@
                         Are you sure to delete sports Arena?
                     </p>
                 </div>
+
+                <div style="display:flex">
+                    <button class="popup_delete_button">
+                        YES
+                    </button>
+                    <button onclick="close_popup_delete_message_favorite_list()" class="popup_button">
+                        NO
+                    </button>
+                </div>
             </form>
 
 
-            <div style="display:flex">
-                <button class="popup_delete_button">
-                    YES
-                </button>
-                <button onclick="close_popup_delete_message_favorite_list()" class="popup_button">
-                    NO
-                </button>
-            </div>
+            
         </div>
     </div>
     <!-- end pop up delete section  for favorite-list -->
@@ -346,12 +386,8 @@
                 </div>
                 {% endfor %}
                 </p>
-                <!-- <ul>
-                    {% for book in bookings %}
-                        <h2>{{book.booking_id}}</h2>
-                    {% endfor %}
 
-                </ul> -->
+                </ul>
                 <div class="tab">
                     <button id="view_booking_button" class="booking_tab tab-btn"
                         onclick="openTab(event, 'my_bookings')"><i class="fas fa-list"></i>
@@ -425,16 +461,24 @@
                                 <td class="btn-float-right">
                                     <div style="display:flex; float:right; padding-right:2rem;">
                                         <div>
-                                            <button onclick="open_popup_share({{book.booking_id}},'{{book.booking_date}}','{{book.start_time}}','{{book.end_time}}',
+                                            <button onclick="open_popup_share('{{book.booking_id}}','{{book.booking_date}}','{{book.start_time}}','{{book.end_time}}',
                                                 '{{book.sa_name}}','{{book.category}}','{{book.google_map_link}}')">
                                                 <i class="fas fa-share "></i>
                                             </button>
                                         </div>
                                         <div>
+                                            {% if date(book.booking_date)|date_modify("-4 day")|date('Y/m/d') >= 'now'|date('Y/m/d') and book.payment_method=="card" %}
                                             <button class="icon_red"
-                                                onclick="open_popup_cancel_message({{book.booking_id}})">
+                                                onclick="open_popup_cancel_message('{{book.booking_id}}')">
                                                 <i class="fas fa-times"></i>
                                             </button>
+                                            {% else %}
+                                            <button class="icon_red"
+                                                onclick="open_popup_cannot_cancel_message()">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                            
+                                            {% endif %}
                                         </div>
                                 </td>
                 </div>
@@ -442,7 +486,7 @@
             </div>
             </td>
             </tr>
-            {% endif %}
+                                {% endif %}
 
             {% if book.payment_status=="unpaid" %}
             <tr>
@@ -468,7 +512,7 @@
                             </button>
                         </div>
                         <div>
-                            <button class="icon_red" onclick="open_popup_cancel_message()">
+                            <button class="icon_red" onclick="open_popup_cancel_message('{{book.booking_id}}')">
                                 <i class="fas fa-times"></i>
                             </button>
                         </div>
@@ -476,6 +520,9 @@
                 </td>
             </tr>
             {% endif %}
+
+
+
             {% endif %}
 
 
@@ -504,7 +551,7 @@
                             </button>
                         </div>
                         <div>
-                            <button class="icon_red" onclick="open_popup_delete_message()">
+                            <button class="icon_red" onclick="open_popup_delete_message('{{book.booking_id}}')">
                                 <i class="fas fa-trash-alt"></i>
                                 <!-- <i class="fas fa-trash-alt"></i> -->
                             </button>
@@ -541,7 +588,7 @@
                         </button>
                     </div>
                     <div>
-                        <button class="icon_red" onclick="open_popup_delete_message()">
+                        <button class="icon_red" onclick="open_popup_delete_message('{{book.booking_id}}')">
                             <i class="fas fa-trash-alt"></i>
                         </button>
                     </div>
@@ -552,40 +599,6 @@
 
         {% endif %}
         {% endfor %}
-
-
-        <!-- <tr>
-                                <td data-label="Booking ID :">BD1234567</td>
-                                <td data-label="Booking Date :">2021/09/30</td>
-                                <td data-label="Start Time :">1530h</td>
-                                <td data-label="End Time :">1630h</td>
-                                <td data-label="Arena Name:">Matara Uynawatta</td>
-                                <td data-label="Category:">Cricket</td>
-                                <td data-label="Payment Method :">Cash</td>
-                                <td data-label="Payment Status :">Unpaid</td>
-                                <td data-label="Amount:">2000</td>
-                                
-                                <td data-label="Booking Status">Completed</td>
-                                <td data-label="">
-
-                                    
-                                        
-                                        <div style="display:flex">
-                                            <div>
-                                                <button onclick="open_popup_rate_message()" >
-                                                    <i class="fas fa-star-half-alt"></i>
-                                                </button>
-                                            </div>
-                                            <div>  
-                                            <button class="icon_red" onclick="open_popup_delete_message()">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                            </div>
-                                            
-                                        </div>
-
-                                </td>   
-                            </tr> -->
 
 
         </tbody>
@@ -632,7 +645,7 @@
                             </button>
                         </td>
                         <td>
-                            <button class="icon_red" onclick="open_popup_delete_message_favorite_list()"
+                            <button class="icon_red" onclick="open_popup_delete_message_favorite_list('{{item.sports_arena_id}}','{{item.fav_list_id}}')"
                                 class="delete_button">
                                 <i class="fas fa-trash-alt"></i>
                             </button>

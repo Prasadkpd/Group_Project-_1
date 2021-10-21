@@ -1,24 +1,5 @@
 
-// let side_menu_open_btn = document.querySelector("#side-menu-open-btn");
-// let sidebar = document.querySelector(".sidebar");
-// let side_menu_close_btn = document.querySelector("#side-menu-close-btn");
-// // let homecontent = document.querySelector(".home-content");
 
-
-// side_menu_open_btn.onclick = function () {    
-//     sidebar.classList.add("active");
-// }
-// side_menu_close_btn.onclick = function () {
-//     sidebar.classList.remove("active");
-// }
-
-
-
-//notification
-// function showNotifycation() {
-//     document.querySelector(".pop-up").classList.toggle("show");
-//     document.querySelector(".notification-container").classList.toggle("hide");
-// }
 
 function openTab(evt, cityName) {
   var i, booking_tab_content, booking_tab;
@@ -104,9 +85,10 @@ function copyToClipboard() {
 
 
 //popup cancel message
-function open_popup_cancel_message(x) {
+function open_popup_cancel_message(bookingId) {
+  
   var form = document.getElementById("popup_cancel");
-  document.getElementById("deleteForm").action = 'Customer/deletebooking/' + x;;
+  document.getElementById("cancelForm").action += bookingId;
   form.style.display = "block";
 }
 function close_popup_cancel_message() {
@@ -116,10 +98,25 @@ function close_popup_cancel_message() {
 }
 
 
-//popup delete message
-function open_popup_delete_message() {
-  var form = document.getElementById("popup_delete");
+//popup cannot cancel message
+function open_popup_cannot_cancel_message() {
+  
+  var form = document.getElementById("popup_cannot_cancel");
+  form.style.display = "block";
+}
+function close_popup_cannot_cancel_message() {
+  var form = document.getElementById("popup_cannot_cancel");
 
+  form.style.display = "none";
+}
+
+
+
+
+//popup delete message
+function open_popup_delete_message(bookingId) {
+  var form = document.getElementById("popup_delete");
+  document.getElementById("deleteForm").action += bookingId;
   form.style.display = "block";
 }
 function close_popup_delete_message() {
@@ -142,7 +139,10 @@ function close_popup_rate_message() {
 }
 
 //popup delete message for favorite list
-function open_popup_delete_message_favorite_list() {
+function open_popup_delete_message_favorite_list(arena_id,fav_list_id) {
+
+  document.getElementById("form_delete_arena").action+=arena_id
+  document.getElementById("fav_list_id_input").value=fav_list_id
   var form = document.getElementById("popup_delete_favorite_list");
 
   form.style.display = "block";

@@ -95,31 +95,45 @@ class Customer extends Authenticated
     //End of adding timeslots to customer by removing from the view
 
     //Start of cancel bookings from customer's my bookings view
-    public function deletebookingAction()
+    public function customercancelbookingAction()
+    {
+        //Get the current user's details with session using Auth
+        $current_user = Auth::getUser();
+
+        //Assigning booking id to variable
+        $booking_id = $this->route_params['id'];
+        $cancelbooking = CustomerModel::customerCancelBooking($booking_id);
+        $this->redirect("/customer");
+
+
+    }
+
+    public function customerdeletebookingAction()
     {
         //Get the current user's details with session using Auth
         $current_user = Auth::getUser();
 
         //Assigning bookings related to customer
         $booking_id = $this->route_params['id'];
-        $booked_date = CustomerModel::customerSelectBookingDate($booking_id);
-        $booked_time = strtotime($booked_date);
+        $deletebooking = CustomerModel::customerDeleteBooking($booking_id);
+        $this->redirect("/customer");
 
-        //Obtaining the current time
-        $current_time = time();
-        //Checking if there's 3 days before the booking time
-        if ($current_time - $booked_time <= 259200) {
 
-            //Cancel the booking
-            $deletebooking = CustomerModel::customerDeleteBooking($booking_id);
-            //Sending booking cancellation notification
-            $notify_check = NotificationModel::cancelNotificationBookingSuccess($current_user, $booking_id);
+    }
 
-            //Redirect to customer's dashboard view if success
-            if ($deletebooking && $notify_check) {
-                $this->redirect('/Customer');
-            }
-        }
+
+    public function customerdeletefavoritearenaAction()
+    {
+        //Get the current user's details with session using Auth
+        $current_user = Auth::getUser();
+
+        //Assigning bookings related to customer
+        $arena_id = $this->route_params['id'];
+        $favourie_list_id=$_POST['fav_list_id_input'];
+        $deletebooking = CustomerModel::customerDeleteFavoriteArena($favourie_list_id,$arena_id);
+        $this->redirect("/customer");
+
+
     }
     //End of cancel bookings from customer's my bookings view
 

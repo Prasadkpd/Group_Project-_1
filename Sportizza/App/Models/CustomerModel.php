@@ -57,7 +57,7 @@ class CustomerModel extends \Core\Model
     {
 
         //Retrieving favourite lists from the database
-        $sql = 'SELECT sports_arena_profile.sports_arena_id, sports_arena_profile.sa_name, sports_arena_profile.category, sports_arena_profile.location 
+        $sql = 'SELECT favourite_list.fav_list_id, sports_arena_profile.sports_arena_id, sports_arena_profile.sa_name, sports_arena_profile.category, sports_arena_profile.location 
         FROM favourite_list
         INNER JOIN customer_profile ON  favourite_list.customer_profile_id=customer_profile.customer_profile_id
         INNER JOIN favourite_list_sports_arena ON favourite_list.fav_list_id = favourite_list_sports_arena.fav_list_id 
@@ -230,6 +230,71 @@ class CustomerModel extends \Core\Model
             return ($stmt->execute());
         } 
     }
+
+
+    public static function customerCancelBooking($booking_id)
+    {
+        //update booking status as a inactive
+        $sql = 'UPDATE booking 
+                SET security_status="inactive"
+                WHERE booking_id=:booking_id';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding the customer id and Converting retrieved data from database into PDOs
+        $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+        return $stmt->execute();
+
+
+
+        // have to add update timeslot in arena side as a 
+        // time is available 
+
+
+
+    }
+
+
+
+    public static function customerDeleteBooking($booking_id)
+    {
+        //update booking status as a inactive
+        $sql = 'UPDATE booking 
+                SET security_status="inactive"
+                WHERE booking_id=:booking_id';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding the customer id and Converting retrieved data from database into PDOs
+        $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+        return $stmt->execute();
+
+
+    }
+
+    public static function customerDeleteFavoriteArena($fav_list_id,$arena_id)
+    {
+        //update booking status as a inactive
+        $sql = 'UPDATE favourite_list_sports_arena 
+                SET security_status="inactive"
+                WHERE fav_list_id=:fav_list_id AND sports_arena_id=:arena_id';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding the customer id and Converting retrieved data from database into PDOs
+        $stmt->bindValue(':fav_list_id', $fav_list_id, PDO::PARAM_INT);
+        $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+        return $stmt->execute();
+
+
+    }
+
+
+
+
 
     // public static function customerAddToCart($timeslot_id,$current_user){
 
