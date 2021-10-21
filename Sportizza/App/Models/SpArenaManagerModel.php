@@ -59,8 +59,8 @@ class SpArenaManagerModel extends \Core\Model
     {
         //Retrieving sports arena bookings
         $sql = 'SELECT booking.booking_id,booking.price_per_booking,
-       DATE(booking.booked_date) AS booked_date,
-       DATE(booking.booking_date) AS booking_date,
+                DATE(booking.booked_date) AS booked_date,
+                DATE(booking.booking_date) AS booking_date,
                 booking.payment_method,booking.payment_status,
                 TIME_FORMAT(time_slot.start_time, "%H" ":" "%i") AS start_time, 
                 TIME_FORMAT(time_slot.end_time, "%H" ":" "%i") AS end_time,
@@ -70,7 +70,6 @@ class SpArenaManagerModel extends \Core\Model
                 INNER JOIN user ON user.user_id=booking.customer_user_id
                 INNER JOIN manager ON booking.sports_arena_id =manager.sports_arena_id
                  WHERE booking.security_status="active"AND manager.user_id=:id
-                 AND CURDATE() <= booking_date
                  ORDER BY booking.booking_date DESC';
 
         $db = static::getDB();
