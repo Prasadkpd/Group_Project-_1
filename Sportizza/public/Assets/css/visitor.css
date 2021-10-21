@@ -424,8 +424,8 @@ border-radius:10px;
     background-color: inherit;
     outline: none;
     border: none;
-    width:500px;
-    font-size: larger;
+    width:600px;
+    font-size:1rem;
 }
 .search-filter button{
     color: white;
@@ -1145,8 +1145,11 @@ footer {
   margin: 1em;
 }
 footer a{
-  color: var(--dark-ash-2);
+  color: var(--ash);
   font-size: 1.25rem;
+}
+footer a:hover{
+  color: #fd461f;
 }
 
 .footer-base {

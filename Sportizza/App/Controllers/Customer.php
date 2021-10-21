@@ -17,6 +17,9 @@ class Customer extends Authenticated
     //Blocking unauthorised access after login as a user
     protected function before()
     {
+        if (Auth::getUser()== NULL){
+            $this->redirect('/login');
+        }
         //Checking whether the user type is customer
         if (Auth::getUser()->type == 'Customer') {
             return true;

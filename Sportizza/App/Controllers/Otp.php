@@ -19,6 +19,7 @@ class Otp extends \Core\Controller
     }
     public function indexAction()
     {
+        var_dump($_SESSION['otp']);        
         View::renderTemplate('otp.html');
     }
     public function after()
