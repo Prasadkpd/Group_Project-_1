@@ -18,11 +18,11 @@ $(document).ready(function () {
             
             success: function (response) {
                 if (response){
-                $("#imgMsg6").text("Timeslot cannot be added to the selected facility");
-                $("#facilityName").css("border-color", "#e74c3c");
-                document.querySelector('#timeSlotbutton').disabled = true;
-            }
-        }
+                    $("#imgMsg6").text("Timeslot cannot be added to the selected facility");
+                    $("#facilityName").css("border-color", "#e74c3c");
+                    document.querySelector('#timeSlotbutton').disabled = true;
+                }
+             }
         })
     })
 })
