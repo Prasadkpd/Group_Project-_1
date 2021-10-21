@@ -51,7 +51,8 @@ class AdminModel extends \Core\Model
                 DATE(user.registered_time) as "date" FROM sports_arena_profile
                INNER  JOIN manager ON sports_arena_profile.sports_arena_id =manager.sports_arena_id 
                INNER JOIN user ON user.user_id = manager.user_id
-               WHERE sports_arena_profile.account_status="inactive"';
+               WHERE sports_arena_profile.account_status="inactive"
+               ORDER BY user.registered_time DESC';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -204,7 +205,7 @@ class AdminModel extends \Core\Model
     {
         //Retrieving of negative Customer ratings from the database
         $sql = 'SELECT feedback.feedback_id,feedback.feedback_rating,
-        feedback.description,sports_arena_profile.sa_name,
+        feedback.description,sports_arena_profile.sa_name,sports_arena_profile.contact_no,
         DATE(feedback.posted_date) as "date",
         feedback.sports_arena_id FROM feedback
         INNER JOIN sports_arena_profile ON feedback.sports_arena_id=
