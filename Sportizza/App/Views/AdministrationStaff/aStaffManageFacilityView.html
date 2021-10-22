@@ -137,7 +137,7 @@
         <div style="display:flex">
 
             <button class="popup_delete_button">
-                <a href=""> YES</a>
+                <a href="/Spadministrationstaff/deletefacility/" id="deleteFacilitybtn">YES</a>
             </button>
             <button onclick="close_popup_delete_message()" class="popup_button">
                 NO
@@ -151,18 +151,17 @@
 <div id="myForm_for_update" class="sectionpop ">
     <div class="formsection">
         <div>
-            <button s class="closebutton" onclick="closepopupform_for_update()">❌</button>
+            <button class="closebutton" onclick="closepopupform_for_update()">❌</button>
         </div>
         <img class="form-profile-picture" src="assets/profile-picture.jpg" alt="">
-        <form action="/action_page.php" style="margin:20px" 
-        onsubmit="validateUpdateFacilityForm()" id="formUpdateFacility">
+        <form action="/Spadministrationstaff/updatefacility/" style="margin:20px" 
+        onsubmit="validateUpdateFacilityForm()" id="formUpdateFacility" method="POST">
             <div class="input-row">
                 <div class="input-box">
                     <label for="editfacilityname">Facility Name:</label>
                     <input id="editfacilityname" type="text" name="Facility_name" 
-                    onfocusout="validateUpdateFacilityName()"
-                        placeholder="Enter new facility name" value="{{sp_arena.Facility_name}}">
-                    <div class="helper-text" id="firstNameMsg"></div>
+                    onfocusout="validateUpdateFacilityName()">
+                    <div class="helper-text" id="firstNameMsg"> </div>
                 </div>
                 </div>
             <input type="submit" class="popup_button" value="Save">
@@ -317,7 +316,8 @@
                                 <th class="booking-table-first-th">
                                     <div class="booking-table-filter-container">
                                         <div class="booking-table-search-container">
-                                            <input type="search" name="search" placeholder="Search By Facility Name" id="search-delete-facility" onkeyup="searchDeleteTable()">
+                                            <input type="search" name="search" placeholder="Search By Facility Name" 
+                                            id="search-delete-facility" onkeyup="searchDeleteTable()">
                                             <i class="fas fa-search"></i>
                                         </div>
                                         <!-- <div class="booking-table-date-picker">
@@ -334,12 +334,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for facility in deleteFacilities %}
+                            {% for facility in viewFacilities %}
                             <tr>
                                 <td data-label="Facility ID :">{{facility.facility_id}}</td>
                                 <td data-label="Facility Name :">{{facility.facility_name}}</td>
-                                <td class="trash-btn-padding-res"> <button class="icon_red trash-btn" style="border:none"onclick="open_popup_delete_message()">
-                                    <i class="fas fa-trash-alt"></i>
+                                <td class="trash-btn-padding-res"> <button class="icon_red trash-btn"
+                                     style="border:none"onclick="open_popup_delete_message('{{facility.facility_id}}')">
+                                    <i class="fas fa-trash-alt">
+
+                                    </i>
                                 </button></td>
                             </tr>
                             {% endfor %}
@@ -373,11 +376,13 @@
                         </thead>
                         <tbody>
                             
-                            {% for facility in updateFacilities %}
+                            {% for facility in viewFacilities %}
                             <tr>
                                 <td data-label="Facility ID :">{{facility.facility_id}}</td>
                                 <td data-label="Facility Name :">{{facility.facility_name}}</td>
-                                <td> <button class="icon_red trash-btn" style="border:none"onclick="openpopupform_for_update()">
+                                <td> <button class="icon_red trash-btn" style="border:none"
+                                onclick="openpopupform_for_update('{{facility.facility_id}}',
+                                '{{facility.facility_name}}')">
                                 <i class="fas fa-pencil-alt"></i>
                                 </button></td>
                             </tr>

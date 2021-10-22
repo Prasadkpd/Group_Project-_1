@@ -102,9 +102,10 @@ class HomeModel extends \Core\Model
     public static function homeViewfeedbacks()
     {
         //Retrieving the feedbacks from the database
-        $sql = 'SELECT feedback.description, feedback.feedback_rating,sports_arena.sa_name,user.first_name,user.last_name
+        $sql = 'SELECT feedback.description, feedback.feedback_rating,sports_arena.sa_name,user.first_name,
+        user.last_name, user.profile_pic
                 FROM feedback INNER JOIN sports_arena ON feedback.sports_arena_id = sports_arena.sports_arena_id
-                INNER JOIN user ON feedback.customer_user_id=user.user_id  ORDER BY RAND()
+                INNER JOIN user ON feedback.customer_user_id=user.user_id  
                 LIMIT 10';
 
         $db = static::getDB();

@@ -253,7 +253,7 @@
             </div>
             <div class="customer-reviews">
 
-            
+                {% for feedback in feedbacks %}
                 <div class="customer-review-card">
                     <div class="review-header">
                         <div class="review-star-rate">
@@ -263,170 +263,24 @@
                             
                         </div>
                         <div class="review-sp-arena-name">
-                            {{feedbacks[0].sa_name}}
+                            {{feedback.sa_name}}
                         </div>
                     </div>
                     <div class="review-desc">
-                        {{feedbacks[0].description}}
+                        {{feedback.description}}
                     </div>
                     <div class="review-footer">
                         <div class="review-info">
-                            <img class="reviewer-img" src="/Assets/images/Team members/bhashitha.png"></img>
-                            <h3 class="reviewer-name">{{feedbacks[0].first_name}}  {{feedbacks[0].last_name}}</h3>
+                            <img class="reviewer-img" src={{feedback.profile_pic}}></img>
+                            <h3 class="reviewer-name">{{feedback.first_name}} {{feedback.last_name}}</h3>
                         </div>
                     </div>
                 </div>
-                <div class="customer-review-card">
-                    <div class="review-header">
-                        <div class="review-star-rate">
-                            {% for x in range(1,feedbacks[1].feedback_rating) %}
-                            <i class="fas fa-star"></i>
-                            {% endfor %}
-                        </div>
-                        <div class="review-sp-arena-name">
-                            {{feedbacks[1].sa_name}}
-                        </div>
-                    </div>
-                    <div class="review-desc">
-                        {{feedbacks[1].description}}
-                    </div>
-                    <div class="review-footer">
-                        <div class="review-info">
-                            <img class="reviewer-img" src="/Assets/images/Team members/bhashitha.png"></img>
-                            <h3 class="reviewer-name">{{feedbacks[1].first_name}}  {{feedbacks[1].last_name}}</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="customer-review-card">
-                    <div class="review-header">
-                        <div class="review-star-rate">
-                            {% for x in range(1,feedbacks[2].feedback_rating) %}
-                            <i class="fas fa-star"></i>
-                            {% endfor %}
-                        </div>
-                        <div class="review-sp-arena-name">
-                            {{feedbacks[2].sa_name}}
-                        </div>
-                    </div>
-                    <div class="review-desc">
-                        {{feedbacks[2].description}}
-                    </div>
-                    <div class="review-footer">
-                        <div class="review-info">
-                            <img class="reviewer-img" src="/Assets/images/Team members/bhashitha.png"></img>
-                            <h3 class="reviewer-name">{{feedbacks[2].first_name}}  {{feedbacks[2].last_name}}</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="customer-review-card">
-                    <div class="review-header">
-                        <div class="review-star-rate">
-                            {% for x in range(1,feedbacks[3].feedback_rating) %}
-                            <i class="fas fa-star"></i>
-                            {% endfor %}
-                        </div>
-                        <div class="review-sp-arena-name">
-                            {{feedbacks[3].sa_name}}
-                        </div>
-                    </div>
-                    <div class="review-desc">
-                        {{feedbacks[3].description}}
-                    </div>
-                    <div class="review-footer">
-                        <div class="review-info">
-                            <img class="reviewer-img" src="/Assets/images/Team members/bhashitha.png"></img>
-                            <h3 class="reviewer-name">{{feedbacks[3].first_name}}  {{feedbacks[3].last_name}}</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="customer-review-card">
-                    <div class="review-header">
-                        <div class="review-star-rate">
-                            {% for x in range(1,feedbacks[4].feedback_rating) %}
-                            <i class="fas fa-star"></i>
-                            {% endfor %}
-                        </div>
-                        <div class="review-sp-arena-name">
-                            {{feedbacks[4].sa_name}}
-                        </div>
-                    </div>
-                    <div class="review-desc">
-                        {{feedbacks[4].description}}
-                    </div>
-                    <div class="review-footer">
-                        <div class="review-info">
-                            <img class="reviewer-img" src="/Assets/images/Team members/bhashitha.png"></img>
-                            <h3 class="reviewer-name">{{feedbacks[4].first_name}}  {{feedbacks[4].last_name}}</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="customer-review-card">
-                    <div class="review-header">
-                        <div class="review-star-rate">
-                            {% for x in range(1,feedbacks[5].feedback_rating) %}
-                            <i class="fas fa-star"></i>
-                            {% endfor %}
-                        </div>
-                        <div class="review-sp-arena-name">
-                            {{feedbacks[5].sa_name}}
-                        </div>
-                    </div>
-                    <div class="review-desc">
-                        {{feedbacks[5].description}}
-                    </div>
-                    <div class="review-footer">
-                        <div class="review-info">
-                            <img class="reviewer-img" src="/Assets/images/Team members/bhashitha.png"></img>
-                            <h3 class="reviewer-name">{{feedbacks[5].first_name}}  {{feedbacks[5].last_name}}</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="customer-review-card">
-                    <div class="review-header">
-                        <div class="review-star-rate">
-                            {% for x in range(1,feedbacks[6].feedback_rating) %}
-                            <i class="fas fa-star"></i>
-                            {% endfor %}
-                        </div>
-                        <div class="review-sp-arena-name">
-                            {{feedbacks[6].sa_name}}
-                        </div>
-                    </div>
-                    <div class="review-desc">
-                        {{feedbacks[6].description}}
-                    </div>
-                    <div class="review-footer">
-                        <div class="review-info">
-                            <img class="reviewer-img" src="/Assets/images/Team members/bhashitha.png"></img>
-                            <h3 class="reviewer-name">{{feedbacks[6].first_name}}  {{feedbacks[6].last_name}}</h3>
-                        </div>
-                    </div>
-                </div>
+{% endfor %}
 
-                <div class="customer-review-card">
-                    <div class="review-header">
-                        <div class="review-star-rate">
-                            {% for x in range(1,feedbacks[7].feedback_rating) %}
-                            <i class="fas fa-star"></i>
-                            {% endfor %}
-                        </div>
-                        <div class="review-sp-arena-name">
-                            {{feedbacks[7].sa_name}}
-                        </div>
-                    </div>
-                    <div class="review-desc">
-                        {{feedbacks[7].description}}
-                    </div>
-                    <div class="review-footer">
-                        <div class="review-info">
-                            <img class="reviewer-img" src="/Assets/images/Team members/bhashitha.png"></img>
-                            <h3 class="reviewer-name">{{feedbacks[7].first_name}}  {{feedbacks[7].last_name}}</h3>
-                        </div>
-                    </div>
-                </div>
-                
-                
-            </div>
+
+
+</div>
         </div>
     </section>
 

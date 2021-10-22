@@ -376,9 +376,10 @@ class SpAdministrationStaffModel extends \Core\Model
 
         // $sql = 'SELECT *  FROM facility WHERE manager_user_id=:id';
 
-        $sql = 'SELECT *  FROM facility INNER JOIN administration_staff ON facility.manager_user_id=administration_staff.manager_user_id
-                 WHERE  administration_staff.user_id=:id';
-
+        $sql = 'SELECT *  FROM facility INNER JOIN administration_staff ON 
+        facility.manager_user_id=administration_staff.manager_user_id
+                 WHERE  administration_staff.user_id=:id 
+                 AND facility.security_status="active"';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -396,33 +397,30 @@ class SpAdministrationStaffModel extends \Core\Model
     //End of displaying sports arenas facilities for administrationstaff
 
 
-    public static function saAdminDeleteFacility($id)
+    //Remove a facility from the sports arena
+    public static function saAdminDeleteFacility($id, $facility_id)
     {
+       $db = static::getDB();
 
-        $db = static::getDB();
+        //Updating the facility table from the database
+        $sql = 'UPDATE facility 
+        SET facility.security_status="inactive"
+        WHERE facility.facility_id=:facility_id';
 
-        // $sql = 'DELETE FROM `facility` WHERE `facility_id`=:id';
-        //Retrieving manager's facility to view for delete from the database
-        $sql = 'SELECT *  FROM facility INNER JOIN administration_staff ON facility.manager_user_id=administration_staff.manager_user_id
-                 WHERE  administration_staff.user_id=:id';
-
-        // $stmt = $db->prepare($sql);
-        // $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-        // // $stmt1->execute();
-        // $result1 = $stmt1->fetchAll();
-        // $stmt1->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-        // var_dump($result);
-        // return ($stmt->execute());
-        $db = static::getDB();
         $stmt = $db->prepare($sql);
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-
-        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
 
         $stmt->execute();
-        $result = $stmt->fetchAll();
-        // var_dump($result);
-        return $result;
+
+        $sql = 'UPDATE administration_staff_manages_facility 
+        SET administration_staff_manages_facility.administration_staff_user_id=:id
+        WHERE administration_staff_manages_facility.facility_id=:facility_id';
+
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
+
+        return ($stmt->execute());
     }
 
     // public static function saAdminAddFacility($fname,$ipsw,$id,$rpsw){
@@ -526,24 +524,30 @@ class SpAdministrationStaffModel extends \Core\Model
     //End of adding facility to a sports arena for administartion staff
 
     //Start of displaying sports arenas facilities update for administration staff
-    public static function saAdminUpdateFacility($id)
+    public static function saAdminUpdateFacility($id, $facility_id,$facility_name)
     {
-        //Retrieving administrationstaff's facility to view for update from the database    
-        $sql = 'SELECT *  FROM facility INNER JOIN administration_staff ON facility.manager_user_id=administration_staff.manager_user_id
-                 WHERE  administration_staff.user_id=:id';
-
-
+        //Updating facility name in the database    
         $db = static::getDB();
+
+        //Updating the facility table from the database
+        $sql = 'UPDATE facility 
+        SET facility.facility_name=:facility_name
+        WHERE facility.facility_id=:facility_id';
+
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':facility_name', $facility_name, PDO::PARAM_STR);
+        $stmt->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $sql = 'UPDATE administration_staff_manages_facility 
+        SET administration_staff_manages_facility.administration_staff_user_id=:id
+        WHERE administration_staff_manages_facility.facility_id=:facility_id';
+
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
 
-        //Converting retrieved data from database into PDOs
-        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-
-        $stmt->execute();
-        //Assigning the fetched PDOs to result
-        $result = $stmt->fetchAll();
-        return $result;
+        return ($stmt->execute());
     }
 
     public static function findFacilityByName($id, $fname)

@@ -37,7 +37,9 @@ function closepopupform() {
 }
 
   // popup section for update
-function openpopupform_for_update() {
+function openpopupform_for_update(facility_id, facility_name) {
+document.getElementById("editfacilityname").value=facility_name;
+document.getElementById("formUpdateFacility").action += facility_id;
     var form = document.getElementById("myForm_for_update");
     form.style.display = "block";
 }
@@ -57,14 +59,18 @@ function close_popup_signout_message() {
     form.style.display = "none";
 }
 //popup delete message
-function open_popup_delete_message() {
-    var form = document.getElementById("popup_delete");
-    form.style.display = "block";
+
+function open_popup_delete_message(facility_id) {
+  document.getElementById("deleteFacilitybtn").href += facility_id;
+  var form = document.getElementById("popup_delete");
+  console.log(facility_id);
+  form.style.display = "block";
 }
 function close_popup_delete_message() {
     var form = document.getElementById("popup_delete");
     form.style.display = "none";
 }
+
 
 //Add Facility Form
 const facilityName = document.getElementById('facilityName');
