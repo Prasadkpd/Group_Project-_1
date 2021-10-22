@@ -36,17 +36,17 @@
     </header>
     <div id="popup_signup" class="sectionpop ">
         <div class="signupsection">
-    
+
             <div>
                 <button class="closebutton" onclick="close_popup_signup_message()">❌</button>
             </div>
             <div class="signup-sec-head">
-                    <h1>
-                        Sign Up As
-                    </h1>
+                <h1>
+                    Sign Up As
+                </h1>
             </div>
             <div style="display:flex">
-    
+
                 <a href="/signup" class="popup_button">
                     Customer
                 </a>
@@ -84,7 +84,7 @@
 
                     <div class="visitor-slides fade">
                         <img src="/Assets/images/visitor/slides/image4.svg" style="width:100%">
-                    </div> 
+                    </div>
 
                     <!-- <div class="visitor-slides fade">
                         <img src="/Assets/images/visitor/slides/image5.svg" style="width:100%">
@@ -92,7 +92,7 @@
 
                     <div class="visitor-slides fade">
                         <img src="/Assets/images/visitor/slides/image6.svg" style="width:100%">
-                    </div> 
+                    </div>
                     <div class="visitor-slides fade">
                         <img src="/Assets/images/visitor/slides/image7.jpg" style="width:100%">
                     </div>
@@ -180,7 +180,7 @@
                                 {% for location in locations %}
                                 <option value={{location.location}}>{{location.location}}</option>
                                 {% endfor %}
-                              <!-- <option value="Colombo">Colombo</option>
+                                <!-- <option value="Colombo">Colombo</option>
                               <option value="saab">Saab</option>
                               <option value="fiat">Fiat</option>
                               <option value="audi">Audi</option> -->
@@ -203,7 +203,7 @@
                             </div> -->
 
                             <label for="cars">Category</label>
-                            <select id="category"  name="category">
+                            <select id="category" name="category">
 
                                 {% if search_result['category']==null %}
                                 <option value='select category'>select category</option>
@@ -217,32 +217,32 @@
                                 <option value={{category.category}}>{{category.category}}</option>
                                 {% endfor %}
 
-                              <!-- <option value="Futsal">Futsal</option>
+                                <!-- <option value="Futsal">Futsal</option>
                               <option value="saab">Saab</option>
                               <option value="fiat">Fiat</option>
                               <option value="audi">Audi</option> -->
                             </select>
                         </div>
                         <div class="search-filter">
-                        
-                            <input  type="search" name="name" id="name" placeholder="Search by arena name...">
+
+                            <input type="search" name="name" id="name" placeholder="Search by arena name...">
                             <!-- <button>Search</button> -->
                             <!-- <input  type="submit" value="Search"> -->
                             <!-- <button id="btn-search" type="submit">Search</button>                                                           -->
                         </div>
-                    
-                    
+
+
                     </div>
                 </form>
-                
 
 
-            </div>
-            <div class="search-results" >
 
             </div>
-            
+            <div class="search-results">
+
             </div>
+
+        </div>
         </div>
     </section>
 
@@ -260,7 +260,6 @@
                             {% for x in range(1,feedbacks[0].feedback_rating) %}
                             <i class="fas fa-star"></i>
                             {% endfor %}
-                            
                         </div>
                         <div class="review-sp-arena-name">
                             {{feedback.sa_name}}
@@ -276,11 +275,9 @@
                         </div>
                     </div>
                 </div>
-{% endfor %}
+                {% endfor %}
 
-
-
-</div>
+            </div>
         </div>
     </section>
 
@@ -304,7 +301,7 @@
                 </div>
 
                 <div class="faq-content" id="sparena-faq">
-                    
+
                     {% for faq in arenafaqs %}
                     <button class="faq-accordian">{{faq.question}}</button>
                     <div class="faq-accordian-content">
@@ -312,10 +309,10 @@
                     </div>
                     {% endfor %}
                 </div>
-        
-                </div>
 
             </div>
+
+        </div>
         </div>
     </section>
 
@@ -340,8 +337,8 @@
         </div>
     </section>
     <section class="page-container" id="our-team">
-        <div class="our-team" >
-            <div class="section-header" >
+        <div class="our-team">
+            <div class="section-header">
                 <h3 class="title" data-title="">Our Team</h3>
             </div>
             <div class="group-members-cards">
@@ -483,8 +480,9 @@
                         <h3 class="title" data-title="">Get In Touch</h3>
                     </div>
                     <div class="contact-info-container">
-                        <p class="contact-us-text">We are a group of second year Undergraduates from University of Colombo School of Computing interested in contributing
-                        to the greater well being of the nation.</p>
+                        <p class="contact-us-text">We are a group of second year Undergraduates from University of
+                            Colombo School of Computing interested in contributing
+                            to the greater well being of the nation.</p>
                         <div class="contact-us-details">
                             <div class="contact-detail">
                                 <i class="fas fa-map-marker-alt"></i>
@@ -505,7 +503,8 @@
                     <div class="section-header">
                         <h3 class="title" data-title="">Contact us</h3>
                     </div>
-                    <form method="POST" action="home/contact" id="formVisitorContact" onsubmit="validateVisitorContactForm()">
+                    <form method="POST" action="home/contact" id="formVisitorContact"
+                        onsubmit="validateVisitorContactForm()">
                         <div class="visitor-name">
                             <div class="input-content">
                                 <input type="text" id="firstName" name="firstname" placeholder="First Name"
@@ -517,27 +516,27 @@
                                     onfocusout="validateLastName()">
                                 <div class="helper-text"></div>
                             </div>
-                            </div>
-                        <div class="input-content">
-                        <input type="email" id="email" name="email" placeholder="Email"
-                               onfocusout="validateEmail()">
-                        <div class="helper-text"></div>
                         </div>
                         <div class="input-content">
-                        <input type="text" id="subject" class="subject" name="subject" placeholder="Subject"
-                               onfocusout="validateSubject()">
-                        <div class="helper-text"></div>
+                            <input type="email" id="email" name="email" placeholder="Email"
+                                onfocusout="validateEmail()">
+                            <div class="helper-text"></div>
                         </div>
                         <div class="input-content">
-                        <textarea placeholder="Message" id="message" cols="53" rows="5" name="message"
-                                  onfocusout="validateMessage()"></textarea>
-                        <div class="helper-text"></div>
+                            <input type="text" id="subject" class="subject" name="subject" placeholder="Subject"
+                                onfocusout="validateSubject()">
+                            <div class="helper-text"></div>
                         </div>
-                       <input type="submit" value="Submit">
+                        <div class="input-content">
+                            <textarea placeholder="Message" id="message" cols="53" rows="5" name="message"
+                                onfocusout="validateMessage()"></textarea>
+                            <div class="helper-text"></div>
+                        </div>
+                        <input type="submit" value="Submit">
                     </form>
                 </div>
             </div>
-    
+
         </div>
         </div>
     </section>
@@ -603,7 +602,7 @@
                             <i class="fab fa-linkedin-in"></i>
                         </a>
                         <a href="#" class="back-btn">
-                        <i class="fas fa-chevron-up"></i>
+                            <i class="fas fa-chevron-up"></i>
                         </a>
                     </div>
                 </div>
