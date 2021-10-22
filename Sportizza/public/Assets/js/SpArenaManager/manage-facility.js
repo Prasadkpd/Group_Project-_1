@@ -59,14 +59,18 @@ function close_popup_signout_message() {
     form.style.display = "none";
 }
 //popup delete message
-function open_popup_delete_message() {
-    var form = document.getElementById("popup_delete");
-    form.style.display = "block";
+
+function open_popup_delete_message(facility_id) {
+  document.getElementById("deleteFacilitybtn").href += facility_id;
+  var form = document.getElementById("popup_delete");
+  console.log(facility_id);
+  form.style.display = "block";
 }
 function close_popup_delete_message() {
     var form = document.getElementById("popup_delete");
     form.style.display = "none";
 }
+
 
 //Add Facility Form
 const facilityName = document.getElementById('facilityName');

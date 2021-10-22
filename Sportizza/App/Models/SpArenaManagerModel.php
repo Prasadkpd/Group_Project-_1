@@ -59,8 +59,8 @@ class SpArenaManagerModel extends \Core\Model
     {
         //Retrieving sports arena bookings
         $sql = 'SELECT booking.booking_id,booking.price_per_booking,
-       DATE(booking.booked_date) AS booked_date,
-       DATE(booking.booking_date) AS booking_date,
+                DATE(booking.booked_date) AS booked_date,
+                DATE(booking.booking_date) AS booking_date,
                 booking.payment_method,booking.payment_status,
                 TIME_FORMAT(time_slot.start_time, "%H" ":" "%i") AS start_time, 
                 TIME_FORMAT(time_slot.end_time, "%H" ":" "%i") AS end_time,
@@ -70,7 +70,6 @@ class SpArenaManagerModel extends \Core\Model
                 INNER JOIN user ON user.user_id=booking.customer_user_id
                 INNER JOIN manager ON booking.sports_arena_id =manager.sports_arena_id
                  WHERE booking.security_status="active"AND manager.user_id=:id
-                 AND CURDATE() <= booking_date
                  ORDER BY booking.booking_date DESC';
 
         $db = static::getDB();
@@ -544,118 +543,20 @@ class SpArenaManagerModel extends \Core\Model
     //End of adding timeslot to a sports arena for manager
 
     public static function managerCheckExistingTimeslots($user_id,$start_time,$duration,$price,$facility){
-        // $hours=(int)substr($start_time, 0,2);
-        // $minutes=(int)substr($start_time, 3,5);
-        
-        // $end_time=$hours+$duration;
-
-        // $temp=$end_time+1;
-        // $temp_end=(string)($temp.":"."00");
-
-        // $temp=$hours+1;
-        // $temp_max_start=(string)($temp.":"."00");
-
-        // $temp_start=(string)($hours.":"."00");
-        // $end_time=(string)($end_time.":".$minutes);
-
-        
-        // $db = static::getDB();
-
-        
-
-        // //have to add condition for check timeslot is available
-
-
-        
-
-        // // select query for select sports arena from  user id
-        // $sql = 'SELECT sports_arena_id FROM manager
-        //         WHERE manager.user_id=:user_id';
-
-        // $stmt = $db->prepare($sql);
-        // $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
-
-        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-
-        // $stmt->execute();
-        // $arena_id = $stmt->fetchAll();
-        // //  var_dump($result);
-        // // return $result;
-
-        // //query for check timeslot is availability
-        // // $sql = 'SELECT * FROM  time_slot
-        // //         WHERE (manager_sports_arena_id=:arena_id AND facility_id=:facility) 
-        // //         AND (start_time BETWEEN :start_time AND :end_time)';
-
-        // $sql = 'SELECT * FROM  time_slot
-        //         WHERE (manager_sports_arena_id=:arena_id AND facility_id=:facility) 
-        //         AND ( (TIME(start_time)=TIME(:start_time) OR TIME(end_time)=TIME(:temp_end)) 
-        //         OR (TIME(start_time)=TIME(:temp_start) OR TIME(end_time)=TIME(:temp_end))
-        //          OR (TIME(start_time)=TIME(:temp_max_start)) )';
-
-        
-        
-        // $stmt = $db->prepare($sql);
-        
-        // $stmt->bindValue(':facility', $facility, PDO::PARAM_STR);
-        // $stmt->bindValue(':start_time', $start_time, PDO::PARAM_STR);
-        // $stmt->bindValue(':end_time', $end_time, PDO::PARAM_STR);
-        // $stmt->bindValue(':temp_end', $temp_end, PDO::PARAM_STR);
-        // $stmt->bindValue(':temp_start', $temp_start, PDO::PARAM_STR);
-        // $stmt->bindValue(':temp_max_start', $temp_max_start, PDO::PARAM_STR);
-        // $stmt->bindValue(':arena_id', $arena_id[0]->sports_arena_id, PDO::PARAM_INT);
-        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-
-        // $stmt->execute();
-        // $timeSlots = $stmt->fetchAll();
-
-        // if(empty($timeSlots)){
-        //     return true;
-        // } else {
-        //     return false;
-        // }
-
-
 
         $hours=(int)substr($start_time, 0,2);
-        $minutes=(int)substr($start_time, 3,5);
+        $minutes=(int)substr($start_time, 3,2);
         
         $end_time=$hours+$duration;
-        $end_time=(string)($end_time.":".$minutes);
+        // $end_time=(string)($end_time.":".$minutes);
 
-        if($minutes==30){
-            $temp=$hours+1;
-
-            $start_max=(string)($temp.":"."00");
-            $start_min=(string)($hours.":"."00");
-
-            $temp=$hours+$duration;
-            $end_max=(string)($temp.":"."00");
-            $end_min=(string)($hours.":"."00");
-
-            
+        if($end_time<10){
+            $end_time=(string)("0".$end_time.":".$minutes);
+        }else{
+            $end_time=(string)($end_time.":".$minutes);
         }
-        elseif($minutes==0){
-            if($duration==2){
-                $end_middle=$end_time-1;
-                $end_middle=(string)($end_middle.":"."00");
-            }
-            $start_max=null;
-            $start_min=$start_time;
-            $end_max=$end_time;
-            $end_min=$end_time;
-        }
-        
-
         
         $db = static::getDB();
-
-        
-
-        //have to add condition for check timeslot is available
-
-
-        
 
         // select query for select sports arena from  user id
         $sql = 'SELECT sports_arena_id FROM manager
@@ -667,38 +568,34 @@ class SpArenaManagerModel extends \Core\Model
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
         $stmt->execute();
-        $arena_id = $stmt->fetchAll();
         
-
-        //query for check timeslot is availability
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $arena_id = $result["sports_arena_id"];
 
         $sql = 'SELECT * FROM  time_slot
-                WHERE (manager_sports_arena_id=:arena_id AND facility_id=:facility) 
-                AND (TIME(start_time)=TIME(:start_time) OR TIME(end_time)=TIME(:end_time)
-                OR TIME(start_time)=TIME(:start_max) OR TIME(start_time)=TIME(:start_min)
-                OR TIME(end_time)=TIME(:start_max) )';
-
-        
-        
+                WHERE (manager_sports_arena_id=:arena_id AND facility_id=:facility)
+                ORDER BY end_time ASC';
+  
         $stmt = $db->prepare($sql);
         
         $stmt->bindValue(':facility', $facility, PDO::PARAM_STR);
-        $stmt->bindValue(':start_time', $start_time, PDO::PARAM_STR);
-        $stmt->bindValue(':end_time', $end_time, PDO::PARAM_STR);
-        $stmt->bindValue(':start_max', $start_max, PDO::PARAM_STR);
-        $stmt->bindValue(':start_min', $start_min, PDO::PARAM_STR);
-        // $stmt->bindValue(':end_middle', $end_middle, PDO::PARAM_STR);
-        $stmt->bindValue(':arena_id', $arena_id[0]->sports_arena_id, PDO::PARAM_INT);
+        $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+        
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
         $stmt->execute();
-        $timeSlots = $stmt->fetchAll();
 
-        if(empty($timeSlots)){
-            return true;
-        } else {
-            return false;
+        // Assigning each database row to a variable
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            // If input start time is between database timeslot range excluding end time and If input end time is between database timeslot range excluding start time
+            if (($row["end_time"] > $start_time && $row["start_time"] <= $start_time) || ($row["end_time"] >= $end_time && $row["start_time"] < $end_time))
+            {
+                // Timeslot cannot be inserted
+                return false;
+            }
         }
+        // Timeslot can be inserted
+        return true;
     }
 
 

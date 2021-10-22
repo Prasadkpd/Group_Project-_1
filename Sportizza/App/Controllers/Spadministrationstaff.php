@@ -166,7 +166,8 @@ class Spadministrationstaff extends Authenticated
 
     //Start of Delete Timeslot of administration staff
     public function deletetimeslotAction()
-    {
+    { $current_user = Auth::getUser();
+        $id = $current_user->user_id;
         $user = SpAdministrationStaffModel::saAdminDeleteTimeSlots($id);
     }
     //End of Delete Timeslot of administration staff
@@ -180,17 +181,13 @@ class Spadministrationstaff extends Authenticated
 
         //Assigning the sports arena's facilities to view
         $viewFacilities = SpAdministrationStaffModel::saAdminViewFacility($id);
-        //Assigning the sports arena's facilities to delete view
-        $deleteFacilities = SpAdministrationStaffModel::saAdminDeleteFacility($id);
-        //Assigning the sports arena's facilities to add (facility) view
-        $updateFacilities = SpAdministrationStaffModel::saAdminUpdateFacility($id);
 
         //Rendering the administration staff's timeslot view
         View::renderTemplate(
             'AdministrationStaff/aStaffManageFacilityView.html',
             [
-                'viewFacilities' => $viewFacilities, 'deleteFacilities' => $deleteFacilities,
-                'updateFacilities' => $updateFacilities
+                'viewFacilities' => $viewFacilities, 'deleteFacilities' => $viewFacilities,
+                'updateFacilities' => $viewFacilities
             ]
         );
     }
@@ -203,7 +200,6 @@ class Spadministrationstaff extends Authenticated
         $current_user = Auth::getUser();
         $id = $current_user->user_id;
         $username = $current_user->username;
-
 
         $facility = LoginModel::authenticate(
             $username,
@@ -243,7 +239,25 @@ class Spadministrationstaff extends Authenticated
     //Start of Delete Facility of administration staff
     public function deletefacilityAction()
     {
-        $user = SpAdministrationStaffModel::saAdminDeleteFacility($id);
+        $facility_id= $this->route_params['id'];
+        $current_user = Auth::getUser();
+        $id = $current_user->user_id;
+
+       SpAdministrationStaffModel::saAdminDeleteFacility($id,$facility_id);
+       $this->redirect('/spadministrationstaff/managefacility');
+    }
+    //End of Delete Facility of administration staff
+
+
+    //Start of Update Facility of administration staff
+    public function updatefacilityAction()
+    {
+        $facility_id= $this->route_params['id'];
+        $current_user = Auth::getUser();
+        $id = $current_user->user_id;
+
+       SpAdministrationStaffModel::saAdminUpdateFacility($id,$facility_id, $_POST['Facility_name']);
+       $this->redirect('/spadministrationstaff/managefacility');
     }
     //End of Delete Facility of administration staff
 

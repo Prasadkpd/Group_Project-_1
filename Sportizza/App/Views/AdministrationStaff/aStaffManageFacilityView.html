@@ -133,34 +133,32 @@
             </form>
             <div style="display:flex">
 
-                <button class="popup_delete_button">
-                    <a href=""> YES</a>
-                </button>
-                <button onclick="close_popup_delete_message()" class="popup_button">
-                    NO
-                </button>
-            </div>
+            <button class="popup_delete_button">
+                <a href="/Spadministrationstaff/deletefacility/" id="deleteFacilitybtn">YES</a>
+            </button>
+            <button onclick="close_popup_delete_message()" class="popup_button">
+                NO
+            </button>
         </div>
     </div>
     <!-- End OF the POP up Facility delete -->
 
-    <!-- update popup form -->
-    <div id="myForm_for_update" class="sectionpop ">
-        <div class="formsection">
-            <div>
-                <button s class="closebutton" onclick="closepopupform_for_update()">❌</button>
-            </div>
-            <img class="form-profile-picture" src="assets/profile-picture.jpg" alt="">
-            <form action="/spadministrationstaff/validatefacilityname/" style="margin:20px" onsubmit="validateUpdateFacilityForm()"
-                id="formUpdateFacility" Method="POST">
-                <div class="input-row">
-                    <div class="input-box">
-                        <label for="editfacilityname">Facility Name:</label>
-                        <input id="editfacilityname" type="text" name="Facility_name"
-                            onfocusout="validateUpdateFacilityName()" placeholder="Enter new facility name"
-                            value="{{sp_arena.Facility_name}}">
-                        <div class="helper-text" id="facilityUpdateMsg"></div>
-                    </div>
+<!-- update popup form -->
+<div id="myForm_for_update" class="sectionpop ">
+    <div class="formsection">
+        <div>
+            <button class="closebutton" onclick="closepopupform_for_update()">❌</button>
+        </div>
+        <img class="form-profile-picture" src="assets/profile-picture.jpg" alt="">
+        <form action="/Spadministrationstaff/updatefacility/" style="margin:20px" 
+        onsubmit="validateUpdateFacilityForm()" id="formUpdateFacility" method="POST">
+            <div class="input-row">
+                <div class="input-box">
+                    <label for="editfacilityname">Facility Name:</label>
+                    <input id="editfacilityname" type="text" name="Facility_name" 
+                    onfocusout="validateUpdateFacilityName()">
+                    <div class="helper-text" id="firstNameMsg"> </div>
+                </div>
                 </div>
                 <input type="submit" id ="update-facility-btn" class="popup_button" value="Save">
             </form>
@@ -317,8 +315,8 @@
                                 <th class="booking-table-first-th">
                                     <div class="booking-table-filter-container">
                                         <div class="booking-table-search-container">
-                                            <input type="search" name="search" placeholder="Search By Facility Name"
-                                                id="search-delete-facility" onkeyup="searchDeleteTable()">
+                                            <input type="search" name="search" placeholder="Search By Facility Name" 
+                                            id="search-delete-facility" onkeyup="searchDeleteTable()">
                                             <i class="fas fa-search"></i>
                                         </div>
                                         <!-- <div class="booking-table-date-picker">
@@ -335,14 +333,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for facility in deleteFacilities %}
+                            {% for facility in viewFacilities %}
                             <tr>
                                 <td data-label="Facility ID :">{{facility.facility_id}}</td>
                                 <td data-label="Facility Name :">{{facility.facility_name}}</td>
                                 <td class="trash-btn-padding-res"> <button class="icon_red trash-btn"
-                                        style="border:none" onclick="open_popup_delete_message()">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button></td>
+                                     style="border:none" onclick="open_popup_delete_message('{{facility.facility_id}}')">
+                                    <i class="fas fa-trash-alt">
+
+                                    </i>
+                                </button></td>
                             </tr>
                             {% endfor %}
 
@@ -375,8 +375,8 @@
                             </tr>
                         </thead>
                         <tbody>
-
-                            {% for facility in updateFacilities %}
+                            
+                            {% for facility in viewFacilities %}
                             <tr>
                                 <td data-label="Facility ID :">{{facility.facility_id}}</td>
                                 <td data-label="Facility Name :">{{facility.facility_name}}</td>
