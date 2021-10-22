@@ -227,12 +227,8 @@ class Spadministrationstaff extends Authenticated
         $current_user = Auth::getUser();
         $id = $current_user->user_id;
 
-        $combined = $this->route_params['arg'];
-
-        // echo("combined");
-
+        $combined = $this->route_params['id'];
         $facility_name = str_replace("_", " ", $combined);
-
 
         //Call the function in model and echo the resturn result
         $result = SpAdministrationStaffModel::findFacilityByName($id, $facility_name);

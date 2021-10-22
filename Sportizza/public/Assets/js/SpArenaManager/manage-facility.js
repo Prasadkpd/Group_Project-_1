@@ -37,9 +37,11 @@ function closepopupform() {
 }
 
   // popup section for update
-function openpopupform_for_update() {
-    var form = document.getElementById("myForm_for_update");
-    form.style.display = "block";
+function openpopupform_for_update(facility_name, facility_id) {
+  document.getElementById("editfacilityname").value= facility_name;
+  document.getElementById("formUpdateFacility").action += facility_id;
+      var form = document.getElementById("myForm_for_update");
+      form.style.display = "block";
 }
 function closepopupform_for_update() {
     var form = document.getElementById("myForm_for_update");
