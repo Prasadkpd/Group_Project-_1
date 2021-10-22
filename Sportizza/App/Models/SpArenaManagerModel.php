@@ -23,6 +23,34 @@ class SpArenaManagerModel extends \Core\Model
     }
     //End of Class constructor  
 
+    //Start of displaying sports arena profile
+    public static function arenaProfileView($id)
+    {
+        $sql1 = 'SELECT sports_arena_id FROM manager WHERE user_id =:user_id';
+        $db = static::getDB();
+        $stmt1 = $db->prepare($sql1);
+        $stmt1->bindValue(':user_id', $id, PDO::PARAM_INT);
+        $stmt1->execute();
+        $result1 = $stmt1->fetch(PDO::FETCH_ASSOC);
+        $arena_id = $result1['sports_arena_id'];
+
+        $sql2 = 'SELECT sports_arena_profile.sa_name, sports_arena_profile.location, sports_arena_profile.google_map_link, 
+       sports_arena_profile.profile_photo, sports_arena_profile.description, sports_arena_profile.category, 
+       sports_arena_profile.payment_method,sports_arena_profile.other_facilities, sports_arena_profile.contact_no,
+       sports_arena_profile_photo.photo1_name, sports_arena_profile_photo.photo2_name, sports_arena_profile_photo.photo3_name,
+       sports_arena_profile_photo.photo4_name,sports_arena_profile_photo.photo5_name
+        FROM sports_arena_profile INNER JOIN sports_arena_profile_photo ON 
+            sports_arena_profile.s_a_profile_id = sports_arena_profile_photo.sa_profile_id 
+        WHERE sports_arena_profile.sports_arena_id=:arena_id';
+        $stmt2 = $db->prepare($sql2);
+        $stmt2->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+        $stmt2->execute();
+        $result2 = $stmt2->fetch(PDO::FETCH_ASSOC);
+        return $result2;
+    }
+    //End of displaying sports arena profile
+
+
     //Start of displaying sports arena bookings
     public static function managerViewBookings($id)
     {
@@ -124,7 +152,7 @@ class SpArenaManagerModel extends \Core\Model
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
-        $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);   
+        $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
         return ($stmt->execute());
     }
     //End of displaying sports arena's updating bookings
@@ -208,7 +236,7 @@ class SpArenaManagerModel extends \Core\Model
     public static function managerDeleteTimeSlots($id)
     {
 
-         //Retrieving manager's timeslots to view for delete from the database
+        //Retrieving manager's timeslots to view for delete from the database
         $sql = 'SELECT time_slot.time_slot_id, 
         TIME_FORMAT(time_slot.start_time, "%H" ":" "%i") AS startTime, 
         TIME_FORMAT(time_slot.end_time, "%H" ":" "%i") AS endTime,
@@ -236,7 +264,7 @@ class SpArenaManagerModel extends \Core\Model
     public static function managerViewFacility($id)
     {
 
-         //Retrieving manager's facility from the database
+        //Retrieving manager's facility from the database
         $sql = 'SELECT *  FROM facility WHERE manager_user_id=:id';
 
 
@@ -257,7 +285,7 @@ class SpArenaManagerModel extends \Core\Model
 //Start of displaying sports arenas facilities delete for manager
     public static function managerDeleteFacility($id)
     {
-         //Retrieving manager's facility to view for delete from the database
+        //Retrieving manager's facility to view for delete from the database
         $sql = 'SELECT *  FROM facility WHERE manager_user_id=:id';
 
 
@@ -274,11 +302,11 @@ class SpArenaManagerModel extends \Core\Model
         return $result;
     }
     //End of displaying sports arenas facilities delete for manager
-    
+
     //Start of displaying sports arenas facilities update for manager
     public static function managerUpdateFacility($id)
     {
-  //Retrieving manager's facility to view for update from the database
+        //Retrieving manager's facility to view for update from the database
         $sql = 'SELECT *  FROM facility WHERE manager_user_id=:id';
 
 
@@ -299,7 +327,7 @@ class SpArenaManagerModel extends \Core\Model
 //Start of displaying sports arenas view staff for manager
     public static function managerViewStaff($id)
     {
- //Retrieving arenas staff to view from the database
+        //Retrieving arenas staff to view from the database
         $sql = 'SELECT user.first_name, user.last_name ,user.username,user.primary_contact,user.type
         FROM administration_staff
         INNER JOIN booking_handling_staff ON
@@ -326,7 +354,7 @@ class SpArenaManagerModel extends \Core\Model
     //Start of displaying sports arenas remove staff view for manager
     public static function managerRemoveStaff($id)
     {
- //Retrieving arenas staff to view for removing from the database
+        //Retrieving arenas staff to view for removing from the database
         $sql = 'SELECT user.first_name, user.last_name ,user.username,user.primary_contact,user.type 
         FROM administration_staff
         INNER JOIN booking_handling_staff ON
@@ -348,9 +376,9 @@ class SpArenaManagerModel extends \Core\Model
         $result = $stmt->fetchAll();
         return $result;
     }
-       //End of displaying sports arenas remove staff view for manager
+    //End of displaying sports arenas remove staff view for manager
 
-          //Start of displaying sports arenas chart 1 for manager
+    //Start of displaying sports arenas chart 1 for manager
     public static function managerChart1($id)
     {
 //Retrieving data about bookings from the database
@@ -380,9 +408,9 @@ class SpArenaManagerModel extends \Core\Model
         $result = $stmt->fetchAll();
         return $result;
     }
-       //End of displaying sports arenas chart 1 for manager
+    //End of displaying sports arenas chart 1 for manager
 
-          //Start of displaying sports arenas chart 2 for manager
+    //Start of displaying sports arenas chart 2 for manager
     public static function managerChart2($id)
     {
         //Retrieving data about payment method from the database
@@ -413,7 +441,7 @@ class SpArenaManagerModel extends \Core\Model
     }
     //End of displaying sports arenas chart 2 for manager
 
-     //Start of displaying sports arenas chart 3 for manager
+    //Start of displaying sports arenas chart 3 for manager
     public static function managerChart3($id)
     {
 //Retrieving data about timeslots from the database
@@ -440,7 +468,7 @@ class SpArenaManagerModel extends \Core\Model
     }
     //End of displaying sports arenas chart 3 for manager
 
-     //Start of displaying sports arenas chart 4 for manager
+    //Start of displaying sports arenas chart 4 for manager
     public static function managerChart4($id)
     {
 //Retrieving data about bookings per facility from the database
@@ -472,14 +500,14 @@ class SpArenaManagerModel extends \Core\Model
 
         //have to add condition for check timeslot is available
 
-        $hours=(int)substr($start_time, 0,2);
-        $minutes=(int)substr($start_time, 3,5);
-        
-        $end_time=$hours+$duration;
-        $end_time=(string)($end_time.":".$minutes);
+        $hours = (int)substr($start_time, 0, 2);
+        $minutes = (int)substr($start_time, 3, 5);
+
+        $end_time = $hours + $duration;
+        $end_time = (string)($end_time . ":" . $minutes);
 
         $db = static::getDB();
-        
+
 
         // select query for select sports arena from  user id
         $sql = 'SELECT sports_arena_id FROM manager
@@ -505,9 +533,8 @@ class SpArenaManagerModel extends \Core\Model
         //         AND (start_time BETWEEN :start_time AND :end_time)';
 
 
-        
         $stmt = $db->prepare($sql);
-        
+
         $stmt->bindValue(':facility', $facility, PDO::PARAM_STR);
         $stmt->bindValue(':start_time', $start_time, PDO::PARAM_STR);
         $stmt->bindValue(':end_time', $end_time, PDO::PARAM_STR);
@@ -516,12 +543,12 @@ class SpArenaManagerModel extends \Core\Model
 
         $stmt->execute();
         $timeSlots = $stmt->fetchAll();
-            var_dump($timeSlots);
+        var_dump($timeSlots);
 
 
         // insert query for add time slots
 
-        if(empty($timeSlots)){
+        if (empty($timeSlots)) {
             $sql = 'INSERT INTO `time_slot`(`start_time`,`end_time`,`price`,`facility_id`,
                 `manager_user_id`,`manager_sports_arena_id`)
                 VALUES (:start_time,:end_time,:price,:facility,:user_id,:arena_id)';
@@ -534,18 +561,20 @@ class SpArenaManagerModel extends \Core\Model
             $stmt->bindValue(':price', $price, PDO::PARAM_STR);
             $stmt->bindValue(':facility', $facility, PDO::PARAM_STR);
             $stmt->bindValue(':arena_id', $arena_id[0]->sports_arena_id, PDO::PARAM_INT);
-        
+
             return ($stmt->execute());
         }
-        
+
         return ($stmt->execute());
     }
+
     //End of adding timeslot to a sports arena for manager
 
-    public static function managerCheckExistingTimeslots($user_id,$start_time,$duration,$price,$facility){
+    public static function managerCheckExistingTimeslots($user_id, $start_time, $duration, $price, $facility)
+    {
         // $hours=(int)substr($start_time, 0,2);
         // $minutes=(int)substr($start_time, 3,5);
-        
+
         // $end_time=$hours+$duration;
 
         // $temp=$end_time+1;
@@ -557,15 +586,12 @@ class SpArenaManagerModel extends \Core\Model
         // $temp_start=(string)($hours.":"."00");
         // $end_time=(string)($end_time.":".$minutes);
 
-        
+
         // $db = static::getDB();
 
-        
 
         // //have to add condition for check timeslot is available
 
-
-        
 
         // // select query for select sports arena from  user id
         // $sql = 'SELECT sports_arena_id FROM manager
@@ -592,10 +618,9 @@ class SpArenaManagerModel extends \Core\Model
         //         OR (TIME(start_time)=TIME(:temp_start) OR TIME(end_time)=TIME(:temp_end))
         //          OR (TIME(start_time)=TIME(:temp_max_start)) )';
 
-        
-        
+
         // $stmt = $db->prepare($sql);
-        
+
         // $stmt->bindValue(':facility', $facility, PDO::PARAM_STR);
         // $stmt->bindValue(':start_time', $start_time, PDO::PARAM_STR);
         // $stmt->bindValue(':end_time', $end_time, PDO::PARAM_STR);
@@ -615,46 +640,40 @@ class SpArenaManagerModel extends \Core\Model
         // }
 
 
+        $hours = (int)substr($start_time, 0, 2);
+        $minutes = (int)substr($start_time, 3, 5);
 
-        $hours=(int)substr($start_time, 0,2);
-        $minutes=(int)substr($start_time, 3,5);
-        
-        $end_time=$hours+$duration;
-        $end_time=(string)($end_time.":".$minutes);
+        $end_time = $hours + $duration;
+        $end_time = (string)($end_time . ":" . $minutes);
 
-        if($minutes==30){
-            $temp=$hours+1;
+        if ($minutes == 30) {
+            $temp = $hours + 1;
 
-            $start_max=(string)($temp.":"."00");
-            $start_min=(string)($hours.":"."00");
+            $start_max = (string)($temp . ":" . "00");
+            $start_min = (string)($hours . ":" . "00");
 
-            $temp=$hours+$duration;
-            $end_max=(string)($temp.":"."00");
-            $end_min=(string)($hours.":"."00");
+            $temp = $hours + $duration;
+            $end_max = (string)($temp . ":" . "00");
+            $end_min = (string)($hours . ":" . "00");
 
-            
-        }
-        elseif($minutes==0){
-            if($duration==2){
-                $end_middle=$end_time-1;
-                $end_middle=(string)($end_middle.":"."00");
+
+        } elseif ($minutes == 0) {
+            if ($duration == 2) {
+                $end_middle = $end_time - 1;
+                $end_middle = (string)($end_middle . ":" . "00");
             }
-            $start_max=null;
-            $start_min=$start_time;
-            $end_max=$end_time;
-            $end_min=$end_time;
+            $start_max = null;
+            $start_min = $start_time;
+            $end_max = $end_time;
+            $end_min = $end_time;
         }
-        
 
-        
+
         $db = static::getDB();
 
-        
 
         //have to add condition for check timeslot is available
 
-
-        
 
         // select query for select sports arena from  user id
         $sql = 'SELECT sports_arena_id FROM manager
@@ -667,7 +686,7 @@ class SpArenaManagerModel extends \Core\Model
 
         $stmt->execute();
         $arena_id = $stmt->fetchAll();
-        
+
 
         //query for check timeslot is availability
 
@@ -677,10 +696,9 @@ class SpArenaManagerModel extends \Core\Model
                 OR TIME(start_time)=TIME(:start_max) OR TIME(start_time)=TIME(:start_min)
                 OR TIME(end_time)=TIME(:start_max) )';
 
-        
-        
+
         $stmt = $db->prepare($sql);
-        
+
         $stmt->bindValue(':facility', $facility, PDO::PARAM_STR);
         $stmt->bindValue(':start_time', $start_time, PDO::PARAM_STR);
         $stmt->bindValue(':end_time', $end_time, PDO::PARAM_STR);
@@ -693,15 +711,12 @@ class SpArenaManagerModel extends \Core\Model
         $stmt->execute();
         $timeSlots = $stmt->fetchAll();
 
-        if(empty($timeSlots)){
+        if (empty($timeSlots)) {
             return true;
         } else {
             return false;
         }
     }
-
-
-
 
 
 //Start of adding facility to a sports arena for manager
@@ -715,14 +730,13 @@ class SpArenaManagerModel extends \Core\Model
                 WHERE manager.user_id=:user_id';
 
 
-
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
 
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
         $stmt->execute();
-        
+
         // Assign retrieved value to variable
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -743,8 +757,9 @@ class SpArenaManagerModel extends \Core\Model
         $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
         return ($stmt->execute());
     }
+
     //End of adding facility to a sports arena for manager
-    public static function findFacilityByName($id,$fname)
+    public static function findFacilityByName($id, $fname)
     {
 
         $sql = 'SELECT facility_name  FROM facility
@@ -762,8 +777,8 @@ class SpArenaManagerModel extends \Core\Model
         $result2 = $stmt->fetch(PDO::FETCH_ASSOC);
         $facility_name = $result2['facility_name'];
         //Assigning the fetched PDOs to result
-       
-        if(empty($facility_name)){
+
+        if (empty($facility_name)) {
             return true;
         } else {
             return false;

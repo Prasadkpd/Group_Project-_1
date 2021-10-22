@@ -36,8 +36,10 @@ class Sparenamanager extends \Core\Controller
         $current_user = Auth::getUser();
         $id = $current_user->user_id;
 
+        $arena_details = SpArenaManagerModel::arenaProfileView($id);
+//        var_dump($arena_details);
         //Rendering the manager home view(sports arena profile)
-        View::renderTemplate('Manager/mStaffProfileView.html');
+        View::renderTemplate('Manager/mStaffProfileView.html',['arena_details' => $arena_details]);
     }
     //End of Landing page of manager
 
