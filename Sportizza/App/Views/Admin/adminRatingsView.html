@@ -209,7 +209,7 @@
                         </tr>
                         <tr class="booking-thead-second-tr">
                             <!-- <th>Sports Arena ID</th> -->
-                            <th class="b-first-th">Sports Arena Name</th>
+                            <th class="b-first-th">Sports Arena</th>
                             <th>Feedback ID</th>
                             <th class="description-th">Description</th>
                             <th class="rating-th">Ratings</th>
@@ -220,7 +220,8 @@
                     <tbody>
                         {% for rating in ratings %}
                         <tr>
-                            <td data-label="Sports Arena Name :">{{rating.sa_name}}</td>
+                            <td data-label="Sports Arena :" style="white-space: wrap;">{{rating.sa_name}}
+                                ({{rating.contact_no}})</td>
                             <td data-label="Feedback ID :">{{rating.feedback_id}}</td>
                             <td data-label="Description :" class="description">{{rating.description}}</td>
                             <td data-label="Rating :" class="rating">{{rating.feedback_rating}}</td>
@@ -231,7 +232,8 @@
                         {% endfor %}
 
                         <tr>
-                            <td data-label="Sports Arena Name :">Herald Sports Academy</td>
+                            <td data-label="Sports Arena :" style="white-space: wrap;">Herald Sports Academy
+                                (112473121)</td>
                             <td data-label="Feedback ID :">100000009</td>
                             <td data-label="Description :" class="description">The turf was not conditioned properly. One of my friends got injured as well.</td>
                             <td data-label="Rating :" class="rating">1</td>
@@ -241,7 +243,8 @@
                         </tr>
 
                         <tr>
-                            <td data-label="Sports Arena Name :">Roshen Sports Club</td>
+                            <td data-label="Sports Arena :" style="white-space: wrap;">Roshen Sports Club
+                                (112772233)</td>
                             <td data-label="Feedback ID :">100000013</td>
                             <td data-label="Description :" class="description">No refreshments available as stated in the app</td>
                             <td data-label="Rating :" class="rating">2</td>
@@ -251,7 +254,8 @@
                         </tr>
 
                         <tr>
-                            <td data-label="Sports Arena Name :">Negombo Futsal Arena</td>
+                            <td data-label="Sports Arena :" style="white-space: wrap;">Negombo Futsal Arena
+                                (112878787)</td>
                             <td data-label="Feedback ID :">100000016</td>
                             <td data-label="Description :" class="description">The arena didn't open on time.</td>
                             <td data-label="Rating :" class="rating">1</td>
@@ -261,7 +265,8 @@
                         </tr>
 
                         <tr>
-                            <td data-label="Sports Arena Name :">Negombo Futsal Arena</td>
+                            <td data-label="Sports Arena :" style="white-space: wrap;">Negombo Futsal Arena
+                                (112878787)</td>
                             <td data-label="Feedback ID :">100000017</td>
                             <td data-label="Description :" class="description">Grass was in poor condition</td>
                             <td data-label="Rating :" class="rating">2</td>
