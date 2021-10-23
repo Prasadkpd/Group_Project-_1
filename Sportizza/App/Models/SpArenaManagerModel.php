@@ -544,16 +544,20 @@ class SpArenaManagerModel extends \Core\Model
 
     public static function managerCheckExistingTimeslots($user_id,$start_time,$duration,$price,$facility){
 
+        // Changing start_time variable to hh:mm:ss format
+        $start_time=(string)($start_time.":00");
+
         $hours=(int)substr($start_time, 0,2);
         $minutes=(int)substr($start_time, 3,2);
         
         $end_time=$hours+$duration;
         // $end_time=(string)($end_time.":".$minutes);
 
+        // If end_time is less than 10am, add a zero before the hh:mm:ss time format. Else just change it to hh:mm:ss
         if($end_time<10){
-            $end_time=(string)("0".$end_time.":".$minutes);
+            $end_time=(string)("0".$end_time.":".$minutes.":00");
         }else{
-            $end_time=(string)($end_time.":".$minutes);
+            $end_time=(string)($end_time.":".$minutes.":00");
         }
         
         $db = static::getDB();
@@ -588,9 +592,9 @@ class SpArenaManagerModel extends \Core\Model
         // Assigning each database row to a variable
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             // If input start time is between database timeslot range excluding end time and If input end time is between database timeslot range excluding start time
-            if (($row["end_time"] > $start_time && $row["start_time"] <= $start_time) || ($row["end_time"] >= $end_time && $row["start_time"] < $end_time))
+            // strtotime is used to convert string to time. So times can be compared
+            if ((strtotime($row["end_time"]) > strtotime($start_time) && strtotime($row["start_time"]) <= strtotime($start_time)) || (strtotime($row["end_time"]) >= strtotime($end_time) && strtotime($row["start_time"]) < strtotime($end_time)))
             {
-                // Timeslot cannot be inserted
                 return false;
             }
         }
