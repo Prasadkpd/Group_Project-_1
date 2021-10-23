@@ -161,10 +161,10 @@
                     <label for="editfacilityname">Facility Name:</label>
                     <input id="editfacilityname" type="text" name="Facility_name" 
                     onfocusout="validateUpdateFacilityName()">
-                    <div class="helper-text" id="firstNameMsg"> </div>
+                    <div class="helper-text" id="facilityupdateMsg"> </div>
                 </div>
                 </div>
-            <input type="submit" class="popup_button" value="Save">
+            <input type="submit" id ="update-facility-btn" class="popup_button" value="Save">
         </form>
     </div>
 </div>
@@ -382,7 +382,7 @@
                                 <td data-label="Facility Name :">{{facility.facility_name}}</td>
                                 <td> <button class="icon_red trash-btn" style="border:none"
                                 onclick="openpopupform_for_update('{{facility.facility_id}}',
-                                '{{facility.facility_name}}')">
+                                '{{facility.facility_name}}')" id="Facility-update-btn" value= "{{facility.facility_name}}">
                                 <i class="fas fa-pencil-alt"></i>
                                 </button></td>
                             </tr>
@@ -407,7 +407,8 @@
     <script type="text/javascript" src="/Assets/js/lib/jquery/jquery.min.js"></script>
      <!-- AJAX file -->
      <script type="text/javascript" src="/Assets/js/SpArenaAdministrationStaff/saadmin-facility-ajax.js?version=6"></script>
-    <!-- Validation JS -->
+     <script type="text/javascript" src="/Assets/js/SpArenaAdministrationStaff/saadmin-update-facility-ajax.js?version=6"></script>
+     <!-- Validation JS -->
     <script type="text/javascript" src="/Assets/js/signup_validation.js?version=6.0"></script>
      <!-- Top navbar js -->
      <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>

@@ -568,7 +568,8 @@ class SpAdministrationStaffModel extends \Core\Model
         $arena_id = $result1["sports_arena_id"];
 
         $sql = 'SELECT facility_name  FROM facility
-                WHERE LOWER(facility.facility_name) = LOWER(:fname) AND facility.sports_arena_id=:arena_id';
+                WHERE LOWER(facility.facility_name) = LOWER(:fname) 
+                AND facility.sports_arena_id=:arena_id AND security_status="active"';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -586,6 +587,51 @@ class SpAdministrationStaffModel extends \Core\Model
         if (empty($facility_name)) {
             return true;
         } else {
+            return false;
+        }
+    }
+
+    public static function findFacilityExcludeByName($id, $facility_id, $fname)
+    {
+        $sql = 'SELECT sports_arena_id FROM administration_staff WHERE 
+        administration_staff.user_id=:id';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+
+        $result1 = $stmt->fetch(PDO::FETCH_ASSOC);
+        $arena_id = $result1["sports_arena_id"];
+
+        $sql = 'SELECT facility_name  FROM facility 
+                WHERE LOWER(facility.facility_name) = LOWER(:fname) AND 
+                facility.sports_arena_id =:arena_id
+                AND facility.facility_id <> :facility_id
+                AND security_status="active"';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':fname', $fname, PDO::PARAM_STR);
+        $stmt->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
+        $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+        $result2 = $stmt->fetch(PDO::FETCH_ASSOC);
+        $facility_name = $result2['facility_name'];
+        //Assigning the fetched PDOs to result
+
+        if (!empty($facility_name)) {
+            return true;
+        }
+        else{
             return false;
         }
     }

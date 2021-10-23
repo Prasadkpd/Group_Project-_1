@@ -222,13 +222,9 @@ class Spadministrationstaff extends Authenticated
         //Get the current user's details with session using Auth
         $current_user = Auth::getUser();
         $id = $current_user->user_id;
-
         $combined = $this->route_params['arg'];
 
-        // echo("combined");
-
         $facility_name = str_replace("_", " ", $combined);
-
 
         //Call the function in model and echo the resturn result
         $result = SpAdministrationStaffModel::findFacilityByName($id, $facility_name);
@@ -238,7 +234,27 @@ class Spadministrationstaff extends Authenticated
         }
     }
     //End of validate Facility name of administration staff
+ //Start of Update Facility name of administration staff
+ public function validateAndUpdatefacilitynameAction()
+ {
+     //Get the current user's details with session using Auth
+     $current_user = Auth::getUser();
+     $id = $current_user->user_id;
+     $combined = $this->route_params['arg'];
 
+    $combined = explode("__",$combined);
+    $facility_id = $combined[1];
+    $facility_name = str_replace("_", " ", $combined[0]);
+
+    // echo $facility_id . "_" . $facility_name;
+    // return true;
+
+     //Call the function in model and echo the resturn result
+     $result = SpAdministrationStaffModel::findFacilityExcludeByName($id, $facility_id, $facility_name);
+
+    echo $result;
+ }
+ //End of Update Facility name of administration staff
 
     //Start of Delete Facility of administration staff
     public function deletefacilityAction()

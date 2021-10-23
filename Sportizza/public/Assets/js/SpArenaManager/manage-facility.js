@@ -38,6 +38,9 @@ function closepopupform() {
 
   // popup section for update
 function openpopupform_for_update(facility_id, facility_name) {
+  
+  // getFacilityName(facility_name);
+  
 document.getElementById("editfacilityname").value=facility_name;
 document.getElementById("formUpdateFacility").action += facility_id;
     var form = document.getElementById("myForm_for_update");
