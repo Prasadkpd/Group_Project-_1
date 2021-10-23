@@ -236,7 +236,7 @@
                 <h1>Rate Sports Arena</h1>
             </div>
 
-            <form action="customer/customeraddfeedback" style="margin:20px" method="post">
+            <form id="popup_rate_form" action="customer/customeraddfeedback" style="margin:20px" method="post">
                 <div class="rating-row">
                     <div class="input-box">
                         <label for="arena_name">Sports Arena Name</label>
@@ -273,8 +273,11 @@
                 </div>
 
                 <div class="popup_button_submit">
-                    <!-- <a href="customer/customeraddfeedback">Submit</a> -->
-                    <button type="submit">submit</button>
+                    <!-- <button type="submit">
+                        <a href="customer/customeraddfeedback">Submit</a>
+                    </button> -->
+
+                    <a href="javascript:{}" onclick="document.getElementById('popup_rate_form').submit();">Submit</a>
                 </div>
             </form>
         </div>
@@ -341,7 +344,7 @@
                     <button onclick="close_popup_delete_message_favorite_list()" class="popup_button">
                         NO
                     </button>
-                </div>66\\\
+                </div>
             </form>
 
 
