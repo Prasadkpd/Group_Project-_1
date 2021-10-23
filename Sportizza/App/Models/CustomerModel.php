@@ -29,7 +29,8 @@ class CustomerModel extends \Core\Model
 
         //Retrieving customers from the database
         $sql = 'SELECT booking.booking_id,booking.customer_user_id, booking.booking_date,
-                booking.payment_status,booking.payment_method, booking.price_per_booking,sports_arena_profile.sa_name,
+                booking.payment_status,booking.payment_method, booking.price_per_booking,booking.sports_arena_id,
+                sports_arena_profile.sa_name,
                 sports_arena_profile.category,sports_arena_profile.google_map_link,         
                 TIME_FORMAT(time_slot.start_time, "%H" ":" "%i") AS startTime, 
                 TIME_FORMAT(time_slot.end_time, "%H" ":" "%i") AS endTime
@@ -234,7 +235,7 @@ class CustomerModel extends \Core\Model
 
     public static function customerCancelBooking($booking_id)
     {
-        //update booking status as a inactive
+        //update booking security status as a inactive
         $sql = 'UPDATE booking 
                 SET security_status="inactive"
                 WHERE booking_id=:booking_id';
@@ -244,13 +245,24 @@ class CustomerModel extends \Core\Model
 
         //Binding the customer id and Converting retrieved data from database into PDOs
         $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
-        return $stmt->execute();
+        $stmt->execute();
 
 
 
-        // have to add update timeslot in arena side as a 
-        // time is available 
+        
 
+
+        //update booking_timeslot security  status as a inactive
+        $sql = 'UPDATE booking_timeslot 
+                SET security_status="inactive"
+                WHERE booking_id=:booking_id';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding the customer id and Converting retrieved data from database into PDOs
+        $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+         return $stmt->execute();
 
 
     }
@@ -287,6 +299,31 @@ class CustomerModel extends \Core\Model
         //Binding the customer id and Converting retrieved data from database into PDOs
         $stmt->bindValue(':fav_list_id', $fav_list_id, PDO::PARAM_INT);
         $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+        return $stmt->execute();
+
+
+    }
+
+
+    public static function customerAddFeedback($feedback)
+    {
+        //insert query for add feedbacks
+        $sql = 'INSERT INTO feedback(booking_id,feedback_rating,sports_arena_id,description,customer_user_id)
+        VALUES(:booking_id,:feedback_rating,:sports_arena_id,:description,:customer_user_id)';
+
+        // get database connection
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding the customer id and Converting retrieved data from database into PDOs
+        $stmt->bindValue(':booking_id', $feedback["booking_id"], PDO::PARAM_INT);
+        $stmt->bindValue(':feedback_rating', $feedback["rate"], PDO::PARAM_INT);
+        $stmt->bindValue(':sports_arena_id', $feedback["arena_id"], PDO::PARAM_STR);
+        $stmt->bindValue(':description', $feedback["rating_description"], PDO::PARAM_STR);
+        $stmt->bindValue(':customer_user_id', $feedback["customer_id"], PDO::PARAM_INT);
+
+
+
         return $stmt->execute();
 
 

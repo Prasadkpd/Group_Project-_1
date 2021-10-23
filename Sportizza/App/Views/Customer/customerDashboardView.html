@@ -236,15 +236,17 @@
                 <h1>Rate Sports Arena</h1>
             </div>
 
-            <form action="/action_page.php" style="margin:20px">
+            <form action="customer/customeraddfeedback" style="margin:20px" method="post">
                 <div class="rating-row">
                     <div class="input-box">
                         <label for="arena_name">Sports Arena Name</label>
-                        <input type="text" id="arena_name" name="arena_name" value="ACC Sports Arena" readonly>
+                        <input type="text" id="arena_name" name="arena_name"  readonly>
                     </div>
                 </div>
 
-                <input type="text" id="booking_id" name="booking_id" value="100000015" hidden>
+                <input type="text" id="booking_id" name="booking_id"  hidden>
+                <input type="text" id="arena_id" name="arena_id"  hidden>
+                <input type="text" id="customer_id" name="customer_id" value={{current_user.user_id}}  hidden>
 
                 <div class="rating-row">
                     <div class="input-box">
@@ -266,12 +268,13 @@
                 <div class="rating-row">
                     <div class="input-box">
                         <label for="lname">Feedback</label>
-                        <textarea rows=5> </textarea>
+                        <textarea id="rating_description" name="rating_description" rows=5> </textarea>
                     </div>
                 </div>
 
                 <div class="popup_button_submit">
-                    <a href="">Submit</a>
+                    <!-- <a href="customer/customeraddfeedback">Submit</a> -->
+                    <button type="submit">submit</button>
                 </div>
             </form>
         </div>
@@ -338,7 +341,7 @@
                     <button onclick="close_popup_delete_message_favorite_list()" class="popup_button">
                         NO
                     </button>
-                </div>
+                </div>66\\\
             </form>
 
 
@@ -546,7 +549,7 @@
                 <td class="btn-float-right">
                     <div style="display:flex; float:right; padding-right:2rem;">
                         <div>
-                            <button onclick="open_popup_rate_message('{{book.booking_id}}')">
+                            <button onclick="open_popup_rate_message('{{book.booking_id}}','{{book.sa_name}}','{{book.sports_arena_id}}')">
                                 <i class="fas fa-star-half-alt"></i>
                             </button>
                         </div>
@@ -582,11 +585,10 @@
             <td class="btn-float-right">
                 <div style="display:flex; float:right; padding-right:2rem;">
                     <div>
-                        <button onclick="open_popup_share('{{book.booking_id}}','{{book.booking_date}}','{{book.startTime}}','{{book.endTime}}',
-            '{{book.sa_name}}','{{book.category}}','{{book.google_map_link}}')">
-                            <i class="fas fa-star-half-alt"></i>
-                        </button>
-                    </div>
+                            <button onclick="open_popup_rate_message('{{book.booking_id}}','{{book.sa_name}}')">
+                                <i class="fas fa-star-half-alt"></i>
+                            </button>
+                        </div>
                     <div>
                         <button class="icon_red" onclick="open_popup_delete_message('{{book.booking_id}}')">
                             <i class="fas fa-trash-alt"></i>

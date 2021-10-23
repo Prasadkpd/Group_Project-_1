@@ -127,10 +127,15 @@ function close_popup_delete_message() {
 
 
 //popup rate message
-function open_popup_rate_message() {
+function open_popup_rate_message(booking_id,sa_name,arena_id) {
   var form = document.getElementById("popup_rate");
 
   form.style.display = "block";
+
+  document.getElementById("arena_name").value=sa_name;
+  document.getElementById("booking_id").value=booking_id;
+  document.getElementById("arena_id").value=arena_id;
+
 }
 function close_popup_rate_message() {
   var form = document.getElementById("popup_rate");

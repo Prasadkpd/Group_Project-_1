@@ -103,7 +103,12 @@ class Customer extends Authenticated
         //Assigning booking id to variable
         $booking_id = $this->route_params['id'];
         $cancelbooking = CustomerModel::customerCancelBooking($booking_id);
-        $this->redirect("/customer");
+
+        if($cancelbooking){
+            NotificationModel::cancelNotificationBookingSuccess($current_user,$booking_id);
+            $this->redirect("/customer");
+        }
+        
 
 
     }
@@ -116,7 +121,12 @@ class Customer extends Authenticated
         //Assigning bookings related to customer
         $booking_id = $this->route_params['id'];
         $deletebooking = CustomerModel::customerDeleteBooking($booking_id);
-        $this->redirect("/customer");
+
+
+        if($deletebooking){
+            $this->redirect("/customer");
+        }
+        
 
 
     }
@@ -131,10 +141,25 @@ class Customer extends Authenticated
         $arena_id = $this->route_params['id'];
         $favourie_list_id=$_POST['fav_list_id_input'];
         $deletebooking = CustomerModel::customerDeleteFavoriteArena($favourie_list_id,$arena_id);
+        
         $this->redirect("/customer");
 
 
     }
+
+    public function customeraddfeedbackAction()
+    {
+        //Get the current user's details with session using Auth
+        $current_user = Auth::getUser();
+
+        //Assigning bookings related to customer
+        $addfeedback = CustomerModel::customerAddFeedback($_POST);
+        
+        $this->redirect("/customer");
+
+
+    }
+
     //End of cancel bookings from customer's my bookings view
 
 

@@ -84,9 +84,9 @@ class NotificationModel extends \Core\Model
     public static function cancelNotificationGetCustomerIds($booking_id)
     {
         
-        $sql = 'SELECT `user_id`, `first_name`, `last_name` FROM `user`
-                INNER JOIN `booking`ON `user`.`user_id`=`booking`.`customer_user_id`
-                WHERE `user`.`type`="customer" AND `booking`.`booking_id`=:booking_id';
+        $sql = 'SELECT user.user_id, user.first_name, user.last_name FROM user
+                INNER JOIN booking ON user.user_id=booking.customer_user_id
+                WHERE user.type="customer" AND booking.booking_id=:booking_id';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -94,18 +94,16 @@ class NotificationModel extends \Core\Model
         $stmt->execute();
         
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        // $cid = $result["customer_user_id"];
-        
         return $result;
     }
 
     public static function cancelNotificationGetManagerIds($booking_id)
     {
         
-        $sql = 'SELECT `manager`.`user_id` 
-                FROM `manager` 
-                INNER JOIN `booking` ON `manager`.`sports_arena_id`= `booking`.`sports_arena_id`
-                WHERE `booking`.`booking_id`=:booking_id';
+        $sql = 'SELECT manager.user_id
+                FROM manager
+                INNER JOIN booking ON manager.sports_arena_id= booking.sports_arena_id
+                WHERE booking.booking_id=:booking_id';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -312,6 +310,7 @@ class NotificationModel extends \Core\Model
         $fname = $current_user->first_name;
         $lname = $current_user->last_name;
         
+
         // Select booking date
         $bdate = $data["booking_date"];
 
@@ -328,11 +327,11 @@ class NotificationModel extends \Core\Model
         // INSERT QUERIES TO USERS
         
    
-        $sql5 = 'INSERT INTO `notification`(`user_id`, `subject`, `priority`, `description`) VALUES (:uid,:subject,:p_level,:desc)';
+        $sql5 = 'INSERT INTO notification(user_id,subject, priority, description) VALUES (:uid,:subject,:p_level,:desc)';
         $stmt5 = $db->prepare($sql5);
         
         // for customer
-        $stmt5->execute(['uid'=> $customer_id, 'subject'=> $custsubj, 'p_level'=> $p_level, 'desc'=> $custdesc]);
+        $stmt5->execute([':uid'=> $customer_id, ':subject'=> $custsubj, ':p_level'=> $p_level, ':desc'=> $custdesc]);
 
         // for manager
         $stmt5->execute(['uid'=> $manager_id, 'subject'=> $sparsubj, 'p_level'=> $p_level, 'desc'=>$spardesc]);
