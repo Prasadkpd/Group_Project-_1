@@ -14,5 +14,5 @@ class Config
 
     const DB_PASSWORD = 'admin';
 
-    const SHOW_ERRORS = true;
+    const SHOW_ERRORS = false;
 }

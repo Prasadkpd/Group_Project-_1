@@ -1,0 +1,12 @@
+[24-Oct-2021 15:15:21 Europe/Berlin] Uncaught exception: 'Exception' with message 'Controller class App\Controllers\Daf not found'
+Stack trace: #0 C:\xampp\htdocs\Group_Project-_1\Sportizza\public\index.php(45): Core\Router->dispatch('daf')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\Group_Project-_1\Sportizza\Core\Router.php' on line 93
+[24-Oct-2021 15:16:52 Europe/Berlin] Uncaught exception: 'Exception' with message 'Controller class App\Controllers\Daf not found'
+Stack trace: #0 C:\xampp\htdocs\Group_Project-_1\Sportizza\public\index.php(45): Core\Router->dispatch('daf')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\Group_Project-_1\Sportizza\Core\Router.php' on line 93
+[24-Oct-2021 15:17:12 Europe/Berlin] Uncaught exception: 'Exception' with message 'Controller class App\Controllers\Aaaa not found'
+Stack trace: #0 C:\xampp\htdocs\Group_Project-_1\Sportizza\public\index.php(45): Core\Router->dispatch('aaaa')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\Group_Project-_1\Sportizza\Core\Router.php' on line 93
