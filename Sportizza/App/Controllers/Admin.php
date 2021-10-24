@@ -41,13 +41,10 @@ class Admin extends Authenticated
         //Retreiving FAQs from admin model
         $viewFAQs = AdminModel::adminViewFAQ();
 
-        //Retreiving FAQs from admin model
-        $deleteFAQs = AdminModel::adminDisplayDeleteFAQ();
-
         //Rendering the admin FAQ view
         View::renderTemplate(
             'Admin/adminFAQView.html',
-            ['viewFAQs' => $viewFAQs, 'deleteFAQs' => $deleteFAQs]
+            ['viewFAQs' => $viewFAQs]
         );
     }
 
