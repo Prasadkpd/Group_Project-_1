@@ -69,9 +69,24 @@ class Admin extends Authenticated
     }
     //End of create FAQ 
 
-    //Start of Update FAQ 
-    //Add FAQ action
+    // Start of delete FAQ
 
+    public function deletefaqAction()
+    {
+        //Obtaining faq id sent from href
+        $faq_id = $this->route_params['id'];
+
+        // Pass FAQ id to delete FAQ function in admin model
+        AdminModel::adminDeleteFAQ($faq_id);
+        
+        //Redirect to admin's FAQ page
+        $this->redirect('/Admin/faq');
+    }
+
+    // End of delete FAQ
+
+    //Start of Update FAQ
+    
     //Passing the FAQ type from AddFAQ view (Html and JS) and getting FAQ questions
     public function getquestionsAction()
     {
@@ -89,6 +104,25 @@ class Admin extends Authenticated
         //Echo HTML tag sent by Model with FAQs answers and it gets triggered with success in JS
         echo AdminModel::adminGetSolutionDetails($question);
     }
+
+    // Updating FAQ solution
+
+    public function updatefaqAction()
+    {
+        //Obtaining faq id and answer sent from href
+        $combined = $this->route_params['arg'];
+        $combined = explode("__",$combined);
+
+        $faq_id = $combined[0];
+        $answer = str_replace("_", " ", $combined[1]);
+
+        // Pass FAQ id and answer to update FAQ function in admin model
+        AdminModel::adminUpdateFAQ($faq_id, $answer);
+        
+        //Redirect to admin's FAQ page
+        $this->redirect('/Admin/faq');
+    }
+
     //End of Update FAQ 
 
 
@@ -113,6 +147,21 @@ class Admin extends Authenticated
     }
     //End of manage users view
 
+    // Start of deleting customers
+    public function deletecustomersAction(){
+        
+        //Obtaining customer id sent from JS
+        $id = $this->route_params['id'];
+
+        // Pass feedback id to delete ratings function in admin model
+        AdminModel::adminDeleteCustomers($id);
+
+        //Redirect to admin's ratings page
+        $this->redirect('/Admin/manageuser');
+
+    }
+    // End of deleting customers
+
     //Start of removing negative ratings view
     public function ratingsAction()
     {
@@ -126,6 +175,21 @@ class Admin extends Authenticated
         );
     }
     //End of removing negative ratings view
+
+    // Start of deleting ratings
+    public function deleteratingsAction(){
+        
+        //Obtaining rating id sent from JS
+        $feedback_id = $this->route_params['id'];
+
+        // Pass feedback id to delete ratings function in admin model
+        AdminModel::adminDeleteRatings($feedback_id);
+
+        //Redirect to admin's ratings page
+        $this->redirect('/Admin/ratings');
+
+    }
+    // End of deleting ratings
 
     //Start of Chart view
     public function chartAction()

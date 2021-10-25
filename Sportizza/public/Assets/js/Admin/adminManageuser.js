@@ -58,8 +58,12 @@ function close_popup_signout_message() {
 }
 
 //popup remove customers message
-function open_popup_rmve_customers_message() {
+function open_popup_rmve_customers_message(id) {
   var form = document.getElementById("popup_rmve_customers");
+
+  var anchor = document.getElementById("deletecustomerbutton");
+  anchor.href = "http://localhost/admin/deletecustomers/" + id;
+  console.log(anchor.href);
 
   form.style.display = "block";
 }

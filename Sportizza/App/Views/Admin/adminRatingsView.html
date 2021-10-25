@@ -129,7 +129,7 @@
             <div style="display:flex">
 
                 <button class="popup_delete_button">
-                    <a href=""> YES</a>
+                    <a id="deleteFAQbutton" href=""> YES</a>
                 </button>
                 <button onclick="close_popup_delete_message()" class="popup_button">
                     NO
@@ -227,7 +227,7 @@
                             <td data-label="Rating :" class="rating">{{rating.feedback_rating}}</td>
                             <td data-label="Date Posted :">{{rating.date}}</td>
                             <td class="trash-btn-padding-res"> <a class="trash-btn"
-                                    onclick="open_popup_delete_message()"><i class="fas fa-trash-alt"></i></a></td>
+                                    onclick="open_popup_delete_message('{{rating.feedback_id}}')"><i class="fas fa-trash-alt"></i></a></td>
                         </tr>
                         {% endfor %}
 

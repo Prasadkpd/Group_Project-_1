@@ -54,8 +54,11 @@ function close_popup_signout_message() {
 }
 
 //popup delete message
-function open_popup_delete_message() {
+function open_popup_delete_message(id) {
     var form = document.getElementById("popup_delete");
+    var anchor = document.getElementById("deleteFAQbutton");
+    anchor.href = "http://localhost/admin/deletefaq/" + id;
+    console.log(anchor.href);
     form.style.display = "block";
 }
 function close_popup_delete_message() {
@@ -166,12 +169,28 @@ function validateUType() {
   return true;
 }
 
+// Declaring global variable for updating form action for FAQ update
+var link = document.getElementById("updateFAQForm").action;
+
 function validateUQuestion(){
+  // Retreiving FAQ ID and appending it to update FAQ form action
+  var id = document.getElementById("uquestion").value;
+  link = "http://localhost/admin/updatefaq/"+id;
+  console.log(link);
+
   if (!selectValidate(uquestion)) return;
   return true;
 }
 
 function validateUSolution(){
+  // Retreiving updated answer
+  var answer = document.getElementById("usolution").value;
+  // Replace spaces with underscores and append it to the existing update FAQ form action seperating ID and answer
+  answer = answer.trim().split(' ').join('_');
+  var alink = `${link}__${answer}`;
+  document.getElementById("updateFAQForm").action = alink
+  console.log(document.getElementById("updateFAQForm").action);
+
   if (checkIfEmpty(usolution)) return;
   if (!checkCharacters(usolution)) return;
   return true;

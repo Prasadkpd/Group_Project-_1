@@ -43,6 +43,21 @@ class AdminModel extends \Core\Model
     }
     //End of Displaying remove customers
 
+    //Start of Deleting customers
+    public static function adminDeleteCustomers($id)
+    {
+        //Updating FAQ answer in the database
+        $sql = 'UPDATE user SET security_status="inactive" WHERE user_id=:id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        return ($stmt->execute());
+    }
+    //End of Deleting customers
+
     //Start of Displaying pending requests of sports arenas
     public static function adminDisplayAddSportsArenas()
     {
@@ -129,24 +144,20 @@ class AdminModel extends \Core\Model
     }
     //End of Inserting of FAQs
 
-    //Start of Displaying Delete FAQs
-    public static function adminDisplayDeleteFAQ()
+    //Start of Deleting FAQs
+    public static function adminDeleteFAQ($id)
     {
-        //Retrieving of FAQs from the database
-        $sql = 'SELECT * FROM faq WHERE security_status="active" ';
+        //Deleting FAQs or setting FAQ status as inactive in the database
+        $sql = 'UPDATE faq SET security_status="inactive" WHERE faq_id=:id ';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
 
-        //Converting retrieved data from database into PDOs
-        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-        $stmt->execute();
-
-        //Assigning the fetched PDOs to result
-        $result = $stmt->fetchAll();
-        return $result;
+        //Binding input data into database query variables
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        return ($stmt->execute());
     }
-    //End of Displaying Delete FAQs
+    //End of Deleting FAQs
 
     //Start of Displaying of Update FAQ questions
     public static function adminGetQuestionDetails($type)
@@ -200,6 +211,23 @@ class AdminModel extends \Core\Model
     }
     //End of Displaying of Update FAQ answer
 
+    //Start of Updating FAQs
+    public static function adminUpdateFAQ($faq_id, $answer)
+    {
+        //Updating FAQ answer in the database
+        $sql = 'UPDATE faq SET answer=:answer WHERE faq_id=:id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':answer', $answer, PDO::PARAM_STR);
+        $stmt->bindValue(':id', $faq_id, PDO::PARAM_INT);
+        return ($stmt->execute());
+    }
+    //End of Updating FAQs
+
+
     //Start of Displaying of Remove ratings
     public static function adminDisplayRemoveRatings()
     {
@@ -224,6 +252,23 @@ class AdminModel extends \Core\Model
         return $result;
     }
     //End of Displaying of Remove ratings
+
+
+    //Start of Deleting ratings
+    public static function adminDeleteRatings($feeback_id)
+    {
+        //Updating FAQ answer in the database
+        $sql = 'UPDATE feedback SET security_status="inactive" WHERE feedback_id=:id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':id', $feeback_id, PDO::PARAM_INT);
+        return ($stmt->execute());
+    }
+    //End of Deleting ratings
+
 
     //Start of Displaying of admin's chart 1
     public static function adminChart1()

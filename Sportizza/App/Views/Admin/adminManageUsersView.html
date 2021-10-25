@@ -153,7 +153,7 @@
             </form>
             <div style="display:flex">
                 <button class="popup_button">
-                    YES
+                    <a id="deletecustomerbutton" href=""> YES</a>
                 </button>
                 <button onclick="close_popup_rmve_customers_message()" class="popup_delete_button">
                     NO
@@ -403,7 +403,7 @@
                                 <td data-label="Username :">{{customer.username}}</td>
                                 <td data-label="Primary Contact :">{{customer.primary_contact}}</td>
                                
-                                <td class="trash-btn-padding-res"> <a class="trash-btn" onclick="open_popup_rmve_customers_message()"><i
+                                <td class="trash-btn-padding-res"> <a class="trash-btn" onclick="open_popup_rmve_customers_message('{{customer.user_id}}')"><i
                                             class="fas fa-trash-alt"></i></a></td>
                             </tr>
                             {% endfor %}
