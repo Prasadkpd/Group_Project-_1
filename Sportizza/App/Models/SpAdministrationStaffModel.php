@@ -565,6 +565,7 @@ class SpAdministrationStaffModel extends \Core\Model
         $stmt->execute();
         $result2 = $stmt->fetch(PDO::FETCH_ASSOC);
         $facility_name = $result2['facility_name'];
+        
         //Assigning the fetched PDOs to result
 
         if (empty($facility_name)) {

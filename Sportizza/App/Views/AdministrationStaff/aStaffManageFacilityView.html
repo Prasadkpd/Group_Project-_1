@@ -6,19 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Facility</title>
-     <!-- Top Nav bar CSS styles -->
-     <link rel="stylesheet" href="/Assets/css/navbar.css?version=4">
-     <!-- File Specific CSS Styles -->
-     <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-facility.css?version=15">
+    <!-- Top Nav bar CSS styles -->
+    <link rel="stylesheet" href="/Assets/css/navbar.css?version=4">
+    <!-- File Specific CSS Styles -->
+    <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-facility.css?version=15">
     <link rel="stylesheet" href="/Assets/css/SpAdministartionStaff/sidebar.css?version=10">
-     <!-- Icon files -->
+    <!-- Icon files -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-     <!-- Top Navigation Bar -->
-     <nav>
+    <!-- Top Navigation Bar -->
+    <nav>
         <div class="nav-left">
             <div class="logo-container">
                 <a href="/">
@@ -115,26 +115,23 @@
 
     <!-- End Top Navigation Bar -->
 
-
-
-
-<!-- Start OF the POP up Facility Delete -->
-<div id="popup_delete" class="sectionpop ">
-    <div class="formsection">
-        <div>
-            <button class="closebutton" onclick="close_popup_delete_message()">❌</button>
-        </div>
-        <form action="/action_page.php" style="margin:20px">
-            <div >
-                <h1>
-                    Facility Deletion
-                </h1>
-                <p>
-                    Do you really want to delete the Facility?
-                </p>
+    <!-- Start OF the POP up Facility Delete -->
+    <div id="popup_delete" class="sectionpop ">
+        <div class="formsection">
+            <div>
+                <button class="closebutton" onclick="close_popup_delete_message()">❌</button>
             </div>
-        </form>
-        <div style="display:flex">
+            <form action="/action_page.php" style="margin:20px">
+                <div>
+                    <h1>
+                        Facility Deletion
+                    </h1>
+                    <p>
+                        Do you really want to delete the Facility?
+                    </p>
+                </div>
+            </form>
+            <div style="display:flex">
 
             <button class="popup_delete_button">
                 <a href="/Spadministrationstaff/deletefacility/" id="deleteFacilitybtn">YES</a>
@@ -144,8 +141,8 @@
             </button>
         </div>
     </div>
-</div>
-<!-- End OF the POP up Facility delete -->
+    </div>
+    <!-- End OF the POP up Facility delete -->
 
 <!-- update popup form -->
 <div id="myForm_for_update" class="sectionpop ">
@@ -167,9 +164,8 @@
             <input type="submit" id ="update-facility-btn" class="popup_button" value="Save">
         </form>
     </div>
-</div>
 
-<!--end update popup form -->
+    <!--end update popup form -->
 
     <section class="page-container">
 
@@ -241,8 +237,8 @@
 
                     <button class="booking_tab tab-btn" onclick="openTab(event, 'update_booking')">
                         <i class="fas fa-edit"></i>
-                    <p>Update Facility</p>
-                </button>
+                        <p>Update Facility</p>
+                    </button>
                 </div>
 
                 <!-- View Facility Tab -->
@@ -253,7 +249,8 @@
                                 <th class="booking-table-first-th">
                                     <div class="booking-table-filter-container">
                                         <div class="booking-table-search-container">
-                                            <input type="search" name="search" placeholder="Search By Facility Name" id="search-view-facility" onkeyup="searchViewTable()">
+                                            <input type="search" name="search" placeholder="Search By Facility Name"
+                                                id="search-view-facility" onkeyup="searchViewTable()">
                                             <i class="fas fa-search"></i>
                                         </div>
                                         <!-- <div class="booking-table-date-picker">
@@ -269,7 +266,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
+
                             {% for facility in viewFacilities %}
                             <tr>
                                 <td data-label="Facility ID :">{{facility.facility_id}}</td>
@@ -283,27 +280,29 @@
                 <!-- Add Facility Tab -->
                 <div id="add_bookings" class="booking_tab_content">
                     <div id="staff-add" class="add-booking-fm-con">
-                        <form class="add-booking-frm-content animate" action="/Spadministrationstaff/createfacility" method="post"
-                        onsubmit="validateAddFacilityForm()" id="formAddFacility">
+                        <form class="add-booking-frm-content animate" action="/Spadministrationstaff/createfacility"
+                            method="post" onsubmit="validateAddFacilityForm()" id="formAddFacility">
                             <div class="input-row">
                                 <div class="input-box">
                                     <label for="password">User Password</label>
-                                    <input id="password" type="password" name="Userpassword" onfocusout="validateUserPassword()"
-                                        placeholder="Enter user password" value="{{sp_arena.password}}">
+                                    <input id="password" type="password" name="Userpassword"
+                                        onfocusout="validateUserPassword()" placeholder="Enter user password"
+                                        value="{{sp_arena.password}}">
                                     <i class="bi bi-eye-slash" id="togglePassword"></i>
                                     <div class="helper-text" id="passwordMsg"></div>
                                 </div>
-                            </div> 
+                            </div>
                             <div class="input-row">
                                 <div class="input-box">
                                     <label for="facilityName">Facility Name</label>
-                                    <input id="facilityName" type="text" name="fname" onfocusout="validateFacilityName()"
-                                        placeholder="Enter facility name" value="{{sp_arena.Facility_name}}">
+                                    <input id="facilityName" type="text" name="fname"
+                                        onfocusout="validateFacilityName()" placeholder="Enter facility name"
+                                        value="{{sp_arena.Facility_name}}">
                                     <div class="helper-text" id="facilityNameMsg"></div>
                                 </div>
-                                </div>
+                            </div>
                             <div class="button">
-                                <input type="submit" id ="btn-add-facility"value="Add Facilty" class="popup_button" />
+                                <input type="submit" id="btn-add-facility" value="Add Facilty" class="popup_button" />
                             </div>
                         </form>
                     </div>
@@ -339,14 +338,14 @@
                                 <td data-label="Facility ID :">{{facility.facility_id}}</td>
                                 <td data-label="Facility Name :">{{facility.facility_name}}</td>
                                 <td class="trash-btn-padding-res"> <button class="icon_red trash-btn"
-                                     style="border:none"onclick="open_popup_delete_message('{{facility.facility_id}}')">
+                                     style="border:none" onclick="open_popup_delete_message('{{facility.facility_id}}')">
                                     <i class="fas fa-trash-alt">
 
                                     </i>
                                 </button></td>
                             </tr>
                             {% endfor %}
-                            
+
                         </tbody>
                     </table>
                 </div>
@@ -361,7 +360,8 @@
                                 <th class="booking-table-first-th">
                                     <div class="booking-table-filter-container">
                                         <div class="booking-table-search-container">
-                                            <input type="search" name="search" placeholder="Search By Facility Name" id="search-update-facility" onkeyup="searchUpdateTable()">
+                                            <input type="search" name="search" placeholder="Search By Facility Name"
+                                                id="search-update-facility" onkeyup="searchUpdateTable()">
                                             <i class="fas fa-search"></i>
                                         </div>
                                     </div>
@@ -371,7 +371,7 @@
                                 <th class="b-first-th">Facility ID</th>
                                 <th>Facility Name</th>
                                 <th class="b-last-th"> Action</th>
-                                
+
                             </tr>
                         </thead>
                         <tbody>
@@ -381,10 +381,16 @@
                                 <td data-label="Facility ID :">{{facility.facility_id}}</td>
                                 <td data-label="Facility Name :">{{facility.facility_name}}</td>
                                 <td> <button class="icon_red trash-btn" style="border:none"
+<<<<<<< HEAD
+                                        onclick="openpopupform_for_update('{{facility.facility_name}}','{{facility.facility_id}}')">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </button></td>
+=======
                                 onclick="openpopupform_for_update('{{facility.facility_id}}',
                                 '{{facility.facility_name}}')" id="Facility-update-btn" value= "{{facility.facility_name}}">
                                 <i class="fas fa-pencil-alt"></i>
                                 </button></td>
+>>>>>>> dev
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -405,17 +411,24 @@
     <!-- End of Footer -->
     <!-- Jquery library -->
     <script type="text/javascript" src="/Assets/js/lib/jquery/jquery.min.js"></script>
+<<<<<<< HEAD
+    <!-- AJAX file -->
+    <script type="text/javascript"
+        src="/Assets/js/SpArenaAdministrationStaff/saadmin-facility-ajax.js?version=6"></script>
+    <!-- Validation JS -->
+=======
      <!-- AJAX file -->
      <script type="text/javascript" src="/Assets/js/SpArenaAdministrationStaff/saadmin-facility-ajax.js?version=6"></script>
      <script type="text/javascript" src="/Assets/js/SpArenaAdministrationStaff/saadmin-update-facility-ajax.js?version=6"></script>
      <!-- Validation JS -->
+>>>>>>> dev
     <script type="text/javascript" src="/Assets/js/signup_validation.js?version=6.0"></script>
-     <!-- Top navbar js -->
-     <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
-     <!-- File Specific JS -->
+    <!-- Top navbar js -->
+    <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
+    <!-- File Specific JS -->
     <script type="text/javascript" src="/Assets/js/SpArenaManager/manage-facility.js?version=6"></script>
 
-   
+
 </body>
 
 </html>
