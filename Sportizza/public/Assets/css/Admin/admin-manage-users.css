@@ -1168,6 +1168,9 @@ footer {
   .sidebar {
     width: 10vw;
   }
+  .popup_button a {
+    padding: 1em 3.1em;
+  }
 
   .page-container .page-content-container {
     width: 90vw;

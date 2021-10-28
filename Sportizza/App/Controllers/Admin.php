@@ -153,14 +153,59 @@ class Admin extends Authenticated
         //Obtaining customer id sent from JS
         $id = $this->route_params['id'];
 
-        // Pass feedback id to delete ratings function in admin model
+        // Pass customer id to remove customers function in admin model
         AdminModel::adminDeleteCustomers($id);
 
-        //Redirect to admin's ratings page
+        //Redirect to admin's manage user page
         $this->redirect('/Admin/manageuser');
 
     }
     // End of deleting customers
+
+    // Start of adding sports arenas
+    public function addarenasAction(){
+        
+        //Obtaining sports arena profile id sent from JS
+        $id = $this->route_params['id'];
+
+        // Pass sports arena profile id to remove arenas function in admin model
+        AdminModel::adminAddArenas($id);
+
+        //Redirect to admin's manage user page
+        $this->redirect('/Admin/manageuser');
+
+    }
+    // End of adding sports arenas
+
+    // Start of deleting sports arenas
+    public function deletearenasAction(){
+        
+        //Obtaining sports arena profile id sent from JS
+        $id = $this->route_params['id'];
+
+        // Pass sports arena profile id to remove arenas function in admin model
+        AdminModel::adminDeleteArenas($id);
+
+        //Redirect to admin's manage user page
+        $this->redirect('/Admin/manageuser');
+
+    }
+    // End of deleting sports arenas
+
+    // Start of blacklisting sports arenas
+    public function blacklistarenasAction(){
+        
+        //Obtaining sports arena profile id sent from JS
+        $id = $this->route_params['id'];
+
+        // Pass sports arena profile id to blacklist arenas function in admin model
+        AdminModel::adminBlacklistArenas($id);
+
+        //Redirect to admin's manage user page
+        $this->redirect('/Admin/manageuser');
+
+    }
+    // End of blacklisting sports arenas
 
     //Start of removing negative ratings view
     public function ratingsAction()

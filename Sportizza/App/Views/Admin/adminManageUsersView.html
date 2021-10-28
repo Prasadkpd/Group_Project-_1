@@ -177,7 +177,7 @@
             </form>
             <div style="display:flex">
                 <button class="popup_button">
-                    YES
+                    <a id="addarenasbutton" href=""> YES</a>
                 </button>
                 <button onclick="close_popup_add_arenas_message()" class="popup_delete_button">
                     NO
@@ -201,7 +201,7 @@
             </form>
             <div style="display:flex">
                 <button class="popup_button">
-                    YES
+                    <a id="deletearenasbutton" href=""> YES</a>
                 </button>
                 <button onclick="close_popup_rmv_arenas_message()" class="popup_delete_button">
                     NO
@@ -225,7 +225,7 @@
             </form>
             <div style="display:flex">
                 <button class="popup_button">
-                    YES
+                    <a id="blacklistarenasbutton" href=""> YES</a>
                 </button>
                 <button onclick="close_popup_blck_arenas_message()" class="popup_delete_button">
                     NO
@@ -440,7 +440,7 @@
                             <td data-label="Registered Date :" class="expandHeader">{{arenas.date}}</td>
                             <td data-label="Contact Number :" class="expandHeader">{{arenas.contact_no}}</td>
                             <td data-label="Accept Request :" class="acceptAcc expandHeader"><a class="eye-btn" href="\Edituserdetails\EditProfileAction">
-                                <i class="fas fa-eye"></i></a><a class="tick-btn" onclick="open_popup_add_arenas_message()">
+                                <i class="fas fa-eye"></i></a><a class="tick-btn" onclick="open_popup_add_arenas_message('{{arenas.s_a_profile_id}}')">
                                 <i class="fas fa-check"></i></a></td>
 
                         </tr>
@@ -546,9 +546,9 @@
                                 <td data-label="Sports Arena name :">{{arenas.sa_name}}</td>
                                 <td data-label="Complaint :">{{arenas.count}}<button class="popup_cmp_button" onclick="">View Complaints</button></td>
                                 <td data-label="Account Status :">{{arenas.account_status}}</td>
-                                <td data-label="Blacklist Arena :" class="blacklistAcc"><a class="blck-btn" onclick="open_popup_blck_arenas_message()">
+                                <td data-label="Blacklist Arena :" class="blacklistAcc"><a class="blck-btn" onclick="open_popup_blck_arenas_message('{{arenas.s_a_profile_id}}')">
                                     <i class="fas fa-exclamation"></i></a></td>
-                                <td data-label="Remove Sports Arena :" class="trash-btn-padding-res"> <a class="trash-btn" onclick="open_popup_rmv_arenas_message()"><i
+                                <td data-label="Remove Sports Arena :" class="trash-btn-padding-res"> <a class="trash-btn" onclick="open_popup_rmv_arenas_message('{{arenas.s_a_profile_id}}')"><i
                                             class="fas fa-trash-alt"></i></a></td>
                             </tr>
                             {% endfor %}
@@ -570,7 +570,7 @@
                                 <td data-label="Sports Arena ID :">100000012</td>
                                 <td data-label="Sports Arena name :">Cricket World</td>
                                 <td data-label="Complaint :">5<button class="popup_cmp_button" onclick="">View Complaints</button></td>
-                                <td data-label="Account Status :">blacklisted</td>
+                                <td data-label="Account Status :">blacklist</td>
                                 <td data-label="Blacklist Arena :" class="blacklistAcc"><a class="blck-btn" onclick="open_popup_blck_arenas_message()">
                                     <i class="fas fa-exclamation"></i></a></td>
                                 <td data-label="Remove Sports Arena :" class="trash-btn-padding-res"> <a class="trash-btn" onclick="open_popup_rmv_arenas_message()">

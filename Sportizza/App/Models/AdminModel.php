@@ -62,7 +62,7 @@ class AdminModel extends \Core\Model
     public static function adminDisplayAddSportsArenas()
     {
         //Retrieving pending requests of sports arenas from the database
-        $sql = 'SELECT sports_arena_profile.sa_name,sports_arena_profile.contact_no, 
+        $sql = 'SELECT sports_arena_profile.s_a_profile_id, sports_arena_profile.sa_name,sports_arena_profile.contact_no, 
                 DATE(user.registered_time) as "date" FROM sports_arena_profile
                INNER  JOIN manager ON sports_arena_profile.sports_arena_id =manager.sports_arena_id 
                INNER JOIN user ON user.user_id = manager.user_id
@@ -81,6 +81,78 @@ class AdminModel extends \Core\Model
         return $result;
     }
     //End of Displaying pending requests of sports arenas
+
+
+    //Start of Adding sports arenas
+    public static function adminAddArenas($id)
+    {
+        //Updating sports arena profile status in the database
+        $sql = 'UPDATE sports_arena_profile SET account_status="active" WHERE s_a_profile_id=:id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        // Retrieving sports_arena_id from the database
+        $sql = 'SELECT sports_arena_id FROM sports_arena_profile WHERE s_a_profile_id=:id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        //Assigning the fetched PDOs to result
+        $result1 = $stmt->fetch(PDO::FETCH_ASSOC);
+        $arena_id = $result1['sports_arena_id'];
+
+        //Updating sports arena status in the database
+        $sql = 'UPDATE sports_arena SET security_status="active" WHERE sports_arena_id=:arena_id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        // Retrieving manager_user_id from the database
+        $sql = 'SELECT user_id FROM manager WHERE sports_arena_id=:arena_id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        //Assigning the fetched PDOs to result
+        $result2 = $stmt->fetch(PDO::FETCH_ASSOC);
+        $manager_id = $result2['user_id'];
+
+        //Updating maanger status in the database
+        $sql = 'UPDATE user SET security_status="active" WHERE user_id=:manager_id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':manager_id', $manager_id, PDO::PARAM_INT);
+
+        return ($stmt->execute());
+    }
+    //End of Adding sports arenas
+
 
     //Start of Displaying of sports arenas with negative feedbacks
     public static function adminDisplayRemoveSportsArenas()
@@ -105,6 +177,64 @@ class AdminModel extends \Core\Model
         return $result;
     }
     //End of Displaying sports arenas with negative feedbacks
+
+    //Start of Deleting sports arenas
+    public static function adminDeleteArenas($id)
+    {
+        //Updating sports arena profile status in the database
+        $sql = 'UPDATE sports_arena_profile SET account_status="inactive" WHERE s_a_profile_id=:id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $sql = 'SELECT sports_arena_id FROM sports_arena_profile WHERE s_a_profile_id=:id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        //Assigning the fetched PDOs to result
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $arena_id = $result['sports_arena_id'];
+
+        //Updating sports arena status in the database
+        $sql = 'UPDATE sports_arena SET security_status="inactive" WHERE sports_arena_id=:arena_id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+
+        return ($stmt->execute());
+    }
+    //End of Deleting sports arenas
+
+    //Start of Blacklisting sports arenas
+    public static function adminBlacklistArenas($id)
+    {
+        //Updating sports arena profile status in the database
+        $sql = 'UPDATE sports_arena_profile SET account_status="blacklist" WHERE s_a_profile_id=:id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        
+        return ($stmt->execute());
+    }
+    //End of Blacklisting sports arenas
 
     //Start of Displaying of FAQs
     public static function adminViewFAQ()

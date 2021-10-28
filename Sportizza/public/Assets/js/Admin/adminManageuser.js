@@ -74,8 +74,12 @@ function close_popup_rmve_customers_message() {
 }
 
 //popup add sports arenas message
-function open_popup_add_arenas_message() {
+function open_popup_add_arenas_message(id) {
   var form = document.getElementById("popup_add_arenas");
+
+  var anchor = document.getElementById("addarenasbutton");
+  anchor.href = "http://localhost/admin/addarenas/" + id;
+  console.log(anchor.href);
 
   form.style.display = "block";
 }
@@ -86,8 +90,12 @@ function close_popup_add_arenas_message() {
 }
 
 //popup remove sports arenas message
-function open_popup_rmv_arenas_message() {
+function open_popup_rmv_arenas_message(id) {
   var form = document.getElementById("popup_rmve_arenas");
+
+  var anchor = document.getElementById("deletearenasbutton");
+  anchor.href = "http://localhost/admin/deletearenas/" + id;
+  console.log(anchor.href);
 
   form.style.display = "block";
 }
@@ -97,21 +105,25 @@ function close_popup_rmv_arenas_message() {
   form.style.display = "none";
 }
 
-//popup add sports arenas message
-function open_popup_blck_arenas_message() {
+// //popup add sports arenas message
+// function open_popup_blck_arenas_message() {
+//   var form = document.getElementById("popup_blck_arenas");
+
+//   form.style.display = "block";
+// }
+// function close_popup_blck_arenas_message() {
+//   var form = document.getElementById("popup_blck_arenas");
+
+//   form.style.display = "none";
+// }
+
+//popup blacklist sports arenas message
+function open_popup_blck_arenas_message(id) {
   var form = document.getElementById("popup_blck_arenas");
 
-  form.style.display = "block";
-}
-function close_popup_blck_arenas_message() {
-  var form = document.getElementById("popup_blck_arenas");
-
-  form.style.display = "none";
-}
-
-//popup add sports arenas message
-function open_popup_blck_arenas_message() {
-  var form = document.getElementById("popup_blck_arenas");
+  var anchor = document.getElementById("blacklistarenasbutton");
+  anchor.href = "http://localhost/admin/blacklistarenas/" + id;
+  console.log(anchor.href);
 
   form.style.display = "block";
 }
