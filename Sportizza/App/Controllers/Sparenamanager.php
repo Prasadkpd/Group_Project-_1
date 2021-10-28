@@ -186,8 +186,11 @@ class Sparenamanager extends \Core\Controller
     {
         //Get the current user's details with session using Auth
         $current_user = Auth::getUser();
+        $id = $current_user->user_id;
+        $arena_details = SpArenaManagerModel::arenaProfileView($id);
+//        var_dump($arena_details);
         //Rendering the manager's edit profile arena view
-        View::renderTemplate('Manager/mStaffEditArenaProfile.html');
+        View::renderTemplate('Manager/mStaffEditArenaProfile.html',['arena_details' => $arena_details]);
     }
     //End of Edit Arena profile of manager staff
     public  function cartAction()

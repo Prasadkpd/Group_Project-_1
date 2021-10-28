@@ -236,7 +236,45 @@ form label {
     padding: 2px 20px;
     display: sticky;
   }
-  @media screen and (max-width: 768px) {
+
+
+.editProPic {
+  height: 110px;
+  width: 110px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid gray;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  transform: translate(0%, -25%);
+}
+.editProPic input,
+label {
+  margin: 0 auto;
+}
+#file {
+  display: none;
+}
+#form-profile-picture {
+  height: 100%;
+  width: 100%;
+}
+#uploadBtn {
+  height: 30px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
+  text-align: center;
+  background-color: rgb(0, 0, 0, 0.7);
+  color: wheat;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
     .sidebar {
       width: 7vw;
     }
