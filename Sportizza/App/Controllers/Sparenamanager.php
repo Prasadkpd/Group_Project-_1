@@ -64,6 +64,13 @@ class Sparenamanager extends \Core\Controller
     }
     //End of Manage bookings of manager
 
+    public function removebookingAction()
+    {
+        $booking_id = $this->route_params['id'];
+        SpArenaManagerModel::removeBooking($booking_id);
+        $this->redirect("/Sparenamanager/managebookings");
+    }
+
     //Start of getting cash payments from customers
     public function getpaymentAction()
     {

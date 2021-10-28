@@ -86,7 +86,7 @@ class SpArenaManagerModel extends \Core\Model
     public static function managerCancelBookings($id)
     {
         //Retrieving sports arena bookings
-        $sql = 'SELECT booking.booking_id,booking.price_per_booking,
+        $sql = 'SELECT booking.booking_id ,booking.price_per_booking,
                 DATE(booking.booked_date) AS booked_date,
                 DATE(booking.booking_date) AS booking_date,
                 booking.payment_method,booking.payment_status,
@@ -112,6 +112,17 @@ class SpArenaManagerModel extends \Core\Model
         return $result;
     }
     //End of displaying sports arena's cancel bookings
+
+    //Start of remove bookings
+    public static function removeBooking($booking_id)
+    {
+        $sql = 'UPDATE booking SET security_status = "inactive" WHERE booking_id=:booking_id';
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+    //End of remove bookings
 
     //Start of displaying sports arena's booking payment
     public static function managerBookingPayment($id)
