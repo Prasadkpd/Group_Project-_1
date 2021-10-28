@@ -215,6 +215,87 @@ class AdminModel extends \Core\Model
 
         //Binding input data into database query variables
         $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        // Retrieving manager_user_id from the database
+        $sql = 'SELECT user_id FROM manager WHERE sports_arena_id=:arena_id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        //Assigning the fetched PDOs to result
+        $result2 = $stmt->fetch(PDO::FETCH_ASSOC);
+        $manager_id = $result2['user_id'];
+
+        //Updating maanger status in the database
+        $sql = 'UPDATE user SET security_status="inactive" WHERE user_id=:manager_id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':manager_id', $manager_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        // Retrieving administration_staff_user_id from the database
+        $sql = 'SELECT user_id FROM administration_staff WHERE sports_arena_id=:arena_id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        //Assigning the fetched PDOs to result
+        $result2 = $stmt->fetch(PDO::FETCH_ASSOC);
+        $admin_staff_id = $result2['user_id'];
+
+        //Updating maanger status in the database
+        $sql = 'UPDATE user SET security_status="inactive" WHERE user_id=:admin_staff_id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':admin_staff_id', $admin_staff_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        // Retrieving booking_handling_staff_user_id from the database
+        $sql = 'SELECT user_id FROM booking_handling_staff WHERE sports_arena_id=:arena_id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        //Assigning the fetched PDOs to result
+        $result2 = $stmt->fetch(PDO::FETCH_ASSOC);
+        $bookhandle_staff_id = $result2['user_id'];
+
+        //Updating maanger status in the database
+        $sql = 'UPDATE user SET security_status="inactive" WHERE user_id=:bookhandle_staff_id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':bookhandle_staff_id', $bookhandle_staff_id, PDO::PARAM_INT);
 
         return ($stmt->execute());
     }
