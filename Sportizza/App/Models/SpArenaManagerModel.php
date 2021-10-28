@@ -188,7 +188,7 @@ class SpArenaManagerModel extends \Core\Model
         $sql = 'SELECT facility.facility_id, facility.facility_name
         FROM facility
         INNER JOIN manager ON facility.manager_sports_arena_id=manager.sports_arena_id
-        WHERE manager.user_id=:id';
+        WHERE security_status="active" AND manager.user_id=:id';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -214,7 +214,7 @@ class SpArenaManagerModel extends \Core\Model
         time_slot.price, facility.facility_name 
         FROM time_slot 
         INNER JOIN facility ON time_slot.facility_id = facility.facility_id
-        WHERE time_slot.manager_user_id=:id
+        WHERE time_slot.security_status="active" AND time_slot.manager_user_id=:id
         ORDER BY  startTime ASC ';
 
 
@@ -243,7 +243,7 @@ class SpArenaManagerModel extends \Core\Model
         time_slot.price, facility.facility_name 
         FROM time_slot 
         INNER JOIN facility ON time_slot.facility_id = facility.facility_id
-        WHERE time_slot.manager_user_id=:id
+        WHERE time_slot.security_status="active" AND time_slot.manager_user_id=:id
         ORDER BY  startTime ASC';
 
         $db = static::getDB();
@@ -265,7 +265,7 @@ class SpArenaManagerModel extends \Core\Model
     {
 
         //Retrieving manager's facility from the database
-        $sql = 'SELECT *  FROM facility WHERE manager_user_id=:id';
+        $sql = 'SELECT *  FROM facility WHERE security_status = "active" AND manager_user_id=:id';
 
 
         $db = static::getDB();
@@ -283,10 +283,10 @@ class SpArenaManagerModel extends \Core\Model
 //End of displaying sports arenas facilities for manager
 
 //Start of displaying sports arenas facilities delete for manager
-    public static function managerDeleteFacility($id)
+    public static function managerViewDeleteFacility($id)
     {
         //Retrieving manager's facility to view for delete from the database
-        $sql = 'SELECT *  FROM facility WHERE manager_user_id=:id';
+        $sql = 'SELECT *  FROM facility WHERE security_status = "active" AND manager_user_id=:id';
 
 
         $db = static::getDB();
@@ -301,13 +301,27 @@ class SpArenaManagerModel extends \Core\Model
         $result = $stmt->fetchAll();
         return $result;
     }
+
     //End of displaying sports arenas facilities delete for manager
+    public static function removeFacility($facility_id)
+    {
+        $sql1 = 'UPDATE facility SET security_status="inactive" WHERE facility_id=:facility_id';
+        $db = static::getDB();
+        $stmt1 = $db->prepare($sql1);
+        $stmt1->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
+        $stmt1->execute();
+
+        $sql2 = 'UPDATE time_slot SET security_status="inactive" WHERE facility_id=:facility_id';
+        $stmt2 = $db->prepare($sql2);
+        $stmt2->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
+        return $stmt2->execute();
+    }
 
     //Start of displaying sports arenas facilities update for manager
-    public static function managerUpdateFacility($id)
+    public static function managerViewUpdateFacility($id)
     {
         //Retrieving manager's facility to view for update from the database
-        $sql = 'SELECT *  FROM facility WHERE manager_user_id=:id';
+        $sql = 'SELECT *  FROM facility WHERE security_status = "active" AND manager_user_id=:id';
 
 
         $db = static::getDB();

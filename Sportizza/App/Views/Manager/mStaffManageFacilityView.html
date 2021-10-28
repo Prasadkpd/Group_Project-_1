@@ -123,7 +123,7 @@
         <div>
             <button class="closebutton" onclick="close_popup_delete_message()">❌</button>
         </div>
-        <form action="/action_page.php" style="margin:20px">
+        <form action="/Sparenamanager/removeFacility/" style="margin:20px" id="delete_facility_form" method="post">
             <div >
                 <h1>
                     Facility Deletion
@@ -132,16 +132,17 @@
                     Do you really want to delete the Facility?
                 </p>
             </div>
-        </form>
-        <div style="display:flex">
 
-            <button class="popup_delete_button">
-                <a href=""> YES</a>
+        <div style="display:flex">
+            <button class="popup_delete_button" type="submit">
+                 YES
             </button>
-            <button onclick="close_popup_delete_message()" class="popup_button">
+
+            <button onclick="close_popup_delete_message()" type="button" class="popup_button">
                 NO
             </button>
         </div>
+        </form>
     </div>
 </div>
 <!-- End OF the POP up Facility delete -->
@@ -352,7 +353,7 @@
                             <tr>
                                 <td data-label="Facility ID :">{{facility.facility_id}}</td>
                                 <td data-label="Facility Name :">{{facility.facility_name}}</td>
-                                <td class="trash-btn-padding-res"> <button class="icon_red trash-btn" style="border:none"onclick="open_popup_delete_message()">
+                                <td class="trash-btn-padding-res"> <button class="icon_red trash-btn" style="border:none"onclick="open_popup_delete_message('{{facility.facility_id}}')">
                                     <i class="fas fa-trash-alt"></i>
                                 </button></td>
                             </tr>

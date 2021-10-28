@@ -57,8 +57,9 @@ function close_popup_signout_message() {
     form.style.display = "none";
 }
 //popup delete message
-function open_popup_delete_message() {
+function open_popup_delete_message(facilityId) {
     var form = document.getElementById("popup_delete");
+    document.getElementById('delete_facility_form').action += facilityId;
     form.style.display = "block";
 }
 function close_popup_delete_message() {

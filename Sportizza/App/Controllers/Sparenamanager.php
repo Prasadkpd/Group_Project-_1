@@ -126,9 +126,9 @@ class Sparenamanager extends \Core\Controller
         //Assigning the sports arena's facilities to view
         $viewFacilities = SpArenaManagerModel::managerViewFacility($id);
         //Assigning the sports arena's facilities to delete view
-        $deleteFacilities = SpArenaManagerModel::managerDeleteFacility($id);
+        $deleteFacilities = SpArenaManagerModel::managerViewDeleteFacility($id);
         //Assigning the sports arena's facilities to add (facility) view
-        $updateFacilities = SpArenaManagerModel::managerUpdateFacility($id);
+        $updateFacilities = SpArenaManagerModel::managerViewUpdateFacility($id);
 
         //Rendering the manager's timeslot view
         View::renderTemplate('Manager/mStaffManageFacilityView.html', [
@@ -137,6 +137,12 @@ class Sparenamanager extends \Core\Controller
         ]);
     }
     //End of Manage Facility of manager view
+    public function removeFacility()
+    {
+        $facility_id = $this->route_params['id'];
+        SpArenaManagerModel::removeFacility($facility_id);
+        $this->redirect('/Sparenamanager/managefacility');
+    }
 
     //Start of Manage Users of manager view
     public function manageusersAction()
