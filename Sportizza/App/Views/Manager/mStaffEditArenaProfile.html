@@ -9,110 +9,109 @@
     <!-- Top Nav bar CSS styles -->
     <link rel="stylesheet" href="/Assets/css/navbar.css?version=5">
     <!-- File Specific CSS Styles -->
- <link rel="stylesheet" href="/Assets/css/SpArenaManager/editArenaProfile.css">  
+    <link rel="stylesheet" href="/Assets/css/SpArenaManager/editArenaProfile.css">
     <!-- Font Styles -->
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <!-- Top Navigation Bar -->
-    <nav>
-        <div class="nav-left">
-            <div class="logo-container">
-                <a href="/">
-                    <i class="fas fa-running "></i>
-                    <span class="logo-name">Sportizza</span>
-                </a>
-            </div>
-
-            <div class="nav-right">
-                <!-- Profile button -->
-                <div class="nav-profile">
-                    <button class="openbutton" onclick="openpopupform()">
-                        <div class="profile-details">
-                            <img src="/Assets/images/admin/download.jfif" class="profile-picture">
-                            <div class="username">{{current_user.first_name}} {{current_user.last_name}}</div>
-                        </div>
-                    </button>
-                </div>
-
-                <!-- Signout button -->
-                <div class="sign-in-out-btn">
-                    <button onclick="open_popup_signout_message()">Sign Out</button>
-                    <!-- {% if session.user_id %}
-               User with ID {{session.user_id}} is logged in.
-           {% endif %} -->
-                </div>
-            </div>
+<!-- Top Navigation Bar -->
+<nav>
+    <div class="nav-left">
+        <div class="logo-container">
+            <a href="/">
+                <i class="fas fa-running "></i>
+                <span class="logo-name">Sportizza</span>
+            </a>
         </div>
-    </nav>
 
-    <!-- start popup for profile -->
-    <div id="myForm" class="sectionpopnav">
-        <div class="formsectionprofile" id="formEditUserProfile">
-            <div>
-                <button class="closebutton" onclick="closepopupform()">❌</button>
+        <div class="nav-right">
+            <!-- Profile button -->
+            <div class="nav-profile">
+                <button class="openbutton" onclick="openpopupform()">
+                    <div class="profile-details">
+                        <img src="/Assets/images/admin/download.jfif" class="profile-picture">
+                        <div class="username">{{current_user.first_name}} {{current_user.last_name}}</div>
+                    </div>
+                </button>
             </div>
 
-            <div class="nav-user-edit-from">
-                <div class="details">
-                    <div class="input-box">
-                        <h5>Name:</h5>
-                        <p>
-                            {{current_user.first_name}} {{current_user.last_name}}
-                        </p>
-                    </div>
-                    <div class="input-box">
-                        <h5>Username:</h5>
-                        <p>
-                            {{current_user.username}}
-                        </p>
-                    </div>
-                    <div class="input-box">
-                        <h5>Mobile:</h5>
-                        <p>
-                            {{current_user.primary_contact}}</p>
-                    </div>
-                </div>
-                <div class="editProPic">
-                    <img id="form-profile-picture" src="/Assets/images/customer/profile-picture.jpg" alt="">
-                </div>
-            </div>
-            <div class="edit-profile-link">
-                <a href="\Edituserdetails\EditProfileAction">Edit Profile</a>
+            <!-- Signout button -->
+            <div class="sign-in-out-btn">
+                <button onclick="open_popup_signout_message()">Sign Out</button>
+                <!-- {% if session.user_id %}
+           User with ID {{session.user_id}} is logged in.
+       {% endif %} -->
             </div>
         </div>
     </div>
-    <!-- end popup for profile -->
+</nav>
 
-    <!-- start pop up sign out section -->
-    <div id="popup_signout" class="sectionpopnav">
-        <div class="formsectionnav">
-            <div>
-                <button class="closebutton" onclick="close_popup_signout_message()">❌</button>
-            </div>
-            <form action="/action_page.php" style="margin:20px">
-                <div style="margin:auto">
-                    <h1>Sign Out</h1>
-                    <p>Do your really want to sign out now?</p>
+<!-- start popup for profile -->
+<div id="myForm" class="sectionpopnav">
+    <div class="formsectionprofile" id="formEditUserProfile">
+        <div>
+            <button class="closebutton" onclick="closepopupform()">❌</button>
+        </div>
+
+        <div class="nav-user-edit-from">
+            <div class="details">
+                <div class="input-box">
+                    <h5>Name:</h5>
+                    <p>
+                        {{current_user.first_name}} {{current_user.last_name}}
+                    </p>
                 </div>
-            </form>
-            <div style="display:flex">
-                <button class="popup_buttonnav">
-                    {% if current_user %}
-                    <a href="/logout"> YES</a>
-                    {% endif %}
-                </button>
-                <button onclick="close_popup_signout_message()" class="popup_delete_buttonnav">
-                    NO
-                </button>
+                <div class="input-box">
+                    <h5>Username:</h5>
+                    <p>
+                        {{current_user.username}}
+                    </p>
+                </div>
+                <div class="input-box">
+                    <h5>Mobile:</h5>
+                    <p>
+                        {{current_user.primary_contact}}</p>
+                </div>
+            </div>
+            <div class="editProPic">
+                <img id="form-profile-picture" src="/Assets/images/customer/profile-picture.jpg" alt="">
             </div>
         </div>
+        <div class="edit-profile-link">
+            <a href="\Edituserdetails\EditProfileAction">Edit Profile</a>
+        </div>
     </div>
-    <!-- end pop up sign out section -->
+</div>
+<!-- end popup for profile -->
 
-    <!-- End Top Navigation Bar -->
+<!-- start pop up sign out section -->
+<div id="popup_signout" class="sectionpopnav">
+    <div class="formsectionnav">
+        <div>
+            <button class="closebutton" onclick="close_popup_signout_message()">❌</button>
+        </div>
+        <form action="/action_page.php" style="margin:20px">
+            <div style="margin:auto">
+                <h1>Sign Out</h1>
+                <p>Do your really want to sign out now?</p>
+            </div>
+        </form>
+        <div style="display:flex">
+            <button class="popup_buttonnav">
+                {% if current_user %}
+                <a href="/logout"> YES</a>
+                {% endif %}
+            </button>
+            <button onclick="close_popup_signout_message()" class="popup_delete_buttonnav">
+                NO
+            </button>
+        </div>
+    </div>
+</div>
+<!-- end pop up sign out section -->
 
+<!-- End Top Navigation Bar -->
 
 
 <div class="page-container">
@@ -121,17 +120,17 @@
         <div class="edit_formsection">
             <div>
                 <a href="/Sparenamanager">
-                <button class="closebutton">❌</button>
-            </a>
+                    <button class="closebutton">❌</button>
+                </a>
             </div>
             <h2>Sport Arena Profile</h2>
-            <form action="" >
+            <form action="">
                 <div class="sp-edit-form">
                     <div class="input-row">
                         <div class="input-box">
                             <label for="spArenaName">Sports Arena Name</label>
                             <input id="spArenaName" type="text" name="arena_name" placeholder="Enter Arena Name"
-                                onfocusout="validateSpArenaName()" value="{{sp_arena.arena_name}}">
+                                   onfocusout="validateSpArenaName()" value="{{arena_details.sa_name}}">
                             <div class="helper-text" id="spArenaNameMsg">
                                 <p>{{errors["arena_name1"]}} {{errors["arena_name2"]}}</p>
                             </div>
@@ -139,8 +138,8 @@
 
                         <div class="input-box">
                             <label for="contact">Contact Number</label>
-                            <input id="contact" type="text" name="contact" placeholder="Ex: 0712345678"
-                                onfocusout="validateContact()" value="{{sp_arena.contact_no}}">
+                            <input id="contact" type="tel" name="contact" placeholder="Ex: 0712345678"
+                                   onfocusout="validateContact()" value="{{arena_details.contact_no}}">
                             <div class="helper-text" id="contactMsg">
                                 <p>{{errors["contact1"]}} {{errors["contact2"]}}</p>
                             </div>
@@ -152,17 +151,21 @@
                             <label for="category">Category</label>
                             <div class="options-container">
                                 <div class="custom-select">
-                                    <select id="category" name="category" onchange="validateCategory()"
-                                        value="{{sp_arena.category}}">
-                                        <option value="0"> </option>
-                                        <option value="Other">Other</option>
-                                        <option value="Football">Football</option>
-                                        <option value="Rugby">Rugby</option>
-                                        <option value="Swimming">Swimming</option>
-                                        <option value="Tennis">Tennis</option>
-                                        <option value="Volleyball">Volleyball</option>
-                                        <option value="Karathe">Karathe</option>
-                                        <option value="Cricket">Cricket</option>
+                                    <select id="category" name="category" onchange="validateCategory()">
+<!--                                        {% for category in arena_details.category %}-->
+<!--                                                {% set selected = '' %}-->
+<!--                                                {% if (category) == user.supervisor %}-->
+<!--                                                    {% set selected = 'selected' %}-->
+<!--                                                {% endif %}-->
+<!--                                                <option value="{{oneSupervisor.fname}} {{oneSupervisor.lname}}" {{ selected }}>{{oneSupervisor.fname}} {{oneSupervisor.lname}}</option>-->
+<!--                                                <option value="Football">Football</option>-->
+<!--                                                <option value="Rugby">Rugby</option>-->
+<!--                                                <option value="Swimming" selected>Swimming</option>-->
+<!--                                                <option value="Tennis">Tennis</option>-->
+<!--                                                <option value="Volleyball">Volleyball</option>-->
+<!--                                                <option value="Karathe">Karathe</option>-->
+<!--                                                <option value="Cricket">Cricket</option>-->
+<!--                                        {% endfor %}-->
                                     </select>
                                     <div class="helper-text" id="other-categoryMsg">
                                         <p>{{errors["category1"]}}</p>
@@ -175,21 +178,8 @@
                             <div class="options-container">
                                 <div class="custom-select">
                                     <select id="location" name="location" onchange="validateLocation()"
-                                        value="{{sp_arena.location}}">
-                                        <option value="0"> </option>
-                                        <option value="Other">Other</option>
-                                        <option value="Matara">Matara</option>
-                                        <option value="Galle">Galle</option>
-                                        <option value="Gampaha">Gampaha</option>
-                                        <option value="Kandy">Kandy</option>
-                                        <option value="Hmabanthota">Hambanthota</option>
-                                        <option value="Baththaramulla">Baththaramulla</option>
-                                        <option value="Nugegods">Nugegoda</option>
-                                        <option value="Maradana">Maradana</option>
-                                        <option value="Mirissa">Mirissa</option>
-                                        <option value="Weligama">Weiligama</option>
-                                        <option value="Wattala">Wattala</option>
-                                        <option value="Malabe">Malabe</option>
+                                            disabled>
+                                        <option value="{{arena_details.location}}">{{arena_details.location}}</option>
                                     </select>
                                     <div class="helper-text" id="other-locationMsg">
                                         <p>{{errors["location1"]}}</p>
@@ -202,9 +192,9 @@
                     <div class="input-box">
                         <label for="map-link">Google Map Link</label>
                         <input id="map-link" type="text" name="google_map_link"
-                            placeholder="Ex: https://www.google.com/maps?q=204+C+Sandpiper+Place,+Fort+McMurray,+AB,+Canada"
-                            onfocusout="validateMapLink()" value="{{sp_arena.google_map_link}}" 
-                            >
+                               placeholder="Ex: https://www.google.com/maps?q=204+C+Sandpiper+Place,+Fort+McMurray,+AB,+Canada"
+                               onfocusout="validateMapLink()" value="{{arena_details.google_map_link}}"
+                        >
                         <div class="helper-text" id="map-linkMsg">
                             <p>{{errors["google_map1"]}} {{errors["google_map2"]}}</p>
                         </div>
@@ -213,8 +203,8 @@
                     <div class="input-box" id="description-input">
                         <label for="description">Description</label>
                         <textarea id="description" rows="5" type="text" name="description"
-                            placeholder="(Briefly state about sports arena)" onfocusout="validateDescription()"
-                            value="{{sp_arena.description}}"></textarea>
+                                  placeholder="(Briefly state about sports arena)" onfocusout="validateDescription()"
+                                  >{{arena_details.description}}</textarea>
                         <div class="helper-text" id="descriptionMsg">
                             <p>{{errors["description1"]}}</p>
                         </div>
@@ -224,9 +214,9 @@
                         <div class="input-box">
                             <label for="other-facilities">Other Facilities</label>
                             <input id="other-facilities" type="text" name="other_facilities"
-                                onfocusout="validateOtherFacilities()"
-                                placeholder="Ex: Changing Rooms, Cafeteria, Car Parking, etc."
-                                value="{{sp_arena.other_facilities}}">
+                                   onfocusout="validateOtherFacilities()"
+                                   placeholder="Ex: Changing Rooms, Cafeteria, Car Parking, etc."
+                                   value="{{arena_details.other_facilities}}">
                             <div class="helper-text" id="descriptionMsg">
                                 <p>{{errors["other_facilities1"]}}</p>
                             </div>
@@ -236,12 +226,20 @@
                             <div class="options-container">
 
                                 <div class="custom-select">
-                                    <select id="payment" name="payment_method" onchange="validatePayment()"
-                                        value="{{sp_arena.payment_method}}">
-                                        <option value="0"> </option>
-                                        <option value="1">Only card payments</option>
-                                        <option value="2">Only cash payments</option>
-                                        <option value="3">Both cash & card payments</option>
+                                    <select id="payment" name="payment_method" onchange="validatePayment()">
+                                        {% if arena_details.payment_method== 'cash' %}
+                                            <option value="cash" selected>Only cash Payment</option>
+                                            <option value="card">Only card payments</option>
+                                            <option value="both">Both cash & card payments</option>
+                                        {% elseif arena_details.payment_method== 'card' %}
+                                            <option value="cash">Only cash Payment</option>
+                                            <option value="card" selected>Only card payments</option>
+                                            <option value="both">Both cash & card payments</option>
+                                        {% elseif arena_details.payment_method== 'both' %}
+                                            <option value="cash">Only cash Payment</option>
+                                            <option value="card">Only card payments</option>
+                                            <option value="both" selected>Both cash & card payments</option>
+                                        {% endif %}
                                     </select>
                                     <div class="helper-text" id="paymentMsg">
                                         <p>{{errors["payment_method1"]}}</p>
@@ -252,102 +250,36 @@
                         </div>
                     </div>
                     <div class="input-box-img">
-                        <label for="photos">Sports Arena Photos (Mandatory)
-                        </label>
-                        <div class="upload-images">
-                            <div class="input-row">
-                                <div class="input-box">
-                                    <div class="img-btn-div">
-                                        <label class="tag">Image 1:</label>
-                                        <input style type="file" name="image_1" accept="image/*" id="file1"
-                                            onchange="change_color(this.files,event)" class="img-button">
-                                    </div>
-                                    <div class="helper-text" id="imgMsg1">
-                                        <p>
-                                            {% for key,error in errors ["image_1"] %}
-                                            {{error}}
-                                            {% endfor %}</p>
-                                    </div>
-                                </div>
-                                <div class="input-box">
-                                    <div class="img-btn-div">
-                                        <label class="tag">Image 2:</label>
-                                        <input style type="file" name="image_2" accept="image/*" id="file2"
-                                            onchange="change_color(this.files,event)" class="img-button">
-                                    </div>
-                                    <div class="helper-text" id="imgMsg2">
-                                        {% for key,error in errors ["image_2"] %}
-                                        {{error}}
-                                        {% endfor %}</p>
-                                    </div>
-                                </div>
+                        <label for="photos">Sports Arena Photos (Mandatory)</label>
+                            <div class="editProPic">
+                                <img id="arena-picture1" src="/Assets/images/admin/download.jfif" alt="">
+                                <input type="file" id="image1_upload">
+                                <label id="image1_uploadBtn">Choose Photo</label>
                             </div>
-                            <div class="input-row">
-
-                                <div class="input-box">
-
-                                    <div class="img-btn-div">
-                                        <label class="tag">Image 3:</label>
-                                        <input style type="file" name="image_3" accept="image/*" id="file3"
-                                            onchange="change_color(this.files,event)" class="img-button">
-                                    </div>
-                                    <div class="helper-text" id="imgMsg3">
-                                        {% for key,error in errors ["image_3"] %}
-                                        {{error}}
-                                        {% endfor %}</p>
-                                    </div>
-                                </div>
-                                <div class="input-box">
-                                    <div class="img-btn-div">
-                                        <label class="tag">Image 4:</label>
-                                        <input style type="file" name="image_4" accept="image/*" id="file4"
-                                            onchange="change_color(this.files,event)" class="img-button">
-                                    </div>
-                                    <div class="helper-text" id="imgMsg4">
-                                        {% for key,error in errors ["image_4"] %}
-                                        {{error}}
-                                        {% endfor %}</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="input-box">
-                                <div class="img-btn-div">
-                                    <label class="tag">Image 5:</label>
-                                    <input style type="file" name="image_5" accept="image/*" id="file5"
-                                        onchange="change_color(this.files,event)" class="img-button">
-                                </div>
-                                <div class="helper-text" id="imgMsg5">
-                                    {% for key,error in errors ["image_5"] %}
-                                    {{error}}
-                                    {% endfor %}</p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                </div>
+                    </div>
                 <input type="submit" value="Update Profile" class="popup_button">
             </form>
         </div>
     </div>
 </div>
 
-    <!-- Start of Footer -->
-    <footer>
-        <div class="copyright">
-            <p>
-                Copyright &copy;2021 All rights reserved | Sportizza Inc.
-            </p>
-        </div>
-    </footer>
-    <!-- End of Footer -->
-    <!-- Validation JS -->
-    <script type="text/javascript" src="/Assets/js/signup_validation.js?version=7.0"></script>
-    <!-- Top navbar js -->
-    <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
-    <!-- File specific JS -->
-    <script type="text/javascript" src="/Assets/js/SpArenaManager/edit-profile.js?version=1"></script>
-
+<!-- Start of Footer -->
+<footer>
+    <div class="copyright">
+        <p>
+            Copyright &copy;2021 All rights reserved | Sportizza Inc.
+        </p>
+    </div>
+</footer>
+<!-- End of Footer -->
+<!-- Validation JS -->
+<script type="text/javascript" src="/Assets/js/signup_validation.js?version=7.0"></script>
+<!-- Top navbar js -->
+<script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
+<!-- File specific JS -->
+<script type="text/javascript" src="/Assets/js/SpArenaManager/edit-arena-profile.js?version=1"></script>
+<script type="text/javascript" src="/Assets/js/SpArenaManager/edit-profile.js?version=1"></script>
 </body>
 
 </html>

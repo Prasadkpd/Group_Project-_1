@@ -36,8 +36,10 @@ class Sparenamanager extends \Core\Controller
         $current_user = Auth::getUser();
         $id = $current_user->user_id;
 
+        $arena_details = SpArenaManagerModel::arenaProfileView($id);
+//        var_dump($arena_details);
         //Rendering the manager home view(sports arena profile)
-        View::renderTemplate('Manager/mStaffProfileView.html');
+        View::renderTemplate('Manager/mStaffProfileView.html',['arena_details' => $arena_details]);
     }
     //End of Landing page of manager
 
@@ -102,7 +104,7 @@ class Sparenamanager extends \Core\Controller
         //Assigning the sports arena's timeslots to view
         $viewTimeSlots = SpArenaManagerModel::managerViewTimeSlots($id);
         //Assigning the sports arena's timeslots to delete view
-        $deleteTimeSlots = SpArenaManagerModel::managerDeleteTimeSlots($id);
+        $deleteTimeSlots = SpArenaManagerModel::managerViewDeleteTimeSlots($id);
         //Assigning the sports arena's timeslots to add (facility) view
         $selectFacility = SpArenaManagerModel::managerGetFacilityName($id);
 
@@ -114,6 +116,13 @@ class Sparenamanager extends \Core\Controller
     }
     //End of Manage Timeslot of manager view
 
+    public function removetimeslotAction()
+    {
+        $timeSlot_Id = $this->route_params['id'];
+        SpArenaManagerModel::removeTimeSlot($timeSlot_Id);
+        $this->redirect('/Sparenamanager/managetimeslot');
+    }
+
     //Start of Manage Facility of manager view
     public function managefacilityAction()
     {
@@ -124,9 +133,9 @@ class Sparenamanager extends \Core\Controller
         //Assigning the sports arena's facilities to view
         $viewFacilities = SpArenaManagerModel::managerViewFacility($id);
         //Assigning the sports arena's facilities to delete view
-        $deleteFacilities = SpArenaManagerModel::managerDeleteFacility($id);
+        $deleteFacilities = SpArenaManagerModel::managerViewDeleteFacility($id);
         //Assigning the sports arena's facilities to add (facility) view
-        $updateFacilities = SpArenaManagerModel::managerUpdateFacility($id);
+        $updateFacilities = SpArenaManagerModel::managerViewUpdateFacility($id);
 
         //Rendering the manager's timeslot view
         View::renderTemplate('Manager/mStaffManageFacilityView.html', [
@@ -135,6 +144,40 @@ class Sparenamanager extends \Core\Controller
         ]);
     }
     //End of Manage Facility of manager view
+    // //Start of Add Facility of administration staff
+    public function createfacilityAction()
+    {
+        //Get the current user's details with session using Auth
+        $current_user= Auth::getUser();
+        $id=$current_user->user_id;
+        $username=$current_user->username;
+
+
+        $facility=LoginModel::authenticate(
+            $username,
+            $_POST['Userpassword']
+        );
+
+        if($facility){
+            //Send the notification to the sports arena's staff
+            SpArenaManagerModel::managerAddFacility($id,$_POST['fname']);
+
+            $this->redirect('/Sparenamanager/managefacility');
+        }
+    }
+    //End of Add Facility of administration staff
+    public function removeFacilityAction()
+    {
+        $facility_id = $this->route_params['id'];
+        SpArenaManagerModel::removeFacility($facility_id);
+        $this->redirect('/Sparenamanager/managefacility');
+    }
+
+    public function updatefacilityAction(){
+        $facility_id = $this->route_params['id'];
+        SpArenaManagerModel::updateFacility($facility_id,$_POST['New_Facility_name']);
+        $this->redirect('/Sparenamanager/managefacility');
+    }
 
     //Start of Manage Users of manager view
     public function manageusersAction()
@@ -154,6 +197,34 @@ class Sparenamanager extends \Core\Controller
         ]);
     }
     //End of Manage Users of manager view
+
+    //Start of Remove Users
+    public function removestaff()
+    {
+        SpArenaManagerModel::removeFacility($facility_id);
+    }
+    //End of Remove Users
+
+    //Start of validate Facility name of administration staff
+    public function validatefacilitynameAction()
+    {
+        //Get the current user's details with session using Auth
+        $current_user= Auth::getUser();
+        $id=$current_user->user_id;
+
+        $combined = $this->route_params['arg'];
+
+        $facility_name = str_replace("_", " ", $combined);
+
+
+        //Call the function in model and echo the resturn result
+        $result= SpArenaManagerModel::findFacilityByName($id,$facility_name);
+
+        if(!$result){
+            echo true;
+        }
+    }
+    //End of validate Facility name of administration staff
 
     //Start of Analytics of manager view
     public function manageanalyticsAction()
@@ -184,8 +255,11 @@ class Sparenamanager extends \Core\Controller
     {
         //Get the current user's details with session using Auth
         $current_user = Auth::getUser();
+        $id = $current_user->user_id;
+        $arena_details = SpArenaManagerModel::arenaProfileView($id);
+//        var_dump($arena_details);
         //Rendering the manager's edit profile arena view
-        View::renderTemplate('Manager/mStaffEditArenaProfile.html');
+        View::renderTemplate('Manager/mStaffEditArenaProfile.html',['arena_details' => $arena_details]);
     }
     //End of Edit Arena profile of manager staff
     public  function cartAction()
@@ -234,56 +308,5 @@ class Sparenamanager extends \Core\Controller
 
     }
     //End of Add Timeslot of manager
-
-    // //Start of Add Facility of administration staff
-    public function createfacilityAction()
-    {
-        //Get the current user's details with session using Auth
-        $current_user= Auth::getUser();
-        $id=$current_user->user_id;
-        $username=$current_user->username;
-        
-
-        $facility=LoginModel::authenticate(
-            $username,
-            $_POST['Userpassword']
-        );
-  
-        if($facility){
-            //Send the notification to the sports arena's staff
-            SpArenaManagerModel::managerAddFacility($id,$_POST['fname']);
-            
-            $this->redirect('/Sparenamanager/managefacility');
-        }
-
-    }
-    //End of Add Facility of administration staff
-    
-    //Start of validate Facility name of administration staff
-    public function validatefacilitynameAction()
-    {
-        //Get the current user's details with session using Auth
-        $current_user= Auth::getUser();
-        $id=$current_user->user_id;
-
-        $combined = $this->route_params['arg'];
-
-        // echo("combined");
-
-        $facility_name = str_replace("_", " ", $combined);
-        
-        
-        //Call the function in model and echo the resturn result
-        $result= SpArenaManagerModel::findFacilityByName($id,$facility_name);
-
-        if(!$result){
-            echo true;
-        }
-    }
-    //End of validate Facility name of administration staff
-
-
-
-
 
 }
