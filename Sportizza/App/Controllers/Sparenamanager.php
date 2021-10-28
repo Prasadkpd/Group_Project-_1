@@ -104,7 +104,7 @@ class Sparenamanager extends \Core\Controller
         //Assigning the sports arena's timeslots to view
         $viewTimeSlots = SpArenaManagerModel::managerViewTimeSlots($id);
         //Assigning the sports arena's timeslots to delete view
-        $deleteTimeSlots = SpArenaManagerModel::managerDeleteTimeSlots($id);
+        $deleteTimeSlots = SpArenaManagerModel::managerViewDeleteTimeSlots($id);
         //Assigning the sports arena's timeslots to add (facility) view
         $selectFacility = SpArenaManagerModel::managerGetFacilityName($id);
 
@@ -115,6 +115,13 @@ class Sparenamanager extends \Core\Controller
         ]);
     }
     //End of Manage Timeslot of manager view
+
+    public function removetimeslotAction()
+    {
+        $timeSlot_Id = $this->route_params['id'];
+        SpArenaManagerModel::removeTimeSlot($timeSlot_Id);
+        $this->redirect('/Sparenamanager/managetimeslot');
+    }
 
     //Start of Manage Facility of manager view
     public function managefacilityAction()

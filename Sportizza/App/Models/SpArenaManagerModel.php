@@ -244,7 +244,7 @@ class SpArenaManagerModel extends \Core\Model
     //End of displaying sports arenas timeslots for manager
 
     //Start of displaying sports arenas deleting the timeslots for manager
-    public static function managerDeleteTimeSlots($id)
+    public static function managerViewDeleteTimeSlots($id)
     {
 
         //Retrieving manager's timeslots to view for delete from the database
@@ -266,10 +266,20 @@ class SpArenaManagerModel extends \Core\Model
         $stmt->execute();
 
         //Assigning the fetched PDOs to result
-        $result = $stmt->fetchAll();
-        return $result;
+        return $stmt->fetchAll();
     }
     //End of displaying sports arenas deleting the timeslots for manager
+
+    public static function removeTimeSlot($timeSlot_Id): bool
+    {
+
+        $sql = 'UPDATE time_slot SET security_status="inactive" WHERE time_slot_id=:time_slot_id';
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':time_slot_id', $timeSlot_Id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+
 
     //Start of displaying sports arenas facilities for manager
     public static function managerViewFacility($id)
@@ -288,8 +298,7 @@ class SpArenaManagerModel extends \Core\Model
         $stmt->execute();
 
         //Assigning the fetched PDOs to result
-        $result = $stmt->fetchAll();
-        return $result;
+        return $stmt->fetchAll();
     }
 //End of displaying sports arenas facilities for manager
 
