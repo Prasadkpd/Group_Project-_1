@@ -51,14 +51,19 @@ function close_popup_signout_message() {
 }
 
 //popup delete message
-function open_popup_delete_message() {
-    var form = document.getElementById("popup_delete");
-    form.style.display = "block";
+function open_popup_delete_message(timeslot_id) {
+  document.getElementById("deleteTimeslotbtn").href += timeslot_id;
+  var form = document.getElementById("popup_delete");
+  console.log(timeslot_id);
+  form.style.display = "block";
 }
 function close_popup_delete_message() {
     var form = document.getElementById("popup_delete");
     form.style.display = "none";
 }
+
+
+
 const startTime = document.getElementById('startTime');
 // startTime.step="1800";
 const endTime = document.getElementById('endTime');

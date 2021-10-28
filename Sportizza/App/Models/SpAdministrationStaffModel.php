@@ -190,6 +190,7 @@ class SpAdministrationStaffModel extends \Core\Model
         INNER JOIN facility ON time_slot.facility_id = facility.facility_id
         INNER JOIN administration_staff ON time_slot.manager_user_id=administration_staff.manager_user_id
         WHERE administration_staff.user_id=:id
+        AND time_slot.security_status="active"
         ORDER BY  startTime ASC';
 
 
@@ -324,32 +325,30 @@ class SpAdministrationStaffModel extends \Core\Model
 
 
     //Start of displaying sports arenas deleting the timeslots for manager
-    public static function saAdminDeleteTimeSlots($id)
+    public static function saAdminDeleteTimeSlots($id, $timeslot_id)
     {
 
-        //Retrieving manager's timeslots to view for delete from the database
-        $sql = 'SELECT time_slot.time_slot_id, 
-         TIME_FORMAT(time_slot.start_time, "%H" ":" "%i") AS startTime, 
-        TIME_FORMAT(time_slot.end_time, "%H" ":" "%i") AS endTime,
-        time_slot.price, facility.facility_name 
-        FROM time_slot 
-        INNER JOIN facility ON time_slot.facility_id = facility.facility_id
-        INNER JOIN administration_staff ON time_slot.manager_user_id=administration_staff.manager_user_id
-        WHERE administration_staff.user_id=:id
-        ORDER BY  startTime ASC';
-
-
         $db = static::getDB();
-        $stmt = $db->prepare($sql);
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
-        //Converting retrieved data from database into PDOs
-        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        //Updating the facility table from the database
+        $sql = 'UPDATE time_slot 
+        SET time_slot.security_status="inactive"
+        WHERE time_slot.time_slot_id=:timeslot_id';
+
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
+
         $stmt->execute();
 
-        //Assigning the fetched PDOs to result
-        $result = $stmt->fetchAll();
-        return $result;
+        $sql = 'UPDATE administration_staff_manages_time_slot
+        SET administration_staff_manages_time_slot.administration_staff_user_id=:id
+        WHERE administration_staff_manages_time_slot.time_slot_id=:timeslot_id';
+
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
+
+        return ($stmt->execute());
     }
     //End of displaying sports arenas deleting the timeslots for administrationstaff
 

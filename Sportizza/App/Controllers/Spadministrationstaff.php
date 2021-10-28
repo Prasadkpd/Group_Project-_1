@@ -106,15 +106,15 @@ class Spadministrationstaff extends Authenticated
         //Assigning the sports arena's timeslots to view
         $viewTimeSlots = SpAdministrationStaffModel::saAdminViewTimeSlots($id);
         //Assigning the sports arena's timeslots to delete view
-        $deleteTimeSlots = SpAdministrationStaffModel::saAdminDeleteTimeSlots($id);
-        //Assigning the sports arena's timeslots to add (facility) view
+        // $deleteTimeSlots = SpAdministrationStaffModel::saAdminDeleteTimeSlots($id,$timeslot_id);
+        // //Assigning the sports arena's timeslots to add (facility) view
         $selectFacility = SpAdministrationStaffModel::saAdminGetFacilityName($id);
 
         //Rendering the administration staff's timeslot view
         View::renderTemplate(
             'AdministrationStaff/aStaffManageTimeslotsView.html',
             [
-                'timeSlots' => $viewTimeSlots, 'deleteTimeSlots' => $deleteTimeSlots,
+                'timeSlots' => $viewTimeSlots, 'deleteTimeSlots' => $viewTimeSlots,
                 'selectFacility' => $selectFacility
             ]
         );
@@ -166,9 +166,14 @@ class Spadministrationstaff extends Authenticated
 
     //Start of Delete Timeslot of administration staff
     public function deletetimeslotAction()
-    { $current_user = Auth::getUser();
+    { 
+        $timeslot_id= $this->route_params['id'];
+        $current_user = Auth::getUser();
         $id = $current_user->user_id;
-        $user = SpAdministrationStaffModel::saAdminDeleteTimeSlots($id);
+
+       SpAdministrationStaffModel::saAdminDeleteTimeSlots($id,$timeslot_id);
+       $this->redirect('/spadministrationstaff/managetimeslot');
+
     }
     //End of Delete Timeslot of administration staff
 
