@@ -198,6 +198,13 @@ class Sparenamanager extends \Core\Controller
     }
     //End of Manage Users of manager view
 
+    //Start of Remove Users
+    public function removestaff()
+    {
+        SpArenaManagerModel::removeFacility($facility_id);
+    }
+    //End of Remove Users
+
     //Start of validate Facility name of administration staff
     public function validatefacilitynameAction()
     {
