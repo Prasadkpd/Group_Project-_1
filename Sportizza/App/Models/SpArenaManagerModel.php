@@ -367,7 +367,7 @@ class SpArenaManagerModel extends \Core\Model
         INNER JOIN booking_handling_staff ON
         administration_staff.manager_user_id =booking_handling_staff.manager_user_id
         INNER JOIN user    ON administration_staff.user_id=user.user_id OR booking_handling_staff.user_id=user.user_id
-         WHERE administration_staff.manager_user_id=:id OR  booking_handling_staff.manager_user_id=:id
+         WHERE user.security_status="active" AND (administration_staff.manager_user_id=:id OR  booking_handling_staff.manager_user_id=:id)
          GROUP BY user.user_id';
 
 
@@ -385,6 +385,16 @@ class SpArenaManagerModel extends \Core\Model
     }
     //End of displaying sports arenas view staff for manager
 
+    public static function removestaff($user_id)
+    {
+        $sql = 'UPDATE user SET security_status="inactive", account_status="inactive"  WHERE user_id=:user_id';
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT );
+        $stmt->execute();
+    }
+
+
     //Start of displaying sports arenas remove staff view for manager
     public static function managerRemoveStaff($id)
     {
@@ -394,7 +404,7 @@ class SpArenaManagerModel extends \Core\Model
         INNER JOIN booking_handling_staff ON
         administration_staff.manager_user_id =booking_handling_staff.manager_user_id
         INNER JOIN user    ON administration_staff.user_id=user.user_id OR booking_handling_staff.user_id=user.user_id
-         WHERE administration_staff.manager_user_id=:id OR  booking_handling_staff.manager_user_id=:id
+         WHERE user.security_status="active" AND (administration_staff.manager_user_id=:id OR  booking_handling_staff.manager_user_id=:id)
          GROUP BY user.user_id';
 
 

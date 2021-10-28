@@ -201,7 +201,9 @@ class Sparenamanager extends \Core\Controller
     //Start of Remove Users
     public function removestaff()
     {
-        SpArenaManagerModel::removeFacility($facility_id);
+        $facility_id = $this->route_params['id'];
+        SpArenaManagerModel::removestaff($facility_id);
+        $this->redirect("/Sparenamanager/manageusers");
     }
     //End of Remove Users
 
