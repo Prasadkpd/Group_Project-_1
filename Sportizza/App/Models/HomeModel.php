@@ -47,18 +47,25 @@ class HomeModel extends \Core\Model
     {
         // var_dump($location,$category,$name);
         //Retrieving the sports arenas from the database with/without name
-        $qu = "SELECT * FROM sports_arena_profile WHERE sa_name LIKE :name ";
+        $qu = "SELECT * FROM sports_arena_profile WHERE sa_name LIKE :name  
+        ";
         $params = ["name" => "%$name%"];
         //If a is location is selected, concatinate it to the original query
         if ($location != "select location") {
-            $qu = $qu . "AND  sports_arena_profile.location = :location ";
+            $qu = $qu . "AND  sports_arena_profile.location = :location 
+            ";
             $params['location'] = $location;
         }
         //If a category is selected, concatinate it to the original query
         if ($category != "select category") {
-            $qu = $qu . "AND  sports_arena_profile.category = :category ";
+            $qu = $qu . "AND  sports_arena_profile.category = :category
+             ";
             $params['category'] = $category;
         }
+
+        //sorting sports arenas as per the count of highest bookings
+        $qu = $qu ."GROUP BY sports_arena_profile.sa_name
+            ORDER BY COUNT(*) DESC";
 
         $db = static::getDB();
         $stmt = $db->prepare($qu);
@@ -67,12 +74,12 @@ class HomeModel extends \Core\Model
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $stmt->execute($params);
 
-        if($location === "select location" && $category === "select category" &&
-        $name === "")
-        {
+        if (
+            $location === "select location" && $category === "select category" &&
+            $name === ""
+        ) {
             $output = "";
-        }
-        else{
+        } else {
             $output = "<h3 id='search-heading'>Search Results:</h3>";
         }
 
@@ -97,6 +104,8 @@ class HomeModel extends \Core\Model
         return $output;
     }
     //End of showing the sports arenas after searched in visitor's view
+
+    //Start of 
 
     //Start of displaying the feedbacks in visitor's view
     public static function homeViewfeedbacks()
@@ -191,7 +200,7 @@ class HomeModel extends \Core\Model
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
-        
+
         //Converting retrieved data from database into PDO
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $stmt->execute();
