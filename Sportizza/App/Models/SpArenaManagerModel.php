@@ -204,6 +204,17 @@ class SpArenaManagerModel extends \Core\Model
     }
     //End of displaying sports arenas facilities for manager
 
+    public static function  updateFacility($facility_Id,$facility_Name)
+    {
+        $sql = 'UPDATE facility SET facility_name=:facility_Name WHERE facility_id=:facility_Id';
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':facility_Name', $facility_Name, PDO::PARAM_STR);
+        $stmt->bindValue(':facility_Id', $facility_Id, PDO::PARAM_INT);
+
+        return $stmt->execute();
+    }
+
     //Start of displaying sports arenas timeslots for manager
     public static function managerViewTimeSlots($id)
     {
