@@ -71,6 +71,7 @@ class SpAdministrationStaffModel extends \Core\Model
                 INNER JOIN user ON user.user_id=booking.customer_user_id
                 INNER JOIN administration_staff ON booking.sports_arena_id =administration_staff.sports_arena_id
                  WHERE booking.security_status="active"AND administration_staff.user_id=:id
+                --  AND DATE(GETDATE()) >= booking_date
                  ORDER BY booking.booking_date DESC
                 ';
 
