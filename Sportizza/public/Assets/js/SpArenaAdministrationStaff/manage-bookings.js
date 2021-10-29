@@ -49,6 +49,7 @@ function close_popup_signout_message() {
 
 //popup delete message
 function open_popup_delete_message() {
+ 
     var form = document.getElementById("popup_delete");
     form.style.display = "block";
 }
@@ -57,7 +58,8 @@ function close_popup_delete_message() {
     form.style.display = "none";
 }
 //popup delete message
-function open_popup_payment_message() {
+function open_popup_payment_message(booking_id) {
+  document.getElementById("getPaymentbtn").href += booking_id;
     var form = document.getElementById("popup_payment");
     form.style.display = "block";
 }

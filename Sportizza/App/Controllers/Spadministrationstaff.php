@@ -75,7 +75,7 @@ class Spadministrationstaff extends Authenticated
         if ($cash_update) {
             //Send payment successfull notification
             NotificationModel::managerNotificationBookingSuccess($current_user, $booking_id);
-            $this->redirect('/Sparenamanager/managernotification');
+            $this->redirect('/Spadministrationstaff/saadminnotification');
         }
     }
     //End of getting cash payments from customers
@@ -191,8 +191,7 @@ class Spadministrationstaff extends Authenticated
         View::renderTemplate(
             'AdministrationStaff/aStaffManageFacilityView.html',
             [
-                'viewFacilities' => $viewFacilities, 'deleteFacilities' => $viewFacilities,
-                'updateFacilities' => $viewFacilities
+                'viewFacilities' => $viewFacilities
             ]
         );
     }

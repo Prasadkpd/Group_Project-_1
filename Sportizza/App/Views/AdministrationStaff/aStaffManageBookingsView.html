@@ -159,7 +159,7 @@
             <div style="display:flex">
 
                 <button class="popup_button">
-                    <a href="/Spadministrationstaff/cart"> YES</a>
+                    <a href="/Spadministrationstaff/getpayment/" id="getPaymentbtn"> YES</a>
                 </button>
                 <button onclick="close_popup_payment_message()" class="popup_delete_button">
                     NO
@@ -531,7 +531,7 @@
                                     <div class="Payment-status"><a href="">{{book.payment_status}}</a></div>
                                 </td>
                                 <td data-label="">
-                                    <div class="Payment"><a onclick="open_popup_payment_message()">Get Payment</a></div>
+                                    <div class="Payment"><a onclick="open_popup_payment_message('{{book.booking_id}}')">Get Payment</a></div>
                                 </td>
                                 <!-- <a href="Sparenamanager/getpayment/{{book.booking_id}}"></a> -->
                             </tr>
