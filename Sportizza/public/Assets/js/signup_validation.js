@@ -196,6 +196,21 @@ function matchWithRegEx(regEx, field) {
     }
 }
 
+function matchWithRegExNext(regEx, field) {
+  if (field.value.match(regEx)) {
+    setvalidNext(field);
+    return true;
+  } else {
+    setInvalidNext(
+      field,
+      `${capitalizeFirstLetter(
+        replaceUnderscore(field.name)
+      )} entered in invalid!`
+    );
+    return false;
+  }
+}
+
 function matchWithRegExSpace(regEx, field) {
     //test
     // console.log(field.value);
@@ -307,9 +322,9 @@ function validateOtherLocation() {
 }
 
 function validateMapLink() {
-    if (checkIfEmpty(map_link)) return;
-    regEx = /^http\:\/\/|https\:\/\/|www\.google$/;
-    if (!matchWithRegEx(regEx, map_link)) return;
+    if (checkIfEmptyNext(map_link)) return;
+    regEx =/^http\:\/\/|https\:\/\/www\.google\.com\/maps\/search\/\?api\=1\&query\=\w+\.\w+\%\w+\.\w+/;
+    if (!matchWithRegExNext(regEx, map_link)) return;
     return true;
 }
 

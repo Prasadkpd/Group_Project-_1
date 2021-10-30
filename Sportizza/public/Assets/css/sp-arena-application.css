@@ -478,7 +478,7 @@ button#get-position{
     height: 45px;
     border-radius: 25px;
     bottom: 43px;
-    left: 260px;
+    left: 84%;
     border: 2px solid #fd4616;
     color: #fd4616;
     font-weight: 700;
@@ -633,4 +633,16 @@ button#get-position{
   footer {
     font-size: 0.8rem;
   }
+  button#get-position{
+    position: relative;
+    width: 100px;
+    height: 40px;
+    border-radius: 25px;
+    bottom: 43px;
+    left: 70%;
+    border: 2px solid #fd4616;
+    color: #fd4616;
+    font-weight: 700;
+    cursor: pointer;
+}
 }
