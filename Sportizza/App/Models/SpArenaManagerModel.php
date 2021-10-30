@@ -34,7 +34,7 @@ class SpArenaManagerModel extends \Core\Model
         $result1 = $stmt1->fetch(PDO::FETCH_ASSOC);
         $arena_id = $result1['sports_arena_id'];
 
-        $sql2 = 'SELECT sports_arena_profile.sa_name, sports_arena_profile.location, sports_arena_profile.google_map_link, 
+        $sql2 = 'SELECT sports_arena_profile.sports_arena_id,sports_arena_profile.sa_name, sports_arena_profile.location, sports_arena_profile.google_map_link, 
        sports_arena_profile.profile_photo, sports_arena_profile.description, sports_arena_profile.category, 
        sports_arena_profile.payment_method,sports_arena_profile.other_facilities, sports_arena_profile.contact_no,
        sports_arena_profile_photo.photo1_name, sports_arena_profile_photo.photo2_name, sports_arena_profile_photo.photo3_name,
@@ -46,11 +46,31 @@ class SpArenaManagerModel extends \Core\Model
         $stmt2->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
         $stmt2->execute();
         $result2 = $stmt2->fetch(PDO::FETCH_ASSOC);
-        $result2['google_map_link'] = preg_replace('/\%\d\w/', ' , ', substr($result2['google_map_link'], 48));
         return $result2;
     }
     //End of displaying sports arena profile
-
+    public static function editArenaProfile($arena_id,$name,$location,$contact,$category,$map_link,$description,$other_facility,$payment)
+    {
+        $sql1 = "UPDATE sports_arena SET sa_name=:sa_name WHERE sports_arena_id=:arena_id";
+        $db = static::getDB();
+        $stmt1 = $db->prepare($sql1);
+        $stmt1->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+        $stmt1->bindValue(':sa_name', $name, PDO::PARAM_STR);
+        $stmt1->execute();
+        
+        $sql2 = "UPDATE sports_arena_profile SET sa_name=:sa_name, location=:location, google_map_link=:google_map_link, description=:description, category=:category, payment_method=:payment_method, other_facilities=:other_facilities, contact_no=:contact WHERE sports_arena_id=:arena_id";
+        $stmt2 = $db->prepare($sql2);
+        $stmt2->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+        $stmt2->bindValue(':sa_name', $name, PDO::PARAM_STR);
+        $stmt2->bindValue(':location', $location, PDO::PARAM_STR);
+        $stmt2->bindValue(':google_map_link', $map_link, PDO::PARAM_STR);
+        $stmt2->bindValue(':description', $description, PDO::PARAM_STR);
+        $stmt2->bindValue(':category', $category, PDO::PARAM_STR);
+        $stmt2->bindValue(':payment_method', $payment,PDO::PARAM_STR);
+        $stmt2->bindValue(':other_facilities', $other_facility,PDO::PARAM_STR);
+        $stmt2->bindValue(':contact', $contact, PDO::PARAM_STR);
+        return ($stmt2->execute());
+    }
 
     //Start of displaying sports arena bookings
     public static function managerViewBookings($id)
@@ -599,7 +619,7 @@ class SpArenaManagerModel extends \Core\Model
 
         $stmt->execute();
         $timeSlots = $stmt->fetchAll();
-        var_dump($timeSlots);
+        // var_dump($timeSlots);
 
 
         // insert query for add time slots

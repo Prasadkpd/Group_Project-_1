@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/Assets/css/SpArenaManager/editArenaProfile.css">
     <!-- Font Styles -->
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
+   
 </head>
 
 <body>
@@ -46,7 +47,26 @@
         </div>
     </div>
 </nav>
-
+<div id="popup_delete" class="sectionpop ">
+    <div class="formsection">
+        <div>
+            <button class="closebutton" onclick="close_popup_map()">❌</button>
+        </div>
+        <form style="margin:20px">
+            <div style="margin:auto">
+                <h1>
+                    Mark the position
+                </h1>
+            </div>
+            <div style="display:flex;flex-direction: column;">
+                <div id="map" style="height: 200px;width: 100%;"></div>
+                <button onclick="close_popup_map()" class="popup_button" type="button">
+                    Save
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
 <!-- start popup for profile -->
 <div id="myForm" class="sectionpopnav">
     <div class="formsectionprofile" id="formEditUserProfile">
@@ -124,7 +144,7 @@
                 </a>
             </div>
             <h2>Sport Arena Profile</h2>
-            <form action="">
+            <form action="/Sparenamanager/editarenaprofile/{{arena_details.sports_arena_id}}" id="arena-edit-form" method="post" onsubmit="validateEditForm()">
                 <div class="sp-edit-form">
                     <div class="input-row">
                         <div class="input-box">
@@ -151,22 +171,9 @@
                             <label for="category">Category</label>
                             <div class="options-container">
                                 <div class="custom-select">
-                                    <select id="category" name="category" onchange="validateCategory()">
-<!--                                        {% for category in arena_details.category %}-->
-<!--                                                {% set selected = '' %}-->
-<!--                                                {% if (category) == user.supervisor %}-->
-<!--                                                    {% set selected = 'selected' %}-->
-<!--                                                {% endif %}-->
-<!--                                                <option value="{{oneSupervisor.fname}} {{oneSupervisor.lname}}" {{ selected }}>{{oneSupervisor.fname}} {{oneSupervisor.lname}}</option>-->
-<!--                                                <option value="Football">Football</option>-->
-<!--                                                <option value="Rugby">Rugby</option>-->
-<!--                                                <option value="Swimming" selected>Swimming</option>-->
-<!--                                                <option value="Tennis">Tennis</option>-->
-<!--                                                <option value="Volleyball">Volleyball</option>-->
-<!--                                                <option value="Karathe">Karathe</option>-->
-<!--                                                <option value="Cricket">Cricket</option>-->
-<!--                                        {% endfor %}-->
-                                    </select>
+                                    <input id="category" type="text" name="category" placeholder="Enter Sport Category" onfocusout="validateSparenaCategory()"
+                                        value="{{arena_details.category}}">
+                                   
                                     <div class="helper-text" id="other-categoryMsg">
                                         <p>{{errors["category1"]}}</p>
                                     </div>
@@ -177,15 +184,13 @@
                             <label for="location">Location</label>
                             <div class="options-container">
                                 <div class="custom-select">
-                                    <select id="location" name="location" onchange="validateLocation()"
-                                            disabled>
-                                        <option value="{{arena_details.location}}">{{arena_details.location}}</option>
-                                    </select>
-                                    <div class="helper-text" id="other-locationMsg">
-                                        <p>{{errors["location1"]}}</p>
-                                    </div>
+                                    <input id="location" type="text" name="location" placeholder="Enter arena location"
+                                        onfocusout="validateSparenaLocation()" value="{{arena_details.location}}">
+                                        <div class="helper-text" id="other-categoryMsg">
+                                            <p>{{errors["category1"]}}</p>
+                                        </div>
                                 </div>
-
+                                
                             </div>
                         </div>
                     </div>
@@ -194,7 +199,7 @@
                         <input id="map-link" type="text" name="google_map_link"
                                placeholder="Ex: https://www.google.com/maps?q=204+C+Sandpiper+Place,+Fort+McMurray,+AB,+Canada"
                                onfocusout="validateMapLink()" value="{{arena_details.google_map_link}}"
-                        >
+                        ><button id="get-position" type="button" onclick="open_popup_map()">Get Position</button>
                         <div class="helper-text" id="map-linkMsg">
                             <p>{{errors["google_map1"]}} {{errors["google_map2"]}}</p>
                         </div>
@@ -249,14 +254,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="input-box-img">
-                        <label for="photos">Sports Arena Photos (Mandatory)</label>
-                            <div class="editProPic">
-                                <img id="arena-picture1" src="/Assets/images/admin/download.jfif" alt="">
-                                <input type="file" id="image1_upload">
-                                <label id="image1_uploadBtn">Choose Photo</label>
-                            </div>
-                    </div>
                     </div>
                 <input type="submit" value="Update Profile" class="popup_button">
             </form>
@@ -274,12 +271,16 @@
 </footer>
 <!-- End of Footer -->
 <!-- Validation JS -->
-<script type="text/javascript" src="/Assets/js/signup_validation.js?version=7.0"></script>
 <!-- Top navbar js -->
 <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
 <!-- File specific JS -->
+<script type="text/javascript" src="/Assets/js/editprofile.js?version=1"></script>
 <script type="text/javascript" src="/Assets/js/SpArenaManager/edit-arena-profile.js?version=1"></script>
-<script type="text/javascript" src="/Assets/js/SpArenaManager/edit-profile.js?version=1"></script>
+<script type="text/javascript" src="/Assets/js/signup_validation.js?version=7.0"></script>
+
+<script
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2e00P4iPaWX6u26a1MNg-cYKLyY3jsoo&callback=initMap&v=weekly"
+    async></script>
 </body>
 
 </html>

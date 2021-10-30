@@ -37,12 +37,20 @@ class Sparenamanager extends \Core\Controller
         $id = $current_user->user_id;
 
         $arena_details = SpArenaManagerModel::arenaProfileView($id);
+        $arena_details['google_map_link'] = preg_replace('/\%\d\w/', ' , ', substr($arena_details['google_map_link'], 48));
+                
 //        var_dump($arena_details);
         //Rendering the manager home view(sports arena profile)
         View::renderTemplate('Manager/mStaffProfileView.html',['arena_details' => $arena_details]);
     }
     //End of Landing page of manager
 
+    public function editarenaprofileAction(){
+        $arena_id = $this->route_params['id'];
+        SpArenaManagerModel::editArenaProfile($arena_id,$_POST['arena_name'],$_POST['location'],$_POST['contact'],$_POST['category'],$_POST['google_map_link'],$_POST['description'],$_POST['other_facilities'],$_POST['payment_method']);
+        $this->redirect("/Sparenamanager");
+        
+    }
     //Start of Manage bookings of manager
     public function managebookingsAction()
     {

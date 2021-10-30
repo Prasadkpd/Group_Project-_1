@@ -198,7 +198,7 @@ function matchWithRegEx(regEx, field) {
 
 function matchWithRegExNext(regEx, field) {
   if (field.value.match(regEx)) {
-    setvalidNext(field);
+    setValidNext(field);
     return true;
   } else {
     setInvalidNext(
@@ -399,6 +399,18 @@ function validateMessage() {
     if (checkIfEmpty(message)) return;
     return true;
 }
+
+
+function validateSparenaCategory() {
+  if (!checkIfEmpty(edit_category)) return;
+  return true;
+}
+function validateSparenaLocation() {
+  if (!checkIfEmpty(edit_location)) return;
+  return true;
+}
+
+
 
 
 
