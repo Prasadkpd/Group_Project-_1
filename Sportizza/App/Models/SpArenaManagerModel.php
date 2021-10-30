@@ -46,6 +46,7 @@ class SpArenaManagerModel extends \Core\Model
         $stmt2->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
         $stmt2->execute();
         $result2 = $stmt2->fetch(PDO::FETCH_ASSOC);
+        $result2['google_map_link'] = preg_replace('/\%\d\w/', ' , ', substr($result2['google_map_link'], 48));
         return $result2;
     }
     //End of displaying sports arena profile
