@@ -177,6 +177,15 @@ class Admin extends Authenticated
     }
     // End of adding sports arenas
 
+    //Passing the sports_arena_id from RemoveArenas view (Html and JS) and getting complaints (negative feedback description)
+    public function getcomplaintsAction()
+    {
+        //Obtaining faq question sent from JS
+        $arena_id = $this->route_params['id'];
+        //Echo HTML tag sent by Model with FAQs answers and it gets triggered with success in JS
+        echo AdminModel::adminDisplayComplaints($arena_id);
+    }
+
     // Start of deleting sports arenas
     public function deletearenasAction(){
         

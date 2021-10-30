@@ -62,7 +62,9 @@ class AdminModel extends \Core\Model
     public static function adminDisplayAddSportsArenas()
     {
         //Retrieving pending requests of sports arenas from the database
-        $sql = 'SELECT sports_arena_profile.s_a_profile_id, sports_arena_profile.sa_name,sports_arena_profile.contact_no, 
+        $sql = 'SELECT sports_arena_profile.s_a_profile_id, sports_arena_profile.sa_name,sports_arena_profile.contact_no,
+                sports_arena_profile.location,sports_arena_profile.description,sports_arena_profile.category,sports_arena_profile.google_map_link as maplink,
+                sports_arena_profile.payment_method,sports_arena_profile.other_facilities, 
                 DATE(user.registered_time) as "date" FROM sports_arena_profile
                INNER  JOIN manager ON sports_arena_profile.sports_arena_id =manager.sports_arena_id 
                INNER JOIN user ON user.user_id = manager.user_id
@@ -158,7 +160,7 @@ class AdminModel extends \Core\Model
     public static function adminDisplayRemoveSportsArenas()
     {
         //Retrieving of sports arenas with negative ratings from the database
-        $sql = 'SELECT DISTINCT(sports_arena_profile.s_a_profile_id),
+        $sql = 'SELECT DISTINCT(sports_arena_profile.sports_arena_id),
         sports_arena_profile.sa_name, COUNT(feedback.sports_arena_id) as "count",
         sports_arena_profile.account_status FROM feedback
         INNER JOIN sports_arena_profile ON feedback.sports_arena_id=sports_arena_profile.sports_arena_id 
@@ -177,6 +179,30 @@ class AdminModel extends \Core\Model
         return $result;
     }
     //End of Displaying sports arenas with negative feedbacks
+
+    //Start of Displaying of complaints of sports arenas
+    public static function adminDisplayComplaints($arena_id)
+    {
+        //Retrieving of sports arenas with negative ratings from the database
+        $sql = 'SELECT feedback.description FROM feedback
+        WHERE feedback.feedback_rating < 3 AND feedback.sports_arena_id=:arena_id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        //Converting PDOs to HTML data
+        $output = "";
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $output .= "<p>{$row["description"]}</p>";
+        }
+
+        return $output;
+    }
+    //End of Displaying 0f complaints of sports arenas
 
     //Start of Deleting sports arenas
     public static function adminDeleteArenas($id)

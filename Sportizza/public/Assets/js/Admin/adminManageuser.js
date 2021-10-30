@@ -74,6 +74,32 @@ function close_popup_rmve_customers_message() {
 }
 
 //popup add sports arenas message
+function open_popup_view_arenas_message(name,location,category,payment,otherfac,maplink,desc) {
+  var form = document.getElementById("popup_view_arenas");
+
+  // form.querySelector("#displayarenadetails").innerHTML = "<h1>"+name+"</h1>"+"<p>"+desc+"</p>"+"<p>"+location+"</p>"+"<p>"+category+"</p>"+"<p>"+payment+"</p>"+"<p>"+otherfac+"</p>"+"<p>"+maplink+"</p>";
+  form.querySelector("#displayarenadetails").innerHTML = "<h1>"+name+"</h1>";
+  form.querySelector("#displayarenadetails").innerHTML += "<h3>"+desc+"</h3>"+"<span>Location: </span>"+"<p>"+location+"</p>"+"</p>"+"<span>Category: </span>"+"<p>"+category+"</p>"+"<span>Other facilities: </span>"+"<p>"+otherfac+"</p>"+"<span>Payment method: </span>";
+  
+  if (payment=="cash"){
+    form.querySelector("#displayarenadetails").innerHTML += "<p>Cash</p>";
+  }else if (payment=="card"){
+    form.querySelector("#displayarenadetails").innerHTML += "<p>Card</p>";
+  }else{
+    form.querySelector("#displayarenadetails").innerHTML += "<p>Card and cash</p>";
+  }
+
+  console.log(maplink);
+
+  form.style.display = "block";
+}
+function close_popup_view_arenas_message() {
+  var form = document.getElementById("popup_view_arenas");
+
+  form.style.display = "none";
+}
+
+//popup add sports arenas message
 function open_popup_add_arenas_message(id) {
   var form = document.getElementById("popup_add_arenas");
 
@@ -85,6 +111,18 @@ function open_popup_add_arenas_message(id) {
 }
 function close_popup_add_arenas_message() {
   var form = document.getElementById("popup_add_arenas");
+
+  form.style.display = "none";
+}
+
+//popup remove sports arenas message
+function open_popup_view_complaints_message() {
+  var form = document.getElementById("popup_view_complaints");
+
+  form.style.display = "block";
+}
+function close_popup_view_complaints_message() {
+  var form = document.getElementById("popup_view_complaints");
 
   form.style.display = "none";
 }

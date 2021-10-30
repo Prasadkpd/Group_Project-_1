@@ -163,6 +163,19 @@
     </div>
     <!-- end pop up remove customer section -->
 
+    <!-- start pop up view sports arena section -->
+    <div id="popup_view_arenas" class="sectionpop">
+        <div class="formsection">
+            <div>
+                <button class="closebutton" onclick="close_popup_view_arenas_message()">❌</button>
+            </div>
+            <div id="displayarenadetails" class="displayarenadetails" style="margin:auto">
+                    
+            </div>
+        </div>
+    </div>
+    <!-- end pop up view sports arena section -->
+
     <!-- start pop up add sports arena section -->
     <div id="popup_add_arenas" class="sectionpop">
         <div class="formsection">
@@ -186,6 +199,19 @@
         </div>
     </div>
     <!-- end pop up add sports arena section -->
+
+    <!-- start pop up view sports arena section -->
+    <div id="popup_view_complaints" class="sectionpop">
+        <div class="formsection">
+            <div>
+                <button class="closebutton" onclick="close_popup_view_complaints_message()">❌</button>
+            </div>
+            <div id="displaycomplaints" class="displaycomplaints" style="margin:auto">
+                    
+            </div>
+        </div>
+    </div>
+    <!-- end pop up view sports arena section -->
 
     <!-- start pop up remove sports arena section -->
     <div id="popup_rmve_arenas" class="sectionpop">
@@ -435,11 +461,12 @@
                     </thead>
                     <tbody>
                         {% for arenas in inactiveArenas %}
-                        <tr class="popup" onclick="sportsArenaPopup()">
+                        <tr class="popup"">
                             <td data-label="Sports Arena Name :" class="expandHeader">{{arenas.sa_name}}</td>
                             <td data-label="Registered Date :" class="expandHeader">{{arenas.date}}</td>
                             <td data-label="Contact Number :" class="expandHeader">{{arenas.contact_no}}</td>
-                            <td data-label="Accept Request :" class="acceptAcc expandHeader"><a class="eye-btn" href="\Edituserdetails\EditProfileAction">
+                            <td data-label="Accept Request :" class="acceptAcc expandHeader"><a class="eye-btn" 
+                                onclick="open_popup_view_arenas_message('{{arenas.sa_name}}','{{arenas.location}}','{{arenas.category}}','{{arenas.payment_method}}','{{arenas.other_facilities}}','{{arenas.maplink}}','{{arenas.description}}')">
                                 <i class="fas fa-eye"></i></a><a class="tick-btn" onclick="open_popup_add_arenas_message('{{arenas.s_a_profile_id}}')">
                                 <i class="fas fa-check"></i></a></td>
 
@@ -450,7 +477,7 @@
                             <td data-label="Sports Arena Name :" class="expandHeader">PKI Basketball Court</td>
                             <td data-label="Registered Date :" class="expandHeader">2021-10-04</td>
                             <td data-label="Contact Number :" class="expandHeader">112498336</td>
-                            <td data-label="Accept Request :" class="acceptAcc expandHeader"><a class="eye-btn" href="\Edituserdetails\EditProfileAction">
+                            <td data-label="Accept Request :" class="acceptAcc expandHeader"><a class="eye-btn">
                                 <i class="fas fa-eye"></i></a><a class="tick-btn" onclick="open_popup_add_arenas_message()">
                                 <i class="fas fa-check"></i></a></td>
 
@@ -460,7 +487,7 @@
                             <td data-label="Sports Arena Name :" class="expandHeader">ABC College Volleyball</td>
                             <td data-label="Registered Date :" class="expandHeader">2021-10-01</td>
                             <td data-label="Contact Number :" class="expandHeader">112395926</td>
-                            <td data-label="Accept Request :" class="acceptAcc expandHeader"><a class="eye-btn" href="\Edituserdetails\EditProfileAction">
+                            <td data-label="Accept Request :" class="acceptAcc expandHeader"><a class="eye-btn">
                                 <i class="fas fa-eye"></i></a><a class="tick-btn" onclick="open_popup_add_arenas_message()">
                                 <i class="fas fa-check"></i></a></td>
 
@@ -470,7 +497,7 @@
                             <td data-label="Sports Arena Name :" class="expandHeader">Milton Badminton Center</td>
                             <td data-label="Registered Date :" class="expandHeader">2021-09-30</td>
                             <td data-label="Contact Number :" class="expandHeader">112595844</td>
-                            <td data-label="Accept Request :" class="acceptAcc expandHeader"><a class="eye-btn" href="\Edituserdetails\EditProfileAction">
+                            <td data-label="Accept Request :" class="acceptAcc expandHeader"><a class="eye-btn">
                                 <i class="fas fa-eye"></i></a><a class="tick-btn" onclick="open_popup_add_arenas_message()">
                                 <i class="fas fa-check"></i></a></td>
 
@@ -542,9 +569,9 @@
                             {% for arenas in activeArenas %}
                             <tr>
                 
-                                <td data-label="Sports Arena ID :">{{arenas.s_a_profile_id}}</td>
+                                <td data-label="Sports Arena ID :">{{arenas.sports_arena_id}}</td>
                                 <td data-label="Sports Arena name :">{{arenas.sa_name}}</td>
-                                <td data-label="Complaint :">{{arenas.count}}<button class="popup_cmp_button" onclick="">View Complaints</button></td>
+                                <td data-label="Complaint :">{{arenas.count}}<button id="popup_cmp_button" class="popup_cmp_button" value="{{arenas.sports_arena_id}}" onclick="open_popup_view_complaints_message()">View Complaints</button></td>
                                 <td data-label="Account Status :">{{arenas.account_status}}</td>
                                 <td data-label="Blacklist Arena :" class="blacklistAcc"><a class="blck-btn" onclick="open_popup_blck_arenas_message('{{arenas.s_a_profile_id}}')">
                                     <i class="fas fa-exclamation"></i></a></td>
@@ -624,7 +651,9 @@
     </footer>
     <!-- End of Footer -->
 
+    <script type="text/javascript" src="/Assets/js/lib/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/Assets/js/Admin/adminManageuser.js?version=1"></script>
+    <script type="text/javascript" src="/Assets/js/Admin/adminManageuserViewComplaints.js?version=1"></script>
 </body>
 
 </html>
