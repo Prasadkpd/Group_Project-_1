@@ -247,7 +247,7 @@ class SpArenaModel extends \Core\Model
             $this->errors["google_map1"] = 'Google Map link is required';
         } 
         // Check if the link is valid
-        elseif (preg_match('/^https\:\/\/goo\.gl\/maps\/\w+$/', $this->google_map_link) == 0) {
+        elseif (preg_match('/^https\:\/\/www\.google\.com\/maps\/search\/\?api\=1\&query\=\d\.\d+\%\w+\.\d+$/', $this->google_map_link) == 0) {
             $this->errors["google_map2"] = 'Google Map link enetered is invalid';
         }
 
