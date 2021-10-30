@@ -71,7 +71,6 @@ class SpAdministrationStaffModel extends \Core\Model
                 INNER JOIN user ON user.user_id=booking.customer_user_id
                 INNER JOIN administration_staff ON booking.sports_arena_id =administration_staff.sports_arena_id
                  WHERE booking.security_status="active"AND administration_staff.user_id=:id
-                --  AND DATE(GETDATE()) >= booking_date
                  ORDER BY booking.booking_date DESC
                 ';
 
@@ -132,6 +131,70 @@ class SpAdministrationStaffModel extends \Core\Model
         return ($stmt->execute());
     }
     //End of displaying sports arena's updating bookings
+
+
+
+    //Start of booking cancellation 
+    public static function bookingCancellation($booking_id, $user_id, $reason)
+    {
+        $sql = 'SELECT sports_arena_id, manager_user_id
+        FROM administration_staff WHERE user_id =:user_id';
+        //Updating status of the bookings in the database
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        //Converting retrieved data from database into PDOs
+        $result1 = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        //Obtaining the administratoin staff user details retrieved from result1
+        $arena_id = $result1["sports_arena_id"];
+        $manager_user_id = $result1["manager_user_id"];
+
+        $sql = 'SELECT customer_user_id
+        FROM booking WHERE booking_id =:booking_id';
+        //Updating status of the bookings in the database
+
+
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        //Converting retrieved data from database into PDOs
+        $result1 = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        //Obtaining the customer id from booking table
+        $customer_user_id = $result1["customer_user_id"];
+
+        //Adding the cancelled booking to booking cancellation table
+        $sql = 'INSERT INTO `booking_cancellation` (`reason`,`manager_sports_arena_id`,`administration_staff_sports_arena_id`
+        ,`manager_user_id`,`administration_staff_user_id`,`customer_user_id`,`booking_id`) VALUES 
+        (:reason,:manager_arena_id,:saAdmin_arena_id,:manager_user_id,:saAdmin_user_id,:customer_user_id,:booking_id)';
+
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':reason', $reason, PDO::PARAM_STR);
+        $stmt->bindValue(':manager_arena_id', $arena_id, PDO::PARAM_INT);
+        $stmt->bindValue(':saAdmin_arena_id', $arena_id, PDO::PARAM_INT);
+        $stmt->bindValue(':manager_user_id', $manager_user_id, PDO::PARAM_INT);
+        $stmt->bindValue(':saAdmin_user_id', $user_id, PDO::PARAM_INT);
+        $stmt->bindValue(':customer_user_id', $customer_user_id, PDO::PARAM_INT);
+        $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $sql = 'UPDATE booking SET security_status="inactive" WHERE booking_id=:booking_id';
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $sql = 'UPDATE booking_timeslot SET security_status="inactive" WHERE booking_id=:booking_id';
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+
+        return ($stmt->execute());
+    }
+    //End of booking cancellation 
 
     //Start of displaying notifications for manager
     public static function saAdminNotification($id)
@@ -212,11 +275,11 @@ class SpAdministrationStaffModel extends \Core\Model
     //Start of adding timeslot to a sports arena for manager for administration staff
     public static function saAdminAddTimeSlots($id, $start_time, $duration, $amount, $fid)
     {
-        $hours=(int)substr($start_time, 0,2);
-        $minutes=(int)substr($start_time, 3,5);
+        $hours = (int)substr($start_time, 0, 2);
+        $minutes = (int)substr($start_time, 3, 5);
 
-        $end_time=$hours+$duration;
-        $end_time=(string)($end_time.":".$minutes);
+        $end_time = $hours + $duration;
+        $end_time = (string)($end_time . ":" . $minutes);
         //have to add condition for check timeslot is available
         // select query for select sports arena from  user id 
         $sql1 = 'SELECT manager_user_id, manager_sports_arena_id FROM administration_staff WHERE user_id = :id';
@@ -243,45 +306,45 @@ class SpAdministrationStaffModel extends \Core\Model
 
         $stmt2->execute();
 
-       $sql3 = 'SELECT time_slot_id FROM time_slot ORDER BY time_slot_id DESC LIMIT 1';
+        $sql3 = 'SELECT time_slot_id FROM time_slot ORDER BY time_slot_id DESC LIMIT 1';
 
-       $stmt3 = $db->prepare($sql3);
-       $stmt3->execute();
-       $result3 = $stmt3->fetch(PDO::FETCH_ASSOC);
-       $time_slot_id = $result3['time_slot_id'];
+        $stmt3 = $db->prepare($sql3);
+        $stmt3->execute();
+        $result3 = $stmt3->fetch(PDO::FETCH_ASSOC);
+        $time_slot_id = $result3['time_slot_id'];
 
 
-       $sql3 = 'INSERT INTO administration_staff_manages_time_slot (`time_slot_id`,
+        $sql3 = 'INSERT INTO administration_staff_manages_time_slot (`time_slot_id`,
        `administration_staff_user_id`,`administration_staff_sports_arena_id`)
        VALUES (:time_slot_id,:user_id,:arena_id)';
 
-       $stmt3 = $db->prepare($sql3);
-       $stmt3->bindValue(':time_slot_id', $time_slot_id, PDO::PARAM_INT);
-       $stmt3->bindValue(':user_id', $id, PDO::PARAM_INT);
-       $stmt3->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+        $stmt3 = $db->prepare($sql3);
+        $stmt3->bindValue(':time_slot_id', $time_slot_id, PDO::PARAM_INT);
+        $stmt3->bindValue(':user_id', $id, PDO::PARAM_INT);
+        $stmt3->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
 
-       return($stmt3->execute());
+        return ($stmt3->execute());
     }
 
     //End of adding timeslot to a sports arena for manager
     public static function CheckExistingTimeslots($user_id, $start_time, $duration, $price, $facility)
     {
         // Changing start_time variable to hh:mm:ss format
-        $start_time=(string)($start_time.":00");
+        $start_time = (string)($start_time . ":00");
 
-        $hours=(int)substr($start_time, 0,2);
-        $minutes=(int)substr($start_time, 3,2);
-        
-        $end_time=$hours+$duration;
+        $hours = (int)substr($start_time, 0, 2);
+        $minutes = (int)substr($start_time, 3, 2);
+
+        $end_time = $hours + $duration;
         // $end_time=(string)($end_time.":".$minutes);
 
         // If end_time is less than 10am, add a zero before the hh:mm:ss time format. Else just change it to hh:mm:ss
-        if($end_time<10){
-            $end_time=(string)("0".$end_time.":".$minutes.":00");
-        }else{
-            $end_time=(string)($end_time.":".$minutes.":00");
+        if ($end_time < 10) {
+            $end_time = (string)("0" . $end_time . ":" . $minutes . ":00");
+        } else {
+            $end_time = (string)($end_time . ":" . $minutes . ":00");
         }
-        
+
         $db = static::getDB();
 
         // select query for select sports arena from  user id
@@ -294,19 +357,19 @@ class SpAdministrationStaffModel extends \Core\Model
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
         $stmt->execute();
-        
+
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         $arena_id = $result["sports_arena_id"];
 
         $sql = 'SELECT * FROM  time_slot
                 WHERE (manager_sports_arena_id=:arena_id AND facility_id=:facility)
                 ORDER BY end_time ASC';
-  
+
         $stmt = $db->prepare($sql);
-        
+
         $stmt->bindValue(':facility', $facility, PDO::PARAM_STR);
         $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
-        
+
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
         $stmt->execute();
@@ -315,8 +378,7 @@ class SpAdministrationStaffModel extends \Core\Model
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             // If input start time is between database timeslot range excluding end time and If input end time is between database timeslot range excluding start time
             // strtotime is used to convert string to time. So times can be compared
-            if ((strtotime($row["end_time"]) > strtotime($start_time) && strtotime($row["start_time"]) <= strtotime($start_time)) || (strtotime($row["end_time"]) >= strtotime($end_time) && strtotime($row["start_time"]) < strtotime($end_time)))
-            {
+            if ((strtotime($row["end_time"]) > strtotime($start_time) && strtotime($row["start_time"]) <= strtotime($start_time)) || (strtotime($row["end_time"]) >= strtotime($end_time) && strtotime($row["start_time"]) < strtotime($end_time))) {
                 return false;
             }
         }
@@ -383,7 +445,7 @@ class SpAdministrationStaffModel extends \Core\Model
     //Remove a facility from the sports arena
     public static function saAdminDeleteFacility($id, $facility_id)
     {
-       $db = static::getDB();
+        $db = static::getDB();
 
         //Updating the facility table from the database
         $sql = 'UPDATE facility 
@@ -507,7 +569,7 @@ class SpAdministrationStaffModel extends \Core\Model
     //End of adding facility to a sports arena for administartion staff
 
     //Start of displaying sports arenas facilities update for administration staff
-    public static function saAdminUpdateFacility($id, $facility_id,$facility_name)
+    public static function saAdminUpdateFacility($id, $facility_id, $facility_name)
     {
         //Updating facility name in the database    
         $db = static::getDB();
@@ -565,7 +627,7 @@ class SpAdministrationStaffModel extends \Core\Model
         $stmt->execute();
         $result2 = $stmt->fetch(PDO::FETCH_ASSOC);
         $facility_name = $result2['facility_name'];
-        
+
         //Assigning the fetched PDOs to result
 
         if (empty($facility_name)) {
@@ -614,8 +676,7 @@ class SpAdministrationStaffModel extends \Core\Model
 
         if (!empty($facility_name)) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }

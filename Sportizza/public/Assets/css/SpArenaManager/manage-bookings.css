@@ -67,6 +67,9 @@ ul {
 
 form label {
   font-weight: 600;
+  color:#222f3e;
+ display:block;
+  text-align: center;
 }
 form input[type="text"],
 select {
@@ -102,6 +105,19 @@ form input[type="submit"] {
   text-transform: uppercase;
   display: flex;
   justify-content: center;
+}
+textarea{
+  width:100%;
+  padding:10px;
+  border-radius:15px;
+  border-color:#ccc;
+
+}
+.helper-text{
+  font-size:12px;
+  font-weight:500;
+  color:#e74c3c;
+  text-align: center;
 }
 
 /* End of Top navigation bar  */

@@ -80,6 +80,32 @@ class Spadministrationstaff extends Authenticated
     }
     //End of getting cash payments from customers
 
+
+    //Start of emergency booking cancellation from arena
+    public function bookingcancellationAction()
+    {
+        //Get the current user's details with session using Auth
+        $current_user = Auth::getUser();
+        $user_id = $current_user->user_id;
+        $booking_id = $this->route_params['id'];
+        //Update the booking's payment status
+        $cancel_booking = SpAdministrationStaffModel::bookingCancellation($booking_id, $user_id,$_POST['Reason']);
+       
+        //If booking cancellation is successful
+        if ($cancel_booking) {
+            //Send booking cancellation successfull notification
+            NotificationModel::customerEmergBookingCancelNotification($current_user,$booking_id);
+            // NotificationModel::saAdminEmergBookingCancelNotification();
+            // NotificationModel::saManagerEmergBookingCancelNotification();
+            // NotificationModel::saAdminEmergBookingCancelNotification();
+            
+            $this->redirect('/Spadministrationstaff/saadminnotification');
+        }
+    }
+    //End of getting cash payments from customers
+
+
+
     //Start of Notification of administration staff
     public function saadminnotificationAction()
     {
