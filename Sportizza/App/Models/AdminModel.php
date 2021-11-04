@@ -449,7 +449,7 @@ class AdminModel extends \Core\Model
     //End of Displaying of Update FAQ answer
 
     //Start of Updating FAQs
-    public static function adminUpdateFAQ($faq_id, $answer)
+    public static function adminUpdateFAQ($faq_id,$answer)
     {
         //Updating FAQ answer in the database
         $sql = 'UPDATE faq SET answer=:answer WHERE faq_id=:id ';

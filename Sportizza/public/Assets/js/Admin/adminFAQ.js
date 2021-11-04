@@ -169,28 +169,19 @@ function validateUType() {
   return true;
 }
 
-// Declaring global variable for updating form action for FAQ update
-var link = document.getElementById("updateFAQForm").action;
 
 function validateUQuestion(){
   // Retreiving FAQ ID and appending it to update FAQ form action
   var id = document.getElementById("uquestion").value;
   link = "http://localhost/admin/updatefaq/"+id;
-  console.log(link);
+  document.getElementById("updateFAQForm").action = link
+  console.log(document.getElementById("updateFAQForm").action);
 
   if (!selectValidate(uquestion)) return;
   return true;
 }
 
 function validateUSolution(){
-  // Retreiving updated answer
-  var answer = document.getElementById("usolution").value;
-  // Replace spaces with underscores and append it to the existing update FAQ form action seperating ID and answer
-  answer = answer.trim().split(' ').join('_');
-  var alink = `${link}__${answer}`;
-  document.getElementById("updateFAQForm").action = alink
-  console.log(document.getElementById("updateFAQForm").action);
-
   if (checkIfEmpty(usolution)) return;
   if (!checkCharacters(usolution)) return;
   return true;

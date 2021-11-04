@@ -110,14 +110,10 @@ class Admin extends Authenticated
     public function updatefaqAction()
     {
         //Obtaining faq id and answer sent from href
-        $combined = $this->route_params['arg'];
-        $combined = explode("__",$combined);
-
-        $faq_id = $combined[0];
-        $answer = str_replace("_", " ", $combined[1]);
-
+        $faq_id = $this->route_params['id'];
+        
         // Pass FAQ id and answer to update FAQ function in admin model
-        AdminModel::adminUpdateFAQ($faq_id, $answer);
+        AdminModel::adminUpdateFAQ($faq_id, $_POST['updated_solution']);
         
         //Redirect to admin's FAQ page
         $this->redirect('/Admin/faq');
