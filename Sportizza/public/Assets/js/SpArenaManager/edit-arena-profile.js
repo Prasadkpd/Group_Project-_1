@@ -118,10 +118,9 @@ function close_popup_map() {
   }
 
   function ImageSubmit(imageNumber) {
-    alert("Enter To function");
     const form_id = "#image_upload_" + imageNumber;
     const image_upload = document.querySelector(form_id);
     if(image_upload.submit()){
-      alert("Image Uploader");
+      // alert("Image Uploader");
     }
   }
