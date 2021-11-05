@@ -12,6 +12,13 @@ function openTab(evt, cityName) {
   evt.currentTarget.className += " active";
 }
 
+// return current date
+window.onload = function () {
+  document.getElementById('dateInput').valueAsDate = new Date();
+};
+
+
+
 // popup form section
 
 function openpopupform() {

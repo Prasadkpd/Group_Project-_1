@@ -107,19 +107,31 @@ class CustomerModel extends \Core\Model
     public static function customerViewTimeSlots($arena_id)
     {
         //Retrieving sports arena timeslot from the database
+        // $sql = 'SELECT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i") 
+        //         AS startTime,TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,
+        //         time_slot.price,facility.facility_name
+        //         FROM time_slot  
+        //         INNER JOIN facility ON time_slot.facility_id=facility.facility_id
+        //         WHERE time_slot.manager_sports_arena_id=:arena_id';
+
+
         $sql = 'SELECT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i") 
-        AS startTime,TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,
+                AS startTime,TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,
                 time_slot.price,facility.facility_name
-                FROM time_slot  
+                FROM booking  
+                INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id
+                RIGHT  JOIN time_slot ON time_slot.time_slot_id=booking_timeslot.timeslot_id
                 INNER JOIN facility ON time_slot.facility_id=facility.facility_id
-                WHERE time_slot.manager_sports_arena_id=:arena_id';
+                WHERE booking.facility_id=:facility  AND booking.booking_date=CURRENT_DATE()' ;
+                
+
         // have to change this is wrong we use it for testing
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
 
         //Binding the sports arena id and Converting retrieved data from database into PDOs
-        $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+        $stmt->bindValue(':facility', $arena_id, PDO::PARAM_INT);
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $stmt->execute();
 
@@ -152,25 +164,7 @@ class CustomerModel extends \Core\Model
     }
     //End of displaying sports arena details
 
-    // public static function customerArenaFacilities($arena_id){
 
-    //     $sql = 'SELECT facility.facility_name
-    //              FROM  facility 
-    //             WHERE sports_arena_id=:arena_id';
-    //             // have to change this is wrong we use it for testing
-
-
-    //     $db = static::getDB();
-    //     $stmt = $db->prepare($sql);
-    //     $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
-
-    //     $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-
-    //     $stmt->execute();
-    //     $result = $stmt->fetchAll();
-    //     // var_dump($result);
-    //     return $result;
-    // }
     //Start adding a sports arena to the favourite list 
     public static function customerAddFavoriteList($arena_id, $customer_id)
     {
