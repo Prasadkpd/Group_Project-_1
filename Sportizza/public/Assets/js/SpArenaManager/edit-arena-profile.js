@@ -112,7 +112,6 @@ function close_popup_map() {
         });
         reader.readAsDataURL(choosedFile);
         ImageSubmit(imageNumber);
-        console.log(imageNumber);
       }
     });
   }
