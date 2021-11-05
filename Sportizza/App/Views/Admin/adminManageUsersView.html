@@ -261,7 +261,7 @@
     </div>
     <!-- end pop up blacklist sports arena section -->
 
-    <!-- start pop up view complaints section -->
+    <!-- start pop up view complaints section
     <div id="popup_blck_arenas" class="sectionpop">
         <div class="formsection">
             <div>
@@ -269,10 +269,10 @@
             </div>
             <form action="/action_page.php" style="margin:20px">
                 <div style="margin:auto">
-                    <!-- <h1>Blacklist Sports Arena</h1> -->
-                    <p>Are you sure want to blacklist this sports arena?</p>
+                    <h1>Blacklist Sports Arena</h1> -->
+                    <!-- <p>Are you sure want to blacklist this sports arena?</p>
                 </div>
-            </form>
+            </form> -->
             <!-- <div style="display:flex">
                 <button class="popup_button">
                     YES
@@ -281,8 +281,8 @@
                     NO
                 </button>
             </div> -->
-        </div>
-    </div>
+        <!-- </div>
+    </div> -->
     <!-- end pop up view complaints section -->
 
 
@@ -573,9 +573,9 @@
                                 <td data-label="Sports Arena name :">{{arenas.sa_name}}</td>
                                 <td data-label="Complaint :">{{arenas.count}}<button id="popup_cmp_button" class="popup_cmp_button" value="{{arenas.sports_arena_id}}" onclick="open_popup_view_complaints_message()">View Complaints</button></td>
                                 <td data-label="Account Status :">{{arenas.account_status}}</td>
-                                <td data-label="Blacklist Arena :" class="blacklistAcc"><a class="blck-btn" onclick="open_popup_blck_arenas_message('{{arenas.s_a_profile_id}}')">
+                                <td data-label="Blacklist Arena :" class="blacklistAcc"><a class="blck-btn" onclick="open_popup_blck_arenas_message('{{arenas.sports_arena_id}}')">
                                     <i class="fas fa-exclamation"></i></a></td>
-                                <td data-label="Remove Sports Arena :" class="trash-btn-padding-res"> <a class="trash-btn" onclick="open_popup_rmv_arenas_message('{{arenas.s_a_profile_id}}')"><i
+                                <td data-label="Remove Sports Arena :" class="trash-btn-padding-res"> <a class="trash-btn" onclick="open_popup_rmv_arenas_message('{{arenas.sports_arena_id}}')"><i
                                             class="fas fa-trash-alt"></i></a></td>
                             </tr>
                             {% endfor %}

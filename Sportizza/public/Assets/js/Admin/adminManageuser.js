@@ -89,6 +89,8 @@ function open_popup_view_arenas_message(name,location,category,payment,otherfac,
     form.querySelector("#displayarenadetails").innerHTML += "<p>Card and cash</p>";
   }
 
+  form.querySelector("#displayarenadetails").innerHTML += "<span>Google Map Link: </span>"+"<p>"+maplink+"</p>";
+
   console.log(maplink);
 
   form.style.display = "block";
