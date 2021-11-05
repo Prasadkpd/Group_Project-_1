@@ -274,7 +274,8 @@ class Sparenamanager extends \Core\Controller
         $current_user = Auth::getUser();
         $id = $current_user->user_id;
         $arena_details = SpArenaManagerModel::arenaProfileView($id);
-//        var_dump($arena_details);
+
+    //    var_dump($arena_details);
         //Rendering the manager's edit profile arena view
         View::renderTemplate('Manager/mStaffEditArenaProfile.html',['arena_details' => $arena_details]);
     }
@@ -325,5 +326,42 @@ class Sparenamanager extends \Core\Controller
 
     }
     //End of Add Timeslot of manager
+
+    // Start of Update Image1 in Edit arena Profile
+    public function editimageoneAction() {
+      $current_user = Auth::getUser();
+      $id = $current_user->user_id;
+      SpArenaManagerModel::changeImageone($id,$_FILES['image_1']);
+      $this->redirect('/Sparenamanager/managereditarenaprofile/#image_uploader');
+    }
+    // Start of Update Image1 in Edit arena Profile
+    public function editimagetwoAction() {
+        $current_user = Auth::getUser();
+        $id = $current_user->user_id;
+        SpArenaManagerModel::changeImage2($id,$_FILES['image_2']);
+        $this->redirect('/Sparenamanager/managereditarenaprofile/#image_uploader');
+    }
+    // Start of Update Image1 in Edit arena Profile
+    public function editimagethreeAction() {
+        $current_user = Auth::getUser();
+        $id = $current_user->user_id;
+        SpArenaManagerModel::changeImage3($id,$_FILES['image_3']);
+        $this->redirect('/Sparenamanager/managereditarenaprofile/#image_uploader');
+    }
+    // Start of Update Image1 in Edit arena Profile
+    public function editimagefourAction() {
+        $current_user = Auth::getUser();
+        $id = $current_user->user_id;
+        SpArenaManagerModel::changeImage4($id,$_FILES['image_4']);
+        $this->redirect('/Sparenamanager/managereditarenaprofile/#image_uploader');
+    }
+    // Start of Update Image1 in Edit arena Profile
+    public function editimagefiveAction() {
+        $current_user = Auth::getUser();
+        $id = $current_user->user_id;
+        SpArenaManagerModel::changeImage5($id,$_FILES['image_5']);
+        $this->redirect('/Sparenamanager/managereditarenaprofile/#image_uploader');
+    }
+
 
 }

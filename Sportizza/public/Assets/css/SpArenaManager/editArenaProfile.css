@@ -54,6 +54,7 @@ form label {
     width: max-content;
     font-weight: 600;
     color: #fff;
+    height: 45px;
     padding: 14px 20px;
     margin: 12px auto;
     border: none;
@@ -366,36 +367,45 @@ button#get-position{
 }
 /* <!-- End OF the POP up SIGN out --> */
 
-
-
-.editProPic {
-  height: 110px;
-  width: 110px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 1px solid gray;
+.image-container{
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+}
+
+.image-container-row{
+  display: flex;
+  margin-top: 20px;
+}
+
+.editProPic {
+  height: 150px;
+  width: 250px;
+  display: flex;
+  border-radius: 20px;
+  flex-direction: column;
+  border-radius: 30px;
+  border: none;
   transform: translate(0%, -25%);
 }
-.editProPic input,
-label {
+
+.editProPic input,label {
   margin: 0 auto;
 }
-#file {
+#file1,#file2,#file3,#file4,#file5 {
   display: none;
 }
-#form-profile-picture {
+#photo1,#photo2,#photo3,#photo4,#photo5 {
   height: 100%;
+  object-fit: fill;
   width: 100%;
 }
-#uploadBtn {
+#uploadBtn1,#uploadBtn2,#uploadBtn3,#uploadBtn4,#uploadBtn5 {
   height: 30px;
   width: 100%;
   position: absolute;
   bottom: 0;
-  left: 50%;
+  left: 42%;
   transform: translate(-50%);
   text-align: center;
   background-color: rgb(0, 0, 0, 0.7);

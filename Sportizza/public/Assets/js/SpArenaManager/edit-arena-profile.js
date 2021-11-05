@@ -91,3 +91,37 @@ function close_popup_map() {
       validateOtherFacilities();
       validatePayment(); 
   };
+
+  function ChangeImage(imageNumber) {
+    const image_id = "#photo" + imageNumber;
+    const file_id = "#file" + imageNumber;
+    const arena_img = document.querySelector(image_id);
+    const img_file = document.querySelector(file_id);
+    
+    // js for edit profile picture
+
+    //work form image showing function
+    img_file.addEventListener("change", function () {
+      //this refers to file upload
+      const choosedFile = this.files[0];
+      if (choosedFile) {
+        const reader = new FileReader();
+        //file reader function
+        reader.addEventListener("load", function () {
+          arena_img.setAttribute("src", reader.result);
+        });
+        reader.readAsDataURL(choosedFile);
+        ImageSubmit(imageNumber);
+        console.log(imageNumber);
+      }
+    });
+  }
+
+  function ImageSubmit(imageNumber) {
+    alert("Enter To function");
+    const form_id = "#image_upload_" + imageNumber;
+    const image_upload = document.querySelector(form_id);
+    if(image_upload.submit()){
+      alert("Image Uploader");
+    }
+  }
