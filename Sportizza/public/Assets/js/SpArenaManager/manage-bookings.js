@@ -48,11 +48,12 @@ function close_popup_signout_message() {
 }
 
 //popup delete message
-function open_popup_delete_message() {
-    var form = document.getElementById("popup_delete");
+function open_popup_delete_booking(booking_id) {
+    document.getElementById("delete_booking_form").action += booking_id;
+    let form = document.getElementById("popup_delete");
     form.style.display = "block";
 }
-function close_popup_delete_message() {
+function close_popup_delete_booking() {
     var form = document.getElementById("popup_delete");
     form.style.display = "none";
 }

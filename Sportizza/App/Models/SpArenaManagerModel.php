@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Core\Image;
 use Core\Model;
 use PDO;
 use PDOException;
@@ -34,7 +35,7 @@ class SpArenaManagerModel extends \Core\Model
         $result1 = $stmt1->fetch(PDO::FETCH_ASSOC);
         $arena_id = $result1['sports_arena_id'];
 
-        $sql2 = 'SELECT sports_arena_profile.sa_name, sports_arena_profile.location, sports_arena_profile.google_map_link, 
+        $sql2 = 'SELECT sports_arena_profile.sports_arena_id,sports_arena_profile.sa_name, sports_arena_profile.location, sports_arena_profile.google_map_link, 
        sports_arena_profile.profile_photo, sports_arena_profile.description, sports_arena_profile.category, 
        sports_arena_profile.payment_method,sports_arena_profile.other_facilities, sports_arena_profile.contact_no,
        sports_arena_profile_photo.photo1_name, sports_arena_profile_photo.photo2_name, sports_arena_profile_photo.photo3_name,
@@ -48,8 +49,30 @@ class SpArenaManagerModel extends \Core\Model
         $result2 = $stmt2->fetch(PDO::FETCH_ASSOC);
         return $result2;
     }
-    //End of displaying sports arena profile
 
+    //End of displaying sports arena profile
+    public static function editArenaProfile($arena_id, $name, $location, $contact, $category, $map_link, $description, $other_facility, $payment)
+    {
+        $sql1 = "UPDATE sports_arena SET sa_name=:sa_name WHERE sports_arena_id=:arena_id";
+        $db = static::getDB();
+        $stmt1 = $db->prepare($sql1);
+        $stmt1->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+        $stmt1->bindValue(':sa_name', $name, PDO::PARAM_STR);
+        $stmt1->execute();
+
+        $sql2 = "UPDATE sports_arena_profile SET sa_name=:sa_name, location=:location, google_map_link=:google_map_link, description=:description, category=:category, payment_method=:payment_method, other_facilities=:other_facilities, contact_no=:contact WHERE sports_arena_id=:arena_id";
+        $stmt2 = $db->prepare($sql2);
+        $stmt2->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+        $stmt2->bindValue(':sa_name', $name, PDO::PARAM_STR);
+        $stmt2->bindValue(':location', $location, PDO::PARAM_STR);
+        $stmt2->bindValue(':google_map_link', $map_link, PDO::PARAM_STR);
+        $stmt2->bindValue(':description', $description, PDO::PARAM_STR);
+        $stmt2->bindValue(':category', $category, PDO::PARAM_STR);
+        $stmt2->bindValue(':payment_method', $payment, PDO::PARAM_STR);
+        $stmt2->bindValue(':other_facilities', $other_facility, PDO::PARAM_STR);
+        $stmt2->bindValue(':contact', $contact, PDO::PARAM_STR);
+        return ($stmt2->execute());
+    }
 
     //Start of displaying sports arena bookings
     public static function managerViewBookings($id)
@@ -86,7 +109,7 @@ class SpArenaManagerModel extends \Core\Model
     public static function managerCancelBookings($id)
     {
         //Retrieving sports arena bookings
-        $sql = 'SELECT booking.booking_id,booking.price_per_booking,
+        $sql = 'SELECT booking.booking_id ,booking.price_per_booking,
                 DATE(booking.booked_date) AS booked_date,
                 DATE(booking.booking_date) AS booking_date,
                 booking.payment_method,booking.payment_status,
@@ -112,6 +135,17 @@ class SpArenaManagerModel extends \Core\Model
         return $result;
     }
     //End of displaying sports arena's cancel bookings
+
+    //Start of remove bookings
+    public static function removeBooking($booking_id)
+    {
+        $sql = 'UPDATE booking SET security_status = "inactive" WHERE booking_id=:booking_id';
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+    //End of remove bookings
 
     //Start of displaying sports arena's booking payment
     public static function managerBookingPayment($id)
@@ -202,9 +236,10 @@ class SpArenaManagerModel extends \Core\Model
         $result = $stmt->fetchAll();
         return $result;
     }
+
     //End of displaying sports arenas facilities for manager
 
-    public static function  updateFacility($facility_Id,$facility_Name)
+    public static function updateFacility($facility_Id, $facility_Name)
     {
         $sql = 'UPDATE facility SET facility_name=:facility_Name WHERE facility_id=:facility_Id';
         $db = static::getDB();
@@ -268,6 +303,7 @@ class SpArenaManagerModel extends \Core\Model
         //Assigning the fetched PDOs to result
         return $stmt->fetchAll();
     }
+
     //End of displaying sports arenas deleting the timeslots for manager
 
     public static function removeTimeSlot($timeSlot_Id): bool
@@ -367,7 +403,7 @@ class SpArenaManagerModel extends \Core\Model
         INNER JOIN booking_handling_staff ON
         administration_staff.manager_user_id =booking_handling_staff.manager_user_id
         INNER JOIN user    ON administration_staff.user_id=user.user_id OR booking_handling_staff.user_id=user.user_id
-         WHERE administration_staff.manager_user_id=:id OR  booking_handling_staff.manager_user_id=:id
+         WHERE user.security_status="active" AND (administration_staff.manager_user_id=:id OR  booking_handling_staff.manager_user_id=:id)
          GROUP BY user.user_id';
 
 
@@ -383,7 +419,18 @@ class SpArenaManagerModel extends \Core\Model
         $result = $stmt->fetchAll();
         return $result;
     }
+
     //End of displaying sports arenas view staff for manager
+
+    public static function removestaff($user_id)
+    {
+        $sql = 'UPDATE user SET security_status="inactive", account_status="inactive"  WHERE user_id=:user_id';
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
 
     //Start of displaying sports arenas remove staff view for manager
     public static function managerRemoveStaff($id)
@@ -394,7 +441,7 @@ class SpArenaManagerModel extends \Core\Model
         INNER JOIN booking_handling_staff ON
         administration_staff.manager_user_id =booking_handling_staff.manager_user_id
         INNER JOIN user    ON administration_staff.user_id=user.user_id OR booking_handling_staff.user_id=user.user_id
-         WHERE administration_staff.manager_user_id=:id OR  booking_handling_staff.manager_user_id=:id
+         WHERE user.security_status="active" AND (administration_staff.manager_user_id=:id OR  booking_handling_staff.manager_user_id=:id)
          GROUP BY user.user_id';
 
 
@@ -577,7 +624,7 @@ class SpArenaManagerModel extends \Core\Model
 
         $stmt->execute();
         $timeSlots = $stmt->fetchAll();
-        var_dump($timeSlots);
+        // var_dump($timeSlots);
 
 
         // insert query for add time slots
@@ -729,5 +776,116 @@ class SpArenaManagerModel extends \Core\Model
         } else {
             return false;
         }
+    }
+
+    public static function changeImageone($id, $image_1)
+    {
+        $sql1 = 'SELECT sports_arena_profile_photo.sa_profile_id FROM sports_arena_profile_photo INNER JOIN 
+        sports_arena_profile ON sports_arena_profile_photo.sa_profile_id=sports_arena_profile.s_a_profile_id INNER JOIN 
+    sports_arena ON sports_arena_profile.sports_arena_id =sports_arena.sports_arena_id INNER JOIN manager 
+        ON sports_arena.sports_arena_id = manager.sports_arena_id WHERE user_id=:user_id';
+        $db = static::getDB();
+        $stm1 = $db->prepare($sql1);
+        $stm1->bindValue(':user_id',$id, PDO::PARAM_INT);
+        $stm1->execute();
+        $result1 = $stm1->fetch(PDO::FETCH_ASSOC);
+        $arena_profile_id = $result1['sa_profile_id'];
+        $image_1 = new Image("image_1");
+        $photo1_name = $image_1->getURL();
+        echo ($arena_profile_id);
+        echo ($photo1_name);
+        $sql2 = 'UPDATE sports_arena_profile_photo SET photo1_name=:photo1 WHERE sa_profile_id=:arena_profile_id';
+        $stm2 = $db->prepare($sql2);
+        $stm2->bindValue(':photo1', $photo1_name, PDO::PARAM_STR);
+        $stm2->bindValue(':arena_profile_id', $arena_profile_id, PDO::PARAM_INT);
+        return $stm2->execute();
+    }
+
+    public static function changeImage2($id, $image_2)
+    {
+        $sql1 = 'SELECT sports_arena_profile_photo.sa_profile_id FROM sports_arena_profile_photo INNER JOIN 
+        sports_arena_profile ON sports_arena_profile_photo.sa_profile_id=sports_arena_profile.s_a_profile_id INNER JOIN 
+    sports_arena ON sports_arena_profile.sports_arena_id =sports_arena.sports_arena_id INNER JOIN manager 
+        ON sports_arena.sports_arena_id = manager.sports_arena_id WHERE user_id=:user_id';
+        $db = static::getDB();
+        $stm1 = $db->prepare($sql1);
+        $stm1->bindValue(':user_id',$id, PDO::PARAM_INT);
+        $stm1->execute();
+        $result1 = $stm1->fetch(PDO::FETCH_ASSOC);
+        $arena_profile_id = $result1['sa_profile_id'];
+        $image_2 = new Image("image_2");
+        $photo2_name = $image_2->getURL();
+
+        $sql2 = 'UPDATE sports_arena_profile_photo SET photo2_name=:photo2 WHERE sa_profile_id=:arena_profile_id';
+        $stm2 = $db->prepare($sql2);
+        $stm2->bindValue(':photo2', $photo2_name, PDO::PARAM_STR);
+        $stm2->bindValue(':arena_profile_id', $arena_profile_id, PDO::PARAM_INT);
+        return $stm2->execute();
+    }
+
+    public static function changeImage3($id, $image_3)
+    {
+        $sql1 = 'SELECT sports_arena_profile_photo.sa_profile_id FROM sports_arena_profile_photo INNER JOIN 
+        sports_arena_profile ON sports_arena_profile_photo.sa_profile_id=sports_arena_profile.s_a_profile_id INNER JOIN 
+    sports_arena ON sports_arena_profile.sports_arena_id =sports_arena.sports_arena_id INNER JOIN manager 
+        ON sports_arena.sports_arena_id = manager.sports_arena_id WHERE user_id=:user_id';
+        $db = static::getDB();
+        $stm1 = $db->prepare($sql1);
+        $stm1->bindValue(':user_id',$id, PDO::PARAM_INT);
+        $stm1->execute();
+        $result1 = $stm1->fetch(PDO::FETCH_ASSOC);
+        $arena_profile_id = $result1['sa_profile_id'];
+        $image_3 = new Image("image_3");
+        $photo3_name = $image_3->getURL();
+
+        $sql2 = 'UPDATE sports_arena_profile_photo SET photo3_name=:photo3 WHERE sa_profile_id=:arena_profile_id';
+        $stm2 = $db->prepare($sql2);
+        $stm2->bindValue(':photo3', $photo3_name, PDO::PARAM_STR);
+        $stm2->bindValue(':arena_profile_id', $arena_profile_id, PDO::PARAM_INT);
+        return $stm2->execute();
+    }
+
+    public static function changeImage4($id, $image_4)
+    {
+        $sql1 = 'SELECT sports_arena_profile_photo.sa_profile_id FROM sports_arena_profile_photo INNER JOIN 
+        sports_arena_profile ON sports_arena_profile_photo.sa_profile_id=sports_arena_profile.s_a_profile_id INNER JOIN 
+    sports_arena ON sports_arena_profile.sports_arena_id =sports_arena.sports_arena_id INNER JOIN manager 
+        ON sports_arena.sports_arena_id = manager.sports_arena_id WHERE user_id=:user_id';
+        $db = static::getDB();
+        $stm1 = $db->prepare($sql1);
+        $stm1->bindValue(':user_id',$id, PDO::PARAM_INT);
+        $stm1->execute();
+        $result1 = $stm1->fetch(PDO::FETCH_ASSOC);
+        $arena_profile_id = $result1['sa_profile_id'];
+        $image_4 = new Image("image_4");
+        $photo4_name = $image_4->getURL();
+
+        $sql2 = 'UPDATE sports_arena_profile_photo SET photo4_name=:photo4 WHERE sa_profile_id=:arena_profile_id';
+        $stm2 = $db->prepare($sql2);
+        $stm2->bindValue(':photo4', $photo4_name, PDO::PARAM_STR);
+        $stm2->bindValue(':arena_profile_id', $arena_profile_id, PDO::PARAM_INT);
+        return $stm2->execute();
+    }
+
+    public static function changeImage5($id, $image_5)
+    {
+        $sql1 = 'SELECT sports_arena_profile_photo.sa_profile_id FROM sports_arena_profile_photo INNER JOIN 
+        sports_arena_profile ON sports_arena_profile_photo.sa_profile_id=sports_arena_profile.s_a_profile_id INNER JOIN 
+    sports_arena ON sports_arena_profile.sports_arena_id =sports_arena.sports_arena_id INNER JOIN manager 
+        ON sports_arena.sports_arena_id = manager.sports_arena_id WHERE user_id=:user_id';
+        $db = static::getDB();
+        $stm1 = $db->prepare($sql1);
+        $stm1->bindValue(':user_id',$id, PDO::PARAM_INT);
+        $stm1->execute();
+        $result1 = $stm1->fetch(PDO::FETCH_ASSOC);
+        $arena_profile_id = $result1['sa_profile_id'];
+        $image_5 = new Image("image_5");
+        $photo5_name = $image_5->getURL();
+
+        $sql2 = 'UPDATE sports_arena_profile_photo SET photo5_name=:photo5 WHERE sa_profile_id=:arena_profile_id';
+        $stm2 = $db->prepare($sql2);
+        $stm2->bindValue(':photo5', $photo5_name, PDO::PARAM_STR);
+        $stm2->bindValue(':arena_profile_id', $arena_profile_id, PDO::PARAM_INT);
+        return $stm2->execute();
     }
 }

@@ -31,7 +31,26 @@
     </div>
     </div>
   </nav>
-
+  <div id="popup_delete" class="sectionpop ">
+    <div class="formsection">
+      <div>
+        <button class="closebutton" onclick="close_popup_map()">❌</button>
+      </div>
+      <form style="margin:20px">
+        <div style="margin:auto">
+          <h1>
+            Mark the position
+          </h1>
+        </div>
+        <div style="display:flex;flex-direction: column;">
+          <div id="map" style="height: 200px;width: 100%;"></div>
+          <button onclick="close_popup_map()" class="popup_button" type="button">
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
   <div class="page">
     <div class="container">
       <div class="title">Sports Arena Application</div>
@@ -131,7 +150,8 @@
               <label for="map-link">Google Map Link</label>
               <input id="map-link" type="text" name="google_map_link"
                 placeholder="Ex: https://www.google.com/maps?q=204+C+Sandpiper+Place,+Fort+McMurray,+AB,+Canada"
-                onfocusout="validateMapLink()" value="{{sp_arena.google_map_link}}">
+                onfocusout="validateMapLink()">
+                <button id="get-position" type="button" onclick="open_popup_map()">Get Position</button>
               <div class="helper-text" id="map-linkMsg">
                 <p>{{errors["google_map1"]}} {{errors["google_map2"]}}</p>
               </div>
@@ -339,9 +359,13 @@
     </div>
   </footer>
   <!-- End of Footer -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2e00P4iPaWX6u26a1MNg-cYKLyY3jsoo&callback=initMap&v=weekly"
+    async></script>
   <script type="text/javascript" src="/Assets/js/signup_validation.js?version=16.0"></script>
-  <script type="text/javascript" src="/Assets/js/spArenaSignup_validations.js?version=16.0"></script> 
-  
+  <script type="text/javascript" src="/Assets/js/spArenaSignup_validations.js?version=16.0"></script>
+  <script type="text/javascript" src="/Assets/js/arena-signup.js"></script>
+
 </body>
 
 </html>

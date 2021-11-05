@@ -37,12 +37,20 @@ class Sparenamanager extends \Core\Controller
         $id = $current_user->user_id;
 
         $arena_details = SpArenaManagerModel::arenaProfileView($id);
+        $arena_details['google_map_link'] = preg_replace('/\%\d\w/', ' , ', substr($arena_details['google_map_link'], 48));
+                
 //        var_dump($arena_details);
         //Rendering the manager home view(sports arena profile)
         View::renderTemplate('Manager/mStaffProfileView.html',['arena_details' => $arena_details]);
     }
     //End of Landing page of manager
 
+    public function editarenaprofileAction(){
+        $arena_id = $this->route_params['id'];
+        SpArenaManagerModel::editArenaProfile($arena_id,$_POST['arena_name'],$_POST['location'],$_POST['contact'],$_POST['category'],$_POST['google_map_link'],$_POST['description'],$_POST['other_facilities'],$_POST['payment_method']);
+        $this->redirect("/Sparenamanager");
+        
+    }
     //Start of Manage bookings of manager
     public function managebookingsAction()
     {
@@ -63,6 +71,13 @@ class Sparenamanager extends \Core\Controller
         ]);
     }
     //End of Manage bookings of manager
+
+    public function removebookingAction()
+    {
+        $booking_id = $this->route_params['id'];
+        SpArenaManagerModel::removeBooking($booking_id);
+        $this->redirect("/Sparenamanager/managebookings");
+    }
 
     //Start of getting cash payments from customers
     public function getpaymentAction()
@@ -201,7 +216,9 @@ class Sparenamanager extends \Core\Controller
     //Start of Remove Users
     public function removestaff()
     {
-        SpArenaManagerModel::removeFacility($facility_id);
+        $facility_id = $this->route_params['id'];
+        SpArenaManagerModel::removestaff($facility_id);
+        $this->redirect("/Sparenamanager/manageusers");
     }
     //End of Remove Users
 
@@ -257,7 +274,8 @@ class Sparenamanager extends \Core\Controller
         $current_user = Auth::getUser();
         $id = $current_user->user_id;
         $arena_details = SpArenaManagerModel::arenaProfileView($id);
-//        var_dump($arena_details);
+
+    //    var_dump($arena_details);
         //Rendering the manager's edit profile arena view
         View::renderTemplate('Manager/mStaffEditArenaProfile.html',['arena_details' => $arena_details]);
     }
@@ -308,5 +326,42 @@ class Sparenamanager extends \Core\Controller
 
     }
     //End of Add Timeslot of manager
+
+    // Start of Update Image1 in Edit arena Profile
+    public function editimageoneAction() {
+      $current_user = Auth::getUser();
+      $id = $current_user->user_id;
+      SpArenaManagerModel::changeImageone($id,$_FILES['image_1']);
+      $this->redirect('/Sparenamanager/managereditarenaprofile/#image_uploader');
+    }
+    // Start of Update Image1 in Edit arena Profile
+    public function editimagetwoAction() {
+        $current_user = Auth::getUser();
+        $id = $current_user->user_id;
+        SpArenaManagerModel::changeImage2($id,$_FILES['image_2']);
+        $this->redirect('/Sparenamanager/managereditarenaprofile/#image_uploader');
+    }
+    // Start of Update Image1 in Edit arena Profile
+    public function editimagethreeAction() {
+        $current_user = Auth::getUser();
+        $id = $current_user->user_id;
+        SpArenaManagerModel::changeImage3($id,$_FILES['image_3']);
+        $this->redirect('/Sparenamanager/managereditarenaprofile/#image_uploader');
+    }
+    // Start of Update Image1 in Edit arena Profile
+    public function editimagefourAction() {
+        $current_user = Auth::getUser();
+        $id = $current_user->user_id;
+        SpArenaManagerModel::changeImage4($id,$_FILES['image_4']);
+        $this->redirect('/Sparenamanager/managereditarenaprofile/#image_uploader');
+    }
+    // Start of Update Image1 in Edit arena Profile
+    public function editimagefiveAction() {
+        $current_user = Auth::getUser();
+        $id = $current_user->user_id;
+        SpArenaManagerModel::changeImage5($id,$_FILES['image_5']);
+        $this->redirect('/Sparenamanager/managereditarenaprofile/#image_uploader');
+    }
+
 
 }
