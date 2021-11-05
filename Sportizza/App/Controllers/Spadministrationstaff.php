@@ -94,11 +94,7 @@ class Spadministrationstaff extends Authenticated
         //If booking cancellation is successful
         if ($cancel_booking) {
             //Send booking cancellation successfull notification
-            NotificationModel::customerEmergBookingCancelNotification($current_user,$booking_id);
-            // NotificationModel::saAdminEmergBookingCancelNotification();
-            // NotificationModel::saManagerEmergBookingCancelNotification();
-            // NotificationModel::saAdminEmergBookingCancelNotification();
-            
+            NotificationModel::customerEmergBookingCancelNotification($current_user,$booking_id);           
             $this->redirect('/Spadministrationstaff/saadminnotification');
         }
     }
