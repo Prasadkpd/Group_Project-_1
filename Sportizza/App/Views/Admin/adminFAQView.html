@@ -128,7 +128,7 @@
             <div style="display:flex">
 
                 <button class="popup_delete_button">
-                    <a href=""> YES</a>
+                    <a id="deleteFAQbutton" href=""> YES</a>
                 </button>
                 <button onclick="close_popup_delete_message()" class="popup_button">
                     NO
@@ -309,7 +309,7 @@
                             <td data-label="Solution :" class="solution_td" style="text-align: justify;">{{FAQ.answer}}
                             </td>
                             <td class="trash-btn-padding-res"> <a class="trash-btn"
-                                    onclick="open_popup_delete_message()"><i class="fas fa-trash-alt"></i></a></td>
+                                    onclick="open_popup_delete_message('{{FAQ.faq_id}}')"><i class="fas fa-trash-alt"></i></a></td>
                         </tr>
                         {% endfor %}
 
@@ -343,7 +343,7 @@
                         <div class="helper-text" id="uquestionMsg"></div>
 
                         <label for="usolution" class="faqLabel">Solution : </label>
-                        <textarea id="usolution" class="faqInput" rows="4" name="solution"
+                        <textarea id="usolution" class="faqInput" rows="4" name="updated_solution"
                             placeholder="Type your solution..." onfocusout="validateUSolution()"></textarea>
                         <div class="helper-text" id="usolutionMsg"></div>
 

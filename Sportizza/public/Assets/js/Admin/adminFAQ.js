@@ -54,8 +54,11 @@ function close_popup_signout_message() {
 }
 
 //popup delete message
-function open_popup_delete_message() {
+function open_popup_delete_message(id) {
     var form = document.getElementById("popup_delete");
+    var anchor = document.getElementById("deleteFAQbutton");
+    anchor.href = "http://localhost/admin/deletefaq/" + id;
+    console.log(anchor.href);
     form.style.display = "block";
 }
 function close_popup_delete_message() {
@@ -166,7 +169,14 @@ function validateUType() {
   return true;
 }
 
+
 function validateUQuestion(){
+  // Retreiving FAQ ID and appending it to update FAQ form action
+  var id = document.getElementById("uquestion").value;
+  link = "http://localhost/admin/updatefaq/"+id;
+  document.getElementById("updateFAQForm").action = link
+  console.log(document.getElementById("updateFAQForm").action);
+
   if (!selectValidate(uquestion)) return;
   return true;
 }

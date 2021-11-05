@@ -605,7 +605,7 @@ form input[type="submit"] {
   justify-content: space-between;
   align-items: center;
   width: 80vw;
-  margin-left: auto;
+  margin-left: 135px;
 }
 .filters .booking-table-date-picker {
   padding: 0.2em;
@@ -625,6 +625,10 @@ form input[type="submit"] {
   border:1px solid #d3d3d3;
   border-radius:25px;
   padding:12px 20px;
+}
+.filters .booking-table-date-picker select {
+  width: 200px;
+  margin-left: 10px;
 }
 .filters .booking-table-date-picker input[type='submit'] {
   outline: none;
@@ -925,6 +929,7 @@ footer {
     flex-direction: column;
     justify-content: center;
     width: 90vw;
+    margin-left: auto;
   }
   .filters .booking-table-date-picker {
     width: 90%;
