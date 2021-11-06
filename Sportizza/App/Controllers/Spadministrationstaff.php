@@ -49,6 +49,8 @@ class Spadministrationstaff extends Authenticated
         $id = $current_user->user_id;
         //Assigning the sports arena's bookings to view
         $bookings = SpAdministrationStaffModel::saAdminViewBookings($id);
+        //Assigning the available timeslots of sports arena
+        $add_bookings=SpAdministrationStaffModel::saAdminViewAvailableTimeSlots($id);
         //Assigning the sports arena's bookings to cancel view
         $cancelBookings = SpAdministrationStaffModel::saAdminCancelBookings($id);
         //Assigning the sports arena's bookings to get cash payment view
@@ -56,7 +58,7 @@ class Spadministrationstaff extends Authenticated
 
         //Rendering the administration staff's manage booking view
         View::renderTemplate('AdministrationStaff/aStaffManageBookingsView.html', [
-            'bookings' => $bookings,
+            'bookings' => $bookings, 'timeslots'=>$add_bookings,
             'cancelBookings' => $cancelBookings, 'bookingPayments' => $bookingPayments
         ]);
     }
