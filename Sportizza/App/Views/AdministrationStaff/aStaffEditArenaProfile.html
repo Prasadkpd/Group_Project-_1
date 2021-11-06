@@ -9,7 +9,7 @@
     <!-- Top Nav bar CSS styles -->
     <link rel="stylesheet" href="/Assets/css/navbar.css?version=5">
     <!-- File Specific CSS Styles -->
-    <link rel="stylesheet" href="/Assets/css/SpArenaManager/editArenaProfile.css">  
+    <link rel="stylesheet" href="/Assets/css/SpArenaManager/editArenaProfile.css">
     <!-- Font Styles -->
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 </head>
@@ -46,7 +46,26 @@
             </div>
         </div>
     </nav>
-
+    <div id="popup_delete" class="sectionpop ">
+        <div class="formsection">
+            <div>
+                <button class="closebutton" onclick="close_popup_map()">❌</button>
+            </div>
+            <form style="margin:20px">
+                <div style="margin:auto">
+                    <h1>
+                        Mark the position
+                    </h1>
+                </div>
+                <div style="display:flex;flex-direction: column;">
+                    <div id="map" style="height: 200px;width: 100%;"></div>
+                    <button onclick="close_popup_map()" class="popup_button" type="button">
+                        Save
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
     <!-- start popup for profile -->
     <div id="myForm" class="sectionpopnav">
         <div class="formsectionprofile" id="formEditUserProfile">
@@ -115,222 +134,170 @@
 
 
 
-<div class="page-container">
-    <!-- Start OF the POP up Edit arena form -->
-    <div id="popup_edit_form" class="edit_sectionpop">
-        <div class="edit_formsection">
-            <div>
-                <a href="/Spadministrationstaff">
-                <button class="closebutton">❌</button>
-            </a>
-            </div>
-            <h2>Sport Arena Profile</h2>
-            <form action="" >
-                <div class="sp-edit-form">
-                    <div class="input-row">
-                        <div class="input-box">
-                            <label for="spArenaName">Sports Arena Name</label>
-                            <input id="spArenaName" type="text" name="arena_name" placeholder="Enter Arena Name"
-                                onfocusout="validateSpArenaName()" value="{{sp_arena.arena_name}}">
-                            <div class="helper-text" id="spArenaNameMsg">
-                                <p>{{errors["arena_name1"]}} {{errors["arena_name2"]}}</p>
-                            </div>
-                        </div>
-
-                        <div class="input-box">
-                            <label for="contact">Contact Number</label>
-                            <input id="contact" type="text" name="contact" placeholder="Ex: 0712345678"
-                                onfocusout="validateContact()" value="{{sp_arena.contact_no}}">
-                            <div class="helper-text" id="contactMsg">
-                                <p>{{errors["contact1"]}} {{errors["contact2"]}}</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="input-row">
-                        <div class="input-box">
-                            <label for="category">Category</label>
-                            <div class="options-container">
-                                <div class="custom-select">
-                                    <select id="category" name="category" onchange="validateCategory()"
-                                        value="{{sp_arena.category}}">
-                                        <option value="0"> </option>
-                                        <option value="Other">Other</option>
-                                        <option value="Football">Football</option>
-                                        <option value="Rugby">Rugby</option>
-                                        <option value="Swimming">Swimming</option>
-                                        <option value="Tennis">Tennis</option>
-                                        <option value="Volleyball">Volleyball</option>
-                                        <option value="Karathe">Karathe</option>
-                                        <option value="Cricket">Cricket</option>
-                                    </select>
-                                    <div class="helper-text" id="other-categoryMsg">
-                                        <p>{{errors["category1"]}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="input-box">
-                            <label for="location">Location</label>
-                            <div class="options-container">
-                                <div class="custom-select">
-                                    <select id="location" name="location" onchange="validateLocation()"
-                                        value="{{sp_arena.location}}">
-                                        <option value="0"> </option>
-                                        <option value="Other">Other</option>
-                                        <option value="Matara">Matara</option>
-                                        <option value="Galle">Galle</option>
-                                        <option value="Gampaha">Gampaha</option>
-                                        <option value="Kandy">Kandy</option>
-                                        <option value="Hmabanthota">Hambanthota</option>
-                                        <option value="Baththaramulla">Baththaramulla</option>
-                                        <option value="Nugegods">Nugegoda</option>
-                                        <option value="Maradana">Maradana</option>
-                                        <option value="Mirissa">Mirissa</option>
-                                        <option value="Weligama">Weiligama</option>
-                                        <option value="Wattala">Wattala</option>
-                                        <option value="Malabe">Malabe</option>
-                                    </select>
-                                    <div class="helper-text" id="other-locationMsg">
-                                        <p>{{errors["location1"]}}</p>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="input-box">
-                        <label for="map-link">Google Map Link</label>
-                        <input id="map-link" type="text" name="google_map_link"
-                            placeholder="Ex: https://www.google.com/maps?q=204+C+Sandpiper+Place,+Fort+McMurray,+AB,+Canada"
-                            onfocusout="validateMapLink()" value="{{sp_arena.google_map_link}}" 
-                            >
-                        <div class="helper-text" id="map-linkMsg">
-                            <p>{{errors["google_map1"]}} {{errors["google_map2"]}}</p>
-                        </div>
-                    </div>
-
-                    <div class="input-box" id="description-input">
-                        <label for="description">Description</label>
-                        <textarea id="description" rows="5" type="text" name="description"
-                            placeholder="(Briefly state about sports arena)" onfocusout="validateDescription()"
-                            value="{{sp_arena.description}}"></textarea>
-                        <div class="helper-text" id="descriptionMsg">
-                            <p>{{errors["description1"]}}</p>
-                        </div>
-                    </div>
-
-                    <div class="input-row">
-                        <div class="input-box">
-                            <label for="other-facilities">Other Facilities</label>
-                            <input id="other-facilities" type="text" name="other_facilities"
-                                onfocusout="validateOtherFacilities()"
-                                placeholder="Ex: Changing Rooms, Cafeteria, Car Parking, etc."
-                                value="{{sp_arena.other_facilities}}">
-                            <div class="helper-text" id="descriptionMsg">
-                                <p>{{errors["other_facilities1"]}}</p>
-                            </div>
-                        </div>
-                        <div class="input-box">
-                            <label for="payment">Accepted Payment Method</label>
-                            <div class="options-container">
-
-                                <div class="custom-select">
-                                    <select id="payment" name="payment_method" onchange="validatePayment()"
-                                        value="{{sp_arena.payment_method}}">
-                                        <option value="0"> </option>
-                                        <option value="1">Only card payments</option>
-                                        <option value="2">Only cash payments</option>
-                                        <option value="3">Both cash & card payments</option>
-                                    </select>
-                                    <div class="helper-text" id="paymentMsg">
-                                        <p>{{errors["payment_method1"]}}</p>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="input-box-img">
-                        <label for="photos">Sports Arena Photos (Mandatory)
-                        </label>
-                        <div class="upload-images">
-                            <div class="input-row">
-                                <div class="input-box">
-                                    <div class="img-btn-div">
-                                        <label class="tag">Image 1:</label>
-                                        <input style type="file" name="image_1" accept="image/*" id="file1"
-                                            onchange="change_color(this.files,event)" class="img-button">
-                                    </div>
-                                    <div class="helper-text" id="imgMsg1">
-                                        <p>
-                                            {% for key,error in errors ["image_1"] %}
-                                            {{error}}
-                                            {% endfor %}</p>
-                                    </div>
-                                </div>
-                                <div class="input-box">
-                                    <div class="img-btn-div">
-                                        <label class="tag">Image 2:</label>
-                                        <input style type="file" name="image_2" accept="image/*" id="file2"
-                                            onchange="change_color(this.files,event)" class="img-button">
-                                    </div>
-                                    <div class="helper-text" id="imgMsg2">
-                                        {% for key,error in errors ["image_2"] %}
-                                        {{error}}
-                                        {% endfor %}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="input-row">
-
-                                <div class="input-box">
-
-                                    <div class="img-btn-div">
-                                        <label class="tag">Image 3:</label>
-                                        <input style type="file" name="image_3" accept="image/*" id="file3"
-                                            onchange="change_color(this.files,event)" class="img-button">
-                                    </div>
-                                    <div class="helper-text" id="imgMsg3">
-                                        {% for key,error in errors ["image_3"] %}
-                                        {{error}}
-                                        {% endfor %}</p>
-                                    </div>
-                                </div>
-                                <div class="input-box">
-                                    <div class="img-btn-div">
-                                        <label class="tag">Image 4:</label>
-                                        <input style type="file" name="image_4" accept="image/*" id="file4"
-                                            onchange="change_color(this.files,event)" class="img-button">
-                                    </div>
-                                    <div class="helper-text" id="imgMsg4">
-                                        {% for key,error in errors ["image_4"] %}
-                                        {{error}}
-                                        {% endfor %}</p>
-                                    </div>
+    <div class="page-container">
+        <!-- Start OF the POP up Edit arena form -->
+        <div id="popup_edit_form" class="edit_sectionpop">
+            <div class="edit_formsection">
+                <div>
+                    <a href="/Spadministrationstaff">
+                        <button class="closebutton">❌</button>
+                    </a>
+                </div>
+                <h2>Sport Arena Profile</h2>
+                <form action="/Spadministrationstaff/editarenaprofile/{{arena_details.sports_arena_id}}"
+                    id="arena-edit-form" method="post" onsubmit="validateEditForm()">
+                    <div class="sp-edit-form">
+                        <div class="input-row">
+                            <div class="input-box">
+                                <label for="spArenaName">Sports Arena Name</label>
+                                <input id="spArenaName" type="text" name="arena_name" placeholder="Enter Arena Name"
+                                    onfocusout="validateSpArenaName()" value="{{arena_details.sa_name}}">
+                                <div class="helper-text" id="spArenaNameMsg">
+                                    <p>{{errors["arena_name1"]}} {{errors["arena_name2"]}}</p>
                                 </div>
                             </div>
 
                             <div class="input-box">
-                                <div class="img-btn-div">
-                                    <label class="tag">Image 5:</label>
-                                    <input style type="file" name="image_5" accept="image/*" id="file5"
-                                        onchange="change_color(this.files,event)" class="img-button">
+                                <label for="contact">Contact Number</label>
+                                <input id="contact" type="tel" name="contact" placeholder="Ex: 0712345678"
+                                    onfocusout="validateContact()" value="{{arena_details.contact_no}}">
+                                <div class="helper-text" id="contactMsg">
+                                    <p>{{errors["contact1"]}} {{errors["contact2"]}}</p>
                                 </div>
-                                <div class="helper-text" id="imgMsg5">
-                                    {% for key,error in errors ["image_5"] %}
-                                    {{error}}
-                                    {% endfor %}</p>
+                            </div>
+                        </div>
+
+                        <div class="input-row">
+                            <div class="input-box">
+                                <label for="category">Category</label>
+                                <div class="options-container">
+                                    <div class="custom-select">
+                                        <input id="category" type="text" name="category"
+                                            placeholder="Enter Sport Category" onfocusout="validateSparenaCategory()"
+                                            value="{{arena_details.category}}">
+                                        <div class="helper-text" id="other-categoryMsg">
+                                            <p>{{errors["category1"]}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-box">
+                                <label for="location">Location</label>
+                                <div class="options-container">
+                                    <div class="custom-select">
+                                        <input id="location" type="text" name="location"
+                                            placeholder="Enter arena location" onfocusout="validateSparenaLocation()"
+                                            value="{{arena_details.location}}">
+                                        <div class="helper-text" id="other-locationMsg">
+                                            <p>{{errors["location1"]}}</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-box">
+                            <label for="map-link">Google Map Link</label>
+                            <input id="map-link" type="text" name="google_map_link"
+                                placeholder="Ex: https://www.google.com/maps?q=204+C+Sandpiper+Place,+Fort+McMurray,+AB,+Canada"
+                                onfocusout="validateMapLink()" value="{{arena_details.google_map_link}}"><button
+                                id="get-position" type="button" onclick="open_popup_map()">Get Position</button>
+                            <div class="helper-text" id="map-linkMsg">
+                                <p>{{errors["google_map1"]}} {{errors["google_map2"]}}</p>
+                            </div>
+                        </div>
+
+                        <div class="input-box" id="description-input">
+                            <label for="description">Description</label>
+                            <textarea id="description" rows="5" type="text" name="description"
+                                placeholder="(Briefly state about sports arena)" onfocusout="validateDescription()">
+                            {{arena_details.description}}"></textarea>
+                            <div class="helper-text" id="descriptionMsg">
+                                <p>{{errors["description1"]}}</p>
+                            </div>
+                        </div>
+
+                        <div class="input-row">
+                            <div class="input-box">
+                                <label for="other-facilities">Other Facilities</label>
+                                <input id="other-facilities" type="text" name="other_facilities"
+                                    onfocusout="validateOtherFacilities()"
+                                    placeholder="Ex: Changing Rooms, Cafeteria, Car Parking, etc."
+                                    value="{{arena_details.other_facilities}}">
+                                <div class="helper-text" id="descriptionMsg">
+                                    <p>{{errors["other_facilities1"]}}</p>
+                                </div>
+                            </div>
+                            <div class="input-box">
+                                <label for="payment">Accepted Payment Method</label>
+                                <div class="options-container">
+
+                                    <div class="custom-select">
+                                        <select id="payment" name="payment_method" onchange="validatePayment()">
+                                            {% if arena_details.payment_method== 'cash' %}
+                                            <option value="cash" selected>Only cash Payment</option>
+                                            <option value="card">Only card payments</option>
+                                            <option value="both">Both cash & card payments</option>
+                                            {% elseif arena_details.payment_method== 'card' %}
+                                            <option value="cash">Only cash Payment</option>
+                                            <option value="card" selected>Only card payments</option>
+                                            <option value="both">Both cash & card payments</option>
+                                            {% elseif arena_details.payment_method== 'both' %}
+                                            <option value="cash">Only cash Payment</option>
+                                            <option value="card">Only card payments</option>
+                                            <option value="both" selected>Both cash & card payments</option>
+                                            {% endif %}
+                                        </select>
+                                        <div class="helper-text" id="paymentMsg">
+                                            <p>{{errors["payment_method1"]}}</p>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <input type="submit" value="Update Profile" class="popup_button">
+                </form>
+                <div class="image-container">
+                    <div class="image-container-row" id="image_uploader">
+                        <form class="editProPic" action="/Spadministrationstaff/editimageone" method="post" id="image_upload_1"
+                            enctype="multipart/form-data">
+                            <img id="photo1" src="{{arena_details.photo1_name}}" alt="">
+                            <input type="file" id="file1" name="image_1">
+                            <label for="file1" id="uploadBtn1" onclick="ChangeImage(1)">Change Photo</label>
+                        </form>
+                        <form class="editProPic" action="/Spadministrationstaff/editimagetwo" method="post" id="image_upload_2"
+                            enctype="multipart/form-data">
+                            <img id="photo2" src="{{arena_details.photo2_name}}" alt="">
+                            <input type="file" id="file2" name="image_2">
+                            <label for="file2" id="uploadBtn2" onclick="ChangeImage(2)">Change Photo</label>
+                        </form>
+                        <form class="editProPic" action="/Spadministrationstaff/editimagethree" method="post"
+                            id="image_upload_3" enctype="multipart/form-data">
+                            <img id="photo3" src="{{arena_details.photo3_name}}" alt="">
+                            <input type="file" id="file3" name="image_3">
+                            <label for="file3" id="uploadBtn3" onclick="ChangeImage(3)">Change Photo</label>
+                        </form>
+                        </div>
+                        <div class="image-container-row">
+                            <form class="editProPic" action="/Sparenamanager/editimagefour" method="post" id="image_upload_4" enctype="multipart/form-data">
+                                <img id="photo4" src="{{arena_details.photo4_name}}" alt="">
+                                <input type="file" id="file4" name="image_4">
+                                <label for="file4" id="uploadBtn4" onclick="ChangeImage(4)">Change Photo</label>
+                            </form>
+                            <form class="editProPic" action="/Sparenamanager/editimagefive" method="post" id="image_upload_5" enctype="multipart/form-data">
+                                <img id="photo5" src="{{arena_details.photo5_name}}" alt="">
+                                <input type="file" id="file5" name="image_5">
+                                <label for="file5" id="uploadBtn5" onclick="ChangeImage(5)">Change Photo</label>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <input type="submit" value="Update Profile" class="popup_button">
-            </form>
-        </div>
+                
+                </div>
+
     </div>
-</div>
 
     <!-- Start of Footer -->
     <footer>
@@ -346,7 +313,11 @@
     <!-- Top navbar js -->
     <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
     <!-- File specific JS -->
+    <script type="text/javascript" src="/Assets/js/editprofile.js?version=1"></script>
     <script type="text/javascript" src="/Assets/js/SpArenaManager/edit-profile.js?version=1"></script>
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2e00P4iPaWX6u26a1MNg-cYKLyY3jsoo&callback=initMap&v=weekly"
+    async></script>
 
 </body>
 
