@@ -55,6 +55,34 @@ class SpAdministrationStaffModel extends \Core\Model
     }
     //End of Displaying sports arena bookings
 
+//Start of displaying sports arena timeslot
+public static function saAdminViewAvailableTimeSlots($arena_id)
+{
+    //Retrieving sports arena timeslot from the database
+    $sql = 'SELECT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i") 
+    AS startTime,TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,
+            time_slot.price,facility.facility_name
+            FROM time_slot  
+            INNER JOIN facility ON time_slot.facility_id=facility.facility_id
+            WHERE time_slot.manager_sports_arena_id=:arena_id';
+    // have to change this is wrong we use it for testing
+
+    $db = static::getDB();
+    $stmt = $db->prepare($sql);
+
+    //Binding the sports arena id and Converting retrieved data from database into PDOs
+    $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+    $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+    $stmt->execute();
+
+    //Assigning the fetched PDOs to result
+    $result = $stmt->fetchAll();
+    return $result;
+}
+//End of Displaying sports arena timeslot
+
+
+
     //Start of displaying sports arena's cancel bookings
     public static function saAdminCancelBookings($id)
     {
