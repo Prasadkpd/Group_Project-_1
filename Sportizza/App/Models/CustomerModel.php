@@ -107,23 +107,17 @@ class CustomerModel extends \Core\Model
     public static function customerViewTimeSlots($arena_id)
     {
         //Retrieving sports arena timeslot from the database
-        // $sql = 'SELECT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i") 
-        //         AS startTime,TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,
-        //         time_slot.price,facility.facility_name
-        //         FROM time_slot  
-        //         INNER JOIN facility ON time_slot.facility_id=facility.facility_id
-        //         WHERE time_slot.manager_sports_arena_id=:arena_id';
+        $sql= 'SELECT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i")
+        AS startTime,TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,
+        time_slot.price,facility.facility_name
+        FROM time_slot
+        INNER JOIN facility ON time_slot.facility_id= facility.facility_id
+        WHERE time_slot.time_slot_id NOT IN
+         (SELECT booking_timeslot.timeslot_id FROM booking 
+        INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id WHERE 
+        booking.booking_date=CURRENT_DATE() )
+         AND time_slot.manager_sports_arena_id=:arena_id ORDER BY time_slot.start_time';
 
-
-        $sql = 'SELECT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i") 
-                AS startTime,TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,
-                time_slot.price,facility.facility_name
-                FROM booking  
-                INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id
-                RIGHT  JOIN time_slot ON time_slot.time_slot_id=booking_timeslot.timeslot_id
-                INNER JOIN facility ON time_slot.facility_id=facility.facility_id
-                WHERE booking.facility_id=:facility  AND booking.booking_date=CURRENT_DATE()' ;
-                
 
         // have to change this is wrong we use it for testing
 
@@ -131,7 +125,7 @@ class CustomerModel extends \Core\Model
         $stmt = $db->prepare($sql);
 
         //Binding the sports arena id and Converting retrieved data from database into PDOs
-        $stmt->bindValue(':facility', $arena_id, PDO::PARAM_INT);
+        $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $stmt->execute();
 
@@ -140,6 +134,42 @@ class CustomerModel extends \Core\Model
         return $result;
     }
     //End of Displaying sports arena timeslot
+
+
+
+
+    public static function customerSearchTimeSlotsDate($arena_id,$date)
+    {
+        //Retrieving sports arena timeslot from the database
+        $sql= 'SELECT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i")
+        AS startTime,TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,
+        time_slot.price,facility.facility_name
+        FROM time_slot
+        INNER JOIN facility ON time_slot.facility_id= facility.facility_id
+        WHERE time_slot.time_slot_id NOT IN
+         (SELECT booking_timeslot.timeslot_id FROM booking 
+        INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id WHERE 
+        booking.booking_date=:date )
+         AND time_slot.manager_sports_arena_id=:arena_id';
+
+
+        // have to change this is wrong we use it for testing
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding the sports arena id and Converting retrieved data from database into PDOs
+        $stmt->bindValue(':date', $date, PDO::PARAM_INT);
+        $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        //Assigning the fetched PDOs to result
+        $result = $stmt->fetchAll();
+        return $result;
+    }
+    //End of Displaying sports arena timeslot
+
 
     //Start of displaying sports arena details
     public static function customerViewArenaDetails($arena_id)
@@ -323,33 +353,34 @@ class CustomerModel extends \Core\Model
 
     }
 
+    public static function customerAddToCart($timeSlotId)
+    {
+        //insert query for add feedbacks
+        $sql = 'INSERT INTO feedback(booking_id,feedback_rating,sports_arena_id,description,customer_user_id)
+        VALUES(:booking_id,:feedback_rating,:sports_arena_id,:description,:customer_user_id)';
+
+        // get database connection
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding the customer id and Converting retrieved data from database into PDOs
+        $stmt->bindValue(':booking_id', $feedback["booking_id"], PDO::PARAM_INT);
+        $stmt->bindValue(':feedback_rating', $feedback["rate"], PDO::PARAM_INT);
+        $stmt->bindValue(':sports_arena_id', $feedback["arena_id"], PDO::PARAM_STR);
+        $stmt->bindValue(':description', $feedback["rating_description"], PDO::PARAM_STR);
+        $stmt->bindValue(':customer_user_id', $feedback["customer_id"], PDO::PARAM_INT);
+
+
+
+        return $stmt->execute();
+
+
+    }
 
 
 
 
-    // public static function customerAddToCart($timeslot_id,$current_user){
-
-    //     $db = static::getDB();
-
-    //     $sql1 = 'UPDATE `time_slot` SET `security_status`="inactive" 
-    //             WHERE `time_slot_id`=:timeslot_id';
-    //             // have to change this is wrong we use it for testing
 
 
-    //     $stmt1 = $db->prepare($sql);
-    //     $stmt1->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
-    //     $stmt1->execute();
-
-    //     $sql2 = 'UPDATE `time_slot` SET `security_status`="inactive" 
-    //             WHERE `time_slot_id`=:timeslot_id';
-    //             // have to change this is wrong we use it for testing
-
-
-    //     $stmt2 = $db->prepare($sql2);
-    //     $stmt2->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
-    //     $stmt2->execute();
-
-    //     return ($stmt->execute());
-    // }
 
 }

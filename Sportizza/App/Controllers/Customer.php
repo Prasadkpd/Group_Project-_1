@@ -83,6 +83,27 @@ class Customer extends Authenticated
     }
     //End of booking page of customer
 
+        //Start of booking page of customer
+        public function searchtimeslotdateAction()
+        {
+            //Assigning the sports arena's ID
+            $id = $this->route_params['id'];
+            $date=$_POST['dateInput'];
+    
+            //Assigning the sports arenas timeslots
+            $timeSlots = CustomerModel::customerSearchTimeSlotsDate($id,$date);
+            //Assigning the sports arenas details
+            $arenaDetails = CustomerModel::customerViewArenaDetails($id);
+    
+            //Rendering the customers booking view
+            View::renderTemplate(
+                'Customer/customerBookingView.html',
+                ['timeSlots' => $timeSlots, 'arenaDetails' => $arenaDetails ,'date'=>$date]
+            );
+        }
+        //End of booking page of customer
+
+
     //Start of adding timeslots to customer by removing from the view
     public function hidebookingAction()
     {
@@ -222,4 +243,6 @@ class Customer extends Authenticated
         $this->redirect('/Customer/booking/' . $_POST['arena_id']);
     }
     //End of adding sportsarena to Favourite list
+
+
 }
