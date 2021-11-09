@@ -59,8 +59,11 @@ class Customer extends Authenticated
     //Start of Cart page of customer
     public  function cartAction()
     {
+        $current_user = Auth::getUser();
+        $user_id = $current_user->user_id;
+        $cart=CustomerModel::customerCartView($user_id);
         //Rendering the customers cart view
-        View::renderTemplate('Customer/customerCartNewView.html');
+        View::renderTemplate('Customer/customerCartNewView.html',['cart' => $cart]);
     }
     //End of Cart page of customer
 
@@ -109,9 +112,18 @@ class Customer extends Authenticated
     {
         //Get the current user's details with session using Auth
         $current_user = Auth::getUser();
-        $timeslot_id = $this->route_params['id'];
+        $customer_id = $current_user->user_id;
+
+        $timeslot_id=$_POST['timeSlotId'];
+        $booking_date=$_POST['bookingDate'];
+        $payment_method=$_POST['paymentMethod'];
+
         //Adding timeslot to customer cart
-        $addCart = CustomerModel::customerAddToCart($timeslot_id, $current_user);
+        $arena_id = CustomerModel::customerAddToCart($customer_id,$timeslot_id,$booking_date,$payment_method);
+        $this->redirect("/customer/booking/$arena_id");
+        // if($addCart){
+        //     echo true;
+        // }
     }
     //End of adding timeslots to customer by removing from the view
 

@@ -193,27 +193,28 @@
                 {% for item in items  %} -->
                 <!-- {% set count=count+1  %}
                 {% endfor %} -->
+
+                {% for item in cart %}
                 <div id="cartItem1" class="cartItem">
                   <div id="itemDelete1" class="itemDelete" onclick="hideItem(1)">
                     <i class="far fa-times-circle"></i>
                   </div>
                   <div class="itemHeader">
-                    <h6>Sports Arena Name</h6>
+                    <h6>{{cart.sa_name}}</h6>
                   </div>
                   <div class="itemTime">
-                    20.00-22.00
+                    {{cart.start_time}}-{{cart.end_time}}
                   </div>
                   <div class="itemOther">
-                    Category , Location
+                    {{cart.category}}, {{cart.location}}
                   </div>
                   <div class="itemPrice">
-                    LKR 1000
+                    LKR {{cart.price_per_booking}}
                   </div>
-
                 </div>
-
+{% endfor %}
                 
-                <div id="cartItem2" class="cartItem">
+                <!-- <div id="cartItem2" class="cartItem">
                   <div id="itemDelete2" class="itemDelete" onclick="hideItem(2)">
                     <i class="far fa-times-circle"></i>
                   </div>
@@ -280,7 +281,7 @@
                   <div class="itemPrice">
                     LKR 1000
                   </div>
-                </div>
+                </div> -->
                 <input type="hidden" name="order_id" value="100000000">
                 <input type="hidden" name="items" value="Booking Timeslots"><br>
                 <input type="hidden" name="currency" value="LKR">

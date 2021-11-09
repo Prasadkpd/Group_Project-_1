@@ -134,35 +134,39 @@
                             <h4>Contact No: {{arenaDetails[0].contact_no}}</h4>
                         </div>
                         <div class="other">
-                            <h5>Accepted Payment Methods: 
+                            <h5>Accepted Payment Methods:
                                 {% if arenaDetails[0].payment_method=='card' %}
-                                    Card Payments
+                                Card Payments
                                 {% elseif arenaDetails[0].payment_method=='cash' %}
-                                    Cash Payments
+                                Cash Payments
                                 {% elseif arenaDetails[0].payment_method=='both' %}
-                                    Card Payments & Cash Payments
+                                Card Payments & Cash Payments
                                 {% endif %}
                             </h5>
                             <div class="favorite-deltails">
                                 <div class="add_favorite_button">
                                     <form action="/customer/addtofavoritelist" method="POST">
-                                        <input id="arena_id" name="arena_id" type="hidden" value={{arenaDetails[0].sports_arena_id}}>
+                                        <input id="arena_id" name="arena_id" type="hidden"
+                                            value={{arenaDetails[0].sports_arena_id}}>
                                         <!-- <input type="submit" value="add to favorites"> -->
 
                                         <button class="addToFav btn" type="submit">add to favorites </button>
-                                        <button class="addToFavIcon more-link" type="submit"><i class="fas fa-heart"></i>
+                                        <button class="addToFavIcon more-link" type="submit"><i
+                                                class="fas fa-heart"></i>
                                         </button>
                                     </form>
                                 </div>
-                                <a type="" class="more-link" id="more_details_btn" onclick="open_moredetails()">More Details
+                                <a type="" class="more-link" id="more_details_btn" onclick="open_moredetails()">More
+                                    Details
                                 </a>
-                                <a type="" class="more-link" id="goto_booking_btn" onclick="open_goto_booking()">Go to Bookings
+                                <a type="" class="more-link" id="goto_booking_btn" onclick="open_goto_booking()">Go to
+                                    Bookings
                                 </a>
                             </div>
                         </div>
 
 
-                    </div>                    
+                    </div>
                 </div>
                 <div class="container2">
                     <div class="more-details" id="more-details">
@@ -231,17 +235,18 @@
                             </div>
 
                             <div class="date-picker">
-                                <form action="/customer/searchtimeslotdate/{{arenaDetails[0].sports_arena_id}}" method="POST"
-                                id="bookingdateform">
+                                <form action="/customer/searchtimeslotdate/{{arenaDetails[0].sports_arena_id}}"
+                                    method="POST" id="bookingdateform">
                                     {% if date is not null %}
-                                  
+
                                     <input type="date" id="dateInput" name="dateInput" value="{{date}}">
 
                                     {% else %}
-                                    <input type="date" id="dateInput" name="dateInput" value= "getDate()">
+                                    <input type="date" id="dateInput" name="dateInput" value="getDate()">
                                     {% endif %}
-                                    
-                                    <input type="hidden" id="arenaId" name="arenaId" value="{{arenaDetails[0].sports_arena_id}}" >
+
+                                    <input type="hidden" id="arenaId" name="arenaId"
+                                        value="{{arenaDetails[0].sports_arena_id}}">
                                     <input type="submit" value="Go">
                                 </form>
                             </div>
@@ -253,6 +258,8 @@
                                 <h2>Available Time Slots</h2>
                                 <ul class="events-list">
                                     {% for timeSlot in timeSlots %}
+                                    <form action="/customer/hidebooking"
+                                    method="POST" id="addtocartform">
                                     <li id={{timeSlot.time_slot_id}} class="hideDetails">
                                         <div class="row">
                                             <span class="s-time">{{timeSlot.startTime}}</span>&nbsp;-
@@ -263,44 +270,68 @@
                                         </div>
                                         <div class="row">
                                             <span class="price">LKR {{timeSlot.price}}</span>
-                                            
-                                        
+
                                         </div>
 
                                         <!-- toggle button -->
-                                            
                                         <div class="payment_cart">
-                                                    <div class="toggle-button-cover">
-                                                        <div class="button-cover">
-                                                            <div class="button r" id="button-1">
-                                                                <input type="checkbox" class="checkbox">
-                                                                <div class="knobs"></div>
-                                                                <div class="layer"></div>
-                                                            </div>
-                                                        </div>
+                                            {% if arenaDetails[0].payment_method=='card' %}
+                                            <div class="toggle-button-cover">
+                                                <div class="button-cover">
+                                                    <div class="button r" id="button-1">
+                                                        <input type="checkbox" class="checkbox" name="paymentMethod" value="card" checked>
+                                                       
+                                                        <div class="layer1">card</div>
+                                                        
                                                     </div>
-                                                    
-                                                    <div>
-                                                        <button class="removeItem" value={{timeSlot.time_slot_id}} onclick="hidefunction({{timeSlot.time_slot_id}})">
-                                                            <i class="fas fa-cart-plus"></i></button>
+                                                </div>
+                                            </div>
+                                            {% elseif arenaDetails[0].payment_method=='cash' %}
+                                            <div class="toggle-button-cover">
+                                                <div class="button-cover">
+                                                    <div class="button r" id="button-1">
+                                                        <input type="checkbox" class="checkbox" name="paymentMethod" value="cash" checked>
+                                                        
+                                                        <div class="layer1">cash</div>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            {% elseif arenaDetails[0].payment_method=='both' %}
+                                            <div class="toggle-button-cover">
+                                                <div class="button-cover">
+                                                    <div class="button r" id="button-1">
+                                                        <input type="checkbox" class="checkbox" name="paymentMethod" value="card" checked>
+                                                        <div class="knobs"></div>
+                                                        <div class="layer"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endif %}
+                                            
+                                            <div>
+                                                <button class="removeItem" value={{timeSlot.time_slot_id}} type="button">
+                                                    <i class="fas fa-cart-plus"></i></button>
+                                            </div>
                                         </div>
+                                        <input type="hidden" name="timeSlotId" value={{timeSlot.time_slot_id}}>
+                                        <input type="hidden" name="bookingDate" value="2021-11-09">
                                     </li>
+                                </form>
                                     {% endfor %}
                                 </ul>
                                 <!-- <a href="#" class="btn check-availability-btn"> Pay Now</a> -->
                             </div>
-                            
+
 
                         </div>
-                        
-                            <a href="/customer/cart" class="btn check-availability-btn"> Pay Now</a>
-                        
+
+                        <a href="/customer/cart" class="btn check-availability-btn"> Pay Now</a>
+
                     </div>
-                    
+
                 </div>
 
-                
+
 
                 <div class="cart">
                     <a href="/customer/cart">
@@ -329,8 +360,9 @@
     </footer>
     <!-- End of Footer -->
     <script type="text/javascript" src="/Assets/js/lib/jquery/jquery.min.js"></script>
-    <script src="/Assets/js/Customer/newCustomerBooking.js?version=3"></script>
     <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
+    <script src="/Assets/js/Customer/customer_view_booking_hide_ajax.js"></script>
+    <script src="/Assets/js/Customer/newCustomerBooking.js?version=3"></script>
 
 
 </body>
