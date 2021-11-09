@@ -12,6 +12,33 @@ function openTab(evt, cityName) {
   evt.currentTarget.className += " active";
 }
 
+// return current date
+window.onload = function () {
+  document.getElementById('dateInput').valueAsDate = new Date();
+};
+
+
+var booking_date_form = document.getElementById('bookingdateform');
+var date_Input = document.getElementById('dateInput');
+
+booking_date_form.addEventListener('submit', function (event) {
+  var x = 
+}  
+
+
+
+// // return current date
+//  function getDate () {
+//   var now = new Date();
+
+// var day = ("0" + now.getDate()).slice(-2);
+// var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+// var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+// };
+
+
+
 // popup form section
 
 function openpopupform() {

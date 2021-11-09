@@ -231,8 +231,17 @@
                             </div>
 
                             <div class="date-picker">
-                                <form>
-                                    <input type="date">
+                                <form action="/customer/searchtimeslotdate/{{arenaDetails[0].sports_arena_id}}" method="POST"
+                                id="bookingdateform">
+                                    {% if date is not null %}
+                                  
+                                    <input type="date" id="dateInput" name="dateInput" value="{{date}}">
+
+                                    {% else %}
+                                    <input type="date" id="dateInput" name="dateInput" value= "getDate()">
+                                    {% endif %}
+                                    
+                                    <input type="hidden" id="arenaId" name="arenaId" value="{{arenaDetails[0].sports_arena_id}}" >
                                     <input type="submit" value="Go">
                                 </form>
                             </div>

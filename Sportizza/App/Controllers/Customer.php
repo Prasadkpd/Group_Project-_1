@@ -83,6 +83,27 @@ class Customer extends Authenticated
     }
     //End of booking page of customer
 
+        //Start of booking page of customer
+        public function searchtimeslotdateAction()
+        {
+            //Assigning the sports arena's ID
+            $id = $this->route_params['id'];
+            $date=$_POST['dateInput'];
+    
+            //Assigning the sports arenas timeslots
+            $timeSlots = CustomerModel::customerSearchTimeSlotsDate($id,$date);
+            //Assigning the sports arenas details
+            $arenaDetails = CustomerModel::customerViewArenaDetails($id);
+    
+            //Rendering the customers booking view
+            View::renderTemplate(
+                'Customer/customerBookingView.html',
+                ['timeSlots' => $timeSlots, 'arenaDetails' => $arenaDetails ,'date'=>$date]
+            );
+        }
+        //End of booking page of customer
+
+
     //Start of adding timeslots to customer by removing from the view
     public function hidebookingAction()
     {
@@ -95,32 +116,71 @@ class Customer extends Authenticated
     //End of adding timeslots to customer by removing from the view
 
     //Start of cancel bookings from customer's my bookings view
-    public function deletebookingAction()
+    public function customercancelbookingAction()
+    {
+        //Get the current user's details with session using Auth
+        $current_user = Auth::getUser();
+
+        //Assigning booking id to variable
+        $booking_id = $this->route_params['id'];
+        $cancelbooking = CustomerModel::customerCancelBooking($booking_id);
+
+        if($cancelbooking){
+            NotificationModel::cancelNotificationBookingSuccess($current_user,$booking_id);
+            $this->redirect("/customer");
+        }
+        
+
+
+    }
+
+    public function customerdeletebookingAction()
     {
         //Get the current user's details with session using Auth
         $current_user = Auth::getUser();
 
         //Assigning bookings related to customer
         $booking_id = $this->route_params['id'];
-        $booked_date = CustomerModel::customerSelectBookingDate($booking_id);
-        $booked_time = strtotime($booked_date);
+        $deletebooking = CustomerModel::customerDeleteBooking($booking_id);
 
-        //Obtaining the current time
-        $current_time = time();
-        //Checking if there's 3 days before the booking time
-        if ($current_time - $booked_time <= 259200) {
 
-            //Cancel the booking
-            $deletebooking = CustomerModel::customerDeleteBooking($booking_id);
-            //Sending booking cancellation notification
-            $notify_check = NotificationModel::cancelNotificationBookingSuccess($current_user, $booking_id);
-
-            //Redirect to customer's dashboard view if success
-            if ($deletebooking && $notify_check) {
-                $this->redirect('/Customer');
-            }
+        if($deletebooking){
+            $this->redirect("/customer");
         }
+        
+
+
     }
+
+
+    public function customerdeletefavoritearenaAction()
+    {
+        //Get the current user's details with session using Auth
+        $current_user = Auth::getUser();
+
+        //Assigning bookings related to customer
+        $arena_id = $this->route_params['id'];
+        $favourie_list_id=$_POST['fav_list_id_input'];
+        $deletebooking = CustomerModel::customerDeleteFavoriteArena($favourie_list_id,$arena_id);
+        
+        $this->redirect("/customer");
+
+
+    }
+
+    public function customeraddfeedbackAction()
+    {
+        //Get the current user's details with session using Auth
+        $current_user = Auth::getUser();
+
+        //Assigning bookings related to customer
+        $addfeedback = CustomerModel::customerAddFeedback($_POST);
+        
+        $this->redirect("/customer");
+
+
+    }
+
     //End of cancel bookings from customer's my bookings view
 
 
@@ -183,4 +243,6 @@ class Customer extends Authenticated
         $this->redirect('/Customer/booking/' . $_POST['arena_id']);
     }
     //End of adding sportsarena to Favourite list
+
+
 }
