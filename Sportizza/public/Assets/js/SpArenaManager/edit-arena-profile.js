@@ -67,6 +67,26 @@ function close_popup_map() {
   const arena_edit_form = document.getElementById('arena-edit-form');
 
   arena_edit_form.addEventListener('submit',function (event) {
+    event.preventDefault();
+
+    // validateSpArenaName() &&
+    // validateContact() &&
+    // validateSparenaCategory() &&
+    // validateSparenaLocation() &&
+    // validateMapLink() &&
+    // validateDescription() &&
+    // validateOtherFacilities() &&
+    // validatePayment()
+
+    validateSpArenaName() &&
+    validateContact() &&
+    validateSparenaCategory() &&
+    validateSparenaLocation() &&
+    validateMapLink() &&
+    validateDescription() &&
+    validateOtherFacilities() &&
+    validatePayment()
+
     if (
       validateSpArenaName() &&
       validateContact() &&

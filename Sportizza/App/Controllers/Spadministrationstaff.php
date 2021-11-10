@@ -36,10 +36,23 @@ class Spadministrationstaff extends Authenticated
         $current_user = Auth::getUser();
         $id = $current_user->user_id;
 
-        //Rendering the administration staff home view(sports arena profile)
-        View::renderTemplate('AdministrationStaff/aStaffProfileView.html');
+        $arena_details = SpAdministrationStaffModel::arenaProfileView($id);
+        $arena_details['google_map_link'] = preg_replace('/\%\d\w/', ' , ', substr($arena_details['google_map_link'], 48));
+                
+        // var_dump($arena_details);
+        //Rendering the manager home view(sports arena profile)
+        View::renderTemplate('AdministrationStaff/aStaffProfileView.html',['arena_details' => $arena_details]);
     }
     //End of Landing page of administration staff
+
+    //Start of updating the arena profile by saAdmin
+    public function editarenaprofileAction(){
+        $arena_id = $this->route_params['id'];
+        SpAdministrationStaffModel::editArenaProfile($arena_id,$_POST['arena_name'],$_POST['location'],
+        $_POST['contact'],$_POST['category'],$_POST['google_map_link'],$_POST['description'],
+        $_POST['other_facilities'],$_POST['payment_method']);
+        $this->redirect("/Spadministrationstaff");   
+    }
 
     //Start of Manage bookings of administration staff
     public function managebookingsAction()
@@ -49,6 +62,8 @@ class Spadministrationstaff extends Authenticated
         $id = $current_user->user_id;
         //Assigning the sports arena's bookings to view
         $bookings = SpAdministrationStaffModel::saAdminViewBookings($id);
+        //Assigning the available timeslots of sports arena
+        $add_bookings=SpAdministrationStaffModel::saAdminViewAvailableTimeSlots($id);
         //Assigning the sports arena's bookings to cancel view
         $cancelBookings = SpAdministrationStaffModel::saAdminCancelBookings($id);
         //Assigning the sports arena's bookings to get cash payment view
@@ -56,7 +71,7 @@ class Spadministrationstaff extends Authenticated
 
         //Rendering the administration staff's manage booking view
         View::renderTemplate('AdministrationStaff/aStaffManageBookingsView.html', [
-            'bookings' => $bookings,
+            'bookings' => $bookings, 'timeslots'=>$add_bookings,
             'cancelBookings' => $cancelBookings, 'bookingPayments' => $bookingPayments
         ]);
     }
@@ -308,13 +323,19 @@ class Spadministrationstaff extends Authenticated
     //End of Delete Facility of administration staff
 
     //Start of Edit Arena profile of administration staff
-    public function saAdmineditarenaprofileAction()
-    {
-        //Get the current user's details with session using Auth
-        $current_user = Auth::getUser();
-        //Rendering the administration staff's edit profile arena view
-        View::renderTemplate('AdministrationStaff/aStaffEditArenaProfile.html');
-    }
+   //Start of Edit Arena profile of manager
+   public  function saAdmineditarenaprofileAction()
+   {
+       //Get the current user's details with session using Auth
+       $current_user = Auth::getUser();
+       $id = $current_user->user_id;
+       $arena_details = SpAdministrationStaffModel::arenaProfileView($id);
+
+   //    var_dump($arena_details);
+       //Rendering the manager's edit profile arena view
+       View::renderTemplate('AdministrationStaff/aStaffEditArenaProfile.html',['arena_details' => $arena_details]);
+   }
+   //End of Edit Arena profile of manager staff
 
     //End of Edit Arena profile of administration staff
 

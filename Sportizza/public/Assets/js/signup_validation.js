@@ -402,11 +402,11 @@ function validateMessage() {
 
 
 function validateSparenaCategory() {
-  if (!checkIfEmpty(edit_category)) return;
+  if (checkIfEmpty(edit_category)) return;
   return true;
 }
 function validateSparenaLocation() {
-  if (!checkIfEmpty(edit_location)) return;
+  if (checkIfEmpty(edit_location)) return;
   return true;
 }
 
