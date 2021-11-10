@@ -579,12 +579,25 @@ class AdminModel extends \Core\Model
     public static function adminChart3()
     {
         //Retrieving of chart data from the database
-        $sql = 'SELECT booking_date, COUNT(DISTINCT booking_id) AS No_Of_Bookings
+        $sql = 'SELECT CASE EXTRACT(MONTH FROM booking.booking_date)
+                    WHEN "1" THEN "January"
+                    WHEN "2" THEN "February"
+                    WHEN "3" THEN "March"
+                    WHEN "4" THEN "April"
+                    WHEN "5" THEN "May"
+                    WHEN "6" THEN "June"
+                    WHEN "7" THEN "July"
+                    WHEN "8" THEN "August"
+                    WHEN "9" THEN "September"
+                    WHEN "10" THEN "October"
+                    WHEN "11" THEN "November"
+                    WHEN "12" THEN "December"
+                    ELSE "Not Valid"
+                END AS Time_Booked, COUNT(DISTINCT booking_id) AS No_Of_Bookings
                 FROM booking
                 WHERE security_status="active"
-                GROUP BY booking_date 
-                ORDER BY booking_date DESC
-                LIMIT 7';
+                GROUP BY Time_Booked 
+                ORDER BY booking.booking_date Asc';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -665,5 +678,53 @@ class AdminModel extends \Core\Model
         return $result;
     }
     //End of Displaying of admin's chart 6
+
+    //Start of Reshaping Charts
+    public static function adminReshapeCharts($dateValue)
+    {
+        
+
+        //Retrieving of chart data from the database
+        $sql = 'SELECT EXTRACT(MONTH FROM booking.booking_date) AS BookingMonth FROM booking
+                WHERE security_status="active"
+                GROUP BY BookingMonth
+                ORDER BY BookingMonth DESC LIMIT 1 ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        //Assigning the fetched PDOs to result
+        $result1 = $stmt->fetch(PDO::FETCH_ASSOC);
+        $lastMonth = $result1["BookingMonth"];
+
+        $previousMonth = $lastMonth - $dateValue + 1;
+        
+        //Retrieving of chart data from the database
+        $sql = 'SELECT payment_method, COUNT(DISTINCT booking_id) AS No_Of_Bookings
+                FROM booking
+                WHERE security_status="active" AND EXTRACT(MONTH FROM booking.booking_date) BETWEEN :previousMonth AND :lastMonth
+                GROUP BY payment_method ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':previousMonth', $previousMonth, PDO::PARAM_INT);
+        $stmt->bindValue(':lastMonth', $lastMonth, PDO::PARAM_INT);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        //Assigning the fetched PDOs to result
+        // $result2 = $stmt->fetchAll();
+        $result2 = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result2;
+    }
+    //End of Reshaping Charts
     
 }
