@@ -136,12 +136,13 @@ class Customer extends Authenticated
     //Start of adding timeslots to customer by removing from the view
     public function hidebookingAction()
     {
+
         //Get the current user's details with session using Auth
         $current_user = Auth::getUser();
         $customer_id = $current_user->user_id;
 
         $timeslot_id=$_POST['timeSlotId'];
-        $booking_date=$_POST['bookingDate'];
+        $booking_date=$_POST['dateInput'];
         $payment_method=$_POST['paymentMethod'];
 
         //Adding timeslot to customer cart
