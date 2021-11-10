@@ -485,8 +485,6 @@ class CustomerModel extends \Core\Model
 
         // $stmt = $db->prepare($sql);
 
-
-
         $sql2='SELECT booking.price_per_booking, booking.booking_id, time_slot.start_time,time_slot.end_time, 
         sports_arena_profile.sa_name, sports_arena_profile.category, sports_arena_profile.location,
          booking.booked_date,booking.payment_method
