@@ -145,15 +145,17 @@ class CustomerModel extends \Core\Model
         //Retrieving sports arena timeslot from the database
         $sql = 'SELECT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i")
         AS startTime,TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,
-        time_slot.price,facility.facility_name
+        time_slot.price,facility.facility_name,sports_arena_profile.payment_method
         FROM time_slot
         INNER JOIN facility ON time_slot.facility_id= facility.facility_id
+        INNER JOIN sports_arena_profile ON facility.sports_arena_id= sports_arena_profile.sports_arena_id
         WHERE time_slot.time_slot_id NOT IN
          (SELECT booking_timeslot.timeslot_id FROM booking 
         INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id WHERE 
         booking.booking_date=:date )
          AND time_slot.manager_sports_arena_id=:arena_id 
-         AND time_slot.security_status="active"';
+         AND time_slot.security_status="active"
+         ORDER BY time_slot.start_time';
 
 
         // have to change this is wrong we use it for testing
@@ -162,14 +164,76 @@ class CustomerModel extends \Core\Model
         $stmt = $db->prepare($sql);
 
         //Binding the sports arena id and Converting retrieved data from database into PDOs
-        $stmt->bindValue(':date', $date, PDO::PARAM_INT);
+        $stmt->bindValue(':date', $date, PDO::PARAM_STR);
         $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $stmt->execute();
 
-        //Assigning the fetched PDOs to result
-        $result = $stmt->fetchAll();
-        return $result;
+        $output = "<form action='/customer/hidebooking'
+        method='POST' id='addtocartform'>";
+
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $output .= "<li id={$row["time_slot_id"]} class='hideDetails'>
+            <div class='row'>
+                <span class='s-time'>{$row["startTime"]}</span>&nbsp;-
+                <span class='e-time'>{$row["endTime"]}</span>
+            </div>
+            <div class='row'>
+                <span class='facility'>{$row["facility_name"]}</span>
+            </div>
+            <div class='row'>
+                <span class='price'>LKR {$row["price"]}</span>
+
+            </div>
+
+            <!-- toggle button -->
+            <div class='payment_cart'>";
+                
+            if ($row["payment_method"]=='card'){
+                $output .= "<div class='toggle-button-cover'>
+                <div class='button-cover'>
+                    <div class='button r' id='button-1'>
+                        <input type='checkbox' class='checkbox' name='paymentMethod' value='card' checked>
+                       
+                        <div class='layer1'>card</div>
+                        
+                    </div>
+                </div>
+            </div>";
+            } elseif ($row["payment_method"]=='cash'){    
+                
+                $output .= "<div class='toggle-button-cover'>
+                <div class='button-cover'>
+                    <div class='button r' id='button-1'>
+                        <input type='checkbox' class='checkbox' name='paymentMethod' value='cash' checked>
+                        
+                        <div class='layer1'>cash</div>
+                    </div>
+                </div>
+            </div>";
+            } elseif ($row["payment_method"]=='both'){
+                $output .= "<div class='toggle-button-cover'>
+                <div class='button-cover'>
+                <div class='button r' id='button-1'>
+                        <input type='checkbox' class='checkbox' name='paymentMethod' value='card' checked>
+                        <div class='knobs'></div>
+                        <div class='layer'></div>
+                    </div>
+                </div>
+            </div>";
+            }
+                
+            $output .=    "<div>
+                    <button class='removeItem' value={$row["time_slot_id"]} type='button'>
+                        <i class='fas fa-cart-plus'></i></button>
+                </div>
+            </div>
+            <input type='hidden' name='timeSlotId' value={$row["time_slot_id"]}>
+            <input type='hidden' name='bookingDate' value='2021-11-09'>
+        </li>";
+        }
+
+        return $output;
     }
     //End of Displaying sports arena timeslot
 
