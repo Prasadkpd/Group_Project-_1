@@ -110,19 +110,25 @@ class Customer extends Authenticated
         public function searchtimeslotdateAction()
         {
             //Assigning the sports arena's ID
-            $id = $this->route_params['id'];
-            $date=$_POST['dateInput'];
+            $combined = $this->route_params['arg'];
+
+            $combined = explode("__",$combined);
+            $arena_id = $combined[0];
+            $date = str_replace("_", "-", $combined[1]);
     
             //Assigning the sports arenas timeslots
-            $timeSlots = CustomerModel::customerSearchTimeSlotsDate($id,$date);
+            $timeSlots = CustomerModel::customerSearchTimeSlotsDate($arena_id,$date);
+            
+            echo $timeSlots;
+            // echo "".$arena_id." ".$date;
             //Assigning the sports arenas details
-            $arenaDetails = CustomerModel::customerViewArenaDetails($id);
+            // $arenaDetails = CustomerModel::customerViewArenaDetails($id);
     
             //Rendering the customers booking view
-            View::renderTemplate(
-                'Customer/customerBookingView.html',
-                ['timeSlots' => $timeSlots, 'arenaDetails' => $arenaDetails ,'date'=>$date]
-            );
+            // View::renderTemplate(
+            //     'Customer/customerBookingView.html',
+            //     ['timeSlots' => $timeSlots, 'arenaDetails' => $arenaDetails ,'date'=>$date]
+            // );
         }
         //End of booking page of customer
 

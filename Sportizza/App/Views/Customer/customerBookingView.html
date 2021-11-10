@@ -235,19 +235,18 @@
                             </div>
 
                             <div class="date-picker">
-                                <form action="/customer/searchtimeslotdate/{{arenaDetails[0].sports_arena_id}}"
-                                    method="POST" id="bookingdateform">
-                                    {% if date is not null %}
+                                <form method="POST" id="bookingdateform">
+                                    <!-- {% if date is not null %}
 
                                     <input type="date" id="dateInput" name="dateInput" value="{{date}}">
 
-                                    {% else %}
+                                    {% else %} -->
                                     <input type="date" id="dateInput" name="dateInput" value="getDate()">
-                                    {% endif %}
+                                    <!-- {% endif %} -->
 
                                     <input type="hidden" id="arenaId" name="arenaId"
                                         value="{{arenaDetails[0].sports_arena_id}}">
-                                    <input type="submit" value="Go">
+                                    <!-- <input type="submit" value="Go"> -->
                                 </form>
                             </div>
 
@@ -256,7 +255,7 @@
                         <div class="right-container">
                             <div class="available-bookings">
                                 <h2>Available Time Slots</h2>
-                                <ul class="events-list">
+                                <ul id="eventsList" class="events-list">
                                     {% for timeSlot in timeSlots %}
                                     <form action="/customer/hidebooking"
                                     method="POST" id="addtocartform">
@@ -361,8 +360,9 @@
     <!-- End of Footer -->
     <script type="text/javascript" src="/Assets/js/lib/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
-    <script src="/Assets/js/Customer/customer_view_booking_hide_ajax.js"></script>
     <script src="/Assets/js/Customer/newCustomerBooking.js?version=3"></script>
+    <script src="/Assets/js/Customer/customer_view_booking_hide_ajax.js"></script>
+    <script src="/Assets/js/Customer/customer_view_booking_dateChange_ajax.js"></script>
 
 
 </body>
