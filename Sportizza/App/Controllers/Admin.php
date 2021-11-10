@@ -263,4 +263,18 @@ class Admin extends Authenticated
     }
     //End of Chart view
 
+    public function reshapechartAction()
+    {
+        $dateValue = $this->route_params['id'];
+
+        $temp = [];
+
+        $chart4 = AdminModel::adminReshapeCharts($dateValue);
+        while($row=$chart4){
+            $temp[$row] = $chart4["payment_method"];
+        }
+
+        echo $chart4;
+    }
+
 }

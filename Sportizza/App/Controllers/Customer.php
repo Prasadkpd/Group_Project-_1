@@ -59,8 +59,31 @@ class Customer extends Authenticated
     //Start of Cart page of customer
     public  function cartAction()
     {
+        $current_user = Auth::getUser();
+        $user_id = $current_user->user_id;
+        $cart=CustomerModel::customerCartView($user_id);
+        
+        $cashSum=0;
+        $cardSum=0;
+        $allSum=0;
+        $i=0;
+        for( $i; $i< count($cart); $i++){
+            
+            if($cart[$i]->payment_method=="cash"){
+                $cashSum+=$cart[$i]->price_per_booking;
+
+            }
+            else{
+                $cardSum+=$cart[$i]->price_per_booking;
+            }
+        }
+        $allSum=$cashSum+$cardSum;
+     
+
+        
         //Rendering the customers cart view
-        View::renderTemplate('Customer/customerCartNewView.html');
+        View::renderTemplate('Customer/customerCartNewView.html',['cart' => $cart,
+        'allSum'=>$allSum,'cardSum'=>$cardSum,'cashSum'=>$cashSum]);
     }
     //End of Cart page of customer
 
@@ -87,19 +110,25 @@ class Customer extends Authenticated
         public function searchtimeslotdateAction()
         {
             //Assigning the sports arena's ID
-            $id = $this->route_params['id'];
-            $date=$_POST['dateInput'];
+            $combined = $this->route_params['arg'];
+
+            $combined = explode("__",$combined);
+            $arena_id = $combined[0];
+            $date = str_replace("_", "-", $combined[1]);
     
             //Assigning the sports arenas timeslots
-            $timeSlots = CustomerModel::customerSearchTimeSlotsDate($id,$date);
+            $timeSlots = CustomerModel::customerSearchTimeSlotsDate($arena_id,$date);
+            
+            echo $timeSlots;
+            // echo "".$arena_id." ".$date;
             //Assigning the sports arenas details
-            $arenaDetails = CustomerModel::customerViewArenaDetails($id);
+            // $arenaDetails = CustomerModel::customerViewArenaDetails($id);
     
             //Rendering the customers booking view
-            View::renderTemplate(
-                'Customer/customerBookingView.html',
-                ['timeSlots' => $timeSlots, 'arenaDetails' => $arenaDetails ,'date'=>$date]
-            );
+            // View::renderTemplate(
+            //     'Customer/customerBookingView.html',
+            //     ['timeSlots' => $timeSlots, 'arenaDetails' => $arenaDetails ,'date'=>$date]
+            // );
         }
         //End of booking page of customer
 
@@ -107,11 +136,21 @@ class Customer extends Authenticated
     //Start of adding timeslots to customer by removing from the view
     public function hidebookingAction()
     {
+
         //Get the current user's details with session using Auth
         $current_user = Auth::getUser();
-        $timeslot_id = $this->route_params['id'];
+        $customer_id = $current_user->user_id;
+
+        $timeslot_id=$_POST['timeSlotId'];
+        $booking_date=$_POST['dateInput'];
+        $payment_method=$_POST['paymentMethod'];
+
         //Adding timeslot to customer cart
-        $addCart = CustomerModel::customerAddToCart($timeslot_id, $current_user);
+        $arena_id = CustomerModel::customerAddToCart($customer_id,$timeslot_id,$booking_date,$payment_method);
+        $this->redirect("/customer/booking/$arena_id");
+        // if($addCart){
+        //     echo true;
+        // }
     }
     //End of adding timeslots to customer by removing from the view
 

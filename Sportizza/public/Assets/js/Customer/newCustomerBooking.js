@@ -19,11 +19,11 @@ window.onload = function () {
 
 
 var booking_date_form = document.getElementById('bookingdateform');
-var date_Input = document.getElementById('dateInput');
+// var date_Input = document.getElementById('dateInput');
 
-booking_date_form.addEventListener('submit', function (event) {
-  var x = 
-}  
+// booking_date_form.addEventListener('submit', function (event) {
+//   var x = dateI
+// }  
 
 
 
@@ -206,6 +206,22 @@ file.addEventListener("change", function () {
   }
 });
 
+//Assign date to the hidden input
+const bottom_date=document.getElementById("bookingDateB");
+const top_date=document.getElementById("dateInput");
+
+if(top_date){
+  alert("Hello");
+}
+
+top_date.addEventListener("change",function(){
+  let a=top_date.value;
+  bottom_date.value=a;
+  alert("Hello");
+  console.log(a);
+});
+
+
 //js for hide and show arena
 // let more_details = document.querySelector(".more-details");
 // let view_button = document.querySelector(".more-link");
@@ -269,10 +285,36 @@ function open_goto_booking() {
 //   console.log(id);
 // }
 
-function hidefunction(x)
-{
-    // $(".")
-    $("#"+x).hide();
-    console.log(x);
-}
+// function hidefunction(x)
+// {
+//     // $(".")
+//     $("#"+x).hide();
+//     console.log(x);
+// }
 
+$(document).ready(function () {
+  $(".removeItem").click(function () {
+    
+      let id = $(".removeItem").val();
+      // let pay_method = $(".checkbox").val();
+      // let booking_date = $("#dateInput").val();
+      // console.log(id);
+
+      $.ajax({
+          type: "POST",
+
+          url: "http://localhost/customer/hidebooking/",
+          // data: temp,
+          dataType: "text",
+          // data: {
+          //     courseId: temp
+          // },
+          success: function (response) {
+              if(response){
+                console.log(id);
+                $("#"+id).hide();
+              }
+          }
+      })
+  })
+})
