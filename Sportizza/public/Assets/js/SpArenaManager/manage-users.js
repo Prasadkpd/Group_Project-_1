@@ -83,13 +83,13 @@ formAddUser.addEventListener('submit', function (event) {
     if (
         //Add timeslot validations
         validateFirstName() &&
-        validateLastname() &&
+        validateLastName() &&
         validateMobile() &&
         validateUsername() &&
         validatePassword() &&
         validateStaffTypeSelect()
     ) {
-        formUpdateTimeslot.submit();
+        formAddUser.submit();
     }
 });
 

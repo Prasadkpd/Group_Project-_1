@@ -777,6 +777,50 @@ class SpArenaManagerModel extends \Core\Model
             return false;
         }
     }
+    public static function findMobileNo($mobileNo)
+    {
+
+        $sql = 'SELECT primary_contact FROM user WHERE primary_contact = (:primary_contact)';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':primary_contact', $mobileNo, PDO::PARAM_STR);
+
+        //Converting retrieved data from database into PDOs
+
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $primary_contact = $result['primary_contact'];
+        //Assigning the fetched PDOs to result
+        var_dump($result);
+        if (empty($primary_contact)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static function findUserName($userName)
+    {
+
+        $sql = 'SELECT username FROM user WHERE username = (:username)';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':username', $userName, PDO::PARAM_STR);
+
+        //Converting retrieved data from database into PDOs
+
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $user_name = $result['username'];
+        //Assigning the fetched PDOs to result
+        if (empty($user_name)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public static function changeImageone($id, $image_1)
     {
@@ -887,5 +931,63 @@ class SpArenaManagerModel extends \Core\Model
         $stm2->bindValue(':photo5', $photo5_name, PDO::PARAM_STR);
         $stm2->bindValue(':arena_profile_id', $arena_profile_id, PDO::PARAM_INT);
         return $stm2->execute();
+    }
+
+    public static function addStaff($manager_id,$first_name,$last_name,$mobile_number,$username,$password,$staff_type,$image)
+    {
+        $password_hashed = password_hash($password, PASSWORD_DEFAULT);
+        $image = new Image("image");
+        $profile_pic = $image->getURL();
+        $sql1 = 'INSERT INTO user(username, password, first_name, last_name, security_status, account_status,primary_contact, type, profile_pic)
+                 VALUES (:username, :password, :first_name, :last_name, "active", "active",:primary_contact, :type, :profile_pic)';
+        $db = static::getDB();
+        $stmt1 = $db->prepare($sql1);
+        $stmt1->bindValue(':username',$username, PDO::PARAM_STR);
+        $stmt1->bindValue(':password',$password_hashed, PDO::PARAM_STR);
+        $stmt1->bindValue(':first_name',$first_name, PDO::PARAM_STR);
+        $stmt1->bindValue(':last_name',$last_name, PDO::PARAM_STR);
+        $stmt1->bindValue(':primary_contact',$mobile_number, PDO::PARAM_STR);
+        $stmt1->bindValue(':type',$staff_type, PDO::PARAM_STR);
+        $stmt1->bindValue(':profile_pic',$profile_pic, PDO::PARAM_STR);
+        $stmt1->execute();
+
+        $sql2 = 'SELECT user_id FROM user ORDER BY user_id DESC LIMIT 1';
+        $stmt2 = $db->prepare($sql2);
+        $stmt2->execute();
+        $result2 = $stmt2->fetch(PDO::FETCH_ASSOC);
+        $user_id = $result2['user_id'];
+
+        $sql3 = 'SELECT manager.sports_arena_id FROM manager WHERE manager.user_id=:manager_id';
+        $stmt3 = $db->prepare($sql3);
+        $stmt3->bindValue(':manager_id',$manager_id, PDO::PARAM_INT);
+        $stmt3->execute();
+        $result3 = $stmt3->fetch(PDO::FETCH_ASSOC);
+        $arena_id = $result3['sports_arena_id'];
+
+
+
+        if($staff_type == "BookingHandlingStaff"){
+            $sql4 = 'INSERT INTO booking_handling_staff(user_id, sports_arena_id, manager_user_id, 
+                                    manager_sports_arena_id) VALUES (:user_id, :arena_id, :manager_id, :manager_arena_id)';
+            $stmt4 = $db->prepare($sql4);
+            $stmt4->bindValue(':user_id',$user_id, PDO::PARAM_INT);
+            $stmt4->bindValue(':arena_id',$arena_id, PDO::PARAM_INT);
+            $stmt4->bindValue(':manager_id',$manager_id, PDO::PARAM_INT);
+            $stmt4->bindValue(':manager_arena_id',$arena_id, PDO::PARAM_INT);
+            return $stmt4->execute();
+        }
+        if($staff_type == "AdministrationStaff"){
+            $sql5 = 'INSERT INTO administration_staff(user_id, sports_arena_id, manager_user_id, manager_sports_arena_id, 
+                     profile_sports_arena_id, s_a_profile_id) VALUES (:user_id, :arena_id, :manager_id, 
+                     :manager_sports_arena_id, :profile_sports_arena_id, :s_a_profile_id)';
+            $stmt5 = $db->prepare($sql5);
+            $stmt5->bindValue(':user_id',$user_id, PDO::PARAM_INT);
+            $stmt5->bindValue(':arena_id',$arena_id, PDO::PARAM_INT);
+            $stmt5->bindValue(':manager_id',$manager_id, PDO::PARAM_INT);
+            $stmt5->bindValue(':manager_sports_arena_id',$arena_id, PDO::PARAM_INT);
+            $stmt5->bindValue(':profile_sports_arena_id',$arena_id, PDO::PARAM_INT);
+            $stmt5->bindValue(':s_a_profile_id',$arena_id, PDO::PARAM_INT);
+            return $stmt5->execute();
+        }
     }
 }
