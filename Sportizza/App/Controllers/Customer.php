@@ -62,8 +62,28 @@ class Customer extends Authenticated
         $current_user = Auth::getUser();
         $user_id = $current_user->user_id;
         $cart=CustomerModel::customerCartView($user_id);
+        
+        $cashSum=0;
+        $cardSum=0;
+        $allSum=0;
+        $i=0;
+        for( $i; $i< count($cart); $i++){
+            
+            if($cart[$i]->payment_method=="cash"){
+                $cashSum+=$cart[$i]->price_per_booking;
+
+            }
+            else{
+                $cardSum+=$cart[$i]->price_per_booking;
+            }
+        }
+        $allSum=$cashSum+$cardSum;
+     
+
+        
         //Rendering the customers cart view
-        View::renderTemplate('Customer/customerCartNewView.html',['cart' => $cart]);
+        View::renderTemplate('Customer/customerCartNewView.html',['cart' => $cart,
+        'allSum'=>$allSum,'cardSum'=>$cardSum,'cashSum'=>$cashSum]);
     }
     //End of Cart page of customer
 

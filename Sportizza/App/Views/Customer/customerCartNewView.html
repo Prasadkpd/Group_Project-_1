@@ -200,88 +200,21 @@
                     <i class="far fa-times-circle"></i>
                   </div>
                   <div class="itemHeader">
-                    <h6>{{cart.sa_name}}</h6>
+                    <h6>{{item.sa_name}}</h6>
                   </div>
                   <div class="itemTime">
-                    {{cart.start_time}}-{{cart.end_time}}
+                    {{item.start_time}}-{{item.end_time}}
                   </div>
                   <div class="itemOther">
-                    {{cart.category}}, {{cart.location}}
+                    {{item.category}}, {{item.location}}
                   </div>
                   <div class="itemPrice">
-                    LKR {{cart.price_per_booking}}
+                    LKR {{item.price_per_booking}}
                   </div>
                 </div>
-{% endfor %}
+                {% endfor %}
                 
-                <!-- <div id="cartItem2" class="cartItem">
-                  <div id="itemDelete2" class="itemDelete" onclick="hideItem(2)">
-                    <i class="far fa-times-circle"></i>
-                  </div>
-                  <div class="itemHeader">
-                    <h6>Sports Arena Name</h6>
-                  </div>
-                  <div class="itemTime">
-                    20.00-22.00
-                  </div>
-                  <div class="itemOther">
-                    Category , Location
-                  </div>
-                  <div class="itemPrice">
-                    LKR 1000
-                  </div>
-                </div>
-                <div id="cartItem3" class="cartItem">
-                  <div id="itemDelete3" class="itemDelete" onclick="hideItem(3)">
-                    <i class="far fa-times-circle"></i>
-                  </div>
-                  <div class="itemHeader">
-                    <h6>Sports Arena Name</h6>
-                  </div>
-                  <div class="itemTime">
-                    20.00-22.00
-                  </div>
-                  <div class="itemOther">
-                    Category , Location
-                  </div>
-                  <div class="itemPrice">
-                    LKR 1000
-                  </div>
-                </div>
-                <div id="cartItem4" class="cartItem">
-                  <div id="itemDelete4" class="itemDelete" onclick="hideItem(4)">
-                    <i class="far fa-times-circle"></i>
-                  </div>
-                  <div class="itemHeader">
-                    <h6>Sports Arena Name</h6>
-                  </div>
-                  <div class="itemTime">
-                    20.00-22.00
-                  </div>
-                  <div class="itemOther">
-                    Category , Location
-                  </div>
-                  <div class="itemPrice">
-                    LKR 1000
-                  </div>
-                </div>
-                <div id="cartItem5" class="cartItem">
-                  <div id="itemDelete5" class="itemDelete" onclick="hideItem(5)">
-                    <i class="far fa-times-circle"></i>
-                  </div>
-                  <div class="itemHeader">
-                    <h6>Sports Arena Name</h6>
-                  </div>
-                  <div class="itemTime">
-                    20.00-22.00
-                  </div>
-                  <div class="itemOther">
-                    Category , Location
-                  </div>
-                  <div class="itemPrice">
-                    LKR 1000
-                  </div>
-                </div> -->
+               
                 <input type="hidden" name="order_id" value="100000000">
                 <input type="hidden" name="items" value="Booking Timeslots"><br>
                 <input type="hidden" name="currency" value="LKR">
@@ -292,13 +225,15 @@
                   <input type="submit" value="Pay Now" class="btn solid" />
                 </div>
                 
+               
+
                   <div class="showPrice">
                   <h4>Total Card Payment : &nbsp;</h4>
-                  <h4 class="showAmount">LKR 5000</h4>
+                  <h4 class="showAmount">LKR {{cardSum}}</h4>
                 </div>
                 <div class="showPrice">
                   <h4>Total Amount: &nbsp;</h4>
-                  <h4 class="showAmount">LKR 8000</h4>
+                  <h4 class="showAmount">LKR {{allSum}}</h4>
                 </div>
               </div>
               
