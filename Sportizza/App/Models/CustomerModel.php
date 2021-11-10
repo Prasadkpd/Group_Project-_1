@@ -428,9 +428,9 @@ class CustomerModel extends \Core\Model
         INNER JOIN time_slot ON booking_timeslot.timeslot_id=time_slot.time_slot_id
         INNER JOIN sports_arena_profile ON booking.sports_arena_id=sports_arena_profile.sports_arena_id
         WHERE booking_timeslot.security_status="active" AND booking.payment_status="unpaid"
-        AND booking.customer_user_id=:user_id AND booking.booked_date >= :prev_time AND booking.booked_date <=:next_time';
+        AND booking.customer_user_id=:user_id ';
 
-        
+// AND booking.booked_date >= :prev_time AND booking.booked_date <=:next_time
         $stmt = $db->prepare($sql2);
 
         //Binding the customer id and Converting retrieved data from database into PDOs
