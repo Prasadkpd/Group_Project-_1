@@ -217,7 +217,7 @@ class CustomerModel extends \Core\Model
                 $output .= "<div class='toggle-button-cover'>
                 <div class='button-cover'>
                 <div class='button r' id='button-1'>
-                        <input type='checkbox' class='checkbox' name='paymentMethod' value='card' checked>
+                        <input type='checkbox' class='checkbox' name='paymentMethod' onclick='paymentclick()' value='card' checked>
                         <div class='knobs'></div>
                         <div class='layer'></div>
                     </div>

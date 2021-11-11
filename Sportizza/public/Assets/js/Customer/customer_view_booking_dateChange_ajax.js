@@ -2,22 +2,26 @@ $(document).ready(function () {
 
     $("body").on("click", "button.removeItem", function () {
         // let form = document.getElementById("addtocartform");
-        let id = $(".removeItem").val();
-        // let pay_method = $(".checkbox").val();
-        // let booking_date = $("#dateInput").val();
-        // console.log(id);
-        // alert("Hello");
-        let timeslot_id = document.getElementsByClassName("timeSlotClass").value();
-        console.log(timeslot_id);
-        let bookingDate = document.getElementById("bookingDatehidden").val();
-        let paymentMethod = document.getElementsByClassName("payment_input").val();
+        let id = $(this).val();
+        let payment_cart = $(this).parent().prev();
+        
+        let paymentMethod = payment_cart.find('.checkbox').val();
+        let bookingDate = $('.bookingDatehidden').val();
+        
+        console.log(id);
         console.log(bookingDate);
         console.log(paymentMethod);
+
+        bookingDate = bookingDate.split("-").join("_");
+
+        let argument = `${id}__${bookingDate}__${paymentMethod}`;
+
+        // console.log(argument);
 
         $.ajax({
             type: "POST",
 
-            url: "http://localhost/customer/hidebooking/",
+            url: "http://localhost/customer/hidebooking/" + argument,
             // data: temp,
             dataType: "text",
             // data: {
@@ -25,9 +29,10 @@ $(document).ready(function () {
             // },
             success: function (response) {
             if (response) {
-                console.log(id);
                 $("#" + id).hide();
+                console.log("The hidden timeslot id is : "+id);
             }
+            // console.log(response);
         }
     })
     })

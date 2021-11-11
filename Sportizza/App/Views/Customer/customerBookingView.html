@@ -277,7 +277,7 @@
                                             <div class="toggle-button-cover">
                                                 <div class="button-cover">
                                                     <div class="button r" id="button-1">
-                                                        <input type="checkbox" class="checkbox payment_input" name="paymentMethod" value="card" checked>
+                                                        <input type="checkbox" class="checkbox" name="paymentMethod" value="card" checked>
                                                        
                                                         <div class="layer1">card</div>
                                                         
@@ -288,7 +288,7 @@
                                             <div class="toggle-button-cover">
                                                 <div class="button-cover">
                                                     <div class="button r" id="button-1">
-                                                        <input type="checkbox" class="checkbox payment_input" name="paymentMethod" value="cash" checked>
+                                                        <input type="checkbox" class="checkbox" name="paymentMethod" value="cash" checked>
                                                         
                                                         <div class="layer1">cash</div>
                                                     </div>
@@ -298,7 +298,7 @@
                                             <div class="toggle-button-cover">
                                                 <div class="button-cover">
                                                     <div class="button r" id="button-1">
-                                                        <input type="checkbox" class="checkbox payment_input" name="paymentMethod" value="card" checked>
+                                                        <input type="checkbox" class="checkbox" id="{{timeSlot.time_slot_id}}" onclick="paymentclick()" name="paymentMethod" value="card" checked>
                                                         <div class="knobs"></div>
                                                         <div class="layer"></div>
                                                     </div>
@@ -312,7 +312,7 @@
                                             </div>
                                         </div>
                                         <input type="text" name="timeSlotId" id="timeSlotId" class="timeSlotClass" value={{timeSlot.time_slot_id}}>
-                                        <input type="date" name="bookingDate" id="bookingDatehidden" class="bookingDatehidden" style="width: 1000px;">
+                                        <input type="date" name="bookingDate" class="bookingDatehidden" style="width: 1000px;">
                                     </li>
                                 <!-- </form> -->
                                     {% endfor %}
