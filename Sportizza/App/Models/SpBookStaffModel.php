@@ -22,6 +22,31 @@ class SpBookStaffModel extends \Core\Model
         };
     }
     //End of Class constructor 
+    //Start of displaying sports arena profile
+    public static function arenaProfileView($id)
+    {
+        $sql1 = 'SELECT sports_arena_id FROM booking_handling_staff WHERE user_id =:user_id';
+        $db = static::getDB();
+        $stmt1 = $db->prepare($sql1);
+        $stmt1->bindValue(':user_id', $id, PDO::PARAM_INT);
+        $stmt1->execute();
+        $result1 = $stmt1->fetch(PDO::FETCH_ASSOC);
+        $arena_id = $result1['sports_arena_id'];
+
+        $sql2 = 'SELECT sports_arena_profile.sports_arena_id,sports_arena_profile.sa_name, sports_arena_profile.location, sports_arena_profile.google_map_link, 
+       sports_arena_profile.profile_photo, sports_arena_profile.description, sports_arena_profile.category, 
+       sports_arena_profile.payment_method,sports_arena_profile.other_facilities, sports_arena_profile.contact_no,
+       sports_arena_profile_photo.photo1_name, sports_arena_profile_photo.photo2_name, sports_arena_profile_photo.photo3_name,
+       sports_arena_profile_photo.photo4_name,sports_arena_profile_photo.photo5_name
+        FROM sports_arena_profile INNER JOIN sports_arena_profile_photo ON 
+            sports_arena_profile.s_a_profile_id = sports_arena_profile_photo.sa_profile_id 
+        WHERE sports_arena_profile.sports_arena_id=:arena_id';
+        $stmt2 = $db->prepare($sql2);
+        $stmt2->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+        $stmt2->execute();
+        $result2 = $stmt2->fetch(PDO::FETCH_ASSOC);
+        return $result2;
+    }
 
     // Start of view bookings of booking handling staff
     public static function saBookViewBookings($id){
