@@ -12,9 +12,11 @@ function openTab(evt, cityName) {
   evt.currentTarget.className += " active";
 }
 
-// return current date
+// // return current date
 window.onload = function () {
   document.getElementById('dateInput').valueAsDate = new Date();
+  // document.querySelectorAll('.bookingDatehidden').valueAsDate = new Date();
+  document.querySelector(".bookingDatehidden").valueAsDate = new Date();
 };
 
 
@@ -28,8 +30,8 @@ var booking_date_form = document.getElementById('bookingdateform');
 
 
 // // return current date
-//  function getDate () {
-//   var now = new Date();
+// function getDate () {
+// var now = new Date();
 
 // var day = ("0" + now.getDate()).slice(-2);
 // var month = ("0" + (now.getMonth() + 1)).slice(-2);
