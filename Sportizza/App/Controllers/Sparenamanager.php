@@ -77,12 +77,24 @@ class Sparenamanager extends \Core\Controller
 
     //End of Manage bookings of manager
 
-    public function removebookingAction()
+     //Start of emergency booking cancellation from arena
+    public function bookingcancellationAction()
     {
+        //Get the current user's details with session using Auth
+        $current_user = Auth::getUser();
+        $user_id = $current_user->user_id;
         $booking_id = $this->route_params['id'];
-        SpArenaManagerModel::removeBooking($booking_id);
-        $this->redirect("/Sparenamanager/managebookings");
+        //Update the booking's payment status
+        $cancel_booking = SpArenaManagerModel::bookingCancellation($booking_id, $user_id,$_POST['Reason']);
+       
+        //If booking cancellation is successful
+        if ($cancel_booking) {
+            //Send booking cancellation successfull notification
+            NotificationModel::customerEmergBookingCancelNotification($current_user,$booking_id);           
+            $this->redirect('/Sparenamanager/managernotification');
+        }
     }
+    //End of getting cash payments from customers
 
     //Start of getting cash payments from customers
     public function getpaymentAction()

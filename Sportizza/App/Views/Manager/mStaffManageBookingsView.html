@@ -110,64 +110,31 @@
     </div>
     <!-- end pop up sign out section -->
     <!-- End Top Navigation Bar -->
-
     <!-- Start Of the Popup of Bookig Cancellation  -->
     <div id="popup_delete" class="sectionpop ">
         <div class="formsection">
             <div>
-                <button class="closebutton" onclick="close_popup_delete_booking()">❌</button>
+                <button class="closebutton" onclick="close_popup_cancel_booking()">❌</button>
             </div>
-            <form action="/Sparenamanager/removebooking/" style="margin:20px" method="post" id="delete_booking_form">
-                <div style="margin:auto">
-                    <h1>
-                        Booking Cancellation
-                    </h1>
-                    <p >
-                        Do you really want to cancel the booking?
-                    </p>
+            <form action="/Sparenamanager/bookingcancellation/" style="margin:20px"
+                onsubmit="validateBookingCancelReason()" id="BookingReasonForm" method="POST">
+                <div class="input-row">
+                    <div class="input-box">
+                        <label for="booking_cancellation">Reason For Cancellation</label>
+                        <textarea rows="5" style="width: 100%;" id="cancelReason" onfocusout="validateCancelReason()"
+                            name="Reason"></textarea>
+                        <div class="helper-text" id="cancelReasonMsg"> </div>
+                    </div>
                 </div>
-            <div style="display:flex">
-
-                <button class="popup_delete_button" type="submit">
-                    YES
-                </button>
-                <button onclick="close_popup_delete_booking()" class="popup_button" type="button">
-                    NO
-                </button>
-            </div>
+                <div style="display:flex">
+                    <button class="popup_delete_button" class="popup_button">
+                        Cancel Booking
+                    </button>
+                </div>
             </form>
         </div>
     </div>
     <!-- End OF the POP up Booking Cancel -->
-    <!-- Start Of the Popup of Bookig Cancellation  -->
-    <div id="popup_payment" class="sectionpop ">
-        <div class="formsection">
-            <div>
-                <button class="closebutton" onclick="close_popup_payment_message()">❌</button>
-            </div>
-            <form action="/action_page.php" style="margin:20px">
-                <div style="margin:auto">
-                    <h1 style="margin:auto">
-                        Get Payment
-                    </h1>
-                    <p style="margin:auto">
-                        Are you sure that you collect cash payment from customer?
-                    </p>
-                </div>
-            </form>
-            <div style="display:flex">
-
-                <button class="popup_button">
-                    <a href="/Sparenamanager/getpayment/" id="getPaymentbtn"> YES</a>
-                </button>
-                <button onclick="close_popup_payment_message()" class="popup_delete_button">
-                    NO
-                </button>
-            </div>
-        </div>
-    </div>
-    <!-- End OF the POP up Booking Cancel -->
-
     <section class="page-container">
 
         <!-- SIDE NAVIGATION BAR - START -->
@@ -479,7 +446,7 @@
                                     <div class="Payment-status active"><a href="">{{book.payment_status}}</a></div>
                                 </td>
                                 <td class="trash-btn-padding-res"> <button class="trash-btn"
-                                        onclick="open_popup_delete_booking('{{book.booking_id}}')"><i class="fas fa-trash-alt"></i></button></td>
+                                        onclick="open_popup_cancel_booking('{{book.booking_id}}')"><i class="fas fa-trash-alt"></i></button></td>
                             </tr>
                             {% endif %}
 
@@ -495,7 +462,7 @@
                                     <div class="Payment-status"><a href="">{{book.payment_status}}</a></div>
                                 </td>
                                 <td class="trash-btn-padding-res"> <button class="trash-btn"
-                                        onclick="open_popup_delete_booking('{{book.booking_id}}')"><i class="fas fa-trash-alt"></i></button></td>
+                                        onclick="open_popup_cancel_booking('{{book.booking_id}}')"><i class="fas fa-trash-alt"></i></button></td>
                             </tr>
                             {% endif %}
                             {% endfor %}
@@ -575,8 +542,9 @@
      <!-- Top navbar js -->
      <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
      <!-- File Specific js -->
+    <script type="text/javascript" src="/Assets/js/signup_validation.js?version=9.0"></script>
+     <script type="text/javascript" src="/Assets/js/Customer/newCart.js?version=4"></script>
     <script type="text/javascript" src="/Assets/js/SpArenaManager/manage-bookings.js"></script>
-    <script type="text/javascript" src="/Assets/js/Customer/newCart.js?version=4"></script>
 </body>
 
 </html>

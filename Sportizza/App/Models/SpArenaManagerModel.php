@@ -136,16 +136,64 @@ class SpArenaManagerModel extends \Core\Model
     }
     //End of displaying sports arena's cancel bookings
 
-    //Start of remove bookings
-    public static function removeBooking($booking_id)
+        //Start of booking cancellation 
+    public static function bookingCancellation($booking_id, $user_id, $reason)
     {
-        $sql = 'UPDATE booking SET security_status = "inactive" WHERE booking_id=:booking_id';
+        $sql = 'SELECT sports_arena_id
+        FROM manager WHERE user_id =:user_id';
+        //Updating status of the bookings in the database
         $db = static::getDB();
         $stmt = $db->prepare($sql);
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        //Converting retrieved data from database into PDOs
+        $result1 = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        //Obtaining the administratoin staff user details retrieved from result1
+        $arena_id = $result1["sports_arena_id"];
+       
+        $sql = 'SELECT customer_user_id
+        FROM booking WHERE booking_id =:booking_id';
+        //Updating status of the bookings in the database
+
+        $stmt = $db->prepare($sql);
         $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
-        return $stmt->execute();
+        $stmt->execute();
+
+        //Converting retrieved data from database into PDOs
+        $result1 = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        //Obtaining the customer id from booking table
+        $customer_user_id = $result1["customer_user_id"];
+
+        //Adding the cancelled booking to booking cancellation table
+        $sql = 'INSERT INTO booking_cancellation (reason,manager_sports_arena_id , administration_staff_sports_arena_id
+        ,manager_user_id,customer_user_id,booking_id) VALUES 
+        (:reason,:manager_arena_id,:saAdmin_arena_id,:manager_user_id,:customer_user_id,:booking_id)';
+
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':reason', $reason, PDO::PARAM_STR);
+        $stmt->bindValue(':manager_arena_id', $arena_id, PDO::PARAM_INT);
+        $stmt->bindValue(':saAdmin_arena_id', $arena_id, PDO::PARAM_INT);
+        $stmt->bindValue(':manager_user_id', $user_id, PDO::PARAM_INT);
+        $stmt->bindValue(':customer_user_id', $customer_user_id, PDO::PARAM_INT);
+        $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $sql = 'UPDATE booking SET security_status="inactive" WHERE booking_id=:booking_id';
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $sql = 'UPDATE booking_timeslot SET security_status="inactive" WHERE booking_id=:booking_id';
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+
+        return ($stmt->execute());
     }
-    //End of remove bookings
+    //End of booking cancellation 
+
 
     //Start of displaying sports arena's booking payment
     public static function managerBookingPayment($id)
