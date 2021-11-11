@@ -487,11 +487,12 @@ class CustomerModel extends \Core\Model
 
         $sql2='SELECT booking.price_per_booking, booking.booking_id, time_slot.start_time,time_slot.end_time, 
         sports_arena_profile.sa_name, sports_arena_profile.category, sports_arena_profile.location,
-         booking.booked_date,booking.payment_method
+        booking.booked_date,booking.payment_method, facility.facility_name
         FROM booking
         INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id
         INNER JOIN time_slot ON booking_timeslot.timeslot_id=time_slot.time_slot_id
         INNER JOIN sports_arena_profile ON booking.sports_arena_id=sports_arena_profile.sports_arena_id
+        INNER JOIN facility ON booking.facility_id= facility.facility_id
         WHERE booking_timeslot.security_status="active" AND booking.payment_status="pending"
         AND booking.customer_user_id=:user_id AND DATE(booking.booked_date)=DATE(CURRENT_TIMESTAMP)
         AND TIME(booking.booked_date) + INTERVAL 30 MINUTE > TIME(CURRENT_TIMESTAMP) ';

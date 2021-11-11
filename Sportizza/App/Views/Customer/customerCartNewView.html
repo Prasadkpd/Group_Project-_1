@@ -202,15 +202,22 @@
                   <div class="itemHeader">
                     <h6>{{item.sa_name}}</h6>
                   </div>
+                  <div class="itemOther">
+                    {{item.facility_name}}
+                  </div>
                   <div class="itemTime">
                     {{item.start_time}}-{{item.end_time}}
                   </div>
                   <div class="itemOther">
                     {{item.category}}, {{item.location}}
                   </div>
+                  <div class="itemOther">
+                    {{item.payment_method}} payment
+                  </div>
                   <div class="itemPrice">
                     LKR {{item.price_per_booking}}
                   </div>
+
                 </div>
                 {% endfor %}
                 
