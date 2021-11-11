@@ -142,7 +142,7 @@ class Customer extends Authenticated
         $customer_id = $current_user->user_id;
 
         $timeslot_id=$_POST['timeSlotId'];
-        $booking_date=$_POST['dateInput'];
+        $booking_date=$_POST['bookingDate'];
         $payment_method=$_POST['paymentMethod'];
 
         //Adding timeslot to customer cart

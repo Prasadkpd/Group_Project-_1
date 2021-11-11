@@ -257,8 +257,7 @@
                                 <h2>Available Time Slots</h2>
                                 <ul id="eventsList" class="events-list">
                                     {% for timeSlot in timeSlots %}
-                                    <form action="/customer/hidebooking"
-                                    method="POST" id="addtocartform">
+                                    <!-- <form method="POST" id="addtocartform"> -->
                                     <li id={{timeSlot.time_slot_id}} class="hideDetails">
                                         <div class="row">
                                             <span class="s-time">{{timeSlot.startTime}}</span>&nbsp;-
@@ -278,7 +277,7 @@
                                             <div class="toggle-button-cover">
                                                 <div class="button-cover">
                                                     <div class="button r" id="button-1">
-                                                        <input type="checkbox" class="checkbox" name="paymentMethod" value="card" checked>
+                                                        <input type="checkbox" class="checkbox payment_input" name="paymentMethod" value="card" checked>
                                                        
                                                         <div class="layer1">card</div>
                                                         
@@ -289,7 +288,7 @@
                                             <div class="toggle-button-cover">
                                                 <div class="button-cover">
                                                     <div class="button r" id="button-1">
-                                                        <input type="checkbox" class="checkbox" name="paymentMethod" value="cash" checked>
+                                                        <input type="checkbox" class="checkbox payment_input" name="paymentMethod" value="cash" checked>
                                                         
                                                         <div class="layer1">cash</div>
                                                     </div>
@@ -299,7 +298,7 @@
                                             <div class="toggle-button-cover">
                                                 <div class="button-cover">
                                                     <div class="button r" id="button-1">
-                                                        <input type="checkbox" class="checkbox" name="paymentMethod" value="card" checked>
+                                                        <input type="checkbox" class="checkbox payment_input" name="paymentMethod" value="card" checked>
                                                         <div class="knobs"></div>
                                                         <div class="layer"></div>
                                                     </div>
@@ -308,14 +307,14 @@
                                             {% endif %}
                                             
                                             <div>
-                                                <button class="removeItem" value={{timeSlot.time_slot_id}} type="button">
+                                                <button class="removeItem" value={{timeSlot.time_slot_id}} type="submit">
                                                     <i class="fas fa-cart-plus"></i></button>
                                             </div>
                                         </div>
-                                        <input type="hidden" name="timeSlotId" value={{timeSlot.time_slot_id}}>
-                                        <input type="hidden" name="bookingDate" id="bookingDateB"value="">
+                                        <input type="text" name="timeSlotId" id="timeSlotId" class="timeSlotClass" value={{timeSlot.time_slot_id}}>
+                                        <input type="date" name="bookingDate" id="bookingDatehidden" class="bookingDatehidden" style="width: 1000px;">
                                     </li>
-                                </form>
+                                <!-- </form> -->
                                     {% endfor %}
                                 </ul>
                                 <!-- <a href="#" class="btn check-availability-btn"> Pay Now</a> -->
@@ -361,7 +360,7 @@
     <script type="text/javascript" src="/Assets/js/lib/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
     <script src="/Assets/js/Customer/newCustomerBooking.js?version=3"></script>
-    <script src="/Assets/js/Customer/customer_view_booking_hide_ajax.js"></script>
+    <!-- <script src="/Assets/js/Customer/customer_view_booking_hide_ajax.js"></script> -->
     <script src="/Assets/js/Customer/customer_view_booking_dateChange_ajax.js"></script>
 
 

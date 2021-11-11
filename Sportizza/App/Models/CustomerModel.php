@@ -171,11 +171,11 @@ class CustomerModel extends \Core\Model
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $stmt->execute();
 
-        $output = "<form action='/customer/hidebooking'
-        method='POST' id='addtocartform'>";
+        $output = "";
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $output .= "<li id={$row["time_slot_id"]} class='hideDetails'>
+            $output .= "
+            <li id={$row["time_slot_id"]} class='hideDetails'>
             <div class='row'>
                 <span class='s-time'>{$row["startTime"]}</span>&nbsp;-
                 <span class='e-time'>{$row["endTime"]}</span>
@@ -225,13 +225,13 @@ class CustomerModel extends \Core\Model
             </div>";
             }
                 
-            $output .=    "<div>
+            $output .= "<div>
                     <button class='removeItem' value={$row["time_slot_id"]} type='button'>
                         <i class='fas fa-cart-plus'></i></button>
                 </div>
             </div>
-            <input type='hidden' name='timeSlotId' value={$row["time_slot_id"]}>
-            <input type='hidden' name='bookingDate' value='2021-11-09'>
+            <input type='text' name='timeSlotId' value={$row["time_slot_id"]}>
+            <input type='date' name='bookingDate' class='bookingDatehidden' value={$date} style='width: 1000px;'>
         </li>";
         }
 
