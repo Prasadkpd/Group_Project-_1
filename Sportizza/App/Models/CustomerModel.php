@@ -230,8 +230,8 @@ class CustomerModel extends \Core\Model
                         <i class='fas fa-cart-plus'></i></button>
                 </div>
             </div>
-            <input type='text' name='timeSlotId' value={$row["time_slot_id"]}>
-            <input type='date' name='bookingDate' class='bookingDatehidden' value={$date} style='width: 1000px;'>
+            <input type='hidden' name='timeSlotId' value={$row["time_slot_id"]}>
+            <input type='date' name='bookingDate' class='bookingDatehidden' value={$date} style='display: none;'>
         </li>";
         }
 
