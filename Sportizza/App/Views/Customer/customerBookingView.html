@@ -257,7 +257,6 @@
                                 <h2>Available Time Slots</h2>
                                 <ul id="eventsList" class="events-list">
                                     {% for timeSlot in timeSlots %}
-                                    <!-- <form method="POST" id="addtocartform"> -->
                                     <li id={{timeSlot.time_slot_id}} class="hideDetails">
                                         <div class="row">
                                             <span class="s-time">{{timeSlot.startTime}}</span>&nbsp;-
@@ -317,7 +316,7 @@
                                 <!-- </form> -->
                                     {% endfor %}
                                 </ul>
-                                <!-- <a href="#" class="btn check-availability-btn"> Pay Now</a> -->
+                                
                             </div>
 
 

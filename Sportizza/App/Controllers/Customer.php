@@ -120,15 +120,7 @@ class Customer extends Authenticated
             $timeSlots = CustomerModel::customerSearchTimeSlotsDate($arena_id,$date);
             
             echo $timeSlots;
-            // echo "".$arena_id." ".$date;
-            //Assigning the sports arenas details
-            // $arenaDetails = CustomerModel::customerViewArenaDetails($id);
-    
-            //Rendering the customers booking view
-            // View::renderTemplate(
-            //     'Customer/customerBookingView.html',
-            //     ['timeSlots' => $timeSlots, 'arenaDetails' => $arenaDetails ,'date'=>$date]
-            // );
+       
         }
         //End of booking page of customer
 
