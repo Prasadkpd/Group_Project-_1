@@ -49,8 +49,9 @@ function close_popup_signout_message() {
 }
 
 //popup delete message
-function open_popup_delete_message() {
-    var form = document.getElementById("popup_delete");
+function open_popup_delete_message(user_id) {
+    document.getElementById("delete_user_form").action += user_id;
+    let form = document.getElementById("popup_delete");
     form.style.display = "block";
 }
 function close_popup_delete_message() {
@@ -82,13 +83,13 @@ formAddUser.addEventListener('submit', function (event) {
     if (
         //Add timeslot validations
         validateFirstName() &&
-        validateLastname() &&
+        validateLastName() &&
         validateMobile() &&
         validateUsername() &&
         validatePassword() &&
         validateStaffTypeSelect()
     ) {
-        formUpdateTimeslot.submit();
+        formAddUser.submit();
     }
 });
 

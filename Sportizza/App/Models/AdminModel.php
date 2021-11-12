@@ -43,11 +43,28 @@ class AdminModel extends \Core\Model
     }
     //End of Displaying remove customers
 
+    //Start of Deleting customers
+    public static function adminDeleteCustomers($id)
+    {
+        //Updating FAQ answer in the database
+        $sql = 'UPDATE user SET security_status="inactive" WHERE user_id=:id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        return ($stmt->execute());
+    }
+    //End of Deleting customers
+
     //Start of Displaying pending requests of sports arenas
     public static function adminDisplayAddSportsArenas()
     {
         //Retrieving pending requests of sports arenas from the database
-        $sql = 'SELECT sports_arena_profile.sa_name,sports_arena_profile.contact_no, 
+        $sql = 'SELECT sports_arena_profile.s_a_profile_id, sports_arena_profile.sa_name,sports_arena_profile.contact_no,
+                sports_arena_profile.location,sports_arena_profile.description,sports_arena_profile.category,sports_arena_profile.google_map_link as "maplink",
+                sports_arena_profile.payment_method,sports_arena_profile.other_facilities, 
                 DATE(user.registered_time) as "date" FROM sports_arena_profile
                INNER  JOIN manager ON sports_arena_profile.sports_arena_id =manager.sports_arena_id 
                INNER JOIN user ON user.user_id = manager.user_id
@@ -67,11 +84,83 @@ class AdminModel extends \Core\Model
     }
     //End of Displaying pending requests of sports arenas
 
+
+    //Start of Adding sports arenas
+    public static function adminAddArenas($id)
+    {
+        //Updating sports arena profile status in the database
+        $sql = 'UPDATE sports_arena_profile SET account_status="active" WHERE s_a_profile_id=:id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        // Retrieving sports_arena_id from the database
+        $sql = 'SELECT sports_arena_id FROM sports_arena_profile WHERE s_a_profile_id=:id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        //Assigning the fetched PDOs to result
+        $result1 = $stmt->fetch(PDO::FETCH_ASSOC);
+        $arena_id = $result1['sports_arena_id'];
+
+        //Updating sports arena status in the database
+        $sql = 'UPDATE sports_arena SET security_status="active" WHERE sports_arena_id=:arena_id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        // Retrieving manager_user_id from the database
+        $sql = 'SELECT user_id FROM manager WHERE sports_arena_id=:arena_id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        //Assigning the fetched PDOs to result
+        $result2 = $stmt->fetch(PDO::FETCH_ASSOC);
+        $manager_id = $result2['user_id'];
+
+        //Updating maanger status in the database
+        $sql = 'UPDATE user SET security_status="active" WHERE user_id=:manager_id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':manager_id', $manager_id, PDO::PARAM_INT);
+
+        return ($stmt->execute());
+    }
+    //End of Adding sports arenas
+
+
     //Start of Displaying of sports arenas with negative feedbacks
     public static function adminDisplayRemoveSportsArenas()
     {
         //Retrieving of sports arenas with negative ratings from the database
-        $sql = 'SELECT DISTINCT(sports_arena_profile.s_a_profile_id),
+        $sql = 'SELECT DISTINCT(sports_arena_profile.sports_arena_id),
         sports_arena_profile.sa_name, COUNT(feedback.sports_arena_id) as "count",
         sports_arena_profile.account_status FROM feedback
         INNER JOIN sports_arena_profile ON feedback.sports_arena_id=sports_arena_profile.sports_arena_id 
@@ -90,6 +179,164 @@ class AdminModel extends \Core\Model
         return $result;
     }
     //End of Displaying sports arenas with negative feedbacks
+
+    //Start of Displaying of complaints of sports arenas
+    public static function adminDisplayComplaints($arena_id)
+    {
+        //Retrieving of sports arenas with negative ratings from the database
+        $sql = 'SELECT feedback.description FROM feedback
+        WHERE feedback.feedback_rating < 3 AND feedback.sports_arena_id=:arena_id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        //Converting PDOs to HTML data
+        $output = "";
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $output .= "<p>{$row["description"]}</p>";
+        }
+
+        return $output;
+    }
+    //End of Displaying 0f complaints of sports arenas
+
+    //Start of Deleting sports arenas
+    public static function adminDeleteArenas($id)
+    {
+        //Updating sports arena profile status in the database
+        $sql = 'UPDATE sports_arena_profile SET account_status="inactive" WHERE sports_arena_id=:id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $sql = 'UPDATE sports_arena SET security_status="inactive" WHERE sports_arena_id=:id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        // Retrieving manager_user_id from the database
+        $sql = 'SELECT user_id FROM manager WHERE sports_arena_id=:id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        //Assigning the fetched PDOs to result
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $manager_id = $result['user_id'];
+
+        //Updating manager status in the database
+        $sql = 'UPDATE user SET security_status="inactive" WHERE user_id=:manager_id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':manager_id', $manager_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        // Retrieving administration_staff_user_id from the database
+        $sql = 'SELECT user_id FROM administration_staff WHERE sports_arena_id=:id ';
+
+        $db = static::getDB();
+        $stmt1 = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt1->bindValue(':id', $id, PDO::PARAM_INT);
+
+        //Converting retrieved data from database into PDOs
+        $stmt1->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt1->execute();
+
+        // // //Assigning the fetched PDOs to result
+        // // $result2 = $stmt->fetch(PDO::FETCH_ASSOC);
+        // // $admin_staff_id = $result2['user_id'];
+
+        //Updating administartion staff status in the database
+        $sql = 'UPDATE user SET security_status="inactive" WHERE user_id=:admin_staff_id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        // // //Binding input data into database query variables
+        // // $stmt->bindValue(':admin_staff_id', $admin_staff_id, PDO::PARAM_INT);
+        // // $stmt->execute();
+        // $sql = '';
+
+        while ($row = $stmt1->fetch(PDO::FETCH_ASSOC)) {
+            // Assigning fetched result to a variable
+            $admin_staff_id = $row['user_id'];
+
+            //Binding input data into database query variables
+            $stmt->bindValue(':admin_staff_id', $admin_staff_id, PDO::PARAM_INT);
+            $stmt->execute();
+        }
+
+        // Retrieving booking_handling_staff_user_id from the database
+        $sql = 'SELECT user_id FROM booking_handling_staff WHERE sports_arena_id=:id ';
+
+        $db = static::getDB();
+        $stmt2 = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt2->bindValue(':id', $id, PDO::PARAM_INT);
+
+        //Converting retrieved data from database into PDOs
+        $stmt2->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt2->execute();
+        
+        //Updating booking handling staff status in the database
+        $sql = 'UPDATE user SET security_status="inactive" WHERE user_id=:bookhandle_staff_id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        
+        while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)) {
+            // Assigning fetched result to a variable
+            $bookhandle_staff_id = $row['user_id'];
+            //Binding input data into database query variables
+            $stmt->bindValue(':bookhandle_staff_id', $bookhandle_staff_id, PDO::PARAM_INT);
+            $stmt->execute();
+        }
+        
+        return;
+    }
+    //End of Deleting sports arenas
+
+    //Start of Blacklisting sports arenas
+    public static function adminBlacklistArenas($id)
+    {
+        //Updating sports arena profile status in the database
+        $sql = 'UPDATE sports_arena_profile SET account_status="blacklist" WHERE sports_arena_id=:id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        
+        return ($stmt->execute());
+    }
+    //End of Blacklisting sports arenas
 
     //Start of Displaying of FAQs
     public static function adminViewFAQ()
@@ -129,24 +376,20 @@ class AdminModel extends \Core\Model
     }
     //End of Inserting of FAQs
 
-    //Start of Displaying Delete FAQs
-    public static function adminDisplayDeleteFAQ()
+    //Start of Deleting FAQs
+    public static function adminDeleteFAQ($id)
     {
-        //Retrieving of FAQs from the database
-        $sql = 'SELECT * FROM faq WHERE security_status="active" ';
+        //Deleting FAQs or setting FAQ status as inactive in the database
+        $sql = 'UPDATE faq SET security_status="inactive" WHERE faq_id=:id ';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
 
-        //Converting retrieved data from database into PDOs
-        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-        $stmt->execute();
-
-        //Assigning the fetched PDOs to result
-        $result = $stmt->fetchAll();
-        return $result;
+        //Binding input data into database query variables
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        return ($stmt->execute());
     }
-    //End of Displaying Delete FAQs
+    //End of Deleting FAQs
 
     //Start of Displaying of Update FAQ questions
     public static function adminGetQuestionDetails($type)
@@ -200,6 +443,23 @@ class AdminModel extends \Core\Model
     }
     //End of Displaying of Update FAQ answer
 
+    //Start of Updating FAQs
+    public static function adminUpdateFAQ($faq_id,$answer)
+    {
+        //Updating FAQ answer in the database
+        $sql = 'UPDATE faq SET answer=:answer WHERE faq_id=:id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':answer', $answer, PDO::PARAM_STR);
+        $stmt->bindValue(':id', $faq_id, PDO::PARAM_INT);
+        return ($stmt->execute());
+    }
+    //End of Updating FAQs
+
+
     //Start of Displaying of Remove ratings
     public static function adminDisplayRemoveRatings()
     {
@@ -224,6 +484,23 @@ class AdminModel extends \Core\Model
         return $result;
     }
     //End of Displaying of Remove ratings
+
+
+    //Start of Deleting ratings
+    public static function adminDeleteRatings($feeback_id)
+    {
+        //Updating FAQ answer in the database
+        $sql = 'UPDATE feedback SET security_status="inactive" WHERE feedback_id=:id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':id', $feeback_id, PDO::PARAM_INT);
+        return ($stmt->execute());
+    }
+    //End of Deleting ratings
+
 
     //Start of Displaying of admin's chart 1
     public static function adminChart1()
@@ -302,12 +579,25 @@ class AdminModel extends \Core\Model
     public static function adminChart3()
     {
         //Retrieving of chart data from the database
-        $sql = 'SELECT booking_date, COUNT(DISTINCT booking_id) AS No_Of_Bookings
+        $sql = 'SELECT CASE EXTRACT(MONTH FROM booking.booking_date)
+                    WHEN "1" THEN "January"
+                    WHEN "2" THEN "February"
+                    WHEN "3" THEN "March"
+                    WHEN "4" THEN "April"
+                    WHEN "5" THEN "May"
+                    WHEN "6" THEN "June"
+                    WHEN "7" THEN "July"
+                    WHEN "8" THEN "August"
+                    WHEN "9" THEN "September"
+                    WHEN "10" THEN "October"
+                    WHEN "11" THEN "November"
+                    WHEN "12" THEN "December"
+                    ELSE "Not Valid"
+                END AS Time_Booked, COUNT(DISTINCT booking_id) AS No_Of_Bookings
                 FROM booking
                 WHERE security_status="active"
-                GROUP BY booking_date 
-                ORDER BY booking_date DESC
-                LIMIT 7';
+                GROUP BY Time_Booked 
+                ORDER BY booking.booking_date Asc';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -388,5 +678,53 @@ class AdminModel extends \Core\Model
         return $result;
     }
     //End of Displaying of admin's chart 6
+
+    //Start of Reshaping Charts
+    public static function adminReshapeCharts($dateValue)
+    {
+        
+
+        //Retrieving of chart data from the database
+        $sql = 'SELECT EXTRACT(MONTH FROM booking.booking_date) AS BookingMonth FROM booking
+                WHERE security_status="active"
+                GROUP BY BookingMonth
+                ORDER BY BookingMonth DESC LIMIT 1 ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        //Assigning the fetched PDOs to result
+        $result1 = $stmt->fetch(PDO::FETCH_ASSOC);
+        $lastMonth = $result1["BookingMonth"];
+
+        $previousMonth = $lastMonth - $dateValue + 1;
+        
+        //Retrieving of chart data from the database
+        $sql = 'SELECT payment_method, COUNT(DISTINCT booking_id) AS No_Of_Bookings
+                FROM booking
+                WHERE security_status="active" AND EXTRACT(MONTH FROM booking.booking_date) BETWEEN :previousMonth AND :lastMonth
+                GROUP BY payment_method ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':previousMonth', $previousMonth, PDO::PARAM_INT);
+        $stmt->bindValue(':lastMonth', $lastMonth, PDO::PARAM_INT);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        //Assigning the fetched PDOs to result
+        // $result2 = $stmt->fetchAll();
+        $result2 = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result2;
+    }
+    //End of Reshaping Charts
     
 }

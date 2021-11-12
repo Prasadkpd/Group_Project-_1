@@ -123,7 +123,7 @@
         <div>
             <button class="closebutton" onclick="close_popup_delete_message()">❌</button>
         </div>
-        <form action="/action_page.php" style="margin:20px">
+        <form action="/Sparenamanager/removeFacility/" style="margin:20px" id="delete_facility_form" method="post">
             <div >
                 <h1>
                     Facility Deletion
@@ -132,16 +132,17 @@
                     Do you really want to delete the Facility?
                 </p>
             </div>
-        </form>
-        <div style="display:flex">
 
-            <button class="popup_delete_button">
-                <a href=""> YES</a>
+        <div style="display:flex">
+            <button class="popup_delete_button" type="submit">
+                 YES
             </button>
-            <button onclick="close_popup_delete_message()" class="popup_button">
+
+            <button onclick="close_popup_delete_message()" type="button" class="popup_button">
                 NO
             </button>
         </div>
+        </form>
     </div>
 </div>
 <!-- End OF the POP up Facility delete -->
@@ -152,19 +153,18 @@
         <div>
             <button s class="closebutton" onclick="closepopupform_for_update()">❌</button>
         </div>
-        <img class="form-profile-picture" src="assets/profile-picture.jpg" alt="">
-        <form action="/action_page.php" style="margin:20px" 
-        onsubmit="validateUpdateFacilityForm()" id="formUpdateFacility">
+        <form action="/Sparenamanager/updatefacility/" style="margin:20px"
+        onsubmit="validateUpdateFacilityForm()" id="formUpdateFacility" method="post">
             <div class="input-row">
                 <div class="input-box">
-                    <label for="editfacilityname">Facility Name:</label>
-                    <input id="editfacilityname" type="text" name="Facility_name" 
+                    <label >Facility Name:</label>
+                    <input id="editFacilityName" type="text" name="New_Facility_name"
                     onfocusout="validateUpdateFacilityName()"
-                        placeholder="Enter new facility name" value="{{sp_arena.Facility_name}}">
-                    <div class="helper-text" id="firstNameMsg"></div>
+                        placeholder="Enter new facility name">
+                    <div class="helper-text" id="facility_update_error"></div>
                 </div>
                 </div>
-            <input type="submit" class="popup_button" value="Save">
+            <input type="submit" class="popup_button" value="Save" id="btn_update_facility">
         </form>
     </div>
 </div>
@@ -352,7 +352,7 @@
                             <tr>
                                 <td data-label="Facility ID :">{{facility.facility_id}}</td>
                                 <td data-label="Facility Name :">{{facility.facility_name}}</td>
-                                <td class="trash-btn-padding-res"> <button class="icon_red trash-btn" style="border:none"onclick="open_popup_delete_message()">
+                                <td class="trash-btn-padding-res"> <button class="icon_red trash-btn" style="border:none"onclick="open_popup_delete_message('{{facility.facility_id}}')">
                                     <i class="fas fa-trash-alt"></i>
                                 </button></td>
                             </tr>
@@ -391,7 +391,7 @@
                             <tr>
                                 <td data-label="Facility ID :">{{facility.facility_id}}</td>
                                 <td data-label="Facility Name :">{{facility.facility_name}}</td>
-                                <td> <button class="icon_red trash-btn" style="border:none"onclick="openpopupform_for_update()">
+                                <td> <button class="icon_red trash-btn" style="border:none"onclick="openpopupform_for_update('{{facility.facility_id}}','{{facility.facility_name}}')">
                                 <i class="fas fa-pencil-alt"></i>
                                 </button></td>
                             </tr>
@@ -416,6 +416,8 @@
     <script type="text/javascript" src="/Assets/js/lib/jquery/jquery.min.js"></script>
     <!-- AJAX file -->
     <script type="text/javascript" src="/Assets/js/SpArenaManager/manager-facility-ajax.js?version=6"></script>
+     <!-- AJAX file -->
+     <script type="text/javascript" src="/Assets/js/SpArenaManager/manager-update-facility-ajax.js?version=6"></script>
     <!-- Validation JS -->
     <script type="text/javascript" src="/Assets/js/signup_validation.js?version=6.0"></script>
      <!-- Top navbar js -->

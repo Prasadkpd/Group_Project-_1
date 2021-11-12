@@ -5,10 +5,6 @@ $(document).ready(function () {
         let sTime = iTime.replace(":","");
         let duration = $("#timeSlotDuration").val();
         let price = $("#slotPrice").val();
-        let combined = sTime.concat(duration,fac,price);
-
-        console.log(sTime,duration,fac,price);
-        console.log(combined);
 
         $.ajax({
             type: "POST",

@@ -12,6 +12,35 @@ function openTab(evt, cityName) {
   evt.currentTarget.className += " active";
 }
 
+// // return current date
+window.onload = function () {
+  document.getElementById('dateInput').valueAsDate = new Date();
+  // document.querySelectorAll('.bookingDatehidden').valueAsDate = new Date();
+  document.querySelector(".bookingDatehidden").valueAsDate = new Date();
+};
+
+
+var booking_date_form = document.getElementById('bookingdateform');
+// var date_Input = document.getElementById('dateInput');
+
+// booking_date_form.addEventListener('submit', function (event) {
+//   var x = dateI
+// }  
+
+
+
+// // return current date
+// function getDate () {
+// var now = new Date();
+
+// var day = ("0" + now.getDate()).slice(-2);
+// var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+// var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+// };
+
+
+
 // popup form section
 
 function openpopupform() {
@@ -179,6 +208,22 @@ file.addEventListener("change", function () {
   }
 });
 
+//Assign date to the hidden input
+const bottom_date=document.getElementById("bookingDateB");
+const top_date=document.getElementById("dateInput");
+
+if(top_date){
+  alert("Hello");
+}
+
+top_date.addEventListener("change",function(){
+  let a=top_date.value;
+  bottom_date.value=a;
+  alert("Hello");
+  console.log(a);
+});
+
+
 //js for hide and show arena
 // let more_details = document.querySelector(".more-details");
 // let view_button = document.querySelector(".more-link");
@@ -242,10 +287,29 @@ function open_goto_booking() {
 //   console.log(id);
 // }
 
-function hidefunction(x)
-{
-    // $(".")
-    $("#"+x).hide();
-    console.log(x);
+// function hidefunction(x)
+// {
+//     // $(".")
+//     $("#"+x).hide();
+//     console.log(x);
+// }
+
+// Payment method == 'both'
+
+function paymentclick(){
+  var payment_method = event.target.value;
+  // var payment_method = document.getElementsByClassName("checkbox").value;
+  alert(payment_method);
+  if (payment_method=="card"){
+    event.target.value = "cash";
+  }else{
+    event.target.value = "card";
+  }
+  console.log(event.target.value);
 }
+
+// payment_method.addEventListener("click",function(){
+//   alert("Blah balh");
+  
+// })
 

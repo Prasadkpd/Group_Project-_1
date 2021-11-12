@@ -41,13 +41,10 @@ class Admin extends Authenticated
         //Retreiving FAQs from admin model
         $viewFAQs = AdminModel::adminViewFAQ();
 
-        //Retreiving FAQs from admin model
-        $deleteFAQs = AdminModel::adminDisplayDeleteFAQ();
-
         //Rendering the admin FAQ view
         View::renderTemplate(
             'Admin/adminFAQView.html',
-            ['viewFAQs' => $viewFAQs, 'deleteFAQs' => $deleteFAQs]
+            ['viewFAQs' => $viewFAQs]
         );
     }
 
@@ -72,9 +69,24 @@ class Admin extends Authenticated
     }
     //End of create FAQ 
 
-    //Start of Update FAQ 
-    //Add FAQ action
+    // Start of delete FAQ
 
+    public function deletefaqAction()
+    {
+        //Obtaining faq id sent from href
+        $faq_id = $this->route_params['id'];
+
+        // Pass FAQ id to delete FAQ function in admin model
+        AdminModel::adminDeleteFAQ($faq_id);
+        
+        //Redirect to admin's FAQ page
+        $this->redirect('/Admin/faq');
+    }
+
+    // End of delete FAQ
+
+    //Start of Update FAQ
+    
     //Passing the FAQ type from AddFAQ view (Html and JS) and getting FAQ questions
     public function getquestionsAction()
     {
@@ -92,6 +104,21 @@ class Admin extends Authenticated
         //Echo HTML tag sent by Model with FAQs answers and it gets triggered with success in JS
         echo AdminModel::adminGetSolutionDetails($question);
     }
+
+    // Updating FAQ solution
+
+    public function updatefaqAction()
+    {
+        //Obtaining faq id and answer sent from href
+        $faq_id = $this->route_params['id'];
+        
+        // Pass FAQ id and answer to update FAQ function in admin model
+        AdminModel::adminUpdateFAQ($faq_id, $_POST['updated_solution']);
+        
+        //Redirect to admin's FAQ page
+        $this->redirect('/Admin/faq');
+    }
+
     //End of Update FAQ 
 
 
@@ -116,6 +143,75 @@ class Admin extends Authenticated
     }
     //End of manage users view
 
+    // Start of deleting customers
+    public function deletecustomersAction(){
+        
+        //Obtaining customer id sent from JS
+        $id = $this->route_params['id'];
+
+        // Pass customer id to remove customers function in admin model
+        AdminModel::adminDeleteCustomers($id);
+
+        //Redirect to admin's manage user page
+        $this->redirect('/Admin/manageuser');
+
+    }
+    // End of deleting customers
+
+    // Start of adding sports arenas
+    public function addarenasAction(){
+        
+        //Obtaining sports arena profile id sent from JS
+        $id = $this->route_params['id'];
+
+        // Pass sports arena profile id to remove arenas function in admin model
+        AdminModel::adminAddArenas($id);
+
+        //Redirect to admin's manage user page
+        $this->redirect('/Admin/manageuser');
+
+    }
+    // End of adding sports arenas
+
+    //Passing the sports_arena_id from RemoveArenas view (Html and JS) and getting complaints (negative feedback description)
+    public function getcomplaintsAction()
+    {
+        //Obtaining faq question sent from JS
+        $arena_id = $this->route_params['id'];
+        //Echo HTML tag sent by Model with FAQs answers and it gets triggered with success in JS
+        echo AdminModel::adminDisplayComplaints($arena_id);
+    }
+
+    // Start of deleting sports arenas
+    public function deletearenasAction(){
+        
+        //Obtaining sports arena profile id sent from JS
+        $id = $this->route_params['id'];
+
+        // Pass sports arena profile id to remove arenas function in admin model
+        AdminModel::adminDeleteArenas($id);
+
+        //Redirect to admin's manage user page
+        $this->redirect('/Admin/manageuser');
+
+    }
+    // End of deleting sports arenas
+
+    // Start of blacklisting sports arenas
+    public function blacklistarenasAction(){
+        
+        //Obtaining sports arena profile id sent from JS
+        $id = $this->route_params['id'];
+
+        // Pass sports arena profile id to blacklist arenas function in admin model
+        AdminModel::adminBlacklistArenas($id);
+
+        //Redirect to admin's manage user page
+        $this->redirect('/Admin/manageuser');
+
+    }
+    // End of blacklisting sports arenas
+
     //Start of removing negative ratings view
     public function ratingsAction()
     {
@@ -129,6 +225,21 @@ class Admin extends Authenticated
         );
     }
     //End of removing negative ratings view
+
+    // Start of deleting ratings
+    public function deleteratingsAction(){
+        
+        //Obtaining rating id sent from JS
+        $feedback_id = $this->route_params['id'];
+
+        // Pass feedback id to delete ratings function in admin model
+        AdminModel::adminDeleteRatings($feedback_id);
+
+        //Redirect to admin's ratings page
+        $this->redirect('/Admin/ratings');
+
+    }
+    // End of deleting ratings
 
     //Start of Chart view
     public function chartAction()
@@ -151,5 +262,19 @@ class Admin extends Authenticated
         );
     }
     //End of Chart view
+
+    public function reshapechartAction()
+    {
+        $dateValue = $this->route_params['id'];
+
+        $temp = [];
+
+        $chart4 = AdminModel::adminReshapeCharts($dateValue);
+        while($row=$chart4){
+            $temp[$row] = $chart4["payment_method"];
+        }
+
+        echo $chart4;
+    }
 
 }

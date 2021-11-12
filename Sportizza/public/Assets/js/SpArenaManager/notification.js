@@ -1,6 +1,7 @@
       //popup notification section
       function open_popup_notification(subject,description) {
         var form = document.getElementById("popup_notification");
+        console.log('efekjfnejfnefj');
         form.querySelector("#popup_notification").innerHTML = "<h1>"+subject+"</h1>"+"<p>"+description+"</p>";
         form.style.display = "block";
       }

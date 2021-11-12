@@ -59,8 +59,31 @@ class Customer extends Authenticated
     //Start of Cart page of customer
     public  function cartAction()
     {
+        $current_user = Auth::getUser();
+        $user_id = $current_user->user_id;
+        $cart=CustomerModel::customerCartView($user_id);
+        
+        $cashSum=0;
+        $cardSum=0;
+        $allSum=0;
+        $i=0;
+        for( $i; $i< count($cart); $i++){
+            
+            if($cart[$i]->payment_method=="cash"){
+                $cashSum+=$cart[$i]->price_per_booking;
+
+            }
+            else{
+                $cardSum+=$cart[$i]->price_per_booking;
+            }
+        }
+        $allSum=$cashSum+$cardSum;
+     
+
+        
         //Rendering the customers cart view
-        View::renderTemplate('Customer/customerCartNewView.html');
+        View::renderTemplate('Customer/customerCartNewView.html',['cart' => $cart,
+        'allSum'=>$allSum,'cardSum'=>$cardSum,'cashSum'=>$cashSum]);
     }
     //End of Cart page of customer
 
@@ -83,44 +106,119 @@ class Customer extends Authenticated
     }
     //End of booking page of customer
 
+        //Start of booking page of customer
+        public function searchtimeslotdateAction()
+        {
+            //Assigning the relevant variables
+            $combined = $this->route_params['arg'];
+
+            $combined = explode("__",$combined);
+            $arena_id = $combined[0];
+            $date = str_replace("_", "-", $combined[1]);
+    
+            //Assigning the sports arenas timeslots
+            $timeSlots = CustomerModel::customerSearchTimeSlotsDate($arena_id,$date);
+            
+            echo $timeSlots;
+       
+        }
+        //End of booking page of customer
+
+
     //Start of adding timeslots to customer by removing from the view
     public function hidebookingAction()
     {
+
         //Get the current user's details with session using Auth
         $current_user = Auth::getUser();
-        $timeslot_id = $this->route_params['id'];
+        $customer_id = $current_user->user_id;
+
+        //Assigning the relevant variables
+        $combined = $this->route_params['arg'];
+
+        $combined = explode("__",$combined);
+        $timeslot_id = $combined[0];
+        $bookingDate = str_replace("_", "-", $combined[1]);
+        $paymentMethod = $combined[2];
+
         //Adding timeslot to customer cart
-        $addCart = CustomerModel::customerAddToCart($timeslot_id, $current_user);
+        $addCart = CustomerModel::customerAddToCart($customer_id,$timeslot_id,$bookingDate,$paymentMethod);
+        // $this->redirect("/customer/booking/$arena_id");
+        if($addCart){
+            echo true;
+        }
+        
+        // echo true;
+        // echo "".$timeslot_id." ".$bookingDate." ".$paymentMethod;
     }
     //End of adding timeslots to customer by removing from the view
 
     //Start of cancel bookings from customer's my bookings view
-    public function deletebookingAction()
+    public function customercancelbookingAction()
+    {
+        //Get the current user's details with session using Auth
+        $current_user = Auth::getUser();
+
+        //Assigning booking id to variable
+        $booking_id = $this->route_params['id'];
+        $cancelbooking = CustomerModel::customerCancelBooking($booking_id);
+
+        if($cancelbooking){
+            NotificationModel::cancelNotificationBookingSuccess($current_user,$booking_id);
+            $this->redirect("/customer");
+        }
+        
+
+
+    }
+
+    public function customerdeletebookingAction()
     {
         //Get the current user's details with session using Auth
         $current_user = Auth::getUser();
 
         //Assigning bookings related to customer
         $booking_id = $this->route_params['id'];
-        $booked_date = CustomerModel::customerSelectBookingDate($booking_id);
-        $booked_time = strtotime($booked_date);
+        $deletebooking = CustomerModel::customerDeleteBooking($booking_id);
 
-        //Obtaining the current time
-        $current_time = time();
-        //Checking if there's 3 days before the booking time
-        if ($current_time - $booked_time <= 259200) {
 
-            //Cancel the booking
-            $deletebooking = CustomerModel::customerDeleteBooking($booking_id);
-            //Sending booking cancellation notification
-            $notify_check = NotificationModel::cancelNotificationBookingSuccess($current_user, $booking_id);
-
-            //Redirect to customer's dashboard view if success
-            if ($deletebooking && $notify_check) {
-                $this->redirect('/Customer');
-            }
+        if($deletebooking){
+            $this->redirect("/customer");
         }
+        
+
+
     }
+
+
+    public function customerdeletefavoritearenaAction()
+    {
+        //Get the current user's details with session using Auth
+        $current_user = Auth::getUser();
+
+        //Assigning bookings related to customer
+        $arena_id = $this->route_params['id'];
+        $favourie_list_id=$_POST['fav_list_id_input'];
+        $deletebooking = CustomerModel::customerDeleteFavoriteArena($favourie_list_id,$arena_id);
+        
+        $this->redirect("/customer");
+
+
+    }
+
+    public function customeraddfeedbackAction()
+    {
+        //Get the current user's details with session using Auth
+        $current_user = Auth::getUser();
+
+        //Assigning bookings related to customer
+        $addfeedback = CustomerModel::customerAddFeedback($_POST);
+        
+        $this->redirect("/customer");
+
+
+    }
+
     //End of cancel bookings from customer's my bookings view
 
 
@@ -183,4 +281,6 @@ class Customer extends Authenticated
         $this->redirect('/Customer/booking/' . $_POST['arena_id']);
     }
     //End of adding sportsarena to Favourite list
+
+
 }

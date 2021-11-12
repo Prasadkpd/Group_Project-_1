@@ -1195,7 +1195,7 @@ footer {
 
 .button-cover,
 .knobs,
-.layer {
+.layer,.layer1 {
   position: absolute;
   top: 0;
   right: 200px;
@@ -1217,6 +1217,17 @@ footer {
 .button.r .layer {
   border-radius: 100px;
 }
+.button.r,
+.button.r .layer1 {
+  border-radius: 100px;
+  background:#fff;
+  color:#fd461f;
+  text-align:center;
+  font-weight:600;
+  text-transform:uppercase;
+  margin-left: 25px;
+}
+
 
 .button.b2 {
   border-radius: 2px;
@@ -1237,6 +1248,12 @@ footer {
   z-index: 2;
 }
 
+.layer {
+  width: 100%;
+  background-color: #fea47f;
+  transition: 0.3s ease all;
+  z-index: 1;
+}
 .layer {
   width: 100%;
   background-color: #fea47f;
@@ -1281,10 +1298,13 @@ footer {
 #button-1 .checkbox:checked ~ .layer {
   background-color: #fea47f;
 }
+#button-1 .checkbox:checked ~ .layer1 {
+  background-color: #fff;
+}
 
 #button-1 .knobs,
 #button-1 .knobs:before,
-#button-1 .layer {
+#button-1 .layer,.layer1 {
   transition: 0.3s ease all;
 }
 

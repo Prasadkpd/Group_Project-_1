@@ -11,8 +11,11 @@ side_menu_close_btn.onclick = function () {
 };
 
 //popup delete message
-function open_popup_delete_message() {
+function open_popup_delete_message(id) {
   var form = document.getElementById("popup_delete");
+  var anchor = document.getElementById("deleteFAQbutton");
+  anchor.href = "http://localhost/admin/deleteratings/" + id;
+  console.log(anchor.href);
   form.style.display = "block";
 }
 function close_popup_delete_message() {

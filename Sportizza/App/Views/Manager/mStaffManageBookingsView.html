@@ -115,9 +115,9 @@
     <div id="popup_delete" class="sectionpop ">
         <div class="formsection">
             <div>
-                <button class="closebutton" onclick="close_popup_delete_message()">❌</button>
+                <button class="closebutton" onclick="close_popup_delete_booking()">❌</button>
             </div>
-            <form action="/action_page.php" style="margin:20px">
+            <form action="/Sparenamanager/removebooking/" style="margin:20px" method="post" id="delete_booking_form">
                 <div style="margin:auto">
                     <h1>
                         Booking Cancellation
@@ -126,16 +126,16 @@
                         Do you really want to cancel the booking?
                     </p>
                 </div>
-            </form>
             <div style="display:flex">
 
-                <button class="popup_delete_button">
-                    <a href=""> YES</a>
+                <button class="popup_delete_button" type="submit">
+                    YES
                 </button>
-                <button onclick="close_popup_delete_message()" class="popup_button">
+                <button onclick="close_popup_delete_booking()" class="popup_button" type="button">
                     NO
                 </button>
             </div>
+            </form>
         </div>
     </div>
     <!-- End OF the POP up Booking Cancel -->
@@ -444,7 +444,7 @@
                                 <th class="booking-table-first-th">
                                     <div class="booking-table-filter-container">
                                         <div class="booking-table-search-container">
-                                            <input type="search" name="search" placeholder="Search By Bookin ID" id="search-delete-booking" onkeyup="searchDeleteTable()">
+                                            <input type="search" name="search" placeholder="Search By Booking ID" id="search-delete-booking" onkeyup="searchDeleteTable()">
                                             <i class="fas fa-search"></i>
                                         </div>
                                         <div class="booking-table-date-picker">
@@ -475,12 +475,11 @@
 
                                 <td data-label="Booked Date :">{{book.booked_date}}</td>
                                 <td data-label="Mobile Number :">{{book.primary_contact}}</td>
-
                                 <td>
                                     <div class="Payment-status active"><a href="">{{book.payment_status}}</a></div>
                                 </td>
-                                <td class="trash-btn-padding-res"> <a class="trash-btn"
-                                        onclick="open_popup_delete_message()"><i class="fas fa-trash-alt"></i></a></td>
+                                <td class="trash-btn-padding-res"> <button class="trash-btn"
+                                        onclick="open_popup_delete_booking('{{book.booking_id}}')"><i class="fas fa-trash-alt"></i></button></td>
                             </tr>
                             {% endif %}
 
@@ -492,12 +491,11 @@
 
                                 <td data-label="Booked Date :">{{book.booked_date}}</td>
                                 <td data-label="Mobile Number :">{{book.primary_contact}}</td>
-
                                 <td>
                                     <div class="Payment-status"><a href="">{{book.payment_status}}</a></div>
                                 </td>
-                                <td class="trash-btn-padding-res"> <a class="trash-btn"
-                                        onclick="open_popup_delete_message()"><i class="fas fa-trash-alt"></i></a></td>
+                                <td class="trash-btn-padding-res"> <button class="trash-btn"
+                                        onclick="open_popup_delete_booking('{{book.booking_id}}')"><i class="fas fa-trash-alt"></i></button></td>
                             </tr>
                             {% endif %}
                             {% endfor %}
@@ -577,7 +575,7 @@
      <!-- Top navbar js -->
      <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
      <!-- File Specific js -->
-    <script type="text/javascript" src="/Assets/js/SpArenaManager/manage-bookings.js?version=3"></script>
+    <script type="text/javascript" src="/Assets/js/SpArenaManager/manage-bookings.js"></script>
     <script type="text/javascript" src="/Assets/js/Customer/newCart.js?version=4"></script>
 </body>
 

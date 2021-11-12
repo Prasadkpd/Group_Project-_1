@@ -190,12 +190,19 @@
                 <div class="filters">
                     <div class="booking-table-date-picker" style="margin-top:5px;">
                         <label class="date-label" style="margin:5px;">Start Date </label>
-                        <input type="date">
+                        <!-- <input type="date"> -->
+                        <select id="analyticsDateFilter" onchange="filterdata()">
+                            <option value=0>Select a date range</option>
+                            <option value=1>Last month</option>
+                            <option value=3>Last 3 months</option>
+                            <option value=6>Last 6 months</option>
+                            <option value=12>Last 1 year</option>
+                        </select>
                     </div>
-                    <div class="booking-table-date-picker" style="margin-top:5px;">
+                    <!-- <div class="booking-table-date-picker" style="margin-top:5px;">
                         <label class="date-label">End Date</label>
                         <input type="date">
-                    </div>
+                    </div> -->
                     <div class="booking-table-date-picker submit" style="margin-top:5px;">
                         <input type="submit" value="Generate" class="report-generate">
                     </div>
@@ -279,7 +286,9 @@
 
 
 
+    <script type="text/javascript" src="/Assets/js/lib/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/Assets/js/Admin/adminMain.js?v=1"></script>
+    <script type="text/javascript" src="/Assets/js/Admin/adminAnalyticsAjax.js?v=1"></script>
 
     <script>
 
@@ -421,7 +430,7 @@
             data: {
                 labels: [
                     {% for chart in chart3 %}
-                        '{{chart.booking_date}}', 
+                        '{{chart.Time_Booked}}', 
                     {% endfor %}
                 ],
         datasets: [{
@@ -459,8 +468,7 @@
                         color: '#fff'
                     },
                     min: 0,
-                        max: 5,
-                            ticks: {
+                    ticks: {
                         stepSize: 1
                     }
                 },
@@ -553,6 +561,130 @@
     <!-- End of Footer -->
     <script type="text/javascript">
         document.getElementById('downloadPdf').addEventListener('click', () => window.print())
+    </script>
+
+    <script type="text/javascript">
+        // FIXED VALUES OF CHART 1 AXES
+        const xaxis1 = myChart1.config.data.labels;
+        const yaxis1 = myChart1.config.data.datasets[0].data;
+        
+        // FIXED VALUES OF CHART 2 AXES
+        const xaxis2 = myChart2.config.data.labels;
+        const yaxis2 = myChart2.config.data.datasets[0].data;
+        
+        // FIXED VALUES OF CHART 3 AXES
+        const xaxis3 = myChart3.config.data.labels;
+        const yaxis3 = myChart3.config.data.datasets[0].data;
+        
+        // FIXED VALUES OF CHART 4 AXES
+        const xaxis4 = myChart4.config.data.labels;
+        const yaxis4 = myChart4.config.data.datasets[0].data;
+        
+        // // FIXED VALUES OF CHART 5 AXES
+        // const xaxis5 = myChart5.config.data.labels;
+        // const yaxis5 = myChart5.config.data.datasets[0].data;
+        
+        // // FIXED VALUES OF CHART 6 AXES
+        // const xaxis6 = myChart6.config.data.labels;
+        // const yaxis6 = myChart6.config.data.datasets[0].data;
+        
+        
+        function filterdata(){
+            var dateValue = document.getElementById("analyticsDateFilter").value;
+            
+            // CHART 1 UPDATE
+            var lastIndex1 = xaxis2.length -1;
+
+            // var filterxaxis1 = chart1x.slice(lastIndex1-dateValue+1);
+            // var filteryaxis1 = chart1y.slice(lastIndex1-dateValue+1);
+            var filterxaxis1 = xaxis2.slice(lastIndex1-dateValue+1);
+            var filteryaxis1 = yaxis2.slice(lastIndex1-dateValue+1);
+            
+            if (dateValue!=0 && dateValue<=xaxis2.length){
+                console.log(filterxaxis1);
+                console.log(filteryaxis1);
+                myChart1.config.data.labels = filterxaxis1;
+                myChart1.config.data.datasets[0].data = filteryaxis1;
+                myChart1.update();
+            }else{
+                console.log(xaxis1);
+                console.log(yaxis1);
+                myChart1.config.data.labels = xaxis1;
+                myChart1.config.data.datasets[0].data = yaxis1;
+                myChart1.update();
+            }
+
+            // CHART 2 UPDATE
+            var lastIndex2 = xaxis2.length -1;
+
+            var filterxaxis2 = xaxis2.slice(lastIndex2-dateValue+1);
+            var filteryaxis2 = yaxis2.slice(lastIndex2-dateValue+1);
+            
+            if (dateValue!=0 && dateValue<=xaxis2.length){
+                console.log(filterxaxis2);
+                console.log(filteryaxis2);
+                myChart2.config.data.labels = filterxaxis2;
+                myChart2.config.data.datasets[0].data = filteryaxis2;
+                myChart2.update();
+            }else{
+                console.log(xaxis2);
+                console.log(yaxis2);
+                myChart2.config.data.labels = xaxis2;
+                myChart2.config.data.datasets[0].data = yaxis2;
+                myChart2.update();
+            }
+
+            // CHART 3 UPDATE
+            var lastIndex3 = xaxis3.length -1;
+
+            var filterxaxis3 = xaxis3.slice(lastIndex3-dateValue+1);
+            var filteryaxis3 = yaxis3.slice(lastIndex3-dateValue+1);
+            
+            if (dateValue!=0 && dateValue<=xaxis3.length){
+                console.log(filterxaxis3);
+                console.log(filteryaxis3);
+                myChart3.config.data.labels = filterxaxis3;
+                myChart3.config.data.datasets[0].data = filteryaxis3;
+                myChart3.update();
+            }else{
+                console.log(xaxis3);
+                console.log(yaxis3);
+                myChart3.config.data.labels = xaxis3;
+                myChart3.config.data.datasets[0].data = yaxis3;
+                myChart3.update();
+            }
+
+            // // CHART 4 UPDATE
+            // var chart4y = [];
+            // var chart4x = [];
+            // var it4=0;
+            // {% for chart in chart4 %}
+            //     chart4y[it4] = {{chart.No_Of_Bookings}};
+            //     chart4x[it4] = "{{chart.Time_Booked}}";
+            //     it4=it4+1;
+            // {% endfor %}
+
+            // var lastIndex3 = chart3x.length -1;
+
+            // var filterxaxis3 = chart3x.slice(lastIndex3-dateValue+1);
+            // var filteryaxis3 = chart3y.slice(lastIndex3-dateValue+1);
+            
+            // if (dateValue!=0 && dateValue<=chart3x.length){
+            //     console.log(filterxaxis3);
+            //     console.log(filteryaxis3);
+            //     myChart3.config.data.labels = filterxaxis3;
+            //     myChart3.config.data.datasets[0].data = filteryaxis3;
+            //     myChart3.update();
+            // }else{
+            //     console.log(xaxis3);
+            //     console.log(yaxis3);
+            //     myChart3.config.data.labels = xaxis3;
+            //     myChart3.config.data.datasets[0].data = yaxis3;
+            //     myChart3.update();
+            // }
+
+
+        }
     </script>
 </body>
 

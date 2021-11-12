@@ -37,34 +37,32 @@ function closepopupform() {
 }
 
   // popup section for update
-function openpopupform_for_update(facility_id, facility_name) {
-document.getElementById("editfacilityname").value=facility_name;
-document.getElementById("formUpdateFacility").action += facility_id;
-    var form = document.getElementById("myForm_for_update");
+function openpopupform_for_update(facility_Id,facility_Name) {
+    document.getElementById("editFacilityName").value = facility_Name;
+    document.getElementById("formUpdateFacility").action += facility_Id;
+    const form = document.getElementById("myForm_for_update");
     form.style.display = "block";
 }
 function closepopupform_for_update() {
-    var form = document.getElementById("myForm_for_update");
+    const form = document.getElementById("myForm_for_update");
     form.style.display = "none";
 }
 
 
 //popup sign out message
 function open_popup_signout_message() {
-    var form = document.getElementById("popup_signout");
+    const form = document.getElementById("popup_signout");
     form.style.display = "block";
 }
 function close_popup_signout_message() {
-    var form = document.getElementById("popup_signout");
+    const form = document.getElementById("popup_signout");
     form.style.display = "none";
 }
 //popup delete message
-
-function open_popup_delete_message(facility_id) {
-  document.getElementById("deleteFacilitybtn").href += facility_id;
-  var form = document.getElementById("popup_delete");
-  console.log(facility_id);
-  form.style.display = "block";
+function open_popup_delete_message(facilityId) {
+    const form = document.getElementById("popup_delete");
+    document.getElementById('delete_facility_form').action += facilityId;
+    form.style.display = "block";
 }
 function close_popup_delete_message() {
     var form = document.getElementById("popup_delete");
@@ -79,7 +77,7 @@ const password = document.getElementById('password');
 const togglePassword = document.querySelector('#togglePassword');
 const showPassword = document.querySelector('#password');
 //Add Facility Form
-const editfacilityname = document.getElementById('editfacilityname');
+const editfacilityname = document.getElementById('editFacilityName');
 //Show password button
 
 

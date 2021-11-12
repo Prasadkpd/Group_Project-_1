@@ -51,14 +51,18 @@ function close_popup_signout_message() {
 }
 
 //popup delete message
-function open_popup_delete_message() {
-    var form = document.getElementById("popup_delete");
+function open_popup_delete_message(timeSlot_Id) {
+    document.getElementById("delete_timeslot_form").action += timeSlot_Id;
+    let form = document.getElementById("popup_delete");
     form.style.display = "block";
 }
 function close_popup_delete_message() {
     var form = document.getElementById("popup_delete");
     form.style.display = "none";
 }
+
+
+
 const startTime = document.getElementById('startTime');
 // startTime.step="1800";
 const endTime = document.getElementById('endTime');
