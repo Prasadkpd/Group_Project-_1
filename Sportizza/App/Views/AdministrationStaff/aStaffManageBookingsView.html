@@ -321,9 +321,11 @@
                             </div>
 
                             <div class="date-picker">
-                                <form action="">
-                                    <input type="date">
-                                    <input type="submit" value="Go">
+                                <form method="POST" id="bookingdateform">
+                                    <input type="date" id="dateInput" name="dateInput">
+                                   
+                                    <!-- <input type="hidden" id="arenaId" name="arenaId"
+                                    value="{{arenaDetails[0].sports_arena_id}}"> -->
                                 </form>
                             </div>
 
@@ -332,93 +334,42 @@
                         <div class="right-container">
                             <div class="available-bookings">
                                 <h2>Available Time Slots</h2>
-                                <ul class="events-list">
-                                    <li>
+                                <ul id="eventsList" class="events-list">
+                                    {% for timeSlot in timeSlots %}
+                                    <li id={{timeSlot.time_slot_id}} class="hideDetails">
                                         <div class="row">
-                                            <span class="s-time">10:30 - </span>
-                                            <span class="e-time">12:30 : </span>
+                                            <span class="s-time">{{timeSlot.startTime}}</span>&nbsp;-
+                                            <span class="e-time">{{timeSlot.endTime}}</span>
                                         </div>
                                         <div class="row">
-                                            <span class="facility">Indoor Cricket Ground 1</span>
+                                            <span class="facility">{{timeSlot.facility_name}}</span>
                                         </div>
                                         <div class="row">
-                                            <span class="price">LKR 2500</span>
-                                            <i class="fas fa-plus-circle"></i>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row">
-                                            <span class="s-time">10:30 - </span>
-                                            <span class="e-time">12:30 : </span>
-                                        </div>
-                                        <div class="row">
-                                            <span class="facility">Indoor Cricket Ground 1</span>
-                                        </div>
-                                        <div class="row">
-                                            <span class="price">LKR 2500</span>
-                                            <i class="fas fa-plus-circle"></i>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row">
-                                            <span class="s-time">10:30 - </span>
-                                            <span class="e-time">12:30 : </span>
-                                        </div>
-                                        <div class="row">
-                                            <span class="facility">Indoor Cricket Ground 1</span>
-                                        </div>
-                                        <div class="row">
-                                            <span class="price">LKR 2500</span>
-                                            <i class="fas fa-plus-circle"></i>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row">
-                                            <span class="s-time">10:30 - </span>
-                                            <span class="e-time">12:30 : </span>
-                                        </div>
-                                        <div class="row">
-                                            <span class="facility">Indoor Cricket Ground 1</span>
-                                        </div>
-                                        <div class="row">
-                                            <span class="price">LKR 2500</span>
-                                            <i class="fas fa-plus-circle"></i>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row">
-                                            <span class="s-time">10:30 - </span>
-                                            <span class="e-time">12:30 : </span>
-                                        </div>
-                                        <div class="row">
-                                            <span class="facility">Indoor Cricket Ground 1</span>
-                                        </div>
-                                        <div class="row">
-                                            <span class="price">LKR 2500</span>
-                                            <i class="fas fa-plus-circle"></i>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row">
-                                            <span class="s-time">10:30 - </span>
-                                            <span class="e-time">12:30 : </span>
-                                        </div>
-                                        <div class="row">
-                                            <span class="facility">Indoor Cricket Ground 1</span>
-                                        </div>
-                                        <div class="row">
-                                            <span class="price">LKR 2500</span>
-                                            <i class="fas fa-plus-circle"></i>
-                                        </div>
-                                    </li>
+                                            <span class="price">LKR {{timeSlot.price}}</span>
 
+                                        </div>
+
+                                        <!-- toggle button -->
+                                        <div class="payment_cart">
+                            
+                                            <div>
+                                                <button class="removeItem" value={{timeSlot.time_slot_id}} type="submit">
+                                                    <i class="fas fa-cart-plus"></i></button>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="timeSlotId" id="timeSlotId" class="timeSlotClass" value={{timeSlot.time_slot_id}}>
+                                        <input type="date" name="bookingDate" class="bookingDatehidden" style="display: none;">
+                                    </li>
+                                <!-- </form> -->
+                                    {% endfor %}
                                 </ul>
                             </div>
-
                         </div>
+
+                        <a href="/Spadministrationstaff/cart" class="btn check-availability-btn"> Get Payment</a>
                     </div>
-                    <a onclick="open_popup_payment_message()" class="btn check-availability-btn">Get Payment </a>
                 </div>
+
                 <!-- Cancel Bookings Tab -->
                 <div id="cancel_booking" class="booking_tab_content">
                     <table class="booking-table" id="delete-booking">
@@ -557,7 +508,9 @@
      <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
      <!-- File Specific js -->
      <script type="text/javascript" src="/Assets/js/signup_validation.js?version=9.0"></script>
-    <script type="text/javascript" src="/Assets/js/Customer/newCart.js?version=4"></script>
+     <script type="text/javascript" src="/Assets/js/Customer/newCart.js?version=4"></script>
+     <script type="text/javascript" src="/Assets/js/lib/jquery/jquery.min.js"></script>
+     <script type="text/javascript" src="/Assets/js/SpArenaAdministrationStaff/saadmin_view_booking_dateChange_ajax.js"></script>
     <script type="text/javascript" src="/Assets/js/SpArenaAdministrationStaff/manage-bookings.js?version=3"></script>
 </body>
 

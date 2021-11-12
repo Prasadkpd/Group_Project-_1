@@ -5,23 +5,21 @@ $(document).ready(function () {
         let id = $(this).val();
         let payment_cart = $(this).parent().prev();
         
-        let paymentMethod = payment_cart.find('.checkbox').val();
         let bookingDate = $('.bookingDatehidden').val();
         
         console.log(id);
         console.log(bookingDate);
-        console.log(paymentMethod);
 
         bookingDate = bookingDate.split("-").join("_");
 
-        let argument = `${id}__${bookingDate}__${paymentMethod}`;
+        let argument = `${id}__${bookingDate}`;
 
         // console.log(argument);
 
         $.ajax({
             type: "POST",
 
-            url: "http://localhost/customer/hidebooking/" + argument,
+            url: "http://localhost/Spadministrationstaff/hidebooking/" + argument,
             // data: temp,
             dataType: "text",
             // data: {
@@ -50,7 +48,7 @@ $(document).ready(function () {
       $.ajax({
         type: "POST",
 
-        url: "http://localhost/customer/searchtimeslotdate/" + argument,
+        url: "http://localhost/Spadministrationstaff/searchtimeslotdate/" + argument,
 
         dataType: "html",
 

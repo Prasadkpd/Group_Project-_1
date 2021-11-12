@@ -202,19 +202,26 @@
                   <div class="itemHeader">
                     <h6>{{item.sa_name}}</h6>
                   </div>
+                  <div class="itemOther">
+                    {{item.facility_name}}
+                  </div>
                   <div class="itemTime">
                     {{item.start_time}}-{{item.end_time}}
                   </div>
                   <div class="itemOther">
                     {{item.category}}, {{item.location}}
                   </div>
+                  <div class="itemOther">
+                    {{item.payment_method}} payment
+                  </div>
                   <div class="itemPrice">
                     LKR {{item.price_per_booking}}
                   </div>
+
                 </div>
                 {% endfor %}
                 
-               
+              
                 <input type="hidden" name="order_id" value="100000000">
                 <input type="hidden" name="items" value="Booking Timeslots"><br>
                 <input type="hidden" name="currency" value="LKR">

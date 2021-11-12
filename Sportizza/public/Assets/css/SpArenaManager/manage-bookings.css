@@ -755,6 +755,14 @@ footer {
 .booking-table-filter-container span{
   display: none;
 }
+.removeItem{
+  border:none;
+  background-color: transparent;
+}
+.payment_cart .removeItem .fa-cart-plus {
+    color: #353b48;
+    cursor:pointer;
+}
 
 /* ========================================================== */
 

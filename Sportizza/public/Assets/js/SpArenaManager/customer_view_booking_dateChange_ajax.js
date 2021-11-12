@@ -21,7 +21,7 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
 
-            url: "http://localhost/customer/hidebooking/" + argument,
+            url: "http://localhost//hidebooking/" + argument,
             // data: temp,
             dataType: "text",
             // data: {

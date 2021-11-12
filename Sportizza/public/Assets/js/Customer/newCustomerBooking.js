@@ -294,29 +294,22 @@ function open_goto_booking() {
 //     console.log(x);
 // }
 
-$(document).ready(function () {
-  $(".removeItem").click(function () {
-    
-      let id = $(".removeItem").val();
-      // let pay_method = $(".checkbox").val();
-      // let booking_date = $("#dateInput").val();
-      // console.log(id);
+// Payment method == 'both'
 
-      $.ajax({
-          type: "POST",
+function paymentclick(){
+  var payment_method = event.target.value;
+  // var payment_method = document.getElementsByClassName("checkbox").value;
+  alert(payment_method);
+  if (payment_method=="card"){
+    event.target.value = "cash";
+  }else{
+    event.target.value = "card";
+  }
+  console.log(event.target.value);
+}
 
-          url: "http://localhost/customer/hidebooking/",
-          // data: temp,
-          dataType: "text",
-          // data: {
-          //     courseId: temp
-          // },
-          success: function (response) {
-              if(response){
-                console.log(id);
-                $("#"+id).hide();
-              }
-          }
-      })
-  })
-})
+// payment_method.addEventListener("click",function(){
+//   alert("Blah balh");
+  
+// })
+

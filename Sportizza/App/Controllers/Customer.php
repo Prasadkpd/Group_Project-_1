@@ -109,7 +109,7 @@ class Customer extends Authenticated
         //Start of booking page of customer
         public function searchtimeslotdateAction()
         {
-            //Assigning the sports arena's ID
+            //Assigning the relevant variables
             $combined = $this->route_params['arg'];
 
             $combined = explode("__",$combined);
@@ -120,15 +120,7 @@ class Customer extends Authenticated
             $timeSlots = CustomerModel::customerSearchTimeSlotsDate($arena_id,$date);
             
             echo $timeSlots;
-            // echo "".$arena_id." ".$date;
-            //Assigning the sports arenas details
-            // $arenaDetails = CustomerModel::customerViewArenaDetails($id);
-    
-            //Rendering the customers booking view
-            // View::renderTemplate(
-            //     'Customer/customerBookingView.html',
-            //     ['timeSlots' => $timeSlots, 'arenaDetails' => $arenaDetails ,'date'=>$date]
-            // );
+       
         }
         //End of booking page of customer
 
@@ -141,16 +133,23 @@ class Customer extends Authenticated
         $current_user = Auth::getUser();
         $customer_id = $current_user->user_id;
 
-        $timeslot_id=$_POST['timeSlotId'];
-        $booking_date=$_POST['bookingDate'];
-        $payment_method=$_POST['paymentMethod'];
+        //Assigning the relevant variables
+        $combined = $this->route_params['arg'];
+
+        $combined = explode("__",$combined);
+        $timeslot_id = $combined[0];
+        $bookingDate = str_replace("_", "-", $combined[1]);
+        $paymentMethod = $combined[2];
 
         //Adding timeslot to customer cart
-        $arena_id = CustomerModel::customerAddToCart($customer_id,$timeslot_id,$booking_date,$payment_method);
-        $this->redirect("/customer/booking/$arena_id");
-        // if($addCart){
-        //     echo true;
-        // }
+        $addCart = CustomerModel::customerAddToCart($customer_id,$timeslot_id,$bookingDate,$paymentMethod);
+        // $this->redirect("/customer/booking/$arena_id");
+        if($addCart){
+            echo true;
+        }
+        
+        // echo true;
+        // echo "".$timeslot_id." ".$bookingDate." ".$paymentMethod;
     }
     //End of adding timeslots to customer by removing from the view
 

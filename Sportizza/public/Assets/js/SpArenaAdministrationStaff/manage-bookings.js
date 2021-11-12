@@ -276,3 +276,10 @@ function PaymentDatepicker() {
     }
   }
 }
+// // return current date
+window.onload = function () {
+  document.getElementById('dateInput').valueAsDate = new Date();
+  // document.querySelectorAll('.bookingDatehidden').valueAsDate = new Date();
+  document.querySelector(".bookingDatehidden").valueAsDate = new Date();
+}
+

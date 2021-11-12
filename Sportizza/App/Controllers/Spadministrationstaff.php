@@ -60,6 +60,7 @@ class Spadministrationstaff extends Authenticated
         //Get the current user's details with session using Auth
         $current_user = Auth::getUser();
         $id = $current_user->user_id;
+        
         //Assigning the sports arena's bookings to view
         $bookings = SpAdministrationStaffModel::saAdminViewBookings($id);
         //Assigning the available timeslots of sports arena
@@ -69,10 +70,12 @@ class Spadministrationstaff extends Authenticated
         //Assigning the sports arena's bookings to get cash payment view
         $bookingPayments = SpAdministrationStaffModel::saAdminBookingPayment($id);
 
+        // var_dump($add_bookings);
         //Rendering the administration staff's manage booking view
         View::renderTemplate('AdministrationStaff/aStaffManageBookingsView.html', [
-            'bookings' => $bookings, 'timeslots'=>$add_bookings,
+            'bookings' => $bookings, 'timeSlots'=> $add_bookings,
             'cancelBookings' => $cancelBookings, 'bookingPayments' => $bookingPayments
+            // ,'arenaDetails' => $arenaDetails,
         ]);
     }
     //End of Manage bookings of administration staff
@@ -338,10 +341,94 @@ class Spadministrationstaff extends Authenticated
    //End of Edit Arena profile of manager staff
 
     //End of Edit Arena profile of administration staff
+ 
+    //Start of booking page of customer
+  public function searchtimeslotdateAction()
+  {
+    $current_user = Auth::getUser();
+    $saadmin_id = $current_user->user_id;
+      //Assigning the relevant variables
+      $combined = $this->route_params['arg'];
 
-    public function cartAction()
-    {
-        View::renderTemplate('AdministrationStaff/aStaffCartNewView.html');
+      $combined = explode("__",$combined);
+    //   $arena_id = $combined[0];
+      $date = str_replace("_", "-", $combined[1]);
+
+      //Assigning the sports arenas timeslots
+      $timeSlots = SpAdministrationStaffModel::saAdminSearchTimeSlotsDate($saadmin_id, $date);
+      
+      echo $timeSlots;
+ 
+  }
+  //End of booking page of customer
+
+
+ //Start of adding timeslots to customer by removing from the view by SaAdmin
+ public function hidebookingAction()
+ {
+     //Get the current user's details with session using Auth
+     $current_user = Auth::getUser();
+     $spadmin_id = $current_user->user_id;
+
+     //Assigning the relevant variables
+     $combined = $this->route_params['arg'];
+
+     $combined = explode("__",$combined);
+     $timeslot_id = $combined[0];
+     $bookingDate = str_replace("_", "-", $combined[1]);
+    $paymentMethod = 'cash';
+
+     //Adding timeslot to customer cart
+     $addCart = SpAdministrationStaffModel::saAdminAddToCart($spadmin_id,$timeslot_id,$bookingDate, $paymentMethod);
+    
+     if($addCart){
+         echo true;
+     }
+     
+ }
+ //End of adding timeslots to customer by removing from the view  by SaAdmin
+
+  //Start of Cart page of customer
+  public  function cartAction()
+  {
+      $current_user = Auth::getUser();
+      $user_id = $current_user->user_id;
+      $cart=SpAdministrationStaffModel::saAdminCartView($user_id);
+      
+      $cashSum=0;
+      $cardSum=0;
+      $allSum=0;
+      $i=0;
+      for( $i; $i< count($cart); $i++){
+          
+          if($cart[$i]->payment_method=="cash"){
+              $cashSum+=$cart[$i]->price_per_booking;
+
+          }
+          else{
+              $cardSum+=$cart[$i]->price_per_booking;
+          }
+      }
+      $allSum=$cashSum+$cardSum;
+   
+
+      
+      //Rendering the customers cart view
+      View::renderTemplate('AdministrationStaff/aStaffCartNewView.html',['cart' => $cart,
+      'allSum'=>$allSum,'cardSum'=>$cardSum,'cashSum'=>$cashSum]);
+
     }
-    //End of Adding bookings from sports arena of administration staff
-}
+
+
+
+    public  function saAdminBookingsucessnotificationAction(){
+        print_r("payment success");
+
+        // $this->redirect('/spadministrationstaff/managebookings');
+
+    }
+  }
+  //End of Cart page of customer
+
+
+
