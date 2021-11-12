@@ -640,7 +640,7 @@ class AdminModel extends \Core\Model
         //Retrieving of chart data from the database
         $sql = 'SELECT category, COUNT(DISTINCT sports_arena_id) AS No_Of_Sports_Arenas
         FROM sports_arena_profile
-        GROUP BY category;
+        GROUP BY category
         ORDER BY category ASC ';
 
         $db = static::getDB();
@@ -679,11 +679,25 @@ class AdminModel extends \Core\Model
     }
     //End of Displaying of admin's chart 6
 
-    //Start of Reshaping Charts
-    public static function adminReshapeCharts($dateValue)
+    //Start of Reshaping Pie Charts
+    public static function adminReshapePieCharts($dateValue)
     {
-        
+        //Retrieving of chart data from the database
+        $sql = 'SELECT COUNT(DISTINCT EXTRACT(MONTH FROM booking.booking_date)) AS Months
+                FROM booking
+                WHERE security_status="active"';
 
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        //Assigning the fetched PDOs to result
+        $result0 = $stmt->fetch(PDO::FETCH_ASSOC);
+        $totalMonth = $result0["Months"];
+        
         //Retrieving of chart data from the database
         $sql = 'SELECT EXTRACT(MONTH FROM booking.booking_date) AS BookingMonth FROM booking
                 WHERE security_status="active"
@@ -703,28 +717,130 @@ class AdminModel extends \Core\Model
 
         $previousMonth = $lastMonth - $dateValue + 1;
         
+        if($dateValue!=0 && $dateValue<=$totalMonth){
+            //Retrieving of chart data from the database
+            $sql = 'SELECT payment_method, COUNT(DISTINCT booking_id) AS No_Of_Bookings
+                    FROM booking
+                    WHERE security_status="active" AND EXTRACT(MONTH FROM booking.booking_date) BETWEEN :previousMonth AND :lastMonth
+                    GROUP BY payment_method ';
+
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
+
+            //Binding input data into database query variables
+            $stmt->bindValue(':previousMonth', $previousMonth, PDO::PARAM_INT);
+            $stmt->bindValue(':lastMonth', $lastMonth, PDO::PARAM_INT);
+
+            //Converting retrieved data from database into PDOs
+            $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+            $stmt->execute();
+
+            //Assigning the fetched PDOs to result
+            $result2 = $stmt->fetchAll();
+            return $result2;
+        }else{
+            //Retrieving of chart data from the database
+            $sql = 'SELECT payment_method, COUNT(DISTINCT booking_id) AS No_Of_Bookings
+                    FROM booking
+                    WHERE security_status="active"
+                    GROUP BY payment_method ';
+
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
+
+            //Converting retrieved data from database into PDOs
+            $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+            $stmt->execute();
+
+            //Assigning the fetched PDOs to result
+            $result2 = $stmt->fetchAll();
+            return $result2;
+        }
+    }
+    //End of Reshaping Pie Charts
+
+    //Start of Reshaping Table Charts
+    public static function adminReshapeTableCharts($dateValue)
+    {
         //Retrieving of chart data from the database
-        $sql = 'SELECT payment_method, COUNT(DISTINCT booking_id) AS No_Of_Bookings
-                FROM booking
-                WHERE security_status="active" AND EXTRACT(MONTH FROM booking.booking_date) BETWEEN :previousMonth AND :lastMonth
-                GROUP BY payment_method ';
+        $sql = 'SELECT COUNT(DISTINCT EXTRACT(MONTH FROM sports_arena.registered_time)) AS Months
+                FROM sports_arena
+                WHERE sports_arena.security_status="active" ';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
-
-        //Binding input data into database query variables
-        $stmt->bindValue(':previousMonth', $previousMonth, PDO::PARAM_INT);
-        $stmt->bindValue(':lastMonth', $lastMonth, PDO::PARAM_INT);
 
         //Converting retrieved data from database into PDOs
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $stmt->execute();
 
         //Assigning the fetched PDOs to result
-        // $result2 = $stmt->fetchAll();
-        $result2 = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result2;
+        $result0 = $stmt->fetch(PDO::FETCH_ASSOC);
+        $totalMonth = $result0["Months"];
+        
+        //Retrieving of chart data from the database
+        $sql = 'SELECT EXTRACT(MONTH FROM sports_arena.registered_time) AS LastMonth FROM sports_arena
+                WHERE security_status="active"
+                GROUP BY LastMonth
+                ORDER BY LastMonth DESC LIMIT 1 ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        //Assigning the fetched PDOs to result
+        $result1 = $stmt->fetch(PDO::FETCH_ASSOC);
+        $lastMonth = $result1["LastMonth"];
+
+        $previousMonth = $lastMonth - $dateValue + 1;
+        
+        if($dateValue!=0 && $dateValue<=$totalMonth){
+            //Retrieving of chart data from the database
+            $sql = 'SELECT sports_arena_profile.category, COUNT(DISTINCT sports_arena_profile.sports_arena_id) AS No_Of_Arenas
+                    FROM sports_arena_profile
+                    INNER JOIN sports_arena ON sports_arena_profile.sports_arena_id=sports_arena.sports_arena_id
+                    WHERE sports_arena.security_status="active" AND EXTRACT(MONTH FROM sports_arena.registered_time) BETWEEN 8 AND 10
+                    GROUP BY sports_arena_profile.category
+                    ORDER BY sports_arena_profile.category ASC ';
+
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
+
+            //Binding input data into database query variables
+            $stmt->bindValue(':previousMonth', $previousMonth, PDO::PARAM_INT);
+            $stmt->bindValue(':lastMonth', $lastMonth, PDO::PARAM_INT);
+
+            //Converting retrieved data from database into PDOs
+            $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+            $stmt->execute();
+
+            // //Assigning the fetched PDOs to result
+            // $result2 = $stmt->fetchAll();
+            // return $result2;
+        }else{
+            //Retrieving of chart data from the database
+            $sql = 'SELECT category, COUNT(DISTINCT sports_arena_id) AS No_Of_Sports_Arenas
+                    FROM sports_arena_profile
+                    GROUP BY category
+                    ORDER BY category ASC ';
+
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
+
+            //Converting retrieved data from database into PDOs
+            $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+            $stmt->execute();
+
+            // //Assigning the fetched PDOs to result
+            // $result2 = $stmt->fetchAll();
+            // return $result2;
+        }
+
+        // To be continued
     }
-    //End of Reshaping Charts
+    //End of Reshaping Table Charts
     
 }
