@@ -263,18 +263,33 @@ class Admin extends Authenticated
     }
     //End of Chart view
 
-    public function reshapechartAction()
+    public function reshapepiechartAction()
     {
         $dateValue = $this->route_params['id'];
 
-        $temp = [];
+        $temp1 = [];
+        $temp2 = [];
 
-        $chart4 = AdminModel::adminReshapeCharts($dateValue);
-        while($row=$chart4){
-            $temp[$row] = $chart4["payment_method"];
+        $chart4 = AdminModel::adminReshapePieCharts($dateValue);
+
+        $i=0;
+
+        for( $i; $i< count($chart4); $i++){
+            $temp1[$i] = $chart4[$i]->payment_method;
+            $temp2[$i] = $chart4[$i]->No_Of_Bookings;
         }
 
-        echo $chart4;
+        $payment_method = implode(",",$temp1);
+        $booking_count = implode(",",$temp2);
+
+        echo $payment_method."_".$booking_count;
+    }
+
+    public function reshapetablechartAction()
+    {
+        $dateValue = $this->route_params['id'];
+
+        echo AdminModel::adminReshapeTableCharts($dateValue);
     }
 
 }
