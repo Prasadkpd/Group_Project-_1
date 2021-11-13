@@ -691,7 +691,7 @@
                 <tbody>
                     {% for notification in notifications %}
                     <tr style="cursor: pointer"
-                        onclick="open_popup_notification(`{{notification.subject}}`,`{{notification.description}}`)">
+                        onclick="open_popup_notification(`{{notification.subject}}`,`{{notification.description}}`,`{{notification.link}}`)">
                         <td data-label="Date:">{{notification.date}}</td>
                         <td data-label="Time:">{{notification.time}}</td>
                         <td class="notification-td-left">{{notification.subject}}</td>
