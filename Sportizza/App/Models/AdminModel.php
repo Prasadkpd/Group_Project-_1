@@ -640,6 +640,7 @@ class AdminModel extends \Core\Model
         //Retrieving of chart data from the database
         $sql = 'SELECT category, COUNT(DISTINCT sports_arena_id) AS No_Of_Sports_Arenas
         FROM sports_arena_profile
+        WHERE security_status="active" 
         GROUP BY category
         ORDER BY category ASC ';
 
@@ -797,12 +798,13 @@ class AdminModel extends \Core\Model
 
         $previousMonth = $lastMonth - $dateValue + 1;
         
+        // Rendering table chart 05
         if($dateValue!=0 && $dateValue<=$totalMonth){
             //Retrieving of chart data from the database
-            $sql = 'SELECT sports_arena_profile.category, COUNT(DISTINCT sports_arena_profile.sports_arena_id) AS No_Of_Arenas
+            $sql = 'SELECT sports_arena_profile.category, COUNT(DISTINCT sports_arena_profile.sports_arena_id) AS No_Of_Sports_Arenas
                     FROM sports_arena_profile
                     INNER JOIN sports_arena ON sports_arena_profile.sports_arena_id=sports_arena.sports_arena_id
-                    WHERE sports_arena.security_status="active" AND EXTRACT(MONTH FROM sports_arena.registered_time) BETWEEN 8 AND 10
+                    WHERE sports_arena.security_status="active" AND EXTRACT(MONTH FROM sports_arena.registered_time) BETWEEN :previousMonth AND :lastMonth
                     GROUP BY sports_arena_profile.category
                     ORDER BY sports_arena_profile.category ASC ';
 
@@ -824,6 +826,7 @@ class AdminModel extends \Core\Model
             //Retrieving of chart data from the database
             $sql = 'SELECT category, COUNT(DISTINCT sports_arena_id) AS No_Of_Sports_Arenas
                     FROM sports_arena_profile
+                    WHERE security_status="active"
                     GROUP BY category
                     ORDER BY category ASC ';
 
@@ -839,7 +842,96 @@ class AdminModel extends \Core\Model
             // return $result2;
         }
 
-        // To be continued
+        //Converting PDOs to HTML data
+        $output = "<div class='chart-Table'>
+                    <h5 class='tableHeader1'>Category Analytics</h5>
+                    <table class='cTable'>
+                        <thead class='dataTableHeader1'>
+                            <tr>
+                                <td>Category</td>
+                                <td>Count</td>
+                            </tr>
+                        </thead>
+                        <tbody class='dataTableRows1'>";
+
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $output .= "<tr>
+                            <td> {$row["category"]}</td>
+                            <td class='countData'> {$row["No_Of_Sports_Arenas"]}</td>
+                        </tr>";
+        }
+
+        $output .= "</tbody>
+                    </table>
+                </div>
+                <div class='chart-Table'>
+                    <h5 class='tableHeader2'>Location Analytics</h5>
+                    <table class='cTable'>
+                        <thead class='dataTableHeader2'>
+                            <tr>
+                                <td>Location</td>
+                                <td>Count</td>
+                            </tr>
+                        </thead>
+                        <tbody class='dataTableRows2'>";
+
+        // Rendering table chart 06
+        if($dateValue!=0 && $dateValue<=$totalMonth){
+            //Retrieving of chart data from the database
+            $sql = 'SELECT sports_arena_profile.location, COUNT(DISTINCT sports_arena_profile.sports_arena_id) AS No_Of_Sports_Arenas
+                    FROM sports_arena_profile
+                    INNER JOIN sports_arena ON sports_arena_profile.sports_arena_id=sports_arena.sports_arena_id
+                    WHERE sports_arena.security_status="active" AND EXTRACT(MONTH FROM sports_arena.registered_time) BETWEEN :previousMonth AND :lastMonth
+                    GROUP BY sports_arena_profile.location
+                    ORDER BY sports_arena_profile.location ASC ';
+
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
+
+            //Binding input data into database query variables
+            $stmt->bindValue(':previousMonth', $previousMonth, PDO::PARAM_INT);
+            $stmt->bindValue(':lastMonth', $lastMonth, PDO::PARAM_INT);
+
+            //Converting retrieved data from database into PDOs
+            $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+            $stmt->execute();
+
+            // //Assigning the fetched PDOs to result
+            // $result2 = $stmt->fetchAll();
+            // return $result2;
+        }else{
+            //Retrieving of chart data from the database
+            $sql = 'SELECT location, COUNT(DISTINCT sports_arena_id) AS No_Of_Sports_Arenas
+                    FROM sports_arena_profile
+                    WHERE security_status="active"
+                    GROUP BY location
+                    ORDER BY location ASC ';
+
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
+
+            //Converting retrieved data from database into PDOs
+            $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+            $stmt->execute();
+
+            // //Assigning the fetched PDOs to result
+            // $result2 = $stmt->fetchAll();
+            // return $result2;
+        }
+
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $output .= "<tr>
+                            <td> {$row["location"]}</td>
+                            <td class='countData'> {$row["No_Of_Sports_Arenas"]}</td>
+                        </tr>";
+        }
+
+        $output .= "</tbody>
+                    </table>
+                </div>";
+
+        return $output;
+
     }
     //End of Reshaping Table Charts
     

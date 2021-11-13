@@ -270,7 +270,7 @@ class Admin extends Authenticated
         $temp1 = [];
         $temp2 = [];
 
-        $chart4 = AdminModel::adminReshapeTableCharts($dateValue);
+        $chart4 = AdminModel::adminReshapePieCharts($dateValue);
 
         $i=0;
 
@@ -287,7 +287,9 @@ class Admin extends Authenticated
 
     public function reshapetablechartAction()
     {
+        $dateValue = $this->route_params['id'];
 
+        echo AdminModel::adminReshapeTableCharts($dateValue);
     }
 
 }
