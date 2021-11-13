@@ -541,26 +541,26 @@ class CustomerModel extends \Core\Model
         $db = static::getDB();
 
 
-        $sql2='INSERT INTO refund("payment_id","invoice_id","booking_id",
-        "customer_user_id","account_no","benficiary_name","branch_name","bank_name",
-        "refund_status","refund_amount) VALUES (:payment_id, :invoice_id, :booking_id,:customer_user_id,
-        :account_no,:benficiary_name,:branch_name,:bank_name,"unpaid",:refund_amount)';
+        $sql2='INSERT INTO refund(payment_id,invoice_id,booking_id,
+        customer_user_id,account_no,benficiary_name,branch_name,bank_name,
+        refund_status,refund_amount) VALUES (:payment_id, :invoice_id, :booking_id,:customer_user_id,
+        :account_no,:benficiary_name,:branch_name,:bank_name,:refund_status,:refund_amount)';
 
         // AND booking.booked_date >= :prev_time AND booking.booked_date <=:next_time
         $stmt = $db->prepare($sql2);
 
         //Binding the customer id and Converting retrieved data from database into PDOs
-        $stmt->bindValue(':payment_id', $post->payment_id, PDO::PARAM_INT);
-        $stmt->bindValue(':invoice_id', $post->invoice_id, PDO::PARAM_INT);
-        $stmt->bindValue(':booking_id', $post->booking_id, PDO::PARAM_INT);
-        $stmt->bindValue(':customer_user_id', $post->customer_user_id, PDO::PARAM_INT);
-        $stmt->bindValue(':account_no', $post->account_no, PDO::PARAM_INT);
-        $stmt->bindValue(':benficiary_name', $post->benficiary_name, PDO::PARAM_INT);
-        $stmt->bindValue(':branch_name', $post->branch_name, PDO::PARAM_INT);
-        $stmt->bindValue(':bank_name', $post->bank_name, PDO::PARAM_INT);
-        // $stmt->bindValue(':refund_status', $post->refund_status, PDO::PARAM_INT);
-        $stmt->bindValue(':refund_amount', $post->refund_amount, PDO::PARAM_INT);
-        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->bindValue(':payment_id', $post['payment_id'], PDO::PARAM_INT);
+        $stmt->bindValue(':invoice_id', $post['invoice_id'], PDO::PARAM_INT);
+        $stmt->bindValue(':booking_id', $post['booking_id'], PDO::PARAM_INT);
+        $stmt->bindValue(':customer_user_id', $post['customer_user_id'], PDO::PARAM_INT);
+        $stmt->bindValue(':account_no', $post['accountNumber'], PDO::PARAM_INT);
+        $stmt->bindValue(':benficiary_name', $post['benificialyName'], PDO::PARAM_STR);
+        $stmt->bindValue(':branch_name', $post['branchName'], PDO::PARAM_STR);
+        $stmt->bindValue(':bank_name', $post['bankName'], PDO::PARAM_STR);
+        $stmt->bindValue(':refund_status', "unpaid", PDO::PARAM_STR);
+        $stmt->bindValue(':refund_amount', $post['amount'], PDO::PARAM_INT);
+        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $stmt->execute();
 
         //Assigning the fetched PDOs to result

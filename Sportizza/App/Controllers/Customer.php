@@ -300,7 +300,7 @@ class Customer extends Authenticated
         {
             
             CustomerModel::customerRequestRefund($_POST);
-            $this->redirect('Customer');
+            $this->redirect('/Customer');
         }
         //End of customer request refund
 

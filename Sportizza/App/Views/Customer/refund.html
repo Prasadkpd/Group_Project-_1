@@ -126,10 +126,10 @@
 
 
               <div class="sp-details">
-                <input type="hidden" name="user_id" value="{{current_user.user_id}}">    <!-- Replace your Merchant ID -->
-                <input type="hidden" name="payment_id" value="">
-                <input type="hidden" name="booking_id" value="">
-                <input type="hidden" name="invoice_id" value="">
+                <input type="hidden" name="customer_user_id" value="{{current_user.user_id}}">    <!-- Replace your Merchant ID -->
+                <input type="hidden" name="payment_id" value="{{details.payment_id}}">
+                <input type="hidden" name="booking_id" value="{{details.booking_id}}">
+                <input type="hidden" name="invoice_id" value="{{details.invoice_id}}">
 
                 <div class="input-box">
                   <label for="firstName">First Name</label>
@@ -197,11 +197,18 @@
                 </div>
 
                 <div class="input-box">
+                  <label for="cardNumber">Account Number</label>
+                  <input id="accountNumber" type="text" name="accountNumber" placeholder="Enter your address"
+                  onfocusout="validateAddress()">
+                  <div class="helper-text" id="addressMsg"></div>
+                </div>
+
+                <!-- <div class="input-box">
                   <label for="cardNumber">Card Number</label>
                   <input id="cardNumber" type="text" name="cardNumber" placeholder="Enter your address"
                   onfocusout="validateAddress()">
                   <div class="helper-text" id="addressMsg"></div>
-                </div>
+                </div> -->
 
                 <div class="input-box">
                   <label for="bankName">bank_name</label>
