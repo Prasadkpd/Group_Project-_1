@@ -263,6 +263,7 @@ class Admin extends Authenticated
     }
     //End of Chart view
 
+    // Start of reshaping pie charts
     public function reshapepiechartAction()
     {
         $dateValue = $this->route_params['id'];
@@ -284,12 +285,15 @@ class Admin extends Authenticated
 
         echo $payment_method."_".$booking_count;
     }
+    // End of reshaping pie charts
 
+    // Start of reshaping table charts
     public function reshapetablechartAction()
     {
         $dateValue = $this->route_params['id'];
 
         echo AdminModel::adminReshapeTableCharts($dateValue);
     }
+    // End of reshaping table charts
 
 }
