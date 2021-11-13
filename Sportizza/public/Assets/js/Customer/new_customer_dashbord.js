@@ -161,9 +161,12 @@ function close_popup_delete_message_favorite_list() {
 
 
 //popup notification section
-function open_popup_notification(subject,description) {
+function open_popup_notification(subject,description,link) {
+  console.log(link);
+  console.log(subject)
   var form = document.getElementById("popup_notification");
-  form.querySelector("#popup_notification").innerHTML="<h1>"+subject+"</h1>"+"<p>"+description+"</p>";
+  form.querySelector("#popup_notification").innerHTML="<h1>"
+  +subject+"</h1>"+"<p>"+description+"</p>"+ "<a href="+"'"+link+ "'>" + "click here" + "</a>";
   form.style.display = "block";
 }
 function close_popup_notification() {

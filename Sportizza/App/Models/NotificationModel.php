@@ -319,29 +319,33 @@ class NotificationModel extends \Core\Model
         $spardesc = $fname . " " . $lname . " has cancelled his booking to " . $facname . " on " . $bdate . " scheduled from " . $stime . " to " . $etime . ".";
 
         if ($paymethod == "card") {
-            $custdesc .= "Refund details will be sent to you later.";
+            $custdesc .= "Please click this link for request refund";
+            $link = "http://localhost/customer/refund/".$booking_id;
+        }
+        else{
+            $link = "";
         }
 
         // **************************************
         // INSERT QUERIES TO USERS
         
    
-        $sql5 = 'INSERT INTO notification(user_id,subject, priority, description) VALUES (:uid,:subject,:p_level,:desc)';
+        $sql5 = 'INSERT INTO notification(user_id,subject, priority, description,link) VALUES (:uid,:subject,:p_level,:desc,:link)';
         $stmt5 = $db->prepare($sql5);
 
         // for customer
-        $stmt5->execute([':uid'=> $customer_id, ':subject'=> $custsubj, ':p_level'=> $p_level, ':desc'=> $custdesc]);
+        $stmt5->execute([':uid'=> $customer_id, ':subject'=> $custsubj, ':p_level'=> $p_level, ':desc'=> $custdesc,':link'=>$link]);
 
         // for manager
-        $stmt5->execute(['uid' => $manager_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
+        $stmt5->execute(['uid' => $manager_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc,':link'=>""]);
 
 
         // for administartion staff
-        $stmt5->execute(['uid' => $adminstaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
+        $stmt5->execute(['uid' => $adminstaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc,':link'=>""]);
 
 
         // for booking handling staff
-        return ($stmt5->execute(['uid' => $bookhandlestaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]));
+        return ($stmt5->execute(['uid' => $bookhandlestaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc,':link'=>""]));
     }
     // END OF CANCEL BOOKING SEND NOTIFICATIONS
     // =====================================

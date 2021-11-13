@@ -84,7 +84,7 @@ class CustomerModel extends \Core\Model
     public static function customerNotification($id)
     {
         //Retrieving customer notifications from the database
-        $sql = 'SELECT subject,description, DATE(date) as date , TIME_FORMAT( TIME(date) ,"%H" ":" "%i") as time 
+        $sql = 'SELECT link, subject,description, DATE(date) as date , TIME_FORMAT( TIME(date) ,"%H" ":" "%i") as time 
         FROM notification WHERE user_id=:id
         AND notification.security_status="active"
         ORDER BY date DESC,time DESC';
@@ -503,6 +503,63 @@ class CustomerModel extends \Core\Model
         //Binding the customer id and Converting retrieved data from database into PDOs
         $stmt->bindValue(':user_id', $id, PDO::PARAM_INT);
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        //Assigning the fetched PDOs to result
+        $result = $stmt->fetchAll();
+        return $result;
+    }
+
+    public static function customerRefundDeltails($booking_id)
+    {
+        // get database connection
+        $db = static::getDB();
+
+
+        $sql2='SELECT * FROM payment WHERE booking_id=:booking_id';
+
+        // AND booking.booked_date >= :prev_time AND booking.booked_date <=:next_time
+        $stmt = $db->prepare($sql2);
+
+        //Binding the customer id and Converting retrieved data from database into PDOs
+
+        $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        //Assigning the fetched PDOs to result
+        $result = $stmt->fetchAll();
+        return $result;
+    }
+
+
+
+    public static function customerRequestRefund($post)
+    {
+        // get database connection
+        $db = static::getDB();
+
+
+        $sql2='INSERT INTO refund(payment_id,invoice_id,booking_id,
+        customer_user_id,account_no,benficiary_name,branch_name,bank_name,
+        refund_status,refund_amount) VALUES (:payment_id, :invoice_id, :booking_id,:customer_user_id,
+        :account_no,:benficiary_name,:branch_name,:bank_name,:refund_status,:refund_amount)';
+
+        // AND booking.booked_date >= :prev_time AND booking.booked_date <=:next_time
+        $stmt = $db->prepare($sql2);
+
+        //Binding the customer id and Converting retrieved data from database into PDOs
+        $stmt->bindValue(':payment_id', $post['payment_id'], PDO::PARAM_INT);
+        $stmt->bindValue(':invoice_id', $post['invoice_id'], PDO::PARAM_INT);
+        $stmt->bindValue(':booking_id', $post['booking_id'], PDO::PARAM_INT);
+        $stmt->bindValue(':customer_user_id', $post['customer_user_id'], PDO::PARAM_INT);
+        $stmt->bindValue(':account_no', $post['accountNumber'], PDO::PARAM_INT);
+        $stmt->bindValue(':benficiary_name', $post['benificialyName'], PDO::PARAM_STR);
+        $stmt->bindValue(':branch_name', $post['branchName'], PDO::PARAM_STR);
+        $stmt->bindValue(':bank_name', $post['bankName'], PDO::PARAM_STR);
+        $stmt->bindValue(':refund_status', "unpaid", PDO::PARAM_STR);
+        $stmt->bindValue(':refund_amount', $post['amount'], PDO::PARAM_INT);
+        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $stmt->execute();
 
         //Assigning the fetched PDOs to result

@@ -63,10 +63,11 @@ class Customer extends Authenticated
         $user_id = $current_user->user_id;
         $cart=CustomerModel::customerCartView($user_id);
         
-        $cashSum=0;
+        $cashSum=0; 
         $cardSum=0;
         $allSum=0;
         $i=0;
+        
         for( $i; $i< count($cart); $i++){
             
             if($cart[$i]->payment_method=="cash"){
@@ -282,5 +283,25 @@ class Customer extends Authenticated
     }
     //End of adding sportsarena to Favourite list
 
+
+        //Start of customer get refund
+        public function refundAction()
+        {
+            $details=CustomerModel::customerRefundDeltails( $this->route_params['id']);
+            View::renderTemplate(
+                'Customer/refund.html',['details'=>$details]
+            );
+        }
+        //End of customer get refund
+
+
+        //Start of customer request refund
+        public function customerrequestrefundAction()
+        {
+            
+            CustomerModel::customerRequestRefund($_POST);
+            $this->redirect('/Customer');
+        }
+        //End of customer request refund
 
 }
