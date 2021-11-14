@@ -463,12 +463,26 @@ class SpArenaManagerModel extends \Core\Model
     public static function managerChart1($id)
     {
 //Retrieving data about bookings from the database
-        $sql = 'SELECT booking.booking_date, COUNT(DISTINCT booking.booking_id) AS No_Of_Bookings
+        $sql = 'SELECT CASE EXTRACT(MONTH FROM booking.booking_date)
+                    WHEN "1" THEN "January"
+                    WHEN "2" THEN "February"
+                    WHEN "3" THEN "March"
+                    WHEN "4" THEN "April"
+                    WHEN "5" THEN "May"
+                    WHEN "6" THEN "June"
+                    WHEN "7" THEN "July"
+                    WHEN "8" THEN "August"
+                    WHEN "9" THEN "September"
+                    WHEN "10" THEN "October"
+                    WHEN "11" THEN "November"
+                    WHEN "12" THEN "December"
+                    ELSE "Not Valid"
+                END AS Time_Booked, COUNT(DISTINCT booking.booking_id) AS No_Of_Bookings
                 FROM booking
                 INNER JOIN manager ON booking.sports_arena_id=manager.sports_arena_id
                 WHERE manager.user_id=:id
-                GROUP BY booking.booking_date 
-                ORDER BY booking.booking_date DESC LIMIT 7';
+                GROUP BY Time_Booked 
+                ORDER BY booking.booking_date';
 
         // $sql = 'SELECT booking.booking_date, COUNT(DISTINCT booking.booking_id) AS No_Of_Bookings
         // FROM booking
@@ -499,7 +513,7 @@ class SpArenaManagerModel extends \Core\Model
         $sql = 'SELECT booking.payment_method, COUNT(DISTINCT booking.booking_id) AS No_Of_Bookings
                 FROM booking
                 INNER JOIN manager ON booking.sports_arena_id=manager.sports_arena_id
-                WHERE manager.user_id=:id
+                WHERE booking.security_status="active" AND manager.user_id=:id
                 GROUP BY booking.payment_method ';
 
         // $sql = 'SELECT booking.payment_method, COUNT(DISTINCT booking.booking_id) AS No_Of_Bookings
@@ -574,6 +588,92 @@ class SpArenaManagerModel extends \Core\Model
         return $result;
     }
 //End of displaying sports arenas chart 4 for manager
+
+//Start of Reshaping Pie Charts
+    public static function managerReshapePieCharts($dateValue,$id)
+    {
+        //Retrieving of chart data from the database
+        $sql = 'SELECT COUNT(DISTINCT EXTRACT(MONTH FROM booking.booking_date)) AS Months
+                FROM booking
+                INNER JOIN manager ON booking.sports_arena_id=manager.sports_arena_id
+                WHERE booking.security_status="active" AND manager.user_id=:id ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        //Assigning the fetched PDOs to result
+        $result0 = $stmt->fetch(PDO::FETCH_ASSOC);
+        $totalMonth = $result0["Months"];
+        
+        //Retrieving of chart data from the database
+        $sql = 'SELECT EXTRACT(MONTH FROM booking.booking_date) AS BookingMonth FROM booking
+                INNER JOIN manager ON booking.sports_arena_id=manager.sports_arena_id
+                WHERE booking.security_status="active" AND manager.user_id=:id
+                GROUP BY BookingMonth
+                ORDER BY BookingMonth DESC LIMIT 1 ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        //Assigning the fetched PDOs to result
+        $result1 = $stmt->fetch(PDO::FETCH_ASSOC);
+        $lastMonth = $result1["BookingMonth"];
+
+        $previousMonth = $lastMonth - $dateValue + 1;
+        
+        if($dateValue!=0 && $dateValue<=$totalMonth){
+            //Retrieving of chart data from the database
+            $sql = 'SELECT booking.payment_method, COUNT(DISTINCT booking.booking_id) AS No_Of_Bookings
+                    FROM booking
+                    INNER JOIN manager ON booking.sports_arena_id=manager.sports_arena_id
+                    WHERE booking.security_status="active" AND manager.user_id=:id AND EXTRACT(MONTH FROM booking.booking_date) BETWEEN :previousMonth AND :lastMonth
+                    GROUP BY booking.payment_method ';
+
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
+
+            //Binding input data into database query variables
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->bindValue(':previousMonth', $previousMonth, PDO::PARAM_INT);
+            $stmt->bindValue(':lastMonth', $lastMonth, PDO::PARAM_INT);
+
+            //Converting retrieved data from database into PDOs
+            $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+            $stmt->execute();
+        }else{
+            //Retrieving of chart data from the database
+            $sql = 'SELECT booking.payment_method, COUNT(DISTINCT booking.booking_id) AS No_Of_Bookings
+                    FROM booking
+                    INNER JOIN manager ON booking.sports_arena_id=manager.sports_arena_id
+                    WHERE booking.security_status="active" AND manager.user_id=:id
+                    GROUP BY booking.payment_method ';
+
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
+
+            //Binding input data into database query variables
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+            //Converting retrieved data from database into PDOs
+            $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+            $stmt->execute();
+        }
+
+        //Assigning the fetched PDOs to result
+        $result2 = $stmt->fetchAll();
+        return $result2;
+    }
+//End of Reshaping Pie Charts
 
 //Start of adding timeslot to a sports arena for manager
     public static function managerAddTimeSlots($user_id, $start_time, $duration, $price, $facility)

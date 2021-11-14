@@ -304,6 +304,34 @@ class Sparenamanager extends \Core\Controller
     }
     //End of Analytics of manager view
 
+    // Start of reshaping charts
+    public function reshapepiechartAction()
+    {
+        //Get the current user's details with session using Auth
+        $current_user = Auth::getUser();
+        $id = $current_user->user_id;
+
+        $dateValue = $this->route_params['id'];
+
+        $temp1 = [];
+        $temp2 = [];
+
+        $chart2 = SpArenaManagerModel::managerReshapePieCharts($dateValue,$id);
+
+        $i=0;
+
+        for( $i; $i< count($chart2); $i++){
+            $temp1[$i] = $chart2[$i]->payment_method;
+            $temp2[$i] = $chart2[$i]->No_Of_Bookings;
+        }
+
+        $payment_method = implode(",",$temp1);
+        $booking_count = implode(",",$temp2);
+
+        echo $payment_method."_".$booking_count;
+    }
+    // End of reshaping charts
+
     //Start of Edit Arena profile of manager
     public function managereditarenaprofileAction()
     {
