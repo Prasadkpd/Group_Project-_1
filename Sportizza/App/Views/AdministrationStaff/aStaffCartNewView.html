@@ -122,13 +122,11 @@
         <div class="page">
           <div class="container">
             <div class="title">My Cart</div>
-            <div class="closebtn"><a href="/Spadministrationstaff/managebookings"><i class="far fa-times-circle itemDelete"></i></a></div>
-            <!-- <div class="subtitle">Invoice ID : 1000000002</div> -->
+            <div class="closebtn"><a href="/Spadministrationstaff/managebookings">
+              <i class="far fa-times-circle itemDelete"></i></a></div>
             <div class="content">
 
-
-              <div class="cartContent">
-               
+              <div class="cartContent">               
                 {% for item in cart %}
                 <div id="cartItem1" class="cartItem">
                   <div id="itemDelete1" class="itemDelete" onclick="hideItem(1)">
@@ -152,7 +150,6 @@
                   <div class="itemPrice">
                     LKR {{item.price_per_booking}}
                   </div>
-
                 </div>
                 {% endfor %}
                 <input type="hidden" name="order_id" value="100000000">
