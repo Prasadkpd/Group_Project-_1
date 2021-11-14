@@ -182,7 +182,7 @@
                 <div class="input-box">
                   <label for="amount">Amount</label>
                   <input id="amount" type="text" name="amount" placeholder="Enter your address"
-                  onfocusout="validateAddress()" value="{{details.net_amount}}">
+                  onfocusout="validateAddress()" value="{{details[0].net_amount}}" readonly>
                   <div class="helper-text" id="addressMsg"></div>
                 </div>
 
@@ -192,7 +192,7 @@
                 <div class="input-box">
                   <label for="benificialyName">benficiary name</label>
                   <input id="benificialyName" type="text" name="benificialyName" placeholder="Enter your address"
-                  onfocusout="validateAddress()">
+                  onfocusout="validateBenificaryName()">
                   <div class="helper-text" id="addressMsg"></div>
                 </div>
 
@@ -222,12 +222,14 @@
                   <input id="branchName" type="text" name="branchName" placeholder="Enter your address"
                   onfocusout="validateAddress()">
                   <div class="helper-text" id="addressMsg"></div>
+                  
                 </div>
-
                 
+                <input class="submitButton" type="submit" >
               </div>
-              <input type="submit" >
+              
             </div>
+           
           </div>
         </div>
       </div>
@@ -248,7 +250,7 @@
 
   <script type="text/javascript" src="/Assets/js/lib/jquery/jquery.min.js"></script>
   <script type="text/javascript" src="/Assets/js/signup_validation.js?version=8.0"></script>
-  <script type="text/javascript" src="/Assets/js/Customer/newCart.js?version=4"></script>
+  <script type="text/javascript" src="/Assets/js/Customer/refund.js?version=4"></script>
   <!-- Top navbar js -->
   <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
 </body>

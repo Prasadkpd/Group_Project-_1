@@ -26,6 +26,7 @@ class SignupModel extends \Core\Model
         if (!empty($this->image_7->img_errors)) {
             $this->errors["image_7"] = $this->image_7->img_errors;
         }
+        
     }
     //End of Class constructor
 
