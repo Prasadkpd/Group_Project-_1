@@ -17,6 +17,7 @@ input textarea {
   background-color: #fff;
   position: relative;
   width: 100%;
+  
 }
 body {
   height: 100vh;
@@ -90,6 +91,10 @@ form input[type="submit"]:hover {
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, 
   rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
+.content .submitButton {
+  margin:auto;
+
+}
 .page-content {
   display: flex;
   margin-bottom: 2rem;
@@ -105,10 +110,11 @@ form input[type="submit"]:hover {
   padding-bottom: 15px;
   float: left;
 }
+
 .customerDetails .page .container {
   /* max-width: 1050px; */
   width: 100%;
-  margin-left: 1.5rem;
+  margin: 1.5rem;
   /* overflow-y: scroll; */
   height: 80vh;
   background-color: #fff;
@@ -117,6 +123,7 @@ form input[type="submit"]:hover {
 
   border-radius: 15px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  
 }
 .container .title {
   font-size: 1.5rem;
@@ -147,7 +154,7 @@ form input[type="submit"]:hover {
   margin: .5rem 0 0 2rem;
 }
 .customerDetails {
-  width: 90%;
+  width: 100%;
   float:left;
 }
 .cartDisplay {
@@ -168,7 +175,7 @@ form input[type="submit"]:hover {
   margin: 20px 0 12px 0;
 }
 form .sp-details .input-box {
-  margin-bottom: 15px;
+  margin-bottom: 5px;
   width: calc(100% / 3 - 20px);
 }
 form .sp-details label {
