@@ -130,7 +130,9 @@ class SpAdministrationStaffModel extends \Core\Model
     booking.booking_date=CURRENT_DATE() OR (payment_status="pending" 
      AND booked_date +INTERVAL 30 MINUTE > CURRENT_TIMESTAMP) )
      AND time_slot.manager_sports_arena_id=:arena_id 
-     AND time_slot.security_status="active" ORDER BY time_slot.start_time';
+     AND time_slot.security_status="active" 
+     AND time_slot.start_time > CURRENT_TIME()
+     ORDER BY time_slot.start_time';
 
         // payment_status="pending" 
         $db = static::getDB();
@@ -173,6 +175,7 @@ class SpAdministrationStaffModel extends \Core\Model
     booking.booking_date=:date )
      AND time_slot.manager_sports_arena_id=:arena_id 
      AND time_slot.security_status="active"
+     AND time_slot.start_time > CURRENT_TIME()
      ORDER BY time_slot.start_time';
 
 
