@@ -54,6 +54,7 @@ $(document).ready(function () {
 
         success: function (response) {
           $("#eventsList").html(response);
+          // console.log(response);
         },
       });
     });

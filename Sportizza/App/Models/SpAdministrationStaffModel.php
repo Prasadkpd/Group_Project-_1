@@ -124,6 +124,9 @@ class SpAdministrationStaffModel extends \Core\Model
     time_slot.price,facility.facility_name
     FROM time_slot
     INNER JOIN facility ON time_slot.facility_id= facility.facility_id
+    INNER JOIN booking_timeslot ON time_slot.time_slot_id =booking_timeslot.timeslot_id
+    INNER JOIN booking ON booking_timeslot.booking_id=booking.booking_id
+    
     WHERE time_slot.time_slot_id NOT IN
      (SELECT booking_timeslot.timeslot_id FROM booking 
     INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id WHERE 
@@ -131,7 +134,8 @@ class SpAdministrationStaffModel extends \Core\Model
      AND booked_date +INTERVAL 30 MINUTE > CURRENT_TIMESTAMP) )
      AND time_slot.manager_sports_arena_id=:arena_id 
      AND time_slot.security_status="active" 
-     AND time_slot.start_time > CURRENT_TIME()
+     AND time_slot.start_time > CURRENT_TIME() 
+  
      ORDER BY time_slot.start_time';
 
         // payment_status="pending" 
@@ -162,8 +166,36 @@ class SpAdministrationStaffModel extends \Core\Model
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         $arena_id = $result['sports_arena_id'];
 
-        //Retrieving sports arena timeslot from the database
-        $sql = 'SELECT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i")
+        // have to change this is wrong we use it for testing
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        if ($date == date("d-m-Y")) {        //Retrieving sports arena timeslot from the database
+            $sql = 'SELECT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i")
+            AS startTime,TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,
+            time_slot.price,facility.facility_name
+            FROM time_slot
+            INNER JOIN facility ON time_slot.facility_id= facility.facility_id
+            INNER JOIN booking_timeslot ON time_slot.time_slot_id =booking_timeslot.timeslot_id
+            INNER JOIN booking ON booking_timeslot.booking_id=booking.booking_id
+            
+            WHERE time_slot.time_slot_id NOT IN
+             (SELECT booking_timeslot.timeslot_id FROM booking 
+            INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id WHERE 
+            booking.booking_date=CURRENT_DATE() OR (payment_status="pending" 
+             AND booked_date +INTERVAL 30 MINUTE > CURRENT_TIMESTAMP) )
+             AND time_slot.manager_sports_arena_id=:arena_id 
+             AND time_slot.security_status="active" 
+             AND time_slot.start_time > CURRENT_TIME() 
+          
+             ORDER BY time_slot.start_time';
+
+             //Binding the sports arena id and Converting retrieved data from database into PDOs
+        $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+        } else {
+
+            $sql = 'SELECT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i")
     AS startTime,TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,
     time_slot.price,facility.facility_name,sports_arena_profile.payment_method
     FROM time_slot
@@ -175,18 +207,16 @@ class SpAdministrationStaffModel extends \Core\Model
     booking.booking_date=:date )
      AND time_slot.manager_sports_arena_id=:arena_id 
      AND time_slot.security_status="active"
-     AND time_slot.start_time > CURRENT_TIME()
      ORDER BY time_slot.start_time';
 
+     //Binding the sports arena id and Converting retrieved data from database into PDOs
+     $stmt->bindValue(':date', $date, PDO::PARAM_STR);
+     $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+        }
 
-        // have to change this is wrong we use it for testing
+        
 
-        $db = static::getDB();
-        $stmt = $db->prepare($sql);
-
-        //Binding the sports arena id and Converting retrieved data from database into PDOs
-        $stmt->bindValue(':date', $date, PDO::PARAM_STR);
-        $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+        
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $stmt->execute();
 
@@ -416,7 +446,7 @@ class SpAdministrationStaffModel extends \Core\Model
         $stmt3->bindValue(':customer_user_id', $user_id, PDO::PARAM_INT);
         $stmt3->execute();
 
-        $sql7='INSERT INTO `payment` (`net_amount`) VALUES (0)';
+        $sql7 = 'INSERT INTO `payment` (`net_amount`) VALUES (0)';
         $stmt = $db->prepare($sql7);
         $stmt->execute();
 
@@ -426,7 +456,7 @@ class SpAdministrationStaffModel extends \Core\Model
         $stmt2->execute();
         $result1 = $stmt2->fetch(PDO::FETCH_ASSOC);
         $payment_id = $result1["payment_id"];
-            
+
 
         $sql2 = 'SELECT booking.booking_id
         FROM booking
@@ -449,17 +479,17 @@ class SpAdministrationStaffModel extends \Core\Model
         //Assigning the fetched PDOs to result
         $result = $stmt->fetchAll();
         $len = count($result);
-       
 
-        $total_amount=0;
-        
+
+        $total_amount = 0;
+
         // var_dump($result);
         for ($x = 0; $x < $len; $x++) {
-            $booking_id = $result[$x][0];   
-        
+            $booking_id = $result[$x][0];
 
 
-        $sql4 = 'SELECT booking.price_per_booking, booking.booking_date, facility.facility_name, 
+
+            $sql4 = 'SELECT booking.price_per_booking, booking.booking_date, facility.facility_name, 
         `time_slot`.`start_time`,
         `time_slot`.`end_time`, sports_arena_profile.sa_name
         FROM booking 
@@ -468,99 +498,97 @@ class SpAdministrationStaffModel extends \Core\Model
         INNER JOIN `booking_timeslot` ON `booking_timeslot`.`booking_id`= `booking`.`booking_id`
         INNER JOIN `time_slot` ON `time_slot`.`time_slot_id`=`booking_timeslot`.`timeslot_id`
         WHERE booking.booking_id =:booking_id';
-        $stmt4 = $db->prepare($sql4);
-        $stmt4->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
-
-        
+            $stmt4 = $db->prepare($sql4);
+            $stmt4->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
 
 
 
 
-        $stmt4->execute();
-
-        $result1 = $stmt4->fetch(PDO::FETCH_ASSOC);
-
-        //Obtaining the administratoin staff user details retrieved from result1
-        $amount = $result1["price_per_booking"];
-        $arena_name= $result1["sa_name"];
-        $facility_name= $result1["facility_name"];
-        $booking_date= $result1["booking_date"];
-        $start_time= $result1["start_time"];
-        $end_time= $result1["end_time"];
-       
-        $total_amount=$total_amount + $amount;
-
-        $sql5 = 'INSERT INTO `invoice` (`payment_method`, `net_amount`,`payment_id`) VALUES ("cash", :amount, :payment_id)';
-        $stmt = $db->prepare($sql5);
-        $stmt->bindValue(':amount', $amount, PDO::PARAM_INT);
-        $stmt->bindValue(':payment_id', $payment_id, PDO::PARAM_INT);
-        $stmt->execute();
 
 
-        $sql6 = 'SELECT `invoice_id` FROM `invoice` ORDER BY `invoice_id` DESC LIMIT 1;';
+            $stmt4->execute();
 
-        $stmt6 = $db->prepare($sql6);
-        $stmt6->execute();
+            $result1 = $stmt4->fetch(PDO::FETCH_ASSOC);
 
-        //Converting retrieved data from database into PDOs
-        $result1 = $stmt6->fetch(PDO::FETCH_ASSOC);
-        //Obtaining the user id retrieved from result1
-        $invoice_id = $result1["invoice_id"];
-        //Updating status of the bookings in the database
-        $sql = 'UPDATE `booking` SET `payment_status`="paid", `invoice_id`=:invoice_id, `customer_user_id`=:user_id
+            //Obtaining the administratoin staff user details retrieved from result1
+            $amount = $result1["price_per_booking"];
+            $arena_name = $result1["sa_name"];
+            $facility_name = $result1["facility_name"];
+            $booking_date = $result1["booking_date"];
+            $start_time = $result1["start_time"];
+            $end_time = $result1["end_time"];
+
+            $total_amount = $total_amount + $amount;
+
+            $sql5 = 'INSERT INTO `invoice` (`payment_method`, `net_amount`,`payment_id`) VALUES ("cash", :amount, :payment_id)';
+            $stmt = $db->prepare($sql5);
+            $stmt->bindValue(':amount', $amount, PDO::PARAM_INT);
+            $stmt->bindValue(':payment_id', $payment_id, PDO::PARAM_INT);
+            $stmt->execute();
+
+
+            $sql6 = 'SELECT `invoice_id` FROM `invoice` ORDER BY `invoice_id` DESC LIMIT 1;';
+
+            $stmt6 = $db->prepare($sql6);
+            $stmt6->execute();
+
+            //Converting retrieved data from database into PDOs
+            $result1 = $stmt6->fetch(PDO::FETCH_ASSOC);
+            //Obtaining the user id retrieved from result1
+            $invoice_id = $result1["invoice_id"];
+            //Updating status of the bookings in the database
+            $sql = 'UPDATE `booking` SET `payment_status`="paid", `invoice_id`=:invoice_id, `customer_user_id`=:user_id
          WHERE `booking_id`=:booking_id';
 
-        $db = static::getDB();
-        $stmt = $db->prepare($sql);
-        $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
-        $stmt->bindValue(':invoice_id', $invoice_id, PDO::PARAM_INT);
-        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
-        $stmt->execute();
-        
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+            $stmt->bindValue(':invoice_id', $invoice_id, PDO::PARAM_INT);
+            $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+            $stmt->execute();
 
 
-        //Function to send booking confirmation SMS to visitor
-    
-        //our mobile number
-        $user = "94765282976";
-        //our account password
-        $password = 4772;
-        //Random OTP code
-        $otp = mt_rand(100000, 999999);
 
-        // stores the otp code and mobile number into session
-        $_SESSION['otp'] = $otp;
-        $_SESSION['mobile_number'] = $primary_contact;
+            //Function to send booking confirmation SMS to visitor
 
-        //Message to be sent
-        $text = urlencode("You have successfully made a booking to " . $arena_name . " on ". $booking_date . " from " . $start_time . " to " . $end_time . " for " . $facility_name . "." );
-        // Replacing the initial 0 with 94
-        $to = substr_replace($primary_contact, '94', 0, 0);
-        //Base URL
-        $baseurl = "http://www.textit.biz/sendmsg";
-        // regex to create the url
-        $url = "$baseurl/?id=$user&pw=$password&to=$to&text=$text";
+            //our mobile number
+            $user = "94765282976";
+            //our account password
+            $password = 4772;
+            //Random OTP code
+            $otp = mt_rand(100000, 999999);
 
-        $ret = file($url);
-        $res = explode(":", $ret[0]);
+            // stores the otp code and mobile number into session
+            $_SESSION['otp'] = $otp;
+            $_SESSION['mobile_number'] = $primary_contact;
 
-        if (trim($res[0]) == "OK") {
-            echo "Message Sent - ID : " . $res[1];
-        } else {
-            echo "Sent Failed - Error : " . $res[1];
-        }  
+            //Message to be sent
+            $text = urlencode("You have successfully made a booking to " . $arena_name . " on " . $booking_date . " from " . $start_time . " to " . $end_time . " for " . $facility_name . ".");
+            // Replacing the initial 0 with 94
+            $to = substr_replace($primary_contact, '94', 0, 0);
+            //Base URL
+            $baseurl = "http://www.textit.biz/sendmsg";
+            // regex to create the url
+            $url = "$baseurl/?id=$user&pw=$password&to=$to&text=$text";
 
-    }
+            $ret = file($url);
+            $res = explode(":", $ret[0]);
 
-    $sql = 'UPDATE `payment` SET `net_amount`=:total_amount
+            if (trim($res[0]) == "OK") {
+                echo "Message Sent - ID : " . $res[1];
+            } else {
+                echo "Sent Failed - Error : " . $res[1];
+            }
+        }
+
+        $sql = 'UPDATE `payment` SET `net_amount`=:total_amount
          WHERE `payment_id`=:payment_id';
 
         $stmt = $db->prepare($sql);
-        $stmt->bindValue(':total_amount',$total_amount,PDO::PARAM_INT);
+        $stmt->bindValue(':total_amount', $total_amount, PDO::PARAM_INT);
         $stmt->bindValue(':payment_id', $payment_id, PDO::PARAM_INT);
         $stmt->execute();
         return ($payment_id);
-     
     }
 
     //Start of displaying sports arena's updating bookings
