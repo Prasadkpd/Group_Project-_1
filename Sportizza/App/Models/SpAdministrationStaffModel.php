@@ -377,6 +377,27 @@ public static function saAdminCartView($id)
     }
     //End of displaying sports arena's booking payment
 
+    public static function saAdminAddbookingPaymentSuccess($id, $invoice_id)
+    {
+
+        //Updating status of the bookings in the database
+        $sql = 'UPDATE `booking` SET `payment_status`="paid" WHERE `invoice_id`=:invoice_id';
+        
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':booking_id', $invoice_id, PDO::PARAM_INT);
+        return ($stmt->execute());
+
+        //Payment status update for the booking
+        //add to invoice table
+        //add to payment table
+       
+
+
+
+
+    }
+
     //Start of displaying sports arena's updating bookings
     public static function updateBookingPayment($booking_id)
     {

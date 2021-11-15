@@ -341,10 +341,6 @@ class CustomerModel extends \Core\Model
         $stmt->execute();
 
 
-
-
-
-
         //update booking_timeslot security  status as a inactive
         $sql = 'UPDATE booking_timeslot 
                 SET security_status="inactive"

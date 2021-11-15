@@ -257,9 +257,10 @@ class Customer extends Authenticated
     {
         //Get the current user's details with session using Auth
         $current_user = Auth::getUser();
-
-
         $invoice_id = 100000000;
+
+        //update payment status query ko?
+        //insert to invoice table and payment table ko?
 
         // Calling the notification
         $notify_check = NotificationModel::addNotificationBookingSuccess($current_user, $invoice_id);
