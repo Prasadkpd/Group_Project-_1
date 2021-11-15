@@ -11,11 +11,36 @@
     font-size: 20px;
 }
 
-.closebtn a:hover {
-    color: ;
+form#formCheckout {
+    display: flex;
+}
+.customerDetails {
+    width: 100%;
+    float: left;
+}
+.cartContent {
+    height: 50vh;
+}
+.page-container {
+   display:flex;
+   justify-content: center;
+}
+.cartPage form .sp-details {
+   flex-direction:column;
+}
+form .sp-details .input-box {
+    margin-bottom: 15px;
+    width: 100%;
 }
 
-@media screen and (max-width: 576px)
+.cartDisplay {
+    justify-content: start;
+}
+/* .closebtn a:hover {
+    color: ;
+} */
+
+@media screen and (max-width: 576px){
 .cartDisplay .content .priceNPay {
     width: 90vw;
     margin: auto;
@@ -24,4 +49,5 @@
 
 .copyright {
    padding: 0;
+}
 }

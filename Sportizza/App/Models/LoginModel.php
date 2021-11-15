@@ -40,7 +40,8 @@ class LoginModel extends \Core\Model
     public static function findByUsername($username)
     {
         // Retrieving all user details from the database
-        $sql = 'SELECT * FROM user WHERE username = :username AND account_status= "active"';
+        $sql = 'SELECT * FROM user WHERE username = :username AND account_status= "active"
+        AND security_status= "active"';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -60,7 +61,8 @@ class LoginModel extends \Core\Model
     public static function findByMobileNumber($mobile_number)
     {
         // Retrieving all user details from the database
-        $sql = 'SELECT * FROM user WHERE primary_contact = :mobile_number AND account_status= "active"';
+        $sql = 'SELECT * FROM user WHERE primary_contact = :mobile_number AND account_status= "active"
+         AND security_status= "active';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);

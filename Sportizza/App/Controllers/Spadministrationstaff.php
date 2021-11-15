@@ -421,12 +421,30 @@ class Spadministrationstaff extends Authenticated
 
 
 
-    public function saAdminBookingsucessnotificationAction(){
+    public function saAdminBookingsuccessnotificationAction(){
         
-        // var_dump("payment success");
+        $current_user = Auth::getUser();
+        $saAdmin_id = $current_user->user_id;
 
-        SpAdministrationStaffModel::saAdminAddbookingPaymentSuccess($id);
-        $this->redirect('/spadministrationstaff/managebookings');
+        $first_name=$_POST['first_name'];
+        // echo($first_name);
+        $last_name=$_POST['last_name'];
+        // echo($last_name);
+        $primary_contact=$_POST['phone'];
+        // echo($primary_contact);
+
+        $payment_id=SpAdministrationStaffModel::saAdminAddbookingPaymentSuccess($saAdmin_id, $first_name, $last_name, $primary_contact);
+
+        //Update the booking's payment status
+        
+
+        //If the cash payment is successful
+        if ($payment_id) {
+            //Send payment successfull notification
+            NotificationModel::saAdminAddbookingPaymentSuccessNotification($current_user,$first_name, $last_name, $primary_contact, $payment_id);
+            $this->redirect('/spadministrationstaff/managebookings');
+        }
+       
 
     }
   }
