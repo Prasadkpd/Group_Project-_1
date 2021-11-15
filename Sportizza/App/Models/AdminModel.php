@@ -616,56 +616,153 @@ class AdminModel extends \Core\Model
     public static function adminChart4()
     {
         //Retrieving of chart data from the database
+        $sql = 'SELECT EXTRACT(MONTH FROM booking.booking_date) AS BookingMonth,EXTRACT(YEAR FROM booking.booking_date) AS BookingYear FROM booking
+                WHERE security_status="active"
+                ORDER BY booking.booking_date DESC LIMIT 1 ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        //Assigning the fetched PDOs to result
+        $result1 = $stmt->fetch(PDO::FETCH_ASSOC);
+        $lastMonth = $result1["BookingMonth"];
+        $lastYear = $result1["BookingYear"];
+
+        $days_in_month = cal_days_in_month(CAL_GREGORIAN, $lastMonth, $lastYear);
+        $current_date = $lastYear."-".$lastMonth."-".$days_in_month;
+
+        switch ($days_in_month) {
+            case 30:
+                $monthsadded = "+2 days -12 months";
+                break;
+            case 29:
+                $monthsadded = "+3 days -12 months";
+                break;
+            case 28:
+                $monthsadded = "+4 days -12 months";
+                break;
+            case 31:
+                $monthsadded = "-12 months";
+                break;
+        }
+        
+        $date = date("Y-m-d", strtotime($monthsadded,strtotime($current_date)));
+
+        $newYear = date("Y",strtotime($date));
+        $newDay = date("d",strtotime($date));
+
+        if($newYear<$lastYear){
+            $monthsadded = "-1 day";
+            $date = date("Y-m-d", strtotime($monthsadded,strtotime($date)));
+        }
+
         $sql = 'SELECT payment_method, COUNT(DISTINCT booking_id) AS No_Of_Bookings
                 FROM booking
-                WHERE security_status="active"
+                WHERE security_status="active" AND booking.booking_date BETWEEN :previousDate AND :currentDate
                 GROUP BY payment_method ';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
 
+        //Binding input data into database query variables
+        $stmt->bindValue(':previousDate', $date, PDO::PARAM_STR);
+        $stmt->bindValue(':currentDate', $current_date, PDO::PARAM_STR);
+
         //Converting retrieved data from database into PDOs
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $stmt->execute();
 
         //Assigning the fetched PDOs to result
-        $result = $stmt->fetchAll();
-        return $result;
+        $result2 = $stmt->fetchAll();
+        return $result2;
     }
     //End of Displaying of admin's chart 4
+
 
     //Start of Displaying of admin's chart 5
     public static function adminChart5()
     {
         //Retrieving of chart data from the database
-        $sql = 'SELECT category, COUNT(DISTINCT sports_arena_id) AS No_Of_Sports_Arenas
-        FROM sports_arena_profile
-        WHERE security_status="active" 
-        GROUP BY category
-        ORDER BY category ASC ';
+        $sql = 'SELECT EXTRACT(MONTH FROM sports_arena.registered_time) AS LastMonth,EXTRACT(YEAR FROM sports_arena.registered_time) AS LastYear FROM sports_arena
+                WHERE security_status="active"
+                ORDER BY LastMonth DESC LIMIT 1  ';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
-        
+
         //Converting retrieved data from database into PDOs
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $stmt->execute();
 
         //Assigning the fetched PDOs to result
-        $result = $stmt->fetchAll();
-        return $result;
+        $result1 = $stmt->fetch(PDO::FETCH_ASSOC);
+        $lastMonth = $result1["LastMonth"];
+        $lastYear = $result1["LastYear"];
+
+        $days_in_month = cal_days_in_month(CAL_GREGORIAN, $lastMonth, $lastYear);
+        $current_date = $lastYear."-".$lastMonth."-".$days_in_month;
+
+        switch ($days_in_month) {
+            case 30:
+                $monthsadded = "+2 days -12 months";
+                break;
+            case 29:
+                $monthsadded = "+3 days -12 months";
+                break;
+            case 28:
+                $monthsadded = "+4 days -12 months";
+                break;
+            case 31:
+                $monthsadded = "-12 months";
+                break;
+        }
+        
+        $date = date("Y-m-d", strtotime($monthsadded,strtotime($current_date)));
+
+        $newYear = date("Y",strtotime($date));
+        $newDay = date("d",strtotime($date));
+
+        if($newYear<$lastYear){
+            $monthsadded = "-1 day";
+            $date = date("Y-m-d", strtotime($monthsadded,strtotime($date)));
+        }
+
+        $sql = 'SELECT sports_arena_profile.category, COUNT(DISTINCT sports_arena_profile.sports_arena_id) AS No_Of_Sports_Arenas
+                FROM sports_arena_profile
+                INNER JOIN sports_arena ON sports_arena_profile.sports_arena_id=sports_arena.sports_arena_id
+                WHERE sports_arena.security_status="active" AND sports_arena.registered_time BETWEEN :previousDate AND :currentDate
+                GROUP BY sports_arena_profile.category
+                ORDER BY sports_arena_profile.category ASC';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':previousDate', $date, PDO::PARAM_STR);
+        $stmt->bindValue(':currentDate', $current_date, PDO::PARAM_STR);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        //Assigning the fetched PDOs to result
+        $result2 = $stmt->fetchAll();
+        return $result2;
     }
     //End of Displaying of admin's chart 5
+
 
     //Start of Displaying of admin's chart 6
     public static function adminChart6()
     {
         //Retrieving of chart data from the database
-        $sql = 'SELECT location, COUNT(DISTINCT sports_arena_id) AS No_Of_Sports_Arenas
-        FROM sports_arena_profile
-        WHERE security_status="active"
-        GROUP BY location
-        ORDER BY location ASC ';
+        $sql = 'SELECT EXTRACT(MONTH FROM sports_arena.registered_time) AS LastMonth,EXTRACT(YEAR FROM sports_arena.registered_time) AS LastYear FROM sports_arena
+                WHERE security_status="active"
+                ORDER BY LastMonth DESC LIMIT 1  ';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -675,30 +772,66 @@ class AdminModel extends \Core\Model
         $stmt->execute();
 
         //Assigning the fetched PDOs to result
-        $result = $stmt->fetchAll();
-        return $result;
+        $result1 = $stmt->fetch(PDO::FETCH_ASSOC);
+        $lastMonth = $result1["LastMonth"];
+        $lastYear = $result1["LastYear"];
+
+        $days_in_month = cal_days_in_month(CAL_GREGORIAN, $lastMonth, $lastYear);
+        $current_date = $lastYear."-".$lastMonth."-".$days_in_month;
+
+        switch ($days_in_month) {
+            case 30:
+                $monthsadded = "+2 days -12 months";
+                break;
+            case 29:
+                $monthsadded = "+3 days -12 months";
+                break;
+            case 28:
+                $monthsadded = "+4 days -12 months";
+                break;
+            case 31:
+                $monthsadded = "-12 months";
+                break;
+        }
+        
+        $date = date("Y-m-d", strtotime($monthsadded,strtotime($current_date)));
+
+        $newYear = date("Y",strtotime($date));
+        $newDay = date("d",strtotime($date));
+
+        if($newYear<$lastYear){
+            $monthsadded = "-1 day";
+            $date = date("Y-m-d", strtotime($monthsadded,strtotime($date)));
+        }
+
+        $sql = 'SELECT sports_arena_profile.location, COUNT(DISTINCT sports_arena_profile.sports_arena_id) AS No_Of_Sports_Arenas
+                FROM sports_arena_profile
+                INNER JOIN sports_arena ON sports_arena_profile.sports_arena_id=sports_arena.sports_arena_id
+                WHERE sports_arena.security_status="active" AND sports_arena.registered_time BETWEEN :previousDate AND :currentDate
+                GROUP BY sports_arena_profile.location
+                ORDER BY sports_arena_profile.location ASC';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':previousDate', $date, PDO::PARAM_STR);
+        $stmt->bindValue(':currentDate', $current_date, PDO::PARAM_STR);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        //Assigning the fetched PDOs to result
+        $result2 = $stmt->fetchAll();
+        return $result2;
     }
     //End of Displaying of admin's chart 6
+
 
     //Start of Reshaping Pie Charts
     public static function adminReshapePieCharts($dateValue)
     {
-        //Retrieving of chart data from the database
-        $sql = 'SELECT COUNT(DISTINCT EXTRACT(MONTH FROM booking.booking_date)) AS Months
-                FROM booking
-                WHERE security_status="active" ';
-
-        $db = static::getDB();
-        $stmt = $db->prepare($sql);
-
-        //Converting retrieved data from database into PDOs
-        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-        $stmt->execute();
-
-        //Assigning the fetched PDOs to result
-        $result0 = $stmt->fetch(PDO::FETCH_ASSOC);
-        $totalMonth = $result0["Months"];
-        
         //Retrieving of chart data from the database
         $sql = 'SELECT EXTRACT(MONTH FROM booking.booking_date) AS BookingMonth,EXTRACT(YEAR FROM booking.booking_date) AS BookingYear FROM booking
                 WHERE security_status="active"
@@ -716,13 +849,8 @@ class AdminModel extends \Core\Model
         $lastMonth = $result1["BookingMonth"];
         $lastYear = $result1["BookingYear"];
 
-        $previousMonth = $lastMonth - $dateValue + 1;
-
-        $days_in_month = cal_days_in_month(CAL_GREGORIAN, $lastMonth, 2021);
-        // $days_in_month = 31;
+        $days_in_month = cal_days_in_month(CAL_GREGORIAN, $lastMonth, $lastYear);
         $current_date = $lastYear."-".$lastMonth."-".$days_in_month;
-        $modifiedCurrentDate = $days_in_month."-".$lastMonth."-".$lastYear;
-        // $noofdate = "2021-12-31";
 
         switch ($days_in_month) {
             case 30:
@@ -739,87 +867,61 @@ class AdminModel extends \Core\Model
                 break;
         }
         
-        $date = date("d-m-Y", strtotime($monthsadded,strtotime($current_date)));
+        $date = date("Y-m-d", strtotime($monthsadded,strtotime($current_date)));
 
         $newYear = date("Y",strtotime($date));
         $newDay = date("d",strtotime($date));
 
         if($newYear<$lastYear){
             $monthsadded = "-1 day";
-            $date = date("d-m-Y", strtotime($monthsadded,strtotime($date)));
+            $date = date("Y-m-d", strtotime($monthsadded,strtotime($date)));
         }
-        // return $date;
 
-        
-        // if($dateValue!=0 && $dateValue<=$totalMonth){
-        //     //Retrieving of chart data from the database
-        //     // $sql = 'SELECT payment_method, COUNT(DISTINCT booking_id) AS No_Of_Bookings
-        //     //         FROM booking
-        //     //         WHERE security_status="active" AND EXTRACT(MONTH FROM booking.booking_date) BETWEEN :previousMonth AND :lastMonth
-        //     //         GROUP BY payment_method ';
-            $sql = 'SELECT payment_method, COUNT(DISTINCT booking_id) AS No_Of_Bookings
-                    FROM booking
-                    WHERE security_status="active" AND booking.booking_date BETWEEN :previousDate AND :currentDate
-                    GROUP BY payment_method ';
-
-            $db = static::getDB();
-            $stmt = $db->prepare($sql);
-
-            //Binding input data into database query variables
-            $stmt->bindValue(':previousDate', $date, PDO::PARAM_STR);
-            $stmt->bindValue(':currentDate', $modifiedCurrentDate, PDO::PARAM_STR);
-
-            //Converting retrieved data from database into PDOs
-            $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-            $stmt->execute();
-
-            //Assigning the fetched PDOs to result
-            $result2 = $stmt->fetchAll();
-            return $result2;
-        // }else{
-        //     //Retrieving of chart data from the database
-        //     $sql = 'SELECT payment_method, COUNT(DISTINCT booking_id) AS No_Of_Bookings
-        //             FROM booking
-        //             WHERE security_status="active"
-        //             GROUP BY payment_method ';
-
-        //     $db = static::getDB();
-        //     $stmt = $db->prepare($sql);
-
-        //     //Converting retrieved data from database into PDOs
-        //     $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-        //     $stmt->execute();
-
-        //     //Assigning the fetched PDOs to result
-        //     $result2 = $stmt->fetchAll();
-        //     return $result2;
-        // }
-    }
-    //End of Reshaping Pie Charts
-
-    //Start of Reshaping Table Charts
-    public static function adminReshapeTableCharts($dateValue)
-    {
-        //Retrieving of chart data from the database
-        $sql = 'SELECT COUNT(DISTINCT EXTRACT(MONTH FROM sports_arena.registered_time)) AS Months
-                FROM sports_arena
-                WHERE sports_arena.security_status="active" ';
+        $sql = 'SELECT payment_method, COUNT(DISTINCT booking_id) AS No_Of_Bookings
+                FROM booking
+                WHERE security_status="active" AND booking.booking_date BETWEEN :previousDate AND :currentDate
+                GROUP BY payment_method ';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':previousDate', $date, PDO::PARAM_STR);
+        $stmt->bindValue(':currentDate', $current_date, PDO::PARAM_STR);
 
         //Converting retrieved data from database into PDOs
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $stmt->execute();
 
         //Assigning the fetched PDOs to result
-        $result0 = $stmt->fetch(PDO::FETCH_ASSOC);
-        $totalMonth = $result0["Months"];
+        $result2 = $stmt->fetchAll();
+        return $result2;
+    }
+    //End of Reshaping Pie Charts
+
+
+    //Start of Reshaping Table Charts
+    public static function adminReshapeTableCharts($dateValue)
+    {
+        // //Retrieving of chart data from the database
+        // $sql = 'SELECT COUNT(DISTINCT EXTRACT(MONTH FROM sports_arena.registered_time)) AS Months
+        //         FROM sports_arena
+        //         WHERE sports_arena.security_status="active" ';
+
+        // $db = static::getDB();
+        // $stmt = $db->prepare($sql);
+
+        // //Converting retrieved data from database into PDOs
+        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        // $stmt->execute();
+
+        // //Assigning the fetched PDOs to result
+        // $result0 = $stmt->fetch(PDO::FETCH_ASSOC);
+        // $totalMonth = $result0["Months"];
         
         //Retrieving of chart data from the database
-        $sql = 'SELECT EXTRACT(MONTH FROM sports_arena.registered_time) AS LastMonth FROM sports_arena
+        $sql = 'SELECT EXTRACT(MONTH FROM sports_arena.registered_time) AS LastMonth,EXTRACT(YEAR FROM sports_arena.registered_time) AS LastYear FROM sports_arena
                 WHERE security_status="active"
-                GROUP BY LastMonth
                 ORDER BY LastMonth DESC LIMIT 1 ';
 
         $db = static::getDB();
@@ -832,52 +934,53 @@ class AdminModel extends \Core\Model
         //Assigning the fetched PDOs to result
         $result1 = $stmt->fetch(PDO::FETCH_ASSOC);
         $lastMonth = $result1["LastMonth"];
+        $lastYear = $result1["LastYear"];
 
-        $previousMonth = $lastMonth - $dateValue + 1;
-        
-        // Rendering table chart 05
-        if($dateValue!=0 && $dateValue<=$totalMonth){
-            //Retrieving of chart data from the database
-            $sql = 'SELECT sports_arena_profile.category, COUNT(DISTINCT sports_arena_profile.sports_arena_id) AS No_Of_Sports_Arenas
-                    FROM sports_arena_profile
-                    INNER JOIN sports_arena ON sports_arena_profile.sports_arena_id=sports_arena.sports_arena_id
-                    WHERE sports_arena.security_status="active" AND EXTRACT(MONTH FROM sports_arena.registered_time) BETWEEN :previousMonth AND :lastMonth
-                    GROUP BY sports_arena_profile.category
-                    ORDER BY sports_arena_profile.category ASC ';
+        $days_in_month = cal_days_in_month(CAL_GREGORIAN, $lastMonth, $lastYear);
+        $current_date = $lastYear."-".$lastMonth."-".$days_in_month;
 
-            $db = static::getDB();
-            $stmt = $db->prepare($sql);
-
-            //Binding input data into database query variables
-            $stmt->bindValue(':previousMonth', $previousMonth, PDO::PARAM_INT);
-            $stmt->bindValue(':lastMonth', $lastMonth, PDO::PARAM_INT);
-
-            //Converting retrieved data from database into PDOs
-            $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-            $stmt->execute();
-
-            // //Assigning the fetched PDOs to result
-            // $result2 = $stmt->fetchAll();
-            // return $result2;
-        }else{
-            //Retrieving of chart data from the database
-            $sql = 'SELECT category, COUNT(DISTINCT sports_arena_id) AS No_Of_Sports_Arenas
-                    FROM sports_arena_profile
-                    WHERE security_status="active"
-                    GROUP BY category
-                    ORDER BY category ASC ';
-
-            $db = static::getDB();
-            $stmt = $db->prepare($sql);
-
-            //Converting retrieved data from database into PDOs
-            $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-            $stmt->execute();
-
-            // //Assigning the fetched PDOs to result
-            // $result2 = $stmt->fetchAll();
-            // return $result2;
+        switch ($days_in_month) {
+            case 30:
+                $monthsadded = "+2 days -".$dateValue." months";
+                break;
+            case 29:
+                $monthsadded = "+3 days -".$dateValue." months";
+                break;
+            case 28:
+                $monthsadded = "+4 days -".$dateValue." months";
+                break;
+            case 31:
+                $monthsadded = "-".$dateValue." months";
+                break;
         }
+        
+        $date = date("Y-m-d", strtotime($monthsadded,strtotime($current_date)));
+
+        $newYear = date("Y",strtotime($date));
+        $newDay = date("d",strtotime($date));
+
+        if($newYear<$lastYear){
+            $monthsadded = "-1 day";
+            $date = date("Y-m-d", strtotime($monthsadded,strtotime($date)));
+        }
+
+        $sql = 'SELECT sports_arena_profile.category, COUNT(DISTINCT sports_arena_profile.sports_arena_id) AS No_Of_Sports_Arenas
+                FROM sports_arena_profile
+                INNER JOIN sports_arena ON sports_arena_profile.sports_arena_id=sports_arena.sports_arena_id
+                WHERE sports_arena.security_status="active" AND sports_arena.registered_time BETWEEN :previousDate AND :currentDate
+                GROUP BY sports_arena_profile.category
+                ORDER BY sports_arena_profile.category ASC ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':previousDate', $date, PDO::PARAM_STR);
+        $stmt->bindValue(':currentDate', $current_date, PDO::PARAM_STR);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
 
         //Converting PDOs to HTML data
         $output = "<div class='chart-Table'>
@@ -913,48 +1016,23 @@ class AdminModel extends \Core\Model
                         <tbody class='dataTableRows2'>";
 
         // Rendering table chart 06
-        if($dateValue!=0 && $dateValue<=$totalMonth){
-            //Retrieving of chart data from the database
-            $sql = 'SELECT sports_arena_profile.location, COUNT(DISTINCT sports_arena_profile.sports_arena_id) AS No_Of_Sports_Arenas
-                    FROM sports_arena_profile
-                    INNER JOIN sports_arena ON sports_arena_profile.sports_arena_id=sports_arena.sports_arena_id
-                    WHERE sports_arena.security_status="active" AND EXTRACT(MONTH FROM sports_arena.registered_time) BETWEEN :previousMonth AND :lastMonth
-                    GROUP BY sports_arena_profile.location
-                    ORDER BY sports_arena_profile.location ASC ';
+        $sql = 'SELECT sports_arena_profile.location, COUNT(DISTINCT sports_arena_profile.sports_arena_id) AS No_Of_Sports_Arenas
+                FROM sports_arena_profile
+                INNER JOIN sports_arena ON sports_arena_profile.sports_arena_id=sports_arena.sports_arena_id
+                WHERE sports_arena.security_status="active" AND sports_arena.registered_time BETWEEN :previousDate AND :currentDate
+                GROUP BY sports_arena_profile.location
+                ORDER BY sports_arena_profile.location ASC ';
 
-            $db = static::getDB();
-            $stmt = $db->prepare($sql);
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
 
-            //Binding input data into database query variables
-            $stmt->bindValue(':previousMonth', $previousMonth, PDO::PARAM_INT);
-            $stmt->bindValue(':lastMonth', $lastMonth, PDO::PARAM_INT);
+        //Binding input data into database query variables
+        $stmt->bindValue(':previousDate', $date, PDO::PARAM_STR);
+        $stmt->bindValue(':currentDate', $current_date, PDO::PARAM_STR);
 
-            //Converting retrieved data from database into PDOs
-            $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-            $stmt->execute();
-
-            // //Assigning the fetched PDOs to result
-            // $result2 = $stmt->fetchAll();
-            // return $result2;
-        }else{
-            //Retrieving of chart data from the database
-            $sql = 'SELECT location, COUNT(DISTINCT sports_arena_id) AS No_Of_Sports_Arenas
-                    FROM sports_arena_profile
-                    WHERE security_status="active"
-                    GROUP BY location
-                    ORDER BY location ASC ';
-
-            $db = static::getDB();
-            $stmt = $db->prepare($sql);
-
-            //Converting retrieved data from database into PDOs
-            $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-            $stmt->execute();
-
-            // //Assigning the fetched PDOs to result
-            // $result2 = $stmt->fetchAll();
-            // return $result2;
-        }
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $output .= "<tr>
