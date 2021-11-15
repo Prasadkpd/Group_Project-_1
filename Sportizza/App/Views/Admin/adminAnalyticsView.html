@@ -189,18 +189,18 @@
                 <!-- <form action=""> -->
                 <div class="filters">
                     <div class="booking-table-date-picker" style="margin-top:5px;">
-                        <label class="date-label" style="margin:5px;">Start Date </label>
+                        <label class="date-label" style="margin:5px;">Date Range </label>
                         <select id="analyticsDateFilter" onchange="filterdata()">
-                            <option value=0>Select a date range</option>
-                            <option value=1>Last month</option>
-                            <option value=3>Last 3 months</option>
+                            <!-- <option value=0>Select a date range</option> -->
+                            <option value=12>Last 12 months</option>
                             <option value=6>Last 6 months</option>
-                            <option value=12>Last 1 year</option>
+                            <option value=3>Last 3 months</option>
+                            <option value=1>Last month</option>
                         </select>
                     </div>
-                    <div class="booking-table-date-picker submit" style="margin-top:5px;">
+                    <!-- <div class="booking-table-date-picker submit" style="margin-top:5px;">
                         <input type="submit" value="Generate" class="report-generate">
-                    </div>
+                    </div> -->
 
                 </div>
                 <div id="chartContainer" class="chart-container">
@@ -576,10 +576,10 @@
             var dateValue = document.getElementById("analyticsDateFilter").value;
             
             // CHART 1 UPDATE
-            var lastIndex1 = xaxis1.length -1;
+            // var lastIndex1 = xaxis1.length -1;
 
-            var filterxaxis1 = xaxis1.slice(lastIndex1-dateValue+1);
-            var filteryaxis1 = yaxis1.slice(lastIndex1-dateValue+1);
+            var filterxaxis1 = xaxis1.slice(0,dateValue);
+            var filteryaxis1 = yaxis1.slice(0,dateValue);
             
             if (dateValue!=0 && dateValue<=xaxis1.length){
                 console.log(filterxaxis1);
@@ -596,10 +596,10 @@
             }
 
             // CHART 2 UPDATE
-            var lastIndex2 = xaxis2.length -1;
+            // var lastIndex2 = xaxis2.length -1;
 
-            var filterxaxis2 = xaxis2.slice(lastIndex2-dateValue+1);
-            var filteryaxis2 = yaxis2.slice(lastIndex2-dateValue+1);
+            var filterxaxis2 = xaxis2.slice(0,dateValue);
+            var filteryaxis2 = yaxis2.slice(0,dateValue);
             
             if (dateValue!=0 && dateValue<=xaxis2.length){
                 console.log(filterxaxis2);
@@ -616,10 +616,10 @@
             }
 
             // CHART 3 UPDATE
-            var lastIndex3 = xaxis3.length -1;
+            // var lastIndex3 = xaxis3.length -1;
 
-            var filterxaxis3 = xaxis3.slice(lastIndex3-dateValue+1);
-            var filteryaxis3 = yaxis3.slice(lastIndex3-dateValue+1);
+            var filterxaxis3 = xaxis3.slice(0,dateValue);
+            var filteryaxis3 = yaxis3.slice(0,dateValue);
             
             if (dateValue!=0 && dateValue<=xaxis3.length){
                 console.log(filterxaxis3);

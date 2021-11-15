@@ -272,6 +272,7 @@ class Admin extends Authenticated
         $temp2 = [];
 
         $chart4 = AdminModel::adminReshapePieCharts($dateValue);
+        // echo AdminModel::adminReshapePieCharts($dateValue);
 
         $i=0;
 

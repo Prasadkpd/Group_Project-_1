@@ -208,7 +208,7 @@ class AdminModel extends \Core\Model
     public static function adminDeleteArenas($id)
     {
         //Updating sports arena profile status in the database
-        $sql = 'UPDATE sports_arena_profile SET account_status="inactive" WHERE sports_arena_id=:id ';
+        $sql = 'UPDATE sports_arena_profile SET account_status="inactive",security_status="inactive" WHERE sports_arena_id=:id ';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -244,7 +244,7 @@ class AdminModel extends \Core\Model
         $manager_id = $result['user_id'];
 
         //Updating manager status in the database
-        $sql = 'UPDATE user SET security_status="inactive" WHERE user_id=:manager_id ';
+        $sql = 'UPDATE user SET account_status="inactive",security_status="inactive" WHERE user_id=:manager_id ';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -271,7 +271,7 @@ class AdminModel extends \Core\Model
         // // $admin_staff_id = $result2['user_id'];
 
         //Updating administartion staff status in the database
-        $sql = 'UPDATE user SET security_status="inactive" WHERE user_id=:admin_staff_id ';
+        $sql = 'UPDATE user SET account_status="inactive",security_status="inactive" WHERE user_id=:admin_staff_id ';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -304,7 +304,7 @@ class AdminModel extends \Core\Model
         $stmt2->execute();
         
         //Updating booking handling staff status in the database
-        $sql = 'UPDATE user SET security_status="inactive" WHERE user_id=:bookhandle_staff_id ';
+        $sql = 'UPDATE user SET account_status="inactive",security_status="inactive" WHERE user_id=:bookhandle_staff_id ';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -522,9 +522,9 @@ class AdminModel extends \Core\Model
                     ELSE "Not Valid"
                 END AS Time_Registered, COUNT(DISTINCT user_id) AS No_Of_Customers
                 FROM user
-                WHERE user.account_status="active" AND user.type="Customer"
-                GROUP BY Time_Registered
-                ORDER BY user.registered_time ASC ';
+                WHERE user.security_status="active" AND user.type="Customer"
+                GROUP BY Time_Registered,YEAR(user.registered_time)
+                ORDER BY user.registered_time DESC LIMIT 12 ';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -534,8 +534,8 @@ class AdminModel extends \Core\Model
         $stmt->execute();
 
         //Assigning the fetched PDOs to result
-        $result = $stmt->fetchAll();
-        return $result;
+        $result2 = $stmt->fetchAll();
+        return $result2;
     }
     //End of Displaying of admin's chart 1
     //Start of Displaying of admin's chart 2
@@ -559,8 +559,8 @@ class AdminModel extends \Core\Model
                 END AS Time_Registered, COUNT(DISTINCT sports_arena.sports_arena_id) AS No_Of_Sports_Arenas
                 FROM sports_arena
                 WHERE sports_arena.security_status="active"
-                GROUP BY Time_Registered
-                ORDER BY sports_arena.registered_time ASC ';
+                GROUP BY Time_Registered,YEAR(sports_arena.registered_time)
+                ORDER BY sports_arena.registered_time DESC LIMIT 12 ';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -596,8 +596,8 @@ class AdminModel extends \Core\Model
                 END AS Time_Booked, COUNT(DISTINCT booking_id) AS No_Of_Bookings
                 FROM booking
                 WHERE security_status="active"
-                GROUP BY Time_Booked 
-                ORDER BY booking.booking_date Asc';
+                GROUP BY Time_Booked,YEAR(booking.booking_date)
+                ORDER BY booking.booking_date DESC LIMIT 12 ';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -686,7 +686,7 @@ class AdminModel extends \Core\Model
         //Retrieving of chart data from the database
         $sql = 'SELECT COUNT(DISTINCT EXTRACT(MONTH FROM booking.booking_date)) AS Months
                 FROM booking
-                WHERE security_status="active"';
+                WHERE security_status="active" ';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -700,10 +700,9 @@ class AdminModel extends \Core\Model
         $totalMonth = $result0["Months"];
         
         //Retrieving of chart data from the database
-        $sql = 'SELECT EXTRACT(MONTH FROM booking.booking_date) AS BookingMonth FROM booking
+        $sql = 'SELECT EXTRACT(MONTH FROM booking.booking_date) AS BookingMonth,EXTRACT(YEAR FROM booking.booking_date) AS BookingYear FROM booking
                 WHERE security_status="active"
-                GROUP BY BookingMonth
-                ORDER BY BookingMonth DESC LIMIT 1 ';
+                ORDER BY booking.booking_date DESC LIMIT 1 ';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -715,22 +714,60 @@ class AdminModel extends \Core\Model
         //Assigning the fetched PDOs to result
         $result1 = $stmt->fetch(PDO::FETCH_ASSOC);
         $lastMonth = $result1["BookingMonth"];
+        $lastYear = $result1["BookingYear"];
 
         $previousMonth = $lastMonth - $dateValue + 1;
+
+        $days_in_month = cal_days_in_month(CAL_GREGORIAN, $lastMonth, 2021);
+        // $days_in_month = 31;
+        $current_date = $lastYear."-".$lastMonth."-".$days_in_month;
+        $modifiedCurrentDate = $days_in_month."-".$lastMonth."-".$lastYear;
+        // $noofdate = "2021-12-31";
+
+        switch ($days_in_month) {
+            case 30:
+                $monthsadded = "+2 days -".$dateValue." months";
+                break;
+            case 29:
+                $monthsadded = "+3 days -".$dateValue." months";
+                break;
+            case 28:
+                $monthsadded = "+4 days -".$dateValue." months";
+                break;
+            case 31:
+                $monthsadded = "-".$dateValue." months";
+                break;
+        }
         
-        if($dateValue!=0 && $dateValue<=$totalMonth){
-            //Retrieving of chart data from the database
+        $date = date("d-m-Y", strtotime($monthsadded,strtotime($current_date)));
+
+        $newYear = date("Y",strtotime($date));
+        $newDay = date("d",strtotime($date));
+
+        if($newYear<$lastYear){
+            $monthsadded = "-1 day";
+            $date = date("d-m-Y", strtotime($monthsadded,strtotime($date)));
+        }
+        // return $date;
+
+        
+        // if($dateValue!=0 && $dateValue<=$totalMonth){
+        //     //Retrieving of chart data from the database
+        //     // $sql = 'SELECT payment_method, COUNT(DISTINCT booking_id) AS No_Of_Bookings
+        //     //         FROM booking
+        //     //         WHERE security_status="active" AND EXTRACT(MONTH FROM booking.booking_date) BETWEEN :previousMonth AND :lastMonth
+        //     //         GROUP BY payment_method ';
             $sql = 'SELECT payment_method, COUNT(DISTINCT booking_id) AS No_Of_Bookings
                     FROM booking
-                    WHERE security_status="active" AND EXTRACT(MONTH FROM booking.booking_date) BETWEEN :previousMonth AND :lastMonth
+                    WHERE security_status="active" AND booking.booking_date BETWEEN :previousDate AND :currentDate
                     GROUP BY payment_method ';
 
             $db = static::getDB();
             $stmt = $db->prepare($sql);
 
             //Binding input data into database query variables
-            $stmt->bindValue(':previousMonth', $previousMonth, PDO::PARAM_INT);
-            $stmt->bindValue(':lastMonth', $lastMonth, PDO::PARAM_INT);
+            $stmt->bindValue(':previousDate', $date, PDO::PARAM_STR);
+            $stmt->bindValue(':currentDate', $modifiedCurrentDate, PDO::PARAM_STR);
 
             //Converting retrieved data from database into PDOs
             $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
@@ -739,24 +776,24 @@ class AdminModel extends \Core\Model
             //Assigning the fetched PDOs to result
             $result2 = $stmt->fetchAll();
             return $result2;
-        }else{
-            //Retrieving of chart data from the database
-            $sql = 'SELECT payment_method, COUNT(DISTINCT booking_id) AS No_Of_Bookings
-                    FROM booking
-                    WHERE security_status="active"
-                    GROUP BY payment_method ';
+        // }else{
+        //     //Retrieving of chart data from the database
+        //     $sql = 'SELECT payment_method, COUNT(DISTINCT booking_id) AS No_Of_Bookings
+        //             FROM booking
+        //             WHERE security_status="active"
+        //             GROUP BY payment_method ';
 
-            $db = static::getDB();
-            $stmt = $db->prepare($sql);
+        //     $db = static::getDB();
+        //     $stmt = $db->prepare($sql);
 
-            //Converting retrieved data from database into PDOs
-            $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-            $stmt->execute();
+        //     //Converting retrieved data from database into PDOs
+        //     $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        //     $stmt->execute();
 
-            //Assigning the fetched PDOs to result
-            $result2 = $stmt->fetchAll();
-            return $result2;
-        }
+        //     //Assigning the fetched PDOs to result
+        //     $result2 = $stmt->fetchAll();
+        //     return $result2;
+        // }
     }
     //End of Reshaping Pie Charts
 
