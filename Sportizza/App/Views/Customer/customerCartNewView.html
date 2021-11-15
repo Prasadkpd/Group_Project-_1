@@ -116,6 +116,10 @@
   <section class="cartPage">
     <div class="page-container">
     <!-- <h1 class="page-header">Cart</h1> -->
+
+    {% if cardSum==0 %}
+    {% else %}
+    {% endif %}
     <form method="post" action="https://sandbox.payhere.lk/pay/checkout" id="formCheckout" onsubmit="validateCheckoutForm()"      >
     <div class="customerDetails">
       <div class="page">

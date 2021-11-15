@@ -258,10 +258,7 @@ class Customer extends Authenticated
         //Get the current user's details with session using Auth
         $current_user = Auth::getUser();
         $invoice_id = 100000000;
-
-        //update payment status query ko?
-        //insert to invoice table and payment table ko?
-
+        CustomerModel::customerBookingSuccessCard($invoice_id);
         // Calling the notification
         $notify_check = NotificationModel::addNotificationBookingSuccess($current_user, $invoice_id);
         // D\Redirecting
@@ -292,6 +289,7 @@ class Customer extends Authenticated
             View::renderTemplate(
                 'Customer/refund.html',['details'=>$details]
             );
+
         }
         //End of customer get refund
 
@@ -303,6 +301,16 @@ class Customer extends Authenticated
             CustomerModel::customerRequestRefund($_POST);
             $this->redirect('/Customer');
         }
+        //End of customer request refund
+
+
+        //Start of customer request refund
+        // public function customerPaymentAction()
+        // {
+            
+        //     CustomerModel::customerRequestRefund($_POST);
+        //     $this->redirect('/Customer');
+        // }
         //End of customer request refund
 
 }

@@ -518,9 +518,18 @@
                             </button>
                         </div>
                         <div>
-                            <button class="icon_red" onclick="open_popup_cancel_message('{{book.booking_id}}')">
+                            {% if date(book.booking_date)|date_modify("-4 day")|date('Y/m/d') >= 'now'|date('Y/m/d') and book.payment_method=="card" %}
+                            <button class="icon_red"
+                                onclick="open_popup_cancel_message('{{book.booking_id}}')">
                                 <i class="fas fa-times"></i>
                             </button>
+                            {% else %}
+                            <button class="icon_red"
+                                onclick="open_popup_cannot_cancel_message()">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            
+                            {% endif %}
                         </div>
                     </div>
                 </td>
