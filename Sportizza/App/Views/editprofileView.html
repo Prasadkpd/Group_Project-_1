@@ -58,14 +58,15 @@
                 <!-- <button s class="closebutton" onclick="window.history.back()">❌</button> -->
                 <a href="\Directtoprofile" class="closebutton">❌</a>
             </div>
+            <form action="/Edituserdetails/updatedetails" method="post" style="margin:0px 20px 5px 20px;" class="nav-user-edit-from" enctype="multipart/form-data"
+                id="formEditUserProfile" onsubmit="validateEditUserForm()">
             <div class="editProPic">
 
-                <img id="form-profile-picture" src="/Assets/images/admin/download.jfif" alt="">
-                <input type="file" id="file">
+                <img id="form-profile-picture" src={{current_user.profile_pic}} alt="">
+                <input type="file" id="file"  name="proPicImage" accept="image/*">
                 <label for="file" id="uploadBtn">Choose Photo</label>
             </div>
-            <form action="/Edituserdetails/updatedetails" method="post" style="margin:0px 20px 5px 20px;" class="nav-user-edit-from"
-                id="formEditUserProfile" onsubmit="validateEditUserForm()">
+            
 
                 <div class="input-box">
                     <label for="firstName">First Name</label>

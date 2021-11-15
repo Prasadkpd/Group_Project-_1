@@ -238,13 +238,22 @@ input[type="date"] {
   height: 50px;
   margin: 10px auto;
 }
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px auto;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 140px;
+  box-sizing: border-box;
+}
 .filters {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   width: 80vw;
-  margin-left: auto;
+  margin-left: 135px;
 }
 
 .filters .booking-table-date-picker {
@@ -260,6 +269,10 @@ input[type="date"] {
 .filters .booking-table-date-picker input {
   width: 60%;
   outline: none;
+}
+.filters .booking-table-date-picker select {
+  width: 200px;
+  margin-left: 10px;
 }
 .filters .booking-table-date-picker input[type="submit"] {
   outline: none;

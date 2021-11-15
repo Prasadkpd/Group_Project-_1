@@ -421,10 +421,12 @@ class Spadministrationstaff extends Authenticated
 
 
 
-    public  function saAdminBookingsucessnotificationAction(){
-        print_r("payment success");
+    public function saAdminBookingsucessnotificationAction(){
+        
+        // var_dump("payment success");
 
-        // $this->redirect('/spadministrationstaff/managebookings');
+        SpAdministrationStaffModel::saAdminAddbookingPaymentSuccess($id);
+        $this->redirect('/spadministrationstaff/managebookings');
 
     }
   }
