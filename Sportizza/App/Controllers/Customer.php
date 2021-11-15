@@ -260,7 +260,7 @@ class Customer extends Authenticated
 
 
         $invoice_id = 100000000;
-
+        CustomerModel::customerBookingSuccessCard($invoice_id);
         // Calling the notification
         $notify_check = NotificationModel::addNotificationBookingSuccess($current_user, $invoice_id);
         // D\Redirecting
@@ -291,6 +291,7 @@ class Customer extends Authenticated
             View::renderTemplate(
                 'Customer/refund.html',['details'=>$details]
             );
+
         }
         //End of customer get refund
 
@@ -302,6 +303,16 @@ class Customer extends Authenticated
             CustomerModel::customerRequestRefund($_POST);
             $this->redirect('/Customer');
         }
+        //End of customer request refund
+
+
+        //Start of customer request refund
+        // public function customerPaymentAction()
+        // {
+            
+        //     CustomerModel::customerRequestRefund($_POST);
+        //     $this->redirect('/Customer');
+        // }
         //End of customer request refund
 
 }

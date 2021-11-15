@@ -59,7 +59,7 @@
                 <a href="\Directtoprofile" class="closebutton">❌</a>
             </div>
             <form action="/Edituserdetails/updatedetails" method="post" style="margin:0px 20px 5px 20px;" class="nav-user-edit-from"
-                id="formEditUserProfile" onsubmit="validateEditUserForm()">
+                id="formEditUserProfile" onsubmit="validateEditUserForm()" enctype="multipart/form-data">
             <div class="editProPic">
 
                 <img id="form-profile-picture" src={{current_user.profile_pic}} alt="">

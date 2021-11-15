@@ -29,7 +29,7 @@
             <div class="nav-profile">
                 <button class="openbutton" onclick="openpopupform()">
                     <div class="profile-details">
-                        <img src="/Assets/images/customer/download.jfif" class="profile-picture">
+                        <img src={{current_user.profile_pic}} class="profile-picture">
                         <div class="username">{{current_user.first_name}} {{current_user.last_name}}</div>
                     </div>
                 </button>
@@ -74,7 +74,7 @@
                 </div>
             </div>
             <div class="editProPic">
-                <img id="form-profile-picture" src="/Assets/images/customer/download.jfif" alt="">
+                <img id="form-profile-picture" src={{current_user.profile_pic}} alt="">
             </div>
         </div>
         <div class="edit-profile-link">
@@ -127,9 +127,9 @@
 
               <div class="sp-details">
                 <input type="hidden" name="customer_user_id" value="{{current_user.user_id}}">    <!-- Replace your Merchant ID -->
-                <input type="hidden" name="payment_id" value="{{details.payment_id}}">
-                <input type="hidden" name="booking_id" value="{{details.booking_id}}">
-                <input type="hidden" name="invoice_id" value="{{details.invoice_id}}">
+                <input type="hidden" name="payment_id" value="{{details[0].payment_id}}">
+                <input type="hidden" name="booking_id" value="{{details[0].booking_id}}">
+                <input type="hidden" name="invoice_id" value="{{details[0].invoice_id}}">
 
                 <div class="input-box">
                   <label for="firstName">First Name</label>
@@ -181,7 +181,7 @@
 
                 <div class="input-box">
                   <label for="amount">Amount</label>
-                  <input id="amount" type="text" name="amount" placeholder="Enter your address"
+                  <input id="amount" type="text" name="amount" placeholder="Amount"
                   onfocusout="validateAddress()" value="{{details[0].net_amount}}" readonly>
                   <div class="helper-text" id="addressMsg"></div>
                 </div>
@@ -190,15 +190,15 @@
 
 
                 <div class="input-box">
-                  <label for="benificialyName">benficiary name</label>
-                  <input id="benificialyName" type="text" name="benificialyName" placeholder="Enter your address"
+                  <label for="benificialyName">Benficiary Name</label>
+                  <input id="benificialyName" type="text" name="benificialyName" placeholder="Enter Benficiary Name"
                   onfocusout="validateBenificaryName()">
                   <div class="helper-text" id="addressMsg"></div>
                 </div>
 
                 <div class="input-box">
                   <label for="cardNumber">Account Number</label>
-                  <input id="accountNumber" type="text" name="accountNumber" placeholder="Enter your address"
+                  <input id="accountNumber" type="text" name="accountNumber" placeholder="Enter your Account Number"
                   onfocusout="validateAddress()">
                   <div class="helper-text" id="addressMsg"></div>
                 </div>
@@ -211,15 +211,15 @@
                 </div> -->
 
                 <div class="input-box">
-                  <label for="bankName">bank_name</label>
-                  <input id="bankName" type="text" name="bankName" placeholder="Enter your address"
+                  <label for="bankName">Bank Name</label>
+                  <input id="bankName" type="text" name="bankName" placeholder="Enter your Bank Name"
                   onfocusout="validateAddress()">
                   <div class="helper-text" id="addressMsg"></div>
                 </div>
 
                 <div class="input-box">
-                  <label for="branchName">branch_name</label>
-                  <input id="branchName" type="text" name="branchName" placeholder="Enter your address"
+                  <label for="branchName">Branch Name</label>
+                  <input id="branchName" type="text" name="branchName" placeholder="Enter Branch Name"
                   onfocusout="validateAddress()">
                   <div class="helper-text" id="addressMsg"></div>
                   
