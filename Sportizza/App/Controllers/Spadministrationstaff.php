@@ -350,9 +350,10 @@ class Spadministrationstaff extends Authenticated
       //Assigning the relevant variables
       $combined = $this->route_params['arg'];
 
-      $combined = explode("__",$combined);
+    //   $combined = explode("__",$combined);
     //   $arena_id = $combined[0];
-      $date = str_replace("_", "-", $combined[1]);
+    //   $date = str_replace("_", "-", $combined[1]);
+      $date = str_replace("_", "-", $combined);
 
       //Assigning the sports arenas timeslots
       $timeSlots = SpAdministrationStaffModel::saAdminSearchTimeSlotsDate($saadmin_id, $date);

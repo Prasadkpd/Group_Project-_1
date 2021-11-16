@@ -36,19 +36,20 @@ $(document).ready(function () {
     })
 
     $("body").on("change", "input#dateInput", function () {
-      let arenaId = $("#arenaId").val();
+      // let arenaId = $("#arenaId").val();
       let dateVal = $("#dateInput").val();
       $(".bookingDatehidden").val(dateVal);
       //Remove dashes in dateVal
       dateVal = dateVal.split("-").join("_");
 
       // Combine date and arena ID
-      let argument = `${arenaId}__${dateVal}`;
+      // let argument = `${arenaId}__${dateVal}`;
 
       $.ajax({
         type: "POST",
 
-        url: "http://localhost/Spadministrationstaff/searchtimeslotdate/" + argument,
+        // url: "http://localhost/Spadministrationstaff/searchtimeslotdate/" + argument,
+        url: "http://localhost/Spadministrationstaff/searchtimeslotdate/" + dateVal,
 
         dataType: "html",
 
