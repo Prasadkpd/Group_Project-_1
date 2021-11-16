@@ -362,6 +362,32 @@ class SpAdministrationStaffModel extends \Core\Model
         return $result;
     }
 
+    // Start of clearing a booking from cart
+    public static function saAdminClearBooking($booking_id)
+    {
+        // get database connection
+        $db = static::getDB();
+
+        $sql = 'UPDATE booking SET security_status="inactive" WHERE booking_id=:id';
+
+        // Prepare sql statement
+        $stmt = $db->prepare($sql);
+
+        //Binding the customer id and Converting retrieved data from database into PDOs
+        $stmt->bindValue(':id', $booking_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $sql = 'UPDATE booking_timeslot SET security_status="inactive" WHERE booking_id=:id';
+
+        // Prepare sql statement
+        $stmt = $db->prepare($sql);
+
+        //Binding the customer id and Converting retrieved data from database into PDOs
+        $stmt->bindValue(':id', $booking_id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+    // End of clearing a booking from cart
+
     //Start of displaying sports arena's cancel bookings
     public static function saAdminCancelBookings($id)
     {

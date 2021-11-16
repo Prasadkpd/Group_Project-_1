@@ -429,8 +429,21 @@ class Spadministrationstaff extends Authenticated
             'allSum' => $allSum, 'cardSum' => $cardSum, 'cashSum' => $cashSum
         ]);
     }
+    //End of Cart page of customer
+    
+    // Start of clearing a booking from cart
+    public function clearbookingAction(){
+        //Assigning the relevant variables
+        $booking_id = $this->route_params['id'];
 
+        $clearedSlot = SpAdministrationStaffModel::saAdminClearBooking($booking_id);
 
+        if($clearedSlot){
+            echo true;
+        }
+
+    }
+    // End of clearing a booking from cart
 
     public function saAdminBookingsuccessnotificationAction()
     {
