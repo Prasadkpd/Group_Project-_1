@@ -700,8 +700,10 @@ class NotificationModel extends \Core\Model
     {
         try {
             $db = static::getDB();
+            
             $customer = self::cancelNotificationGetCustomerIds($booking_id);
             $customer_id = $customer['user_id'];
+            var_dump($customer);
             $manager_id = self::cancelNotificationGetManagerIds($booking_id);
             $adminstaff_id = self::cancelNotificationGetAdminStaffIds($booking_id);
             $bookhandlestaff_id = self::cancelNotificationGetBookingStaffIds($booking_id);
@@ -709,6 +711,7 @@ class NotificationModel extends \Core\Model
             $custsubj = "Emergency booking cancellation";
             $sparsubj = "Booking cancellation by sports arena";
 
+          
             $db->beginTransaction();
             $data_query = "SELECT
              `booking`.`booking_date`,
@@ -762,31 +765,38 @@ class NotificationModel extends \Core\Model
             if ($payment_method == 'cash' && $payment_status == 'unpaid') {
                 // Initialize descriptions
                 $custdesc = " " . $saname . " had cancel your booking your booking " . $booking_id . "made for" . $facname . " on " . $bdate . "scheduled from " . $stime . " to " . $etime . " . Reason for cancellation: " . $reason . " .";
+
+                $link = "";
             } else {
                 // Initialize descriptions
                 $custdesc = " " . $saname . " had cancel your booking your booking " . $booking_id . "made for" . $facname . " on " . $bdate . "scheduled from " . $stime . " to " . $etime . " . Reason for cancellation: " . $reason . " . Please apply for refund form to collect your refund. Note that we'll be making a bank transfer";
+
+                $link = "http://localhost/customer/refund/" . $booking_id;
             }
 
             $spardesc = "" . $fname . " " . $lname . " has cancelled the booking " . $booking_id . " made for " . $facname . " on " . $bdate . " scheduled from " . $stime . " to " . $etime . " . Reason for cancellation: " . $reason . " .";
+            $link = "";
 
-            $sql = 'INSERT INTO `notification`(`user_id`, `subject`, `priority`, `description`) VALUES (:uid,:subject,:p_level,:desc)';
+
+            $sql = 'INSERT INTO `notification`(`user_id`, `subject`, `priority`, `description`,`link`) VALUES (:uid,:subject,:p_level,:desc, :link)';
             $stmt = $db->prepare($sql);
 
-            print_r(['uid' => $customer_id, 'subject' => $custsubj, 'p_level' => $p_level, 'desc' => $custdesc]);
+            // print_r(['uid' => $customer_id, 'subject' => $custsubj, 'p_level' => $p_level, 'desc' => $custdesc]);
             // for customer
-            $stmt->execute(['uid' => $customer_id, 'subject' => $custsubj, 'p_level' => $p_level, 'desc' => $custdesc]);
+            $stmt->execute(['uid' => $customer_id, 'subject' => $custsubj, 'p_level' => $p_level, 'desc' => $custdesc, 'link' => $link]);
 
             // for manager
-            $stmt->execute(['uid' => $manager_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
+            $stmt->execute(['uid' => $manager_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc, 'link' => $link]);
 
             // for administartion staff
-            $stmt->execute(['uid' => $adminstaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
+            $stmt->execute(['uid' => $adminstaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc, 'link' => $link]);
 
             // for booking handling staff
-            $stmt->execute(['uid' => $bookhandlestaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
+            $stmt->execute(['uid' => $bookhandlestaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc, 'link' => $link]);
 
             // Make the changes to the database permanent
             $db->commit();
+        
         } catch (PDOException $e) {
             $db->rollback();
             throw $e;
