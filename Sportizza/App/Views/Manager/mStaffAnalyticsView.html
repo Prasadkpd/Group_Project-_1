@@ -192,20 +192,19 @@
                     <div class="booking-table-date-picker" style="margin-top:5px;">
                         <label class="date-label" style="margin:5px;">Date Range </label>
                         <select id="analyticsDateFilter" onchange="filterdata()">
-                            <option value=0>Select a date range</option>
-                            <option value=1>Last month</option>
-                            <option value=3>Last 3 months</option>
+                            <option value=12>Last 12 months</option>
                             <option value=6>Last 6 months</option>
-                            <option value=12>Last 1 year</option>
+                            <option value=3>Last 3 months</option>
+                            <option value=1>Last month</option>
                         </select>
                     </div>
                     <!-- <div class="booking-table-date-picker" style="margin-top:5px;">
                         <label class="date-label">End Date</label>
                         <input type="date" style="border:1px solid #d3d3d3;border-radius:25px;padding:12px 20px;">
                     </div> -->
-                    <div class="booking-table-date-picker" style="margin-top:5px;">
+                    <!-- <div class="booking-table-date-picker" style="margin-top:5px;">
                         <input type="submit" value="Generate" class="report-generate">
-                    </div>
+                    </div> -->
                 </div>
                 <div class="chart-container">
                     <div class="chart-row">
@@ -303,7 +302,7 @@
                         color: '#fff'
                     },
                     min: 0,
-                        max: 5,
+                    
                             ticks: {
                         stepSize: 1
                     }
@@ -415,7 +414,7 @@
                         color: '#fff'
                     },
                     min: 0,
-                        max: 5,
+                    
                             ticks: {
                         stepSize: 1
                     }
@@ -504,8 +503,8 @@
             // CHART 1 UPDATE
             var lastIndex1 = xaxis1.length -1;
 
-            var filterxaxis1 = xaxis1.slice(lastIndex1-dateValue+1);
-            var filteryaxis1 = yaxis1.slice(lastIndex1-dateValue+1);
+            var filterxaxis1 = xaxis1.slice(0,dateValue);
+            var filteryaxis1 = yaxis1.slice(0,dateValue);
             
             if (dateValue!=0 && dateValue<=xaxis1.length){
                 console.log(filterxaxis1);

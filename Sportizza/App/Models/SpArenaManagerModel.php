@@ -464,32 +464,25 @@ class SpArenaManagerModel extends \Core\Model
     {
 //Retrieving data about bookings from the database
         $sql = 'SELECT CASE EXTRACT(MONTH FROM booking.booking_date)
-                    WHEN "1" THEN "January"
-                    WHEN "2" THEN "February"
-                    WHEN "3" THEN "March"
-                    WHEN "4" THEN "April"
-                    WHEN "5" THEN "May"
-                    WHEN "6" THEN "June"
-                    WHEN "7" THEN "July"
-                    WHEN "8" THEN "August"
-                    WHEN "9" THEN "September"
-                    WHEN "10" THEN "October"
-                    WHEN "11" THEN "November"
-                    WHEN "12" THEN "December"
+                   WHEN "1" THEN CONCAT("Jan ",RIGHT(YEAR(booking.booking_date),2))
+                    WHEN "2" THEN CONCAT("Feb ",RIGHT(YEAR(booking.booking_date),2))
+                    WHEN "3" THEN CONCAT("Mar ",RIGHT(YEAR(booking.booking_date),2))
+                    WHEN "4" THEN CONCAT("Apr ",RIGHT(YEAR(booking.booking_date),2))
+                    WHEN "5" THEN CONCAT("May ",RIGHT(YEAR(booking.booking_date),2))
+                    WHEN "6" THEN CONCAT("Jun ",RIGHT(YEAR(booking.booking_date),2))
+                    WHEN "7" THEN CONCAT("Jul ",RIGHT(YEAR(booking.booking_date),2))
+                    WHEN "8" THEN CONCAT("Aug ",RIGHT(YEAR(booking.booking_date),2))
+                    WHEN "9" THEN CONCAT("Sep ",RIGHT(YEAR(booking.booking_date),2))
+                    WHEN "10" THEN CONCAT("Oct ",RIGHT(YEAR(booking.booking_date),2))
+                    WHEN "11" THEN CONCAT("Nov ",RIGHT(YEAR(booking.booking_date),2))
+                    WHEN "12" THEN CONCAT("Dec ",RIGHT(YEAR(booking.booking_date),2))
                     ELSE "Not Valid"
                 END AS Time_Booked, COUNT(DISTINCT booking.booking_id) AS No_Of_Bookings
                 FROM booking
                 INNER JOIN manager ON booking.sports_arena_id=manager.sports_arena_id
-                WHERE manager.user_id=:id
+                WHERE booking.security_status="active" AND manager.user_id=:id
                 GROUP BY Time_Booked 
-                ORDER BY booking.booking_date';
-
-        // $sql = 'SELECT booking.booking_date, COUNT(DISTINCT booking.booking_id) AS No_Of_Bookings
-        // FROM booking
-        // INNER JOIN manager ON booking.sports_arena_id=manager.sports_arena_id
-        // WHERE manager.user_id = "100000029"
-        // GROUP BY booking.booking_date ';
-
+                ORDER BY booking.booking_date DESC LIMIT 12 ';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -508,22 +501,65 @@ class SpArenaManagerModel extends \Core\Model
     //Start of displaying sports arenas chart 2 for manager
     public static function managerChart2($id)
     {
+        //Retrieving of chart data from the database
+        $sql = 'SELECT EXTRACT(MONTH FROM booking.booking_date) AS BookingMonth,EXTRACT(YEAR FROM booking.booking_date) AS BookingYear FROM booking
+                WHERE security_status="active"
+                ORDER BY booking.booking_date DESC LIMIT 1 ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        //Assigning the fetched PDOs to result
+        $result1 = $stmt->fetch(PDO::FETCH_ASSOC);
+        $lastMonth = $result1["BookingMonth"];
+        $lastYear = $result1["BookingYear"];
+
+        $days_in_month = cal_days_in_month(CAL_GREGORIAN, $lastMonth, $lastYear);
+        $current_date = $lastYear."-".$lastMonth."-".$days_in_month;
+
+        switch ($days_in_month) {
+            case 30:
+                $monthsadded = "+2 days -12 months";
+                break;
+            case 29:
+                $monthsadded = "+3 days -12 months";
+                break;
+            case 28:
+                $monthsadded = "+4 days -12 months";
+                break;
+            case 31:
+                $monthsadded = "-12 months";
+                break;
+        }
+        
+        $date = date("Y-m-d", strtotime($monthsadded,strtotime($current_date)));
+
+        $newYear = date("Y",strtotime($date));
+        $newDay = date("d",strtotime($date));
+
+        if($newYear<$lastYear){
+            $monthsadded = "-1 day";
+            $date = date("Y-m-d", strtotime($monthsadded,strtotime($date)));
+        }
+
         //Retrieving data about payment method from the database
 
         $sql = 'SELECT booking.payment_method, COUNT(DISTINCT booking.booking_id) AS No_Of_Bookings
                 FROM booking
                 INNER JOIN manager ON booking.sports_arena_id=manager.sports_arena_id
-                WHERE booking.security_status="active" AND manager.user_id=:id
+                WHERE booking.security_status="active" AND manager.user_id=:id AND booking.booking_date BETWEEN :previousDate AND :currentDate
                 GROUP BY booking.payment_method ';
-
-        // $sql = 'SELECT booking.payment_method, COUNT(DISTINCT booking.booking_id) AS No_Of_Bookings
-        // FROM booking
-        // INNER JOIN manager ON booking.sports_arena_id=manager.sports_arena_id
-        // WHERE manager.user_id = "100000029"
-        // GROUP BY booking.payment_method ';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':previousDate', $date, PDO::PARAM_STR);
+        $stmt->bindValue(':currentDate', $current_date, PDO::PARAM_STR);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
         //Converting retrieved data from database into PDOs
@@ -531,26 +567,76 @@ class SpArenaManagerModel extends \Core\Model
         $stmt->execute();
 
         //Assigning the fetched PDOs to result
-        $result = $stmt->fetchAll();
-        return $result;
+        $result2 = $stmt->fetchAll();
+        return $result2;
     }
     //End of displaying sports arenas chart 2 for manager
 
     //Start of displaying sports arenas chart 3 for manager
     public static function managerChart3($id)
     {
-//Retrieving data about timeslots from the database
+        //Retrieving of chart data from the database
+        $sql = 'SELECT EXTRACT(MONTH FROM booking.booking_date) AS BookingMonth,EXTRACT(YEAR FROM booking.booking_date) AS BookingYear FROM booking
+                WHERE security_status="active"
+                ORDER BY booking.booking_date DESC LIMIT 1 ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        //Assigning the fetched PDOs to result
+        $result1 = $stmt->fetch(PDO::FETCH_ASSOC);
+        $lastMonth = $result1["BookingMonth"];
+        $lastYear = $result1["BookingYear"];
+
+        $days_in_month = cal_days_in_month(CAL_GREGORIAN, $lastMonth, $lastYear);
+        $current_date = $lastYear."-".$lastMonth."-".$days_in_month;
+
+        switch ($days_in_month) {
+            case 30:
+                $monthsadded = "+2 days -12 months";
+                break;
+            case 29:
+                $monthsadded = "+3 days -12 months";
+                break;
+            case 28:
+                $monthsadded = "+4 days -12 months";
+                break;
+            case 31:
+                $monthsadded = "-12 months";
+                break;
+        }
+        
+        $date = date("Y-m-d", strtotime($monthsadded,strtotime($current_date)));
+
+        $newYear = date("Y",strtotime($date));
+        $newDay = date("d",strtotime($date));
+
+        if($newYear<$lastYear){
+            $monthsadded = "-1 day";
+            $date = date("Y-m-d", strtotime($monthsadded,strtotime($date)));
+        }
+
+        //Retrieving data about timeslots from the database
         $sql = 'SELECT time_slot.start_time, COUNT(DISTINCT booking.booking_id) AS No_Of_Bookings
-        FROM booking 
-        INNER JOIN manager ON booking.sports_arena_id=manager.sports_arena_id 
-        INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id 
-        INNER JOIN time_slot ON booking_timeslot.timeslot_id=time_slot.time_slot_id 
-        WHERE manager.user_id=:id AND MONTH(booking.booking_date) = MONTH(CURRENT_DATE()) 
-        GROUP BY time_slot.start_time ORDER BY time_slot.start_time ASC ';
+                FROM booking 
+                INNER JOIN manager ON booking.sports_arena_id=manager.sports_arena_id 
+                INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id 
+                INNER JOIN time_slot ON booking_timeslot.timeslot_id=time_slot.time_slot_id 
+                WHERE booking.security_status="active" AND manager.user_id=:id AND booking.booking_date BETWEEN :previousDate AND :currentDate 
+                GROUP BY time_slot.start_time 
+                ORDER BY time_slot.start_time ASC ';
 
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':previousDate', $date, PDO::PARAM_STR);
+        $stmt->bindValue(':currentDate', $current_date, PDO::PARAM_STR);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
         //Converting retrieved data from database into PDOs
@@ -563,20 +649,71 @@ class SpArenaManagerModel extends \Core\Model
     }
     //End of displaying sports arenas chart 3 for manager
 
+
     //Start of displaying sports arenas chart 4 for manager
     public static function managerChart4($id)
     {
-//Retrieving data about bookings per facility from the database
+        //Retrieving of chart data from the database
+        $sql = 'SELECT EXTRACT(MONTH FROM booking.booking_date) AS BookingMonth,EXTRACT(YEAR FROM booking.booking_date) AS BookingYear FROM booking
+                WHERE security_status="active"
+                ORDER BY booking.booking_date DESC LIMIT 1 ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        //Assigning the fetched PDOs to result
+        $result1 = $stmt->fetch(PDO::FETCH_ASSOC);
+        $lastMonth = $result1["BookingMonth"];
+        $lastYear = $result1["BookingYear"];
+
+        $days_in_month = cal_days_in_month(CAL_GREGORIAN, $lastMonth, $lastYear);
+        $current_date = $lastYear."-".$lastMonth."-".$days_in_month;
+
+        switch ($days_in_month) {
+            case 30:
+                $monthsadded = "+2 days -12 months";
+                break;
+            case 29:
+                $monthsadded = "+3 days -12 months";
+                break;
+            case 28:
+                $monthsadded = "+4 days -12 months";
+                break;
+            case 31:
+                $monthsadded = "-12 months";
+                break;
+        }
+        
+        $date = date("Y-m-d", strtotime($monthsadded,strtotime($current_date)));
+
+        $newYear = date("Y",strtotime($date));
+        $newDay = date("d",strtotime($date));
+
+        if($newYear<$lastYear){
+            $monthsadded = "-1 day";
+            $date = date("Y-m-d", strtotime($monthsadded,strtotime($date)));
+        }
+
+        
+        //Retrieving data about bookings per facility from the database
         $sql = 'SELECT facility.facility_name, COUNT(DISTINCT booking.booking_id) AS No_Of_Bookings
                 FROM booking 
                 INNER JOIN manager ON booking.sports_arena_id=manager.sports_arena_id 
                 INNER JOIN facility ON booking.facility_id=facility.facility_id 
-                WHERE manager.user_id=:id AND MONTH(booking.booking_date) = MONTH(CURRENT_DATE()) 
+                WHERE booking.security_status="active" AND manager.user_id=:id AND booking.booking_date BETWEEN :previousDate AND :currentDate 
                 GROUP BY facility.facility_name ';
 
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':previousDate', $date, PDO::PARAM_STR);
+        $stmt->bindValue(':currentDate', $current_date, PDO::PARAM_STR);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
         //Converting retrieved data from database into PDOs
@@ -587,39 +724,21 @@ class SpArenaManagerModel extends \Core\Model
         $result = $stmt->fetchAll();
         return $result;
     }
-//End of displaying sports arenas chart 4 for manager
+    //End of displaying sports arenas chart 4 for manager
 
-//Start of Reshaping Pie Charts
-    public static function managerReshapePieCharts($dateValue,$id)
+
+
+    //Start of Reshaping Charts
+    // Chart 02
+    public static function managerReshapeChart2($dateValue,$id)
     {
         //Retrieving of chart data from the database
-        $sql = 'SELECT COUNT(DISTINCT EXTRACT(MONTH FROM booking.booking_date)) AS Months
-                FROM booking
-                INNER JOIN manager ON booking.sports_arena_id=manager.sports_arena_id
-                WHERE booking.security_status="active" AND manager.user_id=:id ';
+        $sql = 'SELECT EXTRACT(MONTH FROM booking.booking_date) AS BookingMonth,EXTRACT(YEAR FROM booking.booking_date) AS BookingYear FROM booking
+                WHERE security_status="active"
+                ORDER BY booking.booking_date DESC LIMIT 1 ';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-
-        //Converting retrieved data from database into PDOs
-        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-        $stmt->execute();
-
-        //Assigning the fetched PDOs to result
-        $result0 = $stmt->fetch(PDO::FETCH_ASSOC);
-        $totalMonth = $result0["Months"];
-        
-        //Retrieving of chart data from the database
-        $sql = 'SELECT EXTRACT(MONTH FROM booking.booking_date) AS BookingMonth FROM booking
-                INNER JOIN manager ON booking.sports_arena_id=manager.sports_arena_id
-                WHERE booking.security_status="active" AND manager.user_id=:id
-                GROUP BY BookingMonth
-                ORDER BY BookingMonth DESC LIMIT 1 ';
-
-        $db = static::getDB();
-        $stmt = $db->prepare($sql);
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
         //Converting retrieved data from database into PDOs
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
@@ -628,52 +747,206 @@ class SpArenaManagerModel extends \Core\Model
         //Assigning the fetched PDOs to result
         $result1 = $stmt->fetch(PDO::FETCH_ASSOC);
         $lastMonth = $result1["BookingMonth"];
+        $lastYear = $result1["BookingYear"];
 
-        $previousMonth = $lastMonth - $dateValue + 1;
-        
-        if($dateValue!=0 && $dateValue<=$totalMonth){
-            //Retrieving of chart data from the database
-            $sql = 'SELECT booking.payment_method, COUNT(DISTINCT booking.booking_id) AS No_Of_Bookings
-                    FROM booking
-                    INNER JOIN manager ON booking.sports_arena_id=manager.sports_arena_id
-                    WHERE booking.security_status="active" AND manager.user_id=:id AND EXTRACT(MONTH FROM booking.booking_date) BETWEEN :previousMonth AND :lastMonth
-                    GROUP BY booking.payment_method ';
+        $days_in_month = cal_days_in_month(CAL_GREGORIAN, $lastMonth, $lastYear);
+        $current_date = $lastYear."-".$lastMonth."-".$days_in_month;
 
-            $db = static::getDB();
-            $stmt = $db->prepare($sql);
-
-            //Binding input data into database query variables
-            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-            $stmt->bindValue(':previousMonth', $previousMonth, PDO::PARAM_INT);
-            $stmt->bindValue(':lastMonth', $lastMonth, PDO::PARAM_INT);
-
-            //Converting retrieved data from database into PDOs
-            $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-            $stmt->execute();
-        }else{
-            //Retrieving of chart data from the database
-            $sql = 'SELECT booking.payment_method, COUNT(DISTINCT booking.booking_id) AS No_Of_Bookings
-                    FROM booking
-                    INNER JOIN manager ON booking.sports_arena_id=manager.sports_arena_id
-                    WHERE booking.security_status="active" AND manager.user_id=:id
-                    GROUP BY booking.payment_method ';
-
-            $db = static::getDB();
-            $stmt = $db->prepare($sql);
-
-            //Binding input data into database query variables
-            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-
-            //Converting retrieved data from database into PDOs
-            $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-            $stmt->execute();
+        switch ($days_in_month) {
+            case 30:
+                $monthsadded = "+2 days -".$dateValue." months";
+                break;
+            case 29:
+                $monthsadded = "+3 days -".$dateValue." months";
+                break;
+            case 28:
+                $monthsadded = "+4 days -".$dateValue." months";
+                break;
+            case 31:
+                $monthsadded = "-".$dateValue." months";
+                break;
         }
+        
+        $date = date("Y-m-d", strtotime($monthsadded,strtotime($current_date)));
+
+        $newYear = date("Y",strtotime($date));
+        $newDay = date("d",strtotime($date));
+
+        if($newYear<$lastYear){
+            $monthsadded = "-1 day";
+            $date = date("Y-m-d", strtotime($monthsadded,strtotime($date)));
+        }
+
+        $sql = 'SELECT booking.payment_method, COUNT(DISTINCT booking.booking_id) AS No_Of_Bookings
+                FROM booking
+                INNER JOIN manager ON booking.sports_arena_id=manager.sports_arena_id
+                WHERE booking.security_status="active" AND manager.user_id=:id AND booking.booking_date BETWEEN :previousDate AND :currentDate
+                GROUP BY booking.payment_method ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':previousDate', $date, PDO::PARAM_STR);
+        $stmt->bindValue(':currentDate', $current_date, PDO::PARAM_STR);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
 
         //Assigning the fetched PDOs to result
         $result2 = $stmt->fetchAll();
         return $result2;
     }
-//End of Reshaping Pie Charts
+
+    // Chart 03
+    public static function managerReshapeChart3($dateValue,$id)
+    {
+        //Retrieving of chart data from the database
+        $sql = 'SELECT EXTRACT(MONTH FROM booking.booking_date) AS BookingMonth,EXTRACT(YEAR FROM booking.booking_date) AS BookingYear FROM booking
+                WHERE security_status="active"
+                ORDER BY booking.booking_date DESC LIMIT 1 ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        //Assigning the fetched PDOs to result
+        $result1 = $stmt->fetch(PDO::FETCH_ASSOC);
+        $lastMonth = $result1["BookingMonth"];
+        $lastYear = $result1["BookingYear"];
+
+        $days_in_month = cal_days_in_month(CAL_GREGORIAN, $lastMonth, $lastYear);
+        $current_date = $lastYear."-".$lastMonth."-".$days_in_month;
+
+        switch ($days_in_month) {
+            case 30:
+                $monthsadded = "+2 days -".$dateValue." months";
+                break;
+            case 29:
+                $monthsadded = "+3 days -".$dateValue." months";
+                break;
+            case 28:
+                $monthsadded = "+4 days -".$dateValue." months";
+                break;
+            case 31:
+                $monthsadded = "-".$dateValue." months";
+                break;
+        }
+        
+        $date = date("Y-m-d", strtotime($monthsadded,strtotime($current_date)));
+
+        $newYear = date("Y",strtotime($date));
+        $newDay = date("d",strtotime($date));
+
+        if($newYear<$lastYear){
+            $monthsadded = "-1 day";
+            $date = date("Y-m-d", strtotime($monthsadded,strtotime($date)));
+        }
+
+        $sql = 'SELECT time_slot.start_time, COUNT(DISTINCT booking.booking_id) AS No_Of_Bookings
+                FROM booking 
+                INNER JOIN manager ON booking.sports_arena_id=manager.sports_arena_id 
+                INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id 
+                INNER JOIN time_slot ON booking_timeslot.timeslot_id=time_slot.time_slot_id 
+                WHERE booking.security_status="active" AND manager.user_id=:id AND booking.booking_date BETWEEN :previousDate AND :currentDate 
+                GROUP BY time_slot.start_time 
+                ORDER BY time_slot.start_time ASC ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':previousDate', $date, PDO::PARAM_STR);
+        $stmt->bindValue(':currentDate', $current_date, PDO::PARAM_STR);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        //Assigning the fetched PDOs to result
+        $result2 = $stmt->fetchAll();
+        return $result2;
+    }
+
+    // Chart 04
+    public static function managerReshapeChart4($dateValue,$id)
+    {
+        //Retrieving of chart data from the database
+        $sql = 'SELECT EXTRACT(MONTH FROM booking.booking_date) AS BookingMonth,EXTRACT(YEAR FROM booking.booking_date) AS BookingYear FROM booking
+                WHERE security_status="active"
+                ORDER BY booking.booking_date DESC LIMIT 1 ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        //Assigning the fetched PDOs to result
+        $result1 = $stmt->fetch(PDO::FETCH_ASSOC);
+        $lastMonth = $result1["BookingMonth"];
+        $lastYear = $result1["BookingYear"];
+
+        $days_in_month = cal_days_in_month(CAL_GREGORIAN, $lastMonth, $lastYear);
+        $current_date = $lastYear."-".$lastMonth."-".$days_in_month;
+
+        switch ($days_in_month) {
+            case 30:
+                $monthsadded = "+2 days -".$dateValue." months";
+                break;
+            case 29:
+                $monthsadded = "+3 days -".$dateValue." months";
+                break;
+            case 28:
+                $monthsadded = "+4 days -".$dateValue." months";
+                break;
+            case 31:
+                $monthsadded = "-".$dateValue." months";
+                break;
+        }
+        
+        $date = date("Y-m-d", strtotime($monthsadded,strtotime($current_date)));
+
+        $newYear = date("Y",strtotime($date));
+        $newDay = date("d",strtotime($date));
+
+        if($newYear<$lastYear){
+            $monthsadded = "-1 day";
+            $date = date("Y-m-d", strtotime($monthsadded,strtotime($date)));
+        }
+
+        $sql = 'SELECT facility.facility_name, COUNT(DISTINCT booking.booking_id) AS No_Of_Bookings
+                FROM booking 
+                INNER JOIN manager ON booking.sports_arena_id=manager.sports_arena_id 
+                INNER JOIN facility ON booking.facility_id=facility.facility_id 
+                WHERE booking.security_status="active" AND manager.user_id=:id AND booking.booking_date BETWEEN :previousDate AND :currentDate 
+                GROUP BY facility.facility_name ';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding input data into database query variables
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':previousDate', $date, PDO::PARAM_STR);
+        $stmt->bindValue(':currentDate', $current_date, PDO::PARAM_STR);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        //Assigning the fetched PDOs to result
+        $result2 = $stmt->fetchAll();
+        return $result2;
+    }
+    //End of Reshaping Charts
+
 
 //Start of adding timeslot to a sports arena for manager
     public static function managerAddTimeSlots($user_id, $start_time, $duration, $price, $facility)
