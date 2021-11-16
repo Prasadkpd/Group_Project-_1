@@ -164,10 +164,19 @@ function close_popup_delete_message_favorite_list() {
 function open_popup_notification(subject,description,link) {
   console.log(link);
   console.log(subject)
-  var form = document.getElementById("popup_notification");
+  if(link==""){
+    var form = document.getElementById("popup_notification");
   form.querySelector("#popup_notification").innerHTML="<h1>"
-  +subject+"</h1>"+"<p>"+description+"</p>"+ "<a href="+"'"+link+ "'>" + "click here" + "</a>";
+  +subject+"</h1>"+"<p>"+description+"</p>";
   form.style.display = "block";
+  }
+  else{
+    var form = document.getElementById("popup_notification");
+  form.querySelector("#popup_notification").innerHTML="<h1>"
+  +subject+"</h1>"+"<p>"+description+"</p>"+ "<a href="+"'"+link+ "'>" + "click here for refund" + "</a>";
+  form.style.display = "block";
+  }
+  
 }
 function close_popup_notification() {
   var form = document.getElementById("popup_notification");

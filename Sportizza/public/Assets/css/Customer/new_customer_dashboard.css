@@ -329,6 +329,17 @@ tbody tr td .icon_red {
 .sectionpop .timeslotDisplay input[type="text"] {
   width: 53px;
 }
+#popup_notification a{
+  color:red;
+  text-decoration: underline;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#cannotCancelBookingDaysSpan{
+  color:red;
+   font-weight: bold;
+   font-size:20px}
 
 .popup_button {
   background-color: #2ed573;
