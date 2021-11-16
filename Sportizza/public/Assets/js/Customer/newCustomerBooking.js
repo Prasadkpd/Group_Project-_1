@@ -299,7 +299,7 @@ function open_goto_booking() {
 function paymentclick(){
   var payment_method = event.target.value;
   // var payment_method = document.getElementsByClassName("checkbox").value;
-  alert(payment_method);
+  // alert(payment_method);
   if (payment_method=="card"){
     event.target.value = "cash";
   }else{

@@ -257,16 +257,17 @@ class Customer extends Authenticated
     {
         //Get the current user's details with session using Auth
         $current_user = Auth::getUser();
-        $invoice_id = 100000000;
-        CustomerModel::customerBookingSuccessCard($invoice_id);
+       
+        $invoice_id=customerModel::customerPaymentSuccess($current_user->user_id);
         // Calling the notification
-        $notify_check = NotificationModel::addNotificationBookingSuccess($current_user, $invoice_id);
+        
         // D\Redirecting
-        if ($notify_check) {
-            $this->redirect('/Customer');
-        } else {
-            $this->redirect('/Customer/cart');
+        if ($invoice_id) {
+            NotificationModel::addNotificationBookingSuccess($current_user, $invoice_id);
+            
         }
+        $this->redirect('/Customer');
+        
     }
 
     //Start of adding sportsarena to Favourite list
@@ -303,14 +304,14 @@ class Customer extends Authenticated
         }
         //End of customer request refund
 
-
         //Start of customer request refund
-        // public function customerPaymentAction()
-        // {
-            
-        //     CustomerModel::customerRequestRefund($_POST);
-        //     $this->redirect('/Customer');
-        // }
+        public function customerremovetimeslotfromcart()
+        {
+            $booking_id = $this->route_params['id'];
+            CustomerModel::customerRemoveTimeSlotFromCart($booking_id);
+            $this->redirect('/Customer/cart');
+        }
         //End of customer request refund
+        
 
 }

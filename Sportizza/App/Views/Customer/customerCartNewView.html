@@ -118,143 +118,281 @@
     <!-- <h1 class="page-header">Cart</h1> -->
 
     {% if cardSum==0 %}
-    {% else %}
-    {% endif %}
-    <form method="post" action="https://sandbox.payhere.lk/pay/checkout" id="formCheckout" onsubmit="validateCheckoutForm()"      >
-    <div class="customerDetails">
-      <div class="page">
-        <div class="container">
-          <div class="title">Customer details</div>
-          <div class="subtitle">Please fill out the details below</div>
-          <div class="content">
 
-
-              <div class="sp-details">
-                <input type="hidden" name="merchant_id" value="1217465">    <!-- Replace your Merchant ID -->
-                <input type="hidden" name="return_url" value="http://localhost/Customer/paymentsuccess">
-                <input type="hidden" name="cancel_url" value="http://localhost/Customer/cart">
-                <input type="hidden" name="notify_url" value="http://localhost/Customer/payment">
-                <div class="input-box">
-                  <label for="firstName">First Name</label>
-                  <input id="firstName" type="text" name="first_name" placeholder="Enter first Name" value="{{current_user.first_name}}" readonly>
-                  <div class="helper-text" id="firstNameMsg"></div>
-                </div>
-
-                <div class="input-box">
-                  <label for="lastName">Last Name</label>
-                  <input id="lastName" type="text" name="last_name" placeholder="Enter last Name" value="{{current_user.last_name}}" readonly>
-                  <div class="helper-text" id="lastNameMsg"></div>
-                </div>
-
-                <div class="input-box">
-                  <label for="email">Email</label>
-                  <input id="email" type="email" name="email" placeholder="ex: example@company.com"
-                  onfocusout="validateEmail()">
-                  <div class="helper-text" id="emailMsg"></div>
-                </div>
-
-                <div class="input-box">
-                  <label for="contact">Contact</label>
-                  <input id="contact" type="text" name="phone" placeholder="ex: 0711223344" value="{{current_user.primary_contact}}" readonly>
-                  <div class="helper-text" id="contactMsg"></div>
-                </div>
-
-                <div class="input-box-map">
-                  <label for="address">Address</label>
-                  <input id="address" type="text" name="address" placeholder="Enter your address"
-                  onfocusout="validateAddress()">
-                  <div class="helper-text" id="addressMsg"></div>
-                </div>
-
-                <div class="input-box">
-                  <label for="city">City</label>
-                  <input id="city" type="text" name="city" placeholder="Enter your city"
-                  onfocusout="validateCity()">
-                  <div class="helper-text" id="cityMsg"></div>
-                </div>
-
-                <div class="input-box">
-                  <label for="country">Country</label>
-                  <input id="country" type="text" name="country" placeholder="Enter your country" value="Sri Lanka" readonly>
-                  <div class="helper-text" id="contactMsg"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="cartDisplay">
+    <form method="post" action="/Customer/paymentsuccess" id="formCheckout" onsubmit="validateCheckoutForm()"      >
+      <div class="customerDetails">
         <div class="page">
           <div class="container">
-            <div class="title">My Cart</div>
-            <div class="subtitle">Invoice ID : 1000000002</div>
+            <div class="title">Customer details</div>
+            <div class="subtitle">Please fill out the details below</div>
             <div class="content">
-
-
-              <div class="cartContent">
-                <!-- {% set count=1  %}
-                {% for item in items  %} -->
-                <!-- {% set count=count+1  %}
-                {% endfor %} -->
-
-                {% for item in cart %}
-                <div id="cartItem1" class="cartItem">
-                  <div id="itemDelete1" class="itemDelete" onclick="hideItem(1)">
-                    <i class="far fa-times-circle"></i>
+  
+  
+                <div class="sp-details">
+                  <input type="hidden" name="merchant_id" value="1217465">    <!-- Replace your Merchant ID -->
+                  <input type="hidden" name="return_url" value="http://localhost/Customer/paymentsuccess">
+                  <input type="hidden" name="cancel_url" value="http://localhost/Customer/cart">
+                  <input type="hidden" name="notify_url" value="http://localhost/Customer/payment">
+                  <div class="input-box">
+                    <label for="firstName">First Name</label>
+                    <input id="firstName" type="text" name="first_name" placeholder="Enter first Name" value="{{current_user.first_name}}" readonly>
+                    <div class="helper-text" id="firstNameMsg"></div>
                   </div>
-                  <div class="itemHeader">
-                    <h6>{{item.sa_name}}</h6>
+  
+                  <div class="input-box">
+                    <label for="lastName">Last Name</label>
+                    <input id="lastName" type="text" name="last_name" placeholder="Enter last Name" value="{{current_user.last_name}}" readonly>
+                    <div class="helper-text" id="lastNameMsg"></div>
                   </div>
-                  <div class="itemOther">
-                    {{item.facility_name}}
+  
+                  <div class="input-box">
+                    <label for="email">Email</label>
+                    <input id="email" type="email" name="email" placeholder="ex: example@company.com"
+                    onfocusout="validateEmail()">
+                    <div class="helper-text" id="emailMsg"></div>
                   </div>
-                  <div class="itemTime">
-                    {{item.start_time}}-{{item.end_time}}
+  
+                  <div class="input-box">
+                    <label for="contact">Contact</label>
+                    <input id="contact" type="text" name="phone" placeholder="ex: 0711223344" value="{{current_user.primary_contact}}" readonly>
+                    <div class="helper-text" id="contactMsg"></div>
                   </div>
-                  <div class="itemOther">
-                    {{item.category}}, {{item.location}}
+  
+                  <div class="input-box-map">
+                    <label for="address">Address</label>
+                    <input id="address" type="text" name="address" placeholder="Enter your address"
+                    onfocusout="validateAddress()">
+                    <div class="helper-text" id="addressMsg"></div>
                   </div>
-                  <div class="itemOther">
-                    {{item.payment_method}} payment
+  
+                  <div class="input-box">
+                    <label for="city">City</label>
+                    <input id="city" type="text" name="city" placeholder="Enter your city"
+                    onfocusout="validateCity()">
+                    <div class="helper-text" id="cityMsg"></div>
                   </div>
-                  <div class="itemPrice">
-                    LKR {{item.price_per_booking}}
+  
+                  <div class="input-box">
+                    <label for="country">Country</label>
+                    <input id="country" type="text" name="country" placeholder="Enter your country" value="Sri Lanka" readonly>
+                    <div class="helper-text" id="contactMsg"></div>
                   </div>
-
-                </div>
-                {% endfor %}
-                
-              
-                <input type="hidden" name="order_id" value="100000000">
-                <input type="hidden" name="items" value="Booking Timeslots"><br>
-                <input type="hidden" name="currency" value="LKR">
-                <input type="hidden" name="amount" value="{{cardSum}}">
-              </div>
-              <div class="priceNPay">
-                <div class="button">
-                  <input type="submit" value="Pay Now" class="btn solid" />
-                </div>
-                
-               
-
-                  <div class="showPrice">
-                  <h4>Total Card Payment : &nbsp;</h4>
-                  <h4 class="showAmount">LKR {{cardSum}}</h4>
-                </div>
-                <div class="showPrice">
-                  <h4>Total Amount: &nbsp;</h4>
-                  <h4 class="showAmount">LKR {{allSum}}</h4>
                 </div>
               </div>
-              
             </div>
           </div>
         </div>
-      </div>
+  
+        <div class="cartDisplay">
+          <div class="page">
+            <div class="container">
+              <div class="title">My Cart</div>
+              <div class="subtitle">Invoice ID : 1000000002</div>
+              <div class="content">
+  
+  
+                <div class="cartContent">
+                  <!-- {% set count=1  %}
+                  {% for item in items  %} -->
+                  <!-- {% set count=count+1  %}
+                  {% endfor %} -->
+  
+                  {% for item in cart %}
+                  <div id="cartItem1" class="cartItem">
+                    <div id="itemDelete1" class="itemDelete" onclick="hideItem(1)">
+                      <i class="far fa-times-circle"></i>
+                    </div>
+                    <div class="itemHeader">
+                      <h6>{{item.sa_name}}</h6>
+                    </div>
+                    <div class="itemOther">
+                      {{item.facility_name}}
+                    </div>
+                    <div class="itemTime">
+                      {{item.start_time}}-{{item.end_time}}
+                    </div>
+                    <div class="itemOther">
+                      {{item.category}}, {{item.location}}
+                    </div>
+                    <div class="itemOther">
+                      {{item.payment_method}} payment
+                    </div>
+                    <div class="itemPrice">
+                      LKR {{item.price_per_booking}}
+                    </div>
+  
+                  </div>
+                  {% endfor %}
+                  
+                
+                  <input type="hidden" name="order_id" value="100000000">
+                  <input type="hidden" name="items" value="Booking Timeslots"><br>
+                  <input type="hidden" name="currency" value="LKR">
+                  <input type="hidden" name="amount" value="{{cardSum}}">
+                </div>
+                <div class="priceNPay">
+                  <div class="button">
+                    <input type="submit" value="Pay Now" class="btn solid" />
+                  </div>
+                  
+                 
+  
+                    <div class="showPrice">
+                    <h4>Total Card Payment : &nbsp;</h4>
+                    <h4 class="showAmount">LKR {{cardSum}}</h4>
+                  </div>
+                  <div class="showPrice">
+                    <h4>Total Amount: &nbsp;</h4>
+                    <h4 class="showAmount">LKR {{allSum}}</h4>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        
+      </form>
+    {% else %}
 
-      
-    </form>
+    <form method="post" action="https://sandbox.payhere.lk/pay/checkout" id="formCheckout" onsubmit="validateCheckoutForm()"      >
+      <div class="customerDetails">
+        <div class="page">
+          <div class="container">
+            <div class="title">Customer details</div>
+            <div class="subtitle">Please fill out the details below</div>
+            <div class="content">
+  
+  
+                <div class="sp-details">
+                  <input type="hidden" name="merchant_id" value="1217465">    <!-- Replace your Merchant ID -->
+                  <input type="hidden" name="return_url" value="http://localhost/Customer/paymentsuccess">
+                  <input type="hidden" name="cancel_url" value="http://localhost/Customer/cart">
+                  <input type="hidden" name="notify_url" value="http://localhost/Customer/payment">
+                  <div class="input-box">
+                    <label for="firstName">First Name</label>
+                    <input id="firstName" type="text" name="first_name" placeholder="Enter first Name" value="{{current_user.first_name}}" readonly>
+                    <div class="helper-text" id="firstNameMsg"></div>
+                  </div>
+  
+                  <div class="input-box">
+                    <label for="lastName">Last Name</label>
+                    <input id="lastName" type="text" name="last_name" placeholder="Enter last Name" value="{{current_user.last_name}}" readonly>
+                    <div class="helper-text" id="lastNameMsg"></div>
+                  </div>
+  
+                  <div class="input-box">
+                    <label for="email">Email</label>
+                    <input id="email" type="email" name="email" placeholder="ex: example@company.com"
+                    onfocusout="validateEmail()">
+                    <div class="helper-text" id="emailMsg"></div>
+                  </div>
+  
+                  <div class="input-box">
+                    <label for="contact">Contact</label>
+                    <input id="contact" type="text" name="phone" placeholder="ex: 0711223344" value="{{current_user.primary_contact}}" readonly>
+                    <div class="helper-text" id="contactMsg"></div>
+                  </div>
+  
+                  <div class="input-box-map">
+                    <label for="address">Address</label>
+                    <input id="address" type="text" name="address" placeholder="Enter your address"
+                    onfocusout="validateAddress()">
+                    <div class="helper-text" id="addressMsg"></div>
+                  </div>
+  
+                  <div class="input-box">
+                    <label for="city">City</label>
+                    <input id="city" type="text" name="city" placeholder="Enter your city"
+                    onfocusout="validateCity()">
+                    <div class="helper-text" id="cityMsg"></div>
+                  </div>
+  
+                  <div class="input-box">
+                    <label for="country">Country</label>
+                    <input id="country" type="text" name="country" placeholder="Enter your country" value="Sri Lanka" readonly>
+                    <div class="helper-text" id="contactMsg"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="cartDisplay">
+          <div class="page">
+            <div class="container">
+              <div class="title">My Cart</div>
+              <div class="subtitle">Invoice ID : 1000000002</div>
+              <div class="content">
+  
+  
+                <div class="cartContent">
+                  <!-- {% set count=1  %}
+                  {% for item in items  %} -->
+                  <!-- {% set count=count+1  %}
+                  {% endfor %} -->
+  
+                  {% for item in cart %}
+                  <div id="cartItem1" class="cartItem">
+                    <div id="itemDelete1" class="itemDelete" onclick="hideItem(1)" >
+                      <i class="far fa-times-circle"></i>
+                    </div>
+                    <div class="itemHeader">
+                      <h6>{{item.sa_name}}</h6>
+                    </div>
+                    <div class="itemOther">
+                      {{item.facility_name}}
+                    </div>
+                    <div class="itemTime">
+                      {{item.start_time}}-{{item.end_time}}
+                    </div>
+                    <div class="itemOther">
+                      {{item.category}}, {{item.location}}
+                    </div>
+                    <div class="itemOther">
+                      {{item.payment_method}} payment
+                    </div>
+                    <div class="itemPrice">
+                      LKR {{item.price_per_booking}}
+                    </div>
+  
+                  </div>
+                  {% endfor %}
+                  
+                
+                  <input type="hidden" name="order_id" value="100000000">
+                  <input type="hidden" name="items" value="Booking Timeslots"><br>
+                  <input type="hidden" name="currency" value="LKR">
+                  <input type="hidden" name="amount" value="{{cardSum}}">
+                </div>
+                <div class="priceNPay">
+                  <div class="button">
+                    <input type="submit" value="Pay Now" class="btn solid" />
+                  </div>
+                  
+                 
+  
+                    <div class="showPrice">
+                    <h4>Total Card Payment : &nbsp;</h4>
+                    <h4 class="showAmount">LKR {{cardSum}}</h4>
+                  </div>
+                  <div class="showPrice">
+                    <h4>Total Amount: &nbsp;</h4>
+                    <h4 class="showAmount">LKR {{allSum}}</h4>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        
+      </form>
+    {% endif %}
+    
   </div>
   </section>
   <!-- Start of Footer -->
