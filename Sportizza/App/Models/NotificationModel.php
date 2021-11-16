@@ -250,9 +250,10 @@ class NotificationModel extends \Core\Model
         $stmt->execute();
 
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $mid = $result["user_id"];
-
-        return $mid;
+        // $mid = $result["user_id"];
+        var_dump($result);
+        // return $mid; 
+        return 100000003;
     }
 
     public static function AddFacilityNotificationGetAdminStaffIds($facility_id)
@@ -270,9 +271,12 @@ class NotificationModel extends \Core\Model
         $stmt->execute();
 
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $asid = $result["user_id"];
+        // $asid = $result["user_id"];
 
-        return $asid;
+        var_dump($result);
+        // return $mid; 
+        return 100000003;
+        // return $asid;
     }
 
     public static function AddFacilityNotificationGetBookingStaffIds($facility_id)

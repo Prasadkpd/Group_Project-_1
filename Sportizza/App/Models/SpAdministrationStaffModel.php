@@ -120,23 +120,24 @@ class SpAdministrationStaffModel extends \Core\Model
 
         //Retrieving sports arena timeslot from the database
         $sql = 'SELECT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i")
-    AS startTime,TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,
-    time_slot.price,facility.facility_name
-    FROM time_slot
-    INNER JOIN facility ON time_slot.facility_id= facility.facility_id
-    INNER JOIN booking_timeslot ON time_slot.time_slot_id =booking_timeslot.timeslot_id
-    INNER JOIN booking ON booking_timeslot.booking_id=booking.booking_id
-    WHERE time_slot.time_slot_id NOT IN
-     (SELECT booking_timeslot.timeslot_id FROM booking 
-    INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id WHERE 
-    booking.booking_date=CURRENT_DATE() OR (payment_status="pending" 
-     AND booked_date +INTERVAL 30 MINUTE > CURRENT_TIMESTAMP)
-      AND booking_timeslot.security_status="active")
-     AND time_slot.manager_sports_arena_id=:arena_id 
-     AND time_slot.security_status="active" 
-     AND time_slot.start_time > CURRENT_TIME() 
-     ORDER BY time_slot.start_time';
-
+        AS startTime,TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,
+        time_slot.price,facility.facility_name
+        FROM time_slot
+        INNER JOIN facility ON time_slot.facility_id= facility.facility_id
+        INNER JOIN booking_timeslot ON time_slot.time_slot_id =booking_timeslot.timeslot_id
+        INNER JOIN booking ON booking_timeslot.booking_id=booking.booking_id
+        
+        WHERE time_slot.time_slot_id NOT IN
+         (SELECT booking_timeslot.timeslot_id FROM booking 
+        INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id WHERE 
+        ((booking.booking_date=CURRENT_DATE()) OR (payment_status="pending" 
+         AND booked_date +INTERVAL 30 MINUTE > CURRENT_TIMESTAMP))
+         AND booking_timeslot.security_status="active")
+         AND time_slot.manager_sports_arena_id=:arena_id 
+         AND time_slot.security_status="active" 
+         AND time_slot.start_time > CURRENT_TIME() 
+      
+         ORDER BY time_slot.start_time';
         // payment_status="pending" 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -149,6 +150,7 @@ class SpAdministrationStaffModel extends \Core\Model
         //Assigning the fetched PDOs to result
         $result = $stmt->fetchAll();
         return $result;
+    
     }
     //End of Displaying sports arena timeslot
 
@@ -167,37 +169,36 @@ class SpAdministrationStaffModel extends \Core\Model
 
         // have to change this is wrong we use it for testing
 
-        
-
         $current_date = date('Y-m-d');
 
-        if ($date != $current_date) {        
+        if ($date != $current_date) {   
+            // echo($date);     
             //Retrieving sports arena timeslot from the database
             $sql = 'SELECT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i")
-                    AS startTime,TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,
-                    time_slot.price,facility.facility_name,sports_arena_profile.payment_method
-                    FROM time_slot
-                    INNER JOIN facility ON time_slot.facility_id= facility.facility_id
-                    INNER JOIN sports_arena_profile ON facility.sports_arena_id= sports_arena_profile.sports_arena_id
-                    WHERE time_slot.time_slot_id NOT IN
-                    (SELECT booking_timeslot.timeslot_id FROM booking 
-                    INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id WHERE 
-                    booking.booking_date=:date )
-                    AND time_slot.manager_sports_arena_id=:arena_id 
-                    AND time_slot.security_status="active"
-                    ORDER BY time_slot.start_time';
+            AS startTime,TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,
+            time_slot.price,facility.facility_name,sports_arena_profile.payment_method
+            FROM time_slot
+            INNER JOIN facility ON time_slot.facility_id= facility.facility_id
+            INNER JOIN sports_arena_profile ON facility.sports_arena_id= sports_arena_profile.sports_arena_id
+            WHERE time_slot.time_slot_id NOT IN
+            (SELECT booking_timeslot.timeslot_id FROM booking 
+            INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id WHERE 
+            ((booking.booking_date=:date) OR (payment_status="pending" 
+            AND booked_date +INTERVAL 30 MINUTE > CURRENT_TIMESTAMP))
+            AND booking_timeslot.security_status="active")
+            AND time_slot.manager_sports_arena_id=:arena_id
+            AND time_slot.security_status="active"
+            ORDER BY time_slot.start_time;';
+
+
             
-            $db = static::getDB();
+            
             $stmt = $db->prepare($sql);
 
             //Binding the sports arena id and Converting retrieved data from database into PDOs
             $stmt->bindValue(':date', $date, PDO::PARAM_STR);
             $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
 
-                
-
-             //Binding the sports arena id and Converting retrieved data from database into PDOs
-        // $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
         } else {
 
             
@@ -212,22 +213,20 @@ class SpAdministrationStaffModel extends \Core\Model
                 WHERE time_slot.time_slot_id NOT IN
                  (SELECT booking_timeslot.timeslot_id FROM booking 
                 INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id WHERE 
-                booking.booking_date=CURRENT_DATE() OR (payment_status="pending" 
-                 AND booked_date +INTERVAL 30 MINUTE > CURRENT_TIMESTAMP) )
+                ((booking.booking_date=CURRENT_DATE()) OR (payment_status="pending" 
+                 AND booked_date +INTERVAL 30 MINUTE > CURRENT_TIMESTAMP))
+                 AND booking_timeslot.security_status="active")
                  AND time_slot.manager_sports_arena_id=:arena_id 
                  AND time_slot.security_status="active" 
                  AND time_slot.start_time > CURRENT_TIME() 
               
                  ORDER BY time_slot.start_time';
-
-                 $db = static::getDB();
+                 
                 $stmt = $db->prepare($sql);
 
                 //Binding the sports arena id and Converting retrieved data from database into PDOs
                 // $stmt->bindValue(':date', $date, PDO::PARAM_STR);
                 $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
-
-            //Binding the sports arena id and Converting retrieved data from database into PDOs
            
         }
 
@@ -1004,6 +1003,7 @@ class SpAdministrationStaffModel extends \Core\Model
     //Remove a facility from the sports arena
     public static function saAdminDeleteFacility($current_user, $facility_id)
     {
+        echo ($facility_id);
         try {
 
             $db = static::getDB();
