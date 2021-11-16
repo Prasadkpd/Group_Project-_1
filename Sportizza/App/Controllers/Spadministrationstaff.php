@@ -132,8 +132,7 @@ class Spadministrationstaff extends Authenticated
         //Rendering the administration staff's notification view
         View::renderTemplate(
             'AdministrationStaff/aStaffNotificationView.html',
-            ['notifications' => $notifications]
-        );
+            ['notifications' => $notifications]);
     }
     //End of Notification of administration staff
 
@@ -169,16 +168,20 @@ class Spadministrationstaff extends Authenticated
         $id = $current_user->user_id;
 
         //Adding timeslot to the sports arena 
-        $user = SpAdministrationStaffModel::saAdminAddTimeSlots(
+        $time_slot_id = SpAdministrationStaffModel::saAdminAddTimeSlots(
             $id,
             $_POST['startTime'],
             $_POST['timeSlotDuration'],
             $_POST['slotPrice'],
             $_POST['facilityName']
         );
-
-        //Redirected to manage timeslot
+        if ($time_slot_id){
+            NotificationModel::saAdminAddtimeslotSuccessNotification($current_user,$time_slot_id);
+            //Redirected to manage timeslot
         $this->redirect('/Spadministrationstaff/managetimeslot');
+        }
+
+        
     }
 
     //End of Add Timeslot of administration staff
@@ -209,9 +212,9 @@ class Spadministrationstaff extends Authenticated
     { 
         $timeslot_id= $this->route_params['id'];
         $current_user = Auth::getUser();
-        $id = $current_user->user_id;
 
-       SpAdministrationStaffModel::saAdminDeleteTimeSlots($id,$timeslot_id);
+       SpAdministrationStaffModel::saAdminDeleteTimeSlots($current_user,$timeslot_id);
+
        $this->redirect('/spadministrationstaff/managetimeslot');
 
     }
