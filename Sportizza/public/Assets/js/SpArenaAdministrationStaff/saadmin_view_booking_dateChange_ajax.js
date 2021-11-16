@@ -5,7 +5,7 @@ $(document).ready(function () {
         let id = $(this).val();
         let payment_cart = $(this).parent().prev();
         
-        let bookingDate = $('.bookingDatehidden').val();
+        let bookingDate = $('#dateInput').val();
         
         console.log(id);
         console.log(bookingDate);
@@ -48,7 +48,7 @@ $(document).ready(function () {
       $.ajax({
         type: "POST",
 
-        // url: "http://localhost/Spadministrationstaff/searchtimeslotdate/" + argument,
+        
         url: "http://localhost/Spadministrationstaff/searchtimeslotdate/" + dateVal,
 
         dataType: "html",

@@ -1099,9 +1099,9 @@ class NotificationModel extends \Core\Model
          try {
              $db = static::getDB();
              $db->beginTransaction();
-             $manager_id = self::AddFacilityNotificationGetManagerIds($facility_id);
-             $adminstaff_id = self::AddFacilityNotificationGetAdminStaffIds($facility_id);
-             $bookhandlestaff_id = self::AddFacilityNotificationGetBookingStaffIds($facility_id);
+             $manager_id = self::AddfacilityNotificationGetManagerIds($facility_id);
+             $adminstaff_id = self::AddfacilityNotificationGetAdminStaffIds($facility_id);
+             $bookhandlestaff_id = self::AddfacilityNotificationGetBookingStaffIds($facility_id);
  
              $sparsubj = "Removing facility and Cancel bookings";
  

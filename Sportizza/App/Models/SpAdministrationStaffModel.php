@@ -126,16 +126,15 @@ class SpAdministrationStaffModel extends \Core\Model
     INNER JOIN facility ON time_slot.facility_id= facility.facility_id
     INNER JOIN booking_timeslot ON time_slot.time_slot_id =booking_timeslot.timeslot_id
     INNER JOIN booking ON booking_timeslot.booking_id=booking.booking_id
-    
     WHERE time_slot.time_slot_id NOT IN
      (SELECT booking_timeslot.timeslot_id FROM booking 
     INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id WHERE 
     booking.booking_date=CURRENT_DATE() OR (payment_status="pending" 
-     AND booked_date +INTERVAL 30 MINUTE > CURRENT_TIMESTAMP) )
+     AND booked_date +INTERVAL 30 MINUTE > CURRENT_TIMESTAMP)
+      AND booking_timeslot.security_status="active")
      AND time_slot.manager_sports_arena_id=:arena_id 
      AND time_slot.security_status="active" 
      AND time_slot.start_time > CURRENT_TIME() 
-  
      ORDER BY time_slot.start_time';
 
         // payment_status="pending" 
@@ -229,8 +228,7 @@ class SpAdministrationStaffModel extends \Core\Model
                 $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
 
             //Binding the sports arena id and Converting retrieved data from database into PDOs
-            $stmt->bindValue(':date', $date, PDO::PARAM_STR);
-            $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+           
         }
 
 

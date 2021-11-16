@@ -263,8 +263,8 @@ class Spadministrationstaff extends Authenticated
         if ($facility) {
             //Send the notification to the sports arena's staff
             $success=SpAdministrationStaffModel::saAdminAddFacility($id, $_POST['fname']);
-if ($success) {
-    NotificationModel::saAdminAddFacilitySuccessNotification($current_user, $_POST['fname']);
+        if ($success) {
+        NotificationModel::saAdminAddFacilitySuccessNotification($current_user, $_POST['fname']);
             $this->redirect('/Spadministrationstaff/managefacility');
 }
         }
@@ -333,9 +333,11 @@ if ($success) {
         $facility_id = $this->route_params['id'];
         $current_user = Auth::getUser();
        
-        SpAdministrationStaffModel::saAdminUpdateFacility($current_user, $facility_id, $_POST['Facility_name']);
+        $success=SpAdministrationStaffModel::saAdminUpdateFacility($current_user, $facility_id, $_POST['Facility_name']);
+        if($success){
         $this->redirect('/spadministrationstaff/managefacility');
     }
+}
     //End of Delete Facility of administration staff
 
     //Start of Edit Arena profile of administration staff
@@ -363,9 +365,8 @@ if ($success) {
         //Assigning the relevant variables
         $combined = $this->route_params['arg'];
 
-        $combined = explode("__", $combined);
-        //   $arena_id = $combined[0];
-        $date = str_replace("_", "-", $combined[1]);
+    
+        $date = str_replace("_", "-", $combined);
 
         //Assigning the sports arenas timeslots
         $timeSlots = SpAdministrationStaffModel::saAdminSearchTimeSlotsDate($saadmin_id, $date);
