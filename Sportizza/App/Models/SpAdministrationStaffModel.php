@@ -864,29 +864,29 @@ class SpAdministrationStaffModel extends \Core\Model
     public static function saAdminDeleteTimeSlots($current_user, $timeslot_id)
     {
         try {
-            
-        $db = static::getDB();
-        $db->beginTransaction();
-        $id=$current_user->user_id;
-        //Updating the facility table from the database
-        $sql = 'UPDATE time_slot 
+
+            $db = static::getDB();
+            $db->beginTransaction();
+            $id = $current_user->user_id;
+            //Updating the facility table from the database
+            $sql = 'UPDATE time_slot 
         SET time_slot.security_status="inactive"
         WHERE time_slot.time_slot_id=:timeslot_id';
 
-        $stmt = $db->prepare($sql);
-        $stmt->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
-        $stmt->execute();
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
+            $stmt->execute();
 
-        $sql = 'UPDATE administration_staff_manages_time_slot
+            $sql = 'UPDATE administration_staff_manages_time_slot
         SET administration_staff_manages_time_slot.administration_staff_user_id=:id
         WHERE administration_staff_manages_time_slot.time_slot_id=:timeslot_id';
 
-        $stmt = $db->prepare($sql);
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-        $stmt->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
-        $stmt->execute();
-        
-        $sql = 'SELECT booking.customer_user_id, booking.booking_id, 
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
+            $stmt->execute();
+
+            $sql = 'SELECT booking.customer_user_id, booking.booking_id, 
         time_slot.manager_user_id,time_slot.manager_sports_arena_id,
         administration_staff_manages_time_slot.administration_staff_user_id
         FROM booking 
@@ -896,66 +896,64 @@ class SpAdministrationStaffModel extends \Core\Model
         WHERE time_slot.time_slot_id=:timeslot_id
         AND booking.booking_date > (SELECT NOW())';
 
-        $data_stmt = $db->prepare($sql);
-        $data_stmt->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
-        $data_stmt->execute();
+            $data_stmt = $db->prepare($sql);
+            $data_stmt->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
+            $data_stmt->execute();
 
-        $data = $data_stmt->fetchAll(PDO::FETCH_BOTH);
-        
-        var_dump($data);
-        if($data!=null){
-        $len = count($data);
-        $manager_user_id=$data[0][2];
-        $manager_arena_id=$data[0][3];
-        $admin_user_id=$data[0][4];
+            $data = $data_stmt->fetchAll(PDO::FETCH_BOTH);
 
-        // var_dump($manager_user_id);
-        // var_dump($manager_arena_id);
-        // var_dump($admin_user_id);
+            var_dump($data);
+            if ($data != null) {
+                $len = count($data);
+                $manager_user_id = $data[0][2];
+                $manager_arena_id = $data[0][3];
+                $admin_user_id = $data[0][4];
+
+                // var_dump($manager_user_id);
+                // var_dump($manager_arena_id);
+                // var_dump($admin_user_id);
 
 
-        for ($x = 0; $x < $len; $x++) {
-            $customer_user_id = $data[$x][0];
-            $booking_id = $data[$x][1];
+                for ($x = 0; $x < $len; $x++) {
+                    $customer_user_id = $data[$x][0];
+                    $booking_id = $data[$x][1];
 
-            //Updating the facility table from the database
-        $sql = 'UPDATE booking_timeslot 
+                    //Updating the facility table from the database
+                    $sql = 'UPDATE booking_timeslot 
         SET booking_timeslot.security_status="inactive"
         WHERE booking_timeslot.booking_id=:booking_id';
 
-        $stmt = $db->prepare($sql);
-        $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
-        $stmt->execute();
+                    $stmt = $db->prepare($sql);
+                    $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+                    $stmt->execute();
 
-        $reason="Removal of timeslot from the sports arena";
-        $sql3 = 'INSERT INTO booking_cancellation (`reason`,manager_sports_arena_id
+                    $reason = "Removal of timeslot from the sports arena";
+                    $sql3 = 'INSERT INTO booking_cancellation (`reason`,manager_sports_arena_id
         ,`administration_staff_sports_arena_id`, manager_user_id,`administration_staff_user_id`, customer_user_id, booking_id)
         VALUES (:reason, :manager_arena_id,:admin_arena_id, :manager_user_id, :admin_user_id, :customer_user_id, :booking_id)';
- 
-         $stmt3 = $db->prepare($sql3);
 
-         $stmt3->bindValue(':reason', $reason, PDO::PARAM_STR);
-         $stmt3->bindValue('manager_arena_id', $manager_arena_id, PDO::PARAM_INT);
-         $stmt3->bindValue(':admin_arena_id', $manager_arena_id, PDO::PARAM_INT);
-         $stmt3->bindValue(':manager_user_id', $manager_user_id, PDO::PARAM_INT);
-         $stmt3->bindValue(':admin_user_id', $admin_user_id, PDO::PARAM_INT);
-         $stmt3->bindValue(':customer_user_id', $customer_user_id, PDO::PARAM_INT);
-         $stmt3->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
-         $stmt3->execute();
+                    $stmt3 = $db->prepare($sql3);
 
-         NotificationModel::customerBookingCancellationDeleteTimeslotNotification($timeslot_id);
+                    $stmt3->bindValue(':reason', $reason, PDO::PARAM_STR);
+                    $stmt3->bindValue('manager_arena_id', $manager_arena_id, PDO::PARAM_INT);
+                    $stmt3->bindValue(':admin_arena_id', $manager_arena_id, PDO::PARAM_INT);
+                    $stmt3->bindValue(':manager_user_id', $manager_user_id, PDO::PARAM_INT);
+                    $stmt3->bindValue(':admin_user_id', $admin_user_id, PDO::PARAM_INT);
+                    $stmt3->bindValue(':customer_user_id', $customer_user_id, PDO::PARAM_INT);
+                    $stmt3->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+                    $stmt3->execute();
 
+                    NotificationModel::customerBookingCancellationDeleteTimeslotNotification($timeslot_id);
+                }
+            }
+
+            NotificationModel::arenaDeleteTimeslotNotification($current_user, $timeslot_id);
+            $db->commit();
+            return true;
+        } catch (PDOException $e) {
+            $db->rollback();
+            throw $e;
         }
-    }
-    
-        NotificationModel::arenaDeleteTimeslotNotification($current_user, $timeslot_id);        
-        $db->commit();
-    
-    } catch (PDOException $e) {
-        $db->rollback();
-        throw $e;
-    }
-
     }
     //End of displaying sports arenas deleting the timeslots for administrationstaff
 
@@ -987,67 +985,138 @@ class SpAdministrationStaffModel extends \Core\Model
 
 
     //Remove a facility from the sports arena
-    public static function saAdminDeleteFacility($id, $facility_id)
+    public static function saAdminDeleteFacility($current_user, $facility_id)
     {
-        $db = static::getDB();
+        try {
 
-        //Updating the facility table from the database
-        $sql = 'UPDATE facility 
-        SET facility.security_status="inactive"
-        WHERE facility.facility_id=:facility_id';
+            $db = static::getDB();
+            $db->beginTransaction();
+            $id = $current_user->user_id;
+            $sql = 'SELECT time_slot.time_slot_id, facility.facility_name 
+            FROM time_slot
+            INNER JOIN facility ON facility.facility_id = time_slot.facility_id
+             WHERE  time_slot.facility_id=:facility_id 
+             AND facility.security_status="active"';
 
-        $stmt = $db->prepare($sql);
-        $stmt->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
 
-        $stmt->execute();
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
 
-        $sql = 'UPDATE administration_staff_manages_facility 
-        SET administration_staff_manages_facility.administration_staff_user_id=:id
-        WHERE administration_staff_manages_facility.facility_id=:facility_id';
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+            $len = count($result);
 
-        $stmt = $db->prepare($sql);
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-        $stmt->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
 
-        return ($stmt->execute());
+            //Updating the facility table from the database
+            $sql = 'UPDATE facility 
+             SET facility.security_status="inactive"
+            WHERE facility.facility_id=:facility_id';
+
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
+
+            $stmt->execute();
+
+            $sql = 'UPDATE administration_staff_manages_facility 
+            SET administration_staff_manages_facility.administration_staff_user_id=:id
+            WHERE administration_staff_manages_facility.facility_id=:facility_id';
+
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
+            $stmt->execute();
+
+            
+            for ($x = 0; $x < $len; $x++) {
+                $timeslot_id = $result[$x][0];
+
+                //Updating the facility table from the database
+                $sql = 'UPDATE time_slot 
+                SET time_slot.security_status="inactive"
+                WHERE time_slot.time_slot_id=:timeslot_id';
+
+                $stmt = $db->prepare($sql);
+                $stmt->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
+                $stmt->execute();
+
+                $sql = 'UPDATE administration_staff_manages_time_slot
+                SET administration_staff_manages_time_slot.administration_staff_user_id=:id
+                WHERE administration_staff_manages_time_slot.time_slot_id=:timeslot_id';
+
+                $stmt = $db->prepare($sql);
+                $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+                $stmt->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
+                $stmt->execute();
+
+                $sql = 'SELECT booking.customer_user_id, booking.booking_id, 
+                time_slot.manager_user_id,time_slot.manager_sports_arena_id,
+                administration_staff_manages_time_slot.administration_staff_user_id
+                FROM booking 
+                INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id
+                INNER JOIN time_slot ON booking_timeslot.timeslot_id=time_slot.time_slot_id
+                INNER JOIN administration_staff_manages_time_slot ON booking_timeslot.timeslot_id=administration_staff_manages_time_slot.time_slot_id
+                WHERE time_slot.time_slot_id=:timeslot_id
+                AND booking.booking_date > (SELECT NOW())';
+
+                $data_stmt = $db->prepare($sql);
+                $data_stmt->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
+                $data_stmt->execute();
+
+                $data = $data_stmt->fetchAll(PDO::FETCH_BOTH);
+
+              
+                if ($data != null) {
+                    $len = count($data);
+                    $manager_user_id = $data[0][2];
+                    $manager_arena_id = $data[0][3];
+                    $admin_user_id = $data[0][4];
+
+
+                    for ($x = 0; $x < $len; $x++) {
+                        $customer_user_id = $data[$x][0];
+                        $booking_id = $data[$x][1];
+
+                        //Updating the facility table from the database
+                        $sql = 'UPDATE booking_timeslot 
+                    SET booking_timeslot.security_status="inactive"
+                    WHERE booking_timeslot.booking_id=:booking_id';
+
+                        $stmt = $db->prepare($sql);
+                        $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+                        $stmt->execute();
+
+                        $reason = "Removal of facility and its timeslots from the sports arena";
+                        $sql3 = 'INSERT INTO booking_cancellation (`reason`,manager_sports_arena_id
+                    ,`administration_staff_sports_arena_id`, manager_user_id,`administration_staff_user_id`, customer_user_id, booking_id)
+                    VALUES (:reason, :manager_arena_id,:admin_arena_id, :manager_user_id, :admin_user_id, :customer_user_id, :booking_id)';
+
+                        $stmt3 = $db->prepare($sql3);
+
+                        $stmt3->bindValue(':reason', $reason, PDO::PARAM_STR);
+                        $stmt3->bindValue('manager_arena_id', $manager_arena_id, PDO::PARAM_INT);
+                        $stmt3->bindValue(':admin_arena_id', $manager_arena_id, PDO::PARAM_INT);
+                        $stmt3->bindValue(':manager_user_id', $manager_user_id, PDO::PARAM_INT);
+                        $stmt3->bindValue(':admin_user_id', $admin_user_id, PDO::PARAM_INT);
+                        $stmt3->bindValue(':customer_user_id', $customer_user_id, PDO::PARAM_INT);
+                        $stmt3->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+                        $stmt3->execute();
+
+                        //Change these notifications
+                        NotificationModel::customerBookingCancellationDeleteFacilityNotification($timeslot_id);
+                    }
+                }
+                //Change these notifications
+                NotificationModel::arenaDeleteFacilityNotification($current_user, $facility_id);
+                $db->commit();
+                return true;
+            }
+        } catch (PDOException $e) {
+            $db->rollback();
+            throw $e;
+        }
     }
 
-    // public static function saAdminAddFacility($fname,$ipsw,$id,$rpsw){
-
-    //     // $sql = 'SELECT *  FROM facility WHERE manager_user_id=:id';
-    //     $password = password_hash($ipsw, PASSWORD_DEFAULT);
-
-    //     if($password!=$rpsw){
-    //         return false;
-    //     }
-
-    //     $db = static::getDB();
-
-    //     $sql1 = 'SELECT `manager_user_id`,`manager_sports_arena_id` FROM `administration_staff` WHERE `user_id`=:id';
-    //     $stmt1 = $db->prepare($sql1);
-    //     $stmt1->bindValue(':id', $id, PDO::PARAM_INT);
-    //     $stmt1->execute();
-
-    //     $result1 = $stmt1->fetch(PDO::FETCH_ASSOC);
-    //     //Accessing the associative array
-    //     $mid = $result1["manager_user_id"];
-    //     $said = $result1["manager_sports_arena_id"];
-
-    //     $sql2 = 'INSERT INTO `facility`(`facility_name`,`sports_arena_id`,`manager_user_id`,`manager_sports_arena_id`)
-    //             VALUES (:fname, :said, :mid, :said)';
-
-    //     $stmt2 = $db->prepare($sql2);
-    //     $stmt2->bindValue(':fname', $stime, PDO::PARAM_STR);
-    //     $stmt2->bindValue(':said', $said, PDO::PARAM_INT);
-    //     $stmt2->bindValue(':mid', $mid, PDO::PARAM_INT);
-
-
-    //     // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-    //     // $result = $stmt->fetchAll();
-    //     // var_dump($result);
-    //     return ($stmt2->execute());
-    // }
-    //Start of adding facility to a sports arena for administartion staff
+    
     public static function saAdminAddFacility($user_id, $facility)
     {
 
@@ -1113,10 +1182,24 @@ class SpAdministrationStaffModel extends \Core\Model
     //End of adding facility to a sports arena for administartion staff
 
     //Start of displaying sports arenas facilities update for administration staff
-    public static function saAdminUpdateFacility($id, $facility_id, $facility_name)
+    public static function saAdminUpdateFacility($current_user, $facility_id, $facility_name)
     {
         //Updating facility name in the database    
         $db = static::getDB();
+$sql='SELECT facility.facility_name FROM facility WHERE facility.facility_id=:facility_id AND facility.security_status="active"';
+$stmt = $db->prepare($sql);
+       
+        $stmt->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+
+$id=$current_user->user_id;
+        // CUSTOMER NOTIFICATION REQUIREMENTS
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Select facility name 
+        $old_facility_name = $data["facility_name"];
+
 
         //Updating the facility table from the database
         $sql = 'UPDATE facility 
@@ -1135,8 +1218,11 @@ class SpAdministrationStaffModel extends \Core\Model
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
+        $stmt->execute();
 
-        return ($stmt->execute());
+        NotificationModel::saAdminUpdatefacilitySuccessNotification($current_user, $old_facility_name,$facility_name, $facility_id);
+    
+        return (true);
     }
 
     public static function findFacilityByName($id, $fname)
