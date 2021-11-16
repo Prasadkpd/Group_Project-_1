@@ -169,7 +169,7 @@
                 <div class="cartContent">
 
                   {% for item in cart %}
-                  <div class="cartItem{{item.booking_id}}">
+                  <div id="cartItem{{item.booking_id}}" class="cartItem">
                     <!-- <div id="itemDelete" class="itemDelete" onclick="hideItem('{{item.booking_id}}')"> -->
                     <div class="itemDelete">
                       <input type="hidden" class="storeValue" value="{{item.booking_id}}">
