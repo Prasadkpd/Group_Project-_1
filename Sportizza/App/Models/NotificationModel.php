@@ -83,7 +83,7 @@ class NotificationModel extends \Core\Model
 
     public static function cancelNotificationGetCustomerIds($booking_id)
     {
-        
+
         $sql = 'SELECT user.user_id, user.first_name, user.last_name FROM user
                 INNER JOIN booking ON user.user_id=booking.customer_user_id
                 WHERE user.type="customer" AND booking.booking_id=:booking_id';
@@ -97,9 +97,27 @@ class NotificationModel extends \Core\Model
         return $result;
     }
 
+    public static function timeslotcancelNotificationGetCustomerIds($timeslot_id)
+    {
+
+        $sql = 'SELECT user.user_id, user.first_name, user.last_name FROM user
+                INNER JOIN booking ON user.user_id=booking.customer_user_id
+                INNER JOIN booking_timeslot ON booking.booking_id =booking_timeslot.booking_id
+                WHERE user.type="customer" AND booking_timeslot.timeslot_id=:timeslot_id 
+                AND booking_timeslot.security_status="active" AND booking.security_status="active"';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public static function cancelNotificationGetManagerIds($booking_id)
     {
-        
+
         $sql = 'SELECT manager.user_id
                 FROM manager
                 INNER JOIN booking ON manager.sports_arena_id= booking.sports_arena_id
@@ -155,6 +173,130 @@ class NotificationModel extends \Core\Model
 
         return $bhid;
     }
+
+
+    public static function AddtimeslotNotificationGetManagerIds($timeslot_id)
+    {
+
+        $sql = 'SELECT manager.user_id
+                FROM manager
+                INNER JOIN time_slot ON manager.sports_arena_id= time_slot.manager_sports_arena_id
+                WHERE time_slot.time_slot_id=:timeslot_id';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $mid = $result["user_id"];
+
+        return $mid;
+    }
+
+    public static function AddtimeslotNotificationGetAdminStaffIds($timeslot_id)
+    {
+        $sql = 'SELECT `administration_staff`.`user_id` 
+                FROM `administration_staff` 
+                INNER JOIN time_slot ON `administration_staff`.`sports_arena_id`=time_slot.`manager_sports_arena_id`
+                WHERE `time_slot`.time_slot_id=:timeslot_id';
+
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $asid = $result["user_id"];
+
+        return $asid;
+    }
+
+    public static function AddtimeslotNotificationGetBookingStaffIds($timeslot_id)
+    {
+        $sql = 'SELECT `booking_handling_staff`.`user_id` 
+                FROM `booking_handling_staff` 
+                INNER JOIN `time_slot` ON `booking_handling_staff`.`sports_arena_id`=`time_slot`.`manager_sports_arena_id`
+                WHERE `time_slot`.time_slot_id=:timeslot_id';
+
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $bhid = $result["user_id"];
+
+        return $bhid;
+    }
+
+
+
+    public static function AddFacilityNotificationGetManagerIds($facility_id)
+    {
+
+        $sql = 'SELECT manager.user_id
+                FROM manager
+                INNER JOIN facility ON manager.sports_arena_id= facility.sports_arena_id
+                WHERE facility.facility_id=:facility_id';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $mid = $result["user_id"];
+
+        return $mid;
+    }
+
+    public static function AddFacilityNotificationGetAdminStaffIds($facility_id)
+    {
+        $sql = 'SELECT `administration_staff`.`user_id` 
+                FROM `administration_staff` 
+                INNER JOIN facility ON `administration_staff`.`sports_arena_id`=facility.`sports_arena_id`
+                WHERE `facility`.facility_id=:facility_id';
+
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $asid = $result["user_id"];
+
+        return $asid;
+    }
+
+    public static function AddFacilityNotificationGetBookingStaffIds($facility_id)
+    {
+        $sql = 'SELECT `booking_handling_staff`.`user_id` 
+                FROM `booking_handling_staff` 
+                INNER JOIN `facility` ON `booking_handling_staff`.`sports_arena_id`=`facility`.`sports_arena_id`
+                WHERE `facility`.facility_id=:facility_id';
+
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $bhid = $result["user_id"];
+
+        return $bhid;
+    }
+
+
+
 
 
     // =====================================
@@ -252,11 +394,11 @@ class NotificationModel extends \Core\Model
 
 
 
-    public static function saAdminAddbookingPaymentSuccessNotification($current_user,$first_name, $last_name, $primary_contact, $payment_id)
+    public static function saAdminAddbookingPaymentSuccessNotification($current_user, $first_name, $last_name, $primary_contact, $payment_id)
     {
         $db = static::getDB();
 
-        $sql ='SELECT invoice.invoice_id FROM invoice
+        $sql = 'SELECT invoice.invoice_id FROM invoice
         WHERE invoice.payment_id =:payment_id AND security_status="active"';
 
         $stmt = $db->prepare($sql);
@@ -269,25 +411,25 @@ class NotificationModel extends \Core\Model
         //Assigning the fetched PDOs to result
         $result = $stmt->fetchAll();
         $len = count($result);
-       
 
-           
+
+
         // var_dump($result);
         for ($x = 0; $x < $len; $x++) {
-            $invoice_id = $result[$x][0];   
-        
-        // Defining arena staff ids
-        $manager_id = self::notificationGetManagerIds($invoice_id);
-        $adminstaff_id = self::notificationGetAdminStaffIds($invoice_id);
-        $bookhandlestaff_id = self::notificationGetBookingStaffIds($invoice_id);
+            $invoice_id = $result[$x][0];
 
-        $subject = array("sports_arena" => "Facility Booking for a visitor");
-        $p_level = "low";
+            // Defining arena staff ids
+            $manager_id = self::notificationGetManagerIds($invoice_id);
+            $adminstaff_id = self::notificationGetAdminStaffIds($invoice_id);
+            $bookhandlestaff_id = self::notificationGetBookingStaffIds($invoice_id);
 
-        // Dividing subject to variables
-        $sparsubj = $subject["sports_arena"];
+            $subject = array("sports_arena" => "Facility Booking for a visitor");
+            $p_level = "low";
 
-        $data_query = "SELECT
+            // Dividing subject to variables
+            $sparsubj = $subject["sports_arena"];
+
+            $data_query = "SELECT
              `booking`.`booking_date`,
              `facility`.`facility_name`,
              `time_slot`.`start_time`,
@@ -299,64 +441,61 @@ class NotificationModel extends \Core\Model
         INNER JOIN `time_slot` ON `time_slot`.`time_slot_id`=`booking_timeslot`.`timeslot_id`
         WHERE `booking`.`invoice_id` = :invoice_id ";
 
-        $data_stmt = $db->prepare($data_query);
-        $data_stmt->bindValue(':invoice_id', $invoice_id, PDO::PARAM_INT);
-        $data_stmt->execute();
+            $data_stmt = $db->prepare($data_query);
+            $data_stmt->bindValue(':invoice_id', $invoice_id, PDO::PARAM_INT);
+            $data_stmt->execute();
 
-        // **********************************
-        // CUSTOMER NOTIFICATION REQUIREMENTS
+            // **********************************
+            // CUSTOMER NOTIFICATION REQUIREMENTS
 
-        $data = $data_stmt->fetch(PDO::FETCH_ASSOC);
+            $data = $data_stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Select facility name 
-        $facname = $data["facility_name"];
+            // Select facility name 
+            $facname = $data["facility_name"];
 
-        // Select sports arena name and map link
+            // Select sports arena name and map link
 
-        // Select time slot duration
-        $stime = $data["start_time"];
-        $etime = $data["end_time"];
+            // Select time slot duration
+            $stime = $data["start_time"];
+            $etime = $data["end_time"];
 
-        // **************************************
-        // SPORTS ARENA NOTIFICATION REQUIREMENTS
+            // **************************************
+            // SPORTS ARENA NOTIFICATION REQUIREMENTS
 
-        // Initialize customer id, first name and last name
-        // $customer_id = $current_user->user_id;
-        $fname = $current_user->first_name;
-        $lname = $current_user->last_name;
+            // Initialize customer id, first name and last name
+            // $customer_id = $current_user->user_id;
+            $fname = $current_user->first_name;
+            $lname = $current_user->last_name;
 
-        // Select booking date
-        $bdate = $data["booking_date"];
-
-
-        // Initialize descriptions
-        
-        $spardesc = "Staff member ". $fname . " " . $lname . " has booked " . $facname . " on " . $bdate . " from " . $stime . " to " . $etime . " for the visitor " .  $first_name . " " ."$last_name" . ".";
-
-        // **************************************
-        // INSERT QUERIES TO USERS
+            // Select booking date
+            $bdate = $data["booking_date"];
 
 
-        $sql5 = 'INSERT INTO `notification`(`user_id`, `subject`, `priority`, `description`) VALUES (:uid,:subject,:p_level,:desc)';
-        $stmt5 = $db->prepare($sql5);
+            // Initialize descriptions
 
-        // for customer
-        
+            $spardesc = "Staff member " . $fname . " " . $lname . " has booked " . $facname . " on " . $bdate . " from " . $stime . " to " . $etime . " for the visitor " .  $first_name . " " . "$last_name" . ".";
 
-        // for manager
-        $stmt5->execute(['uid' => $manager_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
+            // **************************************
+            // INSERT QUERIES TO USERS
 
 
-        // for administartion staff
-        $stmt5->execute(['uid' => $adminstaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
+            $sql5 = 'INSERT INTO `notification`(`user_id`, `subject`, `priority`, `description`) VALUES (:uid,:subject,:p_level,:desc)';
+            $stmt5 = $db->prepare($sql5);
+
+            // for customer
 
 
-        // for booking handling staff
-        $stmt5->execute(['uid' => $bookhandlestaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
+            // for manager
+            $stmt5->execute(['uid' => $manager_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
 
+
+            // for administartion staff
+            $stmt5->execute(['uid' => $adminstaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
+
+
+            // for booking handling staff
+            $stmt5->execute(['uid' => $bookhandlestaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
         }
-
-
     }
 
 
@@ -420,7 +559,7 @@ class NotificationModel extends \Core\Model
         $customer_id = $current_user->user_id;
         $fname = $current_user->first_name;
         $lname = $current_user->last_name;
-        
+
 
         // Select booking date
         $bdate = $data["booking_date"];
@@ -432,32 +571,31 @@ class NotificationModel extends \Core\Model
 
         if ($paymethod == "card") {
             $custdesc .= "Please click this link for request refund";
-            $link = "http://localhost/customer/refund/".$booking_id;
-        }
-        else{
+            $link = "http://localhost/customer/refund/" . $booking_id;
+        } else {
             $link = "";
         }
 
         // **************************************
         // INSERT QUERIES TO USERS
-        
-   
+
+
         $sql5 = 'INSERT INTO notification(user_id,subject, priority, description,link) VALUES (:uid,:subject,:p_level,:desc,:link)';
         $stmt5 = $db->prepare($sql5);
 
         // for customer
-        $stmt5->execute([':uid'=> $customer_id, ':subject'=> $custsubj, ':p_level'=> $p_level, ':desc'=> $custdesc,':link'=>$link]);
+        $stmt5->execute([':uid' => $customer_id, ':subject' => $custsubj, ':p_level' => $p_level, ':desc' => $custdesc, ':link' => $link]);
 
         // for manager
-        $stmt5->execute(['uid' => $manager_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc,':link'=>""]);
+        $stmt5->execute(['uid' => $manager_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc, ':link' => ""]);
 
 
         // for administartion staff
-        $stmt5->execute(['uid' => $adminstaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc,':link'=>""]);
+        $stmt5->execute(['uid' => $adminstaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc, ':link' => ""]);
 
 
         // for booking handling staff
-        return ($stmt5->execute(['uid' => $bookhandlestaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc,':link'=>""]));
+        return ($stmt5->execute(['uid' => $bookhandlestaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc, ':link' => ""]));
     }
     // END OF CANCEL BOOKING SEND NOTIFICATIONS
     // =====================================
@@ -654,4 +792,433 @@ class NotificationModel extends \Core\Model
             throw $e;
         }
     }
+
+    public static function saAdminAddfacilitySuccessNotification($current_user, $facility_id)
+    {
+
+        $db = static::getDB();
+
+        $manager_id = self::AddfacilityNotificationGetManagerIds($facility_id);
+        $adminstaff_id = self::AddfacilityNotificationGetAdminStaffIds($facility_id);
+        $bookhandlestaff_id = self::AddfacilityNotificationGetBookingStaffIds($facility_id);
+
+        $sql = 'SELECT facility.facility_name 
+        FROM facility 
+        WHERE facility.facility_id = :facility_id AND facility.security_status="active"';
+
+        $stmt = $db->prepare($sql);
+
+        //Binding the customer id and Converting retrieved data from database into PDOs
+        $stmt->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
+        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        // CUSTOMER NOTIFICATION REQUIREMENTS
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Select facility name 
+      
+        $fname = $current_user->first_name;
+        $lname = $current_user->last_name;
+        $facname = $data["facility_name"];
+
+        // Select reason for cancellation
+        $p_level = "high";
+
+        $sparsubj = "Facility added by sports arena";
+        $spardesc = "Staff member " . $fname . " " . $lname . " has added a facility named " . $facname . " to the sports arena.";
+
+        $sql = 'INSERT INTO `notification`(`user_id`, `subject`, `priority`, `description`) VALUES (:uid,:subject,:p_level,:desc)';
+        $stmt = $db->prepare($sql);
+
+        // for manager
+        $stmt->execute(['uid' => $manager_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
+
+        // for administartion staff
+        $stmt->execute(['uid' => $adminstaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
+
+        // for booking handling staff
+        return ($stmt->execute(['uid' => $bookhandlestaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]));
+    }
+
+
+    public static function saAdminUpdatefacilitySuccessNotification($current_user, $old_facility_name,$facility_name, $facility_id)
+    {
+
+        $db = static::getDB();
+
+        $manager_id = self::AddfacilityNotificationGetManagerIds($facility_id);
+        $adminstaff_id = self::AddfacilityNotificationGetAdminStaffIds($facility_id);
+        $bookhandlestaff_id = self::AddfacilityNotificationGetBookingStaffIds($facility_id);
+
+        
+        $fname = $current_user->first_name;
+        $lname = $current_user->last_name;
+      
+
+        // Select reason for cancellation
+        $p_level = "high";
+
+        $sparsubj = "Facility updated by sports arena";
+        $spardesc = "Staff member " . $fname . " " . $lname . " has updated facility named " . $old_facility_name . " to " . $facility_name . ".";
+
+        $sql = 'INSERT INTO `notification`(`user_id`, `subject`, `priority`, `description`) VALUES (:uid,:subject,:p_level,:desc)';
+        $stmt = $db->prepare($sql);
+
+        // for manager
+        $stmt->execute(['uid' => $manager_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
+
+        // for administartion staff
+        $stmt->execute(['uid' => $adminstaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
+
+        // for booking handling staff
+        return ($stmt->execute(['uid' => $bookhandlestaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]));
+    }
+
+
+    public static function saAdminAddtimeslotSuccessNotification($current_user, $time_slot_id)
+    {
+
+        $db = static::getDB();
+
+        $manager_id = self::AddtimeslotNotificationGetManagerIds($time_slot_id);
+        $adminstaff_id = self::AddtimeslotNotificationGetAdminStaffIds($time_slot_id);
+        $bookhandlestaff_id = self::AddtimeslotNotificationGetBookingStaffIds($time_slot_id);
+
+        $sql = 'SELECT time_slot.start_time, time_slot.end_time, time_slot.price, facility.facility_name 
+        FROM time_slot
+        INNER JOIN facility ON time_slot.facility_id = facility.facility_id
+        WHERE time_slot.time_slot_id = :time_slot_id AND time_slot.security_status="active"';
+
+        $stmt = $db->prepare($sql);
+
+        //Binding the customer id and Converting retrieved data from database into PDOs
+        $stmt->bindValue(':time_slot_id', $time_slot_id, PDO::PARAM_INT);
+        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        // CUSTOMER NOTIFICATION REQUIREMENTS
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Select facility name 
+        $facname = $data["facility_name"];
+
+        // Select time slot duration
+        $stime = $data["start_time"];
+        $etime = $data["end_time"];
+
+        $price = $data["price"];
+        $fname = $current_user->first_name;
+        $lname = $current_user->last_name;
+
+
+        // Select reason for cancellation
+        $p_level = "high";
+
+        $sparsubj = "Timeslot added by sports arena";
+        $spardesc = "Staff member " . $fname . " " . $lname . " has added a timeslot from " . $stime . " to " . $etime . " on facility " . $facname . " with price of LKR " . $price . ".";
+
+        $sql = 'INSERT INTO `notification`(`user_id`, `subject`, `priority`, `description`) VALUES (:uid,:subject,:p_level,:desc)';
+        $stmt = $db->prepare($sql);
+
+        // for manager
+        $stmt->execute(['uid' => $manager_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
+
+        // for administartion staff
+        $stmt->execute(['uid' => $adminstaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
+
+        // for booking handling staff
+        return ($stmt->execute(['uid' => $bookhandlestaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]));
+    }
+
+
+    //Start of administration staff booking cancellation notification
+    public static function arenaDeleteTimeslotNotification($current_user, $timeslot_id)
+    {
+        try {
+            $db = static::getDB();
+            $manager_id = self::AddtimeslotNotificationGetManagerIds($timeslot_id);
+            $adminstaff_id = self::AddtimeslotNotificationGetAdminStaffIds($timeslot_id);
+            $bookhandlestaff_id = self::AddtimeslotNotificationGetBookingStaffIds($timeslot_id);
+
+            $sparsubj = "Removing timeslot and Cancel bookings";
+
+            $db->beginTransaction();
+            $data_query = "SELECT
+             `facility`.`facility_name`,
+             `time_slot`.`start_time`,
+             `time_slot`.`end_time`
+        FROM `time_slot` 
+        INNER JOIN `facility` ON `time_slot`.facility_id = facility.facility_id
+        WHERE `time_slot`.`time_slot_id` = :timeslot_id ";
+
+            $data_stmt = $db->prepare($data_query);
+            $data_stmt->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
+            $data_stmt->execute();
+
+            // CUSTOMER NOTIFICATION REQUIREMENTS
+            $data = $data_stmt->fetch(PDO::FETCH_ASSOC);
+
+            // Select facility name 
+            $facname = $data["facility_name"];
+
+            // Select time slot duration
+            $stime = $data["start_time"];
+            $etime = $data["end_time"];
+
+
+            // Select reason for cancellation
+            $p_level = "high";
+
+            // **************************************
+            // SPORTS ARENA NOTIFICATION REQUIREMENTS
+
+            // Initialize first name and last name of the staff member
+            $fname = $current_user->first_name;
+            $lname = $current_user->last_name;
+
+
+
+            $spardesc = "Staff member " . $fname . " " . $lname . " has removed the timeslot starting from " . $stime . " to " . $etime . " on the facility " . $facname . ". All the future bookings made on this timeslot got cancelled and this timeslot is no longer visible to the customers.";
+
+            $sql = 'INSERT INTO `notification`(`user_id`, `subject`, `priority`, `description`) VALUES (:uid,:subject,:p_level,:desc)';
+            $stmt = $db->prepare($sql);
+
+
+            // for manager
+            $stmt->execute(['uid' => $manager_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
+
+            // for administartion staff
+            $stmt->execute(['uid' => $adminstaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
+
+            // for booking handling staff
+            $stmt->execute(['uid' => $bookhandlestaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
+
+            // Make the changes to the database permanent
+            $db->commit();
+        } catch (PDOException $e) {
+            $db->rollback();
+            throw $e;
+        }
+    }
+
+
+
+
+
+
+    //Start of administration staff booking cancellation notification
+    public static function customerBookingCancellationDeleteTimeslotNotification($timeslot_id)
+    {
+        try {
+            $db = static::getDB();
+            $customer = self::timeslotcancelNotificationGetCustomerIds($timeslot_id);
+            $customer_id = $customer['user_id'];
+
+            $custsubj = "Booking cancellation due to timeslot unavailability";
+
+            $db->beginTransaction();
+            $data_query = "SELECT
+             `booking`.`booking_date`,
+             `facility`.`facility_name`,
+             `sports_arena_profile`.`sa_name`,
+             `time_slot`.`start_time`,
+             `time_slot`.`end_time`,
+             booking.booking_id,
+             `booking`.`payment_method`,
+             `booking`.`payment_status`
+        FROM `booking` 
+        INNER JOIN `facility` ON `facility`.facility_id = booking.facility_id
+        INNER JOIN `sports_arena_profile` ON `sports_arena_profile`.sports_arena_id = `booking`.sports_arena_id
+        INNER JOIN `booking_timeslot` ON `booking_timeslot`.`booking_id`= `booking`.`booking_id`
+        INNER JOIN `time_slot` ON `time_slot`.`time_slot_id`=`booking_timeslot`.`timeslot_id`
+        WHERE `booking_timeslot`.`timeslot_id` = :timeslot_id ";
+
+            $data_stmt = $db->prepare($data_query);
+            $data_stmt->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
+            $data_stmt->execute();
+
+            // CUSTOMER NOTIFICATION REQUIREMENTS
+            $data = $data_stmt->fetch(PDO::FETCH_ASSOC);
+
+            // Select facility name 
+            $facname = $data["facility_name"];
+            $booking_id = $data["booking_id"];
+            // Select sports arena name
+            $saname = $data["sa_name"];
+
+            // Select time slot duration
+            $stime = $data["start_time"];
+            $etime = $data["end_time"];
+
+            $payment_method = $data["payment_method"];
+            $payment_status = $data["payment_status"];
+            // Select reason for cancellation
+            $p_level = "high";
+
+
+            // Select booking date
+            $bdate = $data["booking_date"];
+
+            if ($payment_method == 'cash' && $payment_status == 'unpaid') {
+                // Initialize descriptions
+                $custdesc = " " . $saname . " had cancelled your booking " . $booking_id . " made for " . $facname . " on " . $bdate . " scheduled from " . $stime . " to " . $etime . " as this timeslot is no longer available.";
+            } else {
+                // Initialize descriptions
+                $custdesc = " " . $saname . " had cancelled your booking " . $booking_id . " made for " . $facname . " on " . $bdate . " scheduled from " . $stime . " to " . $etime . " as this timeslot is no longer available. Please apply for refund form to collect your refund. Note that we'll be making a bank transfer.";
+            }
+
+
+            $sql = 'INSERT INTO `notification`(`user_id`, `subject`, `priority`, `description`) VALUES (:uid,:subject,:p_level,:desc)';
+            $stmt = $db->prepare($sql);
+
+
+            $stmt->execute(['uid' => $customer_id, 'subject' => $custsubj, 'p_level' => $p_level, 'desc' => $custdesc]);
+
+            // Make the changes to the database permanent
+            $db->commit();
+        } catch (PDOException $e) {
+            $db->rollback();
+            throw $e;
+        }
+    }
+
+     //Start of administration staff booking cancellation notification
+     public static function arenaDeleteFacilityNotification($current_user, $facility_id)
+     {
+         try {
+             $db = static::getDB();
+             $db->beginTransaction();
+             $manager_id = self::AddFacilityNotificationGetManagerIds($facility_id);
+             $adminstaff_id = self::AddFacilityNotificationGetAdminStaffIds($facility_id);
+             $bookhandlestaff_id = self::AddFacilityNotificationGetBookingStaffIds($facility_id);
+ 
+             $sparsubj = "Removing facility and Cancel bookings";
+ 
+             
+             $data_query = "SELECT
+              `facility`.`facility_name`
+                FROM `facility` 
+                WHERE `facility`.`facility_id` = :facility_id ";
+ 
+             $data_stmt = $db->prepare($data_query);
+             $data_stmt->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
+             $data_stmt->execute();
+ 
+             // CUSTOMER NOTIFICATION REQUIREMENTS
+             $data = $data_stmt->fetch(PDO::FETCH_ASSOC);
+ 
+             // Select facility name 
+             $facname = $data["facility_name"];
+ 
+             // Select reason for cancellation
+             $p_level = "high";
+ 
+ 
+             // Initialize first name and last name of the staff member
+             $fname = $current_user->first_name;
+             $lname = $current_user->last_name;
+ 
+ 
+ 
+             $spardesc = "Staff member " . $fname . " " . $lname . " has removed the facility " . $facname . " from the sports arena.  All the future bookings made on this facility got cancelled. This facility and its timeslots are no longer visible to the customers.";
+ 
+             $sql = 'INSERT INTO `notification`(`user_id`, `subject`, `priority`, `description`) VALUES (:uid,:subject,:p_level,:desc)';
+             $stmt = $db->prepare($sql);
+ 
+ 
+             // for manager
+             $stmt->execute(['uid' => $manager_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
+ 
+             // for administartion staff
+             $stmt->execute(['uid' => $adminstaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
+ 
+             // for booking handling staff
+             $stmt->execute(['uid' => $bookhandlestaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
+ 
+             // Make the changes to the database permanent
+             $db->commit();
+         } catch (PDOException $e) {
+             $db->rollback();
+             throw $e;
+         }
+     }
+
+     //Start of administration staff booking cancellation notification
+     public static function customerBookingCancellationDeleteFacilityNotification($timeslot_id)
+     {
+         try {
+             $db = static::getDB();
+
+             $customer = self::timeslotcancelNotificationGetCustomerIds($timeslot_id);
+             $customer_id = $customer['user_id'];
+ 
+             $custsubj = "Booking cancellation due to facility unavailability";
+ 
+             $db->beginTransaction();
+             $data_query = "SELECT
+              `booking`.`booking_date`,
+              `facility`.`facility_name`,
+              `sports_arena_profile`.`sa_name`,
+              `time_slot`.`start_time`,
+              `time_slot`.`end_time`,
+              booking.booking_id,
+              `booking`.`payment_method`,
+              `booking`.`payment_status`
+         FROM `booking` 
+         INNER JOIN `facility` ON `facility`.facility_id = booking.facility_id
+         INNER JOIN `sports_arena_profile` ON `sports_arena_profile`.sports_arena_id = `booking`.sports_arena_id
+         INNER JOIN `booking_timeslot` ON `booking_timeslot`.`booking_id`= `booking`.`booking_id`
+         INNER JOIN `time_slot` ON `time_slot`.`time_slot_id`=`booking_timeslot`.`timeslot_id`
+         WHERE `booking_timeslot`.`timeslot_id` = :timeslot_id ";
+ 
+             $data_stmt = $db->prepare($data_query);
+             $data_stmt->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
+             $data_stmt->execute();
+ 
+             // CUSTOMER NOTIFICATION REQUIREMENTS
+             $data = $data_stmt->fetch(PDO::FETCH_ASSOC);
+ 
+             // Select facility name 
+             $facname = $data["facility_name"];
+             $booking_id = $data["booking_id"];
+             // Select sports arena name
+             $saname = $data["sa_name"];
+ 
+             // Select time slot duration
+             $stime = $data["start_time"];
+             $etime = $data["end_time"];
+ 
+             $payment_method = $data["payment_method"];
+             $payment_status = $data["payment_status"];
+             // Select reason for cancellation
+             $p_level = "high";
+ 
+ 
+             // Select booking date
+             $bdate = $data["booking_date"];
+ 
+             if ($payment_method == 'cash' && $payment_status == 'unpaid') {
+                 // Initialize descriptions
+                 $custdesc = " " . $saname . " had cancelled your booking " . $booking_id . " made for " . $facname . " on " . $bdate . " scheduled from " . $stime . " to " . $etime . " as this facility is no longer available.";
+             } else {
+                 // Initialize descriptions
+                 $custdesc = " " . $saname . " had cancelled your booking " . $booking_id . " made for " . $facname . " on " . $bdate . " scheduled from " . $stime . " to " . $etime . " as this facility is no longer available. Please apply for refund form to collect your refund. Note that we'll be making a bank transfer.";
+             }
+ 
+ 
+             $sql = 'INSERT INTO `notification`(`user_id`, `subject`, `priority`, `description`) VALUES (:uid,:subject,:p_level,:desc)';
+             $stmt = $db->prepare($sql);
+ 
+ 
+             $stmt->execute(['uid' => $customer_id, 'subject' => $custsubj, 'p_level' => $p_level, 'desc' => $custdesc]);
+ 
+             // Make the changes to the database permanent
+             $db->commit();
+         } catch (PDOException $e) {
+             $db->rollback();
+             throw $e;
+         }
+     }
+ 
 }
