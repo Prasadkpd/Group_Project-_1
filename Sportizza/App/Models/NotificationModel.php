@@ -28,7 +28,8 @@ class NotificationModel extends \Core\Model
         $sql = 'SELECT `manager`.`user_id` 
                 FROM `manager` 
                 INNER JOIN `booking` ON `manager`.`sports_arena_id`= `booking`.`sports_arena_id`
-                WHERE `booking`.`invoice_id`=:invoice_id';
+                INNER JOIN user ON user.user_id = manager.user_id
+                WHERE `booking`.`invoice_id`=:invoice_id AND user.security_status="active"';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -46,7 +47,8 @@ class NotificationModel extends \Core\Model
         $sql = 'SELECT `administration_staff`.`user_id` 
                 FROM `administration_staff` 
                 INNER JOIN `booking` ON `administration_staff`.`sports_arena_id`=`booking`.`sports_arena_id`
-                WHERE `booking`.`invoice_id`=:invoice_id';
+                INNER JOIN user ON user.user_id = administration_staff.user_id
+                WHERE `booking`.`invoice_id`=:invoice_id AND user.security_status="active"';
 
 
         $db = static::getDB();
@@ -66,7 +68,8 @@ class NotificationModel extends \Core\Model
         $sql = 'SELECT `booking_handling_staff`.`user_id` 
                 FROM `booking_handling_staff` 
                 INNER JOIN `booking` ON `booking_handling_staff`.`sports_arena_id`=`booking`.`sports_arena_id`
-                WHERE `booking`.`invoice_id`=:invoice_id';
+                INNER JOIN user ON user.user_id = booking_handling_staff.user_id
+                WHERE `booking`.`invoice_id`=:invoice_id AND user.security_status="active"';
 
 
         $db = static::getDB();
@@ -99,12 +102,11 @@ class NotificationModel extends \Core\Model
 
     public static function timeslotcancelNotificationGetCustomerIds($timeslot_id)
     {
-
         $sql = 'SELECT user.user_id, user.first_name, user.last_name FROM user
                 INNER JOIN booking ON user.user_id=booking.customer_user_id
                 INNER JOIN booking_timeslot ON booking.booking_id =booking_timeslot.booking_id
                 WHERE user.type="customer" AND booking_timeslot.timeslot_id=:timeslot_id 
-                AND booking_timeslot.security_status="active" AND booking.security_status="active"';
+                AND booking_timeslot.security_status="inactive" AND booking.security_status="inactive"';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -112,6 +114,7 @@ class NotificationModel extends \Core\Model
         $stmt->execute();
 
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        var_dump($result);
         return $result;
     }
 
@@ -121,7 +124,8 @@ class NotificationModel extends \Core\Model
         $sql = 'SELECT manager.user_id
                 FROM manager
                 INNER JOIN booking ON manager.sports_arena_id= booking.sports_arena_id
-                WHERE booking.booking_id=:booking_id';
+                INNER JOIN user ON user.user_id = manager.user_id
+                WHERE booking.booking_id=:booking_id AND user.security_status="active"';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -139,7 +143,8 @@ class NotificationModel extends \Core\Model
         $sql = 'SELECT `administration_staff`.`user_id` 
                 FROM `administration_staff` 
                 INNER JOIN `booking` ON `administration_staff`.`sports_arena_id`=`booking`.`sports_arena_id`
-                WHERE `booking`.`booking_id`=:booking_id';
+                INNER JOIN user ON user.user_id = administration_staff.user_id
+                WHERE `booking`.`booking_id`=:booking_id AND user.security_status="active"';
 
 
         $db = static::getDB();
@@ -159,7 +164,8 @@ class NotificationModel extends \Core\Model
         $sql = 'SELECT `booking_handling_staff`.`user_id` 
                 FROM `booking_handling_staff` 
                 INNER JOIN `booking` ON `booking_handling_staff`.`sports_arena_id`=`booking`.`sports_arena_id`
-                WHERE `booking`.`booking_id`=:booking_id';
+                INNER JOIN user ON user.user_id = booking_handling_staff.user_id
+                WHERE `booking`.`booking_id`=:booking_id AND user.security_status="active"';
 
 
         $db = static::getDB();
@@ -181,7 +187,8 @@ class NotificationModel extends \Core\Model
         $sql = 'SELECT manager.user_id
                 FROM manager
                 INNER JOIN time_slot ON manager.sports_arena_id= time_slot.manager_sports_arena_id
-                WHERE time_slot.time_slot_id=:timeslot_id';
+                INNER JOIN user ON user.user_id = manager.user_id
+                WHERE time_slot.time_slot_id=:timeslot_id AND user.security_status="active"';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -199,7 +206,8 @@ class NotificationModel extends \Core\Model
         $sql = 'SELECT `administration_staff`.`user_id` 
                 FROM `administration_staff` 
                 INNER JOIN time_slot ON `administration_staff`.`sports_arena_id`=time_slot.`manager_sports_arena_id`
-                WHERE `time_slot`.time_slot_id=:timeslot_id';
+                INNER JOIN user ON user.user_id = administration_staff.user_id
+                WHERE `time_slot`.time_slot_id=:timeslot_id AND user.security_status="active"';
 
 
         $db = static::getDB();
@@ -219,7 +227,8 @@ class NotificationModel extends \Core\Model
         $sql = 'SELECT `booking_handling_staff`.`user_id` 
                 FROM `booking_handling_staff` 
                 INNER JOIN `time_slot` ON `booking_handling_staff`.`sports_arena_id`=`time_slot`.`manager_sports_arena_id`
-                WHERE `time_slot`.time_slot_id=:timeslot_id';
+                INNER JOIN user ON user.user_id = booking_handling_staff.user_id
+                WHERE `time_slot`.time_slot_id=:timeslot_id AND user.security_status="active"';
 
 
         $db = static::getDB();
@@ -242,7 +251,8 @@ class NotificationModel extends \Core\Model
         $sql = 'SELECT manager.user_id
                 FROM manager
                 INNER JOIN facility ON manager.sports_arena_id= facility.sports_arena_id
-                WHERE facility.facility_id=:facility_id';
+                INNER JOIN user ON user.user_id = manager.user_id
+                WHERE facility.facility_id=:facility_id AND user.security_status="active"';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -250,10 +260,10 @@ class NotificationModel extends \Core\Model
         $stmt->execute();
 
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        // $mid = $result["user_id"];
-        var_dump($result);
-        // return $mid; 
-        return 100000003;
+        $mid = $result["user_id"];
+  
+        return $mid; 
+       
     }
 
     public static function AddFacilityNotificationGetAdminStaffIds($facility_id)
@@ -261,7 +271,8 @@ class NotificationModel extends \Core\Model
         $sql = 'SELECT `administration_staff`.`user_id` 
                 FROM `administration_staff` 
                 INNER JOIN facility ON `administration_staff`.`sports_arena_id`=facility.`sports_arena_id`
-                WHERE `facility`.facility_id=:facility_id';
+                INNER JOIN user ON user.user_id = administration_staff.user_id
+                WHERE `facility`.facility_id=:facility_id AND user.security_status="active"';
 
 
         $db = static::getDB();
@@ -271,12 +282,9 @@ class NotificationModel extends \Core\Model
         $stmt->execute();
 
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        // $asid = $result["user_id"];
+        $asid = $result["user_id"];
 
-        var_dump($result);
-        // return $mid; 
-        return 100000003;
-        // return $asid;
+    return $asid;
     }
 
     public static function AddFacilityNotificationGetBookingStaffIds($facility_id)
@@ -284,7 +292,8 @@ class NotificationModel extends \Core\Model
         $sql = 'SELECT `booking_handling_staff`.`user_id` 
                 FROM `booking_handling_staff` 
                 INNER JOIN `facility` ON `booking_handling_staff`.`sports_arena_id`=`facility`.`sports_arena_id`
-                WHERE `facility`.facility_id=:facility_id';
+                INNER JOIN user ON user.user_id = booking_handling_staff.user_id
+                WHERE `facility`.facility_id=:facility_id AND user.security_status="active"';
 
 
         $db = static::getDB();
@@ -398,7 +407,7 @@ class NotificationModel extends \Core\Model
 
 
 
-    public static function saAdminAddbookingPaymentSuccessNotification($current_user, $first_name, $last_name, $primary_contact, $payment_id)
+    public static function saAdminAddbookingPaymentSuccessNotification($current_user, $first_name, $last_name, $payment_id)
     {
         $db = static::getDB();
 
@@ -500,6 +509,7 @@ class NotificationModel extends \Core\Model
             // for booking handling staff
             $stmt5->execute(['uid' => $bookhandlestaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
         }
+        return true;
     }
 
 
@@ -704,10 +714,11 @@ class NotificationModel extends \Core\Model
     {
         try {
             $db = static::getDB();
+            $db->beginTransaction();
             
             $customer = self::cancelNotificationGetCustomerIds($booking_id);
             $customer_id = $customer['user_id'];
-            var_dump($customer);
+            
             $manager_id = self::cancelNotificationGetManagerIds($booking_id);
             $adminstaff_id = self::cancelNotificationGetAdminStaffIds($booking_id);
             $bookhandlestaff_id = self::cancelNotificationGetBookingStaffIds($booking_id);
@@ -716,7 +727,7 @@ class NotificationModel extends \Core\Model
             $sparsubj = "Booking cancellation by sports arena";
 
           
-            $db->beginTransaction();
+            
             $data_query = "SELECT
              `booking`.`booking_date`,
              `facility`.`facility_name`,
@@ -725,17 +736,20 @@ class NotificationModel extends \Core\Model
              `time_slot`.`end_time`,
              `booking_cancellation`.`reason`,
              `booking`.`payment_method`,
-             `booking`.`payment_status`
+             `booking`.`payment_status`,
+             user.account_status,user.primary_contact
         FROM `booking` 
+        INNER JOIN user ON user.user_id=booking.customer_user_id
         INNER JOIN `facility` ON `facility`.facility_id = booking.facility_id
         INNER JOIN `sports_arena_profile` ON `sports_arena_profile`.sports_arena_id = `booking`.sports_arena_id
         INNER JOIN `booking_timeslot` ON `booking_timeslot`.`booking_id`= `booking`.`booking_id`
         INNER JOIN `time_slot` ON `time_slot`.`time_slot_id`=`booking_timeslot`.`timeslot_id`
         INNER JOIN `booking_cancellation` ON `booking_cancellation`.`booking_id`= `booking`.`booking_id`
-        WHERE `booking`.`booking_id` = :booking_id ";
+        WHERE `booking`.`booking_id` = :booking_id AND booking.customer_user_id=:customer_id";
 
             $data_stmt = $db->prepare($data_query);
             $data_stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+            $data_stmt->bindValue(':customer_id', $customer_id, PDO::PARAM_INT);
             $data_stmt->execute();
 
             // CUSTOMER NOTIFICATION REQUIREMENTS
@@ -756,6 +770,9 @@ class NotificationModel extends \Core\Model
             // Select reason for cancellation
             $p_level = "high";
 
+            $visitor=$data["account_status"];
+            $primary_contact=$data["primary_contact"];
+
             // **************************************
             // SPORTS ARENA NOTIFICATION REQUIREMENTS
 
@@ -773,7 +790,7 @@ class NotificationModel extends \Core\Model
                 $link = "";
             } else {
                 // Initialize descriptions
-                $custdesc = " " . $saname . " had cancel your booking your booking " . $booking_id . "made for" . $facname . " on " . $bdate . "scheduled from " . $stime . " to " . $etime . " . Reason for cancellation: " . $reason . " . Please apply for refund form to collect your refund. Note that we'll be making a bank transfer";
+                $custdesc = " " . $saname . " had cancel your booking " . $booking_id . "made for" . $facname . " on " . $bdate . "scheduled from " . $stime . " to " . $etime . " . Reason for cancellation: " . $reason . " . Please apply for refund form to collect your refund. Note that we'll be making a bank transfer";
 
                 $link = "http://localhost/customer/refund/" . $booking_id;
             }
@@ -797,9 +814,42 @@ class NotificationModel extends \Core\Model
 
             // for booking handling staff
             $stmt->execute(['uid' => $bookhandlestaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc, 'link' => $link]);
-
-            // Make the changes to the database permanent
             $db->commit();
+        
+            if($visitor=="visitor"){
+
+            //our mobile number
+            $user = "94765282976";
+            //our account password
+            $password = 4772;
+            //Random OTP code
+            $otp = mt_rand(100000, 999999);
+
+            // stores the otp code and mobile number into session
+            $_SESSION['otp'] = $otp;
+            $_SESSION['mobile_number'] = $primary_contact;
+
+            //Message to be sent
+            $text = urlencode("" . $saname ." had cancel your booking " . $booking_id . " made for " . $facname . " on " . $bdate . " scheduled from " . $stime . " to " . $etime . " . Reason for cancellation: " . $reason . " . Please collect refund form the sports arena");
+            // Replacing the initial 0 with 94
+            $to = substr_replace($primary_contact, '94', 0, 0);
+            //Base URL
+            $baseurl = "http://www.textit.biz/sendmsg";
+            // regex to create the url
+            $url = "$baseurl/?id=$user&pw=$password&to=$to&text=$text";
+
+            $ret = file($url);
+            $res = explode(":", $ret[0]);
+
+            if (trim($res[0]) == "OK") {
+                echo "Message Sent - ID : " . $res[1];
+            } else {
+                echo "Sent Failed - Error : " . $res[1];
+            }
+            }
+            // Make the changes to the database permanent
+           
+            return true;
         
         } catch (PDOException $e) {
             $db->rollback();
@@ -807,34 +857,24 @@ class NotificationModel extends \Core\Model
         }
     }
 
-    public static function saAdminAddfacilitySuccessNotification($current_user, $facility_id)
+    public static function saAdminAddfacilitySuccessNotification($current_user, $facility_name, $facility_id)
     {
-
-        $db = static::getDB();
-
+        try {
+            $db = static::getDB();
+            $db->beginTransaction();
+            
         $manager_id = self::AddfacilityNotificationGetManagerIds($facility_id);
         $adminstaff_id = self::AddfacilityNotificationGetAdminStaffIds($facility_id);
         $bookhandlestaff_id = self::AddfacilityNotificationGetBookingStaffIds($facility_id);
 
-        $sql = 'SELECT facility.facility_name 
-        FROM facility 
-        WHERE facility.facility_id = :facility_id AND facility.security_status="active"';
+        
 
-        $stmt = $db->prepare($sql);
-
-        //Binding the customer id and Converting retrieved data from database into PDOs
-        $stmt->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
-        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-        $stmt->execute();
-
-        // CUSTOMER NOTIFICATION REQUIREMENTS
-        $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
         // Select facility name 
       
         $fname = $current_user->first_name;
         $lname = $current_user->last_name;
-        $facname = $data["facility_name"];
+        $facname = $facility_name;
 
         // Select reason for cancellation
         $p_level = "high";
@@ -852,7 +892,14 @@ class NotificationModel extends \Core\Model
         $stmt->execute(['uid' => $adminstaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
 
         // for booking handling staff
-        return ($stmt->execute(['uid' => $bookhandlestaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]));
+        $stmt->execute(['uid' => $bookhandlestaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
+        $db->commit();
+        return true;
+        
+    } catch (PDOException $e) {
+        $db->rollback();
+        throw $e;
+    }
     }
 
 
@@ -1027,8 +1074,10 @@ class NotificationModel extends \Core\Model
         try {
             $db = static::getDB();
             $customer = self::timeslotcancelNotificationGetCustomerIds($timeslot_id);
+            
+            var_dump($customer);
             $customer_id = $customer['user_id'];
-
+            
             $custsubj = "Booking cancellation due to timeslot unavailability";
 
             $db->beginTransaction();
@@ -1040,8 +1089,11 @@ class NotificationModel extends \Core\Model
              `time_slot`.`end_time`,
              booking.booking_id,
              `booking`.`payment_method`,
-             `booking`.`payment_status`
+             `booking`.`payment_status`, 
+              user.primary_contact,
+              user.account_type
         FROM `booking` 
+        INNER JOIN user ON user.user_id =booking.customer_user_id
         INNER JOIN `facility` ON `facility`.facility_id = booking.facility_id
         INNER JOIN `sports_arena_profile` ON `sports_arena_profile`.sports_arena_id = `booking`.sports_arena_id
         INNER JOIN `booking_timeslot` ON `booking_timeslot`.`booking_id`= `booking`.`booking_id`
@@ -1070,7 +1122,9 @@ class NotificationModel extends \Core\Model
             // Select reason for cancellation
             $p_level = "high";
 
-
+            $visitor=$data['account_type'];
+            $primary_contact=$data['primary_contact'];
+            $reason="This timeslot is no longer available in our sports arena.";
             // Select booking date
             $bdate = $data["booking_date"];
 
@@ -1091,6 +1145,38 @@ class NotificationModel extends \Core\Model
 
             // Make the changes to the database permanent
             $db->commit();
+
+            if($visitor=="visitor"){
+
+                //our mobile number
+                $user = "94765282976";
+                //our account password
+                $password = 4772;
+                //Random OTP code
+                $otp = mt_rand(100000, 999999);
+    
+                // stores the otp code and mobile number into session
+                $_SESSION['otp'] = $otp;
+                $_SESSION['mobile_number'] = $primary_contact;
+    
+                //Message to be sent
+                $text = urlencode("" . $saname ." had cancel your booking " . $booking_id . " made for " . $facname . " on " . $bdate . " scheduled from " . $stime . " to " . $etime . " . Reason for cancellation: " . $reason . " . Please collect refund form the sports arena");
+                // Replacing the initial 0 with 94
+                $to = substr_replace($primary_contact, '94', 0, 0);
+                //Base URL
+                $baseurl = "http://www.textit.biz/sendmsg";
+                // regex to create the url
+                $url = "$baseurl/?id=$user&pw=$password&to=$to&text=$text";
+    
+                $ret = file($url);
+                $res = explode(":", $ret[0]);
+    
+                if (trim($res[0]) == "OK") {
+                    echo "Message Sent - ID : " . $res[1];
+                } else {
+                    echo "Sent Failed - Error : " . $res[1];
+                }
+                }
         } catch (PDOException $e) {
             $db->rollback();
             throw $e;
@@ -1152,6 +1238,7 @@ class NotificationModel extends \Core\Model
  
              // Make the changes to the database permanent
              $db->commit();
+             return true;
          } catch (PDOException $e) {
              $db->rollback();
              throw $e;
@@ -1178,8 +1265,11 @@ class NotificationModel extends \Core\Model
               `time_slot`.`end_time`,
               booking.booking_id,
               `booking`.`payment_method`,
-              `booking`.`payment_status`
+              `booking`.`payment_status`, 
+              user.primary_contact,
+              user.account_type
          FROM `booking` 
+         INNER JOIN user ON user.user_id =booking.customer_user_id
          INNER JOIN `facility` ON `facility`.facility_id = booking.facility_id
          INNER JOIN `sports_arena_profile` ON `sports_arena_profile`.sports_arena_id = `booking`.sports_arena_id
          INNER JOIN `booking_timeslot` ON `booking_timeslot`.`booking_id`= `booking`.`booking_id`
@@ -1207,6 +1297,9 @@ class NotificationModel extends \Core\Model
              $payment_status = $data["payment_status"];
              // Select reason for cancellation
              $p_level = "high";
+
+             $visitor=$data['account_type'];
+            $primary_contact=$data['primary_contact'];
  
  
              // Select booking date
@@ -1229,6 +1322,37 @@ class NotificationModel extends \Core\Model
  
              // Make the changes to the database permanent
              $db->commit();
+             if($visitor=="visitor"){
+
+                //our mobile number
+                $user = "94765282976";
+                //our account password
+                $password = 4772;
+                //Random OTP code
+                $otp = mt_rand(100000, 999999);
+    
+                // stores the otp code and mobile number into session
+                $_SESSION['otp'] = $otp;
+                $_SESSION['mobile_number'] = $primary_contact;
+            $reason="This facility is no longer available in our sports arena";
+                //Message to be sent
+                $text = urlencode("" . $saname ." had cancel your booking " . $booking_id . " made for " . $facname . " on " . $bdate . " scheduled from " . $stime . " to " . $etime . " . Reason for cancellation: " . $reason . " . Please collect refund form the sports arena");
+                // Replacing the initial 0 with 94
+                $to = substr_replace($primary_contact, '94', 0, 0);
+                //Base URL
+                $baseurl = "http://www.textit.biz/sendmsg";
+                // regex to create the url
+                $url = "$baseurl/?id=$user&pw=$password&to=$to&text=$text";
+    
+                $ret = file($url);
+                $res = explode(":", $ret[0]);
+    
+                if (trim($res[0]) == "OK") {
+                    echo "Message Sent - ID : " . $res[1];
+                } else {
+                    echo "Sent Failed - Error : " . $res[1];
+                }
+                }
          } catch (PDOException $e) {
              $db->rollback();
              throw $e;
