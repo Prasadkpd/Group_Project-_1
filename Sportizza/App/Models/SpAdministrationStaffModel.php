@@ -48,8 +48,8 @@ class SpAdministrationStaffModel extends \Core\Model
         $result2 = $stmt2->fetch(PDO::FETCH_ASSOC);
         return $result2;
     }
-
     //End of displaying sports arena profile
+    
     public static function editArenaProfile($arena_id, $name, $location, $contact, $category, $map_link, $description, $other_facility, $payment)
     {
         $sql1 = "UPDATE sports_arena SET sa_name=:sa_name WHERE sports_arena_id=:arena_id";
