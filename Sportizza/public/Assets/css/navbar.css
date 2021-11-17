@@ -54,6 +54,12 @@ nav .nav-profile .profile-btn:hover {
   margin: auto 0;
   float: left;
 }
+.editProPic #form-profile-picture{
+  width: 120px;
+  height:120px;
+  object-fit:cover;
+  
+}
 nav .nav-profile .profile-name {
   font-size: 1rem;
   margin-right: 5px;

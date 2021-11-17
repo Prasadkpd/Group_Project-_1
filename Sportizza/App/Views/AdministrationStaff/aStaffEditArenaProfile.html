@@ -150,7 +150,7 @@
                         <div class="input-row">
                             <div class="input-box">
                                 <label for="spArenaName">Sports Arena Name</label>
-                                <input id="spArenaName" type="text" name="arena_name" placeholder="Enter Arena Name"
+                                <input id="spArenaName" type="text" name="arena_name" placeholder="Ex: ABC Sports Arena"
                                     onfocusout="validateSpArenaName()" value="{{arena_details.sa_name}}">
                                 <div class="helper-text" id="spArenaNameMsg">
                                     <p>{{errors["arena_name1"]}} {{errors["arena_name2"]}}</p>
@@ -173,7 +173,7 @@
                                 <div class="options-container">
                                     <div class="custom-select">
                                         <input id="category" type="text" name="category"
-                                            placeholder="Enter Sport Category" onfocusout="validateSparenaCategory()"
+                                            placeholder="Ex: Indoor Badminton Courts" onfocusout="validateSparenaCategory()"
                                             value="{{arena_details.category}}">
 
                                         <div class="helper-text" id="other-categoryMsg">
@@ -187,7 +187,7 @@
                                 <div class="options-container">
                                     <div class="custom-select">
                                         <input id="location" type="text" name="location"
-                                            placeholder="Enter arena location" onfocusout="validateSparenaLocation()"
+                                            placeholder="Ex: Nugegoda" onfocusout="validateSparenaLocation()"
                                             value="{{arena_details.location}}">
                                             <div class="helper-text" id="other-locationMsg">
                                                 <p>{{errors["location1"]}}</p>
@@ -200,7 +200,7 @@
                         <div class="input-box">
                             <label for="map-link">Google Map Link</label>
                             <input id="map-link" type="text" name="google_map_link"
-                                placeholder="Ex: https://www.google.com/maps?q=204+C+Sandpiper+Place,+Fort+McMurray,+AB,+Canada"
+                                placeholder="Click on get poistion to pin the location"
                                 onfocusout="validateMapLink()" value="{{arena_details.google_map_link}}"><button
                                 id="get-position" type="button" onclick="open_popup_map()">Get Position</button>
                             <div class="helper-text" id="map-linkMsg">
@@ -211,7 +211,7 @@
                         <div class="input-box" id="description-input">
                             <label for="description">Description</label>
                             <textarea id="description" rows="5" type="text" name="description"
-                                placeholder="(Briefly state about sports arena)"
+                                placeholder="(Briefly state about your sports arena)"
                                 onfocusout="validateDescription()">{{arena_details.description}}</textarea>
                             <div class="helper-text" id="descriptionMsg">
                                 <p>{{errors["description1"]}}</p>

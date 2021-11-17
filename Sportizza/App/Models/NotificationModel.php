@@ -28,7 +28,8 @@ class NotificationModel extends \Core\Model
         $sql = 'SELECT `manager`.`user_id` 
                 FROM `manager` 
                 INNER JOIN `booking` ON `manager`.`sports_arena_id`= `booking`.`sports_arena_id`
-                WHERE `booking`.`invoice_id`=:invoice_id';
+                INNER JOIN user ON user.user_id = manager.user_id
+                WHERE `booking`.`invoice_id`=:invoice_idAND user.security_status="active"';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -46,7 +47,8 @@ class NotificationModel extends \Core\Model
         $sql = 'SELECT `administration_staff`.`user_id` 
                 FROM `administration_staff` 
                 INNER JOIN `booking` ON `administration_staff`.`sports_arena_id`=`booking`.`sports_arena_id`
-                WHERE `booking`.`invoice_id`=:invoice_id';
+                INNER JOIN user ON user.user_id = administration_staff.user_id
+                WHERE `booking`.`invoice_id`=:invoice_id AND user.security_status="active"';
 
 
         $db = static::getDB();
@@ -66,7 +68,8 @@ class NotificationModel extends \Core\Model
         $sql = 'SELECT `booking_handling_staff`.`user_id` 
                 FROM `booking_handling_staff` 
                 INNER JOIN `booking` ON `booking_handling_staff`.`sports_arena_id`=`booking`.`sports_arena_id`
-                WHERE `booking`.`invoice_id`=:invoice_id';
+                INNER JOIN user ON user.user_id = booking_handling_staff.user_id
+                WHERE `booking`.`invoice_id`=:invoice_id AND user.security_status="active"';
 
 
         $db = static::getDB();
@@ -121,7 +124,8 @@ class NotificationModel extends \Core\Model
         $sql = 'SELECT manager.user_id
                 FROM manager
                 INNER JOIN booking ON manager.sports_arena_id= booking.sports_arena_id
-                WHERE booking.booking_id=:booking_id';
+                INNER JOIN user ON user.user_id = manager.user_id
+                WHERE booking.booking_id=:booking_id user.security_status="active"';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -139,7 +143,8 @@ class NotificationModel extends \Core\Model
         $sql = 'SELECT `administration_staff`.`user_id` 
                 FROM `administration_staff` 
                 INNER JOIN `booking` ON `administration_staff`.`sports_arena_id`=`booking`.`sports_arena_id`
-                WHERE `booking`.`booking_id`=:booking_id';
+                INNER JOIN user ON user.user_id = administration_staff.user_id
+                WHERE `booking`.`booking_id`=:booking_id AND user.security_status="active"';
 
 
         $db = static::getDB();
@@ -159,7 +164,8 @@ class NotificationModel extends \Core\Model
         $sql = 'SELECT `booking_handling_staff`.`user_id` 
                 FROM `booking_handling_staff` 
                 INNER JOIN `booking` ON `booking_handling_staff`.`sports_arena_id`=`booking`.`sports_arena_id`
-                WHERE `booking`.`booking_id`=:booking_id';
+                INNER JOIN user ON user.user_id = booking_handling_staff.user_id
+                WHERE `booking`.`booking_id`=:booking_id AND user.security_status="active"';
 
 
         $db = static::getDB();
@@ -181,7 +187,8 @@ class NotificationModel extends \Core\Model
         $sql = 'SELECT manager.user_id
                 FROM manager
                 INNER JOIN time_slot ON manager.sports_arena_id= time_slot.manager_sports_arena_id
-                WHERE time_slot.time_slot_id=:timeslot_id';
+                INNER JOIN user ON user.user_id = manager.user_id
+                WHERE time_slot.time_slot_id=:timeslot_id AND user.security_status="active"';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -199,7 +206,8 @@ class NotificationModel extends \Core\Model
         $sql = 'SELECT `administration_staff`.`user_id` 
                 FROM `administration_staff` 
                 INNER JOIN time_slot ON `administration_staff`.`sports_arena_id`=time_slot.`manager_sports_arena_id`
-                WHERE `time_slot`.time_slot_id=:timeslot_id';
+                INNER JOIN user ON user.user_id = administration_staff.user_id
+                WHERE `time_slot`.time_slot_id=:timeslot_id AND user.security_status="active"';
 
 
         $db = static::getDB();
@@ -219,7 +227,8 @@ class NotificationModel extends \Core\Model
         $sql = 'SELECT `booking_handling_staff`.`user_id` 
                 FROM `booking_handling_staff` 
                 INNER JOIN `time_slot` ON `booking_handling_staff`.`sports_arena_id`=`time_slot`.`manager_sports_arena_id`
-                WHERE `time_slot`.time_slot_id=:timeslot_id';
+                INNER JOIN user ON user.user_id = booking_handling_staff.user_id
+                WHERE `time_slot`.time_slot_id=:timeslot_id AND user.security_status="active"';
 
 
         $db = static::getDB();
@@ -242,7 +251,8 @@ class NotificationModel extends \Core\Model
         $sql = 'SELECT manager.user_id
                 FROM manager
                 INNER JOIN facility ON manager.sports_arena_id= facility.sports_arena_id
-                WHERE facility.facility_id=:facility_id';
+                INNER JOIN user ON user.user_id = manager.user_id
+                WHERE facility.facility_id=:facility_id AND user.security_status="active"';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -250,10 +260,10 @@ class NotificationModel extends \Core\Model
         $stmt->execute();
 
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        // $mid = $result["user_id"];
-        var_dump($result);
-        // return $mid; 
-        return 100000003;
+        $mid = $result["user_id"];
+  
+        return $mid; 
+       
     }
 
     public static function AddFacilityNotificationGetAdminStaffIds($facility_id)
@@ -261,7 +271,8 @@ class NotificationModel extends \Core\Model
         $sql = 'SELECT `administration_staff`.`user_id` 
                 FROM `administration_staff` 
                 INNER JOIN facility ON `administration_staff`.`sports_arena_id`=facility.`sports_arena_id`
-                WHERE `facility`.facility_id=:facility_id';
+                INNER JOIN user ON user.user_id = administration_staff.user_id
+                WHERE `facility`.facility_id=:facility_id AND user.security_status="active"';
 
 
         $db = static::getDB();
@@ -271,12 +282,9 @@ class NotificationModel extends \Core\Model
         $stmt->execute();
 
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        // $asid = $result["user_id"];
+        $asid = $result["user_id"];
 
-        var_dump($result);
-        // return $mid; 
-        return 100000003;
-        // return $asid;
+    return $asid;
     }
 
     public static function AddFacilityNotificationGetBookingStaffIds($facility_id)
@@ -284,7 +292,8 @@ class NotificationModel extends \Core\Model
         $sql = 'SELECT `booking_handling_staff`.`user_id` 
                 FROM `booking_handling_staff` 
                 INNER JOIN `facility` ON `booking_handling_staff`.`sports_arena_id`=`facility`.`sports_arena_id`
-                WHERE `facility`.facility_id=:facility_id';
+                INNER JOIN user ON user.user_id = booking_handling_staff.user_id
+                WHERE `facility`.facility_id=:facility_id AND user.security_status="active"';
 
 
         $db = static::getDB();
@@ -807,34 +816,24 @@ class NotificationModel extends \Core\Model
         }
     }
 
-    public static function saAdminAddfacilitySuccessNotification($current_user, $facility_id)
+    public static function saAdminAddfacilitySuccessNotification($current_user, $facility_name, $facility_id)
     {
-
-        $db = static::getDB();
-
+        try {
+            $db = static::getDB();
+            $db->beginTransaction();
+            
         $manager_id = self::AddfacilityNotificationGetManagerIds($facility_id);
         $adminstaff_id = self::AddfacilityNotificationGetAdminStaffIds($facility_id);
         $bookhandlestaff_id = self::AddfacilityNotificationGetBookingStaffIds($facility_id);
 
-        $sql = 'SELECT facility.facility_name 
-        FROM facility 
-        WHERE facility.facility_id = :facility_id AND facility.security_status="active"';
+        
 
-        $stmt = $db->prepare($sql);
-
-        //Binding the customer id and Converting retrieved data from database into PDOs
-        $stmt->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
-        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-        $stmt->execute();
-
-        // CUSTOMER NOTIFICATION REQUIREMENTS
-        $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
         // Select facility name 
       
         $fname = $current_user->first_name;
         $lname = $current_user->last_name;
-        $facname = $data["facility_name"];
+        $facname = $facility_name;
 
         // Select reason for cancellation
         $p_level = "high";
@@ -852,7 +851,14 @@ class NotificationModel extends \Core\Model
         $stmt->execute(['uid' => $adminstaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
 
         // for booking handling staff
-        return ($stmt->execute(['uid' => $bookhandlestaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]));
+        $stmt->execute(['uid' => $bookhandlestaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
+        $db->commit();
+        return true;
+        
+    } catch (PDOException $e) {
+        $db->rollback();
+        throw $e;
+    }
     }
 
 
@@ -1152,6 +1158,7 @@ class NotificationModel extends \Core\Model
  
              // Make the changes to the database permanent
              $db->commit();
+             return true;
          } catch (PDOException $e) {
              $db->rollback();
              throw $e;
