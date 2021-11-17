@@ -64,13 +64,14 @@ class Sparenamanager extends \Core\Controller
         //Assigning the sports arena's bookings to view
         $bookings = SpArenaManagerModel::managerViewBookings($id);
         //Assigning the sports arena's bookings to cancel view
+        $add_bookings = SpArenaManagerModel::managerViewAvailableTimeSlots($id);
         $cancelBookings = SpArenaManagerModel::managerCancelBookings($id);
         //Assigning the sports arena's bookings to get cash payment view
         $bookingPayments = SpArenaManagerModel::managerBookingPayment($id);
 
         //Rendering the manager's manage booking view
         View::renderTemplate('Manager/mStaffManageBookingsView.html', [
-            'bookings' => $bookings,
+            'bookings' => $bookings,'timeSlots'=>$add_bookings,
             'cancelBookings' => $cancelBookings, 'bookingPayments' => $bookingPayments
         ]);
     }
@@ -382,11 +383,43 @@ class Sparenamanager extends \Core\Controller
     }
 
     //End of Edit Arena profile of manager staff
-    public function cartAction()
+     public  function cartAction()
     {
-        View::renderTemplate('Manager/mStaffCartNewView.html');
-    }
+        //Get the current user's details with session using Auth
+        $current_user = Auth::getUser();
+        $user_id = $current_user->user_id;
 
+        //Passing cart items if items are added to the cart
+        $cart = SpArenaManagerModel::managerCartView($user_id);
+         
+            //Calculating total card payment and total payment values for cart view
+            $cashSum = 0;
+            $cardSum = 0;
+            $allSum = 0;
+            $i = 0;
+
+            for ($i; $i < count($cart); $i++) {
+
+                //If booking's payment method is cash
+                if ($cart[$i]->payment_method == "cash") {
+                    $cashSum += $cart[$i]->price_per_booking;
+
+                    //If booking's payment method is card
+                } else {
+                    $cardSum += $cart[$i]->price_per_booking;
+                }
+            }
+
+            //Total price of all the bookings
+            $allSum = $cashSum + $cardSum;
+
+            //Rendering the saAdmin's cart view
+            View::renderTemplate('Manager/mStaffCartNewView.html', [
+                'cart' => $cart,
+                'allSum' => $allSum, 'cardSum' => $cardSum, 'cashSum' => $cashSum
+            ]);
+    }
+   
     //Start of Add Timeslot of manager
     public function manageraddtimeslotsAction()
     {
@@ -485,5 +518,72 @@ class Sparenamanager extends \Core\Controller
         $this->redirect('/Sparenamanager/manageusers');
     }
 
+    //Start of adding timeslots to visitor by removing from the add bookings view by Sparenamanager
+    public function hidebookingAction()
+    {
+        //Get the current user's details with session using Auth
+        $current_user = Auth::getUser();
+        $manager_id = $current_user->user_id;
+
+        //Assigning the relevant variables
+        $combined = $this->route_params['arg'];
+        $combined = explode("__", $combined);
+        $timeslot_id = $combined[0];
+        $bookingDate = str_replace("_", "-", $combined[1]);
+        $paymentMethod = 'cash';
+
+        //Adding timeslot to customer cart
+        $addCart = SpArenaManagerModel::managerAddToCart($manager_id, $timeslot_id, $bookingDate, $paymentMethod);
+
+        //If succesful, return true for ajax function
+        if ($addCart) {
+            echo true;
+        }
+    }
+    //End of adding timeslots to customer by removing from the add bookings view  by Sparenamanager
+
+    //Start of adding bookings by saAdmin's search action
+    public function searchtimeslotdateAction()
+    {
+        //Get the current user's details with session using Auth'
+        $current_user = Auth::getUser();
+        $manager_id = $current_user->user_id;
+
+        //Assigning the relevant variables
+        $combined = $this->route_params['arg'];
+        $date = str_replace("_", "-", $combined);
+
+        //Assigning the sports arenas timeslots
+        $timeSlots = SpArenaManagerModel::managerSearchTimeSlotsDate($manager_id, $date);
+        echo $timeSlots;
+    }
+    //End of booking page of customer
+
+    public function managerBookingsuccessnotificationAction()
+    {
+        //Get the current user's details with session using Auth'
+        $current_user = Auth::getUser();
+        $manager_id = $current_user->user_id;
+
+        //Assigning the variables
+        $first_name = $_POST['first_name'];
+        $last_name = $_POST['last_name'];
+        $primary_contact = $_POST['phone'];
+
+        //Get payment for that bookings
+        $payment_id = SpArenaManagerModel::managerAddbookingPaymentSuccess($manager_id, $first_name, $last_name, $primary_contact);
+
+        //If the cash payment is successful
+        if ($payment_id) {
+
+            //Send payment successfull notification
+            $success = NotificationModel::saAdminAddbookingPaymentSuccessNotification($current_user, $first_name, $last_name, $payment_id);
+
+            //If notification is successful
+            if ($success) {
+                $this->redirect('/Sparenamanager/managebookings');
+            }
+        }
+    }
 
 }

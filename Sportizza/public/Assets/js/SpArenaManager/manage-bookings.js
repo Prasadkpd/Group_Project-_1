@@ -274,3 +274,17 @@ function checkIfEmptytextArea(field) {
     return false;
   }
 }
+
+// // return current date
+window.onload = function () {
+  
+  // const date = new Date().toISOString().split('T')[0];
+  // date.setDate(date.getDate() + 1);
+  
+  var today = new Date().toISOString().split('T')[0];
+  document.getElementsByName("dateInput")[0].setAttribute('min', today);
+
+  document.getElementById('dateInput').valueAsDate = new Date();
+  document.querySelectorAll('.bookingDatehidden').valueAsDate = new Date();
+
+}
