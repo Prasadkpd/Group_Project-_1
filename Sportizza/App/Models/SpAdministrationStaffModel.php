@@ -60,8 +60,8 @@ class SpAdministrationStaffModel extends \Core\Model
             throw $e;
         }
     }
-
     //End of displaying sports arena profile
+    
     public static function editArenaProfile($arena_id, $name, $location, $contact, $category, $map_link, $description, $other_facility, $payment)
     {
         try {

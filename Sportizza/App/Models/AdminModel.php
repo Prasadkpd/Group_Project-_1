@@ -68,7 +68,7 @@ class AdminModel extends \Core\Model
                 DATE(user.registered_time) as "date" FROM sports_arena_profile
                INNER  JOIN manager ON sports_arena_profile.sports_arena_id =manager.sports_arena_id 
                INNER JOIN user ON user.user_id = manager.user_id
-               WHERE sports_arena_profile.account_status="inactive"
+               WHERE sports_arena_profile.security_status="inactive"
                ORDER BY user.registered_time DESC';
 
         $db = static::getDB();
@@ -84,6 +84,25 @@ class AdminModel extends \Core\Model
     }
     //End of Displaying pending requests of sports arenas
 
+    //Start of displaying sports arena profile
+    public static function arenaProfileView($id)
+    {
+        $sql = 'SELECT sports_arena_profile.sports_arena_id,sports_arena_profile.sa_name, sports_arena_profile.location, sports_arena_profile.google_map_link, 
+       sports_arena_profile.profile_photo, sports_arena_profile.description, sports_arena_profile.category, 
+       sports_arena_profile.payment_method,sports_arena_profile.other_facilities, sports_arena_profile.contact_no,
+       sports_arena_profile_photo.photo1_name, sports_arena_profile_photo.photo2_name, sports_arena_profile_photo.photo3_name,
+       sports_arena_profile_photo.photo4_name,sports_arena_profile_photo.photo5_name
+        FROM sports_arena_profile 
+        INNER JOIN sports_arena_profile_photo ON sports_arena_profile.s_a_profile_id = sports_arena_profile_photo.sa_profile_id 
+        WHERE sports_arena_profile.s_a_profile_id=:id';
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+    //End of displaying sports arena profile
 
     //Start of Adding sports arenas
     public static function adminAddArenas($id)

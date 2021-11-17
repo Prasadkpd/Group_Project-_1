@@ -158,6 +158,20 @@ class Admin extends Authenticated
     }
     // End of deleting customers
 
+    //Start of Edit Arena profile of manager
+    public  function viewarenaprofileAction()
+    {
+        //Obtaining sports arena profile id sent from JS
+        $id = $this->route_params['id'];
+        
+        $arena_details = AdminModel::arenaProfileView($id);
+
+        //    var_dump($arena_details);
+        //Rendering the manager's edit profile arena view
+        View::renderTemplate('Admin/adminViewArenaProfile.html', ['arena_details' => $arena_details]);
+    }
+    //End of Edit Arena profile of manager staff
+
     // Start of adding sports arenas
     public function addarenasAction(){
         
