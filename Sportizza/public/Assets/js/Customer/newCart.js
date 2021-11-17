@@ -231,6 +231,7 @@ function hideItem(x)
     // $(".")
     $("#cartItem"+x).hide();
     console.log(x);
+    
 }
 
 

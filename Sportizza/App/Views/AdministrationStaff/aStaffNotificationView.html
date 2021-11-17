@@ -31,7 +31,7 @@
                 <div class="nav-profile">
                     <button class="openbutton" onclick="openpopupform()">
                         <div class="profile-details">
-                            <img src="/Assets/images/admin/download.jfif" class="profile-picture">
+                            <img src={{current_user.profile_pic}} class="profile-picture">
                             <div class="username">{{current_user.first_name}} {{current_user.last_name}}</div>
                         </div>
                     </button>
@@ -76,7 +76,7 @@
                     </div>
                 </div>
                 <div class="editProPic">
-                    <img id="form-profile-picture" src="/Assets/images/customer/profile-picture.jpg" alt="">
+                    <img id="form-profile-picture" src={{current_user.profile_pic}} alt="">
                 </div>
             </div>
             <div class="edit-profile-link">
@@ -217,24 +217,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr style="cursor: pointer"
-                                onclick="open_popup_notification('{{notification.subject}}','{{notification.description}}')">
-                                <td data-label="Date:">2021-10-05</td>
-                                <td data-label="Time:">18:45</td>
-                                <td class="notification-td-left">Cash Payment Confirmation Message</td>
-                            </tr>
-                            <tr style="cursor: pointer"
-                                onclick="open_popup_notification('{{notification.subject}}','{{notification.description}}')">
-                                <td data-label="Date:">2021-10-06</td>
-                                <td data-label="Time:">15:39</td>
-                                <td class="notification-td-left">Cash Payment Confirmation Message</td>
-                            </tr>
-                            <tr style="cursor: pointer"
-                                onclick="open_popup_notification('{{notification.subject}}','{{notification.description}}')">
-                                <td data-label="Date:">2021-10-08</td>
-                                <td data-label="Time:">16:45</td>
-                                <td class="notification-td-left">Cash Payment Confirmation Message</td>
-                            </tr>
+                         
                             {% for notification in notifications %}
                             <tr style="cursor: pointer" onclick="open_popup_notification('{{notification.subject}}','{{notification.description}}')">
                                 <td data-label="Date:">{{notification.date}}</td>

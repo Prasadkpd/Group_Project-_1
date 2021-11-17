@@ -28,7 +28,7 @@
                 <div class="nav-profile">
                     <button class="openbutton" onclick="openpopupform()">
                         <div class="profile-details">
-                            <img src="/Assets/images/admin/download.jfif" class="profile-picture">
+                            <img src={{current_user.profile_pic}} class="profile-picture">
                             <div class="username">{{current_user.first_name}} {{current_user.last_name}}</div>
                         </div>
                     </button>
@@ -73,7 +73,7 @@
                     </div>
                 </div>
                 <div class="editProPic">
-                    <img id="form-profile-picture" src="/Assets/images/customer/profile-picture.jpg" alt="">
+                    <img id="form-profile-picture" src={{current_user.profile_pic}} alt="">
                 </div>
             </div>
             <div class="edit-profile-link">
@@ -466,43 +466,13 @@
                             <td data-label="Registered Date :" class="expandHeader">{{arenas.date}}</td>
                             <td data-label="Contact Number :" class="expandHeader">{{arenas.contact_no}}</td>
                             <td data-label="Accept Request :" class="acceptAcc expandHeader"><a class="eye-btn" 
-                                onclick="open_popup_view_arenas_message('{{arenas.sa_name}}','{{arenas.location}}','{{arenas.category}}','{{arenas.payment_method}}','{{arenas.other_facilities}}','{{arenas.maplink}}','{{arenas.description}}')">
+                                href="/admin/viewarenaprofile/{{arenas.s_a_profile_id}}">
                                 <i class="fas fa-eye"></i></a><a class="tick-btn" onclick="open_popup_add_arenas_message('{{arenas.s_a_profile_id}}')">
                                 <i class="fas fa-check"></i></a></td>
 
                         </tr>
                         {% endfor %}
                         
-                        <tr class="popup" onclick="sportsArenaPopup()">
-                            <td data-label="Sports Arena Name :" class="expandHeader">PKI Basketball Court</td>
-                            <td data-label="Registered Date :" class="expandHeader">2021-10-04</td>
-                            <td data-label="Contact Number :" class="expandHeader">112498336</td>
-                            <td data-label="Accept Request :" class="acceptAcc expandHeader"><a class="eye-btn">
-                                <i class="fas fa-eye"></i></a><a class="tick-btn" onclick="open_popup_add_arenas_message()">
-                                <i class="fas fa-check"></i></a></td>
-
-                        </tr>
-
-                        <tr class="popup" onclick="sportsArenaPopup()">
-                            <td data-label="Sports Arena Name :" class="expandHeader">ABC College Volleyball</td>
-                            <td data-label="Registered Date :" class="expandHeader">2021-10-01</td>
-                            <td data-label="Contact Number :" class="expandHeader">112395926</td>
-                            <td data-label="Accept Request :" class="acceptAcc expandHeader"><a class="eye-btn">
-                                <i class="fas fa-eye"></i></a><a class="tick-btn" onclick="open_popup_add_arenas_message()">
-                                <i class="fas fa-check"></i></a></td>
-
-                        </tr>
-
-                        <tr class="popup" onclick="sportsArenaPopup()">
-                            <td data-label="Sports Arena Name :" class="expandHeader">Milton Badminton Center</td>
-                            <td data-label="Registered Date :" class="expandHeader">2021-09-30</td>
-                            <td data-label="Contact Number :" class="expandHeader">112595844</td>
-                            <td data-label="Accept Request :" class="acceptAcc expandHeader"><a class="eye-btn">
-                                <i class="fas fa-eye"></i></a><a class="tick-btn" onclick="open_popup_add_arenas_message()">
-                                <i class="fas fa-check"></i></a></td>
-
-                        </tr>
-
                     </tbody>
                 </table>
                 <div class="form-container"> -->
@@ -579,54 +549,6 @@
                                             class="fas fa-trash-alt"></i></a></td>
                             </tr>
                             {% endfor %}
-                            
-                            <tr>
-                
-                                <td data-label="Sports Arena ID :">100000014</td>
-                                <td data-label="Sports Arena name :">Herald Sports Academy</td>
-                                <td data-label="Complaint :">1<button class="popup_cmp_button" onclick="">View Complaints</button></td>
-                                <td data-label="Account Status :">active</td>
-                                <td data-label="Blacklist Arena :" class="blacklistAcc"><a class="blck-btn" onclick="open_popup_blck_arenas_message()">
-                                    <i class="fas fa-exclamation"></i></a></td>
-                                <td data-label="Remove Sports Arena :" class="trash-btn-padding-res"> <a class="trash-btn" onclick="open_popup_rmv_arenas_message()"><i
-                                            class="fas fa-trash-alt"></i></a></td>
-                            </tr>
-
-                            <tr>
-                
-                                <td data-label="Sports Arena ID :">100000012</td>
-                                <td data-label="Sports Arena name :">Cricket World</td>
-                                <td data-label="Complaint :">5<button class="popup_cmp_button" onclick="">View Complaints</button></td>
-                                <td data-label="Account Status :">blacklist</td>
-                                <td data-label="Blacklist Arena :" class="blacklistAcc"><a class="blck-btn" onclick="open_popup_blck_arenas_message()">
-                                    <i class="fas fa-exclamation"></i></a></td>
-                                <td data-label="Remove Sports Arena :" class="trash-btn-padding-res"> <a class="trash-btn" onclick="open_popup_rmv_arenas_message()">
-                                    <i class="fas fa-trash-alt"></i></a></td>
-                            </tr>
-
-                            <tr>
-                
-                                <td data-label="Sports Arena ID :">100000015</td>
-                                <td data-label="Sports Arena name :">Roshen Sports Club</td>
-                                <td data-label="Complaint :">1<button class="popup_cmp_button" onclick="">View Complaints</button></td>
-                                <td data-label="Account Status :">active</td>
-                                <td data-label="Blacklist Arena :" class="blacklistAcc"><a class="blck-btn" onclick="open_popup_blck_arenas_message()">
-                                    <i class="fas fa-exclamation"></i></a></td>
-                                <td data-label="Remove Sports Arena :" class="trash-btn-padding-res"> <a class="trash-btn" onclick="open_popup_rmv_arenas_message()"><i
-                                            class="fas fa-trash-alt"></i></a></td>
-                            </tr>
-
-                            <tr>
-                
-                                <td data-label="Sports Arena ID :">100000019</td>
-                                <td data-label="Sports Arena name :">Negombo Futsal Arena</td>
-                                <td data-label="Complaint :">2<button class="popup_cmp_button" onclick="">View Complaints</button></td>
-                                <td data-label="Account Status :">active</td>
-                                <td data-label="Blacklist Arena :" class="blacklistAcc"><a class="blck-btn" onclick="open_popup_blck_arenas_message()">
-                                    <i class="fas fa-exclamation"></i></a></td>
-                                <td data-label="Remove Sports Arena :" class="trash-btn-padding-res"> <a class="trash-btn" onclick="open_popup_rmv_arenas_message()"><i
-                                            class="fas fa-trash-alt"></i></a></td>
-                            </tr>
                             
                         </tbody>
                     </table>

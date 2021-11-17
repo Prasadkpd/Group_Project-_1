@@ -15,44 +15,46 @@
 </head>
 
 <body>
-   <!-- Top Navigation Bar -->
-   <nav>
+  <!-- Top Navigation Bar -->
+  <nav>
     <div class="nav-left">
-        <div class="logo-container">
-            <a href="/">
-                <i class="fas fa-running "></i>
-                <span class="logo-name">Sportizza</span>
-            </a>
-        </div>
+      <div class="logo-container">
+        <a href="/">
+          <i class="fas fa-running "></i>
+          <span class="logo-name">Sportizza</span>
+        </a>
+      </div>
 
         <div class="nav-right">
             <!-- Profile button -->
             <div class="nav-profile">
                 <button class="openbutton" onclick="openpopupform()">
                     <div class="profile-details">
-                      <img src="/Assets/images/admin/download.jfif" class="profile-picture">
+                      <img src={{current_user.profile_pic}} class="profile-picture">
                         <div class="username">{{current_user.first_name}} {{current_user.last_name}}</div>
                     </div>
                 </button>
             </div>
+          </button>
+        </div>
 
-            <!-- Signout button -->
-            <div class="sign-in-out-btn">
-                <button onclick="open_popup_signout_message()">Sign Out</button>
-                <!-- {% if session.user_id %}
+        <!-- Signout button -->
+        <div class="sign-in-out-btn">
+          <button onclick="open_popup_signout_message()">Sign Out</button>
+          <!-- {% if session.user_id %}
             User with ID {{session.user_id}} is logged in.
         {% endif %} -->
-            </div>
         </div>
+      </div>
     </div>
-</nav>
+  </nav>
 
-<!-- start popup for profile -->
-<div id="myForm" class="sectionpopnav">
+  <!-- start popup for profile -->
+  <div id="myForm" class="sectionpopnav">
     <div class="formsectionprofile" id="formEditUserProfile">
-        <div>
-            <button class="closebutton" onclick="closepopupform()">❌</button>
-        </div>
+      <div>
+        <button class="closebutton" onclick="closepopupform()">❌</button>
+      </div>
 
         <div class="nav-user-edit-from">
             <div class="details">
@@ -75,110 +77,152 @@
                 </div>
             </div>
             <div class="editProPic">
-                <img id="form-profile-picture" src="/Assets/images/customer/profile-picture.jpg" alt="">
+                <img id="form-profile-picture" src={{current_user.profile_pic}} alt="">
             </div>
         </div>
-        <div class="edit-profile-link">
-            <a href="">Edit Profile</a>
+        <div class="editProPic">
+          <img id="form-profile-picture" src="/Assets/images/customer/profile-picture.jpg" alt="">
         </div>
+      </div>
+      <div class="edit-profile-link">
+        <a href="">Edit Profile</a>
+      </div>
     </div>
-</div>
-<!-- end popup for profile -->
+  </div>
+  <!-- end popup for profile -->
 
-<!-- start pop up sign out section -->
-<div id="popup_signout" class="sectionpopnav">
+  <!-- start pop up sign out section -->
+  <div id="popup_signout" class="sectionpopnav">
     <div class="formsectionnav">
-        <div>
-            <button class="closebutton" onclick="close_popup_signout_message()">❌</button>
+      <div>
+        <button class="closebutton" onclick="close_popup_signout_message()">❌</button>
+      </div>
+      <form action="/action_page.php" style="margin:20px">
+        <div style="margin:auto">
+          <h1>Sign Out</h1>
+          <p>Do your really want to sign out now?</p>
         </div>
-        <form action="/action_page.php" style="margin:20px">
-            <div style="margin:auto">
-                <h1>Sign Out</h1>
-                <p>Do your really want to sign out now?</p>
-            </div>
-        </form>
-        <div style="display:flex">
-            <button class="popup_buttonnav">
-                {% if current_user %}
-                <a href="/logout"> YES</a>
-                {% endif %}
-            </button>
-            <button onclick="close_popup_signout_message()" class="popup_delete_buttonnav">
-                NO
-            </button>
-        </div>
+      </form>
+      <div style="display:flex">
+        <button class="popup_buttonnav">
+          {% if current_user %}
+          <a href="/logout"> YES</a>
+          {% endif %}
+        </button>
+        <button onclick="close_popup_signout_message()" class="popup_delete_buttonnav">
+          NO
+        </button>
+      </div>
     </div>
-</div>
-<!-- end pop up sign out section -->
-<!-- End Top Navigation Bar -->
+  </div>
+  <!-- end pop up sign out section -->
+  <!-- End Top Navigation Bar -->
 
 
   <!-- Page content -->
   <section class="cartPage">
     <div class="page-container">
-    <!-- <h1 class="page-header">Cart</h1> -->
-    <form method="post" action="/Spadministrationstaff/saAdminBookingsucessnotification" id="formCheckout">
-      <div class="cartDisplay">
-        <div class="page">
-          <div class="container">
-            <div class="title">My Cart</div>
-            <div class="closebtn"><a href="/Spadministrationstaff/managebookings"><i class="far fa-times-circle itemDelete"></i></a></div>
-            <!-- <div class="subtitle">Invoice ID : 1000000002</div> -->
-            <div class="content">
+
+      <form method="POST" action="/Spadministrationstaff/saAdminBookingsuccessnotification" id="formCheckout" onsubmit="validateBookingpayment()">
+        <div class="customerDetails">
+          <div class="page">
+            <div class="container">
+              <div class="title">Customer details</div>
+              <div class="subtitle">Please fill out the details below</div>
+              <div class="content">
 
 
-              <div class="cartContent">
-               
-                {% for item in cart %}
-                <div id="cartItem1" class="cartItem">
-                  <div id="itemDelete1" class="itemDelete" onclick="hideItem(1)">
-                    <i class="far fa-times-circle"></i>
-                  </div>
-                  <div class="itemHeader">
-                    <h6>{{item.sa_name}}</h6>
-                  </div>
-                  <div class="itemOther">
-                    {{item.facility_name}}
-                  </div>
-                  <div class="itemTime">
-                    {{item.start_time}}-{{item.end_time}}
-                  </div>
-                  <div class="itemOther">
-                    {{item.category}}, {{item.location}}
-                  </div>
-                  <div class="itemOther">
-                    {{item.payment_method}} payment
-                  </div>
-                  <div class="itemPrice">
-                    LKR {{item.price_per_booking}}
-                  </div>
-
-                </div>
-                {% endfor %}
-                <input type="hidden" name="order_id" value="100000000">
-                <input type="hidden" name="items" value="Booking Timeslots"><br>
-                <input type="hidden" name="currency" value="LKR">
-                <input type="hidden" name="amount" value="5000">
-              </div>
-              <div class="priceNPay">
-                <div class="button">
-                  <input type="submit" value="Get Payment" class="btn solid" />
-                </div>
-                
+                <div class="sp-details">
                   
-                <div class="showPrice">
-                  <h4>Total Amount: &nbsp;</h4>
-                  <h4 class="showAmount">LKR {{allSum}}</h4>
+                  <div class="input-box">
+                    <label for="firstName">First Name</label>
+                    <input id="firstName" type="text" name="first_name" placeholder="Enter first Name">
+                    <div class="helper-text" id="firstNameMsg"></div>
+                  </div>
+
+                  <div class="input-box">
+                    <label for="lastName">Last Name</label>
+                    <input id="lastName" type="text" name="last_name" placeholder="Enter last Name">
+                    <div class="helper-text" id="lastNameMsg"></div>
+                  </div>
+
+                  <div class="input-box">
+                    <label for="contact">Contact</label>
+                    <input id="contact" type="tel" name="phone" placeholder="ex: 0711223344">
+                    <div class="helper-text" id="contactMsg"></div>
+                  </div>
+
                 </div>
               </div>
-              
             </div>
           </div>
         </div>
-      </div>
-    </form>
-  </div>
+
+        <div class="cartDisplay">
+          <div class="page">
+            <div class="container">
+              <div class="title">Customer Cart</div>
+              <div class="closebtn"><a href="/Spadministrationstaff/managebookings"><i
+                    class="far fa-times-circle itemDelete"></i></a></div>
+              
+              <div class="content">
+                <div class="cartContent">
+
+                  {% for item in cart %}
+                  <div id="cartItem{{item.booking_id}}" class="cartItem">
+                    <!-- <div id="itemDelete" class="itemDelete" onclick="hideItem('{{item.booking_id}}')"> -->
+                    <div class="itemDelete">
+                      <input type="hidden" class="storeValue" value="{{item.booking_id}}">
+                      <i class="far fa-times-circle"></i>
+                    </div>
+                    <div class="itemHeader">
+                      <h6>{{item.sa_name}}</h6>
+                    </div>
+                    <div class="itemOther">
+                      {{item.facility_name}}
+                    </div>
+                    <div class="itemTime">
+                      {{item.start_time}}-{{item.end_time}}
+                    </div>
+                    <div class="itemOther">
+                      {{item.category}}, {{item.location}}
+                    </div>
+                    <div class="itemOther">
+                      {{item.payment_method}} payment
+                    </div>
+                    <div class="itemPrice">
+                      <input type="hidden" class="storePrice" value="{{item.price_per_booking}}">
+                      LKR {{item.price_per_booking}}
+                    </div>
+
+                  </div>
+                  {% endfor %}
+                  
+                </div>
+                <div class="priceNPay">
+                  <div class="button">
+                    <input type="submit" value="Get Payment" class="btn solid" />
+                  </div>
+
+                  <div class="showPrice">
+                    <h4>Total Amount: &nbsp;</h4>
+                    <input type="hidden" id="storeTotal" value="{{allSum}}">
+                    <h4 id="showTotal" class="showAmount">LKR {{allSum}}</h4>
+                  </div>
+                </div>
+
+                <p id="CartErrormsg" class="carterror">Please add a booking to checkout!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </div>
   </section>
+
+
+
   <!-- Start of Footer -->
   <footer>
     <div class="copyright">
@@ -191,7 +235,8 @@
 
   <script type="text/javascript" src="/Assets/js/lib/jquery/jquery.min.js"></script>
   <script type="text/javascript" src="/Assets/js/signup_validation.js?version=8.0"></script>
-  <script type="text/javascript" src="/Assets/js/Customer/newCart.js?version=4"></script>
+  <script type="text/javascript" src="/Assets/js/SpArenaManager/newCart.js?version=5"></script>
+  <script type="text/javascript" src="/Assets/js/SpArenaManager/cart_clear_booking.js"></script>
   <!-- Top navbar js -->
   <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
 </body>

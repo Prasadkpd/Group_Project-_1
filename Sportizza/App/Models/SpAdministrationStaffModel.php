@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Core\Image;
 use Core\Model;
 use PDO;
 use PDOException;
@@ -26,59 +27,257 @@ class SpAdministrationStaffModel extends \Core\Model
     //Start of displaying sports arena profile
     public static function arenaProfileView($id)
     {
-        $sql1 = 'SELECT sports_arena_id FROM administration_staff WHERE user_id =:user_id';
-        $db = static::getDB();
-        $stmt1 = $db->prepare($sql1);
-        $stmt1->bindValue(':user_id', $id, PDO::PARAM_INT);
-        $stmt1->execute();
-        $result1 = $stmt1->fetch(PDO::FETCH_ASSOC);
-        $arena_id = $result1['sports_arena_id'];
+        try {
+            $db = static::getDB();
+            $db->beginTransaction();
 
-        $sql2 = 'SELECT sports_arena_profile.sports_arena_id,sports_arena_profile.sa_name, sports_arena_profile.location, sports_arena_profile.google_map_link, 
-       sports_arena_profile.profile_photo, sports_arena_profile.description, sports_arena_profile.category, 
-       sports_arena_profile.payment_method,sports_arena_profile.other_facilities, sports_arena_profile.contact_no,
-       sports_arena_profile_photo.photo1_name, sports_arena_profile_photo.photo2_name, sports_arena_profile_photo.photo3_name,
-       sports_arena_profile_photo.photo4_name,sports_arena_profile_photo.photo5_name
-        FROM sports_arena_profile INNER JOIN sports_arena_profile_photo ON 
+            $sql1 = 'SELECT sports_arena_id FROM administration_staff WHERE user_id =:user_id';
+
+            $stmt1 = $db->prepare($sql1);
+            $stmt1->bindValue(':user_id', $id, PDO::PARAM_INT);
+            $stmt1->execute();
+            $result1 = $stmt1->fetch(PDO::FETCH_ASSOC);
+            $arena_id = $result1['sports_arena_id'];
+
+            $sql2 = 'SELECT sports_arena_profile.sports_arena_id,sports_arena_profile.sa_name, sports_arena_profile.location, sports_arena_profile.google_map_link, 
+            sports_arena_profile.profile_photo, sports_arena_profile.description, sports_arena_profile.category, 
+            sports_arena_profile.payment_method,sports_arena_profile.other_facilities, sports_arena_profile.contact_no,
+            sports_arena_profile_photo.photo1_name, sports_arena_profile_photo.photo2_name, sports_arena_profile_photo.photo3_name,
+            sports_arena_profile_photo.photo4_name,sports_arena_profile_photo.photo5_name
+            FROM sports_arena_profile INNER JOIN sports_arena_profile_photo ON 
             sports_arena_profile.s_a_profile_id = sports_arena_profile_photo.sa_profile_id 
-        WHERE sports_arena_profile.sports_arena_id=:arena_id';
-        $stmt2 = $db->prepare($sql2);
-        $stmt2->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
-        $stmt2->execute();
-        $result2 = $stmt2->fetch(PDO::FETCH_ASSOC);
-        return $result2;
-    }
+            WHERE sports_arena_profile.sports_arena_id=:arena_id';
 
+            $stmt2 = $db->prepare($sql2);
+            $stmt2->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+            $stmt2->execute();
+            $result2 = $stmt2->fetch(PDO::FETCH_ASSOC);
+
+            $db->commit();
+            return $result2;
+        } catch (PDOException $e) {
+            $db->rollback();
+            throw $e;
+        }
+    }
     //End of displaying sports arena profile
+    
     public static function editArenaProfile($arena_id, $name, $location, $contact, $category, $map_link, $description, $other_facility, $payment)
     {
-        $sql1 = "UPDATE sports_arena SET sa_name=:sa_name WHERE sports_arena_id=:arena_id";
-        $db = static::getDB();
-        $stmt1 = $db->prepare($sql1);
-        $stmt1->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
-        $stmt1->bindValue(':sa_name', $name, PDO::PARAM_STR);
-        $stmt1->execute();
+        try {
+            $db = static::getDB();
+            $db->beginTransaction();
 
-        $sql2 = "UPDATE sports_arena_profile SET sa_name=:sa_name, location=:location, google_map_link=:google_map_link, description=:description, category=:category, payment_method=:payment_method, other_facilities=:other_facilities, contact_no=:contact WHERE sports_arena_id=:arena_id";
-        $stmt2 = $db->prepare($sql2);
-        $stmt2->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
-        $stmt2->bindValue(':sa_name', $name, PDO::PARAM_STR);
-        $stmt2->bindValue(':location', $location, PDO::PARAM_STR);
-        $stmt2->bindValue(':google_map_link', $map_link, PDO::PARAM_STR);
-        $stmt2->bindValue(':description', $description, PDO::PARAM_STR);
-        $stmt2->bindValue(':category', $category, PDO::PARAM_STR);
-        $stmt2->bindValue(':payment_method', $payment, PDO::PARAM_STR);
-        $stmt2->bindValue(':other_facilities', $other_facility, PDO::PARAM_STR);
-        $stmt2->bindValue(':contact', $contact, PDO::PARAM_STR);
-        return ($stmt2->execute());
+            $sql1 = "UPDATE sports_arena SET sa_name=:sa_name WHERE sports_arena_id=:arena_id";
+
+            $stmt1 = $db->prepare($sql1);
+            $stmt1->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+            $stmt1->bindValue(':sa_name', $name, PDO::PARAM_STR);
+            $stmt1->execute();
+
+            $sql2 = "UPDATE sports_arena_profile SET sa_name=:sa_name, location=:location, google_map_link=:google_map_link, description=:description, category=:category, payment_method=:payment_method, other_facilities=:other_facilities, contact_no=:contact WHERE sports_arena_id=:arena_id";
+            $stmt2 = $db->prepare($sql2);
+            $stmt2->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+            $stmt2->bindValue(':sa_name', $name, PDO::PARAM_STR);
+            $stmt2->bindValue(':location', $location, PDO::PARAM_STR);
+            $stmt2->bindValue(':google_map_link', $map_link, PDO::PARAM_STR);
+            $stmt2->bindValue(':description', $description, PDO::PARAM_STR);
+            $stmt2->bindValue(':category', $category, PDO::PARAM_STR);
+            $stmt2->bindValue(':payment_method', $payment, PDO::PARAM_STR);
+            $stmt2->bindValue(':other_facilities', $other_facility, PDO::PARAM_STR);
+            $stmt2->bindValue(':contact', $contact, PDO::PARAM_STR);
+            $stmt2->execute();
+
+            $db->commit();
+            return true;
+        } catch (PDOException $e) {
+            $db->rollback();
+            throw $e;
+        }
     }
+
+
+    public static function changeImageone($id, $image_1)
+    {
+        try {
+            $db = static::getDB();
+            $db->beginTransaction();
+
+            $sql1 = 'SELECT sports_arena_profile_photo.sa_profile_id FROM sports_arena_profile_photo INNER JOIN 
+            sports_arena_profile ON sports_arena_profile_photo.sa_profile_id=sports_arena_profile.s_a_profile_id INNER JOIN 
+            sports_arena ON sports_arena_profile.sports_arena_id =sports_arena.sports_arena_id INNER JOIN administration_staff
+            ON sports_arena.sports_arena_id = administration_staff.sports_arena_id WHERE user_id=:user_id';
+
+            $stm1 = $db->prepare($sql1);
+            $stm1->bindValue(':user_id', $id, PDO::PARAM_INT);
+            $stm1->execute();
+            $result1 = $stm1->fetch(PDO::FETCH_ASSOC);
+            $arena_profile_id = $result1['sa_profile_id'];
+            $image_1 = new Image("image_1");
+            $photo1_name = $image_1->getURL();
+            echo ($arena_profile_id);
+            echo ($photo1_name);
+
+            $sql2 = 'UPDATE sports_arena_profile_photo SET photo1_name=:photo1 WHERE sa_profile_id=:arena_profile_id';
+            $stm2 = $db->prepare($sql2);
+            $stm2->bindValue(':photo1', $photo1_name, PDO::PARAM_STR);
+            $stm2->bindValue(':arena_profile_id', $arena_profile_id, PDO::PARAM_INT);
+
+
+            $stm2->execute();
+
+            $db->commit();
+            return true;
+        } catch (PDOException $e) {
+            $db->rollback();
+            throw $e;
+        }
+    }
+
+    public static function changeImage2($id, $image_2)
+    {
+        try {
+            $db = static::getDB();
+            $db->beginTransaction();
+
+            $sql1 = 'SELECT sports_arena_profile_photo.sa_profile_id FROM sports_arena_profile_photo INNER JOIN 
+            sports_arena_profile ON sports_arena_profile_photo.sa_profile_id=sports_arena_profile.s_a_profile_id INNER JOIN 
+            sports_arena ON sports_arena_profile.sports_arena_id =sports_arena.sports_arena_id INNER JOIN administration_staff
+            ON sports_arena.sports_arena_id = administration_staff.sports_arena_id WHERE user_id=:user_id';
+
+            $stm1 = $db->prepare($sql1);
+            $stm1->bindValue(':user_id', $id, PDO::PARAM_INT);
+            $stm1->execute();
+            $result1 = $stm1->fetch(PDO::FETCH_ASSOC);
+            $arena_profile_id = $result1['sa_profile_id'];
+            $image_2 = new Image("image_2");
+            $photo2_name = $image_2->getURL();
+
+            $sql2 = 'UPDATE sports_arena_profile_photo SET photo2_name=:photo2 WHERE sa_profile_id=:arena_profile_id';
+            $stm2 = $db->prepare($sql2);
+            $stm2->bindValue(':photo2', $photo2_name, PDO::PARAM_STR);
+            $stm2->bindValue(':arena_profile_id', $arena_profile_id, PDO::PARAM_INT);
+            $stm2->execute();
+
+            $db->commit();
+            return true;
+        } catch (PDOException $e) {
+            $db->rollback();
+            throw $e;
+        }
+    }
+
+    public static function changeImage3($id, $image_3)
+    {
+        try {
+            $db = static::getDB();
+            $db->beginTransaction();
+
+            $sql1 = 'SELECT sports_arena_profile_photo.sa_profile_id FROM sports_arena_profile_photo INNER JOIN 
+            sports_arena_profile ON sports_arena_profile_photo.sa_profile_id=sports_arena_profile.s_a_profile_id INNER JOIN 
+            sports_arena ON sports_arena_profile.sports_arena_id =sports_arena.sports_arena_id INNER JOIN administration_staff
+            ON sports_arena.sports_arena_id = administration_staff.sports_arena_id WHERE user_id=:user_id';
+
+            $stm1 = $db->prepare($sql1);
+            $stm1->bindValue(':user_id', $id, PDO::PARAM_INT);
+            $stm1->execute();
+
+            $result1 = $stm1->fetch(PDO::FETCH_ASSOC);
+            $arena_profile_id = $result1['sa_profile_id'];
+            $image_3 = new Image("image_3");
+            $photo3_name = $image_3->getURL();
+
+            $sql2 = 'UPDATE sports_arena_profile_photo SET photo3_name=:photo3 WHERE sa_profile_id=:arena_profile_id';
+            $stm2 = $db->prepare($sql2);
+            $stm2->bindValue(':photo3', $photo3_name, PDO::PARAM_STR);
+            $stm2->bindValue(':arena_profile_id', $arena_profile_id, PDO::PARAM_INT);
+            $stm2->execute();
+
+            $db->commit();
+            return true;
+        } catch (PDOException $e) {
+            $db->rollback();
+            throw $e;
+        }
+    }
+
+    public static function changeImage4($id, $image_4)
+    {
+        try {
+            $db = static::getDB();
+            $db->beginTransaction();
+
+            $sql1 = 'SELECT sports_arena_profile_photo.sa_profile_id FROM sports_arena_profile_photo INNER JOIN 
+        sports_arena_profile ON sports_arena_profile_photo.sa_profile_id=sports_arena_profile.s_a_profile_id INNER JOIN 
+    sports_arena ON sports_arena_profile.sports_arena_id =sports_arena.sports_arena_id INNER JOIN administration_staff
+        ON sports_arena.sports_arena_id = administration_staff.sports_arena_id WHERE user_id=:user_id';
+
+            $stm1 = $db->prepare($sql1);
+            $stm1->bindValue(':user_id', $id, PDO::PARAM_INT);
+            $stm1->execute();
+            $result1 = $stm1->fetch(PDO::FETCH_ASSOC);
+            $arena_profile_id = $result1['sa_profile_id'];
+            $image_4 = new Image("image_4");
+            $photo4_name = $image_4->getURL();
+
+            $sql2 = 'UPDATE sports_arena_profile_photo SET photo4_name=:photo4 WHERE sa_profile_id=:arena_profile_id';
+            $stm2 = $db->prepare($sql2);
+            $stm2->bindValue(':photo4', $photo4_name, PDO::PARAM_STR);
+            $stm2->bindValue(':arena_profile_id', $arena_profile_id, PDO::PARAM_INT);
+            $stm2->execute();
+
+            $db->commit();
+            return true;
+        } catch (PDOException $e) {
+            $db->rollback();
+            throw $e;
+        }
+    }
+
+    public static function changeImage5($id, $image_5)
+    {
+        try {
+            $db = static::getDB();
+            $db->beginTransaction();
+
+            $sql1 = 'SELECT sports_arena_profile_photo.sa_profile_id FROM sports_arena_profile_photo INNER JOIN 
+        sports_arena_profile ON sports_arena_profile_photo.sa_profile_id=sports_arena_profile.s_a_profile_id INNER JOIN 
+    sports_arena ON sports_arena_profile.sports_arena_id =sports_arena.sports_arena_id INNER JOIN administration_staff
+        ON sports_arena.sports_arena_id = administration_staff.sports_arena_id WHERE user_id=:user_id';
+
+            $stm1 = $db->prepare($sql1);
+            $stm1->bindValue(':user_id', $id, PDO::PARAM_INT);
+            $stm1->execute();
+            $result1 = $stm1->fetch(PDO::FETCH_ASSOC);
+            $arena_profile_id = $result1['sa_profile_id'];
+            $image_5 = new Image("image_5");
+            $photo5_name = $image_5->getURL();
+
+            $sql2 = 'UPDATE sports_arena_profile_photo SET photo5_name=:photo5 WHERE sa_profile_id=:arena_profile_id';
+            $stm2 = $db->prepare($sql2);
+            $stm2->bindValue(':photo5', $photo5_name, PDO::PARAM_STR);
+            $stm2->bindValue(':arena_profile_id', $arena_profile_id, PDO::PARAM_INT);
+            $stm2->execute();
+
+            $db->commit();
+            return true;
+        } catch (PDOException $e) {
+            $db->rollback();
+            throw $e;
+        }
+    }
+
 
     //Start of Displaying sports arena bookings
     public static function saAdminViewBookings($id)
     {
+        
+            $db = static::getDB();
+          
 
-        //Retrieving bookings from the database
-        $sql = 'SELECT booking.booking_id,booking.price_per_booking,
+
+            //Retrieving bookings from the database
+            $sql = 'SELECT booking.booking_id,booking.price_per_booking,
         DATE(booking.booking_date) AS booking_date,
                 booking.payment_method,booking.payment_status,
                 TIME_FORMAT(time_slot.start_time, "%H" ":" "%i") AS start_time, 
@@ -91,106 +290,175 @@ class SpAdministrationStaffModel extends \Core\Model
                  WHERE booking.security_status="active" AND administration_staff.user_id=:id
                  ORDER BY booking.booking_date DESC';
 
-        $db = static::getDB();
-        $stmt = $db->prepare($sql);
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
-        //Converting retrieved data from database into PDOs
-        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-        $stmt->execute();
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
-        //Assigning the fetched PDOs to result
-        $result = $stmt->fetchAll();
-        return $result;
+            //Converting retrieved data from database into PDOs
+            $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+            $stmt->execute();
+
+            //Assigning the fetched PDOs to result
+            $result = $stmt->fetchAll();
+           
+
+            return $result;
+       
     }
     //End of Displaying sports arena bookings
 
-//Start of displaying sports arena timeslot
-public static function saAdminViewAvailableTimeSlots($saAdmin_id)
-{
-    $sql = 'SELECT sports_arena_id FROM administration_staff WHERE user_id=:user_id';
-    
-    $db = static::getDB();
-    $stmt = $db->prepare($sql);
-    //Binding the sports arena id and Converting retrieved data from database into PDOs
-    $stmt->bindValue(':user_id', $saAdmin_id,PDO::PARAM_INT);
-    $stmt->execute();
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    $arena_id = $result['sports_arena_id'];
-
-    //Retrieving sports arena timeslot from the database
-    $sql = 'SELECT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i")
-    AS startTime,TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,
-    time_slot.price,facility.facility_name
-    FROM time_slot
-    INNER JOIN facility ON time_slot.facility_id= facility.facility_id
-    WHERE time_slot.time_slot_id NOT IN
-     (SELECT booking_timeslot.timeslot_id FROM booking 
-    INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id WHERE 
-    booking.booking_date=CURRENT_DATE() OR (payment_status="pending" 
-     AND booked_date +INTERVAL 30 MINUTE > CURRENT_TIMESTAMP) )
-     AND time_slot.manager_sports_arena_id=:arena_id 
-     AND time_slot.security_status="active" ORDER BY time_slot.start_time';
-
-    // payment_status="pending" 
-    $db = static::getDB();
-    $stmt = $db->prepare($sql);
-
-    //Binding the sports arena id and Converting retrieved data from database into PDOs
-    $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
-    $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-    $stmt->execute();
-
-    //Assigning the fetched PDOs to result
-    $result = $stmt->fetchAll();
-    return $result;
-}
-//End of Displaying sports arena timeslot
+    //Start of displaying sports arena timeslot
+    public static function saAdminViewAvailableTimeSlots($saAdmin_id)
+    {
+        try {
+            $db = static::getDB();
+            $db->beginTransaction();
 
 
-public static function saAdminSearchTimeSlotsDate($saAdmin_id, $date)
-{
-    $sql = 'SELECT sports_arena_id FROM administration_staff WHERE user_id=:user_id';
-    
-    $db = static::getDB();
-    $stmt = $db->prepare($sql);
-    //Binding the sports arena id and Converting retrieved data from database into PDOs
-    $stmt->bindValue(':user_id', $saAdmin_id,PDO::PARAM_INT);
-    $stmt->execute();
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    $arena_id = $result['sports_arena_id'];
-    
-    //Retrieving sports arena timeslot from the database
-    $sql = 'SELECT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i")
-    AS startTime,TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,
-    time_slot.price,facility.facility_name,sports_arena_profile.payment_method
-    FROM time_slot
-    INNER JOIN facility ON time_slot.facility_id= facility.facility_id
-    INNER JOIN sports_arena_profile ON facility.sports_arena_id= sports_arena_profile.sports_arena_id
-    WHERE time_slot.time_slot_id NOT IN
-     (SELECT booking_timeslot.timeslot_id FROM booking 
-    INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id WHERE 
-    booking.booking_date=:date )
-     AND time_slot.manager_sports_arena_id=:arena_id 
-     AND time_slot.security_status="active"
-     ORDER BY time_slot.start_time';
+            $sql = 'SELECT sports_arena_id FROM administration_staff WHERE user_id=:user_id';
 
 
-    // have to change this is wrong we use it for testing
+            $stmt = $db->prepare($sql);
+            //Binding the sports arena id and Converting retrieved data from database into PDOs
+            $stmt->bindValue(':user_id', $saAdmin_id, PDO::PARAM_INT);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $arena_id = $result['sports_arena_id'];
 
-    $db = static::getDB();
-    $stmt = $db->prepare($sql);
+            //Retrieving sports arena timeslot from the database
+            $sql = 'SELECT DISTINCT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i")
+        AS startTime,TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,
+        time_slot.price,facility.facility_name
+        FROM time_slot
+        INNER JOIN facility ON time_slot.facility_id= facility.facility_id
+        INNER JOIN booking_timeslot ON time_slot.time_slot_id =booking_timeslot.timeslot_id
+        INNER JOIN booking ON booking_timeslot.booking_id=booking.booking_id
+        
+        WHERE time_slot.time_slot_id NOT IN
+         (SELECT booking_timeslot.timeslot_id FROM booking 
+        INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id WHERE 
+        ((booking.booking_date=CURRENT_DATE()) OR (payment_status="pending" 
+         AND booked_date +INTERVAL 30 MINUTE > CURRENT_TIMESTAMP))
+         AND booking_timeslot.security_status="active")
+         AND time_slot.manager_sports_arena_id=:arena_id 
+         AND time_slot.security_status="active" 
+         AND time_slot.start_time > CURRENT_TIME() 
+         GROUP BY time_slot.time_slot_id
+         ORDER BY time_slot.start_time';
+            // payment_status="pending" 
 
-    //Binding the sports arena id and Converting retrieved data from database into PDOs
-    $stmt->bindValue(':date', $date, PDO::PARAM_STR);
-    $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
-    $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-    $stmt->execute();
+            $stmt = $db->prepare($sql);
 
-    $output = "";
+            //Binding the sports arena id and Converting retrieved data from database into PDOs
+            $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+            $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+            $stmt->execute();
 
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $output .= "
+            //Assigning the fetched PDOs to result
+            $result = $stmt->fetchAll();
+            $db->commit();
+            return $result;
+        } catch (PDOException $e) {
+            $db->rollback();
+            throw $e;
+        }
+    }
+    //End of Displaying sports arena timeslot
+
+
+    public static function saAdminSearchTimeSlotsDate($saAdmin_id, $date)
+    {
+        try {
+            $db = static::getDB();
+            $db->beginTransaction();
+        $sql = 'SELECT sports_arena_id FROM administration_staff WHERE user_id=:user_id';
+
+        
+        $stmt = $db->prepare($sql);
+        //Binding the sports arena id and Converting retrieved data from database into PDOs
+        $stmt->bindValue(':user_id', $saAdmin_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $arena_id = $result['sports_arena_id'];
+
+        // have to change this is wrong we use it for testing
+
+        $current_date = date('Y-m-d');
+
+        if ($date != $current_date) {
+            // echo($date);     
+            //Retrieving sports arena timeslot from the database
+            $sql = 'SELECT DISTINCT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i")
+            AS startTime,TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,
+            time_slot.price,facility.facility_name,sports_arena_profile.payment_method
+            FROM time_slot
+            INNER JOIN facility ON time_slot.facility_id= facility.facility_id
+            INNER JOIN sports_arena_profile ON facility.sports_arena_id= sports_arena_profile.sports_arena_id
+            WHERE time_slot.time_slot_id NOT IN
+            (SELECT booking_timeslot.timeslot_id FROM booking 
+            INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id WHERE 
+            ((booking.booking_date=:date) OR (payment_status="pending" 
+            AND booked_date +INTERVAL 30 MINUTE > CURRENT_TIMESTAMP))
+            AND booking_timeslot.security_status="active")
+            AND time_slot.manager_sports_arena_id=:arena_id
+            AND time_slot.security_status="active"
+            GROUP BY time_slot.time_slot_id
+            ORDER BY time_slot.start_time;';
+
+
+
+
+            $stmt = $db->prepare($sql);
+
+            //Binding the sports arena id and Converting retrieved data from database into PDOs
+            $stmt->bindValue(':date', $date, PDO::PARAM_STR);
+            $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+        } else {
+
+
+            $sql = 'SELECT DISTINCT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i")
+                AS startTime,TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,
+                time_slot.price,facility.facility_name
+                FROM time_slot
+                INNER JOIN facility ON time_slot.facility_id= facility.facility_id
+                INNER JOIN booking_timeslot ON time_slot.time_slot_id =booking_timeslot.timeslot_id
+                INNER JOIN booking ON booking_timeslot.booking_id=booking.booking_id
+                
+                WHERE time_slot.time_slot_id NOT IN
+                 (SELECT booking_timeslot.timeslot_id FROM booking 
+                INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id WHERE 
+                ((booking.booking_date=CURRENT_DATE()) OR (payment_status="pending" 
+                 AND booked_date +INTERVAL 30 MINUTE > CURRENT_TIMESTAMP))
+                 AND booking_timeslot.security_status="active")
+                 AND time_slot.manager_sports_arena_id=:arena_id 
+                 AND time_slot.security_status="active" 
+                 AND time_slot.start_time > CURRENT_TIME() 
+              GROUP BY time_slot.time_slot_id
+                 ORDER BY time_slot.start_time';
+
+            $stmt = $db->prepare($sql);
+
+            //Binding the sports arena id and Converting retrieved data from database into PDOs
+            // $stmt->bindValue(':date', $date, PDO::PARAM_STR);
+            $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+        }
+
+
+
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+        $db->commit();
+            
+        } catch (PDOException $e) {
+            $db->rollback();
+            throw $e;
+        }
+
+        $output = "";
+
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $output .= "
         <li id={$row["time_slot_id"]} class='hideDetails'>
         <div class='row'>
             <span class='s-time'>{$row["startTime"]}</span>&nbsp;-
@@ -211,84 +479,89 @@ public static function saAdminSearchTimeSlotsDate($saAdmin_id, $date)
         <input type='hidden' name='timeSlotId' value={$row["time_slot_id"]}>
         <input type='date' name='bookingDate' class='bookingDatehidden' value={$date} style='display: none;'>
     </li>";
+        }
+
+        return $output;
     }
+    //End of Displaying sports arena timeslot
 
-    return $output;
-}
-//End of Displaying sports arena timeslot
-
-public static function saAdminAddToCart($saAdmin_id,$timeslot_id, $booking_date, $payment_method)
-{
-    $sql = 'SELECT time_slot.start_time, time_slot.end_time,
+    public static function saAdminAddToCart($saAdmin_id, $timeslot_id, $booking_date, $payment_method)
+    {
+        try {
+            $db = static::getDB();
+            $db->beginTransaction();
+            $sql = 'SELECT time_slot.start_time, time_slot.end_time,
     time_slot.price,time_slot.facility_id,time_slot.manager_sports_arena_id
     FROM time_slot   
     WHERE time_slot.security_status="active"
     AND time_slot.time_slot_id=:timeslot_id';
 
-    // get database connection
-    $db = static::getDB();
-    $stmt = $db->prepare($sql);
+            // get database connection
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
 
-    //Binding the customer id and Converting retrieved data from database into PDOs
-    $stmt->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
-    $stmt->execute();
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-   
-    $price = $result['price'];
-    $facility_id= $result['facility_id'];
-    $arena_id = $result['manager_sports_arena_id'];
-    //Assigning the fetched PDOs to result
+            //Binding the customer id and Converting retrieved data from database into PDOs
+            $stmt->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    //insert query for add feedbacks
-    $sql2 = 'INSERT INTO `booking`(`booking_date`,`customer_user_id`, 
+            $price = $result['price'];
+            $facility_id = $result['facility_id'];
+            $arena_id = $result['manager_sports_arena_id'];
+            //Assigning the fetched PDOs to result
+
+            //insert query for add feedbacks
+            $sql2 = 'INSERT INTO `booking`(`booking_date`,`customer_user_id`, 
     `payment_method`, `price_per_booking`, `facility_id`, 
     `sports_arena_id`) VALUES 
     (:booking_date,:customer_user_id,:payment_method,:price,:facility_id,
     :sports_arena_id)';
 
-    // get database connection
-    $stmt2 = $db->prepare($sql2);
-    //Binding the customer id and Converting retrieved data from database into PDOs
-    $stmt2->bindValue(':customer_user_id', $saAdmin_id, PDO::PARAM_INT);
-    $stmt2->bindValue(':booking_date', $booking_date, PDO::PARAM_STR);
-    $stmt2->bindValue(':payment_method', $payment_method, PDO::PARAM_STR);
-    $stmt2->bindValue(':price', $price, PDO::PARAM_INT);
-    $stmt2->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
-    $stmt2->bindValue(':sports_arena_id', $arena_id, PDO::PARAM_INT);
-    $stmt2->execute();
-    
-    $sql3 = 'SELECT booking.booking_id from booking ORDER BY booking.booking_id DESC LIMIT 1';
-    $stmt3 = $db->prepare($sql3);
-    $stmt3->execute();
-    $result3 = $stmt3->fetch(PDO::FETCH_ASSOC);
-    $booking_id = $result3['booking_id'];
-    // echo($booking_id);
-    // echo($timeslot_id);
-    $sql4 = 'INSERT INTO `booking_timeslot`(`timeslot_id`, `booking_id`) VALUES 
-    (:timeslot_id,:booking_id)';
+            // get database connection
+            $stmt2 = $db->prepare($sql2);
+            //Binding the customer id and Converting retrieved data from database into PDOs
+            $stmt2->bindValue(':customer_user_id', $saAdmin_id, PDO::PARAM_INT);
+            $stmt2->bindValue(':booking_date', $booking_date, PDO::PARAM_STR);
+            $stmt2->bindValue(':payment_method', $payment_method, PDO::PARAM_STR);
+            $stmt2->bindValue(':price', $price, PDO::PARAM_INT);
+            $stmt2->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
+            $stmt2->bindValue(':sports_arena_id', $arena_id, PDO::PARAM_INT);
+            $stmt2->execute();
 
-    // get database connection
-    $stmt4 = $db->prepare($sql4);
-    //Binding the timeslot id and booking id Converting retrieved data from database into PDOs
-    
-    $stmt4->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
-    $stmt4->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
-    $stmt4->execute();
-    return $arena_id;
-}
+            $sql3 = 'SELECT booking.booking_id from booking ORDER BY booking.booking_id DESC LIMIT 1';
+            $stmt3 = $db->prepare($sql3);
+            $stmt3->execute();
+            $result3 = $stmt3->fetch(PDO::FETCH_ASSOC);
+            $booking_id = $result3['booking_id'];
 
-public static function saAdminCartView($id)
-{
-    // get database connection
-    $db = static::getDB();
+            $sql4 = 'INSERT INTO `booking_timeslot`(`timeslot_id`, `booking_id`) VALUES 
+        (:timeslot_id,:booking_id)';
 
-    //select booked dated from booking and add 30 mins to it and rename it as prev time and next time
-    // $sql='SELECT SUBTIME(NOW(),"0:30:00")AS prev_time, NOW() AS next_time';
-    // //fetch from this one
+            // get database connection
+            $stmt4 = $db->prepare($sql4);
+            //Binding the timeslot id and booking id Converting retrieved data from database into PDOs
 
-    // $stmt = $db->prepare($sql);
+            $stmt4->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
+            $stmt4->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+            $stmt4->execute();
 
-    $sql2='SELECT booking.price_per_booking, booking.booking_id, time_slot.start_time,time_slot.end_time, 
+            $db->commit();
+            return $arena_id;
+        } catch (PDOException $e) {
+            $db->rollback();
+            throw $e;
+        }
+    }
+
+    public static function saAdminCartView($id)
+    {
+        
+            $db = static::getDB();
+           
+            // get database connection
+
+
+            $sql2 = 'SELECT booking.price_per_booking, booking.booking_id, time_slot.start_time,time_slot.end_time, 
     sports_arena_profile.sa_name, sports_arena_profile.category, sports_arena_profile.location,
     booking.booked_date,booking.payment_method, facility.facility_name
     FROM booking
@@ -300,18 +573,56 @@ public static function saAdminCartView($id)
     AND booking.customer_user_id=:user_id AND DATE(booking.booked_date)=DATE(CURRENT_TIMESTAMP)
     AND TIME(booking.booked_date) + INTERVAL 30 MINUTE > TIME(CURRENT_TIMESTAMP) ';
 
-    // AND booking.booked_date >= :prev_time AND booking.booked_date <=:next_time
-    $stmt = $db->prepare($sql2);
+            // AND booking.booked_date >= :prev_time AND booking.booked_date <=:next_time
+            $stmt = $db->prepare($sql2);
 
-    //Binding the customer id and Converting retrieved data from database into PDOs
-    $stmt->bindValue(':user_id', $id, PDO::PARAM_INT);
-    $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-    $stmt->execute();
+            //Binding the customer id and Converting retrieved data from database into PDOs
+            $stmt->bindValue(':user_id', $id, PDO::PARAM_INT);
+            $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+            $stmt->execute();
 
-    //Assigning the fetched PDOs to result
-    $result = $stmt->fetchAll();
-    return $result;
-}
+            //Assigning the fetched PDOs to result
+            $result = $stmt->fetchAll();
+            
+            return $result;
+        
+    }
+
+    // Start of clearing a booking from cart
+    public static function saAdminClearBooking($booking_id)
+    {
+        try {
+            $db = static::getDB();
+            $db->beginTransaction();
+            // get database connection
+            
+
+            $sql = 'UPDATE booking SET security_status="inactive" WHERE booking_id=:id';
+
+            // Prepare sql statement
+            $stmt = $db->prepare($sql);
+
+            //Binding the customer id and Converting retrieved data from database into PDOs
+            $stmt->bindValue(':id', $booking_id, PDO::PARAM_INT);
+            $stmt->execute();
+
+            $sql = 'UPDATE booking_timeslot SET security_status="inactive" WHERE booking_id=:id';
+
+            // Prepare sql statement
+            $stmt = $db->prepare($sql);
+
+            //Binding the customer id and Converting retrieved data from database into PDOs
+            $stmt->bindValue(':id', $booking_id, PDO::PARAM_INT);
+            $stmt->execute();
+
+            $db->commit();
+            return true;
+        } catch (PDOException $e) {
+            $db->rollback();
+            throw $e;
+        }
+    }
+    // End of clearing a booking from cart
 
     //Start of displaying sports arena's cancel bookings
     public static function saAdminCancelBookings($id)
@@ -328,7 +639,8 @@ public static function saAdminCartView($id)
                 INNER JOIN time_slot ON booking_timeslot.timeslot_id=time_slot.time_slot_id
                 INNER JOIN user ON user.user_id=booking.customer_user_id
                 INNER JOIN administration_staff ON booking.sports_arena_id =administration_staff.sports_arena_id
-                 WHERE booking.security_status="active"AND administration_staff.user_id=:id
+                 WHERE booking.security_status="active" AND administration_staff.user_id=:id
+                 AND booking.booking_date>=CURRENT_DATE()
                  ORDER BY booking.booking_date DESC
                 ';
 
@@ -377,6 +689,188 @@ public static function saAdminCartView($id)
     }
     //End of displaying sports arena's booking payment
 
+    public static function saAdminAddbookingPaymentSuccess($saAdmin_id, $first_name, $last_name, $primary_contact)
+    {
+        try {
+            $db = static::getDB();
+            $db->beginTransaction();
+
+        $sql = 'INSERT INTO `user` (`first_name`,`last_name`,`account_status`,`primary_contact`) VALUES 
+        (:first_name,:last_name,:account_status,:primary_contact)';
+
+        $stmt = $db->prepare($sql);
+
+        $account_status = "visitor";
+
+        $stmt->bindValue(':first_name', $first_name, PDO::PARAM_STR);
+        $stmt->bindValue(':last_name', $last_name, PDO::PARAM_STR);
+        $stmt->bindValue(':account_status', $account_status, PDO::PARAM_STR);
+        $stmt->bindValue(':primary_contact', $primary_contact, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        $sql2 = 'SELECT `user_id` FROM `user` ORDER BY `user_id` DESC LIMIT 1;';
+
+        $stmt2 = $db->prepare($sql2);
+        $stmt2->execute();
+
+        //Converting retrieved data from database into PDOs
+        $result1 = $stmt2->fetch(PDO::FETCH_ASSOC);
+        //Obtaining the user id retrieved from result1
+        $user_id = $result1["user_id"];
+        //Insert into customer table in database
+        $sql3 = 'INSERT INTO `customer`
+        (`customer_user_id`) 
+        VALUES (:customer_user_id);';
+
+        $stmt3 = $db->prepare($sql3);
+        $stmt3->bindValue(':customer_user_id', $user_id, PDO::PARAM_INT);
+        $stmt3->execute();
+
+        $sql7 = 'INSERT INTO `payment` (`net_amount`) VALUES (0)';
+        $stmt = $db->prepare($sql7);
+        $stmt->execute();
+
+        $sql2 = 'SELECT `payment_id` FROM `payment` ORDER BY `payment_id` DESC LIMIT 1;';
+
+        $stmt2 = $db->prepare($sql2);
+        $stmt2->execute();
+        $result1 = $stmt2->fetch(PDO::FETCH_ASSOC);
+        $payment_id = $result1["payment_id"];
+
+
+        $sql2 = 'SELECT booking.booking_id
+        FROM booking
+        INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id
+        INNER JOIN time_slot ON booking_timeslot.timeslot_id=time_slot.time_slot_id
+        INNER JOIN sports_arena_profile ON booking.sports_arena_id=sports_arena_profile.sports_arena_id
+        INNER JOIN facility ON booking.facility_id= facility.facility_id
+        WHERE booking_timeslot.security_status="active" AND booking.payment_status="pending"
+        AND booking.customer_user_id=:user_id AND DATE(booking.booked_date)=DATE(CURRENT_TIMESTAMP)
+        AND TIME(booking.booked_date) + INTERVAL 30 MINUTE > TIME(CURRENT_TIMESTAMP) ';
+
+        // AND booking.booked_date >= :prev_time AND booking.booked_date <=:next_time
+        $stmt = $db->prepare($sql2);
+
+        //Binding the customer id and Converting retrieved data from database into PDOs
+        $stmt->bindValue(':user_id', $saAdmin_id, PDO::PARAM_INT);
+        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        //Assigning the fetched PDOs to result
+        $result = $stmt->fetchAll();
+        $len = count($result);
+
+        $total_amount = 0;
+
+        // var_dump($result);
+        for ($x = 0; $x < $len; $x++) {
+            $booking_id = $result[$x][0];
+
+            $sql4 = 'SELECT booking.price_per_booking, booking.booking_date, facility.facility_name, 
+        `time_slot`.`start_time`,
+        `time_slot`.`end_time`, sports_arena_profile.sa_name
+        FROM booking 
+        INNER JOIN `facility` ON `facility`.facility_id = booking.facility_id
+        INNER JOIN `sports_arena_profile` ON `sports_arena_profile`.sports_arena_id = `booking`.sports_arena_id
+        INNER JOIN `booking_timeslot` ON `booking_timeslot`.`booking_id`= `booking`.`booking_id`
+        INNER JOIN `time_slot` ON `time_slot`.`time_slot_id`=`booking_timeslot`.`timeslot_id`
+        WHERE booking.booking_id =:booking_id';
+            $stmt4 = $db->prepare($sql4);
+            $stmt4->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+
+            $stmt4->execute();
+
+            $result1 = $stmt4->fetch(PDO::FETCH_ASSOC);
+
+            //Obtaining the administratoin staff user details retrieved from result1
+            $amount = $result1["price_per_booking"];
+            $arena_name = $result1["sa_name"];
+            $facility_name = $result1["facility_name"];
+            $booking_date = $result1["booking_date"];
+            $start_time = $result1["start_time"];
+            $end_time = $result1["end_time"];
+
+            $total_amount = $total_amount + $amount;
+
+            $sql5 = 'INSERT INTO `invoice` (`payment_method`, `net_amount`,`payment_id`) VALUES ("cash", :amount, :payment_id)';
+            $stmt = $db->prepare($sql5);
+            $stmt->bindValue(':amount', $amount, PDO::PARAM_INT);
+            $stmt->bindValue(':payment_id', $payment_id, PDO::PARAM_INT);
+            $stmt->execute();
+
+
+            $sql6 = 'SELECT `invoice_id` FROM `invoice` ORDER BY `invoice_id` DESC LIMIT 1;';
+
+            $stmt6 = $db->prepare($sql6);
+            $stmt6->execute();
+
+            //Converting retrieved data from database into PDOs
+            $result1 = $stmt6->fetch(PDO::FETCH_ASSOC);
+            //Obtaining the user id retrieved from result1
+            $invoice_id = $result1["invoice_id"];
+            //Updating status of the bookings in the database
+            $sql = 'UPDATE `booking` SET `payment_status`="paid", `invoice_id`=:invoice_id, `customer_user_id`=:user_id
+         WHERE `booking_id`=:booking_id';
+
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+            $stmt->bindValue(':invoice_id', $invoice_id, PDO::PARAM_INT);
+            $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+            $stmt->execute();
+
+
+
+            //Function to send booking confirmation SMS to visitor
+
+            //our mobile number
+            $user = "94765282976";
+            //our account password
+            $password = 4772;
+            //Random OTP code
+            $otp = mt_rand(100000, 999999);
+
+            // stores the otp code and mobile number into session
+            $_SESSION['otp'] = $otp;
+            $_SESSION['mobile_number'] = $primary_contact;
+
+            //Message to be sent
+            $text = urlencode("You have successfully made a booking to " . $arena_name . " on " . $booking_date . " from " . $start_time . " to " . $end_time . " for " . $facility_name . ".");
+            // Replacing the initial 0 with 94
+            $to = substr_replace($primary_contact, '94', 0, 0);
+            //Base URL
+            $baseurl = "http://www.textit.biz/sendmsg";
+            // regex to create the url
+            $url = "$baseurl/?id=$user&pw=$password&to=$to&text=$text";
+
+            $ret = file($url);
+            $res = explode(":", $ret[0]);
+
+            if (trim($res[0]) == "OK") {
+                echo "Message Sent - ID : " . $res[1];
+            } else {
+                echo "Sent Failed - Error : " . $res[1];
+            }
+        }
+
+        $sql = 'UPDATE `payment` SET `net_amount`=:total_amount
+         WHERE `payment_id`=:payment_id';
+
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':total_amount', $total_amount, PDO::PARAM_INT);
+        $stmt->bindValue(':payment_id', $payment_id, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        $db->commit();
+        return ($payment_id);
+
+    } catch (PDOException $e) {
+        $db->rollback();
+        throw $e;
+    }
+    }
+
     //Start of displaying sports arena's updating bookings
     public static function updateBookingPayment($booking_id)
     {
@@ -386,6 +880,7 @@ public static function saAdminCartView($id)
         $db = static::getDB();
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+        
         return ($stmt->execute());
     }
     //End of displaying sports arena's updating bookings
@@ -395,6 +890,9 @@ public static function saAdminCartView($id)
     //Start of booking cancellation 
     public static function bookingCancellation($booking_id, $user_id, $reason)
     {
+        try {
+            $db = static::getDB();
+            $db->beginTransaction();
         $sql = 'SELECT sports_arena_id, manager_user_id
         FROM administration_staff WHERE user_id =:user_id';
         //Updating status of the bookings in the database
@@ -449,8 +947,14 @@ public static function saAdminCartView($id)
         $sql = 'UPDATE booking_timeslot SET security_status="inactive" WHERE booking_id=:booking_id';
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
-
-        return ($stmt->execute());
+        $stmt->execute();
+        
+        $db->commit();
+        return (true);
+        } catch (PDOException $e) {
+            $db->rollback();
+            throw $e;
+        }
     }
     //End of booking cancellation 
 
@@ -460,7 +964,7 @@ public static function saAdminCartView($id)
 
         //Retrieving manager's notifications from the database
         $sql = 'SELECT subject,description, DATE(date) as date , TIME_FORMAT( TIME(date) ,"%H" ":" "%i") as time 
-        FROM notification WHERE user_id=:id';
+        FROM notification WHERE user_id=:id ORDER BY notification.date DESC';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -483,7 +987,9 @@ public static function saAdminCartView($id)
         $sql = 'SELECT facility.facility_id, facility.facility_name
         FROM facility
         INNER JOIN administration_staff ON facility.manager_sports_arena_id=administration_staff.manager_sports_arena_id
-        WHERE administration_staff.user_id=:id';
+        WHERE administration_staff.user_id=:id 
+        AND facility.security_status="active"
+        ORDER BY facility.facility_name';
 
 
         $db = static::getDB();
@@ -527,12 +1033,16 @@ public static function saAdminCartView($id)
         //Assigning the fetched PDOs to result
         $result = $stmt->fetchAll();
         return $result;
+        
     }
     //End of displaying sports arenas timeslots for manager
 
     //Start of adding timeslot to a sports arena for manager for administration staff
     public static function saAdminAddTimeSlots($id, $start_time, $duration, $amount, $fid)
     {
+        try {
+            $db = static::getDB();
+            $db->beginTransaction();
         $hours = (int)substr($start_time, 0, 2);
         $minutes = (int)substr($start_time, 3, 5);
 
@@ -580,13 +1090,23 @@ public static function saAdminCartView($id)
         $stmt3->bindValue(':time_slot_id', $time_slot_id, PDO::PARAM_INT);
         $stmt3->bindValue(':user_id', $id, PDO::PARAM_INT);
         $stmt3->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
-
-        return ($stmt3->execute());
+        $stmt3->execute();
+        
+        $db->commit();
+        
+        return ($time_slot_id);
+    } catch (PDOException $e) {
+        $db->rollback();
+        throw $e;
+    }
     }
 
     //End of adding timeslot to a sports arena for manager
     public static function CheckExistingTimeslots($user_id, $start_time, $duration, $price, $facility)
     {
+        try {
+            $db = static::getDB();
+            $db->beginTransaction();
         // Changing start_time variable to hh:mm:ss format
         $start_time = (string)($start_time . ":00");
 
@@ -620,7 +1140,9 @@ public static function saAdminCartView($id)
         $arena_id = $result["sports_arena_id"];
 
         $sql = 'SELECT * FROM  time_slot
-                WHERE (manager_sports_arena_id=:arena_id AND facility_id=:facility)
+        INNER JOIN facility ON time_slot.facility_id=facility.facility_id
+                WHERE time_slot.manager_sports_arena_id=:arena_id AND time_slot.facility_id=:facility
+                AND facility.security_status="active"
                 ORDER BY end_time ASC';
 
         $stmt = $db->prepare($sql);
@@ -641,35 +1163,110 @@ public static function saAdminCartView($id)
             }
         }
         // Timeslot can be inserted
+        $db->commit();
+        
         return true;
+    } catch (PDOException $e) {
+        $db->rollback();
+        throw $e;
+    }
     }
 
 
     //Start of displaying sports arenas deleting the timeslots for manager
-    public static function saAdminDeleteTimeSlots($id, $timeslot_id)
+    public static function saAdminDeleteTimeSlots($current_user, $timeslot_id)
     {
+        try {
 
-        $db = static::getDB();
-
-        //Updating the facility table from the database
-        $sql = 'UPDATE time_slot 
+            $db = static::getDB();
+            $db->beginTransaction();
+            $id = $current_user->user_id;
+            //Updating the facility table from the database
+            $sql = 'UPDATE time_slot 
         SET time_slot.security_status="inactive"
         WHERE time_slot.time_slot_id=:timeslot_id';
 
-        $stmt = $db->prepare($sql);
-        $stmt->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
+            $stmt->execute();
 
-        $stmt->execute();
-
-        $sql = 'UPDATE administration_staff_manages_time_slot
+            $sql = 'UPDATE administration_staff_manages_time_slot
         SET administration_staff_manages_time_slot.administration_staff_user_id=:id
         WHERE administration_staff_manages_time_slot.time_slot_id=:timeslot_id';
 
-        $stmt = $db->prepare($sql);
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-        $stmt->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
+            $stmt->execute();
 
-        return ($stmt->execute());
+            $sql = 'SELECT booking.customer_user_id, booking.booking_id, 
+        time_slot.manager_user_id,time_slot.manager_sports_arena_id,
+        administration_staff_manages_time_slot.administration_staff_user_id
+        FROM booking 
+        INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id
+        INNER JOIN time_slot ON booking_timeslot.timeslot_id=time_slot.time_slot_id
+        INNER JOIN administration_staff_manages_time_slot ON booking_timeslot.timeslot_id=administration_staff_manages_time_slot.time_slot_id
+        WHERE time_slot.time_slot_id=:timeslot_id
+        AND booking.booking_date > (SELECT NOW())';
+
+            $data_stmt = $db->prepare($sql);
+            $data_stmt->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
+            $data_stmt->execute();
+
+            $data = $data_stmt->fetchAll(PDO::FETCH_BOTH);
+
+            
+            if ($data != null) {
+                $len = count($data);
+                $manager_user_id = $data[0][2];
+                $manager_arena_id = $data[0][3];
+                $admin_user_id = $data[0][4];
+
+                // var_dump($manager_user_id);
+                // var_dump($manager_arena_id);
+                // var_dump($admin_user_id);
+
+
+                for ($x = 0; $x < $len; $x++) {
+                    $customer_user_id = $data[$x][0];
+                    $booking_id = $data[$x][1];
+
+                    //Updating the facility table from the database
+                    $sql = 'UPDATE booking_timeslot 
+        SET booking_timeslot.security_status="inactive"
+        WHERE booking_timeslot.booking_id=:booking_id';
+
+                    $stmt = $db->prepare($sql);
+                    $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+                    $stmt->execute();
+
+                    $reason = "Removal of timeslot from the sports arena";
+                    $sql3 = 'INSERT INTO booking_cancellation (`reason`,manager_sports_arena_id
+        ,`administration_staff_sports_arena_id`, manager_user_id,`administration_staff_user_id`, customer_user_id, booking_id)
+        VALUES (:reason, :manager_arena_id,:admin_arena_id, :manager_user_id, :admin_user_id, :customer_user_id, :booking_id)';
+
+                    $stmt3 = $db->prepare($sql3);
+
+                    $stmt3->bindValue(':reason', $reason, PDO::PARAM_STR);
+                    $stmt3->bindValue('manager_arena_id', $manager_arena_id, PDO::PARAM_INT);
+                    $stmt3->bindValue(':admin_arena_id', $manager_arena_id, PDO::PARAM_INT);
+                    $stmt3->bindValue(':manager_user_id', $manager_user_id, PDO::PARAM_INT);
+                    $stmt3->bindValue(':admin_user_id', $admin_user_id, PDO::PARAM_INT);
+                    $stmt3->bindValue(':customer_user_id', $customer_user_id, PDO::PARAM_INT);
+                    $stmt3->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+                    $stmt3->execute();
+
+                    NotificationModel::customerBookingCancellationDeleteTimeslotNotification($timeslot_id);
+                }
+            }
+
+            NotificationModel::arenaDeleteTimeslotNotification($current_user, $timeslot_id);
+            $db->commit();
+            return true;
+        } catch (PDOException $e) {
+            $db->rollback();
+            throw $e;
+        }
     }
     //End of displaying sports arenas deleting the timeslots for administrationstaff
 
@@ -701,136 +1298,231 @@ public static function saAdminCartView($id)
 
 
     //Remove a facility from the sports arena
-    public static function saAdminDeleteFacility($id, $facility_id)
+    public static function saAdminDeleteFacility($current_user, $facility_id)
     {
-        $db = static::getDB();
+        try {
+            $db = static::getDB();
+            $db->beginTransaction();
+            $id = $current_user->user_id;
 
-        //Updating the facility table from the database
-        $sql = 'UPDATE facility 
-        SET facility.security_status="inactive"
-        WHERE facility.facility_id=:facility_id';
+            $sql = 'SELECT time_slot.time_slot_id 
+            FROM time_slot
+            INNER JOIN facility ON facility.facility_id = time_slot.facility_id
+             WHERE  time_slot.facility_id=:facility_id 
+             AND facility.security_status="active"';
 
-        $stmt = $db->prepare($sql);
-        $stmt->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
 
-        $stmt->execute();
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_BOTH);
 
-        $sql = 'UPDATE administration_staff_manages_facility 
-        SET administration_staff_manages_facility.administration_staff_user_id=:id
-        WHERE administration_staff_manages_facility.facility_id=:facility_id';
+            $len = count($result);
 
-        $stmt = $db->prepare($sql);
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-        $stmt->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
+            //Updating the facility table from the database
+            $sql = 'UPDATE facility 
+             SET facility.security_status="inactive"
+            WHERE facility.facility_id=:facility_id';
 
-        return ($stmt->execute());
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
+            $stmt->execute();
+
+            $sql = 'UPDATE administration_staff_manages_facility 
+            SET administration_staff_manages_facility.administration_staff_user_id=:id
+            WHERE administration_staff_manages_facility.facility_id=:facility_id';
+
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
+            $stmt->execute();
+
+
+            //If there are timeslots added with the facility
+            if ($result != null) {
+
+                for ($y = 0; $y < $len; $y++) {
+                    $timeslot_id = $result[$y][0];
+
+                    //Updating the facility table from the database
+                    $sql = 'UPDATE time_slot 
+                SET time_slot.security_status="inactive"
+                WHERE time_slot.time_slot_id=:timeslot_id';
+
+                    $stmt = $db->prepare($sql);
+                    $stmt->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
+                    $stmt->execute();
+
+                    $sql = 'UPDATE administration_staff_manages_time_slot
+                SET administration_staff_manages_time_slot.administration_staff_user_id=:id
+                WHERE administration_staff_manages_time_slot.time_slot_id=:timeslot_id';
+
+                    $stmt = $db->prepare($sql);
+                    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+                    $stmt->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
+                    $stmt->execute();
+
+                    $sql = 'SELECT booking.customer_user_id, booking.booking_id, 
+                time_slot.manager_user_id,time_slot.manager_sports_arena_id,
+                administration_staff_manages_time_slot.administration_staff_user_id
+                FROM booking 
+                INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id
+                INNER JOIN time_slot ON booking_timeslot.timeslot_id=time_slot.time_slot_id
+                INNER JOIN administration_staff_manages_time_slot ON booking_timeslot.timeslot_id=administration_staff_manages_time_slot.time_slot_id
+                WHERE time_slot.time_slot_id=:timeslot_id
+                AND booking.booking_date > (SELECT NOW())';
+
+                    $data_stmt = $db->prepare($sql);
+                    $data_stmt->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
+                    $data_stmt->execute();
+
+                    $data = $data_stmt->fetchAll(PDO::FETCH_BOTH);
+
+
+                    if ($data != null) {
+                        $len = count($data);
+                        $manager_user_id = $data[0][2];
+                        $manager_arena_id = $data[0][3];
+                        $admin_user_id = $data[0][4];
+
+
+                        for ($x = 0; $x < $len; $x++) {
+                            $customer_user_id = $data[$x][0];
+                            $booking_id = $data[$x][1];
+
+                            //Updating the facility table from the database
+                            $sql = 'UPDATE booking_timeslot 
+                    SET booking_timeslot.security_status="inactive"
+                    WHERE booking_timeslot.booking_id=:booking_id';
+
+                            $stmt = $db->prepare($sql);
+                            $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+                            $stmt->execute();
+
+                            $reason = "Removal of facility and its timeslots from the sports arena";
+                            $sql3 = 'INSERT INTO booking_cancellation (`reason`,manager_sports_arena_id
+                    ,`administration_staff_sports_arena_id`, manager_user_id,`administration_staff_user_id`, customer_user_id, booking_id)
+                    VALUES (:reason, :manager_arena_id,:admin_arena_id, :manager_user_id, :admin_user_id, :customer_user_id, :booking_id)';
+
+                            $stmt3 = $db->prepare($sql3);
+
+                            $stmt3->bindValue(':reason', $reason, PDO::PARAM_STR);
+                            $stmt3->bindValue('manager_arena_id', $manager_arena_id, PDO::PARAM_INT);
+                            $stmt3->bindValue(':admin_arena_id', $manager_arena_id, PDO::PARAM_INT);
+                            $stmt3->bindValue(':manager_user_id', $manager_user_id, PDO::PARAM_INT);
+                            $stmt3->bindValue(':admin_user_id', $admin_user_id, PDO::PARAM_INT);
+                            $stmt3->bindValue(':customer_user_id', $customer_user_id, PDO::PARAM_INT);
+                            $stmt3->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+                            $stmt3->execute();
+
+                            //Change these notifications
+                            NotificationModel::customerBookingCancellationDeleteFacilityNotification($timeslot_id);
+                        }
+                    }
+                }
+            }
+
+            $db->commit();
+            return true;
+        } catch (PDOException $e) {
+            $db->rollback();
+            throw $e;
+        }
     }
 
-    // public static function saAdminAddFacility($fname,$ipsw,$id,$rpsw){
 
-    //     // $sql = 'SELECT *  FROM facility WHERE manager_user_id=:id';
-    //     $password = password_hash($ipsw, PASSWORD_DEFAULT);
-
-    //     if($password!=$rpsw){
-    //         return false;
-    //     }
-
-    //     $db = static::getDB();
-
-    //     $sql1 = 'SELECT `manager_user_id`,`manager_sports_arena_id` FROM `administration_staff` WHERE `user_id`=:id';
-    //     $stmt1 = $db->prepare($sql1);
-    //     $stmt1->bindValue(':id', $id, PDO::PARAM_INT);
-    //     $stmt1->execute();
-
-    //     $result1 = $stmt1->fetch(PDO::FETCH_ASSOC);
-    //     //Accessing the associative array
-    //     $mid = $result1["manager_user_id"];
-    //     $said = $result1["manager_sports_arena_id"];
-
-    //     $sql2 = 'INSERT INTO `facility`(`facility_name`,`sports_arena_id`,`manager_user_id`,`manager_sports_arena_id`)
-    //             VALUES (:fname, :said, :mid, :said)';
-
-    //     $stmt2 = $db->prepare($sql2);
-    //     $stmt2->bindValue(':fname', $stime, PDO::PARAM_STR);
-    //     $stmt2->bindValue(':said', $said, PDO::PARAM_INT);
-    //     $stmt2->bindValue(':mid', $mid, PDO::PARAM_INT);
-
-
-    //     // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-    //     // $result = $stmt->fetchAll();
-    //     // var_dump($result);
-    //     return ($stmt2->execute());
-    // }
-    //Start of adding facility to a sports arena for administartion staff
     public static function saAdminAddFacility($user_id, $facility)
     {
 
-        //Check the query
-        $db = static::getDB();
+        try {
 
-        // select query for select sports arena from  user id
-        $sql = 'SELECT sports_arena_id, manager_user_id, manager_sports_arena_id 
+            $db = static::getDB();
+            $db->beginTransaction();
+
+            // select query for select sports arena from  user id
+            $sql = 'SELECT sports_arena_id, manager_user_id, manager_sports_arena_id 
                 FROM administration_staff
                 WHERE administration_staff.user_id=:user_id';
 
-        $stmt = $db->prepare($sql);
-        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
 
-        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+            $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
-        $stmt->execute();
+            $stmt->execute();
 
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        var_dump($result);
-        $arena_id = $result["sports_arena_id"];
-        $manager_id = $result["manager_user_id"];
-        $manager_arena_id = $result["manager_sports_arena_id"];
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // insert query for add time slots
-        $sql1 = 'INSERT INTO `facility`(`facility_name`,`sports_arena_id`,`manager_user_id`,`manager_sports_arena_id`)
+            $arena_id = $result["sports_arena_id"];
+            $manager_id = $result["manager_user_id"];
+            $manager_arena_id = $result["manager_sports_arena_id"];
+
+            // insert query for add time slots
+            $sql1 = 'INSERT INTO `facility`(`facility_name`,`sports_arena_id`,`manager_user_id`,`manager_sports_arena_id`)
                 VALUES (:facility,:arena_id,:manager_user_id,:manager_sports_arena_id)';
 
 
-        $stmt = $db->prepare($sql1);
-        $stmt->bindValue(':facility', $facility, PDO::PARAM_STR);
-        $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
-        $stmt->bindValue(':manager_user_id', $manager_id, PDO::PARAM_INT);
-        $stmt->bindValue(':manager_sports_arena_id', $manager_arena_id, PDO::PARAM_INT);
+            $stmt = $db->prepare($sql1);
+            $stmt->bindValue(':facility', $facility, PDO::PARAM_STR);
+            $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+            $stmt->bindValue(':manager_user_id', $manager_id, PDO::PARAM_INT);
+            $stmt->bindValue(':manager_sports_arena_id', $manager_arena_id, PDO::PARAM_INT);
 
-        $stmt->execute();
+            $stmt->execute();
 
-        $sql2 = 'SELECT facility_id
+            $sql2 = 'SELECT facility_id
                 FROM facility
                 ORDER BY facility_id DESC LIMIT 1';
 
-        $stmt = $db->prepare($sql2);
+            $stmt = $db->prepare($sql2);
 
-        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-        $stmt->execute();
+            $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+            $stmt->execute();
 
-        $result2 = $stmt->fetch(PDO::FETCH_ASSOC);
-        $facility_id = $result2['facility_id'];
+            $result2 = $stmt->fetch(PDO::FETCH_ASSOC);
+            $facility_id = $result2['facility_id'];
 
 
-        $sql3 = 'INSERT INTO `administration_staff_manages_facility`(`facility_id`,
+            $sql3 = 'INSERT INTO `administration_staff_manages_facility`(`facility_id`,
         `administration_staff_user_id`,`administration_staff_sports_arena_id`)
         VALUES (:facility_id,:user_id,:arena_id)';
 
-        $stmt = $db->prepare($sql3);
-        $stmt->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
-        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
-        $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+            $stmt = $db->prepare($sql3);
+            $stmt->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
+            $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+            $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+            $stmt->execute();
 
-
-        return ($stmt->execute());
+            $db->commit();
+            return ($facility_id);
+        } catch (PDOException $e) {
+            $db->rollback();
+            throw $e;
+        }
     }
     //End of adding facility to a sports arena for administartion staff
 
     //Start of displaying sports arenas facilities update for administration staff
-    public static function saAdminUpdateFacility($id, $facility_id, $facility_name)
+    public static function saAdminUpdateFacility($current_user, $facility_id, $facility_name)
     {
         //Updating facility name in the database    
-        $db = static::getDB();
+        try {
+            $db = static::getDB();
+            $db->beginTransaction();
+        $sql = 'SELECT facility.facility_name FROM facility WHERE facility.facility_id=:facility_id AND facility.security_status="active"';
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+
+        $id = $current_user->user_id;
+        // CUSTOMER NOTIFICATION REQUIREMENTS
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Select facility name 
+        $old_facility_name = $data["facility_name"];
+
 
         //Updating the facility table from the database
         $sql = 'UPDATE facility 
@@ -849,12 +1541,26 @@ public static function saAdminCartView($id)
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
+        $stmt->execute();
 
-        return ($stmt->execute());
+        $success=NotificationModel::saAdminUpdatefacilitySuccessNotification($current_user, $old_facility_name, $facility_name, $facility_id);
+        $db->commit();
+
+        if($success){
+        return true;
+        }
+
+    } catch (PDOException $e) {
+        $db->rollback();
+        throw $e;
+    }
     }
 
     public static function findFacilityByName($id, $fname)
     {
+        try {
+            $db = static::getDB();
+            $db->beginTransaction();
 
         $sql = 'SELECT sports_arena_id FROM administration_staff WHERE administration_staff.user_id=:id';
 
@@ -885,7 +1591,7 @@ public static function saAdminCartView($id)
         $stmt->execute();
         $result2 = $stmt->fetch(PDO::FETCH_ASSOC);
         $facility_name = $result2['facility_name'];
-
+        $db->commit();
         //Assigning the fetched PDOs to result
 
         if (empty($facility_name)) {
@@ -893,10 +1599,19 @@ public static function saAdminCartView($id)
         } else {
             return false;
         }
+
+
+    } catch (PDOException $e) {
+        $db->rollback();
+        throw $e;
+    }
     }
 
     public static function findFacilityExcludeByName($id, $facility_id, $fname)
     {
+        try {
+            $db = static::getDB();
+            $db->beginTransaction();
         $sql = 'SELECT sports_arena_id FROM administration_staff WHERE 
         administration_staff.user_id=:id';
 
@@ -930,6 +1645,7 @@ public static function saAdminCartView($id)
         $stmt->execute();
         $result2 = $stmt->fetch(PDO::FETCH_ASSOC);
         $facility_name = $result2['facility_name'];
+        $db->commit();
         //Assigning the fetched PDOs to result
 
         if (!empty($facility_name)) {
@@ -937,5 +1653,13 @@ public static function saAdminCartView($id)
         } else {
             return false;
         }
+
+    
+        } catch (PDOException $e) {
+            $db->rollback();
+            throw $e;
+        }
     }
+
+
 }

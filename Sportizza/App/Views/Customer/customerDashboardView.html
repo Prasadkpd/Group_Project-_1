@@ -35,7 +35,7 @@
                 <div class="nav-profile">
                     <button class="openbutton" onclick="openpopupform()">
                         <div class="profile-details">
-                            <img src="/Assets/images/customer/download.jfif" class="profile-picture">
+                            <img src={{current_user.profile_pic}} class="profile-picture">
                             <div class="username">{{current_user.first_name}} {{current_user.last_name}}</div>
                         </div>
                     </button>
@@ -80,7 +80,7 @@
                     </div>
                 </div>
                 <div class="editProPic">
-                    <img id="form-profile-picture" src="/Assets/images/customer/download.jfif" alt="">
+                    <img id="form-profile-picture" src={{current_user.profile_pic}} alt="">
                 </div>
             </div>
             <div class="edit-profile-link">
@@ -205,15 +205,17 @@
                         Booking Cancellation
                     </h1>
                     <p>
-                        you can not cancel booking because you has only 3 days for booking date
+                        you can not cancel booking because you has only <span id="cannotCancelBookingDaysSpan">3
+                            days</span> for booking date
                     </p>
                 </div>
                 <div style="display:flex">
-<!-- 
+                    <!-- 
                     <button type="submit" class="popup_delete_button">
                         YES
                     </button> -->
-                    <button type="button" onclick="close_popup_cannot_cancel_message()" class="popup_button">
+                    <button type="button" style="margin:auto" onclick="close_popup_cannot_cancel_message()"
+                        class="popup_button">
                         OK
                     </button>
                 </div>
@@ -240,13 +242,13 @@
                 <div class="rating-row">
                     <div class="input-box">
                         <label for="arena_name">Sports Arena Name</label>
-                        <input type="text" id="arena_name" name="arena_name"  readonly>
+                        <input type="text" id="arena_name" name="arena_name" readonly>
                     </div>
                 </div>
 
-                <input type="text" id="booking_id" name="booking_id"  hidden>
-                <input type="text" id="arena_id" name="arena_id"  hidden>
-                <input type="text" id="customer_id" name="customer_id" value={{current_user.user_id}}  hidden>
+                <input type="text" id="booking_id" name="booking_id" hidden>
+                <input type="text" id="arena_id" name="arena_id" hidden>
+                <input type="text" id="customer_id" name="customer_id" value={{current_user.user_id}} hidden>
 
                 <div class="rating-row">
                     <div class="input-box">
@@ -300,17 +302,17 @@
                     </h1>
                     <p>Are you sure to delete this booking?</p>
                 </div>
-            
 
-            <div style="display:flex">
-                <button type="submit" class="popup_delete_button">
-                    YES
-                </button>
-                <button onclick="close_popup_delete_message()" class="popup_button">
-                    NO
-                </button>
-            </div>
-        </form>
+
+                <div style="display:flex">
+                    <button type="submit" class="popup_delete_button">
+                        YES
+                    </button>
+                    <button onclick="close_popup_delete_message()" class="popup_button">
+                        NO
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
     <!-- end pop up delete section -->
@@ -326,7 +328,8 @@
             <div>
                 <button s class="closebutton" onclick="close_popup_delete_message_favorite_list()">❌</button>
             </div>
-            <form id="form_delete_arena" action="customer/customerdeletefavoritearena/" style="margin:20px" method="post">
+            <form id="form_delete_arena" action="customer/customerdeletefavoritearena/" style="margin:20px"
+                method="post">
                 <input type="hidden" name="fav_list_id_input" id="fav_list_id_input">
                 <div style="margin:auto">
                     <h1 style="margin:auto">
@@ -348,7 +351,7 @@
             </form>
 
 
-            
+
         </div>
     </div>
     <!-- end pop up delete section  for favorite-list -->
@@ -387,10 +390,10 @@
                 <!-- Flash messages -->
                 <p>
                     {% for message in flash_messages %}
-                <div class="alert alert-{{ message.type }}">
-                    {{ message.body }}
-                </div>
-                {% endfor %}
+                    <div class="alert alert-{{ message.type }}">
+                        {{ message.body }}
+                    </div>
+                    {% endfor %}
                 </p>
 
                 </ul>
@@ -479,11 +482,10 @@
                                                 <i class="fas fa-times"></i>
                                             </button>
                                             {% else %}
-                                            <button class="icon_red"
-                                                onclick="open_popup_cannot_cancel_message()">
+                                            <button class="icon_red" onclick="open_popup_cannot_cancel_message()">
                                                 <i class="fas fa-times"></i>
                                             </button>
-                                            
+
                                             {% endif %}
                                         </div>
                                 </td>
@@ -492,7 +494,7 @@
             </div>
             </td>
             </tr>
-                                {% endif %}
+            {% endif %}
 
             {% if book.payment_status=="unpaid" %}
             <tr>
@@ -518,9 +520,16 @@
                             </button>
                         </div>
                         <div>
+                            {% if date(book.booking_date)|date_modify("-4 day")|date('Y/m/d') >= 'now'|date('Y/m/d') and book.payment_method=="card" %}
                             <button class="icon_red" onclick="open_popup_cancel_message('{{book.booking_id}}')">
                                 <i class="fas fa-times"></i>
                             </button>
+                            {% else %}
+                            <button class="icon_red" onclick="open_popup_cannot_cancel_message()">
+                                <i class="fas fa-times"></i>
+                            </button>
+
+                            {% endif %}
                         </div>
                     </div>
                 </td>
@@ -532,8 +541,9 @@
             {% endif %}
 
 
-            {% if date(book.booking_date)|date('Y/m/d') < 'now' |date('Y/m/d') %} {% if book.payment_status=="paid" %}
-                <tr>
+            {% if date(book.booking_date)|date('Y/m/d') < 'now' |date('Y/m/d') %}
+             {% if book.payment_status=="paid" %}
+            <tr>
 
 
                 <td data-label="Booking ID :" class="table-td-left">{{book.booking_id}}</td>
@@ -551,11 +561,21 @@
                 <!-- <td data-label="Booking Status">Pending</td> -->
                 <td class="btn-float-right">
                     <div style="display:flex; float:right; padding-right:2rem;">
+                        {% if book.feedback_id==null %}
                         <div>
-                            <button onclick="open_popup_rate_message('{{book.booking_id}}','{{book.sa_name}}','{{book.sports_arena_id}}')">
+                            <button
+                                onclick="open_popup_rate_message('{{book.booking_id}}','{{book.sa_name}}','{{book.sports_arena_id}}')">
                                 <i class="fas fa-star-half-alt"></i>
                             </button>
                         </div>
+                        {% else %}
+                        <div>
+                            <button style="display:invisible ;border:none"  disabled>
+                                
+                            </button>
+                        </div>
+                        {% endif %}
+                        
                         <div>
                             <button class="icon_red" onclick="open_popup_delete_message('{{book.booking_id}}')">
                                 <i class="fas fa-trash-alt"></i>
@@ -588,10 +608,10 @@
             <td class="btn-float-right">
                 <div style="display:flex; float:right; padding-right:2rem;">
                     <div>
-                            <button onclick="open_popup_rate_message('{{book.booking_id}}','{{book.sa_name}}')">
-                                <i class="fas fa-star-half-alt"></i>
-                            </button>
-                        </div>
+                        <button style="display:invisible ;border:none"  disabled>
+                            
+                        </button>
+                    </div>
                     <div>
                         <button class="icon_red" onclick="open_popup_delete_message('{{book.booking_id}}')">
                             <i class="fas fa-trash-alt"></i>
@@ -619,8 +639,8 @@
                         <th class="booking-table-first-th">
                             <div class="booking-table-filter-container">
                                 <div class="booking-table-search-container">
-                                    <input type="search" name="search" placeholder="Search By Sport Arena" id="search-arena-favourite"
-                                        onkeyup="SearchArenaFavorite()">
+                                    <input type="search" name="search" placeholder="Search By Sport Arena"
+                                        id="search-arena-favourite" onkeyup="SearchArenaFavorite()">
                                     <i class="fas fa-search"></i>
                                 </div>
 
@@ -650,7 +670,8 @@
                             </button>
                         </td>
                         <td>
-                            <button class="icon_red" onclick="open_popup_delete_message_favorite_list('{{item.sports_arena_id}}','{{item.fav_list_id}}')"
+                            <button class="icon_red"
+                                onclick="open_popup_delete_message_favorite_list('{{item.sports_arena_id}}','{{item.fav_list_id}}')"
                                 class="delete_button">
                                 <i class="fas fa-trash-alt"></i>
                             </button>
@@ -671,13 +692,14 @@
                         <th class="booking-table-first-th">
                             <div class="booking-table-filter-container">
                                 <div class="booking-table-search-container">
-                                    <input type="search" name="search" placeholder="Search By Notification" id="search-notifications"
-                                        onkeyup="SearchNotifications()">
+                                    <input type="search" name="search" placeholder="Search By Notification"
+                                        id="search-notifications" onkeyup="SearchNotifications()">
                                     <i class="fas fa-search"></i>
                                 </div>
                                 <div class="booking-table-date-picker">
                                     <label class="date-label">Date</label>
-                                    <input type="date" id="notification-date-picker" onchange="NotificationDatepicker()">
+                                    <input type="date" id="notification-date-picker"
+                                        onchange="NotificationDatepicker()">
                                 </div>
                             </div>
                         </th>
@@ -691,7 +713,7 @@
                 <tbody>
                     {% for notification in notifications %}
                     <tr style="cursor: pointer"
-                        onclick="open_popup_notification(`{{notification.subject}}`,`{{notification.description}}`)">
+                        onclick="open_popup_notification(`{{notification.subject}}`,`{{notification.description}}`,`{{notification.link}}`)">
                         <td data-label="Date:">{{notification.date}}</td>
                         <td data-label="Time:">{{notification.time}}</td>
                         <td class="notification-td-left">{{notification.subject}}</td>
