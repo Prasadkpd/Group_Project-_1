@@ -621,8 +621,8 @@ label {
   display: none;
 }
 #form-profile-picture {
-  height: 100%;
-  width: 100%;
+  height: 120px;
+  width: 120px;
 }
 #uploadBtn {
   height: 30px;

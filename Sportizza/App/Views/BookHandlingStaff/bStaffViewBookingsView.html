@@ -31,7 +31,7 @@
                 <div class="nav-profile">
                     <button class="openbutton" onclick="openpopupform()">
                         <div class="profile-details">
-                            <img src="/Assets/images/admin/download.jfif" class="profile-picture">
+                            <img src={{current_user.profile_pic}} class="profile-picture">
                             <div class="username">{{current_user.first_name}} {{current_user.last_name}}</div>
                         </div>
                     </button>
@@ -76,7 +76,7 @@
                     </div>
                 </div>
                 <div class="editProPic">
-                    <img id="form-profile-picture" src="/Assets/images/admin/download.jfif" 
+                    <img id="form-profile-picture" src={{current_user.profile_pic}} 
                     alt="" style="width:110px; height:110px;">
                 </div>
             </div>

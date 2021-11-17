@@ -304,6 +304,58 @@ class Sparenamanager extends \Core\Controller
     }
     //End of Analytics of manager view
 
+    // Start of reshaping charts
+    public function reshapechartAction()
+    {
+        //Get the current user's details with session using Auth
+        $current_user = Auth::getUser();
+        $id = $current_user->user_id;
+
+        $dateValue = $this->route_params['id'];
+
+        $chart2Payment = [];
+        $chart2Count = [];
+
+        $chart3Slot = [];
+        $chart3Count = [];
+
+        $chart4Facility = [];
+        $chart4Count = [];
+
+        $chart2 = SpArenaManagerModel::managerReshapeChart2($dateValue,$id);
+        $chart3 = SpArenaManagerModel::managerReshapeChart3($dateValue,$id);
+        $chart4 = SpArenaManagerModel::managerReshapeChart4($dateValue,$id);
+
+        $i=0;
+        $j=0;
+        $k=0;
+
+        for( $i; $i< count($chart2); $i++){
+            $chart2Payment[$i] = $chart2[$i]->payment_method;
+            $chart2Count[$i] = $chart2[$i]->No_Of_Bookings;
+        }
+        for( $j; $j< count($chart3); $j++){
+            $chart3Slot[$j] = $chart3[$j]->start_time;
+            $chart3Count[$j] = $chart3[$j]->No_Of_Bookings;
+        }
+        for( $k; $k< count($chart4); $k++){
+            $chart4Facility[$k] = $chart4[$k]->facility_name;
+            $chart4Count[$k] = $chart4[$k]->No_Of_Bookings;
+        }
+
+        $payment_method = implode(",",$chart2Payment);
+        $count2 = implode(",",$chart2Count);
+
+        $start_time = implode(",",$chart3Slot);
+        $count3 = implode(",",$chart3Count);
+        
+        $facility_name = implode(",",$chart4Facility);
+        $count4 = implode(",",$chart4Count);
+
+        echo $payment_method."_".$count2."$".$start_time."_".$count3."$".$facility_name."_".$count4;
+    }
+    // End of reshaping charts
+
     //Start of Edit Arena profile of manager
     public function managereditarenaprofileAction()
     {

@@ -31,7 +31,7 @@
                 <div class="nav-profile">
                     <button class="openbutton" onclick="openpopupform()">
                         <div class="profile-details">
-                            <img src="/Assets/images/admin/download.jfif" class="profile-picture">
+                            <img src={{current_user.profile_pic}} class="profile-picture">
                             <div class="username">{{current_user.first_name}} {{current_user.last_name}}</div>
                         </div>
                     </button>
@@ -76,7 +76,7 @@
                     </div>
                 </div>
                 <div class="editProPic">
-                    <img src="/Assets/images/admin/download.jfif" id="form-profile-picture" alt="" >
+                    <img src={{current_user.profile_pic}} id="form-profile-picture" alt="" >
                 </div>
             </div>
             <div class="edit-profile-link">
@@ -190,16 +190,21 @@
                 <div class="filters">
 
                     <div class="booking-table-date-picker" style="margin-top:5px;">
-                        <label class="date-label" style="margin:5px;">Start Date </label>
-                        <input type="date" style="border:1px solid #d3d3d3;border-radius:25px;padding:12px 20px;">
+                        <label class="date-label" style="margin:5px;">Date Range </label>
+                        <select id="analyticsDateFilter" onchange="filterdata()">
+                            <option value=12>Last 12 months</option>
+                            <option value=6>Last 6 months</option>
+                            <option value=3>Last 3 months</option>
+                            <option value=1>Last month</option>
+                        </select>
                     </div>
-                    <div class="booking-table-date-picker" style="margin-top:5px;">
+                    <!-- <div class="booking-table-date-picker" style="margin-top:5px;">
                         <label class="date-label">End Date</label>
                         <input type="date" style="border:1px solid #d3d3d3;border-radius:25px;padding:12px 20px;">
-                    </div>
-                    <div class="booking-table-date-picker" style="margin-top:5px;">
+                    </div> -->
+                    <!-- <div class="booking-table-date-picker" style="margin-top:5px;">
                         <input type="submit" value="Generate" class="report-generate">
-                    </div>
+                    </div> -->
                 </div>
                 <div class="chart-container">
                     <div class="chart-row">
@@ -244,7 +249,10 @@
         </div>
     </footer>
     <!-- End of Footer -->
+    
+    <script type="text/javascript" src="/Assets/js/lib/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/Assets/js/SpArenaManager/manage-analytics.js?version=2"></script>
+    <script type="text/javascript" src="/Assets/js/SpArenaManager/manager-analytics-Pie-Ajax.js"></script>
 
 
     <script>
@@ -256,7 +264,7 @@
             data: {
                 labels: [
                     {% for chart in chart1 %}
-                        '{{chart.booking_date}}', 
+                        '{{chart.Time_Booked}}', 
                     {% endfor %}
                 ],
         datasets: [{
@@ -294,7 +302,7 @@
                         color: '#fff'
                     },
                     min: 0,
-                        max: 5,
+                    
                             ticks: {
                         stepSize: 1
                     }
@@ -406,7 +414,7 @@
                         color: '#fff'
                     },
                     min: 0,
-                        max: 5,
+                    
                             ticks: {
                         stepSize: 1
                     }
@@ -479,6 +487,61 @@
     <script type="text/javascript">
         document.getElementById('downloadPdf').addEventListener('click', () => window.print())
     </script>
+
+    <script type="text/javascript">
+        // FIXED VALUES OF CHART 1 AXES
+        const xaxis1 = myChart1.config.data.labels;
+        const yaxis1 = myChart1.config.data.datasets[0].data;
+        
+        // FIXED VALUES OF CHART 3 AXES
+        const xaxis3 = myChart3.config.data.labels;
+        const yaxis3 = myChart3.config.data.datasets[0].data;
+        
+        function filterdata(){
+            var dateValue = document.getElementById("analyticsDateFilter").value;
+            
+            // CHART 1 UPDATE
+            var lastIndex1 = xaxis1.length -1;
+
+            var filterxaxis1 = xaxis1.slice(0,dateValue);
+            var filteryaxis1 = yaxis1.slice(0,dateValue);
+            
+            if (dateValue!=0 && dateValue<=xaxis1.length){
+                console.log(filterxaxis1);
+                console.log(filteryaxis1);
+                myChart1.config.data.labels = filterxaxis1;
+                myChart1.config.data.datasets[0].data = filteryaxis1;
+                myChart1.update();
+            }else{
+                console.log(xaxis1);
+                console.log(yaxis1);
+                myChart1.config.data.labels = xaxis1;
+                myChart1.config.data.datasets[0].data = yaxis1;
+                myChart1.update();
+            }
+
+            // // CHART 3 UPDATE
+            // var lastIndex3 = xaxis3.length -1;
+
+            // var filterxaxis3 = xaxis3.slice(lastIndex3-dateValue+1);
+            // var filteryaxis3 = yaxis3.slice(lastIndex3-dateValue+1);
+            
+            // if (dateValue!=0 && dateValue<=xaxis3.length){
+            //     console.log(filterxaxis3);
+            //     console.log(filteryaxis3);
+            //     myChart3.config.data.labels = filterxaxis3;
+            //     myChart3.config.data.datasets[0].data = filteryaxis3;
+            //     myChart3.update();
+            // }else{
+            //     console.log(xaxis3);
+            //     console.log(yaxis3);
+            //     myChart3.config.data.labels = xaxis3;
+            //     myChart3.config.data.datasets[0].data = yaxis3;
+            //     myChart3.update();
+            // }
+        }
+    </script>
+
      <!-- Top navbar js -->
      <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
      

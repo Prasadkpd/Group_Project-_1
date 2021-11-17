@@ -30,7 +30,7 @@
                 <div class="nav-profile">
                     <button class="openbutton" onclick="openpopupform()">
                         <div class="profile-details">
-                            <img src="/Assets/images/admin/download.jfif" class="profile-picture">
+                            <img src={{current_user.profile_pic}} class="profile-picture">
                             <div class="username">{{current_user.first_name}} {{current_user.last_name}}</div>
                         </div>
                     </button>
@@ -75,7 +75,7 @@
                     </div>
                 </div>
                 <div class="editProPic">
-                    <img id="form-profile-picture" src="/Assets/images/customer/profile-picture.jpg" alt="">
+                    <img id="form-profile-picture" src={{current_user.profile_pic}} alt="">
                 </div>
             </div>
             <div class="edit-profile-link">
@@ -323,9 +323,6 @@
                             <div class="date-picker">
                                 <form method="POST" id="bookingdateform">
                                     <input type="date" id="dateInput" name="dateInput">
-                                   
-                                    <!-- <input type="hidden" id="arenaId" name="arenaId"
-                                    value="{{arenaDetails[0].sports_arena_id}}"> -->
                                 </form>
                             </div>
 
@@ -392,7 +389,7 @@
                                 <th>Booked Date</th>
                                 <th>Mobile Number</th>
                                 <th>Payment Status</th>
-                                <th class="b-last-th">Action</th>
+                                <th class="b-last-th">Cancel Booking</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -459,7 +456,7 @@
                                 </th>
                             </tr>
                             <tr class="booking-thead-second-tr">
-                                <th class="b-first-th">Booking Date</th>
+                                <th class="b-first-th">Booking ID</th>
                                 <th>Start Time</th>
                                 <th>End Time</th>
                                 <th>Booking Date</th>

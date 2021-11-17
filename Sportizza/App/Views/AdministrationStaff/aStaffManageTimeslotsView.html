@@ -30,7 +30,7 @@
             <div class="nav-profile">
                 <button class="openbutton" onclick="openpopupform()">
                     <div class="profile-details">
-                        <img src="/Assets/images/admin/download.jfif" class="profile-picture">
+                        <img src={{current_user.profile_pic}} class="profile-picture">
                         <div class="username">{{current_user.first_name}} {{current_user.last_name}}</div>
                     </div>
                 </button>
@@ -75,7 +75,7 @@
                 </div>
             </div>
             <div class="editProPic">
-                <img id="form-profile-picture" src="/Assets/images/customer/profile-picture.jpg" alt="">
+                <img id="form-profile-picture" src={{current_user.profile_pic}} alt="">
             </div>
         </div>
         <div class="edit-profile-link">
@@ -255,54 +255,8 @@
                 <!-- Add Timeslots Tab -->
                 <div id="add_bookings" class="booking_tab_content">
                     <div id="staff-add" class="add-booking-fm-con">
-                        <!-- <form class="add-booking-frm-content animate" action="/action_page.php" method="post"
-                            onsubmit="validateAddTimeslotForm()" id="formAddTimeslot">
-                            <div class="input-row">
-                                <div class="input-box">
-                                    <label for="startTime">Start Time:</label>
-                                    <input  id="startTime"  type="time" name="start_time" onfocusout="validateStartTime() "
-                                         value="{{sp_arena.start_time}}" >
-                                    <div class="helper-text" id="firstNameMsg"></div>
-                                </div>
-                            </div>
-                            <div class="input-row">
-                                <div class="input-box">
-                                    <label for="endTime">Duration:</label>
-                                    <input id="endTime" type="time" name="end_time" onfocusout="validateEndTime()"
-                                        value="{{sp_arena.end_time}}">
-                                    <div class="helper-text" id="firstNameMsg"></div>
-                                </div>
-                            </div>
-                            <div class="input-row">
-                                <div class="input-box">
-                                    <label for="slotPrice">Slot Price (LKR):</label>
-                                    <input id="slotPrice" type="text" name="Slot_price" onfocusout="validatePrice()"
-                                        placeholder="Enter Timeslot Price" value="{{sp_arena.slot_price}}">
-                                    <div class="helper-text" id="firstNameMsg"></div>
-                                </div>
-                            </div>
-                            <div class="input-row">
-                                <div class="input-box">
-                                    <label for="facilityName">Facility:</label>
-                                    <div class="user-type-div">
-                                        <select id="facilityName" name="Facility"
-                                            onchange="validateFacilitySelect()" value="{{sp_arena.facility}}">
-                                            <option value="0">Please select a facility</option>
-                                            {% for facility in selectFacility %}
-                                            <option value="{{facility.facility_id}}">{{facility.facility_name}}</option>
-                                            {% endfor %}
-                                        </select>
-                                        <div class="helper-text" id="imgMsg6"></div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-
-                            <div class="button">
-                                <input type="submit" value="Add Time slot" class="popup_button" />
-                            </div>
-                        </form> -->
-                    <form class="add-booking-frm-content animate" action="/Spadministrationstaff/AddTimeslot" method="post"
+                     
+                        <form class="add-booking-frm-content animate" action="/Spadministrationstaff/AddTimeslot" method="post"
                         onsubmit="validateAddTimeslotForm()" id="formAddTimeslot">
                         <div class="input-row">
                             <div class="input-box">
@@ -322,30 +276,19 @@
                                     {% endfor %}
                     
                                 </select>
-                                <!-- <select id="startTime" name="timeSlotDuration"  >
-                                                            <option value="0">Please Select Start Time</option>
-                    
-                                                            <option value=1>08:00</option>
-                                                            <option value=2>08:30</option>
-                                                            <option value=3>09:00</option>
-                                                            <option value=4>09:30</option>
-                                                            
-                                                        </select> -->
-                                <!-- <input id="startTime" type="time" name="startTime" onfocusout="validateStartTime()"
-                                                             value="{{sp_arena.start_time}}"> -->
+                             
                                 <div class="helper-text" id="firstNameMsg"></div>
                             </div>
                         </div>
                         <div class="input-row">
                             <div class="input-box">
                                 <label for="timeSlotDuration">Duration:</label>
-                                <!-- <input id="endTime" type="time" name="endTime" onfocusout="validateEndTime()"
-                                                            value="{{sp_arena.end_time}}"> -->
+                               
                     
                                 <select id="timeSlotDuration" name="timeSlotDuration">
                                     <option value="0">Please Select Time Duration</option>
                     
-                                    <option value=1>One hours</option>
+                                    <option value=1>One hour</option>
                     
                                     <option value=2>Two hours</option>
                     
