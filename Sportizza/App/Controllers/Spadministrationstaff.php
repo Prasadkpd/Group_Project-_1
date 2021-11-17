@@ -599,7 +599,7 @@ class Spadministrationstaff extends Authenticated
                     $cardSum += $cart[$i]->price_per_booking;
                 }
             }
-            
+
             //Total price of all the bookings
             $allSum = $cashSum + $cardSum;
 
@@ -631,7 +631,7 @@ class Spadministrationstaff extends Authenticated
         if ($payment_id) {
 
             //Send payment successfull notification
-            $success = NotificationModel::saAdminAddbookingPaymentSuccessNotification($current_user, $first_name, $last_name, $primary_contact, $payment_id);
+            $success = NotificationModel::saAdminAddbookingPaymentSuccessNotification($current_user, $first_name, $last_name, $payment_id);
 
             //If notification is successful
             if ($success) {
