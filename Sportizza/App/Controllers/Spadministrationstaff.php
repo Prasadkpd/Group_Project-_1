@@ -579,9 +579,7 @@ class Spadministrationstaff extends Authenticated
 
         //Passing cart items if items are added to the cart
         $cart = SpAdministrationStaffModel::saAdminCartView($user_id);
-
-        //If cart items are found
-        if ($cart) {
+         
             //Calculating total card payment and total payment values for cart view
             $cashSum = 0;
             $cardSum = 0;
@@ -608,7 +606,6 @@ class Spadministrationstaff extends Authenticated
                 'cart' => $cart,
                 'allSum' => $allSum, 'cardSum' => $cardSum, 'cashSum' => $cashSum
             ]);
-        }
     }
     //End of Cart page's initial view of saAdmin 
 

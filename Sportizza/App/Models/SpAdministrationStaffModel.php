@@ -326,7 +326,7 @@ class SpAdministrationStaffModel extends \Core\Model
             $arena_id = $result['sports_arena_id'];
 
             //Retrieving sports arena timeslot from the database
-            $sql = 'SELECT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i")
+            $sql = 'SELECT DISTINCT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i")
         AS startTime,TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,
         time_slot.price,facility.facility_name
         FROM time_slot
@@ -343,7 +343,7 @@ class SpAdministrationStaffModel extends \Core\Model
          AND time_slot.manager_sports_arena_id=:arena_id 
          AND time_slot.security_status="active" 
          AND time_slot.start_time > CURRENT_TIME() 
-      
+         GROUP BY time_slot.time_slot_id
          ORDER BY time_slot.start_time';
             // payment_status="pending" 
 
@@ -368,9 +368,12 @@ class SpAdministrationStaffModel extends \Core\Model
 
     public static function saAdminSearchTimeSlotsDate($saAdmin_id, $date)
     {
+        try {
+            $db = static::getDB();
+            $db->beginTransaction();
         $sql = 'SELECT sports_arena_id FROM administration_staff WHERE user_id=:user_id';
 
-        $db = static::getDB();
+        
         $stmt = $db->prepare($sql);
         //Binding the sports arena id and Converting retrieved data from database into PDOs
         $stmt->bindValue(':user_id', $saAdmin_id, PDO::PARAM_INT);
@@ -385,7 +388,7 @@ class SpAdministrationStaffModel extends \Core\Model
         if ($date != $current_date) {
             // echo($date);     
             //Retrieving sports arena timeslot from the database
-            $sql = 'SELECT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i")
+            $sql = 'SELECT DISTINCT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i")
             AS startTime,TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,
             time_slot.price,facility.facility_name,sports_arena_profile.payment_method
             FROM time_slot
@@ -399,6 +402,7 @@ class SpAdministrationStaffModel extends \Core\Model
             AND booking_timeslot.security_status="active")
             AND time_slot.manager_sports_arena_id=:arena_id
             AND time_slot.security_status="active"
+            GROUP BY time_slot.time_slot_id
             ORDER BY time_slot.start_time;';
 
 
@@ -412,7 +416,7 @@ class SpAdministrationStaffModel extends \Core\Model
         } else {
 
 
-            $sql = 'SELECT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i")
+            $sql = 'SELECT DISTINCT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i")
                 AS startTime,TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,
                 time_slot.price,facility.facility_name
                 FROM time_slot
@@ -429,7 +433,7 @@ class SpAdministrationStaffModel extends \Core\Model
                  AND time_slot.manager_sports_arena_id=:arena_id 
                  AND time_slot.security_status="active" 
                  AND time_slot.start_time > CURRENT_TIME() 
-              
+              GROUP BY time_slot.time_slot_id
                  ORDER BY time_slot.start_time';
 
             $stmt = $db->prepare($sql);
@@ -444,6 +448,12 @@ class SpAdministrationStaffModel extends \Core\Model
 
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $stmt->execute();
+        $db->commit();
+            
+        } catch (PDOException $e) {
+            $db->rollback();
+            throw $e;
+        }
 
         $output = "";
 
