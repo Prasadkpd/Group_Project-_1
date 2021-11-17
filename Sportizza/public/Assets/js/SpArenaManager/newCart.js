@@ -2,7 +2,9 @@
 const firstName = document.getElementById('firstName');
 const lastName = document.getElementById('lastName');
 const mobile = document.getElementById('contact');
+const amount = document.getElementById('storeTotal');
 const formCheckout = document.getElementById('formCheckout');
+
 
 // Validations
 // Handle form
@@ -12,7 +14,8 @@ formCheckout.addEventListener('submit', function (event) {
   if (
     validateFirstName() &&
     validateLastName() &&
-    validateMobile()
+    validateMobile() &&
+    validateAmount()
   ) {
     formCheckout.submit();
   }
@@ -23,6 +26,7 @@ function validateBookingpayment(){
   validateFirstName();
   validateLastName();
   validateMobile();
+  validateAmount();
 }
 
 function validateFirstName() {
@@ -46,6 +50,18 @@ function validateMobile() {
   if (!checkIfOnlyNumbers(mobile)) return;
   if (!checkSLNumber(mobile)) return;
   return true;
+}
+function validateAmount() {
+  if (amount.value == 0) 
+  { 
+     checkouterror();
+    return;
+  }
+  return true;
+}
+
+function checkouterror(){
+  document.getElementById('CartErrormsg').style.display = "block";
 }
 
 

@@ -106,7 +106,7 @@ class NotificationModel extends \Core\Model
                 INNER JOIN booking ON user.user_id=booking.customer_user_id
                 INNER JOIN booking_timeslot ON booking.booking_id =booking_timeslot.booking_id
                 WHERE user.type="customer" AND booking_timeslot.timeslot_id=:timeslot_id 
-                AND booking_timeslot.security_status="inactive" AND booking.security_status="inactive"';
+                AND booking_timeslot.security_status="active" AND booking.security_status="active"';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -1091,7 +1091,7 @@ class NotificationModel extends \Core\Model
              `booking`.`payment_method`,
              `booking`.`payment_status`, 
               user.primary_contact,
-              user.account_type
+              user.account_status
         FROM `booking` 
         INNER JOIN user ON user.user_id =booking.customer_user_id
         INNER JOIN `facility` ON `facility`.facility_id = booking.facility_id
@@ -1122,7 +1122,7 @@ class NotificationModel extends \Core\Model
             // Select reason for cancellation
             $p_level = "high";
 
-            $visitor=$data['account_type'];
+            $visitor=$data['account_status'];
             $primary_contact=$data['primary_contact'];
             $reason="This timeslot is no longer available in our sports arena.";
             // Select booking date
@@ -1267,7 +1267,7 @@ class NotificationModel extends \Core\Model
               `booking`.`payment_method`,
               `booking`.`payment_status`, 
               user.primary_contact,
-              user.account_type
+              user.account_status
          FROM `booking` 
          INNER JOIN user ON user.user_id =booking.customer_user_id
          INNER JOIN `facility` ON `facility`.facility_id = booking.facility_id
@@ -1298,7 +1298,7 @@ class NotificationModel extends \Core\Model
              // Select reason for cancellation
              $p_level = "high";
 
-             $visitor=$data['account_type'];
+             $visitor=$data['account_status'];
             $primary_contact=$data['primary_contact'];
  
  
