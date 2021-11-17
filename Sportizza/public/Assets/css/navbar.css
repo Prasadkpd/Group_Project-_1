@@ -102,6 +102,10 @@ nav .nav-profile img {
   font-size: 12px;
   color: #34495e;
 }
+.editProPic #form-profile-picture{
+  width: 100%;
+  height: auto;
+}
 .openbutton {
   border: none;
   border-radius: 50px;
