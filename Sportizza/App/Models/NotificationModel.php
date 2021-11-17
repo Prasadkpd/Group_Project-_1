@@ -223,7 +223,7 @@ class NotificationModel extends \Core\Model
 
         // Initialize descriptions
         $custdesc = "You have successfully made a booking with Sportizza to " . $facname . " of " . $saname . " on " . $bdate . " from " . $stime . " to " . $etime . ". To find out the location, click " . $maplink;
-        $spardesc = $fname . " " . $lname . " has booked " . $facname . " on " . $bdate . " from " . $stime . " to " . $etime . ".";
+        $spardesc = $fname . " " . $lname . "has booked" . $facname . " on " . $bdate . " from " . $stime . " to " . $etime . ".";
 
         // **************************************
         // INSERT QUERIES TO USERS
@@ -654,4 +654,236 @@ class NotificationModel extends \Core\Model
             throw $e;
         }
     }
+
+
+
+
+
+
+    //Start of administration staff booking cancellation notification
+    public static function customerBookingCancellationDeleteTimeslotNotification($timeslot_id)
+    {
+        try {
+            $db = static::getDB();
+            $customer = self::timeslotcancelNotificationGetCustomerIds($timeslot_id);
+            $customer_id = $customer['user_id'];
+
+            $custsubj = "Booking cancellation due to timeslot unavailability";
+
+            $db->beginTransaction();
+            $data_query = "SELECT
+             `booking`.`booking_date`,
+             `facility`.`facility_name`,
+             `sports_arena_profile`.`sa_name`,
+             `time_slot`.`start_time`,
+             `time_slot`.`end_time`,
+             booking.booking_id,
+             `booking`.`payment_method`,
+             `booking`.`payment_status`
+        FROM `booking` 
+        INNER JOIN `facility` ON `facility`.facility_id = booking.facility_id
+        INNER JOIN `sports_arena_profile` ON `sports_arena_profile`.sports_arena_id = `booking`.sports_arena_id
+        INNER JOIN `booking_timeslot` ON `booking_timeslot`.`booking_id`= `booking`.`booking_id`
+        INNER JOIN `time_slot` ON `time_slot`.`time_slot_id`=`booking_timeslot`.`timeslot_id`
+        WHERE `booking_timeslot`.`timeslot_id` = :timeslot_id ";
+
+            $data_stmt = $db->prepare($data_query);
+            $data_stmt->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
+            $data_stmt->execute();
+
+            // CUSTOMER NOTIFICATION REQUIREMENTS
+            $data = $data_stmt->fetch(PDO::FETCH_ASSOC);
+
+            // Select facility name 
+            $facname = $data["facility_name"];
+            $booking_id = $data["booking_id"];
+            // Select sports arena name
+            $saname = $data["sa_name"];
+
+            // Select time slot duration
+            $stime = $data["start_time"];
+            $etime = $data["end_time"];
+
+            $payment_method = $data["payment_method"];
+            $payment_status = $data["payment_status"];
+            // Select reason for cancellation
+            $p_level = "high";
+
+
+            // Select booking date
+            $bdate = $data["booking_date"];
+
+            if ($payment_method == 'cash' && $payment_status == 'unpaid') {
+                // Initialize descriptions
+                
+                $custdesc = " " . $saname . " had cancelled your booking " . $booking_id . " made for " . $facname . " on " . $bdate . " scheduled from " . $stime . " to " . $etime . " as this timeslot is no longer available.";
+                $link = "";
+            } else {
+                // Initialize descriptions
+                $custdesc = " " . $saname . " had cancelled your booking " . $booking_id . " made for " . $facname . " on " . $bdate . " scheduled from " . $stime . " to " . $etime . " as this timeslot is no longer available. Please apply for refund form to collect your refund. Note that we'll be making a bank transfer.";
+                $custdesc .= "Please click this link for request refund";
+                $link = "http://localhost/customer/refund/" . $booking_id;
+            }
+
+            
+
+
+            $sql = 'INSERT INTO `notification`(`user_id`, `subject`, `priority`, `description`,`link`) VALUES (:uid,:subject,:p_level,:desc,:link)';
+            $stmt = $db->prepare($sql);
+
+            
+            $stmt->execute(['uid' => $customer_id, 'subject' => $custsubj, 'p_level' => $p_level, 'desc' => $custdesc, ':link' => $link]);
+
+            // Make the changes to the database permanent
+            $db->commit();
+        } catch (PDOException $e) {
+            $db->rollback();
+            throw $e;
+        }
+    }
+
+     //Start of administration staff booking cancellation notification
+     public static function arenaDeleteFacilityNotification($current_user, $facility_id)
+     {
+         try {
+             $db = static::getDB();
+             $db->beginTransaction();
+             $manager_id = self::AddfacilityNotificationGetManagerIds($facility_id);
+             $adminstaff_id = self::AddfacilityNotificationGetAdminStaffIds($facility_id);
+             $bookhandlestaff_id = self::AddfacilityNotificationGetBookingStaffIds($facility_id);
+ 
+             $sparsubj = "Removing facility and Cancel bookings";
+ 
+             
+             $data_query = "SELECT
+              `facility`.`facility_name`
+                FROM `facility` 
+                WHERE `facility`.`facility_id` = :facility_id ";
+ 
+             $data_stmt = $db->prepare($data_query);
+             $data_stmt->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
+             $data_stmt->execute();
+ 
+             // CUSTOMER NOTIFICATION REQUIREMENTS
+             $data = $data_stmt->fetch(PDO::FETCH_ASSOC);
+ 
+             // Select facility name 
+             $facname = $data["facility_name"];
+ 
+             // Select reason for cancellation
+             $p_level = "high";
+ 
+ 
+             // Initialize first name and last name of the staff member
+             $fname = $current_user->first_name;
+             $lname = $current_user->last_name;
+ 
+ 
+ 
+             $spardesc = "Staff member " . $fname . " " . $lname . " has removed the facility " . $facname . " from the sports arena.  All the future bookings made on this facility got cancelled. This facility and its timeslots are no longer visible to the customers.";
+ 
+             $sql = 'INSERT INTO `notification`(`user_id`, `subject`, `priority`, `description`) VALUES (:uid,:subject,:p_level,:desc)';
+             $stmt = $db->prepare($sql);
+ 
+ 
+             // for manager
+             $stmt->execute(['uid' => $manager_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
+ 
+             // for administartion staff
+             $stmt->execute(['uid' => $adminstaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
+ 
+             // for booking handling staff
+             $stmt->execute(['uid' => $bookhandlestaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
+ 
+             // Make the changes to the database permanent
+             $db->commit();
+         } catch (PDOException $e) {
+             $db->rollback();
+             throw $e;
+         }
+     }
+
+     //Start of administration staff booking cancellation notification
+     public static function customerBookingCancellationDeleteFacilityNotification($timeslot_id)
+     {
+         try {
+             $db = static::getDB();
+
+             $customer = self::timeslotcancelNotificationGetCustomerIds($timeslot_id);
+             $customer_id = $customer['user_id'];
+ 
+             $custsubj = "Booking cancellation due to facility unavailability";
+ 
+             $db->beginTransaction();
+             $data_query = "SELECT
+              `booking`.`booking_date`,
+              `facility`.`facility_name`,
+              `sports_arena_profile`.`sa_name`,
+              `time_slot`.`start_time`,
+              `time_slot`.`end_time`,
+              booking.booking_id,
+              `booking`.`payment_method`,
+              `booking`.`payment_status`
+         FROM `booking` 
+         INNER JOIN `facility` ON `facility`.facility_id = booking.facility_id
+         INNER JOIN `sports_arena_profile` ON `sports_arena_profile`.sports_arena_id = `booking`.sports_arena_id
+         INNER JOIN `booking_timeslot` ON `booking_timeslot`.`booking_id`= `booking`.`booking_id`
+         INNER JOIN `time_slot` ON `time_slot`.`time_slot_id`=`booking_timeslot`.`timeslot_id`
+         WHERE `booking_timeslot`.`timeslot_id` = :timeslot_id ";
+ 
+             $data_stmt = $db->prepare($data_query);
+             $data_stmt->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
+             $data_stmt->execute();
+ 
+             // CUSTOMER NOTIFICATION REQUIREMENTS
+             $data = $data_stmt->fetch(PDO::FETCH_ASSOC);
+ 
+             // Select facility name 
+             $facname = $data["facility_name"];
+             $booking_id = $data["booking_id"];
+             // Select sports arena name
+             $saname = $data["sa_name"];
+ 
+             // Select time slot duration
+             $stime = $data["start_time"];
+             $etime = $data["end_time"];
+ 
+             $payment_method = $data["payment_method"];
+             $payment_status = $data["payment_status"];
+             // Select reason for cancellation
+             $p_level = "high";
+ 
+ 
+             // Select booking date
+             $bdate = $data["booking_date"];
+ 
+             if ($payment_method == 'cash' && $payment_status == 'unpaid') {
+                 // Initialize descriptions
+                 $custdesc = " " . $saname . " had cancelled your booking " . $booking_id . " made for " . $facname . " on " . $bdate . " scheduled from " . $stime . " to " . $etime . " as this facility is no longer available.";
+                 $link = "";
+                } else {
+                 // Initialize descriptions
+                 $custdesc = " " . $saname . " had cancelled your booking " . $booking_id . " made for " . $facname . " on " . $bdate . " scheduled from " . $stime . " to " . $etime . " as this facility is no longer available. Please apply for refund form to collect your refund. Note that we'll be making a bank transfer.";
+                 
+                $custdesc .= "Please click this link for request refund";
+                $link = "http://localhost/customer/refund/" . $booking_id;
+                
+                }
+ 
+ 
+                
+             $sql = 'INSERT INTO `notification`(`user_id`, `subject`, `priority`, `description`) VALUES (:uid,:subject,:p_level,:desc,:link)';
+             $stmt = $db->prepare($sql);
+ 
+                
+             $stmt->execute(['uid' => $customer_id, 'subject' => $custsubj, 'p_level' => $p_level, 'desc' => $custdesc, ':link' => $link]);
+ 
+             // Make the changes to the database permanent
+             $db->commit();
+         } catch (PDOException $e) {
+             $db->rollback();
+             throw $e;
+         }
+     }
+ 
 }
