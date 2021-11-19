@@ -418,7 +418,7 @@ class Sparenamanager extends \Core\Controller
         $current_user = Auth::getUser();
         $id = $current_user->user_id;
         //Assigning the data enetered by user in signup form to user variable
-        SpArenaManagerModel::addStaff(
+        $is_added = SpArenaManagerModel::addStaff(
             $id,
             $_POST['first_name'],
             $_POST['last_name'],
@@ -428,7 +428,9 @@ class Sparenamanager extends \Core\Controller
             $_POST['staff_type'],
             $_FILES['image']
         );
-        $this->redirect('/Sparenamanager/manageusers');
+        if($is_added){
+            $this->redirect('/Sparenamanager/manageusers');
+        }
     }
     //Start of Remove Users
     public function removestaff()

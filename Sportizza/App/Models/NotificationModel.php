@@ -1386,4 +1386,61 @@ class NotificationModel extends \Core\Model
             throw $e;
         }
     }
+
+    public static function managerAddStaffSuccessManagerNotification($manager_id, $added_user_id)
+    {
+        try {
+            $db = static::getDB();
+            $db->beginTransaction();
+            $sql1 = 'SELECT user.first_name, user.last_name, user.type FROM user WHERE user_id=:user_id';
+            $stmt1 = $db->prepare($sql1);
+            $stmt1->bindValue(':user_id', $added_user_id, PDO::PARAM_INT);
+            $stmt1->execute();
+            $result1 = $stmt1->fetch(PDO::FETCH_ASSOC);
+            $first_name = $result1['first_name'];
+            $last_name = $result1['last_name'];
+            $user_type = $result1['type'];
+            
+            $mana_notification_subj = "Staff Member Added Successfully";
+            $mana_notification_desc = " " . $first_name . " ". $last_name . " is successfully added to your sports arena as a " . $user_type . " member.";
+            $user_notificatin_subj = "Your Account Get Activated";
+            $user_notificatin_desc = "Your account get activated in Sportizza as a ". $user_type ." member.";
+           
+            $sql = 'INSERT INTO notification(user_id, subject, priority, description) VALUES (:uid,:subject,:p_level,:desc)';
+            $stmt = $db->prepare($sql);
+            $stmt->execute(['uid' => $manager_id, 'subject' => $mana_notification_subj, 'p_level' => "high", 'desc' => $mana_notification_desc]);
+            $stmt->execute(['uid' => $added_user_id, 'subject' => $user_notificatin_subj, 'p_level' => "high", 'desc' => $user_notificatin_desc]);
+            $db->commit();
+        } catch (PDOException $e) {
+            $db->rollback();
+            throw $e;
+        }
+    }
+
+    public static function managerAddStaffMobileSuccessNotification($first_name, $user_name, $user_password, $contact)
+    {
+        //our mobile number
+        $user = "94765282976";
+        //our account password
+        $password = 4772;
+            
+        $_SESSION['mobile_number'] = $contact;
+        //Message to be sent
+        $text = urlencode("Hi, " . $first_name ." you have successfully added as a staff member of Sports Arena. <br> Please use Following data for Sign in.<br> Username:". $user_name ."<br>Password:" . $user_password ." ");
+        // Replacing the initial 0 with 94
+        $to = substr_replace($contact, '94', 0, 0);
+        //Base URL
+        $baseurl = "http://www.textit.biz/sendmsg";
+        // regex to create the url
+        $url = "$baseurl/?id=$user&pw=$password&to=$to&text=$text";
+    
+        $ret = file($url);
+        $res = explode(":", $ret[0]);
+    
+        if (trim($res[0]) == "OK") {
+            echo "Message Sent - ID : " . $res[1];
+        } else {
+            echo "Sent Failed - Error : " . $res[1];
+        }
+    }
 }

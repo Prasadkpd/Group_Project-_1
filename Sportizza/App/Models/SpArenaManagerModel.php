@@ -1201,8 +1201,8 @@ class SpArenaManagerModel extends \Core\Model
         FROM administration_staff
         INNER JOIN booking_handling_staff ON
         administration_staff.manager_user_id =booking_handling_staff.manager_user_id
-        INNER JOIN user    ON administration_staff.user_id=user.user_id OR booking_handling_staff.user_id=user.user_id
-         WHERE user.security_status="active" AND (administration_staff.manager_user_id=:id OR  booking_handling_staff.manager_user_id=:id)
+        INNER JOIN user ON administration_staff.user_id=user.user_id OR booking_handling_staff.user_id=user.user_id
+         WHERE user.security_status="active" AND (administration_staff.manager_user_id=:id OR booking_handling_staff.manager_user_id=:id)
          GROUP BY user.user_id';
 
 
@@ -1288,7 +1288,7 @@ class SpArenaManagerModel extends \Core\Model
                 $stmt4->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
                 $stmt4->bindValue(':manager_id', $manager_id, PDO::PARAM_INT);
                 $stmt4->bindValue(':manager_arena_id', $arena_id, PDO::PARAM_INT);
-                return $stmt4->execute();
+                $stmt4->execute();
             }
             if ($staff_type == "AdministrationStaff") {
                 $sql5 = 'INSERT INTO administration_staff(user_id, sports_arena_id, manager_user_id, manager_sports_arena_id, 
@@ -1302,8 +1302,11 @@ class SpArenaManagerModel extends \Core\Model
                 $stmt5->bindValue(':profile_sports_arena_id', $arena_id, PDO::PARAM_INT);
                 $stmt5->bindValue(':s_a_profile_id', $arena_id, PDO::PARAM_INT);
                 $stmt5->execute();
-                return $db->commit();
             }
+            $db->commit();
+            NotificationModel::managerAddStaffSuccessManagerNotification($manager_id,$user_id);
+            NotificationModel::managerAddStaffMobileSuccessNotification($first_name,$username,$password,$mobile_number);
+            return true;
         }
         catch (PDOException $e) {
             $db->rollback();
