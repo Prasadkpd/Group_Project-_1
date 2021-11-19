@@ -340,16 +340,22 @@ class Sparenamanager extends \Core\Controller
         $username = $current_user->username;
 
 
-        $facility = LoginModel::authenticate(
+        $user = LoginModel::authenticate(
             $username,
             $_POST['Userpassword']
         );
 
-        if ($facility) {
+        if ($user) {
             //Send the notification to the sports arena's staff
-            SpArenaManagerModel::managerAddFacility($id, $_POST['fname']);
+            $facility_added_id = SpArenaManagerModel::managerAddFacility($id, $_POST['fname']);
 
-            $this->redirect('/Sparenamanager/managefacility');
+            if ($facility_added_id) {
+                $executed = NotificationModel::saAdminAddFacilitySuccessNotification($current_user, $_POST['fname'], $facility_added_id);
+
+                if ($executed) {
+                    $this->redirect('/Sparenamanager/managefacility');
+                }
+            }
         }
     }
 
