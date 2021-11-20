@@ -313,9 +313,12 @@ class Sparenamanager extends \Core\Controller
     }
     public function removetimeslotAction()
     {
+         $current_user = Auth::getUser();
         $timeSlot_Id = $this->route_params['id'];
-        SpArenaManagerModel::removeTimeSlot($timeSlot_Id);
-        $this->redirect('/Sparenamanager/managetimeslot');
+        $success = SpArenaManagerModel::removeTimeSlot($current_user,$timeSlot_Id);
+        if($success){
+            $this->redirect('/Sparenamanager/managetimeslot');
+        }
     }
 
     //Start of Manage Facility of manager view
