@@ -1304,23 +1304,31 @@ class SpArenaManagerModel extends \Core\Model
                 $stmt5->execute();
             }
             $db->commit();
-            NotificationModel::managerAddStaffSuccessManagerNotification($manager_id,$user_id);
-            NotificationModel::managerAddStaffMobileSuccessNotification($first_name,$username,$password,$mobile_number);
+            NotificationModel::managerAddStaffSuccessManagerNotification($manager_id, $user_id);
+            NotificationModel::managerAddStaffMobileSuccessNotification($first_name, $username, $password, $mobile_number);
             return true;
-        }
-        catch (PDOException $e) {
+        } catch (PDOException $e) {
             $db->rollback();
             throw $e;
         }
     }
 
-    public static function removestaff($user_id)
+    public static function removestaff($current_user_id, $user_id)
     {
-        $sql = 'UPDATE user SET security_status="inactive", account_status="inactive"  WHERE user_id=:user_id';
-        $db = static::getDB();
-        $stmt = $db->prepare($sql);
-        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
-        $stmt->execute();
+        try {
+            $db = static::getDB();
+            $db->beginTransaction();
+            $sql = 'UPDATE user SET security_status="inactive", account_status="inactive"  WHERE user_id=:user_id';
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+            $stmt->execute();
+            NotificationModel::managerRemoveStaffSuccessManagerNotification($current_user_id,$user_id);
+            $db->commit();
+            return true;
+        } catch (PDOException $e) {
+            $db->rollback();
+            throw $e;
+        }
     }
 
     public static function findUserName($userName)
