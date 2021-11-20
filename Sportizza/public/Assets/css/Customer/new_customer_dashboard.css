@@ -330,7 +330,7 @@ tbody tr td .icon_red {
   width: 53px;
 }
 #popup_notification a{
-  color:red;
+  color:#e74c3c;
   text-decoration: underline;
   font-size: 20px;
   font-weight: bold;

@@ -293,7 +293,7 @@ class CustomerModel extends \Core\Model
         //Why var_dump?
         var_dump($favorite_list_id);
 
-        //Retreiving all the sports arenas in favorite list
+        //Retrieving all the sports arenas in favorite list
         $sql = 'SELECT sports_arena_id
         FROM  favourite_list_sports_arena
         WHERE fav_list_id=:favorite_list_id AND sports_arena_id=:arena_id';
@@ -604,7 +604,7 @@ class CustomerModel extends \Core\Model
     public static function customerPaymentSuccess($user_id)
     {
 
-        $invoice_id=0;
+        
 
         $db = static::getDB();
 
@@ -613,8 +613,9 @@ class CustomerModel extends \Core\Model
         $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
         $stmt->execute();
 
-        $sql2 = 'SELECT `payment_id` FROM `payment` ORDER BY `payment_id` DESC LIMIT 1;';
 
+
+        $sql2 = 'SELECT `payment_id` FROM `payment` ORDER BY `payment_id` DESC LIMIT 1;';
         $stmt2 = $db->prepare($sql2);
         $stmt2->execute();
         $result1 = $stmt2->fetch(PDO::FETCH_ASSOC);
@@ -645,14 +646,15 @@ class CustomerModel extends \Core\Model
 
 
         $total_amount = 0;
+        $total_card=0;
+        $total_cash=0;
 
         // var_dump($result);
         for ($x = 0; $x < $len; $x++) {
-            $booking_id = $result[$x][0];
 
+        $booking_id = $result[$x][0];
 
-
-            $sql4 = 'SELECT booking.price_per_booking, booking.booking_date ,booking.payment_method, facility.facility_name, 
+        $sql4 = 'SELECT booking.price_per_booking, booking.booking_date ,booking.payment_method, facility.facility_name, 
         `time_slot`.`start_time`,
         `time_slot`.`end_time`, sports_arena_profile.sa_name
         FROM booking 
@@ -661,12 +663,13 @@ class CustomerModel extends \Core\Model
         INNER JOIN `booking_timeslot` ON `booking_timeslot`.`booking_id`= `booking`.`booking_id`
         INNER JOIN `time_slot` ON `time_slot`.`time_slot_id`=`booking_timeslot`.`timeslot_id`
         WHERE booking.booking_id =:booking_id';
-            $stmt4 = $db->prepare($sql4);
-            $stmt4->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
 
-            $stmt4->execute();
+        $stmt4 = $db->prepare($sql4);
+        $stmt4->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
 
-            $result1 = $stmt4->fetch(PDO::FETCH_ASSOC);
+        $stmt4->execute();
+
+        $result1 = $stmt4->fetch(PDO::FETCH_ASSOC);
 
             //Obtaining the administratoin staff user details retrieved from result1
             $amount = $result1["price_per_booking"];
@@ -677,13 +680,28 @@ class CustomerModel extends \Core\Model
             $end_time = $result1["end_time"];
             $payment_method= $result1["payment_method"];
 
+
             $total_amount = $total_amount + $amount;
 
-            $sql5 = 'INSERT INTO `invoice` (`payment_method`, `net_amount`,`payment_id`) VALUES ("cash", :amount, :payment_id)';
+            if($payment_method=="cash"){
+                $total_cash=$total_cash+$amount;
+                $sql5 = 'INSERT INTO `invoice` (`payment_method`, `net_amount`) VALUES ("cash", :amount)';
+            $stmt = $db->prepare($sql5);
+            $stmt->bindValue(':amount', $amount, PDO::PARAM_INT);
+            
+            $stmt->execute();
+            }
+
+            else{
+                $total_card=$total_card+$amount;
+                $sql5 = 'INSERT INTO `invoice` (`payment_method`, `net_amount`,`payment_id`) VALUES ("card", :amount, :payment_id)';
             $stmt = $db->prepare($sql5);
             $stmt->bindValue(':amount', $amount, PDO::PARAM_INT);
             $stmt->bindValue(':payment_id', $payment_id, PDO::PARAM_INT);
             $stmt->execute();
+            }
+           
+            
 
 
             $sql6 = 'SELECT `invoice_id` FROM `invoice` ORDER BY `invoice_id` DESC LIMIT 1;';
@@ -699,11 +717,11 @@ class CustomerModel extends \Core\Model
 
             if( $payment_method=="card"){
                 $sql = 'UPDATE `booking` SET `payment_status`="paid", `invoice_id`=:invoice_id, `customer_user_id`=:user_id
-         WHERE `booking_id`=:booking_id';
+                WHERE `booking_id`=:booking_id';
             }
             else{
                 $sql = 'UPDATE `booking` SET `payment_status`="unpaid", `invoice_id`=:invoice_id, `customer_user_id`=:user_id
-         WHERE `booking_id`=:booking_id';
+                WHERE `booking_id`=:booking_id';
             }
             
 
@@ -716,13 +734,25 @@ class CustomerModel extends \Core\Model
 
         }
 
+        if($total_card==0){
+            $sql = 'DELETE FROM `payment`
+            WHERE `payment_id`=:payment_id';
+       
+            $stmt = $db->prepare($sql);
+            
+            $stmt->bindValue(':payment_id', $payment_id, PDO::PARAM_INT);
+            $stmt->execute();
+        }
+        else{
         $sql = 'UPDATE `payment` SET `net_amount`=:total_amount
-         WHERE `payment_id`=:payment_id';
-
+        WHERE `payment_id`=:payment_id';
+   
         $stmt = $db->prepare($sql);
-        $stmt->bindValue(':total_amount', $total_amount, PDO::PARAM_INT);
+        $stmt->bindValue(':total_amount', $total_card, PDO::PARAM_INT);
         $stmt->bindValue(':payment_id', $payment_id, PDO::PARAM_INT);
         $stmt->execute();
+        }
+        
         
 
 

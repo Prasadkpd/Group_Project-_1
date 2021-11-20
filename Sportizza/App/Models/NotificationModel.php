@@ -610,7 +610,7 @@ class NotificationModel extends \Core\Model
         $spardesc = $fname . " " . $lname . " has cancelled his booking to " . $facname . " on " . $bdate . " scheduled from " . $stime . " to " . $etime . ".";
 
         if ($paymethod == "card") {
-            $custdesc .= "Please click this link for request refund";
+            $custdesc .= "Please click this link to apply for refund";
             $link = "http://localhost/customer/refund/" . $booking_id;
         } else {
             $link = "";
