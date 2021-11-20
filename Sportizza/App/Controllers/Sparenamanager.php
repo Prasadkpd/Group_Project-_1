@@ -200,10 +200,10 @@ class Sparenamanager extends \Core\Controller
         $user_id = $current_user->user_id;
         $booking_id = $this->route_params['id'];
         //Update the booking's payment status
-        $cancel_booking = SpArenaManagerModel::bookingCancellation($booking_id, $user_id, $_POST['Reason']);
+        $success = SpArenaManagerModel::bookingCancellation($booking_id, $user_id, $_POST['Reason']);
        
         //If booking cancellation is successful
-        if ($cancel_booking) {
+        if ($success) {
             //Send booking cancellation successfull notification
             NotificationModel::customerEmergBookingCancelNotification($current_user, $booking_id);
             $this->redirect('/Sparenamanager/managernotification');
