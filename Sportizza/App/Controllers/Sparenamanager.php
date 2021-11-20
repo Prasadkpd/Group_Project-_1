@@ -276,7 +276,7 @@ class Sparenamanager extends \Core\Controller
         $fac = substr($combined, 5, 9);
         $price = substr($combined, 14);
 
-        $timeslot_check = SpArenaManagerModel::managerCheckExistingTimeslots($id, $sTime, $duration, $price, $fac);
+        $timeslot_check = SpArenaManagerModel::managerCheckExistingTimeslots($id, $sTime, $duration, $fac);
 
         if (!$timeslot_check) {
             echo true;
@@ -292,16 +292,24 @@ class Sparenamanager extends \Core\Controller
         $id = $current_user->user_id;
 
         //Adding timeslot to the sports arena
-        SpArenaManagerModel::managerAddTimeSlots(
+        $timeslot_id = SpArenaManagerModel::managerAddTimeSlots(
             $id,
             $_POST['startTime'],
             $_POST['timeSlotDuration'],
             $_POST['slotPrice'],
             $_POST['facilityName']
         );
+        echo $timeslot_id;
+        //If time slot is successfully added
+        if ($timeslot_id) {
+            $success = NotificationModel::saAdminAddtimeslotSuccessNotification($current_user, $timeslot_id);
+            // If notification is successful
+            if ($success) {
+                $this->redirect('/Sparenamanager/managetimeslot');
+            }
+        }
 
         //Redirected to manage timeslot
-        $this->redirect('/Sparenamanager/managetimeslot');
     }
     public function removetimeslotAction()
     {
@@ -383,16 +391,28 @@ class Sparenamanager extends \Core\Controller
 
     public function removeFacilityAction()
     {
+        $current_user = Auth::getUser();
         $facility_id = $this->route_params['id'];
-        SpArenaManagerModel::removeFacility($facility_id);
-        $this->redirect('/Sparenamanager/managefacility');
+        $success = SpArenaManagerModel::removeFacility($facility_id);
+        if ($success) {
+            //Sending deletion notification to the sports arena's staff
+            $executed = NotificationModel::arenaDeleteFacilityNotification($current_user, $facility_id);
+            
+            //If notification is successful
+            if ($executed) {
+                $this->redirect('/Sparenamanager/managefacility');
+            }
+        }
     }
 
     public function updatefacilityAction()
     {
+        $current_user = Auth::getUser();
         $facility_id = $this->route_params['id'];
-        SpArenaManagerModel::updateFacility($facility_id, $_POST['New_Facility_name']);
-        $this->redirect('/Sparenamanager/managefacility');
+        $executed = SpArenaManagerModel::updateFacility($current_user,$facility_id, $_POST['New_Facility_name']);
+        if($executed){
+            $this->redirect('/Sparenamanager/managefacility');
+        }
     }
 
     //Start of Manage Users of manager view
@@ -428,7 +448,7 @@ class Sparenamanager extends \Core\Controller
             $_POST['staff_type'],
             $_FILES['image']
         );
-        if($is_added){
+        if ($is_added) {
             $this->redirect('/Sparenamanager/manageusers');
         }
     }
@@ -438,10 +458,9 @@ class Sparenamanager extends \Core\Controller
         $current_user = Auth::getUser();
         $current_user_id = $current_user->user_id;
         $removed_user_id = $this->route_params['id'];
-        $is_user_removed = SpArenaManagerModel::removestaff($current_user_id,$removed_user_id);
-        if($is_user_removed){
+        $is_user_removed = SpArenaManagerModel::removestaff($current_user_id, $removed_user_id);
+        if ($is_user_removed) {
             $this->redirect("/Sparenamanager/manageusers");
-
         }
     }
     //End of Remove Users
