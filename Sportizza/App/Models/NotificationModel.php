@@ -1443,4 +1443,27 @@ class NotificationModel extends \Core\Model
             echo "Sent Failed - Error : " . $res[1];
         }
     }
+
+
+
+    public static function refundRequestSuccessNotification($current_user,$booking_id)
+    {
+        $db = static::getDB();
+
+        // Select reason for cancellation
+        $p_level = "low";
+
+        $sparsubj = " Successfully Requested For Refund";
+        $spardesc = "You successfully requested booking id=" .$booking_id ." for refund";
+
+        $sql = 'INSERT INTO `notification`(`user_id`, `subject`, `priority`, `description`) VALUES (:uid,:subject,:p_level,:desc)';
+        $stmt = $db->prepare($sql);
+
+        
+        return $stmt->execute(['uid' => $current_user, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
+
+    }
+
+
+    
 }

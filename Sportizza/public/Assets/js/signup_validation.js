@@ -112,6 +112,16 @@ function checkIfOnlyNumbers(field) {
         return false;
     }
 }
+function checkIfAccountNumber(field) {
+    if (/^[0-9]{12}/.test(field.value)) {
+        setValid(field);
+        return true;
+    } else {
+        setInvalid(field, `${capitalizeFirstLetter(replaceUnderscore(field.name))} should have only 12 numbers!`);
+        return false;
+    }
+}
+
 function checkIfOnlyNumbersNext(field) {
     if (/^[0-9]+$/.test(field.value)) {
         setValidNext(field);

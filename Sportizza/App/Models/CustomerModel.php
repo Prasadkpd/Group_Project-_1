@@ -554,7 +554,7 @@ class CustomerModel extends \Core\Model
         $stmt->bindValue(':booking_id', $post['booking_id'], PDO::PARAM_INT);
         $stmt->bindValue(':customer_user_id', $post['customer_user_id'], PDO::PARAM_INT);
         $stmt->bindValue(':account_no', $post['accountNumber'], PDO::PARAM_INT);
-        $stmt->bindValue(':benficiary_name', $post['benificialyName'], PDO::PARAM_STR);
+        $stmt->bindValue(':benficiary_name', $post['benificiaryName'], PDO::PARAM_STR);
         $stmt->bindValue(':branch_name', $post['branchName'], PDO::PARAM_STR);
         $stmt->bindValue(':bank_name', $post['bankName'], PDO::PARAM_STR);
         $stmt->bindValue(':refund_status', "unpaid", PDO::PARAM_STR);
@@ -786,6 +786,27 @@ class CustomerModel extends \Core\Model
         
         $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
         return $stmt->execute();
+    }
+
+    public static function customerRefundAvailability($booking_id)
+    {
+        $sql = 'SELECT  * FROM refund 
+                WHERE booking_id=:booking_id';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding the customer id and Converting retrieved data from database into PDOs
+        
+        $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+        $result= $stmt->execute();
+        if(empty($result)){
+            return false;
+        }
+        else{
+            return true;
+        }
+        
     }
 
     

@@ -3,7 +3,7 @@ const email = document.getElementById('email');
 const address = document.getElementById('address');
 const city = document.getElementById('city');
 const formCheckout = document.getElementById('formCheckout');
-const benificialyName = document.getElementById('benificialyName');
+const benificiaryName = document.getElementById('benificiaryName');
 const accountNumber = document.getElementById('accountNumber');
 const bankName = document.getElementById('bankName');
 const branchName = document.getElementById('branchName');
@@ -43,24 +43,7 @@ formCheckout.addEventListener('submit', function (event) {
         evt.currentTarget.className += " active";
         }
     
-    
-    
-    
-        // popup form section
-    
-        function openpopupform(){
-            var form=document.getElementById("myForm");
-            
-            form.style.display = "block";
-    
-        }
-    
-        function closepopupform(){
-            var form=document.getElementById("myForm");
-            
-            form.style.display = "none";
-    
-        }
+
         //popup sign out message
         function open_popup_signout_message(){
           var form=document.getElementById("popup_signout");
@@ -73,58 +56,6 @@ formCheckout.addEventListener('submit', function (event) {
         form.style.display = "none";
     }
     
-
-    
-    
-     
-    
-
-
-
-
-
-  // js for edit profile picture
-const imgDiv = document.querySelector(".editProPic");
-const img =document.querySelector("#form-profile-picture");
-const file=document.querySelector("#file");
-const uploadBtn=document.querySelector("#uploadBtn");
-
-//if user hover image div
-imgDiv.addEventListener("mouseenter",function(){
-  uploadBtn.style.display="block"
-})
-
-//if user out from img div
-imgDiv.addEventListener("mouseleave",function(){
-  uploadBtn.style.display="none"
-})
-
-//work form image showing function
-file.addEventListener("change",function(){
-  //this refers to file upload
-  const choosedFile = this.files[0];
-  if(choosedFile){
-    const reader= new FileReader();
-     //file reader function
-     reader.addEventListener("load",function(){
-       img.setAttribute("src",reader.result);
-     });
-
-     reader.readAsDataURL(choosedFile);
-
-  }
-})
-
-//hide items from cart
-function hideItem(x)
-{
-    // $(".")
-    $("#cartItem"+x).hide();
-    console.log(x);
-}
-
-
-
 
 // //Function to check all the validations before getting submitted
 function validateCheckoutForm() {
@@ -156,13 +87,13 @@ function validateCity(){
 }
 
 function validateBenificaryName(){
-    if (checkIfEmpty(benificialyName)) return;
-    if (!checkCharacters(benificialyName)) return;
+    if (checkIfEmpty(benificiaryName)) return;
+    if (!checkCharacters(benificiaryName)) return;
     return true;
   }
 function validateAccountNumber(){
     if (checkIfEmpty(accountNumber)) return;
-    if (!checkCharacters(accountNumber)) return;
+    if (!checkIfAccountNumber(accountNumber)) return;
     return true;
   }
 function validateBankName(){
