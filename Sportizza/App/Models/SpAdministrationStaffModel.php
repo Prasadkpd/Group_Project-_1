@@ -1185,7 +1185,7 @@ class SpAdministrationStaffModel extends \Core\Model
 
             $end_time = $hours + $duration;
 
-            // If end_time is less than 10am, add a zero before the hh:mm:ss time format. Else just change it to hh:mm:ss
+            // If end_time is less than 10:00, add a zero before the hh:mm:ss time format. Else just change it to hh:mm:ss
             if ($end_time < 10) {
                 $end_time = (string)("0" . $end_time . ":" . $minutes . ":00");
             } else {
@@ -1210,7 +1210,7 @@ class SpAdministrationStaffModel extends \Core\Model
             FROM  time_slot
             INNER JOIN facility ON time_slot.facility_id=facility.facility_id
             WHERE time_slot.manager_sports_arena_id=:arena_id AND time_slot.facility_id=:facility
-            AND facility.security_status="active"
+            AND facility.security_status="active" AND time_slot.security_status="active"
             ORDER BY end_time ASC';
 
             $stmt = $db->prepare($sql);
@@ -1413,6 +1413,15 @@ class SpAdministrationStaffModel extends \Core\Model
 
                     //Removing booking from booking timeslot
                     $sql = 'UPDATE booking_timeslot 
+                    SET booking_timeslot.security_status="inactive"
+                    WHERE booking_timeslot.booking_id=:booking_id';
+
+                    $stmt = $db->prepare($sql);
+                    $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+                    $stmt->execute();
+
+                    //Removing booking from booking table
+                    $sql = 'UPDATE booking
                     SET booking_timeslot.security_status="inactive"
                     WHERE booking_timeslot.booking_id=:booking_id';
 
@@ -1837,6 +1846,15 @@ class SpAdministrationStaffModel extends \Core\Model
 
                             //Removing booking from booking timeslot table
                             $sql = 'UPDATE booking_timeslot 
+                            SET booking_timeslot.security_status="inactive"
+                            WHERE booking_timeslot.booking_id=:booking_id';
+
+                            $stmt = $db->prepare($sql);
+                            $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+                            $stmt->execute();
+
+                            //Removing booking from booking table
+                            $sql = 'UPDATE booking
                             SET booking_timeslot.security_status="inactive"
                             WHERE booking_timeslot.booking_id=:booking_id';
 

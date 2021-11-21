@@ -143,6 +143,190 @@ class CustomerModel extends \Core\Model
     }
     //End of Displaying sports arena timeslot
 
+     //Start of displaying sports arena's available timeslots for booking(by default)
+     public static function saAdminViewAvailableTimeSlots($saAdmin_id)
+     {
+         try {
+             //Create a new database connection
+             $db = static::getDB();
+ 
+             //Start transaction
+             $db->beginTransaction();
+ 
+             //Retrieving the sports arena id
+             $sql = 'SELECT sports_arena_id 
+             FROM administration_staff 
+             WHERE user_id=:user_id';
+ 
+             $stmt = $db->prepare($sql);
+             $stmt->bindValue(':user_id', $saAdmin_id, PDO::PARAM_INT);
+             $stmt->execute();
+ 
+             //Fetching the sports arena id
+             $result = $stmt->fetch(PDO::FETCH_ASSOC);
+             $arena_id = $result['sports_arena_id'];
+ 
+             //Retrieving sports arena timeslot from the database
+             $sql = 'SELECT DISTINCT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i") AS startTime,
+             TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,time_slot.price,facility.facility_name,
+             sports_arena_profile.payment_method
+             FROM time_slot
+             INNER JOIN facility ON time_slot.facility_id= facility.facility_id
+             INNER JOIN sports_arena_profile ON facility.sports_arena_id= sports_arena_profile.sports_arena_id
+             INNER JOIN booking_timeslot ON time_slot.time_slot_id =booking_timeslot.timeslot_id
+             INNER JOIN booking ON booking_timeslot.booking_id=booking.booking_id
+             WHERE time_slot.time_slot_id NOT IN
+                                                 (SELECT booking_timeslot.timeslot_id 
+                                                 FROM booking 
+                                                 INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id 
+                                                 WHERE ((booking.booking_date=CURRENT_DATE()) OR 
+                                                 (payment_status="pending" AND booked_date +INTERVAL 30 MINUTE > CURRENT_TIMESTAMP))
+                                                 AND booking_timeslot.security_status="active")
+             AND time_slot.manager_sports_arena_id=:arena_id 
+             AND time_slot.security_status="active" 
+             AND time_slot.start_time > CURRENT_TIME() 
+             GROUP BY time_slot.time_slot_id
+             ORDER BY time_slot.start_time';
+ 
+             $stmt = $db->prepare($sql);
+             $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+             $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+             $stmt->execute();
+ 
+             //Assigning the fetched PDOs to result
+             $result = $stmt->fetchAll();
+ 
+             //End transaction
+             $db->commit();
+             return $result;
+         } catch (PDOException $e) {
+             $db->rollback();
+             throw $e;
+         }
+     }
+     //End of displaying sports arena's available timeslots for booking(by default)
+ 
+     //Start of displaying sports arena's available timeslots for booking(after selecting a date)
+     public static function saAdminSearchTimeSlotsDate($saAdmin_id, $date)
+     {
+         try {
+             //Create a new database connection
+             $db = static::getDB();
+ 
+             //Start transaction
+             $db->beginTransaction();
+ 
+             //Retrieving the sports arena id
+             $sql = 'SELECT sports_arena_id 
+             FROM administration_staff 
+             WHERE user_id=:user_id';
+ 
+             $stmt = $db->prepare($sql);
+             $stmt->bindValue(':user_id', $saAdmin_id, PDO::PARAM_INT);
+             $stmt->execute();
+ 
+             //Fetching the sports arena id
+             $result = $stmt->fetch(PDO::FETCH_ASSOC);
+             $arena_id = $result['sports_arena_id'];
+ 
+             //Chaning the date format
+             $current_date = date('Y-m-d');
+ 
+             //If selected date is current date, execute the following
+             if ($date != $current_date) {
+ 
+                 //Retrieving sports arena timeslots
+                 $sql = 'SELECT DISTINCT time_slot.time_slot_id, TIME_FORMAT(time_slot.start_time, "%H:%i") AS startTime,
+                 TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime, time_slot.price,facility.facility_name,
+                 sports_arena_profile.payment_method
+                 FROM time_slot
+                 INNER JOIN facility ON time_slot.facility_id= facility.facility_id
+                 INNER JOIN sports_arena_profile ON facility.sports_arena_id= sports_arena_profile.sports_arena_id
+                 WHERE time_slot.time_slot_id NOT IN
+                                                     (SELECT booking_timeslot.timeslot_id 
+                                                     FROM booking 
+                                                     INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id 
+                                                     WHERE ((booking.booking_date=:date) OR 
+                                                     (payment_status="pending" AND booked_date +INTERVAL 30 MINUTE > CURRENT_TIMESTAMP))
+                                                     AND booking_timeslot.security_status="active")
+                 AND time_slot.manager_sports_arena_id=:arena_id
+                 AND time_slot.security_status="active"
+                 GROUP BY time_slot.time_slot_id
+                 ORDER BY time_slot.start_time;';
+ 
+                 $stmt = $db->prepare($sql);
+                 $stmt->bindValue(':date', $date, PDO::PARAM_STR);
+                 $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+             }
+ 
+             //If selected date is not the current date, execute the following
+             else {
+ 
+                 //Retrieving sports arena timeslots
+                 $sql = 'SELECT DISTINCT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i") AS startTime,
+                 TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,time_slot.price,facility.facility_name,
+                 sports_arena_profile.payment_method
+                 FROM time_slot
+                 INNER JOIN facility ON time_slot.facility_id= facility.facility_id
+                 INNER JOIN sports_arena_profile ON facility.sports_arena_id= sports_arena_profile.sports_arena_id
+                 INNER JOIN booking_timeslot ON time_slot.time_slot_id =booking_timeslot.timeslot_id
+                 INNER JOIN booking ON booking_timeslot.booking_id=booking.booking_id
+                 WHERE time_slot.time_slot_id NOT IN
+                                                     (SELECT booking_timeslot.timeslot_id 
+                                                     FROM booking 
+                                                     INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id 
+                                                     WHERE ((booking.booking_date=CURRENT_DATE()) OR 
+                                                     (payment_status="pending" AND booked_date +INTERVAL 30 MINUTE > CURRENT_TIMESTAMP))
+                                                     AND booking_timeslot.security_status="active")
+                 AND time_slot.manager_sports_arena_id=:arena_id 
+                 AND time_slot.security_status="active" 
+                 AND time_slot.start_time > CURRENT_TIME() 
+                 GROUP BY time_slot.time_slot_id
+                 ORDER BY time_slot.start_time';
+ 
+                 $stmt = $db->prepare($sql);
+                 $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+             }
+ 
+             $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+             $stmt->execute();
+ 
+             //End transaction
+             $db->commit();
+         } catch (PDOException $e) {
+             $db->rollback();
+             throw $e;
+         }
+ 
+         //Creating output for ajax
+         $output = "";
+ 
+         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+             $output .= "
+         <li id={$row["time_slot_id"]} class='hideDetails'>
+         <div class='row'>
+             <span class='s-time'>{$row["startTime"]}</span>&nbsp;-
+             <span class='e-time'>{$row["endTime"]}</span>
+         </div>
+         <div class='row'>
+             <span class='facility'>{$row["facility_name"]}</span>
+         </div>
+         <div class='row'>
+             <span class='price'>LKR {$row["price"]}</span>
+         </div>
+         <div>
+             <button class='removeItem' value={$row["time_slot_id"]} type='button'>
+             <i class='fas fa-cart-plus'></i></button>
+         </div>
+         </div>
+         <input type='hidden' name='timeSlotId' value={$row["time_slot_id"]}>
+         <input type='date' name='bookingDate' class='bookingDatehidden' value={$date} style='display: none;'>
+     </li>";
+         }
+         return $output;
+     }
+     //End of displaying sports arena's available timeslots for booking(after selecting a date)
+ 
 
 
 
@@ -677,12 +861,17 @@ class CustomerModel extends \Core\Model
             $end_time = $result1["end_time"];
             $payment_method= $result1["payment_method"];
 
+            var_dump($payment_method);
+
             $total_amount = $total_amount + $amount;
 
-            $sql5 = 'INSERT INTO `invoice` (`payment_method`, `net_amount`,`payment_id`) VALUES ("cash", :amount, :payment_id)';
+            $sql5 = 'INSERT INTO `invoice` (`payment_method`, `net_amount`,`payment_id`) VALUES 
+            (:payment_method, :amount, :payment_id)';
             $stmt = $db->prepare($sql5);
+            $stmt->bindValue(':payment_method', $payment_method, PDO::PARAM_STR);
             $stmt->bindValue(':amount', $amount, PDO::PARAM_INT);
             $stmt->bindValue(':payment_id', $payment_id, PDO::PARAM_INT);
+    
             $stmt->execute();
 
 

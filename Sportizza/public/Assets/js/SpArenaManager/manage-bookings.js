@@ -112,6 +112,7 @@ function ViewDatepicker() {
     }
   }
 }
+
 function searchViewTable() {
   var input, filter, table, tr, td, i, txtValue;
   table = document.getElementById("view-booking");
@@ -131,28 +132,7 @@ function searchViewTable() {
   }
 }
 
-function ViewDatepicker() {
-  table = document.getElementById("view-booking");
-  var pass = document.getElementById("view-date-picker").value;
-  tr = table.getElementsByTagName("tr");
-  var date = new Date(pass);
-  var year = String(date.getFullYear());
-  var month = String(date.getMonth() + 1).padStart(2, "0");
-  var todayDate = String(date.getDate()).padStart(2, "0");
-  console.log(datePattern);
-  var datePattern = year + "-" + month + "-" + todayDate;
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[4];
-    if (td) {
-      txtValue = td.innerText;
-      if (txtValue == datePattern) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-}
+
 function searchDeleteTable() {
   var input, filter, table, tr, td, i, txtValue;
   table = document.getElementById("delete-booking");
