@@ -286,7 +286,7 @@ class Customer extends Authenticated
         {
             if(CustomerModel::customerRefundAvailability($this->route_params['id'])){
                 View::renderTemplate(
-                    'Customer/refundFailed.html'
+                    '500.html'
                 );
             }
             else{

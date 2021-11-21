@@ -330,10 +330,14 @@ tbody tr td .icon_red {
   width: 53px;
 }
 #popup_notification a{
+  display:flex;
   color:#e74c3c;
-  text-decoration: underline;
-  font-size: 20px;
-  font-weight: bold;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+  text-align:center;
+  margin: 0 auto;
+  justify-content: center;
 }
 
 #cannotCancelBookingDaysSpan{

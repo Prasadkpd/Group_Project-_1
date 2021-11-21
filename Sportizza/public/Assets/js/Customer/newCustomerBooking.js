@@ -1,3 +1,17 @@
+// // return current date
+window.onload = function () {
+  
+  // const date = new Date().toISOString().split('T')[0];
+  // date.setDate(date.getDate() + 1);
+  
+  var today = new Date().toISOString().split('T')[0];
+  document.getElementsByName("dateInput")[0].setAttribute('min', today);
+
+  document.getElementById('dateInput').valueAsDate = new Date();
+  document.querySelectorAll('.bookingDatehidden').valueAsDate = new Date();
+
+}
+
 function openTab(evt, cityName) {
   var i, booking_tab_content, booking_tab;
   booking_tab_content = document.getElementsByClassName("booking_tab_content");
@@ -12,12 +26,7 @@ function openTab(evt, cityName) {
   evt.currentTarget.className += " active";
 }
 
-// // return current date
-window.onload = function () {
-  document.getElementById('dateInput').valueAsDate = new Date();
-  // document.querySelectorAll('.bookingDatehidden').valueAsDate = new Date();
-  document.querySelector(".bookingDatehidden").valueAsDate = new Date();
-};
+
 
 
 var booking_date_form = document.getElementById('bookingdateform');
@@ -312,4 +321,8 @@ function paymentclick(){
 //   alert("Blah balh");
   
 // })
+
+
+
+
 
