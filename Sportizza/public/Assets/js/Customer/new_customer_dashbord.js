@@ -165,7 +165,7 @@ function open_popup_notification(subject,description,link) {
   console.log(link);
   console.log(subject)
   if(link==""){
-    var form = document.getElementById("popup_notification");
+  var form = document.getElementById("popup_notification");
   form.querySelector("#popup_notification").innerHTML="<h1>"
   +subject+"</h1>"+"<p>"+description+"</p>";
   form.style.display = "block";
@@ -173,7 +173,7 @@ function open_popup_notification(subject,description,link) {
   else{
     var form = document.getElementById("popup_notification");
   form.querySelector("#popup_notification").innerHTML="<h1>"
-  +subject+"</h1>"+"<p>"+description+"</p>"+ "<a href="+"'"+link+ "'>" + "click here for refund" + "</a>";
+  +subject+"</h1>"+"<p>"+description+"</p>"+ "<a href="+"'"+link+ "'>" + "Refund link" + "</a>";
   form.style.display = "block";
   }
   

@@ -168,10 +168,8 @@ class Customer extends Authenticated
             NotificationModel::cancelNotificationBookingSuccess($current_user,$booking_id);
             $this->redirect("/customer");
         }
-        
-
-
     }
+
 
     public function customerdeletebookingAction()
     {
@@ -286,11 +284,19 @@ class Customer extends Authenticated
         //Start of customer get refund
         public function refundAction()
         {
-            $details=CustomerModel::customerRefundDeltails( $this->route_params['id']);
-            View::renderTemplate(
-                'Customer/refund.html',['details'=>$details]
-            );
-
+            if(CustomerModel::customerRefundAvailability($this->route_params['id'])){
+                View::renderTemplate(
+                    '500.html'
+                );
+            }
+            else{
+                $details=CustomerModel::customerRefundDeltails( $this->route_params['id']);
+                View::renderTemplate(
+                    'Customer/refund.html',['details'=>$details]
+                );
+    
+            }
+            
         }
         //End of customer get refund
 
@@ -298,7 +304,8 @@ class Customer extends Authenticated
         //Start of customer request refund
         public function customerrequestrefundAction()
         {
-            
+            $customer_id = Auth::getUser()->user_id;
+            NotificationModel::refundRequestSuccessNotification($customer_id ,$_POST["booking_id"]);
             CustomerModel::customerRequestRefund($_POST);
             $this->redirect('/Customer');
         }

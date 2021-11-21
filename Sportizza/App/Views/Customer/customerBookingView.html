@@ -236,17 +236,13 @@
 
                             <div class="date-picker">
                                 <form method="POST" id="bookingdateform">
-                                    <!-- {% if date is not null %}
-
-                                    <input type="date" id="dateInput" name="dateInput" value="{{date}}">
-
-                                    {% else %} -->
-                                    <input type="date" id="dateInput" name="dateInput" value="getDate()">
-                                    <!-- {% endif %} -->
+                                
+                                    <input type="date" id="dateInput" name="dateInput" >
+                                    
 
                                     <input type="hidden" id="arenaId" name="arenaId"
                                         value="{{arenaDetails[0].sports_arena_id}}">
-                                    <!-- <input type="submit" value="Go"> -->
+                                    
                                 </form>
                             </div>
 
@@ -312,6 +308,7 @@
                                         </div>
                                         <input type="hidden" name="timeSlotId" id="timeSlotId" class="timeSlotClass" value={{timeSlot.time_slot_id}}>
                                         <input type="date" name="bookingDate" class="bookingDatehidden" style="display: none;">
+
                                     </li>
                                 <!-- </form> -->
                                     {% endfor %}
@@ -356,12 +353,13 @@
         </div>
     </footer>
     <!-- End of Footer -->
+    
     <script type="text/javascript" src="/Assets/js/lib/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
-    <script src="/Assets/js/Customer/newCustomerBooking.js?version=3"></script>
+    
     <!-- <script src="/Assets/js/Customer/customer_view_booking_hide_ajax.js"></script> -->
     <script src="/Assets/js/Customer/customer_view_booking_dateChange_ajax.js"></script>
-
+    <script src="/Assets/js/Customer/newCustomerBooking.js?version=3"></script>
 
 </body>
 
