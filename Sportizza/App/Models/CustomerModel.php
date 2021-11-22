@@ -249,7 +249,7 @@ class CustomerModel extends \Core\Model
     {
         //Retrieving sports arena profile from the database
         $sql = 'SELECT *
-                 FROM  sports_arena_profile 
+                 FROM  sports_arena_profile INNER JOIN sports_arena_profile_photo ON sports_arena_profile.s_a_profile_id = sports_arena_profile_photo.sa_profile_id 
                 WHERE s_a_profile_id=:arena_id';
         // have to change this is wrong we use it for testing
 
