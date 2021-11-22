@@ -197,7 +197,7 @@
 
                             <div class="google-map">
                                 <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.856271141694!2d79.86827001482301!3d6.907784420492848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25979bfbde28d%3A0xae825954d8507c7d!2sMercantile%20Cricket%20Association!5e0!3m2!1sen!2slk!4v1629887793472!5m2!1sen!2slk"
+                                    src=" https://www.google.com/maps/embed/v1/place?key=AIzaSyB2e00P4iPaWX6u26a1MNg-cYKLyY3jsoo&q={{arenaDetails[0].google_map_link}}"
                                     width="400" height="300" style="border:0;" allowfullscreen=""
                                     loading="lazy"></iframe>
                             </div>
@@ -207,19 +207,19 @@
                                 <section class="slide-container" id="slider">
 
                                     <div class="thumbnail">
-                                        <img src="/Assets/images/customer/Screenshot_1.jpg" alt="">
+                                        <img src="{{arenaDetails[0].photo1_name}}" alt="">
                                     </div>
                                     <div class="thumbnail">
-                                        <img src="/Assets/images/customer/Screenshot_2.jpg" alt="">
+                                        <img src="{{arenaDetails[0].photo2_name}}" alt="">
                                     </div>
                                     <div class="thumbnail">
-                                        <img src="/Assets/images/customer/Screenshot_3.jpg" alt="">
+                                        <img src="{{arenaDetails[0].photo3_name}}" alt="">
                                     </div>
                                     <div class="thumbnail">
-                                        <img src="/Assets/images/customer/Screenshot_4.jpg" alt="">
+                                        <img src="{{arenaDetails[0].photo4_name}}" alt="">
                                     </div>
                                     <div class="thumbnail">
-                                        <img src="/Assets/images/customer/Screenshot_5.jpg" alt="">
+                                        <img src="{{arenaDetails[0].photo5_name}}" alt="">
                                     </div>
                                 </section>
                                 <img id="slide-right" class="arrow" src="/Assets/images/customer/arrow-right.png">
@@ -276,10 +276,11 @@
                                             <div class="toggle-button-cover">
                                                 <div class="button-cover">
                                                     <div class="button r" id="button-1">
-                                                        <input type="checkbox" class="checkbox" name="paymentMethod" value="card" checked>
-                                                       
+                                                        <input type="checkbox" class="checkbox" name="paymentMethod"
+                                                            value="card" checked>
+
                                                         <div class="layer1">card</div>
-                                                        
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -287,8 +288,9 @@
                                             <div class="toggle-button-cover">
                                                 <div class="button-cover">
                                                     <div class="button r" id="button-1">
-                                                        <input type="checkbox" class="checkbox" name="paymentMethod" value="cash" checked>
-                                                        
+                                                        <input type="checkbox" class="checkbox" name="paymentMethod"
+                                                            value="cash" checked>
+
                                                         <div class="layer1">cash</div>
                                                     </div>
                                                 </div>
@@ -297,26 +299,31 @@
                                             <div class="toggle-button-cover">
                                                 <div class="button-cover">
                                                     <div class="button r" id="button-1">
-                                                        <input type="checkbox" class="checkbox" id="{{timeSlot.time_slot_id}}" onclick="paymentclick()" name="paymentMethod" value="card" checked>
+                                                        <input type="checkbox" class="checkbox"
+                                                            id="{{timeSlot.time_slot_id}}" onclick="paymentclick()"
+                                                            name="paymentMethod" value="card" checked>
                                                         <div class="knobs"></div>
                                                         <div class="layer"></div>
                                                     </div>
                                                 </div>
                                             </div>
                                             {% endif %}
-                                            
+
                                             <div>
-                                                <button class="removeItem" value={{timeSlot.time_slot_id}} type="submit">
+                                                <button class="removeItem" value={{timeSlot.time_slot_id}}
+                                                    type="submit">
                                                     <i class="fas fa-cart-plus"></i></button>
                                             </div>
                                         </div>
-                                        <input type="hidden" name="timeSlotId" id="timeSlotId" class="timeSlotClass" value={{timeSlot.time_slot_id}}>
-                                        <input type="date" name="bookingDate" class="bookingDatehidden" style="display: none;">
+                                        <input type="hidden" name="timeSlotId" id="timeSlotId" class="timeSlotClass"
+                                            value={{timeSlot.time_slot_id}}>
+                                        <input type="date" name="bookingDate" class="bookingDatehidden"
+                                            style="display: none;">
                                     </li>
-                                <!-- </form> -->
+                                    <!-- </form> -->
                                     {% endfor %}
                                 </ul>
-                                
+
                             </div>
 
 

@@ -98,8 +98,7 @@ class Customer extends Authenticated
         $timeSlots = CustomerModel::customerViewTimeSlots($id);
         //Assigning the sports arenas details
         $arenaDetails = CustomerModel::customerViewArenaDetails($id);
-        
-        $arenaDetails['google_map_link'] = preg_replace('/\%\d\w/', ' , ', substr($arenaDetails['google_map_link'], 48));
+        $arenaDetails[0]->google_map_link = preg_replace('/\%\d\w/', ' , ', substr($arenaDetails[0]->google_map_link, 48));
         //Rendering the customers booking view
         View::renderTemplate(
             'Customer/customerBookingView.html',
