@@ -299,7 +299,7 @@ tbody tr td .icon_red {
 }
 .formLink {
   text-decoration: underline;
-  color: red;
+  color: #e74c3c;
   font-size: 14px;
 }
 .sectionpop h1 {
@@ -330,16 +330,17 @@ tbody tr td .icon_red {
   width: 53px;
 }
 #popup_notification a{
-  color:red;
+  color: #e74c3c;
   text-decoration: underline;
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 #cannotCancelBookingDaysSpan{
-  color:red;
-   font-weight: bold;
-   font-size:20px}
+  color: #e74c3c;
+   font-weight: 600;
+   font-size:18px;
+  }
 
 .popup_button {
   background-color: #2ed573;
