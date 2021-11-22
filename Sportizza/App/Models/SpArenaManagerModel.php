@@ -1002,6 +1002,14 @@ class SpArenaManagerModel extends \Core\Model
                     $stmt3->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
                     $stmt3->execute();
 
+                    $sql = 'UPDATE booking 
+                    SET booking.security_status="inactive"
+                    WHERE booking.booking_id=:booking_id';
+
+                    $stmt = $db->prepare($sql);
+                    $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+                    $stmt->execute();
+
                     //Sending cancellation notification to customer
                     NotificationModel::customerBookingCancellationDeleteTimeslotNotification($timeslot_id);
                 }
@@ -1248,6 +1256,13 @@ class SpArenaManagerModel extends \Core\Model
                             $stmt3->bindValue(':customer_user_id', $customer_user_id, PDO::PARAM_INT);
                             $stmt3->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
                             $stmt3->execute();
+                            $sql = 'UPDATE booking 
+                    SET booking.security_status="inactive"
+                    WHERE booking.booking_id=:booking_id';
+
+                            $stmt = $db->prepare($sql);
+                            $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+                            $stmt->execute();
 
                             //Change these notifications
                             NotificationModel::customerBookingCancellationDeleteFacilityNotification($timeslot_id);
