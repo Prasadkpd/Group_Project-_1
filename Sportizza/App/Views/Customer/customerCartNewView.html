@@ -186,20 +186,17 @@
         <div class="cartDisplay">
           <div class="page">
             <div class="container">
-              <div class="title">My Cart</div>
-              <div  class="subtitle">Time Slots..</div>
+              <div class="title">Customer Cart</div>
+              
+              
               <div class="content">
-  
-  
                 <div class="cartContent">
-                  <!-- {% set count=1  %}
-                  {% for item in items  %} -->
-                  <!-- {% set count=count+1  %}
-                  {% endfor %} -->
-  
+
                   {% for item in cart %}
-                  <div id="cartItem1" class="cartItem">
-                    <div id="itemDelete1" class="itemDelete" onclick="hideItem(1)">
+                  <div id="cartItem{{item.booking_id}}" class="cartItem">
+                    <!-- <div id="itemDelete" class="itemDelete" onclick="hideItem('{{item.booking_id}}')"> -->
+                    <div class="itemDelete">
+                      <input type="hidden" class="storeValue" value="{{item.booking_id}}">
                       <i class="far fa-times-circle"></i>
                     </div>
                     <div class="itemHeader">
@@ -218,40 +215,38 @@
                       {{item.payment_method}} payment
                     </div>
                     <div class="itemPrice">
+                      <input type="hidden" class="storePrice" value="{{item.price_per_booking}}">
                       LKR {{item.price_per_booking}}
                     </div>
-  
+
                   </div>
                   {% endfor %}
                   
-                
-                  <input type="hidden" name="order_id" value="100000000">
-                  <input type="hidden" name="items" value="Booking Timeslots"><br>
-                  <input type="hidden" name="currency" value="LKR">
-                  <input type="hidden" name="amount" value="{{cardSum}}">
                 </div>
                 <div class="priceNPay">
                   <div class="button">
-                    <input type="submit" value="Pay Now" class="btn solid" />
+                    <input type="submit" value="Get Payment" class="btn solid" />
                   </div>
-                  
-                 
-  
-                    <div class="showPrice">
+
+                  <div class="showPrice">
                     <h4>Total Card Payment : &nbsp;</h4>
-                    <h4 class="showAmount">LKR {{cardSum}}</h4>
+                    <input type="hidden" id="storeCardTotal" value="{{cardSum}}">
+                    <h4 id="showCardTotal" class="showAmount">LKR {{cardSum}}</h4>
                   </div>
+
                   <div class="showPrice">
                     <h4>Total Amount: &nbsp;</h4>
-                    <h4 class="showAmount">LKR {{allSum}}</h4>
+                    <input type="hidden" id="storeTotal" value="{{allSum}}">
+                    <h4 id="showTotal" class="showAmount">LKR {{allSum}}</h4>
                   </div>
                 </div>
-                
+
+                <p id="CartErrormsg" class="carterror">Please add a booking to checkout!</p>
               </div>
             </div>
           </div>
         </div>
-  
+        
         
       </form>
     {% else %}
@@ -323,20 +318,17 @@
         <div class="cartDisplay">
           <div class="page">
             <div class="container">
-              <div class="title">My Cart</div>
-              <div class="subtitle">Time Slots..</div>
+              <div class="title">Customer Cart</div>
+              
+              
               <div class="content">
-  
-  
                 <div class="cartContent">
-                  <!-- {% set count=1  %}
-                  {% for item in items  %} -->
-                  <!-- {% set count=count+1  %}
-                  {% endfor %} -->
-  
+
                   {% for item in cart %}
-                  <div id="cartItem1" class="cartItem">
-                    <div id="itemDelete1" class="itemDelete" onclick="hideItem(1)" >
+                  <div id="cartItem{{item.booking_id}}" class="cartItem">
+                    <!-- <div id="itemDelete" class="itemDelete" onclick="hideItem('{{item.booking_id}}')"> -->
+                    <div class="itemDelete">
+                      <input type="hidden" class="storeValue" value="{{item.booking_id}}">
                       <i class="far fa-times-circle"></i>
                     </div>
                     <div class="itemHeader">
@@ -351,44 +343,47 @@
                     <div class="itemOther">
                       {{item.category}}, {{item.location}}
                     </div>
-                    <div class="itemOther">
+                    <div class="itemOther itemPayment">
+                      <input type="hidden" class="storePayment" value="{{item.payment_method}}">
                       {{item.payment_method}} payment
                     </div>
                     <div class="itemPrice">
+                      <input type="hidden" class="storePrice" value="{{item.price_per_booking}}">
                       LKR {{item.price_per_booking}}
                     </div>
-  
+
                   </div>
                   {% endfor %}
-                  
-                
+
                   <input type="hidden" name="order_id" value="100000000">
                   <input type="hidden" name="items" value="Booking Timeslots"><br>
                   <input type="hidden" name="currency" value="LKR">
-                  <input type="hidden" name="amount" value="{{cardSum}}">
+                  <input type="hidden" id="gatewayAmount"name="amount" value="{{cardSum}}">
+                  
                 </div>
                 <div class="priceNPay">
                   <div class="button">
-                    <input type="submit" value="Pay Now" class="btn solid" />
+                    <input type="submit" value="Get Payment" class="btn solid" />
                   </div>
-                  
-                 
-  
-                    <div class="showPrice">
+
+                  <div class="showPrice">
                     <h4>Total Card Payment : &nbsp;</h4>
-                    <h4 class="showAmount">LKR {{cardSum}}</h4>
+                    <input type="hidden" id="storeCardTotal" value="{{cardSum}}">
+                    <h4 id="showCardTotal" class="showAmount">LKR {{cardSum}}</h4>
                   </div>
+
                   <div class="showPrice">
                     <h4>Total Amount: &nbsp;</h4>
-                    <h4 class="showAmount">LKR {{allSum}}</h4>
+                    <input type="hidden" id="storeTotal" value="{{allSum}}">
+                    <h4 id="showTotal" class="showAmount">LKR {{allSum}}</h4>
                   </div>
                 </div>
-                
+
+                <p id="CartErrormsg" class="carterror">Please add a booking to checkout!</p>
               </div>
             </div>
           </div>
         </div>
-  
         
       </form>
     {% endif %}
@@ -408,6 +403,7 @@
   <script type="text/javascript" src="/Assets/js/lib/jquery/jquery.min.js"></script>
   <script type="text/javascript" src="/Assets/js/signup_validation.js?version=8.0"></script>
   <script type="text/javascript" src="/Assets/js/Customer/newCart.js?version=4"></script>
+  <script type="text/javascript" src="/Assets/js/Customer/cart_clear_booking.js"></script>
   <!-- Top navbar js -->
   <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
 </body>

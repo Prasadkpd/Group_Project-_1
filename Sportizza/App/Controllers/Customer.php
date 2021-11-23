@@ -321,4 +321,27 @@ class Customer extends Authenticated
         //End of customer request refund
         
 
+            // Start of removing a booking from visitor's cart 
+    public function clearbookingAction()
+    {
+        //Assigning the relevant variables
+        $booking_id = $this->route_params['id'];
+
+        $clearedSlot = CustomerModel::customerClearBooking($booking_id);
+
+        if ($clearedSlot) {
+            echo true;
+        }
+    }
+    // End of removing a booking from visitor's cart 
+
+    //End of Administration Staff's cart view
+    /*--------------------------------------------------------------------------------------------------*/
+
+
+
+
+
 }
+
+
