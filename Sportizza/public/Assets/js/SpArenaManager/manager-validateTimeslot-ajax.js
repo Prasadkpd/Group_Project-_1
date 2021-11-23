@@ -4,12 +4,10 @@ $(document).ready(function () {
         let iTime = $("#startTime").val();
         let sTime = iTime.replace(":","");
         let duration = $("#timeSlotDuration").val();
-        let price = $("#slotPrice").val();
-
         $.ajax({
             type: "POST",
 
-            url: "http://localhost/sparenamanager/managervalidatetimeslots/"+sTime+duration+fac+price,
+            url: "http://localhost/sparenamanager/managervalidatetimeslots/"+sTime+duration+fac,
             dataType: "text",
             
             success: function (response) {

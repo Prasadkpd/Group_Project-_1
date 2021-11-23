@@ -165,6 +165,7 @@ class Admin extends Authenticated
         $id = $this->route_params['id'];
         
         $arena_details = AdminModel::arenaProfileView($id);
+        $arena_details['google_map_link'] = preg_replace('/\%\d\w/', ' , ', substr($arena_details['google_map_link'], 48));
 
         //    var_dump($arena_details);
         //Rendering the manager's edit profile arena view

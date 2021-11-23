@@ -201,8 +201,9 @@
                             <label for="map-link">Google Map Link</label>
                             <input id="map-link" type="text" name="google_map_link"
                                 placeholder="Ex: https://www.google.com/maps?q=204+C+Sandpiper+Place,+Fort+McMurray,+AB,+Canada"
-                                onfocusout="validateMapLink()" value="{{arena_details.google_map_link}}"><button
-                                id="get-position" type="button" onclick="open_popup_map()">Get Position</button>
+                                onfocusout="validateMapLink()" value="{{arena_details.google_map_link}}">
+                                <button
+                                id="get-position" type="button" onclick="open_popup_map()"><i class="fas fa-map-marker-alt"></i><span>Get Position</span></button>
                             <div class="helper-text" id="map-linkMsg">
                                 <p>{{errors["google_map1"]}} {{errors["google_map2"]}}</p>
                             </div>
@@ -264,29 +265,29 @@
                     <div class="image-container-row" id="image_uploader">
                         <form class="editProPic" action="/Sparenamanager/editimageone" method="post" id="image_upload_1" enctype="multipart/form-data">
                             <img id="photo1" src="{{arena_details.photo1_name}}" alt="">
-                            <input type="file" id="file1" name="image_1">
+                            <input type="file" id="file1" name="image_1" accept="image/*">
                             <label for="file1" id="uploadBtn1" onclick="ChangeImage(1)">Change Photo</label>
                         </form>
                         <form class="editProPic" action="/Sparenamanager/editimagetwo" method="post" id="image_upload_2" enctype="multipart/form-data">
                             <img id="photo2" src="{{arena_details.photo2_name}}" alt="">
-                            <input type="file" id="file2" name="image_2">
+                            <input type="file" id="file2" name="image_2" accept="image/*">
                             <label for="file2" id="uploadBtn2" onclick="ChangeImage(2)">Change Photo</label>
                         </form>
                         <form class="editProPic" action="/Sparenamanager/editimagethree" method="post" id="image_upload_3" enctype="multipart/form-data">
                             <img id="photo3" src="{{arena_details.photo3_name}}" alt="">
-                            <input type="file" id="file3" name="image_3">
+                            <input type="file" id="file3" name="image_3" accept="image/*">
                             <label for="file3" id="uploadBtn3" onclick="ChangeImage(3)">Change Photo</label>
                         </form>
                     </div>
                    <div class="image-container-row">
                         <form class="editProPic" action="/Sparenamanager/editimagefour" method="post" id="image_upload_4" enctype="multipart/form-data">
                             <img id="photo4" src="{{arena_details.photo4_name}}" alt="">
-                            <input type="file" id="file4" name="image_4">
+                            <input type="file" id="file4" name="image_4" accept="image/*">
                             <label for="file4" id="uploadBtn4" onclick="ChangeImage(4)">Change Photo</label>
                         </form>
                         <form class="editProPic" action="/Sparenamanager/editimagefive" method="post" id="image_upload_5" enctype="multipart/form-data">
                             <img id="photo5" src="{{arena_details.photo5_name}}" alt="">
-                            <input type="file" id="file5" name="image_5">
+                            <input type="file" id="file5" name="image_5" accept="image/*">
                             <label for="file5" id="uploadBtn5" onclick="ChangeImage(5)">Change Photo</label>
                         </form>
                    </div>

@@ -201,8 +201,8 @@
                             <label for="map-link">Google Map Link</label>
                             <input id="map-link" type="text" name="google_map_link"
                                 placeholder="Click on get poistion to pin the location"
-                                onfocusout="validateMapLink()" value="{{arena_details.google_map_link}}"><button
-                                id="get-position" type="button" onclick="open_popup_map()">Get Position</button>
+                                onfocusout="validateMapLink()" value="{{arena_details.google_map_link}}">
+                                <button id="get-position" type="button" onclick="open_popup_map()"><i class="fas fa-map-marker-alt"></i><span>Get Position</span></button>
                             <div class="helper-text" id="map-linkMsg">
                                 <p>{{errors["google_map1"]}} {{errors["google_map2"]}}</p>
                             </div>

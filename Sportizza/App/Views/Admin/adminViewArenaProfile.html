@@ -52,19 +52,16 @@
             <div>
                 <button class="closebutton" onclick="close_popup_map()">❌</button>
             </div>
-            <form style="margin:20px">
                 <div style="margin:auto">
                     <h1>
-                        Mark the position
+                        Location
                     </h1>
                 </div>
-                <div style="display:flex;flex-direction: column;">
-                    <div id="map" style="height: 200px;width: 100%;"></div>
-                    <!-- <button onclick="close_popup_map()" class="popup_button" type="button">
-                        Save
-                    </button> -->
+                <div style="display:flex;flex-direction: column; margin: auto;">
+                    <iframe
+                        src=" https://www.google.com/maps/embed/v1/place?key=AIzaSyB2e00P4iPaWX6u26a1MNg-cYKLyY3jsoo&q={{arena_details.google_map_link}}"
+                        width="350" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
-            </form>
         </div>
     </div>
     <!-- start popup for profile -->

@@ -414,6 +414,10 @@ button#get-position{
   cursor: pointer;
 }
 
+#get-position i{
+  margin-right: 5px;
+}
+
 @media screen and (max-width: 768px) {
     .sidebar {
       width: 7vw;
@@ -632,5 +636,22 @@ button#get-position{
     .edit_formsection {
         margin-top:1rem;
     }
+    #get-position span{
+      display: none;
+    }
+    #get-position i{
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .image-container-row{
+      flex-direction: column;
+      margin: 0;
+    }
+    
+    #image_upload_1,#image_upload_2,#image_upload_3,#image_upload_4,#image_upload_5{
+      margin-top: 10px;
+    }
+
   }
   

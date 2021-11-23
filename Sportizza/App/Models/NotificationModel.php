@@ -206,7 +206,6 @@ class NotificationModel extends \Core\Model
 
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         $mid = $result["user_id"];
-
         return $mid;
     }
 
@@ -967,56 +966,70 @@ class NotificationModel extends \Core\Model
 
     public static function saAdminAddtimeslotSuccessNotification($current_user, $time_slot_id)
     {
-        $db = static::getDB();
+        try {
+            $db = static::getDB();
+            $db->beginTransaction();
+            $manager_id = self::AddtimeslotNotificationGetManagerIds($time_slot_id);
+            $adminstaff_id = self::AddtimeslotNotificationGetAdminStaffIds($time_slot_id);
+            $bookhandlestaff_id = self::AddtimeslotNotificationGetBookingStaffIds($time_slot_id);
 
-        $manager_id = self::AddtimeslotNotificationGetManagerIds($time_slot_id);
-        $adminstaff_id = self::AddtimeslotNotificationGetAdminStaffIds($time_slot_id);
-        $bookhandlestaff_id = self::AddtimeslotNotificationGetBookingStaffIds($time_slot_id);
-
-        $sql = 'SELECT time_slot.start_time, time_slot.end_time, time_slot.price, facility.facility_name 
+            $sql = 'SELECT time_slot.start_time, time_slot.end_time, time_slot.price, facility.facility_name 
         FROM time_slot
         INNER JOIN facility ON time_slot.facility_id = facility.facility_id
         WHERE time_slot.time_slot_id = :time_slot_id AND time_slot.security_status="active"';
 
-        $stmt = $db->prepare($sql);
+            $stmt = $db->prepare($sql);
 
-        //Binding the customer id and Converting retrieved data from database into PDOs
-        $stmt->bindValue(':time_slot_id', $time_slot_id, PDO::PARAM_INT);
-        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-        $stmt->execute();
+            //Binding the customer id and Converting retrieved data from database into PDOs
+            $stmt->bindValue(':time_slot_id', $time_slot_id, PDO::PARAM_INT);
+            // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+            $stmt->execute();
 
-        // CUSTOMER NOTIFICATION REQUIREMENTS
-        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+            // CUSTOMER NOTIFICATION REQUIREMENTS
+            $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Select facility name
-        $facname = $data["facility_name"];
-
-        // Select time slot duration
-        $stime = $data["start_time"];
-        $etime = $data["end_time"];
-
-        $price = $data["price"];
-        $fname = $current_user->first_name;
-        $lname = $current_user->last_name;
+            // Select facility name
+            if ($data) {
+                $facname = $data["facility_name"];
 
 
-        // Select reason for cancellation
-        $p_level = "high";
+                // Select time slot duration
+                $stime = $data["start_time"];
+                $etime = $data["end_time"];
 
-        $sparsubj = "Timeslot added by sports arena";
-        $spardesc = "Staff member " . $fname . " " . $lname . " has added a timeslot from " . $stime . " to " . $etime . " on facility " . $facname . " with price of LKR " . $price . ".";
+                $price = $data["price"];
+                $fname = $current_user->first_name;
+                $lname = $current_user->last_name;
 
-        $sql = 'INSERT INTO `notification`(`user_id`, `subject`, `priority`, `description`) VALUES (:uid,:subject,:p_level,:desc)';
-        $stmt = $db->prepare($sql);
 
-        // for manager
-        $stmt->execute(['uid' => $manager_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
+                // Select reason for cancellation
+                $p_level = "high";
 
-        // for administartion staff
-        $stmt->execute(['uid' => $adminstaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
+                $sparsubj = "Timeslot added by sports arena";
+                $spardesc = "Staff member " . $fname . " " . $lname . " has added a timeslot from " . $stime . " to " . $etime . " on facility " . $facname . " with price of LKR " . $price . ".";
 
-        // for booking handling staff
-        return ($stmt->execute(['uid' => $bookhandlestaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]));
+                $sql = 'INSERT INTO `notification`(`user_id`, `subject`, `priority`, `description`) VALUES (:uid,:subject,:p_level,:desc)';
+                $stmt = $db->prepare($sql);
+
+                // for manager
+                $stmt->execute(['uid' => $manager_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
+
+                // for administartion staff
+                if ($adminstaff_id) {
+                    $stmt->execute(['uid' => $adminstaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
+                }
+
+                // for booking handling staff
+                if ($bookhandlestaff_id) {
+                    $stmt->execute(['uid' => $bookhandlestaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
+                }
+                $db->commit();
+                return true;
+            }
+        } catch (PDOException $e) {
+            $db->rollback();
+            throw $e;
+        }
     }
 
 
@@ -1466,4 +1479,29 @@ class NotificationModel extends \Core\Model
 
 
     
+    public static function managerRemoveStaffSuccessManagerNotification($manager_id, $removed_user_id)
+    {
+        try {
+            $db = static::getDB();
+            $db->beginTransaction();
+            $sql1 = 'SELECT user.first_name, user.last_name FROM user WHERE user_id=:user_id';
+            $stmt1 = $db->prepare($sql1);
+            $stmt1->bindValue(':user_id', $removed_user_id, PDO::PARAM_INT);
+            $stmt1->execute();
+            $result1 = $stmt1->fetch(PDO::FETCH_ASSOC);
+            $first_name = $result1['first_name'];
+            $last_name = $result1['last_name'];
+                       
+            $mana_notification_subj = "Staff Member Removed Successfully";
+            $mana_notification_desc = " " . $first_name . " ". $last_name . " is successfully removed from your sports arena";
+           
+            $sql = 'INSERT INTO notification(user_id, subject, priority, description) VALUES (:uid,:subject,:p_level,:desc)';
+            $stmt = $db->prepare($sql);
+            $stmt->execute(['uid' => $manager_id, 'subject' => $mana_notification_subj, 'p_level' => "high", 'desc' => $mana_notification_desc]);
+            $db->commit();
+        } catch (PDOException $e) {
+            $db->rollback();
+            throw $e;
+        }
+    }
 }
