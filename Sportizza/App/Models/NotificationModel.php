@@ -395,7 +395,7 @@ class NotificationModel extends \Core\Model
 
         // Initialize descriptions
         $custdesc = "You have successfully made a booking with Sportizza to " . $facname . " of " . $saname . " on " . $bdate . " from " . $stime . " to " . $etime . ". To find out the location, click " . $maplink;
-        $spardesc = $fname . " " . $lname . "has booked" . $facname . " on " . $bdate . " from " . $stime . " to " . $etime . ".";
+        $spardesc = $fname . " " . $lname . " has booked " . $facname . " on " . $bdate . " from " . $stime . " to " . $etime . ".";
 
         // **************************************
         // INSERT QUERIES TO USERS
