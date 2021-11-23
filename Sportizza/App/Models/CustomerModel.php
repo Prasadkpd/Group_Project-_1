@@ -878,9 +878,10 @@ class CustomerModel extends \Core\Model
 
             else{
                 $total_card=$total_card+$amount;
-                $sql5 = 'INSERT INTO `invoice` (`payment_method`, `net_amount`,`payment_id`) VALUES ("card", :amount, :payment_id)';
+                $sql5 = 'INSERT INTO `invoice` (`payment_method`, `net_amount`,`payment_id`) 
+                VALUES ("card", :amount, :payment_id)';
             $stmt = $db->prepare($sql5);
-            $stmt->bindValue(':payment_method', $payment_method, PDO::PARAM_STR);
+            // $stmt->bindValue(':payment_method', $payment_method, PDO::PARAM_STR);
             $stmt->bindValue(':amount', $amount, PDO::PARAM_INT);
             $stmt->bindValue(':payment_id', $payment_id, PDO::PARAM_INT);
     

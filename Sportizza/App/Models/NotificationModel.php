@@ -1171,17 +1171,29 @@ class NotificationModel extends \Core\Model
             if ($payment_method == 'cash' && $payment_status == 'unpaid') {
                 // Initialize descriptions
                 $custdesc = " " . $saname . " had cancelled your booking " . $booking_id . " made for " . $facname . " on " . $bdate . " scheduled from " . $stime . " to " . $etime . " as this timeslot is no longer available.";
-            } else {
+                $link = "";
+            } 
+            else {
                 // Initialize descriptions
                 $custdesc = " " . $saname . " had cancelled your booking " . $booking_id . " made for " . $facname . " on " . $bdate . " scheduled from " . $stime . " to " . $etime . " as this timeslot is no longer available. Please apply for refund form to collect your refund. Note that we'll be making a bank transfer.";
+                $link = "http://localhost/customer/refund/" . $booking_id;
             }
 
+            // if ($paymethod == "card") {
+            //     $custdesc .= "Please click this link to apply for refund";
+                
+            // } else {
+                
+            // }
 
-            $sql = 'INSERT INTO `notification`(`user_id`, `subject`, `priority`, `description`) VALUES (:uid,:subject,:p_level,:desc)';
+
+            $sql = 'INSERT INTO `notification`(`user_id`, `subject`, `priority`, `description`, `link`) VALUES 
+            (:uid,:subject,:p_level,:desc, :link)';
             $stmt = $db->prepare($sql);
 
 
-            $stmt->execute(['uid' => $customer_id, 'subject' => $custsubj, 'p_level' => $p_level, 'desc' => $custdesc]);
+            $stmt->execute(['uid' => $customer_id, 'subject' => $custsubj, 
+            'p_level' => $p_level, 'desc' => $custdesc, 'link' => $link]);
 
             // Make the changes to the database permanent
             $db->commit();
@@ -1416,8 +1428,8 @@ class NotificationModel extends \Core\Model
             
             $mana_notification_subj = "Staff Member Added Successfully";
             $mana_notification_desc = " " . $first_name . " ". $last_name . " is successfully added to your sports arena as a " . $user_type . " member.";
-            $user_notificatin_subj = "Your Account Get Activated";
-            $user_notificatin_desc = "Your account get activated in Sportizza as a ". $user_type ." member.";
+            $user_notificatin_subj = "Your Account Got Activated";
+            $user_notificatin_desc = "Your account got activated in Sportizza as a ". $user_type ." member.";
            
             $sql = 'INSERT INTO notification(user_id, subject, priority, description) VALUES (:uid,:subject,:p_level,:desc)';
             $stmt = $db->prepare($sql);
@@ -1439,7 +1451,7 @@ class NotificationModel extends \Core\Model
             
         $_SESSION['mobile_number'] = $contact;
         //Message to be sent
-        $text = urlencode("Hi, " . $first_name ." you have successfully added as a staff member of Sports Arena. <br> Please use Following data for Sign in.<br> Username:". $user_name ."<br>Password:" . $user_password ." ");
+        $text = urlencode("Hi, " . $first_name ." you have successfully added as a staff member for Sports Arena. <br> Please use the following credentials to Sign in.<br> Username:". $user_name ."<br>Password:" . $user_password ." ");
         // Replacing the initial 0 with 94
         $to = substr_replace($contact, '94', 0, 0);
         //Base URL
