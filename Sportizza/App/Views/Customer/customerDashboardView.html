@@ -131,7 +131,11 @@
                 <form action="" style="margin:20px">
                     <h1>Share booking details</h1>
                     <div class="shareDetails">
+                        
                         <input type="text" id="bdetail1" readonly>
+                        
+                        
+                        
                         <input type="text" id="bdetail2" readonly>
                         <div class="timeslotDisplay">
                             <input type="text" id="bdetail3" readonly>-
@@ -470,7 +474,7 @@
                                 <td class="btn-float-right">
                                     <div style="display:flex; float:right; padding-right:2rem;">
                                         <div>
-                                            <button onclick="open_popup_share('{{book.booking_id}}','{{book.booking_date}}','{{book.start_time}}','{{book.end_time}}',
+                                            <button onclick="open_popup_share('{{book.booking_id}}','{{book.booking_date}}','{{book.startTime}}','{{book.endTime}}',
                                                 '{{book.sa_name}}','{{book.category}}','{{book.google_map_link}}')">
                                                 <i class="fas fa-share "></i>
                                             </button>

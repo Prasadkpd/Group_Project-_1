@@ -261,3 +261,17 @@ function validateCity(){
   if (!checkCharacters(city)) return;
   return true;
 }
+
+
+function validateAmount() {
+  if (amount.value == 0) 
+  { 
+     checkouterror();
+    return;
+  }
+  return true;
+}
+
+function checkouterror(){
+  document.getElementById('CartErrormsg').style.display = "block";
+}
