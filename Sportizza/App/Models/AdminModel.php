@@ -108,7 +108,7 @@ class AdminModel extends \Core\Model
     public static function adminAddArenas($id)
     {
         //Updating sports arena profile status in the database
-        $sql = 'UPDATE sports_arena_profile SET account_status="active" WHERE s_a_profile_id=:id ';
+        $sql = 'UPDATE sports_arena_profile SET account_status="active",security_status="active" WHERE s_a_profile_id=:id ';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -162,7 +162,7 @@ class AdminModel extends \Core\Model
         $manager_id = $result2['user_id'];
 
         //Updating maanger status in the database
-        $sql = 'UPDATE user SET security_status="active" WHERE user_id=:manager_id ';
+        $sql = 'UPDATE user SET account_status="active",security_status="active" WHERE user_id=:manager_id ';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -414,7 +414,7 @@ class AdminModel extends \Core\Model
     public static function adminGetQuestionDetails($type)
     {
         //Retrieving of FAQs from the database
-        $sql = 'SELECT faq_id,question FROM faq WHERE type=:qtype ';
+        $sql = 'SELECT faq_id,question FROM faq WHERE type=:qtype AND security_status="active" ';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
