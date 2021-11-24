@@ -412,4 +412,24 @@ class SpArenaModel extends \Core\Model
         $stmt->execute();
         return $stmt->fetch();
     }
+
+    public static function getAllLocation()
+    {
+        $db= static::getDB();
+        $sql = 'SELECT DISTINCT UPPER(location) as location from sports_arena_profile';
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public static function getAllSportsCategory()
+    {
+        $db= static::getDB();
+        $sql = 'SELECT DISTINCT UPPER(category) as category from sports_arena_profile';
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 }

@@ -10,7 +10,9 @@ class Arenareg extends \Core\Controller
     //Rendering sports arena signup form
     public function indexAction()
     {
-        View::renderTemplate('LoginSignup/spArenaSignupView.html');
+        $location = SpArenaModel::getAllLocation();
+        $category = SpArenaModel::getAllSportsCategory();
+        View::renderTemplate('LoginSignup/spArenaSignupView.html',['locations' => $location, 'categorys' => $category]);
     }
 
     // Start of Registering a new Sports Arena

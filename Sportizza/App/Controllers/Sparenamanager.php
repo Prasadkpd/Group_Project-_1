@@ -165,6 +165,17 @@ class Sparenamanager extends \Core\Controller
             ]);
     }
 
+    public function clearbookingAction()
+    {
+        //Assigning the relevant variables
+        $booking_id = $this->route_params['id'];
+
+        $clearedSlot = SpArenaManagerModel::clearBookingCart($booking_id);
+
+        if ($clearedSlot) {
+            echo true;
+        }
+    }
 
     public function managerBookingsuccessnotificationAction()
     {
