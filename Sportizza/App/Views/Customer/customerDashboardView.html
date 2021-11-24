@@ -358,13 +358,13 @@
 
 
     <!-- popup notification section -->
-    <div id="popup_notification" class="sectionpop ">
+    <div id="popup_notification"   class="sectionpop " >
 
 
-        <div class="formsection">
+        <div  style="word-wrap: break-word"  class="formsection">
 
             <div>
-                <button s class="closebutton" onclick="close_popup_notification()">❌</button>
+                <button  class="closebutton" onclick="close_popup_notification()">❌</button>
             </div>
 
             <form action="/action_page.php" style="margin:20px">
@@ -476,7 +476,7 @@
                                             </button>
                                         </div>
                                         <div>
-                                            {% if date(book.booking_date)|date_modify("-4 day")|date('Y/m/d') >= 'now'|date('Y/m/d') and book.payment_method=="card" %}
+                                            {% if date(book.booking_date)|date_modify("-4 day")|date('Y/m/d') >= 'now'|date('Y/m/d')  %}
                                             <button class="icon_red"
                                                 onclick="open_popup_cancel_message('{{book.booking_id}}')">
                                                 <i class="fas fa-times"></i>
@@ -520,7 +520,7 @@
                             </button>
                         </div>
                         <div>
-                            {% if date(book.booking_date)|date_modify("-4 day")|date('Y/m/d') >= 'now'|date('Y/m/d') and book.payment_method=="card" %}
+                            {% if date(book.booking_date)|date_modify("-4 day")|date('Y/m/d') >= 'now'|date('Y/m/d') %}
                             <button class="icon_red" onclick="open_popup_cancel_message('{{book.booking_id}}')">
                                 <i class="fas fa-times"></i>
                             </button>

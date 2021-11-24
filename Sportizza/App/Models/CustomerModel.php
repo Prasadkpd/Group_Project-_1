@@ -583,10 +583,25 @@ class CustomerModel extends \Core\Model
             $sql = 'INSERT INTO favourite_list_sports_arena (fav_list_id,sports_arena_id)
         VALUES (:favorite_list_id,:arena_id);';
 
-            $db = static::getDB();
+            
             $stmt = $db->prepare($sql);
 
             //Binding the sports arena id and favourite list id Converting retrieved data from database into PDOs
+            $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+            $stmt->bindValue(':favorite_list_id', $favorite_list_id, PDO::PARAM_STR);
+            $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+            return ($stmt->execute());
+        }
+        else{
+            $sql = 'UPDATE favourite_list_sports_arena 
+                SET security_status="active"
+                WHERE fav_list_id=:favorite_list_id AND sports_arena_id=:arena_id';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding the customer id and Converting retrieved data from database into PDOs
             $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
             $stmt->bindValue(':favorite_list_id', $favorite_list_id, PDO::PARAM_STR);
             $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
@@ -1059,6 +1074,8 @@ class CustomerModel extends \Core\Model
 
     public static function customerRefundAvailability($booking_id)
     {
+
+        //have to check this one and solve logical errors
         $sql = 'SELECT  * FROM refund 
                 WHERE booking_id=:booking_id';
 
@@ -1068,8 +1085,11 @@ class CustomerModel extends \Core\Model
         //Binding the customer id and Converting retrieved data from database into PDOs
         
         $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+
         $result= $stmt->execute();
-        if(empty($result)){
+        
+        
+        if($result==""){
             return false;
         }
         else{

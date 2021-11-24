@@ -155,6 +155,15 @@ form input[type="submit"]:hover {
   float:left;
   background-color: #fff;
 }
+.carterror{
+  color: #e74c3c;
+  font-size: 14px;
+  font-weight:500;
+  display:none;
+  text-align: center;
+}
+
+
 .cartPage form .sp-details {
   display: flex;
   flex-wrap: wrap;
