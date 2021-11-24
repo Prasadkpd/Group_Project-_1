@@ -1074,6 +1074,8 @@ class CustomerModel extends \Core\Model
 
     public static function customerRefundAvailability($booking_id)
     {
+
+        //have to check this one and solve logical errors
         $sql = 'SELECT  * FROM refund 
                 WHERE booking_id=:booking_id';
 
@@ -1083,7 +1085,7 @@ class CustomerModel extends \Core\Model
         //Binding the customer id and Converting retrieved data from database into PDOs
         
         $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
-        
+
         $result= $stmt->execute();
         
         
