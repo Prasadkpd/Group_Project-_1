@@ -85,7 +85,7 @@
                 <div class="custom-select">
                   <select id="category" name="category" onchange="validateCategory()" value="{{sp_arena.category}}">
                     <option value="0"></option>
-                    <option value="OTHER">Other</option>
+                    <option value="Other">OTHER</option>
                     {% for category in categorys %}
                     <option value="{{category.category}}">{{category.category}}</option>
                     {% endfor %}
@@ -112,7 +112,7 @@
                 <div class="custom-select">
                   <select id="location" name="location" onchange="validateLocation()" value="{{sp_arena.location}}">
                     <option value="0"></option>
-                    <option value="OTHER">Other</option>
+                    <option value="Other">OTHER</option>
                     {% for location in locations %}
                     <option value="{{location.location}}">{{location.location}}</option>
                     {% endfor %}
