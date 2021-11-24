@@ -442,6 +442,42 @@ class SpArenaManagerModel extends \Core\Model
         return $result;
     }
 
+    public static function clearBookingCart($booking_id)
+    {
+        try {
+            //Create a new database connection
+            $db = static::getDB();
+
+            //Start transaction
+            $db->beginTransaction();
+
+            //Removing the booking from booking table
+            $sql = 'UPDATE booking 
+            SET security_status="inactive" 
+            WHERE booking_id=:id';
+
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':id', $booking_id, PDO::PARAM_INT);
+            $stmt->execute();
+
+            //Removing the booking from booking_timeslot table
+            $sql = 'UPDATE booking_timeslot 
+            SET security_status="inactive" 
+            WHERE booking_id=:id';
+
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':id', $booking_id, PDO::PARAM_INT);
+            $stmt->execute();
+
+            //End transaction
+            $db->commit();
+            return true;
+        } catch (PDOException $e) {
+            $db->rollback();
+            throw $e;
+        }
+    }
+
     public static function managerAddbookingPaymentSuccess($manager_id, $first_name, $last_name, $primary_contact)
     {
         try {
