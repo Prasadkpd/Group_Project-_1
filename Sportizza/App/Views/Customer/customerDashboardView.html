@@ -201,7 +201,7 @@
         <div class="formsection">
 
             <div>
-                <button s class="closebutton" onclick="close_popup_cannot_cancel_message()">❌</button>
+                <button  class="closebutton" onclick="close_popup_cannot_cancel_message()">❌</button>
             </div>
             <form id="cancelForm" style="margin:20px" method="post">
                 <div style="margin:auto">
@@ -209,15 +209,11 @@
                         Booking Cancellation
                     </h1>
                     <p>
-                        you can not cancel booking because you has only <span id="cannotCancelBookingDaysSpan">3
-                            days</span> for booking date
+                        You can not cancel this booking because you have only <span id="cannotCancelBookingDaysSpan">3
+                            days</span> left for your booking date.
                     </p>
                 </div>
                 <div style="display:flex">
-                    <!-- 
-                    <button type="submit" class="popup_delete_button">
-                        YES
-                    </button> -->
                     <button type="button" style="margin:auto" onclick="close_popup_cannot_cancel_message()"
                         class="popup_button">
                         OK

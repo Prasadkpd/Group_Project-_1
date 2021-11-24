@@ -1168,15 +1168,17 @@ class NotificationModel extends \Core\Model
             // Select booking date
             $bdate = $data["booking_date"];
 
+            $link = "";
             if ($payment_method == 'cash' && $payment_status == 'unpaid') {
                 // Initialize descriptions
                 $custdesc = " " . $saname . " had cancelled your booking " . $booking_id . " made for " . $facname . " on " . $bdate . " scheduled from " . $stime . " to " . $etime . " as this timeslot is no longer available.";
-                $link = "";
+               
             } 
             else {
                 // Initialize descriptions
-                $custdesc = " " . $saname . " had cancelled your booking " . $booking_id . " made for " . $facname . " on " . $bdate . " scheduled from " . $stime . " to " . $etime . " as this timeslot is no longer available. Please apply for refund form to collect your refund. Note that we'll be making a bank transfer.";
-                $link = "http://localhost/customer/refund/" . $booking_id;
+                $custdesc = " " . $saname . " had cancelled your booking " . $booking_id . " made for " . $facname . " on " . $bdate . " scheduled from " . $stime . " to " . $etime . " as this timeslot is no longer available.
+                 Please apply for refund form to collect your refund. Note that we'll be making a bank transfer.";
+                $link .= "http://localhost/customer/refund/" . $booking_id;
             }
 
             // if ($paymethod == "card") {
@@ -1190,7 +1192,6 @@ class NotificationModel extends \Core\Model
             $sql = 'INSERT INTO `notification`(`user_id`, `subject`, `priority`, `description`, `link`) VALUES 
             (:uid,:subject,:p_level,:desc, :link)';
             $stmt = $db->prepare($sql);
-
 
             $stmt->execute(['uid' => $customer_id, 'subject' => $custsubj, 
             'p_level' => $p_level, 'desc' => $custdesc, 'link' => $link]);
@@ -1361,17 +1362,20 @@ class NotificationModel extends \Core\Model
             if ($payment_method == 'cash' && $payment_status == 'unpaid') {
                 // Initialize descriptions
                 $custdesc = " " . $saname . " had cancelled your booking " . $booking_id . " made for " . $facname . " on " . $bdate . " scheduled from " . $stime . " to " . $etime . " as this facility is no longer available.";
+                $link="";
             } else {
                 // Initialize descriptions
-                $custdesc = " " . $saname . " had cancelled your booking " . $booking_id . " made for " . $facname . " on " . $bdate . " scheduled from " . $stime . " to " . $etime . " as this facility is no longer available. Please apply for refund form to collect your refund. Note that we'll be making a bank transfer.";
+                $custdesc = " " . $saname . " had cancelled your booking " . $booking_id . " made for " . $facname . " on " . $bdate . " scheduled from " . $stime . " to " . $etime . " as this facility is no longer available. 
+                Please apply for refund form to collect your refund. Note that we'll be making a bank transfer.";
+                $link = "http://localhost/customer/refund/" . $booking_id;
             }
  
  
-            $sql = 'INSERT INTO `notification`(`user_id`, `subject`, `priority`, `description`) VALUES (:uid,:subject,:p_level,:desc)';
+            $sql = 'INSERT INTO `notification`(`user_id`, `subject`, `priority`, `description`, `link`) VALUES (:uid,:subject,:p_level,:desc, :link)';
             $stmt = $db->prepare($sql);
  
  
-            $stmt->execute(['uid' => $customer_id, 'subject' => $custsubj, 'p_level' => $p_level, 'desc' => $custdesc]);
+            $stmt->execute(['uid' => $customer_id, 'subject' => $custsubj, 'p_level' => $p_level, 'desc' => $custdesc, 'link' => $link]);
  
             // Make the changes to the database permanent
             $db->commit();
