@@ -12,6 +12,22 @@ window.onload = function () {
 
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function openTab(evt, cityName) {
   var i, booking_tab_content, booking_tab;
   booking_tab_content = document.getElementsByClassName("booking_tab_content");
@@ -317,10 +333,6 @@ function paymentclick(){
   console.log(event.target.value);
 }
 
-// payment_method.addEventListener("click",function(){
-//   alert("Blah balh");
-  
-// })
 
 
 

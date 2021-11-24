@@ -285,6 +285,7 @@ class Customer extends Authenticated
         public function refundAction()
         {
             if(CustomerModel::customerRefundAvailability($this->route_params['id'])){
+                var_dump(CustomerModel::customerRefundAvailability($this->route_params['id']));
                 View::renderTemplate(
                     '500.html'
                 );
@@ -296,6 +297,8 @@ class Customer extends Authenticated
                 );
     
             }
+
+            
             
         }
         //End of customer get refund

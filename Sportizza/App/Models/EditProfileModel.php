@@ -5,7 +5,6 @@ namespace App\Models;
 use Core\Model;
 use PDO;
 use PDOException;
-use Core\Image;
 
 class EditProfileModel extends \Core\Model
 {
@@ -20,12 +19,6 @@ class EditProfileModel extends \Core\Model
         foreach ($data as $key => $value) {
             $this->$key = $value;
         };
-        $this->proPicImage =  new Image("proPicImage");
-
-        if (!empty($this->proPicImage->img_errors)) {
-            $this->errors["proPicImage"] = $this->proPicImage->img_errors;
-        }
-        var_dump($this->errors);
     }
     //End of Class constructor
 
@@ -116,7 +109,7 @@ class EditProfileModel extends \Core\Model
                 // Update first name and last name in the database  
             $sql = 'UPDATE user
             SET user.first_name =:firstName,
-            user.last_name=:lastName,profile_pic=:proPicImage
+            user.last_name=:lastName
             WHERE username=:oldUsername;';
     
             $db = static::getDB();
@@ -126,7 +119,7 @@ class EditProfileModel extends \Core\Model
             $stmt->bindValue(':oldUsername', $oldUsername, PDO::PARAM_STR);
             $stmt->bindValue(':firstName',$this->firstName, PDO::PARAM_STR);
             $stmt->bindValue(':lastName',$this->lastName, PDO::PARAM_STR);  
-            $stmt->bindValue(':proPicImage', $this->proPicImage->getURL(), PDO::PARAM_STR);
+
             // Fetch and return the retrieved results
             return $stmt->execute();
             }
