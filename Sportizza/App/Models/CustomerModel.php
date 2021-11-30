@@ -1086,10 +1086,11 @@ class CustomerModel extends \Core\Model
         
         $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
 
-        $result= $stmt->execute();
+        $stmt->execute();
+        $result= $stmt->fetch(PDO::FETCH_ASSOC);
         
         
-        if($result==""){
+        if(empty($result)){
             return false;
         }
         else{
