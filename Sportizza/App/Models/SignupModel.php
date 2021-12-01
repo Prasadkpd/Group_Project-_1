@@ -189,7 +189,7 @@ class SignupModel extends \Core\Model
     {
         //Retrieving the user details from the database
         $sql = 'SELECT * FROM user WHERE primary_contact = :mobile_number AND account_status= "active"
-         AND security_status= "active';
+         AND security_status= "active" ';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
