@@ -3,6 +3,7 @@ const email = document.getElementById('email');
 const address = document.getElementById('address');
 const city = document.getElementById('city');
 const formCheckout = document.getElementById('formCheckout');
+const amount = document.getElementById('storeTotal');
 
 // Validations
 // Handle form
@@ -13,11 +14,34 @@ formCheckout.addEventListener('submit', function (event) {
        
         validateEmail() &&
         validateAddress() &&
-        validateCity()
+        validateCity() &&
+        validateAmount()
     ) {
         formCheckout.submit();
     }
 });
+
+
+function validateBookingpayment(){
+  validateFirstName();
+  validateLastName();
+  validateMobile();
+  validateAmount();
+}
+
+function validateAmount() {
+  if (amount.value == 0) 
+  { 
+     checkouterror();
+    return;
+  }
+  return true;
+}
+
+function checkouterror(){
+  document.getElementById('CartErrormsg').style.display = "block";
+}
+
 
 
     function openTab(evt, cityName) {
