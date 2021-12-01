@@ -56,6 +56,36 @@ class Customer extends Authenticated
     }
     //End of Landing page of customer
 
+
+
+
+
+
+
+    //Start of Landing page of customer
+    public function calenderAction()
+    {
+        
+
+        //Rendering the customers home view
+        View::renderTemplate(
+            'Customer/calender.html');
+    }
+    //End of Landing page of customer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //Start of Cart page of customer
     public  function cartAction()
     {
