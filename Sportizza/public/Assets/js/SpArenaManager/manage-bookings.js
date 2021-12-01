@@ -61,6 +61,7 @@ function close_popup_cancel_booking() {
 //popup payment message
 function open_popup_payment_message(booking_id) {
   document.getElementById("getPaymentbtn").href += booking_id;
+  
   var form = document.getElementById("popup_payment");
   form.style.display = "block";
 }
