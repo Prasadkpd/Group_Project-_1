@@ -454,6 +454,13 @@ form i {
   font-style: italic;
 }
 
+.carterror{
+  color: #e74c3c;
+  font-size: 14px;
+  font-weight:500;
+  display:none;
+  text-align: center;
+}
 /* Cart section */
 
 .cartDisplay .page .container {

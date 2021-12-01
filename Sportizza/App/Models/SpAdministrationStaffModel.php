@@ -1422,8 +1422,8 @@ class SpAdministrationStaffModel extends \Core\Model
 
                     //Removing booking from booking table
                     $sql = 'UPDATE booking
-                    SET booking_timeslot.security_status="inactive"
-                    WHERE booking_timeslot.booking_id=:booking_id';
+                    SET booking.security_status="inactive"
+                    WHERE booking.booking_id=:booking_id';
 
                     $stmt = $db->prepare($sql);
                     $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
