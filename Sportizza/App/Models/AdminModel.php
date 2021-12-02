@@ -649,13 +649,14 @@ class AdminModel extends \Core\Model
 
         //Assigning the fetched PDOs to result
         $result1 = $stmt->fetch(PDO::FETCH_ASSOC);
-        $lastMonth = $result1["BookingMonth"];
-        $lastYear = $result1["BookingYear"];
+        if ($result1) {
+            $lastMonth = $result1["BookingMonth"];
+            $lastYear = $result1["BookingYear"];
 
-        $days_in_month = cal_days_in_month(CAL_GREGORIAN, $lastMonth, $lastYear);
-        $current_date = $lastYear."-".$lastMonth."-".$days_in_month;
+            $days_in_month = cal_days_in_month(CAL_GREGORIAN, $lastMonth, $lastYear);
+            $current_date = $lastYear."-".$lastMonth."-".$days_in_month;
 
-        switch ($days_in_month) {
+            switch ($days_in_month) {
             case 30:
                 $monthsadded = "+2 days -12 months";
                 break;
@@ -670,35 +671,36 @@ class AdminModel extends \Core\Model
                 break;
         }
         
-        $date = date("Y-m-d", strtotime($monthsadded,strtotime($current_date)));
+            $date = date("Y-m-d", strtotime($monthsadded, strtotime($current_date)));
 
-        $newYear = date("Y",strtotime($date));
-        $newDay = date("d",strtotime($date));
+            $newYear = date("Y", strtotime($date));
+            $newDay = date("d", strtotime($date));
 
-        if($newYear<$lastYear){
-            $monthsadded = "-1 day";
-            $date = date("Y-m-d", strtotime($monthsadded,strtotime($date)));
-        }
+            if ($newYear<$lastYear) {
+                $monthsadded = "-1 day";
+                $date = date("Y-m-d", strtotime($monthsadded, strtotime($date)));
+            }
 
-        $sql = 'SELECT payment_method, COUNT(DISTINCT booking_id) AS No_Of_Bookings
+            $sql = 'SELECT payment_method, COUNT(DISTINCT booking_id) AS No_Of_Bookings
                 FROM booking
                 WHERE security_status="active" AND booking.booking_date BETWEEN :previousDate AND :currentDate
                 GROUP BY payment_method ';
 
-        $db = static::getDB();
-        $stmt = $db->prepare($sql);
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
 
-        //Binding input data into database query variables
-        $stmt->bindValue(':previousDate', $date, PDO::PARAM_STR);
-        $stmt->bindValue(':currentDate', $current_date, PDO::PARAM_STR);
+            //Binding input data into database query variables
+            $stmt->bindValue(':previousDate', $date, PDO::PARAM_STR);
+            $stmt->bindValue(':currentDate', $current_date, PDO::PARAM_STR);
 
-        //Converting retrieved data from database into PDOs
-        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-        $stmt->execute();
+            //Converting retrieved data from database into PDOs
+            $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+            $stmt->execute();
 
-        //Assigning the fetched PDOs to result
-        $result2 = $stmt->fetchAll();
-        return $result2;
+            //Assigning the fetched PDOs to result
+            $result2 = $stmt->fetchAll();
+            return $result2;
+        }
     }
     //End of Displaying of admin's chart 4
 
