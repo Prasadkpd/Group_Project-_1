@@ -465,29 +465,37 @@
             //     kind: 'concert',
             //     state: 'hh'
             //   },
+             
+            {% for count in bookingsCount %}
+            {
+                // title: {{count.bookingCount}},
+                start: moment().subtract('{{count.remainingDates}}', 'days').format('YYYY-MM-DD'),
+                end: moment().subtract('{{count.remainingDates}}', 'days').format('YYYY-MM-DD'),
+                display: 'background',
+                {% if count.bookingCount>5 %}
+                color: '#F0A7A0',
+
+                {% elseif (count.bookingCount<5) and (count.bookingCount>2)  %}
+                color: '#FBFF00',
+
+                {% elseif count.bookingCount<2 %}
+                color: '#0B4619',
+                
+                {% endif %}
+                
+              },
+            {% endfor %}
+
+
             //   {
-            //     title: "#1 Background title",
-            //     start: moment().subtract(6, 'days').format('YYYY-MM-DD'),
-            //     end: moment().subtract(2, 'days').format('YYYY-MM-DD'),
+            //     title: "#2 title",
+            //     start: moment().subtract(-30, 'days').format('YYYY-MM-DD'),
+            //     end: moment().subtract(-30, 'days').format('YYYY-MM-DD'),
             //     display: 'background',
+            //     color: '#000000',
             //     kind: 'holiday',
             //   },
-              {
-                title: "#2 title",
-                start: moment().subtract(8, 'days').format('YYYY-MM-DD'),
-                end: moment().subtract(8, 'days').format('YYYY-MM-DD'),
-                display: 'background',
-                color: '#FFFFFF',
-                kind: 'holiday',
-              },
-            //   {
-            //     // FIX: Two Background events overlap each other
-            //     title: "#3 Overlap",
-            //     start: moment().subtract(8, 'days').format('YYYY-MM-DD'),
-            //     end: moment().subtract(8, 'days').format('YYYY-MM-DD'),
-            //     display: 'background',
-            //     kind: 'holiday',
-            //   }
+            
             ],
             eventClassNames: function(info) {
               

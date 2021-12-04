@@ -128,12 +128,19 @@ class Customer extends Authenticated
         $timeSlots = CustomerModel::customerViewTimeSlots($id);
         //Assigning the sports arenas details
         $arenaDetails = CustomerModel::customerViewArenaDetails($id);
+        $bookingsCount=CustomerModel::customerBookingCalenderView();
         $arenaDetails[0]->google_map_link = preg_replace('/\%\d\w/', ' , ', substr($arenaDetails[0]->google_map_link, 48));
         //Rendering the customers booking view
+        // var_dump($bookingsCount);
         View::renderTemplate(
             'Customer/customerBookingView.html',
-            ['timeSlots' => $timeSlots, 'arenaDetails' => $arenaDetails]
+            ['timeSlots' => $timeSlots, 'arenaDetails' => $arenaDetails,'bookingsCount' => $bookingsCount]
         );
+
+        // View::renderTemplate(
+        //     'Customer/customerBookingView.html',
+        //     ['timeSlots' => $timeSlots, 'arenaDetails' => $arenaDetails]
+        // );
     }
     //End of booking page of customer
 
