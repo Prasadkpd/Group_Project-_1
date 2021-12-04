@@ -1483,7 +1483,7 @@ class NotificationModel extends \Core\Model
         $p_level = "low";
 
         $sparsubj = " Successfully Requested For Refund";
-        $spardesc = "You successfully requested booking id=" .$booking_id ." for refund";
+        $spardesc = "You have successfully requested refund for the booking id=" .$booking_id ." for refund";
 
         $sql = 'INSERT INTO `notification`(`user_id`, `subject`, `priority`, `description`) VALUES (:uid,:subject,:p_level,:desc)';
         $stmt = $db->prepare($sql);

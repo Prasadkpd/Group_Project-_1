@@ -56,6 +56,36 @@ class Customer extends Authenticated
     }
     //End of Landing page of customer
 
+
+
+
+
+
+
+    //Start of Landing page of customer
+    public function calenderAction()
+    {
+        
+
+        //Rendering the customers home view
+        View::renderTemplate(
+            'Customer/calender.html');
+    }
+    //End of Landing page of customer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //Start of Cart page of customer
     public  function cartAction()
     {
@@ -98,12 +128,19 @@ class Customer extends Authenticated
         $timeSlots = CustomerModel::customerViewTimeSlots($id);
         //Assigning the sports arenas details
         $arenaDetails = CustomerModel::customerViewArenaDetails($id);
+        $bookingsCount=CustomerModel::customerBookingCalenderView();
         $arenaDetails[0]->google_map_link = preg_replace('/\%\d\w/', ' , ', substr($arenaDetails[0]->google_map_link, 48));
         //Rendering the customers booking view
+        // var_dump($bookingsCount);
         View::renderTemplate(
             'Customer/customerBookingView.html',
-            ['timeSlots' => $timeSlots, 'arenaDetails' => $arenaDetails]
+            ['timeSlots' => $timeSlots, 'arenaDetails' => $arenaDetails,'bookingsCount' => $bookingsCount]
         );
+
+        // View::renderTemplate(
+        //     'Customer/customerBookingView.html',
+        //     ['timeSlots' => $timeSlots, 'arenaDetails' => $arenaDetails]
+        // );
     }
     //End of booking page of customer
 
@@ -285,7 +322,7 @@ class Customer extends Authenticated
         public function refundAction()
         {
             if(CustomerModel::customerRefundAvailability($this->route_params['id'])){
-                var_dump(CustomerModel::customerRefundAvailability($this->route_params['id']));
+                
                 View::renderTemplate(
                     '500.html'
                 );

@@ -1086,10 +1086,11 @@ class CustomerModel extends \Core\Model
         
         $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
 
-        $result= $stmt->execute();
+        $stmt->execute();
+        $result= $stmt->fetch(PDO::FETCH_ASSOC);
         
         
-        if($result==""){
+        if(empty($result)){
             return false;
         }
         else{
@@ -1140,6 +1141,27 @@ class CustomerModel extends \Core\Model
           }
       }
       // End of clearing a booking from cart
+
+
+
+      public static function customerBookingCalenderView()
+    {
+
+        //have to check this one and solve logical errors
+        $sql = 'SELECT  COUNT(booking_id) AS bookingCount,(CURRENT_DATE-(booking_date)) as remainingDates FROM booking 
+                WHERE security_status="active" AND booking_date> CURRENT_DATE 
+                GROUP BY booking_date';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        return $result;
+        
+       
+        
+    }
 
     
 }

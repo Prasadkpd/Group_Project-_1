@@ -15,6 +15,16 @@
 
 
 
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.9.0/main.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/moment@5.5.0/main.global.min.js"></script>
+    <link rel="stylesheet" href="/Assets/css/customer/calender.css?version=1">
+
+
 </head>
 
 <body>
@@ -230,21 +240,32 @@
 
                     <div class="booking" id="booking">
                         <div class="left-container">
-                            <div class="heading">
-                                <h3>Booking Date</h3>
+                            <div style="display: flex;flex-direction: row;align-items: center;justify-content: space-between;">
+                                <div class="heading">
+                                    <h3>Booking Date</h3>
+                                </div>
+    
+                                <div class="date-picker">
+                                    <form method="POST" id="bookingdateform">
+                                    
+                                        <input type="date" id="dateInput" name="dateInput" >
+                                        
+    
+                                        <input type="hidden" id="arenaId" name="arenaId"
+                                            value="{{arenaDetails[0].sports_arena_id}}">
+                                        
+                                    </form>
+                                </div>
                             </div>
 
-                            <div class="date-picker">
-                                <form method="POST" id="bookingdateform">
+                            <div class="wrapper">
+
+                                <!--  Work in progress, filter not working with v5 right now  -->
                                 
-                                    <input type="date" id="dateInput" name="dateInput" >
-                                    
-
-                                    <input type="hidden" id="arenaId" name="arenaId"
-                                        value="{{arenaDetails[0].sports_arena_id}}">
-                                    
-                                </form>
-                            </div>
+                              
+                                <div id="calendar"></div>
+                                
+                              </div>
 
                         </div>
 
@@ -366,6 +387,171 @@
     <!-- <script src="/Assets/js/Customer/customer_view_booking_hide_ajax.js"></script> -->
     <script src="/Assets/js/Customer/customer_view_booking_dateChange_ajax.js"></script>
     <script src="/Assets/js/Customer/newCustomerBooking.js?version=3"></script>
+
+
+
+    <script >
+
+    
+        document.addEventListener('DOMContentLoaded', function() {
+          var calendarEl = document.getElementById('calendar');
+        
+          var calendar = new FullCalendar.Calendar(calendarEl, {
+            headerToolbar: {
+              start: 'prev,today,next',
+              center: 'title',
+              end: 'dayGridMonth,dayGridWeek,listWeek'
+            },
+            timeZone: 'Europe/Berlin',
+            weekNumbers: true,
+            initialView: 'dayGridMonth',
+            eventTimeFormat: {
+              hour: '2-digit',
+              minute: '2-digit',
+              hour12: false
+            },
+            views: {
+              dayGridWeek: {
+                titleFormat: '{DD.{MM.}}YYYY'
+              },
+              listWeek: {
+                titleFormat: '{DD.{MM.}}YYYY'
+              }
+            },
+            events: [
+            //   {
+            //     title: "Festival in HH",
+            //     start: moment().add(1, 'days').format(),
+            //     end: moment().add(4, 'days').add(3, 'hours').format(),
+            //     className: 'festival',
+            //     color: 'orange',
+            //     textColor: 'black',
+            //     kind: 'festival',
+            //     state: 'hh'
+            //   },
+            //   {
+            //     title: "Party in HH",
+            //     start: moment().subtract(2, 'days').format(),
+            //     end: moment().subtract(2, 'days').add(3, 'hours').format(),
+            //     color: 'brightblue',
+            //     textColor: 'white',
+            //     kind: 'party',
+            //     state: 'hh'
+            //   },
+            //   {
+            //     title: "Party in SH",
+            //     start: moment().format(),
+            //     end: moment().add(3, 'hours').format(),
+            //     color: 'brightblue',
+            //     textColor: 'white',
+            //     kind: 'party',
+            //     state: 'sh'
+            //   },
+            //   {
+            //     title: "Concert in SH",
+            //     start: moment().add(1, 'days').format(),
+            //     end: moment().add(1, 'days').add(3, 'hours').format(),
+            //     color: 'red',
+            //     textColor: 'white',
+            //     kind: 'concert',
+            //     state: 'sh'
+            //   },
+            //   {
+            //     title: "Concert in HH",
+            //     start: moment().subtract(3, 'days').format(),
+            //     end: moment().subtract(3, 'days').add(3, 'hours').format(),
+            //     color: 'red',
+            //     textColor: 'white',
+            //     kind: 'concert',
+            //     state: 'hh'
+            //   },
+             
+            {% for count in bookingsCount %}
+            {
+                // title: {{count.bookingCount}},
+                start: moment().subtract('{{count.remainingDates}}', 'days').format('YYYY-MM-DD'),
+                end: moment().subtract('{{count.remainingDates}}', 'days').format('YYYY-MM-DD'),
+                display: 'background',
+                {% if count.bookingCount>5 %}
+                color: '#F0A7A0',
+
+                {% elseif (count.bookingCount<5) and (count.bookingCount>2)  %}
+                color: '#FBFF00',
+
+                {% elseif count.bookingCount<2 %}
+                color: '#0B4619',
+                
+                {% endif %}
+                
+              },
+            {% endfor %}
+
+
+            //   {
+            //     title: "#2 title",
+            //     start: moment().subtract(-30, 'days').format('YYYY-MM-DD'),
+            //     end: moment().subtract(-30, 'days').format('YYYY-MM-DD'),
+            //     display: 'background',
+            //     color: '#000000',
+            //     kind: 'holiday',
+            //   },
+            
+            ],
+            eventClassNames: function(info) {
+              
+              var result = true;
+              var states = [];
+              var kinds = [];
+              
+              // Find all checkbox that are event filters and enabled and save the values.
+              $("input[name='event_filter_sel']:checked").each(function () {
+                // Saving each type separately
+                if ($(this).data('type') == 'state') {
+                  states.push($(this).val());
+                }
+                else if ($(this).data('type') == 'kind') {
+                  kinds.push($(this).val());
+                }
+              });
+              
+              // If there are locations to check
+              if (states.length) {
+                result = result && states.indexOf(info.event.extendedProps.state) >= 0;
+              }
+              // If there are specific types of events
+              if (kinds.length) {
+                result = result && kinds.indexOf(info.event.extendedProps.kind) >= 0 || info.event.extendedProps.kind == 'holiday';
+              }
+              
+              if (!result) {
+                result = "hidden";
+              }
+              
+              return result;
+            },
+        
+            windowResize: function(view) {
+              var current_view = view.type;
+              var expected_view = $(window).width() > 800 ? 'dayGridMonth' : 'listWeek';
+              if (current_view !== expected_view) {
+                calendar.changeView(expected_view);
+              }
+            },
+          });
+        
+          calendar.render();
+        
+          if ($(window).width() < 800) {
+            calendar.changeView('listWeek');
+          }
+        
+          $('input[class=event_filter]').change(function() {
+            calendar.render();
+          });
+            
+        });
+        
+        </script>
 
 </body>
 
