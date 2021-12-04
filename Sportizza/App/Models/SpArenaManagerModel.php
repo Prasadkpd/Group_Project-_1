@@ -875,7 +875,7 @@ class SpArenaManagerModel extends \Core\Model
             FROM  time_slot
             INNER JOIN facility ON time_slot.facility_id=facility.facility_id
             WHERE time_slot.manager_sports_arena_id=:arena_id AND time_slot.facility_id=:facility
-            AND facility.security_status="active" AND timeslot.security_status="active"
+            AND facility.security_status="active" AND time_slot.security_status="active"
             ORDER BY end_time ASC';
   
         $stmt = $db->prepare($sql);
@@ -1354,12 +1354,10 @@ class SpArenaManagerModel extends \Core\Model
     {
         //Retrieving arenas staff to view from the database
         $sql = 'SELECT user.user_id, user.first_name, user.last_name ,user.username,user.primary_contact,user.type
-        FROM administration_staff
-        INNER JOIN booking_handling_staff ON
-        administration_staff.manager_user_id =booking_handling_staff.manager_user_id
-        INNER JOIN user ON administration_staff.user_id=user.user_id OR booking_handling_staff.user_id=user.user_id
-         WHERE user.security_status="active" AND (administration_staff.manager_user_id=:id OR booking_handling_staff.manager_user_id=:id)
-         GROUP BY user.user_id';
+        FROM user
+        INNER JOIN administration_staff ON user.user_id =
+        administration_staff.user_id 
+        WHERE user.security_status="active" AND administration_staff.manager_user_id=:id  GROUP BY user.user_id';
 
 
         $db = static::getDB();
@@ -1371,8 +1369,24 @@ class SpArenaManagerModel extends \Core\Model
         $stmt->execute();
         
         //Assigning the fetched PDOs to result
-        $result = $stmt->fetchAll();
-        return $result;
+        $result1 = $stmt->fetchAll();
+        $sql = 'SELECT user.user_id, user.first_name, user.last_name ,user.username,user.primary_contact,user.type
+        FROM user
+        INNER JOIN booking_handling_staff ON user.user_id =
+        booking_handling_staff.user_id 
+        WHERE user.security_status="active" AND booking_handling_staff.manager_user_id=:id  GROUP BY user.user_id';
+
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+        $result2 = $stmt->fetchAll();
+        $result1 = array_merge($result1,$result2);
+        return $result1;
     }
     //End of displaying sports arenas view staff for manager
     //Start of displaying sports arenas remove staff view for manager
