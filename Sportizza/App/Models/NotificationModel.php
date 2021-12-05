@@ -739,10 +739,10 @@ class NotificationModel extends \Core\Model
         try {
             $db = static::getDB();
             $db->beginTransaction();
-            
+
             $customer = self::cancelNotificationGetCustomerIds($booking_id);
             $customer_id = $customer['user_id'];
-            
+
             $manager_id = self::cancelNotificationGetManagerIds($booking_id);
             $adminstaff_id = self::cancelNotificationGetAdminStaffIds($booking_id);
             $bookhandlestaff_id = self::cancelNotificationGetBookingStaffIds($booking_id);
@@ -750,8 +750,8 @@ class NotificationModel extends \Core\Model
             $custsubj = "Emergency booking cancellation";
             $sparsubj = "Booking cancellation by sports arena";
 
-          
-            
+
+
             $data_query = "SELECT
              `booking`.`booking_date`,
              `facility`.`facility_name`,
@@ -794,8 +794,8 @@ class NotificationModel extends \Core\Model
             // Select reason for cancellation
             $p_level = "high";
 
-            $visitor=$data["account_status"];
-            $primary_contact=$data["primary_contact"];
+            $visitor = $data["account_status"];
+            $primary_contact = $data["primary_contact"];
 
             // **************************************
             // SPORTS ARENA NOTIFICATION REQUIREMENTS
@@ -839,10 +839,10 @@ class NotificationModel extends \Core\Model
             // for booking handling staff
             $stmt->execute(['uid' => $bookhandlestaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc, 'link' => $link]);
             $db->commit();
-        
-            if ($visitor=="visitor") {
 
-            //our mobile number
+            if ($visitor == "visitor") {
+
+                //our mobile number
                 $user = "94765282976";
                 //our account password
                 $password = 4772;
@@ -854,7 +854,7 @@ class NotificationModel extends \Core\Model
                 $_SESSION['mobile_number'] = $primary_contact;
 
                 //Message to be sent
-                $text = urlencode("" . $saname ." had cancel your booking " . $booking_id . " made for " . $facname . " on " . $bdate . " scheduled from " . $stime . " to " . $etime . " . Reason for cancellation: " . $reason . " . Please collect refund form the sports arena");
+                $text = urlencode("" . $saname . " had cancel your booking " . $booking_id . " made for " . $facname . " on " . $bdate . " scheduled from " . $stime . " to " . $etime . " . Reason for cancellation: " . $reason . " . Please collect refund form the sports arena");
                 // Replacing the initial 0 with 94
                 $to = substr_replace($primary_contact, '94', 0, 0);
                 //Base URL
@@ -872,7 +872,7 @@ class NotificationModel extends \Core\Model
                 }
             }
             // Make the changes to the database permanent
-           
+
             return true;
         } catch (PDOException $e) {
             $db->rollback();
@@ -885,16 +885,16 @@ class NotificationModel extends \Core\Model
         try {
             $db = static::getDB();
             $db->beginTransaction();
-            
+
             $manager_id = self::AddfacilityNotificationGetManagerIds($facility_id);
             $adminstaff_id = self::AddfacilityNotificationGetAdminStaffIds($facility_id);
             $bookhandlestaff_id = self::AddfacilityNotificationGetBookingStaffIds($facility_id);
 
-        
+
 
 
             // Select facility name
-      
+
             $fname = $current_user->first_name;
             $lname = $current_user->last_name;
             $facname = $facility_name;
@@ -939,10 +939,10 @@ class NotificationModel extends \Core\Model
         $adminstaff_id = self::AddfacilityNotificationGetAdminStaffIds($facility_id);
         $bookhandlestaff_id = self::AddfacilityNotificationGetBookingStaffIds($facility_id);
 
-        
+
         $fname = $current_user->first_name;
         $lname = $current_user->last_name;
-      
+
 
         // Select reason for cancellation
         $p_level = "high";
@@ -1114,10 +1114,10 @@ class NotificationModel extends \Core\Model
         try {
             $db = static::getDB();
             $customer = self::timeslotcancelNotificationGetCustomerIds($timeslot_id);
-            
+
             var_dump($customer);
             $customer_id = $customer['user_id'];
-            
+
             $custsubj = "Booking cancellation due to timeslot unavailability";
 
             $db->beginTransaction();
@@ -1162,9 +1162,9 @@ class NotificationModel extends \Core\Model
             // Select reason for cancellation
             $p_level = "high";
 
-            $visitor=$data['account_status'];
-            $primary_contact=$data['primary_contact'];
-            $reason="This timeslot is no longer available in our sports arena.";
+            $visitor = $data['account_status'];
+            $primary_contact = $data['primary_contact'];
+            $reason = "This timeslot is no longer available in our sports arena.";
             // Select booking date
             $bdate = $data["booking_date"];
 
@@ -1172,9 +1172,7 @@ class NotificationModel extends \Core\Model
             if ($payment_method == 'cash' && $payment_status == 'unpaid') {
                 // Initialize descriptions
                 $custdesc = " " . $saname . " had cancelled your booking " . $booking_id . " made for " . $facname . " on " . $bdate . " scheduled from " . $stime . " to " . $etime . " as this timeslot is no longer available.";
-               
-            } 
-            else {
+            } else {
                 // Initialize descriptions
                 $custdesc = " " . $saname . " had cancelled your booking " . $booking_id . " made for " . $facname . " on " . $bdate . " scheduled from " . $stime . " to " . $etime . " as this timeslot is no longer available.
                  Please apply for refund form to collect your refund. Note that we'll be making a bank transfer.";
@@ -1183,9 +1181,9 @@ class NotificationModel extends \Core\Model
 
             // if ($paymethod == "card") {
             //     $custdesc .= "Please click this link to apply for refund";
-                
+
             // } else {
-                
+
             // }
 
 
@@ -1193,13 +1191,15 @@ class NotificationModel extends \Core\Model
             (:uid,:subject,:p_level,:desc, :link)';
             $stmt = $db->prepare($sql);
 
-            $stmt->execute(['uid' => $customer_id, 'subject' => $custsubj, 
-            'p_level' => $p_level, 'desc' => $custdesc, 'link' => $link]);
+            $stmt->execute([
+                'uid' => $customer_id, 'subject' => $custsubj,
+                'p_level' => $p_level, 'desc' => $custdesc, 'link' => $link
+            ]);
 
             // Make the changes to the database permanent
             $db->commit();
 
-            if ($visitor=="visitor") {
+            if ($visitor == "visitor") {
 
                 //our mobile number
                 $user = "94765282976";
@@ -1207,23 +1207,23 @@ class NotificationModel extends \Core\Model
                 $password = 4772;
                 //Random OTP code
                 $otp = mt_rand(100000, 999999);
-    
+
                 // stores the otp code and mobile number into session
                 $_SESSION['otp'] = $otp;
                 $_SESSION['mobile_number'] = $primary_contact;
-    
+
                 //Message to be sent
-                $text = urlencode("" . $saname ." had cancel your booking " . $booking_id . " made for " . $facname . " on " . $bdate . " scheduled from " . $stime . " to " . $etime . " . Reason for cancellation: " . $reason . " . Please collect refund form the sports arena");
+                $text = urlencode("" . $saname . " had cancel your booking " . $booking_id . " made for " . $facname . " on " . $bdate . " scheduled from " . $stime . " to " . $etime . " . Reason for cancellation: " . $reason . " . Please collect refund form the sports arena");
                 // Replacing the initial 0 with 94
                 $to = substr_replace($primary_contact, '94', 0, 0);
                 //Base URL
                 $baseurl = "http://www.textit.biz/sendmsg";
                 // regex to create the url
                 $url = "$baseurl/?id=$user&pw=$password&to=$to&text=$text";
-    
+
                 $ret = file($url);
                 $res = explode(":", $ret[0]);
-    
+
                 if (trim($res[0]) == "OK") {
                     echo "Message Sent - ID : " . $res[1];
                 } else {
@@ -1245,50 +1245,50 @@ class NotificationModel extends \Core\Model
             $manager_id = self::AddfacilityNotificationGetManagerIds($facility_id);
             $adminstaff_id = self::AddfacilityNotificationGetAdminStaffIds($facility_id);
             $bookhandlestaff_id = self::AddfacilityNotificationGetBookingStaffIds($facility_id);
- 
+
             $sparsubj = "Removing facility and Cancel bookings";
- 
-             
+
+
             $data_query = "SELECT
               `facility`.`facility_name`
                 FROM `facility` 
                 WHERE `facility`.`facility_id` = :facility_id ";
- 
+
             $data_stmt = $db->prepare($data_query);
             $data_stmt->bindValue(':facility_id', $facility_id, PDO::PARAM_INT);
             $data_stmt->execute();
- 
+
             // CUSTOMER NOTIFICATION REQUIREMENTS
             $data = $data_stmt->fetch(PDO::FETCH_ASSOC);
- 
+
             // Select facility name
             $facname = $data["facility_name"];
- 
+
             // Select reason for cancellation
             $p_level = "high";
- 
- 
+
+
             // Initialize first name and last name of the staff member
             $fname = $current_user->first_name;
             $lname = $current_user->last_name;
- 
- 
- 
+
+
+
             $spardesc = "Staff member " . $fname . " " . $lname . " has removed the facility " . $facname . " from the sports arena.  All the future bookings made on this facility got cancelled. This facility and its timeslots are no longer visible to the customers.";
- 
+
             $sql = 'INSERT INTO `notification`(`user_id`, `subject`, `priority`, `description`) VALUES (:uid,:subject,:p_level,:desc)';
             $stmt = $db->prepare($sql);
- 
- 
+
+
             // for manager
             $stmt->execute(['uid' => $manager_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
- 
+
             // for administartion staff
             $stmt->execute(['uid' => $adminstaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
- 
+
             // for booking handling staff
             $stmt->execute(['uid' => $bookhandlestaff_id, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
- 
+
             // Make the changes to the database permanent
             $db->commit();
             return true;
@@ -1307,9 +1307,9 @@ class NotificationModel extends \Core\Model
             $customer = self::timeslotcancelNotificationGetCustomerIds($timeslot_id);
             var_dump($customer);
             $customer_id = $customer['user_id'];
- 
+
             $custsubj = "Booking cancellation due to facility unavailability";
- 
+
             $db->beginTransaction();
             $data_query = "SELECT
               `booking`.`booking_date`,
@@ -1329,57 +1329,57 @@ class NotificationModel extends \Core\Model
          INNER JOIN `booking_timeslot` ON `booking_timeslot`.`booking_id`= `booking`.`booking_id`
          INNER JOIN `time_slot` ON `time_slot`.`time_slot_id`=`booking_timeslot`.`timeslot_id`
          WHERE `booking_timeslot`.`timeslot_id` = :timeslot_id ";
- 
+
             $data_stmt = $db->prepare($data_query);
             $data_stmt->bindValue(':timeslot_id', $timeslot_id, PDO::PARAM_INT);
             $data_stmt->execute();
- 
+
             // CUSTOMER NOTIFICATION REQUIREMENTS
             $data = $data_stmt->fetch(PDO::FETCH_ASSOC);
- 
+
             // Select facility name
             $facname = $data["facility_name"];
             $booking_id = $data["booking_id"];
             // Select sports arena name
             $saname = $data["sa_name"];
- 
+
             // Select time slot duration
             $stime = $data["start_time"];
             $etime = $data["end_time"];
- 
+
             $payment_method = $data["payment_method"];
             $payment_status = $data["payment_status"];
             // Select reason for cancellation
             $p_level = "high";
 
-            $visitor=$data['account_status'];
-            $primary_contact=$data['primary_contact'];
- 
- 
+            $visitor = $data['account_status'];
+            $primary_contact = $data['primary_contact'];
+
+
             // Select booking date
             $bdate = $data["booking_date"];
- 
+
             if ($payment_method == 'cash' && $payment_status == 'unpaid') {
                 // Initialize descriptions
                 $custdesc = " " . $saname . " had cancelled your booking " . $booking_id . " made for " . $facname . " on " . $bdate . " scheduled from " . $stime . " to " . $etime . " as this facility is no longer available.";
-                $link="";
+                $link = "";
             } else {
                 // Initialize descriptions
                 $custdesc = " " . $saname . " had cancelled your booking " . $booking_id . " made for " . $facname . " on " . $bdate . " scheduled from " . $stime . " to " . $etime . " as this facility is no longer available. 
                 Please apply for refund form to collect your refund. Note that we'll be making a bank transfer.";
                 $link = "http://localhost/customer/refund/" . $booking_id;
             }
- 
- 
+
+
             $sql = 'INSERT INTO `notification`(`user_id`, `subject`, `priority`, `description`, `link`) VALUES (:uid,:subject,:p_level,:desc, :link)';
             $stmt = $db->prepare($sql);
- 
- 
+
+
             $stmt->execute(['uid' => $customer_id, 'subject' => $custsubj, 'p_level' => $p_level, 'desc' => $custdesc, 'link' => $link]);
- 
+
             // Make the changes to the database permanent
             $db->commit();
-            if ($visitor=="visitor") {
+            if ($visitor == "visitor") {
 
                 //our mobile number
                 $user = "94765282976";
@@ -1387,23 +1387,23 @@ class NotificationModel extends \Core\Model
                 $password = 4772;
                 //Random OTP code
                 $otp = mt_rand(100000, 999999);
-    
+
                 // stores the otp code and mobile number into session
                 $_SESSION['otp'] = $otp;
                 $_SESSION['mobile_number'] = $primary_contact;
-                $reason="This facility is no longer available in our sports arena";
+                $reason = "This facility is no longer available in our sports arena";
                 //Message to be sent
-                $text = urlencode("" . $saname ." had cancel your booking " . $booking_id . " made for " . $facname . " on " . $bdate . " scheduled from " . $stime . " to " . $etime . " . Reason for cancellation: " . $reason . " . Please collect refund form the sports arena");
+                $text = urlencode("" . $saname . " had cancel your booking " . $booking_id . " made for " . $facname . " on " . $bdate . " scheduled from " . $stime . " to " . $etime . " . Reason for cancellation: " . $reason . " . Please collect refund form the sports arena");
                 // Replacing the initial 0 with 94
                 $to = substr_replace($primary_contact, '94', 0, 0);
                 //Base URL
                 $baseurl = "http://www.textit.biz/sendmsg";
                 // regex to create the url
                 $url = "$baseurl/?id=$user&pw=$password&to=$to&text=$text";
-    
+
                 $ret = file($url);
                 $res = explode(":", $ret[0]);
-    
+
                 if (trim($res[0]) == "OK") {
                     echo "Message Sent - ID : " . $res[1];
                 } else {
@@ -1429,12 +1429,12 @@ class NotificationModel extends \Core\Model
             $first_name = $result1['first_name'];
             $last_name = $result1['last_name'];
             $user_type = $result1['type'];
-            
+
             $mana_notification_subj = "Staff Member Added Successfully";
-            $mana_notification_desc = " " . $first_name . " ". $last_name . " is successfully added to your sports arena as a " . $user_type . " member.";
+            $mana_notification_desc = " " . $first_name . " " . $last_name . " is successfully added to your sports arena as a " . $user_type . " member.";
             $user_notificatin_subj = "Your Account Got Activated";
-            $user_notificatin_desc = "Your account got activated in Sportizza as a ". $user_type ." member.";
-           
+            $user_notificatin_desc = "Your account got activated in Sportizza as a " . $user_type . " member.";
+
             $sql = 'INSERT INTO notification(user_id, subject, priority, description) VALUES (:uid,:subject,:p_level,:desc)';
             $stmt = $db->prepare($sql);
             $stmt->execute(['uid' => $manager_id, 'subject' => $mana_notification_subj, 'p_level' => "high", 'desc' => $mana_notification_desc]);
@@ -1452,20 +1452,20 @@ class NotificationModel extends \Core\Model
         $user = "94765282976";
         //our account password
         $password = 4772;
-            
+
         $_SESSION['mobile_number'] = $contact;
         //Message to be sent
-        $text = urlencode("Hi, " . $first_name ." you have successfully added as a staff member for Sports Arena. <br> Please use the following credentials to Sign in.<br> Username:". $user_name ."<br>Password:" . $user_password ." ");
+        $text = urlencode("Hi, " . $first_name . " you have successfully added as a staff member for Sports Arena. <br> Please use the following credentials to Sign in.<br> Username:" . $user_name . "<br>Password:" . $user_password . " ");
         // Replacing the initial 0 with 94
         $to = substr_replace($contact, '94', 0, 0);
         //Base URL
         $baseurl = "http://www.textit.biz/sendmsg";
         // regex to create the url
         $url = "$baseurl/?id=$user&pw=$password&to=$to&text=$text";
-    
+
         $ret = file($url);
         $res = explode(":", $ret[0]);
-    
+
         if (trim($res[0]) == "OK") {
             echo "Message Sent - ID : " . $res[1];
         } else {
@@ -1475,7 +1475,7 @@ class NotificationModel extends \Core\Model
 
 
 
-    public static function refundRequestSuccessNotification($current_user,$booking_id)
+    public static function refundRequestSuccessNotification($current_user, $booking_id)
     {
         $db = static::getDB();
 
@@ -1483,18 +1483,17 @@ class NotificationModel extends \Core\Model
         $p_level = "low";
 
         $sparsubj = " Successfully Requested For Refund";
-        $spardesc = "You have successfully requested refund for the booking id=" .$booking_id ." for refund";
+        $spardesc = "You have successfully requested refund for the booking id=" . $booking_id . " for refund";
 
         $sql = 'INSERT INTO `notification`(`user_id`, `subject`, `priority`, `description`) VALUES (:uid,:subject,:p_level,:desc)';
         $stmt = $db->prepare($sql);
 
-        
-        return $stmt->execute(['uid' => $current_user, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
 
+        return $stmt->execute(['uid' => $current_user, 'subject' => $sparsubj, 'p_level' => $p_level, 'desc' => $spardesc]);
     }
 
 
-    
+
     public static function managerRemoveStaffSuccessManagerNotification($manager_id, $removed_user_id)
     {
         try {
@@ -1507,10 +1506,10 @@ class NotificationModel extends \Core\Model
             $result1 = $stmt1->fetch(PDO::FETCH_ASSOC);
             $first_name = $result1['first_name'];
             $last_name = $result1['last_name'];
-                       
+
             $mana_notification_subj = "Staff Member Removed Successfully";
-            $mana_notification_desc = " " . $first_name . " ". $last_name . " is successfully removed from your sports arena";
-           
+            $mana_notification_desc = " " . $first_name . " " . $last_name . " is successfully removed from your sports arena";
+
             $sql = 'INSERT INTO notification(user_id, subject, priority, description) VALUES (:uid,:subject,:p_level,:desc)';
             $stmt = $db->prepare($sql);
             $stmt->execute(['uid' => $manager_id, 'subject' => $mana_notification_subj, 'p_level' => "high", 'desc' => $mana_notification_desc]);
@@ -1518,6 +1517,72 @@ class NotificationModel extends \Core\Model
         } catch (PDOException $e) {
             $db->rollback();
             throw $e;
+        }
+    }
+
+    public static function addRatingNotificationForManager($arenaId, $subject, $desc)
+    {
+        
+        $sql = 'SELECT user_id 
+        FROM manager WHERE sports_arena_id=:arenaId';
+
+        // get database connection
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding the customer id and Converting retrieved data from database into PDOs
+        $stmt->bindValue(':arenaId', $arenaId, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        
+        $len = count($result);
+        
+        for ($x = 0; $x <  $len ; $x++) {
+            //insert query for add feedbacks
+            $sql2 = 'INSERT INTO notification(user_id, subject, priority, description)
+        VALUES (:user_id,:subject,:p_level,:desc)';
+
+            // get database connection
+            $stmt2 = $db->prepare($sql2);
+            //Binding the customer id and Converting retrieved data from database into PDOs
+            $stmt2->bindValue(':user_id', $result[$x][0], PDO::PARAM_INT);
+            $stmt2->bindValue(':subject', $subject, PDO::PARAM_STR);
+            $stmt2->bindValue(':p_level', "low", PDO::PARAM_STR);
+            $stmt2->bindValue(':desc', $desc, PDO::PARAM_STR);
+            $stmt2->execute();
+        }
+    }
+
+
+    public static function addRatingNotificationForAdministrationStaff($arenaId, $subject, $desc)
+    {
+        $sql = 'SELECT user_id 
+        FROM administration_staff WHERE sports_arena_id=:arenaId';
+
+        // get database connection
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding the customer id and Converting retrieved data from database into PDOs
+        $stmt->bindValue(':arenaId', $arenaId, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        
+        $len = count($result);
+        
+        for ($x = 0; $x <  $len ; $x++) {
+            //insert query for add feedbacks
+            $sql2 = 'INSERT INTO notification(user_id, subject, priority, description)
+        VALUES (:user_id,:subject,:p_level,:desc)';
+
+            // get database connection
+            $stmt2 = $db->prepare($sql2);
+            //Binding the customer id and Converting retrieved data from database into PDOs
+            $stmt2->bindValue(':user_id', $result[$x][0], PDO::PARAM_INT);
+            $stmt2->bindValue(':subject', $subject, PDO::PARAM_STR);
+            $stmt2->bindValue(':p_level', "low", PDO::PARAM_STR);
+            $stmt2->bindValue(':desc', $desc, PDO::PARAM_STR);
+            $stmt2->execute();
         }
     }
 }

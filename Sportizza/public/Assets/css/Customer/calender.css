@@ -97,6 +97,9 @@ button.fc-today-button.fc-button.fc-button-primary {
   margin: 0;
   margin-left: 10px;
 }
+.fc-daygrid-day-top {
+  background: #ddfbdd;
+}
 
 
 @media screen and (max-width: 420px) {
