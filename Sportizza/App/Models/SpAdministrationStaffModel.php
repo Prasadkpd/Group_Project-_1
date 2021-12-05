@@ -444,8 +444,8 @@ class SpAdministrationStaffModel extends \Core\Model
             FROM time_slot
             INNER JOIN facility ON time_slot.facility_id= facility.facility_id
             INNER JOIN sports_arena_profile ON facility.sports_arena_id= sports_arena_profile.sports_arena_id
-            INNER JOIN booking_timeslot ON time_slot.time_slot_id =booking_timeslot.timeslot_id
-            INNER JOIN booking ON booking_timeslot.booking_id=booking.booking_id
+            Left JOIN booking_timeslot ON time_slot.time_slot_id =booking_timeslot.timeslot_id
+            Left JOIN booking ON booking_timeslot.booking_id=booking.booking_id
             WHERE time_slot.time_slot_id NOT IN
                                                 (SELECT booking_timeslot.timeslot_id 
                                                 FROM booking 
@@ -517,7 +517,7 @@ class SpAdministrationStaffModel extends \Core\Model
                                                     (SELECT booking_timeslot.timeslot_id 
                                                     FROM booking 
                                                     INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id 
-                                                    WHERE ((booking.booking_date=:date) OR 
+                                                    WHERE ((booking.booking_date=:date) AND 
                                                     (payment_status="pending" AND booked_date +INTERVAL 30 MINUTE > CURRENT_TIMESTAMP))
                                                     AND booking_timeslot.security_status="active")
                 AND time_slot.manager_sports_arena_id=:arena_id
@@ -540,8 +540,8 @@ class SpAdministrationStaffModel extends \Core\Model
                 FROM time_slot
                 INNER JOIN facility ON time_slot.facility_id= facility.facility_id
                 INNER JOIN sports_arena_profile ON facility.sports_arena_id= sports_arena_profile.sports_arena_id
-                INNER JOIN booking_timeslot ON time_slot.time_slot_id =booking_timeslot.timeslot_id
-                INNER JOIN booking ON booking_timeslot.booking_id=booking.booking_id
+                Left JOIN booking_timeslot ON time_slot.time_slot_id =booking_timeslot.timeslot_id
+                Left JOIN booking ON booking_timeslot.booking_id=booking.booking_id
                 WHERE time_slot.time_slot_id NOT IN
                                                     (SELECT booking_timeslot.timeslot_id 
                                                     FROM booking 
