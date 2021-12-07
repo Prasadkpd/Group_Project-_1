@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\AdminModel;
+use App\Models\NotificationModel;
 use Core\View;
 use App\Auth;
 
@@ -151,6 +152,9 @@ class Admin extends Authenticated
 
         // Pass customer id to remove customers function in admin model
         AdminModel::adminDeleteCustomers($id);
+
+        // Notify the customer about his account removal
+        NotificationModel::customerRemoveNotification($id);
 
         //Redirect to admin's manage user page
         $this->redirect('/Admin/manageuser');
