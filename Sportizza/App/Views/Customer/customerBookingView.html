@@ -346,7 +346,7 @@
 
                         </div>
 
-                        <a href="/customer/cart" class="btn check-availability-btn"> Pay Now</a>
+                        <!-- <a href="/customer/cart" class="btn check-availability-btn"> Pay Now</a> -->
 
                     </div>
 
@@ -419,25 +419,7 @@
               }
             },
             events: [
-            //   {
-            //     title: "Festival in HH",
-            //     start: moment().add(1, 'days').format(),
-            //     end: moment().add(4, 'days').add(3, 'hours').format(),
-            //     className: 'festival',
-            //     color: 'orange',
-            //     textColor: 'black',
-            //     kind: 'festival',
-            //     state: 'hh'
-            //   },
-            //   {
-            //     title: "Party in HH",
-            //     start: moment().subtract(2, 'days').format(),
-            //     end: moment().subtract(2, 'days').add(3, 'hours').format(),
-            //     color: 'brightblue',
-            //     textColor: 'white',
-            //     kind: 'party',
-            //     state: 'hh'
-            //   },
+            
              
             {% for count in bookingsCount %}
             {
@@ -446,28 +428,18 @@
                 end: moment().subtract('{{count.remainingDates}}', 'days').format('YYYY-MM-DD'),
                 display: 'background',
                 {% if count.bookingCount>5 %}
-                color: '#F0A7A0',
+                color: '#e74c3c',
 
-                {% elseif (count.bookingCount<5) and (count.bookingCount>2)  %}
-                color: '#FBFF00',
+                {% elseif count.bookingCount>2  %}
+                color: '#f39c12',
 
-                {% elseif count.bookingCount<2 %}
-                color: '#0B4619',
+            
                 
                 {% endif %}
                 
               },
             {% endfor %}
 
-
-            //   {
-            //     title: "#2 title",
-            //     start: moment().subtract(-30, 'days').format('YYYY-MM-DD'),
-            //     end: moment().subtract(-30, 'days').format('YYYY-MM-DD'),
-            //     display: 'background',
-            //     color: '#000000',
-            //     kind: 'holiday',
-            //   },
             
             ],
             eventClassNames: function(info) {
