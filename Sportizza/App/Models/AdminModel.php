@@ -526,18 +526,18 @@ class AdminModel extends \Core\Model
     {
         //Retrieving of chart data from the database
         $sql = 'SELECT CASE EXTRACT(MONTH FROM user.registered_time)
-                    WHEN "1" THEN CONCAT("Jan ",RIGHT(YEAR(user.registered_time),2))
-                    WHEN "2" THEN CONCAT("Feb ",RIGHT(YEAR(user.registered_time),2))
-                    WHEN "3" THEN CONCAT("Mar ",RIGHT(YEAR(user.registered_time),2))
-                    WHEN "4" THEN CONCAT("Apr ",RIGHT(YEAR(user.registered_time),2))
-                    WHEN "5" THEN CONCAT("May ",RIGHT(YEAR(user.registered_time),2))
-                    WHEN "6" THEN CONCAT("Jun ",RIGHT(YEAR(user.registered_time),2))
-                    WHEN "7" THEN CONCAT("Jul ",RIGHT(YEAR(user.registered_time),2))
-                    WHEN "8" THEN CONCAT("Aug ",RIGHT(YEAR(user.registered_time),2))
-                    WHEN "9" THEN CONCAT("Sep ",RIGHT(YEAR(user.registered_time),2))
-                    WHEN "10" THEN CONCAT("Oct ",RIGHT(YEAR(user.registered_time),2))
-                    WHEN "11" THEN CONCAT("Nov ",RIGHT(YEAR(user.registered_time),2))
-                    WHEN "12" THEN CONCAT("Dec ",RIGHT(YEAR(user.registered_time),2))
+                    WHEN "1" THEN CONCAT("Jan ",YEAR(user.registered_time))
+                    WHEN "2" THEN CONCAT("Feb ",YEAR(user.registered_time))
+                    WHEN "3" THEN CONCAT("Mar ",YEAR(user.registered_time))
+                    WHEN "4" THEN CONCAT("Apr ",YEAR(user.registered_time))
+                    WHEN "5" THEN CONCAT("May ",YEAR(user.registered_time))
+                    WHEN "6" THEN CONCAT("Jun ",YEAR(user.registered_time))
+                    WHEN "7" THEN CONCAT("Jul ",YEAR(user.registered_time))
+                    WHEN "8" THEN CONCAT("Aug ",YEAR(user.registered_time))
+                    WHEN "9" THEN CONCAT("Sep ",YEAR(user.registered_time))
+                    WHEN "10" THEN CONCAT("Oct ",YEAR(user.registered_time))
+                    WHEN "11" THEN CONCAT("Nov ",YEAR(user.registered_time))
+                    WHEN "12" THEN CONCAT("Dec ",YEAR(user.registered_time))
                     ELSE "Not Valid"
                 END AS Time_Registered, COUNT(DISTINCT user_id) AS No_Of_Customers
                 FROM user
@@ -563,18 +563,18 @@ class AdminModel extends \Core\Model
     {
         //Retrieving of chart data from the database
         $sql = 'SELECT CASE EXTRACT(MONTH FROM sports_arena.registered_time)
-                    WHEN "1" THEN CONCAT("Jan ",RIGHT(YEAR(sports_arena.registered_time),2))
-                    WHEN "2" THEN CONCAT("Feb ",RIGHT(YEAR(sports_arena.registered_time),2))
-                    WHEN "3" THEN CONCAT("Mar ",RIGHT(YEAR(sports_arena.registered_time),2))
-                    WHEN "4" THEN CONCAT("Apr ",RIGHT(YEAR(sports_arena.registered_time),2))
-                    WHEN "5" THEN CONCAT("May ",RIGHT(YEAR(sports_arena.registered_time),2))
-                    WHEN "6" THEN CONCAT("Jun ",RIGHT(YEAR(sports_arena.registered_time),2))
-                    WHEN "7" THEN CONCAT("Jul ",RIGHT(YEAR(sports_arena.registered_time),2))
-                    WHEN "8" THEN CONCAT("Aug ",RIGHT(YEAR(sports_arena.registered_time),2))
-                    WHEN "9" THEN CONCAT("Sep ",RIGHT(YEAR(sports_arena.registered_time),2))
-                    WHEN "10" THEN CONCAT("Oct ",RIGHT(YEAR(sports_arena.registered_time),2))
-                    WHEN "11" THEN CONCAT("Nov ",RIGHT(YEAR(sports_arena.registered_time),2))
-                    WHEN "12" THEN CONCAT("Dec ",RIGHT(YEAR(sports_arena.registered_time),2))
+                    WHEN "1" THEN CONCAT("Jan ",YEAR(sports_arena.registered_time))
+                    WHEN "2" THEN CONCAT("Feb ",YEAR(sports_arena.registered_time))
+                    WHEN "3" THEN CONCAT("Mar ",YEAR(sports_arena.registered_time))
+                    WHEN "4" THEN CONCAT("Apr ",YEAR(sports_arena.registered_time))
+                    WHEN "5" THEN CONCAT("May ",YEAR(sports_arena.registered_time))
+                    WHEN "6" THEN CONCAT("Jun ",YEAR(sports_arena.registered_time))
+                    WHEN "7" THEN CONCAT("Jul ",YEAR(sports_arena.registered_time))
+                    WHEN "8" THEN CONCAT("Aug ",YEAR(sports_arena.registered_time))
+                    WHEN "9" THEN CONCAT("Sep ",YEAR(sports_arena.registered_time))
+                    WHEN "10" THEN CONCAT("Oct ",YEAR(sports_arena.registered_time))
+                    WHEN "11" THEN CONCAT("Nov ",YEAR(sports_arena.registered_time))
+                    WHEN "12" THEN CONCAT("Dec ",YEAR(sports_arena.registered_time))
                     ELSE "Not Valid"
                 END AS Time_Registered, COUNT(DISTINCT sports_arena.sports_arena_id) AS No_Of_Sports_Arenas
                 FROM sports_arena
@@ -600,18 +600,18 @@ class AdminModel extends \Core\Model
     {
         //Retrieving of chart data from the database
         $sql = 'SELECT CASE EXTRACT(MONTH FROM booking.booking_date)
-                    WHEN "1" THEN CONCAT("Jan ",RIGHT(YEAR(booking.booking_date),2))
-                    WHEN "2" THEN CONCAT("Feb ",RIGHT(YEAR(booking.booking_date),2))
-                    WHEN "3" THEN CONCAT("Mar ",RIGHT(YEAR(booking.booking_date),2))
-                    WHEN "4" THEN CONCAT("Apr ",RIGHT(YEAR(booking.booking_date),2))
-                    WHEN "5" THEN CONCAT("May ",RIGHT(YEAR(booking.booking_date),2))
-                    WHEN "6" THEN CONCAT("Jun ",RIGHT(YEAR(booking.booking_date),2))
-                    WHEN "7" THEN CONCAT("Jul ",RIGHT(YEAR(booking.booking_date),2))
-                    WHEN "8" THEN CONCAT("Aug ",RIGHT(YEAR(booking.booking_date),2))
-                    WHEN "9" THEN CONCAT("Sep ",RIGHT(YEAR(booking.booking_date),2))
-                    WHEN "10" THEN CONCAT("Oct ",RIGHT(YEAR(booking.booking_date),2))
-                    WHEN "11" THEN CONCAT("Nov ",RIGHT(YEAR(booking.booking_date),2))
-                    WHEN "12" THEN CONCAT("Dec ",RIGHT(YEAR(booking.booking_date),2))
+                    WHEN "1" THEN CONCAT("Jan ",YEAR(booking.booking_date))
+                    WHEN "2" THEN CONCAT("Feb ",YEAR(booking.booking_date))
+                    WHEN "3" THEN CONCAT("Mar ",YEAR(booking.booking_date))
+                    WHEN "4" THEN CONCAT("Apr ",YEAR(booking.booking_date))
+                    WHEN "5" THEN CONCAT("May ",YEAR(booking.booking_date))
+                    WHEN "6" THEN CONCAT("Jun ",YEAR(booking.booking_date))
+                    WHEN "7" THEN CONCAT("Jul ",YEAR(booking.booking_date))
+                    WHEN "8" THEN CONCAT("Aug ",YEAR(booking.booking_date))
+                    WHEN "9" THEN CONCAT("Sep ",YEAR(booking.booking_date))
+                    WHEN "10" THEN CONCAT("Oct ",YEAR(booking.booking_date))
+                    WHEN "11" THEN CONCAT("Nov ",YEAR(booking.booking_date))
+                    WHEN "12" THEN CONCAT("Dec ",YEAR(booking.booking_date))
                     ELSE "Not Valid"
                 END AS Time_Booked, COUNT(DISTINCT booking_id) AS No_Of_Bookings
                 FROM booking

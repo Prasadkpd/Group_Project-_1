@@ -1535,18 +1535,18 @@ class SpArenaManagerModel extends \Core\Model
     {
         //Retrieving data about bookings from the database
         $sql = 'SELECT CASE EXTRACT(MONTH FROM booking.booking_date)
-                   WHEN "1" THEN CONCAT("Jan ",RIGHT(YEAR(booking.booking_date),2))
-                    WHEN "2" THEN CONCAT("Feb ",RIGHT(YEAR(booking.booking_date),2))
-                    WHEN "3" THEN CONCAT("Mar ",RIGHT(YEAR(booking.booking_date),2))
-                    WHEN "4" THEN CONCAT("Apr ",RIGHT(YEAR(booking.booking_date),2))
-                    WHEN "5" THEN CONCAT("May ",RIGHT(YEAR(booking.booking_date),2))
-                    WHEN "6" THEN CONCAT("Jun ",RIGHT(YEAR(booking.booking_date),2))
-                    WHEN "7" THEN CONCAT("Jul ",RIGHT(YEAR(booking.booking_date),2))
-                    WHEN "8" THEN CONCAT("Aug ",RIGHT(YEAR(booking.booking_date),2))
-                    WHEN "9" THEN CONCAT("Sep ",RIGHT(YEAR(booking.booking_date),2))
-                    WHEN "10" THEN CONCAT("Oct ",RIGHT(YEAR(booking.booking_date),2))
-                    WHEN "11" THEN CONCAT("Nov ",RIGHT(YEAR(booking.booking_date),2))
-                    WHEN "12" THEN CONCAT("Dec ",RIGHT(YEAR(booking.booking_date),2))
+                   WHEN "1" THEN CONCAT("Jan ",YEAR(booking.booking_date))
+                    WHEN "2" THEN CONCAT("Feb ",YEAR(booking.booking_date))
+                    WHEN "3" THEN CONCAT("Mar ",YEAR(booking.booking_date))
+                    WHEN "4" THEN CONCAT("Apr ",YEAR(booking.booking_date))
+                    WHEN "5" THEN CONCAT("May ",YEAR(booking.booking_date))
+                    WHEN "6" THEN CONCAT("Jun ",YEAR(booking.booking_date))
+                    WHEN "7" THEN CONCAT("Jul ",YEAR(booking.booking_date))
+                    WHEN "8" THEN CONCAT("Aug ",YEAR(booking.booking_date))
+                    WHEN "9" THEN CONCAT("Sep ",YEAR(booking.booking_date))
+                    WHEN "10" THEN CONCAT("Oct ",YEAR(booking.booking_date))
+                    WHEN "11" THEN CONCAT("Nov ",YEAR(booking.booking_date))
+                    WHEN "12" THEN CONCAT("Dec ",YEAR(booking.booking_date))
                     ELSE "Not Valid"
                 END AS Time_Booked, COUNT(DISTINCT booking.booking_id) AS No_Of_Bookings
                 FROM booking
