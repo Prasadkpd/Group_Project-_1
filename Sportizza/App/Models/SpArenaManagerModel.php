@@ -1406,7 +1406,6 @@ class SpArenaManagerModel extends \Core\Model
         //Converting retrieved data from database into PDOs
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $stmt->execute();
-        
         //Assigning the fetched PDOs to result
         $result1 = $stmt->fetchAll();
         $sql = 'SELECT user.user_id, user.first_name, user.last_name ,user.username,user.primary_contact,user.type
@@ -1501,11 +1500,27 @@ class SpArenaManagerModel extends \Core\Model
         try {
             $db = static::getDB();
             $db->beginTransaction();
-            $sql = 'UPDATE user SET security_status="inactive", account_status="inactive"  WHERE user_id=:user_id';
-            $stmt = $db->prepare($sql);
-            $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
-            $stmt->execute();
+            $sql1 = 'UPDATE user SET security_status="inactive", account_status="inactive"  WHERE user_id=:user_id';
+            $stmt1 = $db->prepare($sql1);
+            $stmt1->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+            $stmt1->execute();
+            $sql2 = 'SELECT user.primary_contact, user.first_name FROM user WHERE user_id=:user_id';
+            $stmt2 = $db->prepare($sql2);
+            $stmt2->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+            $stmt2->execute();
+            $result2 = $stmt2->fetch(PDO::FETCH_ASSOC);
+            $user_mobile_no = $result2['primary_contact'];
+            $user_first_name = $result2['first_name'];
+            $sql3 = 'SELECT user.first_name, user.last_name FROM user WHERE user_id=:user_id';
+            $stmt3 = $db->prepare($sql3);
+            $stmt3->bindValue(':user_id', $current_user_id, PDO::PARAM_INT);
+            $stmt3->execute();
+            $result3 = $stmt3->fetch(PDO::FETCH_ASSOC);
+            $manager_first_name = $result3['first_name'];
+            $manager_last_name = $result3['last_name'];
+
             NotificationModel::managerRemoveStaffSuccessManagerNotification($current_user_id, $user_id);
+            NotificationModel::managerRemoveStaffMobileSuccessNotification($manager_first_name, $manager_last_name, $user_mobile_no, $user_first_name);
             $db->commit();
             return true;
         } catch (PDOException $e) {
