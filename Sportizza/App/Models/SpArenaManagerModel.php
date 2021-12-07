@@ -2130,4 +2130,18 @@ class SpArenaManagerModel extends \Core\Model
         $stm2->bindValue(':arena_profile_id', $arena_profile_id, PDO::PARAM_INT);
         return $stm2->execute();
     }
+
+    public static function arenaOfManager($id)
+    {
+        $sql1 = 'SELECT sports_arena.sa_name FROM manager INNER JOIN sports_arena
+         ON manager.sports_arena_id=sports_arena.sports_arena_id
+          WHERE manager.user_id=:user_id';
+
+        $db = static::getDB();
+        $stm1 = $db->prepare($sql1);
+        $stm1->bindValue(':user_id', $id, PDO::PARAM_INT);
+        $stm1->execute();
+       return $stm1->fetchAll();
+        
+    }
 }
