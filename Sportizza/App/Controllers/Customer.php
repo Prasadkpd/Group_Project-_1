@@ -249,6 +249,9 @@ class Customer extends Authenticated
 
         //Assigning bookings related to customer
         $addfeedback = CustomerModel::customerAddFeedback($_POST);
+        $subject="customer add feedback for arena";
+        NotificationModel::addRatingNotificationForManager($_POST["arena_id"], $subject,$_POST["rating_description"]);
+        NotificationModel::addRatingNotificationForAdministrationStaff($_POST["arena_id"], $subject,$_POST["rating_description"]);
         
         $this->redirect("/customer");
 

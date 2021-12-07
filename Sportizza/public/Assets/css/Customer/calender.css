@@ -97,6 +97,45 @@ button.fc-today-button.fc-button.fc-button-primary {
   margin: 0;
   margin-left: 10px;
 }
+.fc-daygrid-day-top {
+  /* background: #27ae60;
+  opacity: 0.6; */
+  background-color:  rgba(0, 255, 64, 0.2);;
+}
+.fc .fc-bg-event {
+  
+  
+  opacity: 0.8;
+}
+
+.fc-daygrid-day-top {
+  
+  border-radius:  20px;
+  padding: 2px 8px;
+}
+
+
+.fc .fc-daygrid-day-top {
+  display: flex;
+  justify-content: center;
+}
+
+
+.fc .fc-bg-event {
+  background: none;
+  
+}
+
+.fc-bg-event.fc-event.fc-event-start.fc-event-end.fc-event-future {
+  border-radius:  20px;
+}
+/* .fc .fc-day-other .fc-daygrid-day-top {
+  opacity: .5;
+} */
+
+.fc-bg-event.fc-event.fc-event-start.fc-event-end.fc-event-future {
+  height: 36px;
+}
 
 
 @media screen and (max-width: 420px) {

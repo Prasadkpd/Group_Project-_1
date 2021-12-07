@@ -521,11 +521,13 @@ class Sparenamanager extends \Core\Controller
         $chart3 = SpArenaManagerModel::managerChart3($id);
         // Generating chart 4
         $chart4 = SpArenaManagerModel::managerChart4($id);
-
+        $arenaName = SpArenaManagerModel::arenaOfManager($id);
+        
         //Rendering the manager's analytics view
         View::renderTemplate(
             'Manager/mStaffAnalyticsView.html',
-            ['chart1' => $chart1, 'chart2' => $chart2, 'chart3' => $chart3, 'chart4' => $chart4]
+            ['chart1' => $chart1, 'chart2' => $chart2, 'chart3' => $chart3,
+             'chart4' => $chart4,'arenaName'=>$arenaName]
         );
     }
     //End of Analytics of manager view

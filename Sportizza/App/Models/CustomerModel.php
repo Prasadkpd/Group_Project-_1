@@ -1149,7 +1149,7 @@ class CustomerModel extends \Core\Model
 
         //have to check this one and solve logical errors
         $sql = 'SELECT  COUNT(booking_id) AS bookingCount,(CURRENT_DATE-(booking_date)) as remainingDates FROM booking 
-                WHERE security_status="active" AND booking_date> CURRENT_DATE 
+                WHERE security_status="active" AND booking_date> CURRENT_DATE
                 GROUP BY booking_date';
 
         $db = static::getDB();
