@@ -22,6 +22,13 @@ function close_popup_signout_message() {
   form.style.display = "none";
 }
 
+window.onload = function () {
+  
+
+  var today = new Date().toISOString().split('T')[0];
+  document.getElementsByName("date-picker")[0].setAttribute('max', today);
+};
+
 function Datepicker() {
   table = document.getElementById("notification");
   tr = table.getElementsByTagName("tr");
