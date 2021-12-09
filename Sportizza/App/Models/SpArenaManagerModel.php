@@ -176,7 +176,7 @@ class SpArenaManagerModel extends \Core\Model
                 INNER JOIN time_slot ON booking_timeslot.timeslot_id=time_slot.time_slot_id
                 INNER JOIN user ON user.user_id=booking.customer_user_id
                 INNER JOIN manager ON booking.sports_arena_id =manager.sports_arena_id
-                 WHERE booking.security_status="active"AND manager.user_id=:id
+                 WHERE booking.security_status="active"AND manager.user_id=:id AND CURRENT_DATE()< booking.booking_date
                  ORDER BY booking.booking_date DESC';
 
         $db = static::getDB();

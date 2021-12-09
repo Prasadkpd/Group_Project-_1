@@ -968,7 +968,7 @@ class SpAdministrationStaffModel extends \Core\Model
         INNER JOIN time_slot ON booking_timeslot.timeslot_id=time_slot.time_slot_id
         INNER JOIN user ON user.user_id=booking.customer_user_id
         INNER JOIN administration_staff ON booking.sports_arena_id =administration_staff.sports_arena_id
-        WHERE booking.security_status="active" AND administration_staff.user_id=:id AND booking.booking_date>=CURRENT_DATE()
+        WHERE booking.security_status="active" AND administration_staff.user_id=:id AND booking.booking_date>CURRENT_DATE()
         ORDER BY booking.booking_date DESC';
 
         $stmt = $db->prepare($sql);
