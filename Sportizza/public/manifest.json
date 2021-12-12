@@ -1,0 +1,23 @@
+{
+    "short_name": "Sportizza",
+    "name": "Sportizza Booking Platform",
+    "icons": [
+        {
+            "src": "/Assets/images/logos/Sportizza_Logo_Final.png",
+            "type": "image/png",
+            "sizes": "128x128"
+        },
+        {
+            "src": "/Assets/images/logos/Sportizza_Logo_Final.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "/Assets/images/logos/Sportizza_Logo_Final.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "start_url": "/",
+    "display": "standalone"
+}
