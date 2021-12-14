@@ -724,9 +724,11 @@ class SpArenaManagerModel extends \Core\Model
     public static function updateBookingPayment($booking_id)
     {
         try {
+            $db = static::getDB();
+            $db->beginTransaction();
+
             //Updating status of the bookings in the database
             $sql1 = 'UPDATE booking SET payment_status="paid" WHERE booking_id=:booking_id';
-            $db = static::getDB();
             $stmt1 = $db->prepare($sql1);
             $stmt1->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
             $stmt1->execute();
@@ -743,7 +745,7 @@ class SpArenaManagerModel extends \Core\Model
 
             $sql3 = 'INSERT INTO payment (customer_user_id, net_amount) VALUES (:customer_user_id,:net_amount)';
             $stmt3 = $db->prepare($sql3);
-            $stmt3->bindValue(':custmer_user_id', $customer_user_id, PDO::PARAM_INT);
+            $stmt3->bindValue(':customer_user_id', $customer_user_id, PDO::PARAM_INT);
             $stmt3->bindValue(':net_amount', $price_per_booking, PDO::PARAM_INT);
             $stmt3->execute();
         
@@ -753,13 +755,16 @@ class SpArenaManagerModel extends \Core\Model
             $result4 = $stmt4->fetch(PDO::FETCH_ASSOC);
 
             $payment_id = $result4['payment_id'];
- 
+          
+
             $sql5 = 'UPDATE invoice SET payment_id=:payment_id WHERE invoice_id=:invoice_id';
-            $db = static::getDB();
+            
             $stmt5 = $db->prepare($sql5);
             $stmt5->bindValue(':payment_id', $payment_id, PDO::PARAM_INT);
             $stmt5->bindValue(':invoice_id', $invoice_id, PDO::PARAM_INT);
-            $stmt1->execute();
+            $stmt5->execute();
+            $db->commit();
+            return true;
         } catch (PDOException $e) {
             $db->rollback();
             throw $e;
