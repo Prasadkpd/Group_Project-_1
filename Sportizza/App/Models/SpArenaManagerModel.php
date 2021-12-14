@@ -723,13 +723,47 @@ class SpArenaManagerModel extends \Core\Model
     //Start of displaying sports arena's updating bookings
     public static function updateBookingPayment($booking_id)
     {
-        //Updating status of the bookings in the database
-        $sql = 'UPDATE `booking` SET `payment_status`="paid" WHERE `booking_id`=:booking_id';
+        try {
+            //Updating status of the bookings in the database
+            $sql1 = 'UPDATE booking SET payment_status="paid" WHERE booking_id=:booking_id';
+            $db = static::getDB();
+            $stmt1 = $db->prepare($sql1);
+            $stmt1->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+            $stmt1->execute();
 
-        $db = static::getDB();
-        $stmt = $db->prepare($sql);
-        $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
-        return ($stmt->execute());
+            $sql2 = 'SELECT price_per_booking, customer_user_id, invoice_id FROM booking WHERE booking_id=:booking_id';
+            $stmt2 = $db->prepare($sql2);
+            $stmt2->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+            $stmt2->execute();
+            $result2 = $stmt2->fetch(PDO::FETCH_ASSOC);
+
+            $price_per_booking = $result2["price_per_booking"];
+            $customer_user_id = $result2["customer_user_id"];
+            $invoice_id = $result2["invoice_id"];
+
+            $sql3 = 'INSERT INTO payment (customer_user_id, net_amount) VALUES (:customer_user_id,:net_amount)';
+            $stmt3 = $db->prepare($sql3);
+            $stmt3->bindValue(':custmer_user_id', $customer_user_id, PDO::PARAM_INT);
+            $stmt3->bindValue(':net_amount', $price_per_booking, PDO::PARAM_INT);
+            $stmt3->execute();
+        
+            $sql4 = 'SELECT payment_id FROM payment ORDER BY payment_id DESC LIMIT 1';
+            $stmt4 = $db->prepare($sql4);
+            $stmt4->execute();
+            $result4 = $stmt4->fetch(PDO::FETCH_ASSOC);
+
+            $payment_id = $result4['payment_id'];
+ 
+            $sql5 = 'UPDATE invoice SET payment_id=:payment_id WHERE invoice_id=:invoice_id';
+            $db = static::getDB();
+            $stmt5 = $db->prepare($sql5);
+            $stmt5->bindValue(':payment_id', $payment_id, PDO::PARAM_INT);
+            $stmt5->bindValue(':invoice_id', $invoice_id, PDO::PARAM_INT);
+            $stmt1->execute();
+        } catch (PDOException $e) {
+            $db->rollback();
+            throw $e;
+        }
     }
     //End of displaying sports arena's updating bookings
 
@@ -1384,7 +1418,7 @@ class SpArenaManagerModel extends \Core\Model
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $stmt->execute();
         $result2 = $stmt->fetchAll();
-        $result1 = array_merge($result1,$result2);
+        $result1 = array_merge($result1, $result2);
         return $result1;
     }
     //End of displaying sports arenas view staff for manager
@@ -1423,7 +1457,7 @@ class SpArenaManagerModel extends \Core\Model
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $stmt->execute();
         $result2 = $stmt->fetchAll();
-        $result1 = array_merge($result1,$result2);
+        $result1 = array_merge($result1, $result2);
         return $result1;
     }
     //End of displaying sports arenas remove staff view for manager
