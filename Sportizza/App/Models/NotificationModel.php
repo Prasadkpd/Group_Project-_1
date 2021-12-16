@@ -1527,7 +1527,7 @@ class NotificationModel extends \Core\Model
             $db->beginTransaction();
             $sql1 = 'SELECT user.first_name, user.last_name FROM user WHERE user_id=:user_id';
             $stmt1 = $db->prepare($sql1);
-            $stmt1->bindValue(':user_id', $removed_user_id, PDO::PARAM_INT);
+            $stmt1->bindValue(':user_id', $customer_id, PDO::PARAM_INT);
             $stmt1->execute();
             $result1 = $stmt1->fetch(PDO::FETCH_ASSOC);
             $first_name = $result1['first_name'];
@@ -1543,6 +1543,8 @@ class NotificationModel extends \Core\Model
         } catch (PDOException $e) {
             $db->rollback();
             throw $e;
+        }
+    }
     public static function addRatingNotificationForManager($arenaId, $subject, $desc)
     {
         
