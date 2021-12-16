@@ -25,7 +25,6 @@ class Admin extends Authenticated
     }
     protected function after()
     {
-        
     }
     //End of blocking a user after login
 
@@ -52,7 +51,6 @@ class Admin extends Authenticated
     //Start of create FAQ 
     public function createfaqAction()
     {
-
         //Obtaining current user's id from auth
         $current_user = Auth::getUser();
         $id = $current_user->user_id;
@@ -71,7 +69,6 @@ class Admin extends Authenticated
     //End of create FAQ 
 
     // Start of delete FAQ
-
     public function deletefaqAction()
     {
         //Obtaining faq id sent from href
@@ -79,15 +76,13 @@ class Admin extends Authenticated
 
         // Pass FAQ id to delete FAQ function in admin model
         AdminModel::adminDeleteFAQ($faq_id);
-        
+
         //Redirect to admin's FAQ page
         $this->redirect('/Admin/faq');
     }
-
     // End of delete FAQ
 
     //Start of Update FAQ
-    
     //Passing the FAQ type from AddFAQ view (Html and JS) and getting FAQ questions
     public function getquestionsAction()
     {
@@ -107,19 +102,17 @@ class Admin extends Authenticated
     }
 
     // Updating FAQ solution
-
     public function updatefaqAction()
     {
         //Obtaining faq id and answer sent from href
         $faq_id = $this->route_params['id'];
-        
+
         // Pass FAQ id and answer to update FAQ function in admin model
         AdminModel::adminUpdateFAQ($faq_id, $_POST['updated_solution']);
-        
+
         //Redirect to admin's FAQ page
         $this->redirect('/Admin/faq');
     }
-
     //End of Update FAQ 
 
 
@@ -145,8 +138,8 @@ class Admin extends Authenticated
     //End of manage users view
 
     // Start of deleting customers
-    public function deletecustomersAction(){
-        
+    public function deletecustomersAction()
+    {
         //Obtaining customer id sent from JS
         $id = $this->route_params['id'];
 
@@ -158,7 +151,6 @@ class Admin extends Authenticated
 
         //Redirect to admin's manage user page
         $this->redirect('/Admin/manageuser');
-
     }
     // End of deleting customers
 
@@ -167,19 +159,18 @@ class Admin extends Authenticated
     {
         //Obtaining sports arena profile id sent from JS
         $id = $this->route_params['id'];
-        
+
         $arena_details = AdminModel::arenaProfileView($id);
         $arena_details['google_map_link'] = preg_replace('/\%\d\w/', ' , ', substr($arena_details['google_map_link'], 48));
 
-        //    var_dump($arena_details);
         //Rendering the manager's edit profile arena view
         View::renderTemplate('Admin/adminViewArenaProfile.html', ['arena_details' => $arena_details]);
     }
     //End of Edit Arena profile of manager staff
 
     // Start of adding sports arenas
-    public function addarenasAction(){
-        
+    public function addarenasAction()
+    {
         //Obtaining sports arena profile id sent from JS
         $id = $this->route_params['id'];
 
@@ -188,7 +179,6 @@ class Admin extends Authenticated
 
         //Redirect to admin's manage user page
         $this->redirect('/Admin/manageuser');
-
     }
     // End of adding sports arenas
 
@@ -202,8 +192,9 @@ class Admin extends Authenticated
     }
 
     // Start of deleting sports arenas
-    public function deletearenasAction(){
-        
+    public function deletearenasAction()
+    {
+
         //Obtaining sports arena profile id sent from JS
         $id = $this->route_params['id'];
 
@@ -212,13 +203,12 @@ class Admin extends Authenticated
 
         //Redirect to admin's manage user page
         $this->redirect('/Admin/manageuser');
-
     }
     // End of deleting sports arenas
 
     // Start of blacklisting sports arenas
-    public function blacklistarenasAction(){
-        
+    public function blacklistarenasAction()
+    {
         //Obtaining sports arena profile id sent from JS
         $id = $this->route_params['id'];
 
@@ -227,7 +217,6 @@ class Admin extends Authenticated
 
         //Redirect to admin's manage user page
         $this->redirect('/Admin/manageuser');
-
     }
     // End of blacklisting sports arenas
 
@@ -246,8 +235,8 @@ class Admin extends Authenticated
     //End of removing negative ratings view
 
     // Start of deleting ratings
-    public function deleteratingsAction(){
-        
+    public function deleteratingsAction()
+    {
         //Obtaining rating id sent from JS
         $feedback_id = $this->route_params['id'];
 
@@ -256,7 +245,6 @@ class Admin extends Authenticated
 
         //Redirect to admin's ratings page
         $this->redirect('/Admin/ratings');
-
     }
     // End of deleting ratings
 
@@ -293,17 +281,17 @@ class Admin extends Authenticated
         $chart4 = AdminModel::adminReshapePieCharts($dateValue);
         // echo AdminModel::adminReshapePieCharts($dateValue);
 
-        $i=0;
+        $i = 0;
 
-        for( $i; $i< count($chart4); $i++){
+        for ($i; $i < count($chart4); $i++) {
             $temp1[$i] = $chart4[$i]->payment_method;
             $temp2[$i] = $chart4[$i]->No_Of_Bookings;
         }
 
-        $payment_method = implode(",",$temp1);
-        $booking_count = implode(",",$temp2);
+        $payment_method = implode(",", $temp1);
+        $booking_count = implode(",", $temp2);
 
-        echo $payment_method."_".$booking_count;
+        echo $payment_method . "_" . $booking_count;
     }
     // End of reshaping pie charts
 
