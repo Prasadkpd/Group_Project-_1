@@ -9,7 +9,7 @@ use App\Models\SpArenaManagerModel;
 use App\Models\NotificationModel;
 use App\Models\LoginModel;
 
-class Sparenamanager extends \Core\Controller
+class Sparenamanager extends Authenticated
 {
     //Start of blocking a user after login
     //Blocking unauthorised access after login as a user
