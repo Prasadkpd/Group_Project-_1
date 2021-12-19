@@ -1610,4 +1610,31 @@ class NotificationModel extends \Core\Model
             $stmt2->execute();
         }
     }
+    public static function managerRemoveStaffMobileSuccessNotification($manager_first_name, $manager_last_name, $user_mobile_no, $user_first_name)
+    {
+        //our mobile number
+        $user = "94765282976";
+        //our account password
+        $password = 4772;
+            
+        $_SESSION['mobile_number'] = $user_mobile_no;
+        //Message to be sent
+        $text = urlencode("Dear " . $user_first_name .", your account have been removed by your sports arena manager ". $manager_first_name ." " . $manager_last_name ." ");
+        // Replacing the initial 0 with 94
+        $to = substr_replace($user_mobile_no, '94', 0, 0);
+        echo($to);
+        //Base URL
+        $baseurl = "http://www.textit.biz/sendmsg";
+        // regex to create the url
+        $url = "$baseurl/?id=$user&pw=$password&to=$to&text=$text";
+    
+        $ret = file($url);
+        $res = explode(":", $ret[0]);
+    
+        if (trim($res[0]) == "OK") {
+            echo "Message Sent - ID : " . $res[1];
+        } else {
+            echo "Sent Failed - Error : " . $res[1];
+        }
+    }
 }

@@ -128,9 +128,8 @@ class SpArenaManagerModel extends \Core\Model
         time_slot.price,facility.facility_name
         FROM time_slot
         INNER JOIN facility ON time_slot.facility_id= facility.facility_id
-        INNER JOIN booking_timeslot ON time_slot.time_slot_id =booking_timeslot.timeslot_id
-        INNER JOIN booking ON booking_timeslot.booking_id=booking.booking_id
-        
+        left JOIN booking_timeslot ON time_slot.time_slot_id =booking_timeslot.timeslot_id
+        left JOIN booking ON booking_timeslot.booking_id=booking.booking_id
         WHERE time_slot.time_slot_id NOT IN
          (SELECT booking_timeslot.timeslot_id FROM booking 
         INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id WHERE 
@@ -254,7 +253,7 @@ class SpArenaManagerModel extends \Core\Model
             WHERE time_slot.time_slot_id NOT IN
             (SELECT booking_timeslot.timeslot_id FROM booking 
             INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id WHERE 
-            ((booking.booking_date=:date) OR (payment_status="pending" 
+            ((booking.booking_date=:date) AND (payment_status="pending" 
             AND booked_date +INTERVAL 30 MINUTE > CURRENT_TIMESTAMP))
             AND booking_timeslot.security_status="active")
             AND time_slot.manager_sports_arena_id=:arena_id
@@ -276,8 +275,8 @@ class SpArenaManagerModel extends \Core\Model
                 time_slot.price,facility.facility_name
                 FROM time_slot
                 INNER JOIN facility ON time_slot.facility_id= facility.facility_id
-                INNER JOIN booking_timeslot ON time_slot.time_slot_id =booking_timeslot.timeslot_id
-                INNER JOIN booking ON booking_timeslot.booking_id=booking.booking_id
+                Left JOIN booking_timeslot ON time_slot.time_slot_id =booking_timeslot.timeslot_id
+                Left JOIN booking ON booking_timeslot.booking_id=booking.booking_id
                 
                 WHERE time_slot.time_slot_id NOT IN
                  (SELECT booking_timeslot.timeslot_id FROM booking 
@@ -660,7 +659,7 @@ class SpArenaManagerModel extends \Core\Model
     //Start of booking cancellation
     public static function bookingCancellation($booking_id, $user_id, $reason)
     {
-        try{
+        try {
             $db = static::getDB();
             $db->beginTransaction();
             $sql = 'SELECT sports_arena_id
@@ -715,7 +714,7 @@ class SpArenaManagerModel extends \Core\Model
             $stmt->execute();
             $db->commit();
             return true;
-        }catch (PDOException $e) {
+        } catch (PDOException $e) {
             $db->rollback();
             throw $e;
         }
@@ -724,13 +723,52 @@ class SpArenaManagerModel extends \Core\Model
     //Start of displaying sports arena's updating bookings
     public static function updateBookingPayment($booking_id)
     {
-        //Updating status of the bookings in the database
-        $sql = 'UPDATE `booking` SET `payment_status`="paid" WHERE `booking_id`=:booking_id';
+        try {
+            $db = static::getDB();
+            $db->beginTransaction();
 
-        $db = static::getDB();
-        $stmt = $db->prepare($sql);
-        $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
-        return ($stmt->execute());
+            //Updating status of the bookings in the database
+            $sql1 = 'UPDATE booking SET payment_status="paid" WHERE booking_id=:booking_id';
+            $stmt1 = $db->prepare($sql1);
+            $stmt1->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+            $stmt1->execute();
+
+            $sql2 = 'SELECT price_per_booking, customer_user_id, invoice_id FROM booking WHERE booking_id=:booking_id';
+            $stmt2 = $db->prepare($sql2);
+            $stmt2->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+            $stmt2->execute();
+            $result2 = $stmt2->fetch(PDO::FETCH_ASSOC);
+
+            $price_per_booking = $result2["price_per_booking"];
+            $customer_user_id = $result2["customer_user_id"];
+            $invoice_id = $result2["invoice_id"];
+
+            $sql3 = 'INSERT INTO payment (customer_user_id, net_amount) VALUES (:customer_user_id,:net_amount)';
+            $stmt3 = $db->prepare($sql3);
+            $stmt3->bindValue(':customer_user_id', $customer_user_id, PDO::PARAM_INT);
+            $stmt3->bindValue(':net_amount', $price_per_booking, PDO::PARAM_INT);
+            $stmt3->execute();
+        
+            $sql4 = 'SELECT payment_id FROM payment ORDER BY payment_id DESC LIMIT 1';
+            $stmt4 = $db->prepare($sql4);
+            $stmt4->execute();
+            $result4 = $stmt4->fetch(PDO::FETCH_ASSOC);
+
+            $payment_id = $result4['payment_id'];
+          
+
+            $sql5 = 'UPDATE invoice SET payment_id=:payment_id WHERE invoice_id=:invoice_id';
+            
+            $stmt5 = $db->prepare($sql5);
+            $stmt5->bindValue(':payment_id', $payment_id, PDO::PARAM_INT);
+            $stmt5->bindValue(':invoice_id', $invoice_id, PDO::PARAM_INT);
+            $stmt5->execute();
+            $db->commit();
+            return true;
+        } catch (PDOException $e) {
+            $db->rollback();
+            throw $e;
+        }
     }
     //End of displaying sports arena's updating bookings
 
@@ -875,7 +913,7 @@ class SpArenaManagerModel extends \Core\Model
             FROM  time_slot
             INNER JOIN facility ON time_slot.facility_id=facility.facility_id
             WHERE time_slot.manager_sports_arena_id=:arena_id AND time_slot.facility_id=:facility
-            AND facility.security_status="active" AND timeslot.security_status="active"
+            AND facility.security_status="active" AND time_slot.security_status="active"
             ORDER BY end_time ASC';
   
         $stmt = $db->prepare($sql);
@@ -1354,12 +1392,10 @@ class SpArenaManagerModel extends \Core\Model
     {
         //Retrieving arenas staff to view from the database
         $sql = 'SELECT user.user_id, user.first_name, user.last_name ,user.username,user.primary_contact,user.type
-        FROM administration_staff
-        INNER JOIN booking_handling_staff ON
-        administration_staff.manager_user_id =booking_handling_staff.manager_user_id
-        INNER JOIN user ON administration_staff.user_id=user.user_id OR booking_handling_staff.user_id=user.user_id
-         WHERE user.security_status="active" AND (administration_staff.manager_user_id=:id OR booking_handling_staff.manager_user_id=:id)
-         GROUP BY user.user_id';
+        FROM user
+        INNER JOIN administration_staff ON user.user_id =
+        administration_staff.user_id 
+        WHERE user.security_status="active" AND administration_staff.manager_user_id=:id  GROUP BY user.user_id';
 
 
         $db = static::getDB();
@@ -1369,23 +1405,37 @@ class SpArenaManagerModel extends \Core\Model
         //Converting retrieved data from database into PDOs
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $stmt->execute();
-
+        
         //Assigning the fetched PDOs to result
-        $result = $stmt->fetchAll();
-        return $result;
+        $result1 = $stmt->fetchAll();
+        $sql = 'SELECT user.user_id, user.first_name, user.last_name ,user.username,user.primary_contact,user.type
+        FROM user
+        INNER JOIN booking_handling_staff ON user.user_id =
+        booking_handling_staff.user_id 
+        WHERE user.security_status="active" AND booking_handling_staff.manager_user_id=:id  GROUP BY user.user_id';
+
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+        $result2 = $stmt->fetchAll();
+        $result1 = array_merge($result1, $result2);
+        return $result1;
     }
     //End of displaying sports arenas view staff for manager
     //Start of displaying sports arenas remove staff view for manager
     public static function managerRemoveStaff($id)
     {
-        //Retrieving arenas staff to view for removing from the database
-        $sql = 'SELECT user.user_id, user.first_name, user.last_name ,user.username,user.primary_contact,user.type 
-        FROM administration_staff
-        INNER JOIN booking_handling_staff ON
-        administration_staff.manager_user_id =booking_handling_staff.manager_user_id
-        INNER JOIN user    ON administration_staff.user_id=user.user_id OR booking_handling_staff.user_id=user.user_id
-         WHERE user.security_status="active" AND (administration_staff.manager_user_id=:id OR  booking_handling_staff.manager_user_id=:id)
-         GROUP BY user.user_id';
+        //Retrieving arenas staff to view from the database
+        $sql = 'SELECT user.user_id, user.first_name, user.last_name ,user.username,user.primary_contact,user.type
+        FROM user
+        INNER JOIN administration_staff ON user.user_id =
+        administration_staff.user_id 
+        WHERE user.security_status="active" AND administration_staff.manager_user_id=:id  GROUP BY user.user_id';
 
 
         $db = static::getDB();
@@ -1395,10 +1445,25 @@ class SpArenaManagerModel extends \Core\Model
         //Converting retrieved data from database into PDOs
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $stmt->execute();
-
         //Assigning the fetched PDOs to result
-        $result = $stmt->fetchAll();
-        return $result;
+        $result1 = $stmt->fetchAll();
+        $sql = 'SELECT user.user_id, user.first_name, user.last_name ,user.username,user.primary_contact,user.type
+        FROM user
+        INNER JOIN booking_handling_staff ON user.user_id =
+        booking_handling_staff.user_id 
+        WHERE user.security_status="active" AND booking_handling_staff.manager_user_id=:id  GROUP BY user.user_id';
+
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+        $result2 = $stmt->fetchAll();
+        $result1 = array_merge($result1, $result2);
+        return $result1;
     }
     //End of displaying sports arenas remove staff view for manager
     public static function addStaff($manager_id, $first_name, $last_name, $mobile_number, $username, $password, $staff_type, $image)
@@ -1474,11 +1539,27 @@ class SpArenaManagerModel extends \Core\Model
         try {
             $db = static::getDB();
             $db->beginTransaction();
-            $sql = 'UPDATE user SET security_status="inactive", account_status="inactive"  WHERE user_id=:user_id';
-            $stmt = $db->prepare($sql);
-            $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
-            $stmt->execute();
+            $sql1 = 'UPDATE user SET security_status="inactive", account_status="inactive"  WHERE user_id=:user_id';
+            $stmt1 = $db->prepare($sql1);
+            $stmt1->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+            $stmt1->execute();
+            $sql2 = 'SELECT user.primary_contact, user.first_name FROM user WHERE user_id=:user_id';
+            $stmt2 = $db->prepare($sql2);
+            $stmt2->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+            $stmt2->execute();
+            $result2 = $stmt2->fetch(PDO::FETCH_ASSOC);
+            $user_mobile_no = $result2['primary_contact'];
+            $user_first_name = $result2['first_name'];
+            $sql3 = 'SELECT user.first_name, user.last_name FROM user WHERE user_id=:user_id';
+            $stmt3 = $db->prepare($sql3);
+            $stmt3->bindValue(':user_id', $current_user_id, PDO::PARAM_INT);
+            $stmt3->execute();
+            $result3 = $stmt3->fetch(PDO::FETCH_ASSOC);
+            $manager_first_name = $result3['first_name'];
+            $manager_last_name = $result3['last_name'];
+
             NotificationModel::managerRemoveStaffSuccessManagerNotification($current_user_id, $user_id);
+            NotificationModel::managerRemoveStaffMobileSuccessNotification($manager_first_name, $manager_last_name, $user_mobile_no, $user_first_name);
             $db->commit();
             return true;
         } catch (PDOException $e) {
@@ -1586,13 +1667,14 @@ class SpArenaManagerModel extends \Core\Model
 
         //Assigning the fetched PDOs to result
         $result1 = $stmt->fetch(PDO::FETCH_ASSOC);
-        $lastMonth = $result1["BookingMonth"];
-        $lastYear = $result1["BookingYear"];
+        if ($result1) {
+            $lastMonth = $result1["BookingMonth"];
+            $lastYear = $result1["BookingYear"];
 
-        $days_in_month = cal_days_in_month(CAL_GREGORIAN, $lastMonth, $lastYear);
-        $current_date = $lastYear."-".$lastMonth."-".$days_in_month;
+            $days_in_month = cal_days_in_month(CAL_GREGORIAN, $lastMonth, $lastYear);
+            $current_date = $lastYear."-".$lastMonth."-".$days_in_month;
 
-        switch ($days_in_month) {
+            switch ($days_in_month) {
             case 30:
                 $monthsadded = "+2 days -12 months";
                 break;
@@ -1607,39 +1689,40 @@ class SpArenaManagerModel extends \Core\Model
                 break;
         }
         
-        $date = date("Y-m-d", strtotime($monthsadded, strtotime($current_date)));
+            $date = date("Y-m-d", strtotime($monthsadded, strtotime($current_date)));
 
-        $newYear = date("Y", strtotime($date));
-        $newDay = date("d", strtotime($date));
+            $newYear = date("Y", strtotime($date));
+            $newDay = date("d", strtotime($date));
 
-        if ($newYear<$lastYear) {
-            $monthsadded = "-1 day";
-            $date = date("Y-m-d", strtotime($monthsadded, strtotime($date)));
-        }
+            if ($newYear<$lastYear) {
+                $monthsadded = "-1 day";
+                $date = date("Y-m-d", strtotime($monthsadded, strtotime($date)));
+            }
 
-        //Retrieving data about payment method from the database
+            //Retrieving data about payment method from the database
 
-        $sql = 'SELECT booking.payment_method, COUNT(DISTINCT booking.booking_id) AS No_Of_Bookings
+            $sql = 'SELECT booking.payment_method, COUNT(DISTINCT booking.booking_id) AS No_Of_Bookings
                 FROM booking
                 INNER JOIN manager ON booking.sports_arena_id=manager.sports_arena_id
                 WHERE booking.security_status="active" AND manager.user_id=:id AND booking.booking_date BETWEEN :previousDate AND :currentDate
                 GROUP BY booking.payment_method ';
 
-        $db = static::getDB();
-        $stmt = $db->prepare($sql);
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
 
-        //Binding input data into database query variables
-        $stmt->bindValue(':previousDate', $date, PDO::PARAM_STR);
-        $stmt->bindValue(':currentDate', $current_date, PDO::PARAM_STR);
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            //Binding input data into database query variables
+            $stmt->bindValue(':previousDate', $date, PDO::PARAM_STR);
+            $stmt->bindValue(':currentDate', $current_date, PDO::PARAM_STR);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
-        //Converting retrieved data from database into PDOs
-        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-        $stmt->execute();
+            //Converting retrieved data from database into PDOs
+            $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+            $stmt->execute();
 
-        //Assigning the fetched PDOs to result
-        $result2 = $stmt->fetchAll();
-        return $result2;
+            //Assigning the fetched PDOs to result
+            $result2 = $stmt->fetchAll();
+            return $result2;
+        }
     }
     //End of displaying sports arenas chart 2 for manager
 
@@ -1660,13 +1743,14 @@ class SpArenaManagerModel extends \Core\Model
 
         //Assigning the fetched PDOs to result
         $result1 = $stmt->fetch(PDO::FETCH_ASSOC);
-        $lastMonth = $result1["BookingMonth"];
-        $lastYear = $result1["BookingYear"];
+        if ($result1) {
+            $lastMonth = $result1["BookingMonth"];
+            $lastYear = $result1["BookingYear"];
 
-        $days_in_month = cal_days_in_month(CAL_GREGORIAN, $lastMonth, $lastYear);
-        $current_date = $lastYear."-".$lastMonth."-".$days_in_month;
+            $days_in_month = cal_days_in_month(CAL_GREGORIAN, $lastMonth, $lastYear);
+            $current_date = $lastYear."-".$lastMonth."-".$days_in_month;
 
-        switch ($days_in_month) {
+            switch ($days_in_month) {
             case 30:
                 $monthsadded = "+2 days -12 months";
                 break;
@@ -1681,18 +1765,18 @@ class SpArenaManagerModel extends \Core\Model
                 break;
         }
         
-        $date = date("Y-m-d", strtotime($monthsadded, strtotime($current_date)));
+            $date = date("Y-m-d", strtotime($monthsadded, strtotime($current_date)));
 
-        $newYear = date("Y", strtotime($date));
-        $newDay = date("d", strtotime($date));
+            $newYear = date("Y", strtotime($date));
+            $newDay = date("d", strtotime($date));
 
-        if ($newYear<$lastYear) {
-            $monthsadded = "-1 day";
-            $date = date("Y-m-d", strtotime($monthsadded, strtotime($date)));
-        }
+            if ($newYear<$lastYear) {
+                $monthsadded = "-1 day";
+                $date = date("Y-m-d", strtotime($monthsadded, strtotime($date)));
+            }
 
-        //Retrieving data about timeslots from the database
-        $sql = 'SELECT time_slot.start_time, COUNT(DISTINCT booking.booking_id) AS No_Of_Bookings
+            //Retrieving data about timeslots from the database
+            $sql = 'SELECT time_slot.start_time, COUNT(DISTINCT booking.booking_id) AS No_Of_Bookings
                 FROM booking 
                 INNER JOIN manager ON booking.sports_arena_id=manager.sports_arena_id 
                 INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id 
@@ -1702,21 +1786,22 @@ class SpArenaManagerModel extends \Core\Model
                 ORDER BY time_slot.start_time ASC ';
 
 
-        $db = static::getDB();
-        $stmt = $db->prepare($sql);
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
 
-        //Binding input data into database query variables
-        $stmt->bindValue(':previousDate', $date, PDO::PARAM_STR);
-        $stmt->bindValue(':currentDate', $current_date, PDO::PARAM_STR);
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            //Binding input data into database query variables
+            $stmt->bindValue(':previousDate', $date, PDO::PARAM_STR);
+            $stmt->bindValue(':currentDate', $current_date, PDO::PARAM_STR);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
-        //Converting retrieved data from database into PDOs
-        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-        $stmt->execute();
+            //Converting retrieved data from database into PDOs
+            $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+            $stmt->execute();
 
-        //Assigning the fetched PDOs to result
-        $result = $stmt->fetchAll();
-        return $result;
+            //Assigning the fetched PDOs to result
+            $result = $stmt->fetchAll();
+            return $result;
+        }
     }
     //End of displaying sports arenas chart 3 for manager
 
@@ -1738,13 +1823,14 @@ class SpArenaManagerModel extends \Core\Model
 
         //Assigning the fetched PDOs to result
         $result1 = $stmt->fetch(PDO::FETCH_ASSOC);
-        $lastMonth = $result1["BookingMonth"];
-        $lastYear = $result1["BookingYear"];
+        if ($result1) {
+            $lastMonth = $result1["BookingMonth"];
+            $lastYear = $result1["BookingYear"];
 
-        $days_in_month = cal_days_in_month(CAL_GREGORIAN, $lastMonth, $lastYear);
-        $current_date = $lastYear."-".$lastMonth."-".$days_in_month;
+            $days_in_month = cal_days_in_month(CAL_GREGORIAN, $lastMonth, $lastYear);
+            $current_date = $lastYear."-".$lastMonth."-".$days_in_month;
 
-        switch ($days_in_month) {
+            switch ($days_in_month) {
             case 30:
                 $monthsadded = "+2 days -12 months";
                 break;
@@ -1759,19 +1845,19 @@ class SpArenaManagerModel extends \Core\Model
                 break;
         }
         
-        $date = date("Y-m-d", strtotime($monthsadded, strtotime($current_date)));
+            $date = date("Y-m-d", strtotime($monthsadded, strtotime($current_date)));
 
-        $newYear = date("Y", strtotime($date));
-        $newDay = date("d", strtotime($date));
+            $newYear = date("Y", strtotime($date));
+            $newDay = date("d", strtotime($date));
 
-        if ($newYear<$lastYear) {
-            $monthsadded = "-1 day";
-            $date = date("Y-m-d", strtotime($monthsadded, strtotime($date)));
-        }
+            if ($newYear<$lastYear) {
+                $monthsadded = "-1 day";
+                $date = date("Y-m-d", strtotime($monthsadded, strtotime($date)));
+            }
 
         
-        //Retrieving data about bookings per facility from the database
-        $sql = 'SELECT facility.facility_name, COUNT(DISTINCT booking.booking_id) AS No_Of_Bookings
+            //Retrieving data about bookings per facility from the database
+            $sql = 'SELECT facility.facility_name, COUNT(DISTINCT booking.booking_id) AS No_Of_Bookings
                 FROM booking 
                 INNER JOIN manager ON booking.sports_arena_id=manager.sports_arena_id 
                 INNER JOIN facility ON booking.facility_id=facility.facility_id 
@@ -1779,21 +1865,22 @@ class SpArenaManagerModel extends \Core\Model
                 GROUP BY facility.facility_name ';
 
 
-        $db = static::getDB();
-        $stmt = $db->prepare($sql);
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
 
-        //Binding input data into database query variables
-        $stmt->bindValue(':previousDate', $date, PDO::PARAM_STR);
-        $stmt->bindValue(':currentDate', $current_date, PDO::PARAM_STR);
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            //Binding input data into database query variables
+            $stmt->bindValue(':previousDate', $date, PDO::PARAM_STR);
+            $stmt->bindValue(':currentDate', $current_date, PDO::PARAM_STR);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
-        //Converting retrieved data from database into PDOs
-        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-        $stmt->execute();
+            //Converting retrieved data from database into PDOs
+            $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+            $stmt->execute();
 
-        //Assigning the fetched PDOs to result
-        $result = $stmt->fetchAll();
-        return $result;
+            //Assigning the fetched PDOs to result
+            $result = $stmt->fetchAll();
+            return $result;
+        }
     }
     //End of displaying sports arenas chart 4 for manager
 
