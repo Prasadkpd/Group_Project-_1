@@ -61,11 +61,60 @@ class Sparenamanager extends \Core\Controller
 
     //End of Edit Arena profile of manager staff
     
+    //Start of Initially loading Edit Arena profile of manager
     public function editarenaprofileAction()
     {
+        //Get Arena id from the route parameter
         $arena_id = $this->route_params['id'];
         SpArenaManagerModel::editArenaProfile($arena_id, $_POST['arena_name'], $_POST['location'], $_POST['contact'], $_POST['category'], $_POST['google_map_link'], $_POST['description'], $_POST['other_facilities'], $_POST['payment_method']);
         $this->redirect("/Sparenamanager");
+    }
+    //End of Initially loading Edit Arena profile of manager
+    
+     
+    // Start of Update Image1 in Edit arena Profile
+    public function editimageoneAction()
+    {
+        $current_user = Auth::getUser();
+        $id = $current_user->user_id;
+        SpArenaManagerModel::changeImageone($id, $_FILES['image_1']);
+        $this->redirect('/Sparenamanager/managereditarenaprofile/#image_uploader');
+    }
+
+    // Start of Update Image1 in Edit arena Profile
+    public function editimagetwoAction()
+    {
+        $current_user = Auth::getUser();
+        $id = $current_user->user_id;
+        SpArenaManagerModel::changeImage2($id, $_FILES['image_2']);
+        $this->redirect('/Sparenamanager/managereditarenaprofile/#image_uploader');
+    }
+
+    // Start of Update Image1 in Edit arena Profile
+    public function editimagethreeAction()
+    {
+        $current_user = Auth::getUser();
+        $id = $current_user->user_id;
+        SpArenaManagerModel::changeImage3($id, $_FILES['image_3']);
+        $this->redirect('/Sparenamanager/managereditarenaprofile/#image_uploader');
+    }
+
+    // Start of Update Image1 in Edit arena Profile
+    public function editimagefourAction()
+    {
+        $current_user = Auth::getUser();
+        $id = $current_user->user_id;
+        SpArenaManagerModel::changeImage4($id, $_FILES['image_4']);
+        $this->redirect('/Sparenamanager/managereditarenaprofile/#image_uploader');
+    }
+
+    // Start of Update Image1 in Edit arena Profile
+    public function editimagefiveAction()
+    {
+        $current_user = Auth::getUser();
+        $id = $current_user->user_id;
+        SpArenaManagerModel::changeImage5($id, $_FILES['image_5']);
+        $this->redirect('/Sparenamanager/managereditarenaprofile/#image_uploader');
     }
 
     //Start of Manage bookings of manager
@@ -324,10 +373,10 @@ class Sparenamanager extends \Core\Controller
     }
     public function removetimeslotAction()
     {
-         $current_user = Auth::getUser();
+        $current_user = Auth::getUser();
         $timeSlot_Id = $this->route_params['id'];
-        $success = SpArenaManagerModel::removeTimeSlot($current_user,$timeSlot_Id);
-        if($success){
+        $success = SpArenaManagerModel::removeTimeSlot($current_user, $timeSlot_Id);
+        if ($success) {
             $this->redirect('/Sparenamanager/managetimeslot');
         }
     }
@@ -423,8 +472,8 @@ class Sparenamanager extends \Core\Controller
     {
         $current_user = Auth::getUser();
         $facility_id = $this->route_params['id'];
-        $executed = SpArenaManagerModel::updateFacility($current_user,$facility_id, $_POST['New_Facility_name']);
-        if($executed){
+        $executed = SpArenaManagerModel::updateFacility($current_user, $facility_id, $_POST['New_Facility_name']);
+        if ($executed) {
             $this->redirect('/Sparenamanager/managefacility');
         }
     }
@@ -581,49 +630,4 @@ class Sparenamanager extends \Core\Controller
         echo $payment_method."_".$count2."$".$start_time."_".$count3."$".$facility_name."_".$count4;
     }
     // End of reshaping charts
-
-    // Start of Update Image1 in Edit arena Profile
-    public function editimageoneAction()
-    {
-        $current_user = Auth::getUser();
-        $id = $current_user->user_id;
-        SpArenaManagerModel::changeImageone($id, $_FILES['image_1']);
-        $this->redirect('/Sparenamanager/managereditarenaprofile/#image_uploader');
-    }
-
-    // Start of Update Image1 in Edit arena Profile
-    public function editimagetwoAction()
-    {
-        $current_user = Auth::getUser();
-        $id = $current_user->user_id;
-        SpArenaManagerModel::changeImage2($id, $_FILES['image_2']);
-        $this->redirect('/Sparenamanager/managereditarenaprofile/#image_uploader');
-    }
-
-    // Start of Update Image1 in Edit arena Profile
-    public function editimagethreeAction()
-    {
-        $current_user = Auth::getUser();
-        $id = $current_user->user_id;
-        SpArenaManagerModel::changeImage3($id, $_FILES['image_3']);
-        $this->redirect('/Sparenamanager/managereditarenaprofile/#image_uploader');
-    }
-
-    // Start of Update Image1 in Edit arena Profile
-    public function editimagefourAction()
-    {
-        $current_user = Auth::getUser();
-        $id = $current_user->user_id;
-        SpArenaManagerModel::changeImage4($id, $_FILES['image_4']);
-        $this->redirect('/Sparenamanager/managereditarenaprofile/#image_uploader');
-    }
-
-    // Start of Update Image1 in Edit arena Profile
-    public function editimagefiveAction()
-    {
-        $current_user = Auth::getUser();
-        $id = $current_user->user_id;
-        SpArenaManagerModel::changeImage5($id, $_FILES['image_5']);
-        $this->redirect('/Sparenamanager/managereditarenaprofile/#image_uploader');
-    }
 }
