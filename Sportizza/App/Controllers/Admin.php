@@ -23,6 +23,7 @@ class Admin extends Authenticated
             return false;
         }
     }
+    
     protected function after()
     {
     }

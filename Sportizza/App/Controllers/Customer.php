@@ -11,7 +11,7 @@ use App\Models\SignupModel;
 
 use App\Models\NotificationModel;
 
-class Customer extends Authenticated
+ class Customer extends Authenticated
 {
     //Start of blocking a user after login
     //Blocking unauthorised access after login as a user
@@ -20,6 +20,7 @@ class Customer extends Authenticated
         if (Auth::getUser()== NULL){
             $this->redirect('/login');
         }
+        
         //Checking whether the user type is customer
         if (Auth::getUser()->type == 'Customer') {
             return true;
