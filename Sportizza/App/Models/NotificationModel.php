@@ -1527,7 +1527,7 @@ class NotificationModel extends \Core\Model
             $db->beginTransaction();
             $sql1 = 'SELECT user.first_name, user.last_name FROM user WHERE user_id=:user_id';
             $stmt1 = $db->prepare($sql1);
-            $stmt1->bindValue(':user_id', $removed_user_id, PDO::PARAM_INT);
+            $stmt1->bindValue(':user_id', $customer_id, PDO::PARAM_INT);
             $stmt1->execute();
             $result1 = $stmt1->fetch(PDO::FETCH_ASSOC);
             $first_name = $result1['first_name'];
@@ -1543,6 +1543,8 @@ class NotificationModel extends \Core\Model
         } catch (PDOException $e) {
             $db->rollback();
             throw $e;
+        }
+    }
     public static function addRatingNotificationForManager($arenaId, $subject, $desc)
     {
         
@@ -1606,6 +1608,33 @@ class NotificationModel extends \Core\Model
             $stmt2->bindValue(':p_level', "low", PDO::PARAM_STR);
             $stmt2->bindValue(':desc', $desc, PDO::PARAM_STR);
             $stmt2->execute();
+        }
+    }
+    public static function managerRemoveStaffMobileSuccessNotification($manager_first_name, $manager_last_name, $user_mobile_no, $user_first_name)
+    {
+        //our mobile number
+        $user = "94765282976";
+        //our account password
+        $password = 4772;
+            
+        $_SESSION['mobile_number'] = $user_mobile_no;
+        //Message to be sent
+        $text = urlencode("Dear " . $user_first_name .", your account have been removed by your sports arena manager ". $manager_first_name ." " . $manager_last_name ." ");
+        // Replacing the initial 0 with 94
+        $to = substr_replace($user_mobile_no, '94', 0, 0);
+        echo($to);
+        //Base URL
+        $baseurl = "http://www.textit.biz/sendmsg";
+        // regex to create the url
+        $url = "$baseurl/?id=$user&pw=$password&to=$to&text=$text";
+    
+        $ret = file($url);
+        $res = explode(":", $ret[0]);
+    
+        if (trim($res[0]) == "OK") {
+            echo "Message Sent - ID : " . $res[1];
+        } else {
+            echo "Sent Failed - Error : " . $res[1];
         }
     }
 }

@@ -99,7 +99,7 @@ class HomeModel extends \Core\Model
                                     </h5>
                                 </div>
                         </div>
-                        <a href='/customer/booking/{$row["sports_arena_id"]}' class='btn check-availability-btn'> Availability</a>
+                        <a href='/customer/booking/{$row["s_a_profile_id"]}' class='btn check-availability-btn'> Availability</a>
                         </div></div>";
         }
 

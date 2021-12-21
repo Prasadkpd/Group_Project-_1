@@ -10,6 +10,8 @@
      <link rel="stylesheet" href="/Assets/css/navbar.css?version=4">
      <!-- File Specific CSS Styles -->
     <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-timeslots.css?version=9">
+    <!-- Manifest file -->
+    <link rel="manifest" href="/./manifest.json" />
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 </head>
 
@@ -193,9 +195,9 @@
                     <li>
                         <a href="/Sparenamanager/manageusers" class="side-menu-li">
                             <i class="fas fa-users"></i>
-                            <p class="side-menu-item">Manage Users</p>
+                            <p class="side-menu-item">Manage Staff</p>
                         </a>
-                        <p class="side-menu-tooltip">Manage Users</p>
+                        <p class="side-menu-tooltip">Manage Staff</p>
                     </li>
                     <li>
                         <a href="/Sparenamanager/manageanalytics" class="side-menu-li">
@@ -416,6 +418,9 @@
     <!-- Validate timeslot insertion -->
     <script type="text/javascript" src="/Assets/js/lib/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/Assets/js/SpArenaManager/manager-validateTimeslot-ajax.js"></script>
+    <!-- Service Worker -->
+    <script src="/Assets/js/swSnippet.js"></script>
+    <script src="/service-worker.js"></script>
 </body>
 
 </html>

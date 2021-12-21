@@ -99,7 +99,6 @@ class Edituserdetails extends Authenticated
         }
         //Check whether the new mobile number is valid
 
-
         //If new mobile number is not already exist,
         else {
             //Change the direct_url saved in session to this URL

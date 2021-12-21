@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="/Assets/css/navbar.css?version=4">
     <!-- File Specific CSS Styles -->
     <link rel="stylesheet" href="/Assets/css/Customer/newCustomerBooking.css">
+    <!-- Manifest file -->
+    <link rel="manifest" href="/./manifest.json" />
     <!-- FontAwesome Icon -->
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 
@@ -134,7 +136,7 @@
                 <div class="sp-arena">
 
                     <div class="sp-arena-img">
-                        <img src="/Assets/images/customer/cricket.jpg">
+                        <img src="{{arenaDetails[0].photo1_name}}">
                     </div>
                     <div class="sp-arena-details">
                         <div class="sp-name">
@@ -387,6 +389,9 @@
     <!-- <script src="/Assets/js/Customer/customer_view_booking_hide_ajax.js"></script> -->
     <script src="/Assets/js/Customer/customer_view_booking_dateChange_ajax.js"></script>
     <script src="/Assets/js/Customer/newCustomerBooking.js?version=3"></script>
+    <!-- Service Worker -->
+    <script src="/Assets/js/swSnippet.js"></script>
+    <script src="/service-worker.js"></script>
 
 
 

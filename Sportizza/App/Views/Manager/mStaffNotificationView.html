@@ -11,6 +11,8 @@
      <!-- File Specific CSS Styles -->
     <link rel="stylesheet" href="/Assets/css/SpArenaManager/notification.css?version=3">
     <!-- <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-booking.css?version=2"> -->
+    <!-- Manifest file -->
+    <link rel="manifest" href="/./manifest.json" />
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 </head>
 
@@ -185,9 +187,9 @@
                     <li>
                         <a href="/Sparenamanager/manageusers" class="side-menu-li">
                             <i class="fas fa-users"></i>
-                            <p class="side-menu-item">Manage Users</p>
+                            <p class="side-menu-item">Manage Staff</p>
                         </a>
-                        <p class="side-menu-tooltip">Manage Users</p>
+                        <p class="side-menu-tooltip">Manage Staff</p>
                     </li>
                     <li>
                         <a href="/Sparenamanager/manageanalytics" class="side-menu-li">
@@ -259,6 +261,9 @@
      <!-- File specific JS -->
     <script type="text/javascript" src="/Assets/js/SpArenaManager/manage-bookings.js?version=1"></script>
     <script type="text/javascript" src="/Assets/js/SpArenaManager/notification.js"></script>
+    <!-- Service Worker -->
+    <script src="/Assets/js/swSnippet.js"></script>
+    <script src="/service-worker.js"></script>
 
 
 </body>

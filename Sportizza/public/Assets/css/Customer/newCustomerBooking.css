@@ -916,7 +916,7 @@ footer {
   outline: 1px solid #eee;
 }
 
-.slide-container .thumbnail {
+/* .slide-container .thumbnail {
   flex: 0 0 auto;
   object-fit: cover;
   cursor: pointer;
@@ -928,6 +928,24 @@ footer {
   transform: scale(0.95);
   transition: all 0.3s;
   cursor: pointer;
+} */
+.slide-container .thumbnail {
+    flex: 0 0 auto;
+    object-fit: cover;
+    cursor: pointer;
+    margin: 5px;
+    height: 200px;
+    width: 250px;
+    border-radius: 30px;
+    overflow: hidden;
+    transform: scale(0.95);
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.slide-container .thumbnail img {
+    height: 200px;
+    width: 250px;
 }
 .slide-container .thumbnail:hover {
   transform: scale(1);

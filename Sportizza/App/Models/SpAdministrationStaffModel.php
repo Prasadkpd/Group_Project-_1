@@ -444,8 +444,8 @@ class SpAdministrationStaffModel extends \Core\Model
             FROM time_slot
             INNER JOIN facility ON time_slot.facility_id= facility.facility_id
             INNER JOIN sports_arena_profile ON facility.sports_arena_id= sports_arena_profile.sports_arena_id
-            INNER JOIN booking_timeslot ON time_slot.time_slot_id =booking_timeslot.timeslot_id
-            INNER JOIN booking ON booking_timeslot.booking_id=booking.booking_id
+            Left JOIN booking_timeslot ON time_slot.time_slot_id =booking_timeslot.timeslot_id
+            Left JOIN booking ON booking_timeslot.booking_id=booking.booking_id
             WHERE time_slot.time_slot_id NOT IN
                                                 (SELECT booking_timeslot.timeslot_id 
                                                 FROM booking 
@@ -517,7 +517,7 @@ class SpAdministrationStaffModel extends \Core\Model
                                                     (SELECT booking_timeslot.timeslot_id 
                                                     FROM booking 
                                                     INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id 
-                                                    WHERE ((booking.booking_date=:date) OR 
+                                                    WHERE ((booking.booking_date=:date) AND 
                                                     (payment_status="pending" AND booked_date +INTERVAL 30 MINUTE > CURRENT_TIMESTAMP))
                                                     AND booking_timeslot.security_status="active")
                 AND time_slot.manager_sports_arena_id=:arena_id
@@ -540,8 +540,8 @@ class SpAdministrationStaffModel extends \Core\Model
                 FROM time_slot
                 INNER JOIN facility ON time_slot.facility_id= facility.facility_id
                 INNER JOIN sports_arena_profile ON facility.sports_arena_id= sports_arena_profile.sports_arena_id
-                INNER JOIN booking_timeslot ON time_slot.time_slot_id =booking_timeslot.timeslot_id
-                INNER JOIN booking ON booking_timeslot.booking_id=booking.booking_id
+                Left JOIN booking_timeslot ON time_slot.time_slot_id =booking_timeslot.timeslot_id
+                Left JOIN booking ON booking_timeslot.booking_id=booking.booking_id
                 WHERE time_slot.time_slot_id NOT IN
                                                     (SELECT booking_timeslot.timeslot_id 
                                                     FROM booking 
@@ -968,7 +968,7 @@ class SpAdministrationStaffModel extends \Core\Model
         INNER JOIN time_slot ON booking_timeslot.timeslot_id=time_slot.time_slot_id
         INNER JOIN user ON user.user_id=booking.customer_user_id
         INNER JOIN administration_staff ON booking.sports_arena_id =administration_staff.sports_arena_id
-        WHERE booking.security_status="active" AND administration_staff.user_id=:id AND booking.booking_date>=CURRENT_DATE()
+        WHERE booking.security_status="active" AND administration_staff.user_id=:id AND booking.booking_date>CURRENT_DATE()
         ORDER BY booking.booking_date DESC';
 
         $stmt = $db->prepare($sql);
@@ -1092,24 +1092,57 @@ class SpAdministrationStaffModel extends \Core\Model
     }
     //End of displaying sports arena's booking payment view
 
-    //Start of getting payment for cash bookings
+    //Start of displaying sports arena's updating bookings
     public static function updateBookingPayment($booking_id)
     {
-        //Create a new database connection
-        $db = static::getDB();
+        try {
+            $db = static::getDB();
+            $db->beginTransaction();
 
-        //Updating status of the bookings in the database
-        $sql = 'UPDATE `booking` 
-        SET `payment_status`="paid" 
-        WHERE `booking_id`=:booking_id';
+            //Updating status of the bookings in the database
+            $sql1 = 'UPDATE booking SET payment_status="paid" WHERE booking_id=:booking_id';
+            $stmt1 = $db->prepare($sql1);
+            $stmt1->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+            $stmt1->execute();
 
-        $stmt = $db->prepare($sql);
-        $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+            $sql2 = 'SELECT price_per_booking, customer_user_id, invoice_id FROM booking WHERE booking_id=:booking_id';
+            $stmt2 = $db->prepare($sql2);
+            $stmt2->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+            $stmt2->execute();
+            $result2 = $stmt2->fetch(PDO::FETCH_ASSOC);
 
-        //Need to update invoice table and payment table too
-        return ($stmt->execute());
+            $price_per_booking = $result2["price_per_booking"];
+            $customer_user_id = $result2["customer_user_id"];
+            $invoice_id = $result2["invoice_id"];
+
+            $sql3 = 'INSERT INTO payment (customer_user_id, net_amount) VALUES (:customer_user_id,:net_amount)';
+            $stmt3 = $db->prepare($sql3);
+            $stmt3->bindValue(':customer_user_id', $customer_user_id, PDO::PARAM_INT);
+            $stmt3->bindValue(':net_amount', $price_per_booking, PDO::PARAM_INT);
+            $stmt3->execute();
+        
+            $sql4 = 'SELECT payment_id FROM payment ORDER BY payment_id DESC LIMIT 1';
+            $stmt4 = $db->prepare($sql4);
+            $stmt4->execute();
+            $result4 = $stmt4->fetch(PDO::FETCH_ASSOC);
+
+            $payment_id = $result4['payment_id'];
+          
+
+            $sql5 = 'UPDATE invoice SET payment_id=:payment_id WHERE invoice_id=:invoice_id';
+            
+            $stmt5 = $db->prepare($sql5);
+            $stmt5->bindValue(':payment_id', $payment_id, PDO::PARAM_INT);
+            $stmt5->bindValue(':invoice_id', $invoice_id, PDO::PARAM_INT);
+            $stmt5->execute();
+            $db->commit();
+            return true;
+        } catch (PDOException $e) {
+            $db->rollback();
+            throw $e;
+        }
     }
-    //End of getting payment for cash bookings
+    //End of displaying sports arena's updating bookings
     //End of manage bookings
 
     /***************************************************************************************************/

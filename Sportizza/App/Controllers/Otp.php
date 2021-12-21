@@ -26,22 +26,6 @@ class Otp extends \Core\Controller
     {
     }
 
-    //check this again
-    // public function mobileverificationAction()
-    // {
-    //     $user = new User($_POST);
-
-    //     if ($user->save()) {
-
-    //         header('Location: http://' . $_SERVER['HTTP_HOST'] . '/otp/success', true, 303);
-    //         exit;
-    //     } else {
-
-    //         View::renderTemplate('LoginSignup/signup.html', [
-    //             'user' => $user
-    //         ]);
-    //     }
-    // }
 
     //Start of resend OTP
     public function resendotpAction()

@@ -6,7 +6,7 @@ use Core\View;
 use App\Auth;
 use App\Models\SpBookStaffModel;
 
-class Spbookstaff extends \Core\Controller
+class Spbookstaff extends Authenticated
 {
     //Start of blocking a user after login
     //Blocking unauthorised access after login as a user
