@@ -1,16 +1,16 @@
-      //popup notification section
-      function open_popup_notification(subject,description) {
-        var form = document.getElementById("popup_notification");
-        console.log('efekjfnejfnefj');
-        form.querySelector("#popup_notification").innerHTML = "<h1>"+subject+"</h1>"+"<p>"+description+"</p>";
-        form.style.display = "block";
-      }
-      function close_popup_notification(){
-        var form=document.getElementById("popup_notification");
-          
-        form.style.display = "none";
-      } 
+//popup notification section
+function open_popup_notification(subject, description) {
+  var form = document.getElementById("popup_notification");
+  console.log("efekjfnejfnefj");
+  form.querySelector("#popup_notification").innerHTML =
+    "<h1>" + subject + "</h1>" + "<p>" + description + "</p>";
+  form.style.display = "block";
+}
+function close_popup_notification() {
+  var form = document.getElementById("popup_notification");
 
+  form.style.display = "none";
+}
 
 //popup sign out message
 function open_popup_signout_message() {
@@ -23,10 +23,8 @@ function close_popup_signout_message() {
 }
 
 window.onload = function () {
-  
-
-  var today = new Date().toISOString().split('T')[0];
-  document.getElementsByName("date-picker")[0].setAttribute('max', today);
+  var today = new Date().toISOString().split("T")[0];
+  document.getElementsByName("date-picker")[0].setAttribute("max", today);
 };
 
 function Datepicker() {
