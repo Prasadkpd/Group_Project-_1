@@ -132,7 +132,7 @@ $(document).ready(function () {
             dataType: "html",
             
             success: function (response) {
-                // console.log(response);
+                console.log(response);
                 $(".search-results").html(response);
             }
         
