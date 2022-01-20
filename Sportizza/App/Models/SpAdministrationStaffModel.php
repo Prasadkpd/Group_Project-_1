@@ -128,7 +128,37 @@ class SpAdministrationStaffModel extends \Core\Model
         }
     }
     //End of editing sports arena profile(Excluding images)
+    public static function validateeditarenanameAction($id,$searchValue,$categoryValue,$locationValue)
+    {
+        $db = static::getDB();
+        $sql ='SELECT sports_arena_id FROM administration_staff WHERE user_id = :id';
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $sa_arena_id = $result['sports_arena_id'];
+        //Assigning the fetched PDOs to result
+        $sql = 'SELECT sa_name FROM sports_arena_profile WHERE UPPER(sa_name) = (:sa_name) AND UPPER(location) = (:location) AND  UPPER(category) = (:category) AND sports_arena_id!=(:id)';
 
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':sa_name', $searchValue, PDO::PARAM_STR);
+        $stmt->bindValue(':location', $locationValue, PDO::PARAM_STR);
+        $stmt->bindValue(':category', $categoryValue, PDO::PARAM_STR);
+        $stmt->bindValue(':id', $sa_arena_id, PDO::PARAM_INT);
+
+        //Converting retrieved data from database into PDOs
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $sa_name = $result['sa_name'];
+        
+        //Assigning the fetched PDOs to result
+        if (empty($sa_name)) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
     //Start of editing image 1
     public static function changeImageone($id, $image_1)
     {

@@ -71,7 +71,23 @@ class Sparenamanager extends Authenticated
     }
     //End of Initially loading Edit Arena profile of manager
     
-     
+    public function validateeditarenanameAction()
+    {
+        $current_user = Auth::getUser();
+        $id = $current_user->user_id;
+        $combined = $this->route_params['arg'];
+        $temp = explode("__", $combined);
+
+        $searchValue = strtoupper(str_replace("_", " ", $temp[0]));
+        $categoryValue = strtoupper(str_replace("_", "-", $temp[1]));
+        $locationValue = strtoupper(str_replace("_", "-", $temp[2]));
+
+        $existing_arenas = SpArenaManagerModel::validateeditarenanameAction($id,$searchValue,$categoryValue,$locationValue);
+         if (!$existing_arenas) {
+             echo true;
+        }
+    }
+        
     // Start of Update Image1 in Edit arena Profile
     public function editimageoneAction()
     {
