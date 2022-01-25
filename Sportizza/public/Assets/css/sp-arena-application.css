@@ -472,10 +472,13 @@ footer {
   padding: 2px 20px;
   display: sticky;
 }
-button#get-position{
+button#get-position {
     position: relative;
-    width: 16%;
+    width: 20%;
+    display: flex;
     height: 45px;
+    align-items: center;
+    justify-content: center;
     border-radius: 25px;
     bottom: 43px;
     left: 84%;
@@ -483,6 +486,10 @@ button#get-position{
     color: #fd4616;
     font-weight: 700;
     cursor: pointer;
+}
+button#get-position i {
+    margin-left: 4px;
+    margin-right: 5px;
 }
 /* pop up section */
 .sectionpop {
@@ -635,7 +642,7 @@ button#get-position{
   }
   button#get-position{
     position: relative;
-    width: 100px;
+    width: 40px;
     height: 40px;
     border-radius: 25px;
     bottom: 43px;
@@ -644,5 +651,13 @@ button#get-position{
     color: #fd4616;
     font-weight: 700;
     cursor: pointer;
+    margin-left: 45px;
+
+}
+button#get-position i{
+  font-size: 16px;
+}
+button#get-position span{
+    display: none;
 }
 }

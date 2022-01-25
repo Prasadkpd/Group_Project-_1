@@ -1,0 +1,146 @@
+
+  
+  .wrapper {
+    /* display: grid; */
+    /* grid-template-columns: 1fr 190px; */
+    /* grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px; */
+    display:flex;
+    
+   
+    
+  }
+  
+  .filter {
+    grid-area: 1 / 2 / 2 / 3;
+    margin: 6em 0 0 1em;
+  }
+  .event_filter_wrapper {
+    margin: .5em 0;
+  }
+  
+  #calendar {
+    /* margin: 3em 0 0 0; */
+    /* grid-area: 1 / 1 / 2 / 2; */
+  
+    height:90%;
+    background-color: #f0f0f0;
+  }
+  
+  .festival .fc-time {
+    display: none;
+  }
+  
+  
+  .fc-day-grid-event .fc-content {
+    white-space: normal;
+  }
+  
+  a.fc-event-past {
+    background-color: grey !important; 
+    border: none;
+  }
+  
+  a.fc-event.hidden {
+    display: none;
+  }
+
+  .fc .fc-toolbar-title {
+    font-size: 1em;
+    margin: 0;
+}
+
+.fc .fc-toolbar.fc-header-toolbar {
+    margin-bottom: 10px;
+}
+
+.fc-toolbar-chunk .fc-button-group .fc-button{
+    height: 25px;
+    padding: 0 5px 0 5px;
+    
+}
+
+.fc-daygrid-day fc-day fc-day-sun fc-day-future fc-day-other{
+    height:20px;
+}
+
+
+.fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events {
+    min-height:0;
+}
+    
+.fc-direction-ltr .fc-daygrid-week-number {
+  left: 0;
+  border-radius: 0 0 3px;
+  display: none;
+}
+
+button.fc-dayGridMonth-button.fc-button.fc-button-primary.fc-button-active {
+  visibility: hidden;
+}
+
+button.fc-dayGridWeek-button.fc-button.fc-button-primary {
+  visibility: hidden;
+}
+
+button.fc-listWeek-button.fc-button.fc-button-primary {
+  visibility: hidden;
+}
+
+button.fc-today-button.fc-button.fc-button-primary {
+  visibility: hidden;
+}
+
+.fc .fc-toolbar-title {
+  font-size: 1em;
+  margin: 0;
+  margin-left: 10px;
+}
+.fc-daygrid-day-top {
+  /* background: #27ae60;
+  opacity: 0.6; */
+  background-color:  rgba(0, 255, 64, 0.2);;
+}
+.fc .fc-bg-event {
+  
+  
+  opacity: 0.8;
+}
+
+.fc-daygrid-day-top {
+  
+  border-radius:  20px;
+  padding: 2px 8px;
+}
+
+
+.fc .fc-daygrid-day-top {
+  display: flex;
+  justify-content: center;
+}
+
+
+.fc .fc-bg-event {
+  background: none;
+  
+}
+
+.fc-bg-event.fc-event.fc-event-start.fc-event-end.fc-event-future {
+  border-radius:  20px;
+}
+/* .fc .fc-day-other .fc-daygrid-day-top {
+  opacity: .5;
+} */
+
+.fc-bg-event.fc-event.fc-event-start.fc-event-end.fc-event-future {
+  height: 36px;
+}
+
+
+@media screen and (max-width: 420px) {
+  #calendar {
+    
+    display: none;
+}
+}

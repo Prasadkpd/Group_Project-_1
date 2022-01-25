@@ -44,14 +44,13 @@ class Home extends \Core\Controller
         $customerFAQs = HomeModel::homeViewCustomerfaqs();
         $arenaFAQs = HomeModel::homeViewArenafaqs();
 
-        
-
         $arenas = HomeModel::homeSearchArenas($_POST['location'], $_POST['category'], $_POST['name']);
         $search_result['location'] = $_POST['location'];
         $search_result['category'] = $_POST['category'];
         $locations = HomeModel::homeSelectLocations();
         $categories = HomeModel::homeSelectCategories();
         $result = "Search Results:";
+
         //Rendering the visitor view with search results
         View::renderTemplate('Visitor/visitorView.html', [
             'feedbacks' => $feedbacks, 'faqs' => $customerFAQs,
@@ -62,7 +61,6 @@ class Home extends \Core\Controller
 
     public function searcharenasajaxAction(){
         $combined = $this->route_params['arg'];
-
         $temp = explode("__",$combined);
 
         $searchValue = str_replace("_", " ", $temp[0]);
@@ -82,10 +80,6 @@ class Home extends \Core\Controller
         echo HomeModel::homeSearchArenas($locationValue, $categoryValue, $searchValue);
     }
     
-
-    /**
-     * @throws Exception
-     */
     //Start of contact us form's mail
     public function contactAction()
     {

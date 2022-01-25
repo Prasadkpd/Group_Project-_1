@@ -10,6 +10,8 @@
       <link rel="stylesheet" href="/Assets/css/navbar.css?version=4">
       <!-- File Specific CSS Styles -->
     <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-analytics.css?version=8">
+    <!-- Manifest file -->
+    <link rel="manifest" href="/./manifest.json" />
     <!-- File icons -->
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -164,9 +166,9 @@
                     <li>
                         <a href="/Sparenamanager/manageusers" class="side-menu-li">
                             <i class="fas fa-users"></i>
-                            <p class="side-menu-item">Manage Users</p>
+                            <p class="side-menu-item">Manage Staff</p>
                         </a>
-                        <p class="side-menu-tooltip">Manage Users</p>
+                        <p class="side-menu-tooltip">Manage Staff</p>
                     </li>
                     <li>
                         <a href="/Sparenamanager/manageanalytics" class="side-menu-li">
@@ -184,7 +186,7 @@
         <div class="page-content-container">
             <div class="container">
                 <h2 class="doc-header">Sportizza</h2>
-                <h3 class="doc-sub-header">Analytics for Sports Arena</h3>
+                <h3 class="doc-sub-header">Analytics for <span>{{arenaName[0].sa_name}}</span></h3>
                 <h4 class="doc-date-header">From 2018/04/08&nbsp To &nbsp2018/05/10</h4>
                 <h1 class="page-header">Analytics</h1>
                 <div class="filters">
@@ -253,6 +255,9 @@
     <script type="text/javascript" src="/Assets/js/lib/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/Assets/js/SpArenaManager/manage-analytics.js?version=2"></script>
     <script type="text/javascript" src="/Assets/js/SpArenaManager/manager-analytics-Pie-Ajax.js"></script>
+    <!-- Service Worker -->
+    <!-- <script src="/Assets/js/swSnippet.js"></script>
+    <script src="/service-worker.js"></script> -->
 
 
     <script>

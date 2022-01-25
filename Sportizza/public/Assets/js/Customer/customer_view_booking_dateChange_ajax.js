@@ -6,7 +6,7 @@ $(document).ready(function () {
         let payment_cart = $(this).parent().prev();
         
         let paymentMethod = payment_cart.find('.checkbox').val();
-        let bookingDate = $('.bookingDatehidden').val();
+        let bookingDate = $('#dateInput').val();
         
         console.log(id);
         console.log(bookingDate);

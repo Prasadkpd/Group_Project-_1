@@ -11,7 +11,7 @@ use App\Models\SignupModel;
 
 use App\Models\NotificationModel;
 
-class Customer extends Authenticated
+ class Customer extends Authenticated
 {
     //Start of blocking a user after login
     //Blocking unauthorised access after login as a user
@@ -20,6 +20,7 @@ class Customer extends Authenticated
         if (Auth::getUser()== NULL){
             $this->redirect('/login');
         }
+        
         //Checking whether the user type is customer
         if (Auth::getUser()->type == 'Customer') {
             return true;
@@ -55,6 +56,36 @@ class Customer extends Authenticated
         );
     }
     //End of Landing page of customer
+
+
+
+
+
+
+
+    //Start of Landing page of customer
+    public function calenderAction()
+    {
+        
+
+        //Rendering the customers home view
+        View::renderTemplate(
+            'Customer/calender.html');
+    }
+    //End of Landing page of customer
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //Start of Cart page of customer
     public  function cartAction()
@@ -98,12 +129,19 @@ class Customer extends Authenticated
         $timeSlots = CustomerModel::customerViewTimeSlots($id);
         //Assigning the sports arenas details
         $arenaDetails = CustomerModel::customerViewArenaDetails($id);
-
+        $bookingsCount=CustomerModel::customerBookingCalenderView();
+        $arenaDetails[0]->google_map_link = preg_replace('/\%\d\w/', ' , ', substr($arenaDetails[0]->google_map_link, 48));
         //Rendering the customers booking view
+        // var_dump($bookingsCount);
         View::renderTemplate(
             'Customer/customerBookingView.html',
-            ['timeSlots' => $timeSlots, 'arenaDetails' => $arenaDetails]
+            ['timeSlots' => $timeSlots, 'arenaDetails' => $arenaDetails,'bookingsCount' => $bookingsCount]
         );
+
+        // View::renderTemplate(
+        //     'Customer/customerBookingView.html',
+        //     ['timeSlots' => $timeSlots, 'arenaDetails' => $arenaDetails]
+        // );
     }
     //End of booking page of customer
 
@@ -168,10 +206,8 @@ class Customer extends Authenticated
             NotificationModel::cancelNotificationBookingSuccess($current_user,$booking_id);
             $this->redirect("/customer");
         }
-        
-
-
     }
+
 
     public function customerdeletebookingAction()
     {
@@ -214,6 +250,9 @@ class Customer extends Authenticated
 
         //Assigning bookings related to customer
         $addfeedback = CustomerModel::customerAddFeedback($_POST);
+        $subject="customer add feedback for arena";
+        NotificationModel::addRatingNotificationForManager($_POST["arena_id"], $subject,$_POST["rating_description"]);
+        NotificationModel::addRatingNotificationForAdministrationStaff($_POST["arena_id"], $subject,$_POST["rating_description"]);
         
         $this->redirect("/customer");
 
@@ -286,11 +325,22 @@ class Customer extends Authenticated
         //Start of customer get refund
         public function refundAction()
         {
-            $details=CustomerModel::customerRefundDeltails( $this->route_params['id']);
-            View::renderTemplate(
-                'Customer/refund.html',['details'=>$details]
-            );
+            if(CustomerModel::customerRefundAvailability($this->route_params['id'])){
+                
+                View::renderTemplate(
+                    '500.html'
+                );
+            }
+            else{
+                $details=CustomerModel::customerRefundDeltails( $this->route_params['id']);
+                View::renderTemplate(
+                    'Customer/refund.html',['details'=>$details]
+                );
+    
+            }
 
+            
+            
         }
         //End of customer get refund
 
@@ -298,7 +348,8 @@ class Customer extends Authenticated
         //Start of customer request refund
         public function customerrequestrefundAction()
         {
-            
+            $customer_id = Auth::getUser()->user_id;
+            NotificationModel::refundRequestSuccessNotification($customer_id ,$_POST["booking_id"]);
             CustomerModel::customerRequestRefund($_POST);
             $this->redirect('/Customer');
         }
@@ -314,4 +365,27 @@ class Customer extends Authenticated
         //End of customer request refund
         
 
+            // Start of removing a booking from visitor's cart 
+    public function clearbookingAction()
+    {
+        //Assigning the relevant variables
+        $booking_id = $this->route_params['id'];
+
+        $clearedSlot = CustomerModel::customerClearBooking($booking_id);
+
+        if ($clearedSlot) {
+            echo true;
+        }
+    }
+    // End of removing a booking from visitor's cart 
+
+    //End of Administration Staff's cart view
+    /*--------------------------------------------------------------------------------------------------*/
+
+
+
+
+
 }
+
+

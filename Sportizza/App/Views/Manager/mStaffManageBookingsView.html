@@ -10,6 +10,8 @@
       <link rel="stylesheet" href="/Assets/css/navbar.css?version=4">
       <!-- File Specific CSS Styles -->
     <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-bookings.css?version=8">
+    <!-- Manifest file -->
+    <link rel="manifest" href="/./manifest.json" />
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 </head>
 
@@ -110,55 +112,51 @@
     </div>
     <!-- end pop up sign out section -->
     <!-- End Top Navigation Bar -->
-
     <!-- Start Of the Popup of Bookig Cancellation  -->
     <div id="popup_delete" class="sectionpop ">
         <div class="formsection">
             <div>
-                <button class="closebutton" onclick="close_popup_delete_booking()">❌</button>
+                <button class="closebutton" onclick="close_popup_cancel_booking()">❌</button>
             </div>
-            <form action="/Sparenamanager/removebooking/" style="margin:20px" method="post" id="delete_booking_form">
-                <div style="margin:auto">
-                    <h1>
-                        Booking Cancellation
-                    </h1>
-                    <p >
-                        Do you really want to cancel the booking?
-                    </p>
+            <form action="/Sparenamanager/bookingcancellation/" style="margin:20px"
+                onsubmit="validateBookingCancelReason()" id="BookingReasonForm" method="POST">
+                <div class="input-row">
+                    <div class="input-box">
+                        <label for="booking_cancellation">Reason For Cancellation</label>
+                        <textarea rows="5" style="width: 100%;" id="cancelReason" onfocusout="validateCancelReason()"
+                            name="Reason"></textarea>
+                        <div class="helper-text" id="cancelReasonMsg"> </div>
+                    </div>
                 </div>
-            <div style="display:flex">
-
-                <button class="popup_delete_button" type="submit">
-                    YES
-                </button>
-                <button onclick="close_popup_delete_booking()" class="popup_button" type="button">
-                    NO
-                </button>
-            </div>
+                <div style="display:flex">
+                    <button class="popup_delete_button" class="popup_button">
+                        Cancel Booking
+                    </button>
+                </div>
             </form>
         </div>
     </div>
     <!-- End OF the POP up Booking Cancel -->
-    <!-- Start Of the Popup of Bookig Cancellation  -->
+    <!-- Start Of the Popup of Booking Cancellation  -->
     <div id="popup_payment" class="sectionpop ">
         <div class="formsection">
             <div>
                 <button class="closebutton" onclick="close_popup_payment_message()">❌</button>
             </div>
-            <form action="/action_page.php" style="margin:20px">
-                <div style="margin:auto">
-                    <h1 style="margin:auto">
+            <form action="/">
+                <div>
+                    <h1>
                         Get Payment
                     </h1>
-                    <p style="margin:auto">
-                        Are you sure that you collect cash payment from customer?
+                    <p>
+                        Are you sure that you collected payment from customer?
                     </p>
                 </div>
             </form>
             <div style="display:flex">
-
+    
                 <button class="popup_button">
-                    <a href="/Sparenamanager/cart"> YES</a>
+                    <a href="/Sparenamanager/getpayment/" id="getPaymentbtn"> YES</a>
                 </button>
                 <button onclick="close_popup_payment_message()" class="popup_delete_button">
                     NO
@@ -217,9 +215,9 @@
                     <li>
                         <a href="/Sparenamanager/manageusers" class="side-menu-li">
                             <i class="fas fa-users"></i>
-                            <p class="side-menu-item">Manage Users</p>
+                            <p class="side-menu-item">Manage Staff</p>
                         </a>
-                        <p class="side-menu-tooltip">Manage Users</p>
+                        <p class="side-menu-tooltip">Manage Staff</p>
                     </li>
                     <li>
                         <a href="/Sparenamanager/manageanalytics" class="side-menu-li">
@@ -336,106 +334,58 @@
                             <div class="heading">
                                 <h3>Booking Date</h3>
                             </div>
-
+                
                             <div class="date-picker">
-                                <form action="">
-                                    <input type="date">
-                                    <input type="submit" value="Go">
+                                <form method="POST" id="bookingdateform">
+                                    <input type="date" id="dateInput" name="dateInput">
                                 </form>
                             </div>
-
+                
                         </div>
-
+                
                         <div class="right-container">
                             <div class="available-bookings">
                                 <h2>Available Time Slots</h2>
-                                <ul class="events-list">
-                                    <li>
+                                <ul id="eventsList" class="events-list">
+                                    {% for timeSlot in timeSlots %}
+                                    <li id={{timeSlot.time_slot_id}} class="hideDetails">
                                         <div class="row">
-                                            <span class="s-time">10:30 - </span>
-                                            <span class="e-time">12:30 : </span>
+                                            <span class="s-time">{{timeSlot.startTime}}</span>&nbsp;-
+                                            <span class="e-time">{{timeSlot.endTime}}</span>
                                         </div>
                                         <div class="row">
-                                            <span class="facility">Indoor Cricket Ground 1</span>
+                                            <span class="facility">{{timeSlot.facility_name}}</span>
                                         </div>
                                         <div class="row">
-                                            <span class="price">LKR 2500</span>
-                                            <i class="fas fa-plus-circle"></i>
+                                            <span class="price">LKR {{timeSlot.price}}</span>
+                
                                         </div>
+                
+                                        <!-- toggle button -->
+                                        <div class="payment_cart">
+                
+                                            <div>
+                                                <button class="removeItem" value={{timeSlot.time_slot_id}} type="submit">
+                                                    <i class="fas fa-cart-plus"></i></button>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="timeSlotId" id="timeSlotId" class="timeSlotClass"
+                                            value={{timeSlot.time_slot_id}}>
+                                        <input type="date" name="bookingDate" class="bookingDatehidden" style="display: none;">
                                     </li>
-                                    <li>
-                                        <div class="row">
-                                            <span class="s-time">10:30 - </span>
-                                            <span class="e-time">12:30 : </span>
-                                        </div>
-                                        <div class="row">
-                                            <span class="facility">Indoor Cricket Ground 1</span>
-                                        </div>
-                                        <div class="row">
-                                            <span class="price">LKR 2500</span>
-                                            <i class="fas fa-plus-circle"></i>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row">
-                                            <span class="s-time">10:30 - </span>
-                                            <span class="e-time">12:30 : </span>
-                                        </div>
-                                        <div class="row">
-                                            <span class="facility">Indoor Cricket Ground 1</span>
-                                        </div>
-                                        <div class="row">
-                                            <span class="price">LKR 2500</span>
-                                            <i class="fas fa-plus-circle"></i>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row">
-                                            <span class="s-time">10:30 - </span>
-                                            <span class="e-time">12:30 : </span>
-                                        </div>
-                                        <div class="row">
-                                            <span class="facility">Indoor Cricket Ground 1</span>
-                                        </div>
-                                        <div class="row">
-                                            <span class="price">LKR 2500</span>
-                                            <i class="fas fa-plus-circle"></i>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row">
-                                            <span class="s-time">10:30 - </span>
-                                            <span class="e-time">12:30 : </span>
-                                        </div>
-                                        <div class="row">
-                                            <span class="facility">Indoor Cricket Ground 1</span>
-                                        </div>
-                                        <div class="row">
-                                            <span class="price">LKR 2500</span>
-                                            <i class="fas fa-plus-circle"></i>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row">
-                                            <span class="s-time">10:30 - </span>
-                                            <span class="e-time">12:30 : </span>
-                                        </div>
-                                        <div class="row">
-                                            <span class="facility">Indoor Cricket Ground 1</span>
-                                        </div>
-                                        <div class="row">
-                                            <span class="price">LKR 2500</span>
-                                            <i class="fas fa-plus-circle"></i>
-                                        </div>
-                                    </li>
-
+                                    <!-- </form> -->
+                                    {% endfor %}
                                 </ul>
                             </div>
-
                         </div>
+                
                     </div>
-                    <a onclick="open_popup_payment_message()" class="btn check-availability-btn">Get Payment </a>
+                    <div class="getpaymentbtn">
+                        <a href="/Sparenamanager/cart" class="btn check-availability-btn"> Get Payment</a>
+                    </div>
+
                 </div>
+
                 <!-- Cancel Bookings Tab -->
                 <div id="cancel_booking" class="booking_tab_content">
                     <table class="booking-table" id="delete-booking">
@@ -479,7 +429,7 @@
                                     <div class="Payment-status active"><a href="">{{book.payment_status}}</a></div>
                                 </td>
                                 <td class="trash-btn-padding-res"> <button class="trash-btn"
-                                        onclick="open_popup_delete_booking('{{book.booking_id}}')"><i class="fas fa-trash-alt"></i></button></td>
+                                        onclick="open_popup_cancel_booking('{{book.booking_id}}')"><i class="fas fa-trash-alt"></i></button></td>
                             </tr>
                             {% endif %}
 
@@ -495,7 +445,7 @@
                                     <div class="Payment-status"><a href="">{{book.payment_status}}</a></div>
                                 </td>
                                 <td class="trash-btn-padding-res"> <button class="trash-btn"
-                                        onclick="open_popup_delete_booking('{{book.booking_id}}')"><i class="fas fa-trash-alt"></i></button></td>
+                                        onclick="open_popup_cancel_booking('{{book.booking_id}}')"><i class="fas fa-trash-alt"></i></button></td>
                             </tr>
                             {% endif %}
                             {% endfor %}
@@ -547,7 +497,7 @@
                                     <div class="Payment-status"><a href="">{{book.payment_status}}</a></div>
                                 </td>
                                 <td data-label="">
-                                    <div class="Payment"><a onclick="open_popup_payment_message()">Get Payment</a></div>
+                                    <div class="Payment"><a onclick="open_popup_payment_message('{{book.booking_id}}')">Get Payment</a></div>
                                 </td>
                                 <!-- <td data-label="">
                                     <div class="Payment"><a href="/Sparenamanager/getpayment/{{book.booking_id}}">Get Payment</a></div>
@@ -575,8 +525,15 @@
      <!-- Top navbar js -->
      <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
      <!-- File Specific js -->
+    <script type="text/javascript" src="/Assets/js/signup_validation.js?version=9.0"></script>
+     <script type="text/javascript" src="/Assets/js/Customer/newCart.js?version=4"></script>
     <script type="text/javascript" src="/Assets/js/SpArenaManager/manage-bookings.js"></script>
-    <script type="text/javascript" src="/Assets/js/Customer/newCart.js?version=4"></script>
+    <script type="text/javascript" src="/Assets/js/lib/jquery/jquery.min.js"></script>
+    <script type="text/javascript"
+        src="/Assets/js/SpArenaManager/sparenamanager_view_booking_dateChange_ajax.js"></script>
+        <!-- Service Worker -->
+        <!-- <script src="/Assets/js/swSnippet.js"></script>
+        <script src="/service-worker.js"></script> -->
 </body>
 
 </html>

@@ -7,6 +7,8 @@
   <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
   <link rel="stylesheet" href="/Assets/css/sp-arena-application.css?version=4">
+  <!-- Manifest file -->
+  <link rel="manifest" href="/./manifest.json" />
   <title>Sportizza</title>
 </head>
 
@@ -84,15 +86,11 @@
               <div class="options-container">
                 <div class="custom-select">
                   <select id="category" name="category" onchange="validateCategory()" value="{{sp_arena.category}}">
-                    <option value="0"> </option>
-                    <option value="Other">Other</option>
-                    <option value="Football">Football</option>
-                    <option value="Rugby">Rugby</option>
-                    <option value="Swimming">Swimming</option>
-                    <option value="Tennis">Tennis</option>
-                    <option value="Volleyball">Volleyball</option>
-                    <option value="Karathe">Karathe</option>
-                    <option value="Cricket">Cricket</option>
+                    <option value="0"></option>
+                    <option value="Other">OTHER</option>
+                    {% for category in categorys %}
+                    <option value="{{category.category}}">{{category.category}}</option>
+                    {% endfor %}
                   </select>
                   <div class="helper-text" id="other-categoryMsg">
                     <p>{{errors["category1"]}}</p>
@@ -115,21 +113,12 @@
 
                 <div class="custom-select">
                   <select id="location" name="location" onchange="validateLocation()" value="{{sp_arena.location}}">
-                    <option value="0"> </option>
-                    <option value="Other">Other</option>
-                    <option value="Matara">Matara</option>
-                    <option value="Galle">Galle</option>
-                    <option value="Gampaha">Gampaha</option>
-                    <option value="Kandy">Kandy</option>
-                    <option value="Hmabanthota">Hambanthota</option>
-                    <option value="Baththaramulla">Baththaramulla</option>
-                    <option value="Nugegods">Nugegoda</option>
-                    <option value="Maradana">Maradana</option>
-                    <option value="Mirissa">Mirissa</option>
-                    <option value="Weligama">Weiligama</option>
-                    <option value="Wattala">Wattala</option>
-                    <option value="Malabe">Malabe</option>
-                  </select>
+                    <option value="0"></option>
+                    <option value="Other">OTHER</option>
+                    {% for location in locations %}
+                    <option value="{{location.location}}">{{location.location}}</option>
+                    {% endfor %}
+                    </select>
                   <div class="helper-text" id="other-locationMsg">
                     <p>{{errors["location1"]}}</p>
                   </div>
@@ -151,7 +140,8 @@
               <input id="map-link" type="text" name="google_map_link"
                 placeholder="Ex: https://www.google.com/maps?q=204+C+Sandpiper+Place,+Fort+McMurray,+AB,+Canada"
                 onfocusout="validateMapLink()">
-                <button id="get-position" type="button" onclick="open_popup_map()">Get Position</button>
+                <button id="get-position" type="button" onclick="open_popup_map()"><i class="fas fa-map-marker-alt"></i><span>Get
+                    Position</span></button>
               <div class="helper-text" id="map-linkMsg">
                 <p>{{errors["google_map1"]}} {{errors["google_map2"]}}</p>
               </div>
@@ -218,7 +208,7 @@
                 <div class="input-box">
                   <div class="img-btn-div">
                     <label class="tag">Image 2:</label>
-                    <input style type="file" name="image_2" accept="image/*" id="file2"
+                    <input type="file" name="image_2" accept="image/*" id="file2"
                       onchange="change_color(this.files,event)" class="img-button">
                   </div>
                   <div class="helper-text" id="imgMsg2">
@@ -230,7 +220,7 @@
                 <div class="input-box">
                   <div class="img-btn-div">
                     <label class="tag">Image 3:</label>
-                    <input style type="file" name="image_3" accept="image/*" id="file3"
+                    <input type="file" name="image_3" accept="image/*" id="file3"
                       onchange="change_color(this.files,event)" class="img-button">
                   </div>
                   <div class="helper-text" id="imgMsg3">
@@ -242,7 +232,7 @@
                 <div class="input-box">
                   <div class="img-btn-div">
                     <label class="tag">Image 4:</label>
-                    <input style type="file" name="image_4" accept="image/*" id="file4"
+                    <input type="file" name="image_4" accept="image/*" id="file4"
                       onchange="change_color(this.files,event)" class="img-button">
                   </div>
                   <div class="helper-text" id="imgMsg4">
@@ -365,6 +355,9 @@
   <script type="text/javascript" src="/Assets/js/signup_validation.js?version=16.0"></script>
   <script type="text/javascript" src="/Assets/js/spArenaSignup_validations.js?version=16.0"></script>
   <script type="text/javascript" src="/Assets/js/arena-signup.js"></script>
+  <!-- Service Worker -->
+  <!-- <script src="/Assets/js/swSnippet.js"></script>
+  <script src="/service-worker.js"></script> -->
 
 </body>
 

@@ -1,2 +1,0 @@
-# Reclassify `.php` files as php
-*.rb linguist-language=PHP

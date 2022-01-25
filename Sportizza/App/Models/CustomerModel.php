@@ -111,18 +111,41 @@ class CustomerModel extends \Core\Model
     public static function customerViewTimeSlots($arena_id)
     {
         //Retrieving sports arena timeslot from the database
-        $sql = 'SELECT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i")
-        AS startTime,TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,
-        time_slot.price,facility.facility_name
+        // $sql = 'SELECT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i")
+        // AS startTime,TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,
+        // time_slot.price,facility.facility_name
+        // FROM time_slot
+        // INNER JOIN facility ON time_slot.facility_id= facility.facility_id
+        // WHERE time_slot.time_slot_id NOT IN
+        //  (SELECT booking_timeslot.timeslot_id FROM booking 
+        // INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id WHERE 
+        // booking.booking_date=CURRENT_DATE() OR (payment_status="pending" 
+        //  AND booked_date +INTERVAL 30 MINUTE > CURRENT_TIMESTAMP) )
+        //  AND time_slot.manager_sports_arena_id=:arena_id 
+        //  AND time_slot.security_status="active" ORDER BY time_slot.start_time';
+
+
+
+        $sql = 'SELECT DISTINCT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i") AS startTime,
+        TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,time_slot.price,facility.facility_name,
+        sports_arena_profile.payment_method
         FROM time_slot
         INNER JOIN facility ON time_slot.facility_id= facility.facility_id
+        INNER JOIN sports_arena_profile ON facility.sports_arena_id= sports_arena_profile.sports_arena_id
+        Left JOIN booking_timeslot ON time_slot.time_slot_id =booking_timeslot.timeslot_id
+        Left JOIN booking ON booking_timeslot.booking_id=booking.booking_id
         WHERE time_slot.time_slot_id NOT IN
-         (SELECT booking_timeslot.timeslot_id FROM booking 
-        INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id WHERE 
-        booking.booking_date=CURRENT_DATE() OR (payment_status="pending" 
-         AND booked_date +INTERVAL 30 MINUTE > CURRENT_TIMESTAMP) )
-         AND time_slot.manager_sports_arena_id=:arena_id 
-         AND time_slot.security_status="active" ORDER BY time_slot.start_time';
+                                            (SELECT booking_timeslot.timeslot_id 
+                                            FROM booking 
+                                            INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id 
+                                            WHERE ((booking.booking_date=CURRENT_DATE()) OR 
+                                            (payment_status="pending" AND booked_date +INTERVAL 30 MINUTE > CURRENT_TIMESTAMP))
+                                            AND booking_timeslot.security_status="active")
+        AND time_slot.manager_sports_arena_id=:arena_id 
+        AND time_slot.security_status="active" 
+        AND time_slot.start_time > CURRENT_TIME() 
+        GROUP BY time_slot.time_slot_id
+        ORDER BY time_slot.start_time';
 
         // payment_status="pending" 
         // AND booked_date> CURRENT_TIMESTAMP
@@ -143,35 +166,278 @@ class CustomerModel extends \Core\Model
     }
     //End of Displaying sports arena timeslot
 
+     //Start of displaying sports arena's available timeslots for booking(by default)
+     public static function saAdminViewAvailableTimeSlots($saAdmin_id)
+     {
+         try {
+             //Create a new database connection
+             $db = static::getDB();
+ 
+             //Start transaction
+             $db->beginTransaction();
+ 
+             //Retrieving the sports arena id
+             $sql = 'SELECT sports_arena_id 
+             FROM administration_staff 
+             WHERE user_id=:user_id';
+ 
+             $stmt = $db->prepare($sql);
+             $stmt->bindValue(':user_id', $saAdmin_id, PDO::PARAM_INT);
+             $stmt->execute();
+ 
+             //Fetching the sports arena id
+             $result = $stmt->fetch(PDO::FETCH_ASSOC);
+             $arena_id = $result['sports_arena_id'];
+ 
+             //Retrieving sports arena timeslot from the database
+             $sql = 'SELECT DISTINCT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i") AS startTime,
+             TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,time_slot.price,facility.facility_name,
+             sports_arena_profile.payment_method
+             FROM time_slot
+             INNER JOIN facility ON time_slot.facility_id= facility.facility_id
+             INNER JOIN sports_arena_profile ON facility.sports_arena_id= sports_arena_profile.sports_arena_id
+             INNER JOIN booking_timeslot ON time_slot.time_slot_id =booking_timeslot.timeslot_id
+             INNER JOIN booking ON booking_timeslot.booking_id=booking.booking_id
+             WHERE time_slot.time_slot_id NOT IN
+                                                 (SELECT booking_timeslot.timeslot_id 
+                                                 FROM booking 
+                                                 INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id 
+                                                 WHERE ((booking.booking_date=CURRENT_DATE()) OR 
+                                                 (payment_status="pending" AND booked_date +INTERVAL 30 MINUTE > CURRENT_TIMESTAMP))
+                                                 AND booking_timeslot.security_status="active")
+             AND time_slot.manager_sports_arena_id=:arena_id 
+             AND time_slot.security_status="active" 
+             AND time_slot.start_time > CURRENT_TIME() 
+             GROUP BY time_slot.time_slot_id
+             ORDER BY time_slot.start_time';
+ 
+             $stmt = $db->prepare($sql);
+             $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+             $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+             $stmt->execute();
+ 
+             //Assigning the fetched PDOs to result
+             $result = $stmt->fetchAll();
+ 
+             //End transaction
+             $db->commit();
+             return $result;
+         } catch (PDOException $e) {
+             $db->rollback();
+             throw $e;
+         }
+     }
+     //End of displaying sports arena's available timeslots for booking(by default)
+ 
+     //Start of displaying sports arena's available timeslots for booking(after selecting a date)
+     public static function saAdminSearchTimeSlotsDate($saAdmin_id, $date)
+     {
+         try {
+             //Create a new database connection
+             $db = static::getDB();
+ 
+             //Start transaction
+             $db->beginTransaction();
+ 
+             //Retrieving the sports arena id
+             $sql = 'SELECT sports_arena_id 
+             FROM administration_staff 
+             WHERE user_id=:user_id';
+ 
+             $stmt = $db->prepare($sql);
+             $stmt->bindValue(':user_id', $saAdmin_id, PDO::PARAM_INT);
+             $stmt->execute();
+ 
+             //Fetching the sports arena id
+             $result = $stmt->fetch(PDO::FETCH_ASSOC);
+             $arena_id = $result['sports_arena_id'];
+ 
+             //Chaning the date format
+             $current_date = date('Y-m-d');
+ 
+             //If selected date is current date, execute the following
+             if ($date != $current_date) {
+ 
+                 //Retrieving sports arena timeslots
+                 $sql = 'SELECT DISTINCT time_slot.time_slot_id, TIME_FORMAT(time_slot.start_time, "%H:%i") AS startTime,
+                 TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime, time_slot.price,facility.facility_name,
+                 sports_arena_profile.payment_method
+                 FROM time_slot
+                 INNER JOIN facility ON time_slot.facility_id= facility.facility_id
+                 INNER JOIN sports_arena_profile ON facility.sports_arena_id= sports_arena_profile.sports_arena_id
+                 WHERE time_slot.time_slot_id NOT IN
+                                                     (SELECT booking_timeslot.timeslot_id 
+                                                     FROM booking 
+                                                     INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id 
+                                                     WHERE ((booking.booking_date=:date) AND 
+                                                     (payment_status="pending" AND booked_date +INTERVAL 30 MINUTE > CURRENT_TIMESTAMP))
+                                                     AND booking_timeslot.security_status="active")
+                 AND time_slot.manager_sports_arena_id=:arena_id
+                 AND time_slot.security_status="active"
+                 GROUP BY time_slot.time_slot_id
+                 ORDER BY time_slot.start_time;';
+ 
+                 $stmt = $db->prepare($sql);
+                 $stmt->bindValue(':date', $date, PDO::PARAM_STR);
+                 $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+             }
+ 
+             //If selected date is not the current date, execute the following
+             else {
+ 
+                 //Retrieving sports arena timeslots
+                 $sql = 'SELECT DISTINCT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i") AS startTime,
+                 TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,time_slot.price,facility.facility_name,
+                 sports_arena_profile.payment_method
+                 FROM time_slot
+                 INNER JOIN facility ON time_slot.facility_id= facility.facility_id
+                 INNER JOIN sports_arena_profile ON facility.sports_arena_id= sports_arena_profile.sports_arena_id
+                 Left JOIN booking_timeslot ON time_slot.time_slot_id =booking_timeslot.timeslot_id
+                 Left JOIN booking ON booking_timeslot.booking_id=booking.booking_id
+                 WHERE time_slot.time_slot_id NOT IN
+                                                     (SELECT booking_timeslot.timeslot_id 
+                                                     FROM booking 
+                                                     INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id 
+                                                     WHERE ((booking.booking_date=CURRENT_DATE()) OR 
+                                                     (payment_status="pending" AND booked_date +INTERVAL 30 MINUTE > CURRENT_TIMESTAMP))
+                                                     AND booking_timeslot.security_status="active")
+                 AND time_slot.manager_sports_arena_id=:arena_id 
+                 AND time_slot.security_status="active" 
+                 AND time_slot.start_time > CURRENT_TIME() 
+                 GROUP BY time_slot.time_slot_id
+                 ORDER BY time_slot.start_time';
+ 
+                 $stmt = $db->prepare($sql);
+                 $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+             }
+ 
+             $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+             $stmt->execute();
+ 
+             //End transaction
+             $db->commit();
+         } catch (PDOException $e) {
+             $db->rollback();
+             throw $e;
+         }
+ 
+         //Creating output for ajax
+         $output = "";
+ 
+         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+             $output .= "
+         <li id={$row["time_slot_id"]} class='hideDetails'>
+         <div class='row'>
+             <span class='s-time'>{$row["startTime"]}</span>&nbsp;-
+             <span class='e-time'>{$row["endTime"]}</span>
+         </div>
+         <div class='row'>
+             <span class='facility'>{$row["facility_name"]}</span>
+         </div>
+         <div class='row'>
+             <span class='price'>LKR {$row["price"]}</span>
+         </div>
+         <div>
+             <button class='removeItem' value={$row["time_slot_id"]} type='button'>
+             <i class='fas fa-cart-plus'></i></button>
+         </div>
+         </div>
+         <input type='hidden' name='timeSlotId' value={$row["time_slot_id"]}>
+         <input type='date' name='bookingDate' class='bookingDatehidden' value={$date} style='display: none;'>
+     </li>";
+         }
+         return $output;
+     }
+     //End of displaying sports arena's available timeslots for booking(after selecting a date)
+ 
 
 
 
     public static function customerSearchTimeSlotsDate($arena_id, $date)
     {
+
+        $db = static::getDB();
         //Retrieving sports arena timeslot from the database
-        $sql = 'SELECT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i")
-        AS startTime,TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,
-        time_slot.price,facility.facility_name,sports_arena_profile.payment_method
-        FROM time_slot
-        INNER JOIN facility ON time_slot.facility_id= facility.facility_id
-        INNER JOIN sports_arena_profile ON facility.sports_arena_id= sports_arena_profile.sports_arena_id
-        WHERE time_slot.time_slot_id NOT IN
-         (SELECT booking_timeslot.timeslot_id FROM booking 
-        INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id WHERE 
-        booking.booking_date=:date )
-         AND time_slot.manager_sports_arena_id=:arena_id 
-         AND time_slot.security_status="active"
-         ORDER BY time_slot.start_time';
+        // $sql = 'SELECT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i")
+        // AS startTime,TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,
+        // time_slot.price,facility.facility_name,sports_arena_profile.payment_method
+        // FROM time_slot
+        // INNER JOIN facility ON time_slot.facility_id= facility.facility_id
+        // INNER JOIN sports_arena_profile ON facility.sports_arena_id= sports_arena_profile.sports_arena_id
+        // WHERE time_slot.time_slot_id NOT IN
+        //  (SELECT booking_timeslot.timeslot_id FROM booking 
+        // INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id WHERE 
+        // booking.booking_date=:date )
+        //  AND time_slot.manager_sports_arena_id=:arena_id 
+        //  AND time_slot.security_status="active"
+        //  ORDER BY time_slot.start_time';
+
+
+        //Chaning the date format
+        $current_date = date('Y-m-d');
+
+        //If selected date is current date, execute the following
+        if ($date != $current_date) {
+
+            //Retrieving sports arena timeslots
+            $sql = 'SELECT DISTINCT time_slot.time_slot_id, TIME_FORMAT(time_slot.start_time, "%H:%i") AS startTime,
+            TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime, time_slot.price,facility.facility_name,
+            sports_arena_profile.payment_method
+            FROM time_slot
+            INNER JOIN facility ON time_slot.facility_id= facility.facility_id
+            INNER JOIN sports_arena_profile ON facility.sports_arena_id= sports_arena_profile.sports_arena_id
+            WHERE time_slot.time_slot_id NOT IN
+                                                (SELECT booking_timeslot.timeslot_id 
+                                                FROM booking 
+                                                INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id 
+                                                WHERE ((booking.booking_date=:date) OR 
+                                                (payment_status="pending" AND booked_date +INTERVAL 30 MINUTE > CURRENT_TIMESTAMP))
+                                                AND booking_timeslot.security_status="active")
+            AND time_slot.manager_sports_arena_id=:arena_id
+            AND time_slot.security_status="active"
+            GROUP BY time_slot.time_slot_id
+            ORDER BY time_slot.start_time;';
+
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':date', $date, PDO::PARAM_STR);
+            $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+        }
+
+        //If selected date is not the current date, execute the following
+        else {
+
+            //Retrieving sports arena timeslots
+            $sql = 'SELECT DISTINCT time_slot.time_slot_id,TIME_FORMAT(time_slot.start_time, "%H:%i") AS startTime,
+            TIME_FORMAT(time_slot.end_time, "%H:%i") AS endTime,time_slot.price,facility.facility_name,
+            sports_arena_profile.payment_method
+            FROM time_slot
+            INNER JOIN facility ON time_slot.facility_id= facility.facility_id
+            INNER JOIN sports_arena_profile ON facility.sports_arena_id= sports_arena_profile.sports_arena_id
+            INNER JOIN booking_timeslot ON time_slot.time_slot_id =booking_timeslot.timeslot_id
+            INNER JOIN booking ON booking_timeslot.booking_id=booking.booking_id
+            WHERE time_slot.time_slot_id NOT IN
+                                                (SELECT booking_timeslot.timeslot_id 
+                                                FROM booking 
+                                                INNER JOIN booking_timeslot ON booking.booking_id=booking_timeslot.booking_id 
+                                                WHERE ((booking.booking_date=CURRENT_DATE()) OR 
+                                                (payment_status="pending" AND booked_date +INTERVAL 30 MINUTE > CURRENT_TIMESTAMP))
+                                                AND booking_timeslot.security_status="active")
+            AND time_slot.manager_sports_arena_id=:arena_id 
+            AND time_slot.security_status="active" 
+            AND time_slot.start_time > CURRENT_TIME() 
+            GROUP BY time_slot.time_slot_id
+            ORDER BY time_slot.start_time';
+
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+        }
 
 
         // have to change this is wrong we use it for testing
 
-        $db = static::getDB();
-        $stmt = $db->prepare($sql);
+        
+        
 
-        //Binding the sports arena id and Converting retrieved data from database into PDOs
-        $stmt->bindValue(':date', $date, PDO::PARAM_STR);
-        $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $stmt->execute();
 
@@ -249,7 +515,7 @@ class CustomerModel extends \Core\Model
     {
         //Retrieving sports arena profile from the database
         $sql = 'SELECT *
-                 FROM  sports_arena_profile 
+                 FROM  sports_arena_profile INNER JOIN sports_arena_profile_photo ON sports_arena_profile.s_a_profile_id = sports_arena_profile_photo.sa_profile_id 
                 WHERE s_a_profile_id=:arena_id';
         // have to change this is wrong we use it for testing
 
@@ -293,7 +559,7 @@ class CustomerModel extends \Core\Model
         //Why var_dump?
         var_dump($favorite_list_id);
 
-        //Retreiving all the sports arenas in favorite list
+        //Retrieving all the sports arenas in favorite list
         $sql = 'SELECT sports_arena_id
         FROM  favourite_list_sports_arena
         WHERE fav_list_id=:favorite_list_id AND sports_arena_id=:arena_id';
@@ -317,10 +583,25 @@ class CustomerModel extends \Core\Model
             $sql = 'INSERT INTO favourite_list_sports_arena (fav_list_id,sports_arena_id)
         VALUES (:favorite_list_id,:arena_id);';
 
-            $db = static::getDB();
+            
             $stmt = $db->prepare($sql);
 
             //Binding the sports arena id and favourite list id Converting retrieved data from database into PDOs
+            $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
+            $stmt->bindValue(':favorite_list_id', $favorite_list_id, PDO::PARAM_STR);
+            $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+            return ($stmt->execute());
+        }
+        else{
+            $sql = 'UPDATE favourite_list_sports_arena 
+                SET security_status="active"
+                WHERE fav_list_id=:favorite_list_id AND sports_arena_id=:arena_id';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding the customer id and Converting retrieved data from database into PDOs
             $stmt->bindValue(':arena_id', $arena_id, PDO::PARAM_INT);
             $stmt->bindValue(':favorite_list_id', $favorite_list_id, PDO::PARAM_STR);
             $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
@@ -554,7 +835,7 @@ class CustomerModel extends \Core\Model
         $stmt->bindValue(':booking_id', $post['booking_id'], PDO::PARAM_INT);
         $stmt->bindValue(':customer_user_id', $post['customer_user_id'], PDO::PARAM_INT);
         $stmt->bindValue(':account_no', $post['accountNumber'], PDO::PARAM_INT);
-        $stmt->bindValue(':benficiary_name', $post['benificialyName'], PDO::PARAM_STR);
+        $stmt->bindValue(':benficiary_name', $post['benificiaryName'], PDO::PARAM_STR);
         $stmt->bindValue(':branch_name', $post['branchName'], PDO::PARAM_STR);
         $stmt->bindValue(':bank_name', $post['bankName'], PDO::PARAM_STR);
         $stmt->bindValue(':refund_status', "unpaid", PDO::PARAM_STR);
@@ -604,7 +885,7 @@ class CustomerModel extends \Core\Model
     public static function customerPaymentSuccess($user_id)
     {
 
-        $invoice_id=0;
+        
 
         $db = static::getDB();
 
@@ -613,8 +894,9 @@ class CustomerModel extends \Core\Model
         $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
         $stmt->execute();
 
-        $sql2 = 'SELECT `payment_id` FROM `payment` ORDER BY `payment_id` DESC LIMIT 1;';
 
+
+        $sql2 = 'SELECT `payment_id` FROM `payment` ORDER BY `payment_id` DESC LIMIT 1;';
         $stmt2 = $db->prepare($sql2);
         $stmt2->execute();
         $result1 = $stmt2->fetch(PDO::FETCH_ASSOC);
@@ -645,14 +927,15 @@ class CustomerModel extends \Core\Model
 
 
         $total_amount = 0;
+        $total_card=0;
+        $total_cash=0;
 
         // var_dump($result);
         for ($x = 0; $x < $len; $x++) {
-            $booking_id = $result[$x][0];
 
+        $booking_id = $result[$x][0];
 
-
-            $sql4 = 'SELECT booking.price_per_booking, booking.booking_date ,booking.payment_method, facility.facility_name, 
+        $sql4 = 'SELECT booking.price_per_booking, booking.booking_date ,booking.payment_method, facility.facility_name, 
         `time_slot`.`start_time`,
         `time_slot`.`end_time`, sports_arena_profile.sa_name
         FROM booking 
@@ -661,12 +944,13 @@ class CustomerModel extends \Core\Model
         INNER JOIN `booking_timeslot` ON `booking_timeslot`.`booking_id`= `booking`.`booking_id`
         INNER JOIN `time_slot` ON `time_slot`.`time_slot_id`=`booking_timeslot`.`timeslot_id`
         WHERE booking.booking_id =:booking_id';
-            $stmt4 = $db->prepare($sql4);
-            $stmt4->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
 
-            $stmt4->execute();
+        $stmt4 = $db->prepare($sql4);
+        $stmt4->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
 
-            $result1 = $stmt4->fetch(PDO::FETCH_ASSOC);
+        $stmt4->execute();
+
+        $result1 = $stmt4->fetch(PDO::FETCH_ASSOC);
 
             //Obtaining the administratoin staff user details retrieved from result1
             $amount = $result1["price_per_booking"];
@@ -677,13 +961,31 @@ class CustomerModel extends \Core\Model
             $end_time = $result1["end_time"];
             $payment_method= $result1["payment_method"];
 
+
             $total_amount = $total_amount + $amount;
 
-            $sql5 = 'INSERT INTO `invoice` (`payment_method`, `net_amount`,`payment_id`) VALUES ("cash", :amount, :payment_id)';
+            if($payment_method=="cash"){
+                $total_cash=$total_cash+$amount;
+                $sql5 = 'INSERT INTO `invoice` (`payment_method`, `net_amount`) VALUES ("cash", :amount)';
             $stmt = $db->prepare($sql5);
             $stmt->bindValue(':amount', $amount, PDO::PARAM_INT);
-            $stmt->bindValue(':payment_id', $payment_id, PDO::PARAM_INT);
+            
             $stmt->execute();
+            }
+
+            else{
+                $total_card=$total_card+$amount;
+                $sql5 = 'INSERT INTO `invoice` (`payment_method`, `net_amount`,`payment_id`) 
+                VALUES ("card", :amount, :payment_id)';
+            $stmt = $db->prepare($sql5);
+             
+            $stmt->bindValue(':amount', $amount, PDO::PARAM_INT);
+            $stmt->bindValue(':payment_id', $payment_id, PDO::PARAM_INT);
+    
+            $stmt->execute();
+            }
+           
+            
 
 
             $sql6 = 'SELECT `invoice_id` FROM `invoice` ORDER BY `invoice_id` DESC LIMIT 1;';
@@ -699,11 +1001,11 @@ class CustomerModel extends \Core\Model
 
             if( $payment_method=="card"){
                 $sql = 'UPDATE `booking` SET `payment_status`="paid", `invoice_id`=:invoice_id, `customer_user_id`=:user_id
-         WHERE `booking_id`=:booking_id';
+                WHERE `booking_id`=:booking_id';
             }
             else{
                 $sql = 'UPDATE `booking` SET `payment_status`="unpaid", `invoice_id`=:invoice_id, `customer_user_id`=:user_id
-         WHERE `booking_id`=:booking_id';
+                WHERE `booking_id`=:booking_id';
             }
             
 
@@ -716,13 +1018,25 @@ class CustomerModel extends \Core\Model
 
         }
 
+        if($total_card==0){
+            $sql = 'DELETE FROM `payment`
+            WHERE `payment_id`=:payment_id';
+       
+            $stmt = $db->prepare($sql);
+            
+            $stmt->bindValue(':payment_id', $payment_id, PDO::PARAM_INT);
+            $stmt->execute();
+        }
+        else{
         $sql = 'UPDATE `payment` SET `net_amount`=:total_amount
-         WHERE `payment_id`=:payment_id';
-
+        WHERE `payment_id`=:payment_id';
+   
         $stmt = $db->prepare($sql);
-        $stmt->bindValue(':total_amount', $total_amount, PDO::PARAM_INT);
+        $stmt->bindValue(':total_amount', $total_card, PDO::PARAM_INT);
         $stmt->bindValue(':payment_id', $payment_id, PDO::PARAM_INT);
         $stmt->execute();
+        }
+        
         
 
 
@@ -756,6 +1070,97 @@ class CustomerModel extends \Core\Model
         
         $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
         return $stmt->execute();
+    }
+
+    public static function customerRefundAvailability($booking_id)
+    {
+
+        //have to check this one and solve logical errors
+        $sql = 'SELECT  * FROM refund 
+                WHERE booking_id=:booking_id';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        //Binding the customer id and Converting retrieved data from database into PDOs
+        
+        $stmt->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
+
+        $stmt->execute();
+        $result= $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        
+        if(empty($result)){
+            return false;
+        }
+        else{
+            return true;
+        }
+        
+    }
+
+
+
+
+
+
+      // Start of removing a booking from cart
+      public static function customerClearBooking($booking_id)
+      {
+          try {
+              //Create a new database connection
+              $db = static::getDB();
+  
+              //Start transaction
+              $db->beginTransaction();
+  
+              //Removing the booking from booking table
+              $sql = 'UPDATE booking 
+              SET security_status="inactive" 
+              WHERE booking_id=:id';
+  
+              $stmt = $db->prepare($sql);
+              $stmt->bindValue(':id', $booking_id, PDO::PARAM_INT);
+              $stmt->execute();
+  
+              //Removing the booking from booking_timeslot table
+              $sql = 'UPDATE booking_timeslot 
+              SET security_status="inactive" 
+              WHERE booking_id=:id';
+  
+              $stmt = $db->prepare($sql);
+              $stmt->bindValue(':id', $booking_id, PDO::PARAM_INT);
+              $stmt->execute();
+  
+              //End transaction
+              $db->commit();
+              return true;
+          } catch (PDOException $e) {
+              $db->rollback();
+              throw $e;
+          }
+      }
+      // End of clearing a booking from cart
+
+
+
+      public static function customerBookingCalenderView()
+    {
+
+        //have to check this one and solve logical errors
+        $sql = 'SELECT  COUNT(booking_id) AS bookingCount,(CURRENT_DATE-(booking_date)) as remainingDates FROM booking 
+                WHERE security_status="active" AND booking_date> CURRENT_DATE
+                GROUP BY booking_date';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        return $result;
+        
+       
+        
     }
 
     

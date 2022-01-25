@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="/Assets/css/navbar.css?version=5">
     <!-- File Specific CSS Styles -->
     <link rel="stylesheet" href="/Assets/css/SpArenaManager/editArenaProfile.css">
+    <!-- Manifest file -->
+    <link rel="manifest" href="/./manifest.json" />
     <!-- Font Styles -->
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 
@@ -52,19 +54,16 @@
             <div>
                 <button class="closebutton" onclick="close_popup_map()">❌</button>
             </div>
-            <form style="margin:20px">
                 <div style="margin:auto">
                     <h1>
-                        Mark the position
+                        Location
                     </h1>
                 </div>
-                <div style="display:flex;flex-direction: column;">
-                    <div id="map" style="height: 200px;width: 100%;"></div>
-                    <!-- <button onclick="close_popup_map()" class="popup_button" type="button">
-                        Save
-                    </button> -->
+                <div style="display:flex;flex-direction: column; margin: auto;">
+                    <iframe
+                        src=" https://www.google.com/maps/embed/v1/place?key=AIzaSyB2e00P4iPaWX6u26a1MNg-cYKLyY3jsoo&q={{arena_details.google_map_link}}"
+                        width="350" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
-            </form>
         </div>
     </div>
     <!-- start popup for profile -->
@@ -283,6 +282,8 @@
     <!-- <script type="text/javascript" src="/Assets/js/editprofile.js?version=1"></script> -->
     <script type="text/javascript" src="/Assets/js/SpArenaManager/edit-arena-profile.js?version=1"></script>
     <!-- <script type="text/javascript" src="/Assets/js/signup_validation.js?version=7.0"></script> -->
+    <!-- <script src="/Assets/js/swSnippet.js"></script>
+    <script src="/service-worker.js"></script> -->
 
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2e00P4iPaWX6u26a1MNg-cYKLyY3jsoo&callback=initMap&v=weekly"

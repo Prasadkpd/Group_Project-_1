@@ -11,6 +11,8 @@
   <!-- File specific CSS -->
   <link rel="stylesheet" href="/Assets/css/Customer/finalCart.css?version=22">
   <link rel="stylesheet" href="/Assets/css/SpArenaManager/bookingCart.css?version=22">
+  <!-- Manifest file -->
+  <link rel="manifest" href="/./manifest.json" />
   <title>Sportizza</title>
 </head>
 
@@ -25,27 +27,24 @@
         </a>
       </div>
 
-        <div class="nav-right">
-            <!-- Profile button -->
-            <div class="nav-profile">
-                <button class="openbutton" onclick="openpopupform()">
-                    <div class="profile-details">
-                      <img src={{current_user.profile_pic}} class="profile-picture">
-                        <div class="username">{{current_user.first_name}} {{current_user.last_name}}</div>
-                    </div>
-                </button>
+      <div class="nav-right">
+        <div class="nav-profile">
+          <button class="openbutton" onclick="openpopupform()">
+            <div class="profile-details">
+              <img src={{current_user.profile_pic}} class="profile-picture">
+              <div class="username">{{current_user.first_name}} {{current_user.last_name}}</div>
             </div>
           </button>
         </div>
-
-        <!-- Signout button -->
-        <div class="sign-in-out-btn">
-          <button onclick="open_popup_signout_message()">Sign Out</button>
-          <!-- {% if session.user_id %}
-            User with ID {{session.user_id}} is logged in.
-        {% endif %} -->
-        </div>
+        </button>
       </div>
+
+      <!-- Signout button -->
+      <div class="sign-in-out-btn">
+        <button onclick="open_popup_signout_message()">Sign Out</button>
+       
+      </div>
+    </div>
     </div>
   </nav>
 
@@ -56,38 +55,38 @@
         <button class="closebutton" onclick="closepopupform()">❌</button>
       </div>
 
-        <div class="nav-user-edit-from">
-            <div class="details">
-                <div class="input-box">
-                    <h5>Name:</h5>
-                    <p>
-                        {{current_user.first_name}} {{current_user.last_name}}
-                    </p>
-                </div>
-                <div class="input-box">
-                    <h5>Username:</h5>
-                    <p>
-                        {{current_user.username}}
-                    </p>
-                </div>
-                <div class="input-box">
-                    <h5>Mobile:</h5>
-                    <p>
-                        {{current_user.primary_contact}}</p>
-                </div>
-            </div>
-            <div class="editProPic">
-                <img id="form-profile-picture" src={{current_user.profile_pic}} alt="">
-            </div>
+      <div class="nav-user-edit-from">
+        <div class="details">
+          <div class="input-box">
+            <h5>Name:</h5>
+            <p>
+              {{current_user.first_name}} {{current_user.last_name}}
+            </p>
+          </div>
+          <div class="input-box">
+            <h5>Username:</h5>
+            <p>
+              {{current_user.username}}
+            </p>
+          </div>
+          <div class="input-box">
+            <h5>Mobile:</h5>
+            <p>
+              {{current_user.primary_contact}}</p>
+          </div>
         </div>
         <div class="editProPic">
-          <img id="form-profile-picture" src="/Assets/images/customer/profile-picture.jpg" alt="">
+          <img id="form-profile-picture" src={{current_user.profile_pic}} alt="">
         </div>
       </div>
-      <div class="edit-profile-link">
-        <a href="">Edit Profile</a>
+      <div class="editProPic">
+        <img id="form-profile-picture" src="/Assets/images/customer/profile-picture.jpg" alt="">
       </div>
     </div>
+    <div class="edit-profile-link">
+      <a href="">Edit Profile</a>
+    </div>
+  </div>
   </div>
   <!-- end popup for profile -->
 
@@ -123,17 +122,16 @@
   <section class="cartPage">
     <div class="page-container">
 
-      <form method="POST" action="/Spadministrationstaff/saAdminBookingsuccessnotification" id="formCheckout" onsubmit="validateBookingpayment()">
+      <form method="POST" action="/Spadministrationstaff/saAdminBookingsuccessnotification" id="formCheckout"
+        onsubmit="validateBookingpayment()">
         <div class="customerDetails">
           <div class="page">
             <div class="container">
               <div class="title">Customer details</div>
               <div class="subtitle">Please fill out the details below</div>
               <div class="content">
-
-
                 <div class="sp-details">
-                  
+
                   <div class="input-box">
                     <label for="firstName">First Name</label>
                     <input id="firstName" type="text" name="first_name" placeholder="Enter first Name">
@@ -164,13 +162,12 @@
               <div class="title">Customer Cart</div>
               <div class="closebtn"><a href="/Spadministrationstaff/managebookings"><i
                     class="far fa-times-circle itemDelete"></i></a></div>
-              
+
               <div class="content">
                 <div class="cartContent">
 
                   {% for item in cart %}
                   <div id="cartItem{{item.booking_id}}" class="cartItem">
-                    <!-- <div id="itemDelete" class="itemDelete" onclick="hideItem('{{item.booking_id}}')"> -->
                     <div class="itemDelete">
                       <input type="hidden" class="storeValue" value="{{item.booking_id}}">
                       <i class="far fa-times-circle"></i>
@@ -197,7 +194,7 @@
 
                   </div>
                   {% endfor %}
-                  
+
                 </div>
                 <div class="priceNPay">
                   <div class="button">
@@ -236,9 +233,12 @@
   <script type="text/javascript" src="/Assets/js/lib/jquery/jquery.min.js"></script>
   <script type="text/javascript" src="/Assets/js/signup_validation.js?version=8.0"></script>
   <script type="text/javascript" src="/Assets/js/SpArenaManager/newCart.js?version=5"></script>
-  <script type="text/javascript" src="/Assets/js/SpArenaManager/cart_clear_booking.js"></script>
+  <script type="text/javascript" src="/Assets/js/SpArenaAdministrationStaff/cart_clear_booking.js"></script>
   <!-- Top navbar js -->
   <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
+  <!-- Service Worker -->
+  <!-- <script src="/Assets/js/swSnippet.js"></script>
+  <script src="/service-worker.js"></script> -->
 </body>
 
 </html>

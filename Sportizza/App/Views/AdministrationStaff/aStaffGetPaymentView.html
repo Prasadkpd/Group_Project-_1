@@ -7,6 +7,8 @@
   <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
   <link rel="stylesheet" href="/Assets/css/Customer/finalCart.css?version=22">
+  <!-- Manifest file -->
+  <link rel="manifest" href="/./manifest.json" />
   <title>Sportizza</title>
 </head>
 
@@ -60,62 +62,65 @@
   <!-- Page content -->
   <section class="cartPage">
     <!-- <h1 class="page-header">Cart</h1> -->
-    <form method="post" action="" id="formCheckout" onsubmit="validateCheckoutForm()"      >
-    <div class="customerDetails">
-      <div class="page">
-        <div class="container">
-          <div class="title">Customer details</div>
-          <div class="subtitle">Please fill out the details below</div>
-          <div class="content">
+    <form method="post" action="" id="formCheckout" onsubmit="validateCheckoutForm()">
+      <div class="customerDetails">
+        <div class="page">
+          <div class="container">
+            <div class="title">Customer details</div>
+            <div class="subtitle">Please fill out the details below</div>
+            <div class="content">
 
 
               <div class="sp-details">
-                <input type="hidden" name="merchant_id" value="1217465">    <!-- Replace your Merchant ID -->
+                <input type="hidden" name="merchant_id" value="1217465"> <!-- Replace your Merchant ID -->
                 <input type="hidden" name="return_url" value="http://localhost/Customer/paymentsuccess">
                 <input type="hidden" name="cancel_url" value="http://localhost/Customer/cart">
                 <input type="hidden" name="notify_url" value="http://localhost/Customer/payment">
                 <div class="input-box">
                   <label for="firstName">First Name</label>
-                  <input id="firstName" type="text" name="first_name" placeholder="Enter first Name" value="{{current_user.first_name}}" readonly>
+                  <input id="firstName" type="text" name="first_name" placeholder="Enter first Name"
+                    value="{{current_user.first_name}}" readonly>
                   <div class="helper-text" id="firstNameMsg"></div>
                 </div>
 
                 <div class="input-box">
                   <label for="lastName">Last Name</label>
-                  <input id="lastName" type="text" name="last_name" placeholder="Enter last Name" value="{{current_user.last_name}}" readonly>
+                  <input id="lastName" type="text" name="last_name" placeholder="Enter last Name"
+                    value="{{current_user.last_name}}" readonly>
                   <div class="helper-text" id="lastNameMsg"></div>
                 </div>
 
                 <div class="input-box">
                   <label for="email">Email</label>
                   <input id="email" type="email" name="email" placeholder="ex: example@company.com"
-                  onfocusout="validateEmail()">
+                    onfocusout="validateEmail()">
                   <div class="helper-text" id="emailMsg"></div>
                 </div>
 
                 <div class="input-box">
                   <label for="contact">Contact</label>
-                  <input id="contact" type="text" name="phone" placeholder="ex: 0711223344" value="{{current_user.primary_contact}}" readonly>
+                  <input id="contact" type="text" name="phone" placeholder="ex: 0711223344"
+                    value="{{current_user.primary_contact}}" readonly>
                   <div class="helper-text" id="contactMsg"></div>
                 </div>
 
                 <div class="input-box-map">
                   <label for="address">Address</label>
                   <input id="address" type="text" name="address" placeholder="Enter your address"
-                  onfocusout="validateAddress()">
+                    onfocusout="validateAddress()">
                   <div class="helper-text" id="addressMsg"></div>
                 </div>
 
                 <div class="input-box">
                   <label for="city">City</label>
-                  <input id="city" type="text" name="city" placeholder="Enter your city"
-                  onfocusout="validateCity()">
+                  <input id="city" type="text" name="city" placeholder="Enter your city" onfocusout="validateCity()">
                   <div class="helper-text" id="cityMsg"></div>
                 </div>
 
                 <div class="input-box">
                   <label for="country">Country</label>
-                  <input id="country" type="text" name="country" placeholder="Enter your country" value="Sri Lanka" readonly>
+                  <input id="country" type="text" name="country" placeholder="Enter your country" value="Sri Lanka"
+                    readonly>
                   <div class="helper-text" id="contactMsg"></div>
                 </div>
               </div>
@@ -232,7 +237,7 @@
                   <h4 class="showAmount">LKR 5000</h4>
                 </div>
               </div>
-              
+
             </div>
           </div>
         </div>
@@ -251,6 +256,9 @@
 
   <script type="text/javascript" src="/Assets/js/signup_validation.js?version=8.0"></script>
   <script type="text/javascript" src="/Assets/js/Customer/newCart.js?version=4"></script>
+  <!-- Service Worker -->
+  <!-- <script src="/Assets/js/swSnippet.js"></script>
+  <script src="/service-worker.js"></script> -->
 </body>
 
 </html>

@@ -217,7 +217,22 @@ class Spadministrationstaff extends Authenticated
         echo $timeSlots;
     }
     //End of booking page of customer
+    public function validateeditarenanameAction()
+    {
+        $current_user = Auth::getUser();
+        $id = $current_user->user_id;
+        $combined = $this->route_params['arg'];
+        $temp = explode("__", $combined);
 
+        $searchValue = strtoupper(str_replace("_", " ", $temp[0]));
+        $categoryValue = strtoupper(str_replace("_", "-", $temp[1]));
+        $locationValue = strtoupper(str_replace("_", "-", $temp[2]));
+
+        $existing_arenas = SpAdministrationStaffModel::validateeditarenanameAction($id,$searchValue,$categoryValue,$locationValue);
+         if (!$existing_arenas) {
+             echo true;
+        }
+    }
 
     //Start of adding timeslots to visitor by removing from the add bookings view by SaAdmin
     public function hidebookingAction()

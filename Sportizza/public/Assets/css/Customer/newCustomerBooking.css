@@ -808,6 +808,7 @@ footer {
   margin: 2rem;
   margin-bottom: 1rem;
   height: max-content;
+  margin-top: 10px;
 }
 .sp-arena .sp-arena-img img {
   width: 150px;
@@ -915,7 +916,7 @@ footer {
   outline: 1px solid #eee;
 }
 
-.slide-container .thumbnail {
+/* .slide-container .thumbnail {
   flex: 0 0 auto;
   object-fit: cover;
   cursor: pointer;
@@ -927,6 +928,24 @@ footer {
   transform: scale(0.95);
   transition: all 0.3s;
   cursor: pointer;
+} */
+.slide-container .thumbnail {
+    flex: 0 0 auto;
+    object-fit: cover;
+    cursor: pointer;
+    margin: 5px;
+    height: 200px;
+    width: 250px;
+    border-radius: 30px;
+    overflow: hidden;
+    transform: scale(0.95);
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.slide-container .thumbnail img {
+    height: 200px;
+    width: 250px;
 }
 .slide-container .thumbnail:hover {
   transform: scale(1);
@@ -952,34 +971,35 @@ footer {
 .left-container {
   background-color: #ff6348;
   display: flex;
-  height: 53vh;
+  height: 56vh;
   align-items: center;
   padding: 2rem;
   flex-direction: column;
   border-radius: 25px 0px 0px 25px;
+  padding-top:5px;
 }
 .left-container .heading h3 {
-  font-size: 2.8rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: #fff;
-  margin: 2rem auto;
+
 }
 .date-picker input[type="date"] {
   background-color: #fff;
   color: #34495e;
-  font-size: 1.2rem;
+  font-size: 0.8rem;
   font-weight: 600;
   text-align: center;
   outline: none;
   border-radius: 30px;
-  padding: 5px 15px;
+  padding: 3px 8px;
   border: none;
-  height: 50px;
+  height: 40px;
   margin: 10px auto;
 }
 .available-bookings {
   background-color: #f97f51;
-  height: 53vh;
+  height: 56vh;
   width: 53vw;
   overflow-y: scroll;
   color: #fff;
@@ -1660,4 +1680,10 @@ footer {
     padding: 0 10px;
     font-size: small;
   }
+}
+
+
+.heading {
+  width: 100%;
+  margin-right: 10px;
 }

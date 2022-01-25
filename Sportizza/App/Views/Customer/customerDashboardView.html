@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="/Assets/css/Customer/new_customer_dashboard.css?version=19">
     <!-- <link rel="stylesheet" href="/Assets/css/Customer/new_customer_dashboard.css?version=15"> -->
     <link rel="stylesheet" href="/Assets/css/flashMessages.css?version=1">
+    <!-- Manifest file -->
+    <link rel="manifest" href="/./manifest.json" />
     <!-- FontAwesome Icon -->
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 </head>
@@ -131,7 +133,11 @@
                 <form action="" style="margin:20px">
                     <h1>Share booking details</h1>
                     <div class="shareDetails">
+                        
                         <input type="text" id="bdetail1" readonly>
+                        
+                        
+                        
                         <input type="text" id="bdetail2" readonly>
                         <div class="timeslotDisplay">
                             <input type="text" id="bdetail3" readonly>-
@@ -197,7 +203,7 @@
         <div class="formsection">
 
             <div>
-                <button s class="closebutton" onclick="close_popup_cannot_cancel_message()">❌</button>
+                <button  class="closebutton" onclick="close_popup_cannot_cancel_message()">❌</button>
             </div>
             <form id="cancelForm" style="margin:20px" method="post">
                 <div style="margin:auto">
@@ -205,15 +211,11 @@
                         Booking Cancellation
                     </h1>
                     <p>
-                        you can not cancel booking because you has only <span id="cannotCancelBookingDaysSpan">3
-                            days</span> for booking date
+                        You can not cancel this booking because you have only <span id="cannotCancelBookingDaysSpan">3
+                            days</span> left for your booking date.
                     </p>
                 </div>
                 <div style="display:flex">
-                    <!-- 
-                    <button type="submit" class="popup_delete_button">
-                        YES
-                    </button> -->
                     <button type="button" style="margin:auto" onclick="close_popup_cannot_cancel_message()"
                         class="popup_button">
                         OK
@@ -358,13 +360,13 @@
 
 
     <!-- popup notification section -->
-    <div id="popup_notification" class="sectionpop ">
+    <div id="popup_notification"   class="sectionpop " >
 
 
-        <div class="formsection">
+        <div  style="word-wrap: break-word"  class="formsection">
 
             <div>
-                <button s class="closebutton" onclick="close_popup_notification()">❌</button>
+                <button  class="closebutton" onclick="close_popup_notification()">❌</button>
             </div>
 
             <form action="/action_page.php" style="margin:20px">
@@ -470,13 +472,13 @@
                                 <td class="btn-float-right">
                                     <div style="display:flex; float:right; padding-right:2rem;">
                                         <div>
-                                            <button onclick="open_popup_share('{{book.booking_id}}','{{book.booking_date}}','{{book.start_time}}','{{book.end_time}}',
+                                            <button onclick="open_popup_share('{{book.booking_id}}','{{book.booking_date}}','{{book.startTime}}','{{book.endTime}}',
                                                 '{{book.sa_name}}','{{book.category}}','{{book.google_map_link}}')">
                                                 <i class="fas fa-share "></i>
                                             </button>
                                         </div>
                                         <div>
-                                            {% if date(book.booking_date)|date_modify("-4 day")|date('Y/m/d') >= 'now'|date('Y/m/d') and book.payment_method=="card" %}
+                                            {% if date(book.booking_date)|date_modify("-4 day")|date('Y/m/d') >= 'now'|date('Y/m/d')  %}
                                             <button class="icon_red"
                                                 onclick="open_popup_cancel_message('{{book.booking_id}}')">
                                                 <i class="fas fa-times"></i>
@@ -520,7 +522,7 @@
                             </button>
                         </div>
                         <div>
-                            {% if date(book.booking_date)|date_modify("-4 day")|date('Y/m/d') >= 'now'|date('Y/m/d') and book.payment_method=="card" %}
+                            {% if date(book.booking_date)|date_modify("-4 day")|date('Y/m/d') >= 'now'|date('Y/m/d') %}
                             <button class="icon_red" onclick="open_popup_cancel_message('{{book.booking_id}}')">
                                 <i class="fas fa-times"></i>
                             </button>
@@ -699,6 +701,7 @@
                                 <div class="booking-table-date-picker">
                                     <label class="date-label">Date</label>
                                     <input type="date" id="notification-date-picker"
+                                    name="notification-date-picker"
                                         onchange="NotificationDatepicker()">
                                 </div>
                             </div>
@@ -769,6 +772,11 @@
     <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
     <!-- File specific js -->
     <script type="text/javascript" src="/Assets/js/Customer/new_customer_dashbord.js?v=15"></script>
+    <!-- Service Worker -->
+    <!-- <script src="/Assets/js/swSnippet.js"></script>
+    <script src="/service-worker.js"></script> -->
+
+    
 </body>
 
 </html>

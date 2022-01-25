@@ -1,6 +1,7 @@
 
 
 
+
 function openTab(evt, cityName) {
   var i, booking_tab_content, booking_tab;
   booking_tab_content = document.getElementsByClassName("booking_tab_content");
@@ -14,7 +15,6 @@ function openTab(evt, cityName) {
   document.getElementById(cityName).style.display = "block";
   evt.currentTarget.className += " active";
 }
-
 
 //popup share section
 function open_popup_share(id,bdate,stime,etime,saname,category,gmap) {
@@ -165,7 +165,7 @@ function open_popup_notification(subject,description,link) {
   console.log(link);
   console.log(subject)
   if(link==""){
-    var form = document.getElementById("popup_notification");
+  var form = document.getElementById("popup_notification");
   form.querySelector("#popup_notification").innerHTML="<h1>"
   +subject+"</h1>"+"<p>"+description+"</p>";
   form.style.display = "block";
@@ -173,7 +173,7 @@ function open_popup_notification(subject,description,link) {
   else{
     var form = document.getElementById("popup_notification");
   form.querySelector("#popup_notification").innerHTML="<h1>"
-  +subject+"</h1>"+"<p>"+description+"</p>"+ "<a href="+"'"+link+ "'>" + "click here for refund" + "</a>";
+  +subject+"</h1>"+"<p>"+description+"</p>"+ "<a href="+"'"+link+ "'>" + "Refund link" + "</a>";
   form.style.display = "block";
   }
   
@@ -188,6 +188,9 @@ function close_popup_notification() {
 // set onclick button as a view booking button in the page loading process
 window.onload = function () {
   document.getElementById("view_booking_button").click();
+
+  var today = new Date().toISOString().split('T')[0];
+  document.getElementsByName("notification-date-picker")[0].setAttribute('max', today);
 };
 
 //Function to search sports arena in my bookings page

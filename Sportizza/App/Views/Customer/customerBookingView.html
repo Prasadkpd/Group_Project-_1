@@ -10,9 +10,21 @@
     <link rel="stylesheet" href="/Assets/css/navbar.css?version=4">
     <!-- File Specific CSS Styles -->
     <link rel="stylesheet" href="/Assets/css/Customer/newCustomerBooking.css">
+    <!-- Manifest file -->
+    <link rel="manifest" href="/./manifest.json" />
     <!-- FontAwesome Icon -->
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 
+
+
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.9.0/main.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/moment@5.5.0/main.global.min.js"></script>
+    <link rel="stylesheet" href="/Assets/css/customer/calender.css?version=1">
 
 
 </head>
@@ -124,7 +136,7 @@
                 <div class="sp-arena">
 
                     <div class="sp-arena-img">
-                        <img src="/Assets/images/customer/cricket.jpg">
+                        <img src="{{arenaDetails[0].photo1_name}}">
                     </div>
                     <div class="sp-arena-details">
                         <div class="sp-name">
@@ -197,7 +209,7 @@
 
                             <div class="google-map">
                                 <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.856271141694!2d79.86827001482301!3d6.907784420492848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25979bfbde28d%3A0xae825954d8507c7d!2sMercantile%20Cricket%20Association!5e0!3m2!1sen!2slk!4v1629887793472!5m2!1sen!2slk"
+                                    src=" https://www.google.com/maps/embed/v1/place?key=AIzaSyB2e00P4iPaWX6u26a1MNg-cYKLyY3jsoo&q={{arenaDetails[0].google_map_link}}"
                                     width="400" height="300" style="border:0;" allowfullscreen=""
                                     loading="lazy"></iframe>
                             </div>
@@ -207,19 +219,19 @@
                                 <section class="slide-container" id="slider">
 
                                     <div class="thumbnail">
-                                        <img src="/Assets/images/customer/Screenshot_1.jpg" alt="">
+                                        <img src="{{arenaDetails[0].photo1_name}}" alt="">
                                     </div>
                                     <div class="thumbnail">
-                                        <img src="/Assets/images/customer/Screenshot_2.jpg" alt="">
+                                        <img src="{{arenaDetails[0].photo2_name}}" alt="">
                                     </div>
                                     <div class="thumbnail">
-                                        <img src="/Assets/images/customer/Screenshot_3.jpg" alt="">
+                                        <img src="{{arenaDetails[0].photo3_name}}" alt="">
                                     </div>
                                     <div class="thumbnail">
-                                        <img src="/Assets/images/customer/Screenshot_4.jpg" alt="">
+                                        <img src="{{arenaDetails[0].photo4_name}}" alt="">
                                     </div>
                                     <div class="thumbnail">
-                                        <img src="/Assets/images/customer/Screenshot_5.jpg" alt="">
+                                        <img src="{{arenaDetails[0].photo5_name}}" alt="">
                                     </div>
                                 </section>
                                 <img id="slide-right" class="arrow" src="/Assets/images/customer/arrow-right.png">
@@ -230,25 +242,32 @@
 
                     <div class="booking" id="booking">
                         <div class="left-container">
-                            <div class="heading">
-                                <h3>Booking Date</h3>
+                            <div style="display: flex;flex-direction: row;align-items: center;justify-content: space-between;">
+                                <div class="heading">
+                                    <h3>Booking Date</h3>
+                                </div>
+    
+                                <div class="date-picker">
+                                    <form method="POST" id="bookingdateform">
+                                    
+                                        <input type="date" id="dateInput" name="dateInput" >
+                                        
+    
+                                        <input type="hidden" id="arenaId" name="arenaId"
+                                            value="{{arenaDetails[0].sports_arena_id}}">
+                                        
+                                    </form>
+                                </div>
                             </div>
 
-                            <div class="date-picker">
-                                <form method="POST" id="bookingdateform">
-                                    <!-- {% if date is not null %}
+                            <div class="wrapper">
 
-                                    <input type="date" id="dateInput" name="dateInput" value="{{date}}">
-
-                                    {% else %} -->
-                                    <input type="date" id="dateInput" name="dateInput" value="getDate()">
-                                    <!-- {% endif %} -->
-
-                                    <input type="hidden" id="arenaId" name="arenaId"
-                                        value="{{arenaDetails[0].sports_arena_id}}">
-                                    <!-- <input type="submit" value="Go"> -->
-                                </form>
-                            </div>
+                                <!--  Work in progress, filter not working with v5 right now  -->
+                                
+                              
+                                <div id="calendar"></div>
+                                
+                              </div>
 
                         </div>
 
@@ -276,10 +295,11 @@
                                             <div class="toggle-button-cover">
                                                 <div class="button-cover">
                                                     <div class="button r" id="button-1">
-                                                        <input type="checkbox" class="checkbox" name="paymentMethod" value="card" checked>
-                                                       
+                                                        <input type="checkbox" class="checkbox" name="paymentMethod"
+                                                            value="card" checked>
+
                                                         <div class="layer1">card</div>
-                                                        
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -287,8 +307,9 @@
                                             <div class="toggle-button-cover">
                                                 <div class="button-cover">
                                                     <div class="button r" id="button-1">
-                                                        <input type="checkbox" class="checkbox" name="paymentMethod" value="cash" checked>
-                                                        
+                                                        <input type="checkbox" class="checkbox" name="paymentMethod"
+                                                            value="cash" checked>
+
                                                         <div class="layer1">cash</div>
                                                     </div>
                                                 </div>
@@ -297,32 +318,37 @@
                                             <div class="toggle-button-cover">
                                                 <div class="button-cover">
                                                     <div class="button r" id="button-1">
-                                                        <input type="checkbox" class="checkbox" id="{{timeSlot.time_slot_id}}" onclick="paymentclick()" name="paymentMethod" value="card" checked>
+                                                        <input type="checkbox" class="checkbox"
+                                                            id="{{timeSlot.time_slot_id}}" onclick="paymentclick()"
+                                                            name="paymentMethod" value="card" checked>
                                                         <div class="knobs"></div>
                                                         <div class="layer"></div>
                                                     </div>
                                                 </div>
                                             </div>
                                             {% endif %}
-                                            
+
                                             <div>
-                                                <button class="removeItem" value={{timeSlot.time_slot_id}} type="submit">
+                                                <button class="removeItem" value={{timeSlot.time_slot_id}}
+                                                    type="submit">
                                                     <i class="fas fa-cart-plus"></i></button>
                                             </div>
                                         </div>
-                                        <input type="hidden" name="timeSlotId" id="timeSlotId" class="timeSlotClass" value={{timeSlot.time_slot_id}}>
-                                        <input type="date" name="bookingDate" class="bookingDatehidden" style="display: none;">
+                                        <input type="hidden" name="timeSlotId" id="timeSlotId" class="timeSlotClass"
+                                            value={{timeSlot.time_slot_id}}>
+                                        <input type="date" name="bookingDate" class="bookingDatehidden"
+                                            style="display: none;">
                                     </li>
-                                <!-- </form> -->
+                                    <!-- </form> -->
                                     {% endfor %}
                                 </ul>
-                                
+
                             </div>
 
 
                         </div>
 
-                        <a href="/customer/cart" class="btn check-availability-btn"> Pay Now</a>
+                        <!-- <a href="/customer/cart" class="btn check-availability-btn"> Pay Now</a> -->
 
                     </div>
 
@@ -356,12 +382,126 @@
         </div>
     </footer>
     <!-- End of Footer -->
+    
     <script type="text/javascript" src="/Assets/js/lib/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
-    <script src="/Assets/js/Customer/newCustomerBooking.js?version=3"></script>
+    
     <!-- <script src="/Assets/js/Customer/customer_view_booking_hide_ajax.js"></script> -->
     <script src="/Assets/js/Customer/customer_view_booking_dateChange_ajax.js"></script>
+    <script src="/Assets/js/Customer/newCustomerBooking.js?version=3"></script>
+    <!-- Service Worker -->
+    <!-- <script src="/Assets/js/swSnippet.js"></script>
+    <script src="/service-worker.js"></script> -->
 
+
+
+    <script >
+
+    
+        document.addEventListener('DOMContentLoaded', function() {
+          var calendarEl = document.getElementById('calendar');
+        
+          var calendar = new FullCalendar.Calendar(calendarEl, {
+            headerToolbar: {
+              start: 'prev,today,next',
+              center: 'title',
+              end: 'dayGridMonth,dayGridWeek,listWeek'
+            },
+            timeZone: 'Europe/Berlin',
+            weekNumbers: true,
+            initialView: 'dayGridMonth',
+            eventTimeFormat: {
+              hour: '2-digit',
+              minute: '2-digit',
+              hour12: false
+            },
+            views: {
+              dayGridWeek: {
+                titleFormat: '{DD.{MM.}}YYYY'
+              },
+              listWeek: {
+                titleFormat: '{DD.{MM.}}YYYY'
+              }
+            },
+            events: [
+            
+             
+            {% for count in bookingsCount %}
+            {
+                // title: {{count.bookingCount}},
+                start: moment().subtract('{{count.remainingDates}}', 'days').format('YYYY-MM-DD'),
+                end: moment().subtract('{{count.remainingDates}}', 'days').format('YYYY-MM-DD'),
+                display: 'background',
+                {% if count.bookingCount>5 %}
+                color: '#e74c3c',
+
+                {% elseif count.bookingCount>2  %}
+                color: '#f39c12',
+
+            
+                
+                {% endif %}
+                
+              },
+            {% endfor %}
+
+            
+            ],
+            eventClassNames: function(info) {
+              
+              var result = true;
+              var states = [];
+              var kinds = [];
+              
+              // Find all checkbox that are event filters and enabled and save the values.
+              $("input[name='event_filter_sel']:checked").each(function () {
+                // Saving each type separately
+                if ($(this).data('type') == 'state') {
+                  states.push($(this).val());
+                }
+                else if ($(this).data('type') == 'kind') {
+                  kinds.push($(this).val());
+                }
+              });
+              
+              // If there are locations to check
+              if (states.length) {
+                result = result && states.indexOf(info.event.extendedProps.state) >= 0;
+              }
+              // If there are specific types of events
+              if (kinds.length) {
+                result = result && kinds.indexOf(info.event.extendedProps.kind) >= 0 || info.event.extendedProps.kind == 'holiday';
+              }
+              
+              if (!result) {
+                result = "hidden";
+              }
+              
+              return result;
+            },
+        
+            windowResize: function(view) {
+              var current_view = view.type;
+              var expected_view = $(window).width() > 800 ? 'dayGridMonth' : 'listWeek';
+              if (current_view !== expected_view) {
+                calendar.changeView(expected_view);
+              }
+            },
+          });
+        
+          calendar.render();
+        
+          if ($(window).width() < 800) {
+            calendar.changeView('listWeek');
+          }
+        
+          $('input[class=event_filter]').change(function() {
+            calendar.render();
+          });
+            
+        });
+        
+        </script>
 
 </body>
 

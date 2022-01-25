@@ -5,7 +5,6 @@ use Exception;
 
 class Image
 {
-   
     public $img_errors = [];
     private $target_dir = __DIR__."/../public/Assets/uploads/";
     private $file_path = "";

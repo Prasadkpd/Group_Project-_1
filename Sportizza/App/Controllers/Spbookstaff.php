@@ -6,7 +6,7 @@ use Core\View;
 use App\Auth;
 use App\Models\SpBookStaffModel;
 
-class Spbookstaff extends \Core\Controller
+class Spbookstaff extends Authenticated
 {
     //Start of blocking a user after login
     //Blocking unauthorised access after login as a user
@@ -33,9 +33,11 @@ class Spbookstaff extends \Core\Controller
         //Get the current user's details with session using Auth
         $current_user = Auth::getUser();
         $id = $current_user->user_id;
+        $arena_details = SpBookStaffModel::arenaProfileView($id);
+        $arena_details['google_map_link'] = preg_replace('/\%\d\w/', ' , ', substr($arena_details['google_map_link'], 48));
 
         //Rendering the booking handling staff's home view(sports arena profile)
-        View::renderTemplate('BookHandlingStaff/bStaffProfileView.html');
+        View::renderTemplate('BookHandlingStaff/bStaffProfileView.html',['arena_details' => $arena_details]);
     }
     //End of Landing page of booking handling staff
 

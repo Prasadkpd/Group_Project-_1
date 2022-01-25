@@ -47,24 +47,27 @@ function close_popup_signout_message() {
     form.style.display = "none";
 }
 
-//popup delete message
-function open_popup_delete_booking(booking_id) {
-    document.getElementById("delete_booking_form").action += booking_id;
-    let form = document.getElementById("popup_delete");
-    form.style.display = "block";
+//popup cancel booking message
+function open_popup_cancel_booking(booking_id) {
+  document.getElementById("BookingReasonForm").action += booking_id;
+  var form = document.getElementById("popup_delete");
+  form.style.display = "block";
 }
-function close_popup_delete_booking() {
-    var form = document.getElementById("popup_delete");
-    form.style.display = "none";
+function close_popup_cancel_booking() {
+  var form = document.getElementById("popup_delete");
+  form.style.display = "none";
 }
-//popup delete message
-function open_popup_payment_message() {
-    var form = document.getElementById("popup_payment");
-    form.style.display = "block";
+
+//popup payment message
+function open_popup_payment_message(booking_id) {
+  document.getElementById("getPaymentbtn").href += booking_id;
+  
+  var form = document.getElementById("popup_payment");
+  form.style.display = "block";
 }
 function close_popup_payment_message() {
-    var form = document.getElementById("popup_payment");
-    form.style.display = "none";
+  var form = document.getElementById("popup_payment");
+  form.style.display = "none";
 }
 
 function searchViewTable() {
@@ -110,6 +113,7 @@ function ViewDatepicker() {
     }
   }
 }
+
 function searchViewTable() {
   var input, filter, table, tr, td, i, txtValue;
   table = document.getElementById("view-booking");
@@ -129,28 +133,7 @@ function searchViewTable() {
   }
 }
 
-function ViewDatepicker() {
-  table = document.getElementById("view-booking");
-  var pass = document.getElementById("view-date-picker").value;
-  tr = table.getElementsByTagName("tr");
-  var date = new Date(pass);
-  var year = String(date.getFullYear());
-  var month = String(date.getMonth() + 1).padStart(2, "0");
-  var todayDate = String(date.getDate()).padStart(2, "0");
-  console.log(datePattern);
-  var datePattern = year + "-" + month + "-" + todayDate;
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[4];
-    if (td) {
-      txtValue = td.innerText;
-      if (txtValue == datePattern) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-}
+
 function searchDeleteTable() {
   var input, filter, table, tr, td, i, txtValue;
   table = document.getElementById("delete-booking");
@@ -233,4 +216,56 @@ function PaymentDatepicker() {
       }
     }
   }
+}
+
+const BookingReasonForm = document.getElementById("BookingReasonForm");
+const cancelBookingMsg = document.getElementById("cancelReason");
+
+BookingReasonForm.addEventListener("submit", function (event) {
+  // Prevent default behaviour
+  event.preventDefault();
+  if (validateCancelReason()) {
+    BookingReasonForm.submit();
+  }
+});
+
+function validateBookingCancelReason() {
+  validateCancelReason();
+}
+
+function validateCancelReason() {
+  if (checkIfEmpty(cancelBookingMsg)) return;
+  return true;
+}
+
+function checkIfEmptytextArea(field) {
+  console.log(field.value.trim());
+  if (isEmpty(field.value.trim())) {
+    // set field invalid
+    setInvalid(
+      field,
+      `${capitalizeFirstLetter(
+        replaceUnderscore(field.name)
+      )} should be filled!`
+    );
+    return true;
+  } else {
+    // set field valid
+    setValid(field);
+    return false;
+  }
+}
+
+// // return current date
+window.onload = function () {
+  
+  // const date = new Date().toISOString().split('T')[0];
+  // date.setDate(date.getDate() + 1);
+  
+  var today = new Date().toISOString().split('T')[0];
+  document.getElementsByName("dateInput")[0].setAttribute('min', today);
+
+  document.getElementById('dateInput').valueAsDate = new Date();
+  document.querySelectorAll('.bookingDatehidden').valueAsDate = new Date();
+
 }

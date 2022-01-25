@@ -58,6 +58,10 @@ class SignupModel extends \Core\Model
             $stmt1->bindValue(':profile_pic', $this->image_7->getURL(), PDO::PARAM_STR);
             $stmt1->execute();
 
+
+
+           
+
             //Retreiving customer user id from the database
             $sql2 = 'SELECT `user_id` FROM `user` ORDER BY `user_id` DESC LIMIT 1;';
 
@@ -68,6 +72,10 @@ class SignupModel extends \Core\Model
             $result1 = $stmt2->fetch(PDO::FETCH_ASSOC);
             //Obtaining the user id retrieved from result1
             $user_id = $result1["user_id"];
+
+
+            
+
 
             //Insert into customer table in database
             $sql3 = 'INSERT INTO `customer`
@@ -85,7 +93,32 @@ class SignupModel extends \Core\Model
 
             $stmt4 = $db->prepare($sql4);
             $stmt4->bindValue(':customer_user_id', $user_id, PDO::PARAM_INT);
-            return ($stmt4->execute());
+            $stmt4->execute();
+
+            //Retreiving customer profile id from the database
+            $sql6 = 'SELECT `customer_profile_id` FROM `customer_profile` ORDER BY `customer_profile_id` DESC LIMIT 1;';
+
+            $stmt6 = $db->prepare($sql6);
+            $stmt6->execute();
+
+            //Converting retrieved data from database into PDOs
+            $result_id = $stmt6->fetch(PDO::FETCH_ASSOC);
+            //Obtaining the user id retrieved from result1
+            $customer_profile_id = $result_id["customer_profile_id"];
+
+
+
+             //Insert into customer favorite list in database
+             $sql5 = 'INSERT INTO favourite_list
+             (customer_profile_id) 
+             VALUES (:customer_user_id);';
+ 
+             $stmt5 = $db->prepare($sql5);
+             $stmt5->bindValue(':customer_user_id',  $customer_profile_id, PDO::PARAM_INT);
+             return $stmt5->execute();
+
+
+            
         }
     }
     // End of Save the user model with the current property values
@@ -189,7 +222,7 @@ class SignupModel extends \Core\Model
     {
         //Retrieving the user details from the database
         $sql = 'SELECT * FROM user WHERE primary_contact = :mobile_number AND account_status= "active"
-         AND security_status= "active';
+         AND security_status= "active" ';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);

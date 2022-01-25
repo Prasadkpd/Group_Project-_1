@@ -15,17 +15,31 @@ class EditProfileModel extends \Core\Model
     //Start of Class constructor 
     public function __construct($data = [])
     {
+        var_dump($data);
         // Change the format of the key value pairs sent 
         // from the controller use in the model
         foreach ($data as $key => $value) {
             $this->$key = $value;
         };
-        $this->proPicImage =  new Image("proPicImage");
 
+        if ($_FILES['proPicImage']['size'] == 0 ){
+           
+         }
+        else{
+            $this->proPicImage =  new Image("proPicImage");
+         }
+
+         
+        // if(isset($_FILES['proPicImage'])){
+        //     $this->proPicImage =  new Image("proPicImage");
+        // };
+    
         if (!empty($this->proPicImage->img_errors)) {
             $this->errors["proPicImage"] = $this->proPicImage->img_errors;
-        }
+        };
+
         var_dump($this->errors);
+        
     }
     //End of Class constructor
 
@@ -112,26 +126,42 @@ class EditProfileModel extends \Core\Model
             
             // If valid
             if (empty($this->errors)){
+
+                $db = static::getDB();
+                if(isset($this->proPicImage)){
+                    $sql = 'UPDATE user
+                    SET user.first_name =:firstName,
+                    user.last_name=:lastName,profile_pic=:proPicImage
+                    WHERE username=:oldUsername;';
+                    $stmt = $db->prepare($sql);
+                    $stmt->bindValue(':proPicImage', $this->proPicImage->getURL(), PDO::PARAM_STR);
+                }
             
                 // Update first name and last name in the database  
-            $sql = 'UPDATE user
-            SET user.first_name =:firstName,
-            user.last_name=:lastName,profile_pic=:proPicImage
-            WHERE username=:oldUsername;';
+                else{
+                    $sql = 'UPDATE user
+                    SET user.first_name =:firstName,
+                    user.last_name=:lastName
+                    WHERE username=:oldUsername;';
+                    $stmt = $db->prepare($sql);
+                    
+                }
     
-            $db = static::getDB();
-            $stmt = $db->prepare($sql);
+            
+            
 
             // Binding the old username, firstname and lastname
             $stmt->bindValue(':oldUsername', $oldUsername, PDO::PARAM_STR);
             $stmt->bindValue(':firstName',$this->firstName, PDO::PARAM_STR);
             $stmt->bindValue(':lastName',$this->lastName, PDO::PARAM_STR);  
-            $stmt->bindValue(':proPicImage', $this->proPicImage->getURL(), PDO::PARAM_STR);
+            
             // Fetch and return the retrieved results
             return $stmt->execute();
             }
             // If there are errors with backend validation
             else{
+                var_dump($this->errors);
+
                 return false;
             }
         }
@@ -165,7 +195,9 @@ class EditProfileModel extends \Core\Model
             }
             // If there are errors with backend validation
             else{
+                var_dump($this->errors);
                 return false;
+                
             }
         }
     }

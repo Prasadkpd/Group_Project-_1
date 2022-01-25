@@ -11,6 +11,8 @@
      <!-- File Specific CSS Styles -->
     <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-timeslots.css?version=9">
     <link rel="stylesheet" href="/Assets/css/SpAdministartionStaff/sidebar.css?version=10">
+     <!-- Manifest file -->
+    <link rel="manifest" href="/./manifest.json" />
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 </head>
 
@@ -267,7 +269,7 @@
                                 <select id="startTime" name="startTime">
                                     <option value="0">Please Select Start Time</option>
                                     {% set hours = ["05","06","07","08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19",
-                                    "20", "21", "22", "23"] %}
+                                    "20", "21", "22"] %}
                                     {% set minutes = ["00","30"]%}
                                     {% for hour in hours %}
                                     {% for mins in minutes %}
@@ -398,6 +400,9 @@
      <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
      <!-- File specific JS -->
     <script type="text/javascript" src="/Assets/js/SpArenaAdministrationStaff/manage-timeslots.js?version=9"></script>
+    <!-- Service Worker -->
+    <!-- <script src="/Assets/js/swSnippet.js"></script>
+    <script src="/service-worker.js"></script> -->
 </body>
 
 </html>

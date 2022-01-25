@@ -7,6 +7,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+img#form-edit-profile-picture {
+  height: 105px;
+  width: 105px;
+}
 
 html {
   scroll-behavior: smooth;

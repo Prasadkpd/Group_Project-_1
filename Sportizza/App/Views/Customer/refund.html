@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="/Assets/css/navbar.css?version=4">
   <!-- File specific CSS -->
   <link rel="stylesheet" href="/Assets/css/Customer/refund.css?version=22">
+  <!-- Manifest file -->
+  <link rel="manifest" href="/./manifest.json" />
   <title>Sportizza</title>
 </head>
 
@@ -191,7 +193,7 @@
 
                 <div class="input-box">
                   <label for="benificialyName">Benficiary Name</label>
-                  <input id="benificialyName" type="text" name="benificialyName" placeholder="Enter Benficiary Name"
+                  <input id="benificiaryName" type="text" name="benificiaryName" placeholder="Enter Benficiary Name"
                   onfocusout="validateBenificaryName()">
                   <div class="helper-text" id="addressMsg"></div>
                 </div>
@@ -199,28 +201,22 @@
                 <div class="input-box">
                   <label for="cardNumber">Account Number</label>
                   <input id="accountNumber" type="text" name="accountNumber" placeholder="Enter your Account Number"
-                  onfocusout="validateAddress()">
+                  onfocusout="validateAccountNumber()">
                   <div class="helper-text" id="addressMsg"></div>
                 </div>
 
-                <!-- <div class="input-box">
-                  <label for="cardNumber">Card Number</label>
-                  <input id="cardNumber" type="text" name="cardNumber" placeholder="Enter your address"
-                  onfocusout="validateAddress()">
-                  <div class="helper-text" id="addressMsg"></div>
-                </div> -->
-
+                
                 <div class="input-box">
                   <label for="bankName">Bank Name</label>
                   <input id="bankName" type="text" name="bankName" placeholder="Enter your Bank Name"
-                  onfocusout="validateAddress()">
+                  onfocusout="validateBankName()">
                   <div class="helper-text" id="addressMsg"></div>
                 </div>
 
                 <div class="input-box">
                   <label for="branchName">Branch Name</label>
                   <input id="branchName" type="text" name="branchName" placeholder="Enter Branch Name"
-                  onfocusout="validateAddress()">
+                  onfocusout="validateBranchName()">
                   <div class="helper-text" id="addressMsg"></div>
                   
                 </div>
@@ -253,6 +249,9 @@
   <script type="text/javascript" src="/Assets/js/Customer/refund.js?version=4"></script>
   <!-- Top navbar js -->
   <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
+  <!-- Service Worker -->
+  <!-- <script src="/Assets/js/swSnippet.js"></script>
+  <script src="/service-worker.js"></script> -->
 </body>
 
 </html>

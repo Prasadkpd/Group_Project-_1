@@ -10,6 +10,8 @@
      <link rel="stylesheet" href="/Assets/css/navbar.css?version=4">
      <!-- File Specific CSS Styles -->
     <link rel="stylesheet" href="/Assets/css/SpArenaManager/manage-timeslots.css?version=9">
+    <!-- Manifest file -->
+    <link rel="manifest" href="/./manifest.json" />
     <script src="https://kit.fontawesome.com/3220c9480a.js" crossorigin="anonymous"></script>
 </head>
 
@@ -193,9 +195,9 @@
                     <li>
                         <a href="/Sparenamanager/manageusers" class="side-menu-li">
                             <i class="fas fa-users"></i>
-                            <p class="side-menu-item">Manage Users</p>
+                            <p class="side-menu-item">Manage Staff</p>
                         </a>
-                        <p class="side-menu-tooltip">Manage Users</p>
+                        <p class="side-menu-tooltip">Manage Staff</p>
                     </li>
                     <li>
                         <a href="/Sparenamanager/manageanalytics" class="side-menu-li">
@@ -279,7 +281,7 @@
 
                                     <select id="startTime" name="startTime"  >
                                         <option value="0">Please Select Start Time</option>
-                                    {% set hours = ["05","06","07","08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]  %}
+                                    {% set hours = ["05","06","07","08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22"]  %}
                                     {% set minutes = ["00","30"]%}
                                     {% for hour in hours %}
                                     {% for mins in minutes %}
@@ -407,15 +409,18 @@
     </footer>
     <!-- End of Footer -->
     <!-- JQuery Library -->
-    <script type="text/javascript" src="/Assets/js/lib/jquery/jquery.min.js"></script>
     <!-- Validation JS -->
     <script type="text/javascript" src="/Assets/js/signup_validation.js?version=9.0"></script>
-     <!-- Top navbar js -->
-     <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
-     <!-- File specific JS -->
+    <!-- Top navbar js -->
+    <script type="text/javascript" src="/Assets/js/navbar.js?v=8"></script>
+    <!-- File specific JS -->
     <script type="text/javascript" src="/Assets/js/SpArenaManager/manage-timeslots.js?version=9"></script>
-     <!-- Validate timeslot insertion -->
+    <!-- Validate timeslot insertion -->
+    <script type="text/javascript" src="/Assets/js/lib/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/Assets/js/SpArenaManager/manager-validateTimeslot-ajax.js"></script>
+    <!-- Service Worker -->
+    <!-- <script src="/Assets/js/swSnippet.js"></script>
+    <script src="/service-worker.js"></script> -->
 </body>
 
 </html>

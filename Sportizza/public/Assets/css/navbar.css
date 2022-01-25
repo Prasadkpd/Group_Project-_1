@@ -16,6 +16,7 @@ nav .nav-left {
   height: 50px;
   justify-content: space-around;
 }
+
 nav .logo-container {
   width: 50%;
 }
@@ -56,7 +57,7 @@ nav .nav-profile .profile-btn:hover {
 }
 .editProPic #form-profile-picture{
   width: 120px;
-  height:120px;
+  height:110px;
   object-fit:cover;
   
 }
@@ -104,7 +105,6 @@ nav .nav-profile img {
 }
 .editProPic #form-profile-picture{
   width: 100%;
-  height: auto;
 }
 .openbutton {
   border: none;
