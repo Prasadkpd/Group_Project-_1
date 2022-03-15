@@ -1,0 +1,404 @@
+[27-Jan-2022 12:03:08 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[HY000] [1049] Unknown database 'sportizza''
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Model.php(17): PDO->__construct('mysql:host=loca...', 'admin', 'admin')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(71): Core\Model::getDB()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(80): App\Models\HomeModel::homeSearchArenas('select location', 'select category', '')
+#3 [internal function]: App\Controllers\Home->searcharenasajaxAction()
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('searcharenasaja...', Array)
+#6 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('Home/searcharen...')
+#7 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Model.php' on line 17
+[27-Jan-2022 12:03:17 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('Home/searcharen...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php' on line 96
+[27-Jan-2022 12:03:19 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('Home/searcharen...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php' on line 96
+[27-Jan-2022 12:03:57 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[HY000] [1049] Unknown database 'sportizza''
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Model.php(17): PDO->__construct('mysql:host=loca...', 'admin', 'admin')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/LoginModel.php(46): Core\Model::getDB()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/LoginModel.php(85): App\Models\LoginModel::findByUsername('janithadev')
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Login.php(33): App\Models\LoginModel::authenticate('janithadev', 'JanithaD@99')
+#4 [internal function]: App\Controllers\Login->loginAction()
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#6 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('login', Array)
+#7 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('login/login')
+#8 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Model.php' on line 17
+[27-Jan-2022 12:04:00 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('Home/searcharen...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php' on line 96
+[27-Jan-2022 12:04:08 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[HY000] [1049] Unknown database 'sportizza''
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Model.php(17): PDO->__construct('mysql:host=loca...', 'admin', 'admin')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(71): Core\Model::getDB()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(80): App\Models\HomeModel::homeSearchArenas('select location', 'select category', '')
+#3 [internal function]: App\Controllers\Home->searcharenasajaxAction()
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('searcharenasaja...', Array)
+#6 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('Home/searcharen...')
+#7 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Model.php' on line 17
+[27-Jan-2022 12:06:24 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[HY000] [1049] Unknown database 'sportizza''
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Model.php(17): PDO->__construct('mysql:host=loca...', 'admin', 'admin')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(71): Core\Model::getDB()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(80): App\Models\HomeModel::homeSearchArenas('Colombo-03', 'select category', '')
+#3 [internal function]: App\Controllers\Home->searcharenasajaxAction()
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('searcharenasaja...', Array)
+#6 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('Home/searcharen...')
+#7 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Model.php' on line 17
+[27-Jan-2022 12:06:25 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[HY000] [1049] Unknown database 'sportizza''
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Model.php(17): PDO->__construct('mysql:host=loca...', 'admin', 'admin')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(71): Core\Model::getDB()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(80): App\Models\HomeModel::homeSearchArenas('Colombo-03', 'Volleyball', '')
+#3 [internal function]: App\Controllers\Home->searcharenasajaxAction()
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('searcharenasaja...', Array)
+#6 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('Home/searcharen...')
+#7 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Model.php' on line 17
+[27-Jan-2022 12:07:20 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[HY000] [1049] Unknown database 'sportizza''
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Model.php(17): PDO->__construct('mysql:host=loca...', 'admin', 'admin')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/LoginModel.php(46): Core\Model::getDB()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/LoginModel.php(85): App\Models\LoginModel::findByUsername('janithadev')
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Login.php(33): App\Models\LoginModel::authenticate('janithadev', 'JanithaD@99')
+#4 [internal function]: App\Controllers\Login->loginAction()
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#6 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('login', Array)
+#7 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('login/login')
+#8 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Model.php' on line 17
+[27-Jan-2022 12:12:57 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[HY000] [1049] Unknown database 'sportizza''
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Model.php(17): PDO->__construct('mysql:host=loca...', 'admin', 'admin')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(122): Core\Model::getDB()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(25): App\Models\HomeModel::homeViewfeedbacks()
+#3 [internal function]: App\Controllers\Home->indexAction()
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('index', Array)
+#6 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('')
+#7 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Model.php' on line 17
+[27-Jan-2022 12:13:07 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[HY000] [1049] Unknown database 'sportizza''
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Model.php(17): PDO->__construct('mysql:host=loca...', 'admin', 'admin')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(122): Core\Model::getDB()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(25): App\Models\HomeModel::homeViewfeedbacks()
+#3 [internal function]: App\Controllers\Home->indexAction()
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('index', Array)
+#6 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('')
+#7 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Model.php' on line 17
+[27-Jan-2022 12:13:14 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[HY000] [1049] Unknown database 'sportizza''
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Model.php(17): PDO->__construct('mysql:host=loca...', 'admin', 'admin')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(122): Core\Model::getDB()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(25): App\Models\HomeModel::homeViewfeedbacks()
+#3 [internal function]: App\Controllers\Home->indexAction()
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('index', Array)
+#6 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('')
+#7 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Model.php' on line 17
+[27-Jan-2022 12:13:18 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[HY000] [1049] Unknown database 'sportizza''
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Model.php(17): PDO->__construct('mysql:host=loca...', 'admin', 'admin')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(122): Core\Model::getDB()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(25): App\Models\HomeModel::homeViewfeedbacks()
+#3 [internal function]: App\Controllers\Home->indexAction()
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('index', Array)
+#6 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('')
+#7 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Model.php' on line 17
+[27-Jan-2022 12:13:19 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[HY000] [1049] Unknown database 'sportizza''
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Model.php(17): PDO->__construct('mysql:host=loca...', 'admin', 'admin')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(122): Core\Model::getDB()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(25): App\Models\HomeModel::homeViewfeedbacks()
+#3 [internal function]: App\Controllers\Home->indexAction()
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('index', Array)
+#6 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('')
+#7 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Model.php' on line 17
+[27-Jan-2022 12:13:30 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[HY000] [1049] Unknown database 'sportizza''
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Model.php(17): PDO->__construct('mysql:host=loca...', 'admin', 'admin')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(122): Core\Model::getDB()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(25): App\Models\HomeModel::homeViewfeedbacks()
+#3 [internal function]: App\Controllers\Home->indexAction()
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('index', Array)
+#6 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('')
+#7 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Model.php' on line 17
+[27-Jan-2022 12:13:46 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[HY000] [1049] Unknown database 'sportizza''
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Model.php(17): PDO->__construct('mysql:host=loca...', 'admin', 'admin')
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(122): Core\Model::getDB()
+#2 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(25): App\Models\HomeModel::homeViewfeedbacks()
+#3 [internal function]: App\Controllers\Home->indexAction()
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('index', Array)
+#6 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('')
+#7 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Model.php' on line 17
+[27-Jan-2022 12:15:33 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'sportizza.sports_arena_profile.s_a_profile_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(76): PDOStatement->execute(Array)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(80): App\Models\HomeModel::homeSearchArenas('select location', 'select category', '')
+#2 [internal function]: App\Controllers\Home->searcharenasajaxAction()
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('searcharenasaja...', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('Home/searcharen...')
+#6 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php' on line 76
+[27-Jan-2022 12:20:20 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #6 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'sportizza.sports_arena_profile.payment_method' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/CustomerModel.php(161): PDOStatement->execute()
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Customer.php(129): App\Models\CustomerModel::customerViewTimeSlots('100000006')
+#2 [internal function]: App\Controllers\Customer->bookingAction()
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('booking', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('customer/bookin...')
+#6 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/CustomerModel.php' on line 161
+[27-Jan-2022 12:20:27 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #6 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'sportizza.sports_arena_profile.payment_method' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/CustomerModel.php(161): PDOStatement->execute()
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Customer.php(129): App\Models\CustomerModel::customerViewTimeSlots('100000009')
+#2 [internal function]: App\Controllers\Customer->bookingAction()
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('booking', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('customer/bookin...')
+#6 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/CustomerModel.php' on line 161
+[27-Jan-2022 12:20:45 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #6 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'sportizza.sports_arena_profile.payment_method' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/CustomerModel.php(161): PDOStatement->execute()
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Customer.php(129): App\Models\CustomerModel::customerViewTimeSlots('100000007')
+#2 [internal function]: App\Controllers\Customer->bookingAction()
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('booking', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('customer/bookin...')
+#6 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/CustomerModel.php' on line 161
+[27-Jan-2022 12:21:56 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #6 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'sportizza.sports_arena_profile.payment_method' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/CustomerModel.php(161): PDOStatement->execute()
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Customer.php(129): App\Models\CustomerModel::customerViewTimeSlots('100000006')
+#2 [internal function]: App\Controllers\Customer->bookingAction()
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('booking', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('customer/bookin...')
+#6 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/CustomerModel.php' on line 161
+[27-Jan-2022 12:55:50 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'sportizza.sports_arena_profile.s_a_profile_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(76): PDOStatement->execute(Array)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(80): App\Models\HomeModel::homeSearchArenas('select location', 'select category', '')
+#2 [internal function]: App\Controllers\Home->searcharenasajaxAction()
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('searcharenasaja...', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('Home/searcharen...')
+#6 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php' on line 76
+[27-Jan-2022 14:06:24 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('apple-touch-ico...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php' on line 96
+[27-Jan-2022 14:06:24 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'sportizza.sports_arena_profile.s_a_profile_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(76): PDOStatement->execute(Array)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(80): App\Models\HomeModel::homeSearchArenas('select location', 'select category', '')
+#2 [internal function]: App\Controllers\Home->searcharenasajaxAction()
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('searcharenasaja...', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('Home/searcharen...')
+#6 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php' on line 76
+[27-Jan-2022 14:06:24 UTC] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('apple-touch-ico...')
+#1 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php' on line 96
+[27-Jan-2022 14:06:49 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'sportizza.sports_arena_profile.s_a_profile_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(76): PDOStatement->execute(Array)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(80): App\Models\HomeModel::homeSearchArenas('select location', 'select category', '')
+#2 [internal function]: App\Controllers\Home->searcharenasajaxAction()
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('searcharenasaja...', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('Home/searcharen...')
+#6 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php' on line 76
+[27-Jan-2022 14:07:20 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'sportizza.sports_arena_profile.s_a_profile_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(76): PDOStatement->execute(Array)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(80): App\Models\HomeModel::homeSearchArenas('select location', 'select category', 'Acc')
+#2 [internal function]: App\Controllers\Home->searcharenasajaxAction()
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('searcharenasaja...', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('Home/searcharen...')
+#6 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php' on line 76
+[27-Jan-2022 14:07:27 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'sportizza.sports_arena_profile.s_a_profile_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(76): PDOStatement->execute(Array)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(47): App\Models\HomeModel::homeSearchArenas('select location', 'select category', 'Acc')
+#2 [internal function]: App\Controllers\Home->searcharenasAction()
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('searcharenas', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('home/searcharen...')
+#6 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php' on line 76
+[27-Jan-2022 14:07:30 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'sportizza.sports_arena_profile.s_a_profile_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(76): PDOStatement->execute(Array)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(80): App\Models\HomeModel::homeSearchArenas('select location', 'select category', '')
+#2 [internal function]: App\Controllers\Home->searcharenasajaxAction()
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('searcharenasaja...', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('Home/searcharen...')
+#6 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php' on line 76
+[27-Jan-2022 14:07:31 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'sportizza.sports_arena_profile.s_a_profile_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(76): PDOStatement->execute(Array)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(47): App\Models\HomeModel::homeSearchArenas('select location', 'select category', 'Acc')
+#2 [internal function]: App\Controllers\Home->searcharenasAction()
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('searcharenas', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('home/searcharen...')
+#6 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php' on line 76
+[27-Jan-2022 14:07:55 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'sportizza.sports_arena_profile.s_a_profile_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(76): PDOStatement->execute(Array)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(80): App\Models\HomeModel::homeSearchArenas('select location', 'select category', '')
+#2 [internal function]: App\Controllers\Home->searcharenasajaxAction()
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('searcharenasaja...', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('Home/searcharen...')
+#6 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php' on line 76
+[27-Jan-2022 14:07:55 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'sportizza.sports_arena_profile.s_a_profile_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(76): PDOStatement->execute(Array)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(47): App\Models\HomeModel::homeSearchArenas('select location', 'select category', 'accc')
+#2 [internal function]: App\Controllers\Home->searcharenasAction()
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('searcharenas', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('home/searcharen...')
+#6 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php' on line 76
+[27-Jan-2022 14:08:15 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'sportizza.sports_arena_profile.s_a_profile_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(76): PDOStatement->execute(Array)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(80): App\Models\HomeModel::homeSearchArenas('select location', 'select category', '')
+#2 [internal function]: App\Controllers\Home->searcharenasajaxAction()
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('searcharenasaja...', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('Home/searcharen...')
+#6 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php' on line 76
+[27-Jan-2022 14:08:29 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'sportizza.sports_arena_profile.s_a_profile_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(76): PDOStatement->execute(Array)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(80): App\Models\HomeModel::homeSearchArenas('select location', 'select category', '')
+#2 [internal function]: App\Controllers\Home->searcharenasajaxAction()
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('searcharenasaja...', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('Home/searcharen...')
+#6 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php' on line 76
+[27-Jan-2022 14:08:46 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'sportizza.sports_arena_profile.s_a_profile_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(76): PDOStatement->execute(Array)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(80): App\Models\HomeModel::homeSearchArenas('select location', 'select category', '')
+#2 [internal function]: App\Controllers\Home->searcharenasajaxAction()
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('searcharenasaja...', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('Home/searcharen...')
+#6 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php' on line 76
+[27-Jan-2022 14:08:53 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'sportizza.sports_arena_profile.s_a_profile_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(76): PDOStatement->execute(Array)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(80): App\Models\HomeModel::homeSearchArenas('select location', 'select category', 'a')
+#2 [internal function]: App\Controllers\Home->searcharenasajaxAction()
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('searcharenasaja...', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('Home/searcharen...')
+#6 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php' on line 76
+[27-Jan-2022 14:08:53 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'sportizza.sports_arena_profile.s_a_profile_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(76): PDOStatement->execute(Array)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(80): App\Models\HomeModel::homeSearchArenas('select location', 'select category', 'ac')
+#2 [internal function]: App\Controllers\Home->searcharenasajaxAction()
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('searcharenasaja...', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('Home/searcharen...')
+#6 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php' on line 76
+[27-Jan-2022 14:08:53 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'sportizza.sports_arena_profile.s_a_profile_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(76): PDOStatement->execute(Array)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(80): App\Models\HomeModel::homeSearchArenas('select location', 'select category', 'acc')
+#2 [internal function]: App\Controllers\Home->searcharenasajaxAction()
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('searcharenasaja...', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('Home/searcharen...')
+#6 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php' on line 76
+[27-Jan-2022 14:09:00 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'sportizza.sports_arena_profile.s_a_profile_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(76): PDOStatement->execute(Array)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(80): App\Models\HomeModel::homeSearchArenas('select location', 'select category', 'ac')
+#2 [internal function]: App\Controllers\Home->searcharenasajaxAction()
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('searcharenasaja...', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('Home/searcharen...')
+#6 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php' on line 76
+[27-Jan-2022 14:09:01 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'sportizza.sports_arena_profile.s_a_profile_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(76): PDOStatement->execute(Array)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(80): App\Models\HomeModel::homeSearchArenas('select location', 'select category', 'a')
+#2 [internal function]: App\Controllers\Home->searcharenasajaxAction()
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('searcharenasaja...', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('Home/searcharen...')
+#6 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php' on line 76
+[27-Jan-2022 14:09:10 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'sportizza.sports_arena_profile.s_a_profile_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(76): PDOStatement->execute(Array)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(80): App\Models\HomeModel::homeSearchArenas('select location', 'select category', '')
+#2 [internal function]: App\Controllers\Home->searcharenasajaxAction()
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('searcharenasaja...', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('Home/searcharen...')
+#6 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php' on line 76
+[27-Jan-2022 14:09:20 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'sportizza.sports_arena_profile.s_a_profile_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(76): PDOStatement->execute(Array)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(80): App\Models\HomeModel::homeSearchArenas('select location', 'select category', 'a')
+#2 [internal function]: App\Controllers\Home->searcharenasajaxAction()
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('searcharenasaja...', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('Home/searcharen...')
+#6 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php' on line 76
+[27-Jan-2022 14:09:20 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'sportizza.sports_arena_profile.s_a_profile_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(76): PDOStatement->execute(Array)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(80): App\Models\HomeModel::homeSearchArenas('select location', 'select category', 'aa')
+#2 [internal function]: App\Controllers\Home->searcharenasajaxAction()
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('searcharenasaja...', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('Home/searcharen...')
+#6 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php' on line 76
+[27-Jan-2022 14:09:21 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'sportizza.sports_arena_profile.s_a_profile_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(76): PDOStatement->execute(Array)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(80): App\Models\HomeModel::homeSearchArenas('select location', 'select category', 'aaa')
+#2 [internal function]: App\Controllers\Home->searcharenasajaxAction()
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('searcharenasaja...', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('Home/searcharen...')
+#6 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php' on line 76
+[27-Jan-2022 14:09:21 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'sportizza.sports_arena_profile.s_a_profile_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(76): PDOStatement->execute(Array)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(80): App\Models\HomeModel::homeSearchArenas('select location', 'select category', 'aaaa')
+#2 [internal function]: App\Controllers\Home->searcharenasajaxAction()
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('searcharenasaja...', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('Home/searcharen...')
+#6 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php' on line 76
+[27-Jan-2022 14:09:21 UTC] Uncaught exception: 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'sportizza.sports_arena_profile.s_a_profile_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by'
+Stack trace: #0 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php(76): PDOStatement->execute(Array)
+#1 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Controllers/Home.php(80): App\Models\HomeModel::homeSearchArenas('select location', 'select category', 'aaaaa')
+#2 [internal function]: App\Controllers\Home->searcharenasajaxAction()
+#3 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Controller.php(23): call_user_func_array(Array, Array)
+#4 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/Core/Router.php(88): Core\Controller->__call('searcharenasaja...', Array)
+#5 /Applications/MAMP/htdocs/Group_Project-_1/Sportizza/public/index.php(45): Core\Router->dispatch('Home/searcharen...')
+#6 {main}
+Thrown in '/Applications/MAMP/htdocs/Group_Project-_1/Sportizza/App/Models/HomeModel.php' on line 76
